@@ -44,6 +44,7 @@ Then, install Fonduer and any other python dependencies by running:
 
 ```bash
 pip install -r requirements.txt
+pre-commit install
 ```
 
 ## Running
