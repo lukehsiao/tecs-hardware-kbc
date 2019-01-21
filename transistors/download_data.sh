@@ -1,16 +1,17 @@
-echo "Downloading hardware tutorial data..."
-url=http://i.stanford.edu/hazy/share/fonduer/hardware_tutorial_data.tar.gz
-data_tar=hardware_tutorial_data
+echo "Downloading transistor dataset..."
+url=https://stanford.box.com/shared/static/uu0gsf5fn1vidctx8zfpbi4nu9r69hfk.xz
+data_tar=transistor_dataset.tar.xz
+
 if type curl &>/dev/null; then
-    curl -RLO $url
+    curl -RL --retry 3 -C - $url -o $data_tar
 elif type wget &>/dev/null; then
-    wget -N $url
+    wget -N $url -O $data_tar
 fi
 
-echo "Unpacking hardware tutorial data..."
-tar -zxvf $data_tar.tar.gz -C data
+echo "Unpacking transistor dataset..."
+tar vxf $data_tar -C data
 
-echo "Deleting tar file..."
-rm $data_tar.tar.gz
+echo "Deleting $data_tar..."
+rm $data_tar
 
 echo "Done!"
