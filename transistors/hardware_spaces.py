@@ -199,7 +199,7 @@ class MentionNgramsPart(MentionNgrams):
                         sentence=ts.sentence,
                         char_start=ts.char_start,
                         char_end=ts.char_end,
-                        expander_key=u"part_expander",
+                        expander_key="part_expander",
                         position=i,
                         text=part,
                         words=[part],
@@ -234,7 +234,7 @@ class MentionNgramsTemp(MentionNgrams):
     def apply(self, session, context):
         for ts in MentionNgrams.apply(self, session, context):
             m = re.match(
-                u"^([\+\-\u2010\u2011\u2012\u2013\u2014\u2212\uf02d])?(\s*)(\d+)$",
+                r"^([\+\-\u2010\u2011\u2012\u2013\u2014\u2212\uf02d])?(\s*)(\d+)$",
                 ts.get_span(),
                 re.U,
             )
@@ -256,7 +256,7 @@ class MentionNgramsTemp(MentionNgrams):
                     sentence=ts.sentence,
                     char_start=ts.char_start,
                     char_end=ts.char_end,
-                    expander_key=u"temp_expander",
+                    expander_key="temp_expander",
                     position=0,
                     text=temp,
                     words=[temp],
@@ -298,7 +298,7 @@ class MentionNgramsVolt(MentionNgrams):
                     sentence=ts.sentence,
                     char_start=ts.char_start,
                     char_end=ts.char_end,
-                    expander_key=u"volt_expander",
+                    expander_key="volt_expander",
                     position=0,
                     text=value,
                     words=[value],
