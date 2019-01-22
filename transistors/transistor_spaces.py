@@ -4,7 +4,7 @@ from builtins import chr, range, str
 from difflib import SequenceMatcher
 
 from fonduer.candidates import MentionNgrams
-from fonduer.candidates.models.implicitspan import TemporaryImplicitSpan
+from fonduer.candidates.models.implicit_span_mention import TemporaryImplicitSpanMention
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +42,7 @@ def expand_part_range(text):
         end = m.group("end")
         start_diff = ""
         end_diff = ""
-        logger.debug("  Start: %s \t End: %s" % (start, end))
+        logger.debug(f"  Start: {start} \t End: {end}")
 
         # Use difflib to find difference. We are interested in 'replace' only
         seqm = SequenceMatcher(None, start, end).get_opcodes()
@@ -61,11 +61,11 @@ def expand_part_range(text):
                 logger.error("Unexpected opcode")
                 raise RuntimeError("[ERROR] unexpected opcode")
 
-        logger.debug("  start_diff: %s \t end_diff: %s" % (start_diff, end_diff))
+        logger.debug(f"  start_diff: {start_diff} \t end_diff: {end_diff}")
 
         # First, check for number range
         if atoi(start_diff) and atoi(end_diff):
-            logger.debug("  Enumerate %d to %d" % (atoi(start_diff), atoi(end_diff)))
+            logger.debug(f"  Enumerate {atoi(start_diff)} to {atoi(end_diff)}")
             # generate a list of the numbers plugged in
             for number in range(atoi(start_diff), atoi(end_diff) + 1):
                 new_part = start.replace(start_diff, str(number))
@@ -75,7 +75,7 @@ def expand_part_range(text):
         # Second, check for single-letter enumeration
         if len(start_diff) == 1 and len(end_diff) == 1:
             if start_diff.isalpha() and end_diff.isalpha():
-                logger.debug("  Enumerate %s to %s" % (start_diff, end_diff))
+                logger.debug(f"  Enumerate {start_diff} to {end_diff}")
                 letter_range = char_range(start_diff, end_diff)
                 for letter in letter_range:
                     new_part = start.replace(start_diff, letter)
@@ -111,9 +111,6 @@ def expand_part_range(text):
                 all_suffix_lengths = set()
                 # This is a bit inefficient but this first pass just is here
                 # to make sure that the suffixes are the same length
-                # first_suffix = first_match.group("suffix")
-                # if part.startswith('BC547'):
-                #     import pdb; pdb.set_trace()
                 for m in re.finditer(suffix_pattern, part):
                     suffix = m.group("suffix")
                     suffix_len = len(suffix)
@@ -167,18 +164,20 @@ def char_range(a, b):
 
 
 class MentionNgramsPart(MentionNgrams):
-    def __init__(self, parts_by_doc=None, n_max=3, expand=True, split_tokens=None):
+    def __init__(
+        self, parts_by_doc=None, n_max=3, expand=True, split_tokens=["-", "/"]
+    ):
         """MentionNgrams specifically for transistor parts.
 
         :param parts_by_doc: a dictionary d where d[document_name.upper()] =
             [partA, partB, ...]
         """
-        MentionNgrams.__init__(self, n_max=n_max, split_tokens=None)
+        super(MentionNgrams, self).__init__(n_max=n_max, split_tokens=split_tokens)
         self.parts_by_doc = parts_by_doc
         self.expander = expand_part_range if expand else (lambda x: [x])
 
-    def apply(self, session, context):
-        for ts in MentionNgrams.apply(self, session, context):
+    def apply(self, doc):
+        for ts in MentionNgrams.apply(self, doc):
             enumerated_parts = [
                 part.upper() for part in expand_part_range(ts.get_span())
             ]
@@ -195,7 +194,7 @@ class MentionNgramsPart(MentionNgrams):
                 if part == ts.get_span():
                     yield ts
                 else:
-                    yield TemporaryImplicitSpan(
+                    yield TemporaryImplicitSpanMention(
                         sentence=ts.sentence,
                         char_start=ts.char_start,
                         char_end=ts.char_end,
@@ -228,11 +227,11 @@ class MentionNgramsPart(MentionNgrams):
 
 
 class MentionNgramsTemp(MentionNgrams):
-    # def __init__(self, n_max=2, split_tokens=None):
-    #     MentionNgrams.__init__(self, n_max=n_max, split_tokens=None)
+    def __init__(self, n_max=2, split_tokens=["-", "/"]):
+        super(MentionNgrams, self).__init__(n_max=n_max, split_tokens=split_tokens)
 
-    def apply(self, session, context):
-        for ts in MentionNgrams.apply(self, session, context):
+    def apply(self, doc):
+        for ts in MentionNgrams.apply(self, doc):
             m = re.match(
                 r"^([\+\-\u2010\u2011\u2012\u2013\u2014\u2212\uf02d])?(\s*)(\d+)$",
                 ts.get_span(),
@@ -252,7 +251,7 @@ class MentionNgramsTemp(MentionNgrams):
                     # keep the implicit '-150'
                     temp = "-"
                 temp += m.group(3)
-                yield TemporaryImplicitSpan(
+                yield TemporaryImplicitSpanMention(
                     sentence=ts.sentence,
                     char_start=ts.char_start,
                     char_end=ts.char_end,
@@ -287,14 +286,14 @@ class MentionNgramsTemp(MentionNgrams):
 
 
 class MentionNgramsVolt(MentionNgrams):
-    # def __init__(self, n_max=1, split_tokens=None):
-    #     MentionNgrams.__init__(self, n_max=n_max, split_tokens=None)
+    def __init__(self, n_max=1, split_tokens=["-", "/"]):
+        super(MentionNgrams, self).__init__(n_max=n_max, split_tokens=split_tokens)
 
-    def apply(self, session, context):
-        for ts in MentionNgrams.apply(self, session, context):
+    def apply(self, doc):
+        for ts in MentionNgrams.apply(self, doc):
             if ts.get_span().endswith(".0"):
                 value = ts.get_span()[:-2]
-                yield TemporaryImplicitSpan(
+                yield TemporaryImplicitSpanMention(
                     sentence=ts.sentence,
                     char_start=ts.char_start,
                     char_end=ts.char_end,

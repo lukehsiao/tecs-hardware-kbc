@@ -55,6 +55,7 @@ def parse_dataset(session, first_time=False, max_docs=100, parallel=4):
             if division == "train":
                 corpus_parser.apply(doc_preprocessor, parallelism=parallel, clear=False)
                 train_docs = set(corpus_parser.get_last_documents())
+            all_docs = corpus_parser.get_documents()
     else:
         logger.info("Reloading pre-parsed dataset.")
         all_docs = Parser(session).get_documents()
@@ -75,4 +76,4 @@ def parse_dataset(session, first_time=False, max_docs=100, parallel=4):
             if doc.name in train_doc_names:
                 train_docs.add(doc.name)
 
-    return train_docs, dev_docs, test_docs
+    return all_docs, train_docs, dev_docs, test_docs
