@@ -1,5 +1,5 @@
 echo "Downloading op-amp dataset..."
-url=https://stanford.box.com/shared/static/p951ah47t0sm676qn4cwjicmvoyjvxao.xz
+url=https://stanford.box.com/shared/static/xszeoh0o36j2d7jn05mbojhnyg61nfr3.xz
 data_tar=opamp_dataset.tar.xz
 
 if type curl &>/dev/null; then
