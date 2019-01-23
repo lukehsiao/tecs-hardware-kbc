@@ -70,10 +70,10 @@ def parse_dataset(session, first_time=False, max_docs=float("inf"), parallel=4):
 
         for doc in all_docs:
             if doc.name in dev_doc_names:
-                dev_docs.add(doc.name)
+                dev_docs.add(doc)
             if doc.name in test_doc_names:
-                test_docs.add(doc.name)
+                test_docs.add(doc)
             if doc.name in train_doc_names:
-                train_docs.add(doc.name)
+                train_docs.add(doc)
 
     return all_docs, train_docs, dev_docs, test_docs
