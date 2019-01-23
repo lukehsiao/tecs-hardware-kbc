@@ -8,6 +8,7 @@ from fonduer.candidates.matchers import (
     RegexMatchSpan,
     Union,
 )
+from fonduer.utils.data_model_utils import get_row_ngrams, get_sentence_ngrams, overlap
 
 logger = logging.getLogger(__name__)
 
@@ -48,9 +49,29 @@ def _part_file_name_conditions(attr):
     )
 
 
-def _get_temp_matcher():
+def _get_polarity_matcher():
+    """Return the polarity matcher."""
+
+    def polarity_conditions(attr):
+        return not overlap(["complement", "complementary"], get_sentence_ngrams(attr))
+
+    polarity_rgx_matcher = RegexMatchSpan(
+        rgx=r"NPN|PNP", longest_match_only=False, ignore_case=True
+    )
+
+    polarity_lambda_matcher = LambdaFunctionMatcher(func=polarity_conditions)
+
+    return Intersect(polarity_rgx_matcher, polarity_lambda_matcher)
+
+
+def _get_temp_matcher(temp_type):
     """Return the temperature matcher."""
-    return RegexMatchSpan(rgx=r"(?:[1][5-9]|20)[05]", longest_match_only=False)
+    if "max":
+        return RegexMatchSpan(rgx=r"(?:[1][5-9]|20)[05]", longest_match_only=False)
+    elif "min":
+        return RegexMatchSpan(rgx=r"-[56][05]", longest_match_only=False)
+    else:
+        logger.warning(f"{temp_type} is not a valid temperature type.")
 
 
 def _get_part_matcher():
@@ -68,21 +89,70 @@ def _get_part_matcher():
         r"(?:-[A-Z0-9]{0,6})?(?:[-][A-Z0-9]{0,1})?)"
     )
 
-    part_dict_matcher = DictionaryMatch(d=_get_digikey_parts_set(DICT_PATH))
-
     part_rgx = "|".join([eeca_rgx, jedec_rgx, jis_rgx, others_rgx])
-    part_rgx_matcher = RegexMatchSpan(rgx=part_rgx, longest_match_only=True)
 
     add_rgx = r"^[A-Z0-9\-]{5,15}$"
     part_file_name_lambda_matcher = LambdaFunctionMatcher(
         func=_part_file_name_conditions
     )
+
+    part_rgx_matcher = RegexMatchSpan(rgx=part_rgx, longest_match_only=True)
+    part_dict_matcher = DictionaryMatch(d=_get_digikey_parts_set(DICT_PATH))
     part_file_name_matcher = Intersect(
         RegexMatchSpan(rgx=add_rgx, longest_match_only=True),
         part_file_name_lambda_matcher,
     )
-
     return Union(part_rgx_matcher, part_dict_matcher, part_file_name_matcher)
+
+
+def _attr_in_table(attr):
+    return attr.sentence.is_tabular()
+
+
+def _get_ce_v_max_matcher():
+    """Return a collector-emmiter voltage max matcher."""
+    ce_keywords = set(["collector emitter", "collector-emitter", "collector - emitter"])
+    ce_abbrevs = set(["ceo", "vceo"])
+
+    def ce_v_max_conditions(attr):
+        return overlap(
+            ce_keywords.union(ce_abbrevs), get_row_ngrams(attr, spread=[0, 3], n_max=3)
+        )
+
+    def ce_v_max_additional_conditions(attr):
+        text = attr.sentence.text
+        if attr.char_start != 0 and text[attr.char_start - 1] == "/":
+            return False
+        if (
+            attr.char_start > 1
+            and text[attr.char_start - 1] == "-"
+            and text[attr.char_start - 2] not in [" ", "="]
+        ):
+            return False
+        if "vcb" in attr.sentence.text.lower():
+            return False
+        for i in range(attr.char_end + 1, len(text)):
+            if text[i] == " ":
+                continue
+            if text[i].isdigit():
+                break
+            if text[i].upper() != "V":
+                return False
+            else:
+                break
+        return True
+
+    ce_v_max_rgx_matcher = RegexMatchSpan(rgx=r"\d{1,2}[05]", longest_match_only=False)
+    ce_v_max_row_matcher = LambdaFunctionMatcher(func=ce_v_max_conditions)
+    ce_v_max_additional = LambdaFunctionMatcher(func=ce_v_max_additional_conditions)
+    ce_v_max_in_table = LambdaFunctionMatcher(func=_attr_in_table)
+
+    return Intersect(
+        ce_v_max_rgx_matcher,
+        ce_v_max_row_matcher,
+        ce_v_max_additional,
+        ce_v_max_in_table,
+    )
 
 
 def get_matcher(name):
@@ -91,10 +161,15 @@ def get_matcher(name):
     :param name: One of ["part", "temp", "volt", "current", "power", "polarity"].
     :rtype: Matcher
     """
-    if name == "temp":
-        return _get_temp_matcher()
+    if name == "stg_temp_min":
+        return _get_temp_matcher("min")
+    elif name == "stg_temp_max":
+        return _get_temp_matcher("max")
+    elif name == "polarity":
+        return _get_polarity_matcher()
+    elif name == "ce_v_max":
+        return _get_ce_v_max_matcher()
     elif name == "part":
         return _get_part_matcher()
     else:
-        logger.warning("You did not input a valid name.")
-        return None
+        logger.warning(f"{name} is not a valid matcher name.")

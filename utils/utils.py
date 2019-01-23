@@ -18,7 +18,7 @@ def _files_in_dir(path):
     return [f[:-4] for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
 
 
-def parse_dataset(session, first_time=False, max_docs=100, parallel=4):
+def parse_dataset(session, first_time=False, max_docs=float("inf"), parallel=4):
     """Parse the dataset into dev, test, and train.
 
     This expects that the data is located in data/dev/, data/test/, data/train/
@@ -27,14 +27,14 @@ def parse_dataset(session, first_time=False, max_docs=100, parallel=4):
 
     :param session: The database session
     :param max_docs: The maximum number of documents to parse from each set.
-    :rtype: (train_docs, dev_docs, test_docs)
+        Defaults to parsing all documents.
+    :rtype: (all_docs, train_docs, dev_docs, test_docs)
     """
     train_docs = set()
     dev_docs = set()
     test_docs = set()
 
     if first_time:
-        logger.info("Parsing dataset...")
         for division in ["dev", "test", "train"]:
             logger.info(f"Parsing {division}...")
             html_path = f"data/{division}/html/"
