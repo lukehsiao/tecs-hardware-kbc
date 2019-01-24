@@ -5,6 +5,8 @@ from builtins import range
 
 from fonduer.supervision.models import GoldLabel, GoldLabelKey
 
+from transistor_lfs import FALSE, TRUE
+
 try:
     from IPython import get_ipython
 
@@ -17,11 +19,6 @@ else:
 
 
 logger = logging.getLogger(__name__)
-
-# Define labels
-ABSTAIN = 0
-FALSE = 1
-TRUE = 2
 
 
 def get_gold_dict(doc_on=True, part_on=True, val_on=True, attribute=None, docs=None):
@@ -50,12 +47,12 @@ def get_gold_dict(doc_on=True, part_on=True, val_on=True, attribute=None, docs=N
     return gold_dict
 
 
-def load_hardware_labels(session, candidate_classes, attrib, annotator_name="gold"):
+def load_transistor_labels(session, candidate_classes, attribs, annotator_name="gold"):
     """Bulk insert hardware GoldLabels.
 
     :param session: The database session to use.
     :param candidate_classes: Which candidate_classes to load labels for.
-    :param attrib: Which attributes to load labels for (e.g. "stg_temp_max").
+    :param attribs: Which attributes to load labels for (e.g. "stg_temp_max").
     """
     # Check that candidate_classes is iterable
     candidate_classes = (
@@ -64,7 +61,15 @@ def load_hardware_labels(session, candidate_classes, attrib, annotator_name="gol
         else [candidate_classes]
     )
 
+    # Check that attribs is iterable
+    attribs = attribs if isinstance(attribs, (list, tuple)) else [attribs]
+
+    if len(candidate_classes) != len(attribs):
+        logger.warning("candidate_classes and attribs must be the same length.")
+        return
+
     ak = session.query(GoldLabelKey).filter(GoldLabelKey.name == annotator_name).first()
+
     # Add the gold key
     if ak is None:
         ak = GoldLabelKey(
@@ -76,43 +81,44 @@ def load_hardware_labels(session, candidate_classes, attrib, annotator_name="gol
 
     # Bulk insert candidate labels
     candidates = []
-    for candidate_class in candidate_classes:
+    for candidate_class, attrib in zip(candidate_classes, attribs):
         candidates.extend(session.query(candidate_class).all())
 
-    gold_dict = get_gold_dict(attribute=attrib)
+        logger.info(f"Loading {attrib} for {candidate_class}...")
+        gold_dict = get_gold_dict(attribute=attrib)
 
-    cand_total = len(candidates)
-    logger.info(f"Loading {cand_total} candidate labels")
-    labels = 0
+        cand_total = len(candidates)
+        logger.info(f"Loading {cand_total} candidate labels")
+        labels = 0
 
-    cands = []
-    values = []
-    for i, c in enumerate(tqdm(candidates)):
-        doc = (c[0].context.sentence.document.name).upper()
-        part = (c[0].context.get_span()).upper()
-        val = ("".join(c[1].context.get_span().split())).upper()
+        cands = []
+        values = []
+        for i, c in enumerate(tqdm(candidates)):
+            doc = (c[0].context.sentence.document.name).upper()
+            part = (c[0].context.get_span()).upper()
+            val = ("".join(c[1].context.get_span().split())).upper()
 
-        label = session.query(GoldLabel).filter(GoldLabel.candidate == c).first()
-        if label is None:
-            if (doc, part, val) in gold_dict:
-                values.append(TRUE)
-            else:
-                values.append(FALSE)
+            label = session.query(GoldLabel).filter(GoldLabel.candidate == c).first()
+            if label is None:
+                if (doc, part, val) in gold_dict:
+                    values.append(TRUE)
+                else:
+                    values.append(FALSE)
 
-            cands.append(c)
-            labels += 1
+                cands.append(c)
+                labels += 1
 
-    # Only insert the labels which were not already present
-    session.bulk_insert_mappings(
-        GoldLabel,
-        [
-            {"candidate_id": cand.id, "keys": [annotator_name], "values": [val]}
-            for (cand, val) in zip(cands, values)
-        ],
-    )
-    session.commit()
+        # Only insert the labels which were not already present
+        session.bulk_insert_mappings(
+            GoldLabel,
+            [
+                {"candidate_id": cand.id, "keys": [annotator_name], "values": [val]}
+                for (cand, val) in zip(cands, values)
+            ],
+        )
+        session.commit()
 
-    logger.info(f"GoldLabels created: {labels}")
+        logger.info(f"GoldLabels created: {labels}")
 
 
 def entity_confusion_matrix(pred, gold):
