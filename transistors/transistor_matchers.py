@@ -8,7 +8,7 @@ from fonduer.candidates.matchers import (
     RegexMatchSpan,
     Union,
 )
-from fonduer.utils.data_model_utils import get_row_ngrams, get_sentence_ngrams, overlap
+from fonduer.utils.data_model_utils import get_sentence_ngrams, overlap
 
 logger = logging.getLogger(__name__)
 
@@ -111,48 +111,20 @@ def _attr_in_table(attr):
 
 def _get_ce_v_max_matcher():
     """Return a collector-emmiter voltage max matcher."""
-    ce_keywords = set(["collector emitter", "collector-emitter", "collector - emitter"])
-    ce_abbrevs = set(["ceo", "vceo"])
 
     def ce_v_max_conditions(attr):
-        return overlap(
-            ce_keywords.union(ce_abbrevs), get_row_ngrams(attr, spread=[0, 3], n_max=3)
-        )
+        if any(_ in attr.sentence.text.lower() for _ in ["vcb", "base"]):
+            return False
 
-    def ce_v_max_additional_conditions(attr):
-        text = attr.sentence.text
-        if attr.char_start != 0 and text[attr.char_start - 1] == "/":
-            return False
-        if (
-            attr.char_start > 1
-            and text[attr.char_start - 1] == "-"
-            and text[attr.char_start - 2] not in [" ", "="]
-        ):
-            return False
-        if "vcb" in attr.sentence.text.lower():
-            return False
-        for i in range(attr.char_end + 1, len(text)):
-            if text[i] == " ":
-                continue
-            if text[i].isdigit():
-                break
-            if text[i].upper() != "V":
-                return False
-            else:
-                break
         return True
 
-    ce_v_max_rgx_matcher = RegexMatchSpan(rgx=r"\d{1,2}[05]", longest_match_only=False)
+    ce_v_max_rgx_matcher = RegexMatchSpan(
+        rgx=r"\b\d{1,2}[05]", longest_match_only=False
+    )
     ce_v_max_row_matcher = LambdaFunctionMatcher(func=ce_v_max_conditions)
-    ce_v_max_additional = LambdaFunctionMatcher(func=ce_v_max_additional_conditions)
     ce_v_max_in_table = LambdaFunctionMatcher(func=_attr_in_table)
 
-    return Intersect(
-        ce_v_max_rgx_matcher,
-        ce_v_max_row_matcher,
-        ce_v_max_additional,
-        ce_v_max_in_table,
-    )
+    return Intersect(ce_v_max_rgx_matcher, ce_v_max_row_matcher, ce_v_max_in_table)
 
 
 def get_matcher(name):
