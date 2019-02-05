@@ -1,0 +1,1309 @@
+1360fa,LT1360,part_family,Y
+1360fa,LT1360,typ_gbp,50.0 MHz
+1360fa,LT1360,typ_gbp,37.0 MHz
+1360fa,LT1360,typ_gbp,32.0 MHz
+1360fa,LT1360,typ_supply_current,4.0 mA
+1360fa,LT1360,typ_supply_current,3.8 mA
+1360fa,LT1360,min_op_supply_volt,±2.5 V
+1360fa,LT1360,max_op_supply_volt,±15 V
+1360fa,LT1360,min_op_temp,-40
+1360fa,LT1360,max_op_temp,85
+1360fa,LT1360CN8,part_family,N
+1360fa,LT1360CN8,typ_gbp,50.0 MHz
+1360fa,LT1360CN8,typ_gbp,37.0 MHz
+1360fa,LT1360CN8,typ_gbp,32.0 MHz
+1360fa,LT1360CN8,typ_supply_current,4.0 mA
+1360fa,LT1360CN8,typ_supply_current,3.8 mA
+1360fa,LT1360CN8,min_op_supply_volt,±2.5 V
+1360fa,LT1360CN8,max_op_supply_volt,±15 V
+1360fa,LT1360CN8,min_op_temp,-40
+1360fa,LT1360CN8,max_op_temp,85
+1360fa,LT1360CS8,part_family,N
+1360fa,LT1360CS8,typ_gbp,50.0 MHz
+1360fa,LT1360CS8,typ_gbp,37.0 MHz
+1360fa,LT1360CS8,typ_gbp,32.0 MHz
+1360fa,LT1360CS8,typ_supply_current,4.0 mA
+1360fa,LT1360CS8,typ_supply_current,3.8 mA
+1360fa,LT1360CS8,min_op_supply_volt,±2.5 V
+1360fa,LT1360CS8,max_op_supply_volt,±15 V
+1360fa,LT1360CS8,min_op_temp,-40
+1360fa,LT1360CS8,max_op_temp,85
+1366fb,LT1366,part_family,Y
+1366fb,LT1366,typ_gbp,0.4 MHz
+1366fb,LT1366,typ_supply_current,340.0 uA
+1366fb,LT1366,typ_supply_current,385.0 uA
+1366fb,LT1366,typ_supply_current,330.0 uA
+1366fb,LT1366,typ_supply_current,375.0 uA
+1366fb,LT1366,typ_supply_current,370.0 uA
+1366fb,LT1366,typ_supply_current,415.0 uA
+1366fb,LT1366,min_op_supply_volt,1.8 V
+1366fb,LT1366,max_op_supply_volt,36 V
+1366fb,LT1366,min_op_temp,0
+1366fb,LT1366,max_op_temp,70
+1366fb,LT1366CN8#PBF,part_family,N
+1366fb,LT1366CN8#PBF,typ_gbp,0.4 MHz
+1366fb,LT1366CN8#PBF,typ_supply_current,340.0 uA
+1366fb,LT1366CN8#PBF,typ_supply_current,385.0 uA
+1366fb,LT1366CN8#PBF,typ_supply_current,330.0 uA
+1366fb,LT1366CN8#PBF,typ_supply_current,375.0 uA
+1366fb,LT1366CN8#PBF,typ_supply_current,370.0 uA
+1366fb,LT1366CN8#PBF,typ_supply_current,415.0 uA
+1366fb,LT1366CN8#PBF,min_op_supply_volt,1.8 V
+1366fb,LT1366CN8#PBF,max_op_supply_volt,36 V
+1366fb,LT1366CN8#PBF,min_op_temp,0
+1366fb,LT1366CN8#PBF,max_op_temp,70
+1366fb,LT1366CN8#TRPBF,part_family,N
+1366fb,LT1366CN8#TRPBF,typ_gbp,0.4 MHz
+1366fb,LT1366CN8#TRPBF,typ_supply_current,340.0 uA
+1366fb,LT1366CN8#TRPBF,typ_supply_current,385.0 uA
+1366fb,LT1366CN8#TRPBF,typ_supply_current,330.0 uA
+1366fb,LT1366CN8#TRPBF,typ_supply_current,375.0 uA
+1366fb,LT1366CN8#TRPBF,typ_supply_current,370.0 uA
+1366fb,LT1366CN8#TRPBF,typ_supply_current,415.0 uA
+1366fb,LT1366CN8#TRPBF,min_op_supply_volt,1.8 V
+1366fb,LT1366CN8#TRPBF,max_op_supply_volt,36 V
+1366fb,LT1366CN8#TRPBF,min_op_temp,0
+1366fb,LT1366CN8#TRPBF,max_op_temp,70
+1366fb,LT1366CS8#PBF,part_family,N
+1366fb,LT1366CS8#PBF,typ_gbp,0.4 MHz
+1366fb,LT1366CS8#PBF,typ_supply_current,340.0 uA
+1366fb,LT1366CS8#PBF,typ_supply_current,385.0 uA
+1366fb,LT1366CS8#PBF,typ_supply_current,330.0 uA
+1366fb,LT1366CS8#PBF,typ_supply_current,375.0 uA
+1366fb,LT1366CS8#PBF,typ_supply_current,370.0 uA
+1366fb,LT1366CS8#PBF,typ_supply_current,415.0 uA
+1366fb,LT1366CS8#PBF,min_op_supply_volt,1.8 V
+1366fb,LT1366CS8#PBF,max_op_supply_volt,36 V
+1366fb,LT1366CS8#PBF,min_op_temp,0
+1366fb,LT1366CS8#PBF,max_op_temp,70
+1366fb,LT1366CS8#TRPBF,part_family,N
+1366fb,LT1366CS8#TRPBF,typ_gbp,0.4 MHz
+1366fb,LT1366CS8#TRPBF,typ_supply_current,340.0 uA
+1366fb,LT1366CS8#TRPBF,typ_supply_current,385.0 uA
+1366fb,LT1366CS8#TRPBF,typ_supply_current,330.0 uA
+1366fb,LT1366CS8#TRPBF,typ_supply_current,375.0 uA
+1366fb,LT1366CS8#TRPBF,typ_supply_current,370.0 uA
+1366fb,LT1366CS8#TRPBF,typ_supply_current,415.0 uA
+1366fb,LT1366CS8#TRPBF,min_op_supply_volt,1.8 V
+1366fb,LT1366CS8#TRPBF,max_op_supply_volt,36 V
+1366fb,LT1366CS8#TRPBF,min_op_temp,0
+1366fb,LT1366CS8#TRPBF,max_op_temp,70
+1366fb,LT1367,part_family,Y
+1366fb,LT1367,typ_gbp,0.4 MHz
+1366fb,LT1367,typ_supply_current,340.0 uA
+1366fb,LT1367,typ_supply_current,385.0 uA
+1366fb,LT1367,typ_supply_current,330.0 uA
+1366fb,LT1367,typ_supply_current,375.0 uA
+1366fb,LT1367,typ_supply_current,370.0 uA
+1366fb,LT1367,typ_supply_current,415.0 uA
+1366fb,LT1367,min_op_supply_volt,1.8 V
+1366fb,LT1367,max_op_supply_volt,36 V
+1366fb,LT1367,min_op_temp,0
+1366fb,LT1367,max_op_temp,70
+1366fb,LT1367CS#PBF,part_family,N
+1366fb,LT1367CS#PBF,typ_gbp,0.4 MHz
+1366fb,LT1367CS#PBF,typ_supply_current,340.0 uA
+1366fb,LT1367CS#PBF,typ_supply_current,385.0 uA
+1366fb,LT1367CS#PBF,typ_supply_current,330.0 uA
+1366fb,LT1367CS#PBF,typ_supply_current,375.0 uA
+1366fb,LT1367CS#PBF,typ_supply_current,370.0 uA
+1366fb,LT1367CS#PBF,typ_supply_current,415.0 uA
+1366fb,LT1367CS#PBF,min_op_supply_volt,1.8 V
+1366fb,LT1367CS#PBF,max_op_supply_volt,36 V
+1366fb,LT1367CS#PBF,min_op_temp,0
+1366fb,LT1367CS#PBF,max_op_temp,70
+1366fb,LT1367CS#TRPBF,part_family,N
+1366fb,LT1367CS#TRPBF,typ_gbp,0.4 MHz
+1366fb,LT1367CS#TRPBF,typ_supply_current,340.0 uA
+1366fb,LT1367CS#TRPBF,typ_supply_current,385.0 uA
+1366fb,LT1367CS#TRPBF,typ_supply_current,330.0 uA
+1366fb,LT1367CS#TRPBF,typ_supply_current,375.0 uA
+1366fb,LT1367CS#TRPBF,typ_supply_current,370.0 uA
+1366fb,LT1367CS#TRPBF,typ_supply_current,415.0 uA
+1366fb,LT1367CS#TRPBF,min_op_supply_volt,1.8 V
+1366fb,LT1367CS#TRPBF,max_op_supply_volt,36 V
+1366fb,LT1367CS#TRPBF,min_op_temp,0
+1366fb,LT1367CS#TRPBF,max_op_temp,70
+1366fb,LT1368,part_family,Y
+1366fb,LT1368,typ_gbp,0.16 MHz
+1366fb,LT1368,typ_supply_current,340.0 uA
+1366fb,LT1368,typ_supply_current,385.0 uA
+1366fb,LT1368,typ_supply_current,330.0 uA
+1366fb,LT1368,typ_supply_current,375.0 uA
+1366fb,LT1368,typ_supply_current,370.0 uA
+1366fb,LT1368,typ_supply_current,415.0 uA
+1366fb,LT1368,min_op_supply_volt,1.8 V
+1366fb,LT1368,max_op_supply_volt,36 V
+1366fb,LT1368,min_op_temp,0
+1366fb,LT1368,max_op_temp,70
+1366fb,LT1368CN8#PBF,part_family,N
+1366fb,LT1368CN8#PBF,typ_gbp,0.16 MHz
+1366fb,LT1368CN8#PBF,typ_supply_current,340.0 uA
+1366fb,LT1368CN8#PBF,typ_supply_current,385.0 uA
+1366fb,LT1368CN8#PBF,typ_supply_current,330.0 uA
+1366fb,LT1368CN8#PBF,typ_supply_current,375.0 uA
+1366fb,LT1368CN8#PBF,typ_supply_current,370.0 uA
+1366fb,LT1368CN8#PBF,typ_supply_current,415.0 uA
+1366fb,LT1368CN8#PBF,min_op_supply_volt,1.8 V
+1366fb,LT1368CN8#PBF,max_op_supply_volt,36 V
+1366fb,LT1368CN8#PBF,min_op_temp,0
+1366fb,LT1368CN8#PBF,max_op_temp,70
+1366fb,LT1368CN8#TRPBF,part_family,N
+1366fb,LT1368CN8#TRPBF,typ_gbp,0.16 MHz
+1366fb,LT1368CN8#TRPBF,typ_supply_current,340.0 uA
+1366fb,LT1368CN8#TRPBF,typ_supply_current,385.0 uA
+1366fb,LT1368CN8#TRPBF,typ_supply_current,330.0 uA
+1366fb,LT1368CN8#TRPBF,typ_supply_current,375.0 uA
+1366fb,LT1368CN8#TRPBF,typ_supply_current,370.0 uA
+1366fb,LT1368CN8#TRPBF,typ_supply_current,415.0 uA
+1366fb,LT1368CN8#TRPBF,min_op_supply_volt,1.8 V
+1366fb,LT1368CN8#TRPBF,max_op_supply_volt,36 V
+1366fb,LT1368CN8#TRPBF,min_op_temp,0
+1366fb,LT1368CN8#TRPBF,max_op_temp,70
+1366fb,LT1368CS8#PBF,part_family,N
+1366fb,LT1368CS8#PBF,typ_gbp,0.16 MHz
+1366fb,LT1368CS8#PBF,typ_supply_current,340.0 uA
+1366fb,LT1368CS8#PBF,typ_supply_current,385.0 uA
+1366fb,LT1368CS8#PBF,typ_supply_current,330.0 uA
+1366fb,LT1368CS8#PBF,typ_supply_current,375.0 uA
+1366fb,LT1368CS8#PBF,typ_supply_current,370.0 uA
+1366fb,LT1368CS8#PBF,typ_supply_current,415.0 uA
+1366fb,LT1368CS8#PBF,min_op_supply_volt,1.8 V
+1366fb,LT1368CS8#PBF,max_op_supply_volt,36 V
+1366fb,LT1368CS8#PBF,min_op_temp,0
+1366fb,LT1368CS8#PBF,max_op_temp,70
+1366fb,LT1368CS8#TRPBF,part_family,N
+1366fb,LT1368CS8#TRPBF,typ_gbp,0.16 MHz
+1366fb,LT1368CS8#TRPBF,typ_supply_current,340.0 uA
+1366fb,LT1368CS8#TRPBF,typ_supply_current,385.0 uA
+1366fb,LT1368CS8#TRPBF,typ_supply_current,330.0 uA
+1366fb,LT1368CS8#TRPBF,typ_supply_current,375.0 uA
+1366fb,LT1368CS8#TRPBF,typ_supply_current,370.0 uA
+1366fb,LT1368CS8#TRPBF,typ_supply_current,415.0 uA
+1366fb,LT1368CS8#TRPBF,min_op_supply_volt,1.8 V
+1366fb,LT1368CS8#TRPBF,max_op_supply_volt,36 V
+1366fb,LT1368CS8#TRPBF,min_op_temp,0
+1366fb,LT1368CS8#TRPBF,max_op_temp,70
+1366fb,LT1369,part_family,Y
+1366fb,LT1369,typ_gbp,0.16 MHz
+1366fb,LT1369,typ_supply_current,340.0 uA
+1366fb,LT1369,typ_supply_current,385.0 uA
+1366fb,LT1369,typ_supply_current,330.0 uA
+1366fb,LT1369,typ_supply_current,375.0 uA
+1366fb,LT1369,typ_supply_current,370.0 uA
+1366fb,LT1369,typ_supply_current,415.0 uA
+1366fb,LT1369,min_op_supply_volt,1.8 V
+1366fb,LT1369,max_op_supply_volt,36 V
+1366fb,LT1369,min_op_temp,0
+1366fb,LT1369,max_op_temp,70
+1366fb,LT1369CS#PBF,part_family,N
+1366fb,LT1369CS#PBF,typ_gbp,0.16 MHz
+1366fb,LT1369CS#PBF,typ_supply_current,340.0 uA
+1366fb,LT1369CS#PBF,typ_supply_current,385.0 uA
+1366fb,LT1369CS#PBF,typ_supply_current,330.0 uA
+1366fb,LT1369CS#PBF,typ_supply_current,375.0 uA
+1366fb,LT1369CS#PBF,typ_supply_current,370.0 uA
+1366fb,LT1369CS#PBF,typ_supply_current,415.0 uA
+1366fb,LT1369CS#PBF,min_op_supply_volt,1.8 V
+1366fb,LT1369CS#PBF,max_op_supply_volt,36 V
+1366fb,LT1369CS#PBF,min_op_temp,0
+1366fb,LT1369CS#PBF,max_op_temp,70
+1366fb,LT1369CS#TRPBF,part_family,N
+1366fb,LT1369CS#TRPBF,typ_gbp,0.16 MHz
+1366fb,LT1369CS#TRPBF,typ_supply_current,340.0 uA
+1366fb,LT1369CS#TRPBF,typ_supply_current,385.0 uA
+1366fb,LT1369CS#TRPBF,typ_supply_current,330.0 uA
+1366fb,LT1369CS#TRPBF,typ_supply_current,375.0 uA
+1366fb,LT1369CS#TRPBF,typ_supply_current,370.0 uA
+1366fb,LT1369CS#TRPBF,typ_supply_current,415.0 uA
+1366fb,LT1369CS#TRPBF,min_op_supply_volt,1.8 V
+1366fb,LT1369CS#TRPBF,max_op_supply_volt,36 V
+1366fb,LT1369CS#TRPBF,min_op_temp,0
+1366fb,LT1369CS#TRPBF,max_op_temp,70
+13989fa,LT1398,part_family,Y
+13989fa,LT1398,typ_supply_current,4.6 mA
+13989fa,LT1398,min_op_supply_volt,4 V
+13989fa,LT1398,max_op_supply_volt,±6 V
+13989fa,LT1398,min_op_temp,-40
+13989fa,LT1398,max_op_temp,85
+13989fa,LT1398CS,part_family,N
+13989fa,LT1398CS,typ_supply_current,4.6 mA
+13989fa,LT1398CS,min_op_supply_volt,4 V
+13989fa,LT1398CS,max_op_supply_volt,±6 V
+13989fa,LT1398CS,min_op_temp,-40
+13989fa,LT1398CS,max_op_temp,85
+13989fa,LT1399,part_family,Y
+13989fa,LT1399,typ_supply_current,4.6 mA
+13989fa,LT1399,min_op_supply_volt,4 V
+13989fa,LT1399,max_op_supply_volt,±6 V
+13989fa,LT1399,min_op_temp,-40
+13989fa,LT1399,max_op_temp,85
+13989fa,LT1399CGN,part_family,N
+13989fa,LT1399CGN,typ_supply_current,4.6 mA
+13989fa,LT1399CGN,min_op_supply_volt,4 V
+13989fa,LT1399CGN,max_op_supply_volt,±6 V
+13989fa,LT1399CGN,min_op_temp,-40
+13989fa,LT1399CGN,max_op_temp,85
+13989fa,LT1399CS,part_family,N
+13989fa,LT1399CS,typ_supply_current,4.6 mA
+13989fa,LT1399CS,min_op_supply_volt,4 V
+13989fa,LT1399CS,max_op_supply_volt,±6 V
+13989fa,LT1399CS,min_op_temp,-40
+13989fa,LT1399CS,max_op_temp,85
+13989fa,LT1399HVCS,part_family,N
+13989fa,LT1399HVCS,typ_supply_current,4.6 mA
+13989fa,LT1399HVCS,min_op_supply_volt,4 V
+13989fa,LT1399HVCS,max_op_supply_volt,±7.5 V
+13989fa,LT1399HVCS,min_op_temp,-40
+13989fa,LT1399HVCS,max_op_temp,85
+13989fa,LT1399IGN,part_family,N
+13989fa,LT1399IGN,typ_supply_current,4.6 mA
+13989fa,LT1399IGN,min_op_supply_volt,4 V
+13989fa,LT1399IGN,max_op_supply_volt,±6 V
+13989fa,LT1399IGN,min_op_temp,-40
+13989fa,LT1399IGN,max_op_temp,85
+13989fa,LT1399IS,part_family,N
+13989fa,LT1399IS,typ_supply_current,4.6 mA
+13989fa,LT1399IS,min_op_supply_volt,4 V
+13989fa,LT1399IS,max_op_supply_volt,±6 V
+13989fa,LT1399IS,min_op_temp,-40
+13989fa,LT1399IS,max_op_temp,85
+20512fd,LTC2051,part_family,Y
+20512fd,LTC2051,typ_gbp,3.0 MHz
+20512fd,LTC2051,typ_supply_current,0.75 mA
+20512fd,LTC2051,typ_supply_current,0.85 mA
+20512fd,LTC2051CDD,part_family,N
+20512fd,LTC2051CDD,typ_gbp,3.0 MHz
+20512fd,LTC2051CDD,typ_supply_current,0.75 mA
+20512fd,LTC2051CDD,typ_supply_current,0.85 mA
+20512fd,LTC2051CDD,min_op_supply_volt,3 V
+20512fd,LTC2051CDD,max_op_supply_volt,5 V
+20512fd,LTC2051CDD,min_op_temp,0
+20512fd,LTC2051CDD,max_op_temp,70
+20512fd,LTC2051CS8,part_family,N
+20512fd,LTC2051CS8,typ_gbp,3.0 MHz
+20512fd,LTC2051CS8,typ_supply_current,0.75 mA
+20512fd,LTC2051CS8,typ_supply_current,0.85 mA
+20512fd,LTC2051CS8,min_op_supply_volt,3 V
+20512fd,LTC2051CS8,max_op_supply_volt,5 V
+20512fd,LTC2051CS8,min_op_temp,0
+20512fd,LTC2051CS8,max_op_temp,70
+20512fd,LTC2051CMS8,part_family,N
+20512fd,LTC2051CMS8,typ_gbp,3.0 MHz
+20512fd,LTC2051CMS8,typ_supply_current,0.75 mA
+20512fd,LTC2051CMS8,typ_supply_current,0.85 mA
+20512fd,LTC2051CMS8,min_op_supply_volt,3 V
+20512fd,LTC2051CMS8,max_op_supply_volt,5 V
+20512fd,LTC2051CMS8,min_op_temp,0
+20512fd,LTC2051CMS8,max_op_temp,70
+20512fd,LTC2051CMS10,part_family,N
+20512fd,LTC2051CMS10,typ_gbp,3.0 MHz
+20512fd,LTC2051CMS10,typ_supply_current,0.75 mA
+20512fd,LTC2051CMS10,typ_supply_current,0.85 mA
+20512fd,LTC2051CMS10,min_op_supply_volt,3 V
+20512fd,LTC2051CMS10,max_op_supply_volt,5 V
+20512fd,LTC2051CMS10,min_op_temp,0
+20512fd,LTC2051CMS10,max_op_temp,70
+20512fd,LTC2051HVCDD,part_family,N
+20512fd,LTC2051HVCDD,typ_gbp,3.0 MHz
+20512fd,LTC2051HVCDD,typ_supply_current,0.75 mA
+20512fd,LTC2051HVCDD,typ_supply_current,0.85 mA
+20512fd,LTC2051HVCDD,min_op_supply_volt,3 V
+20512fd,LTC2051HVCDD,max_op_supply_volt,5 V
+20512fd,LTC2051HVCDD,max_op_supply_volt,±5 V
+20512fd,LTC2051HVCDD,min_op_temp,0
+20512fd,LTC2051HVCDD,max_op_temp,70
+20512fd,LTC2051HVCS8,part_family,N
+20512fd,LTC2051HVCS8,typ_gbp,3.0 MHz
+20512fd,LTC2051HVCS8,typ_supply_current,0.75 mA
+20512fd,LTC2051HVCS8,typ_supply_current,0.85 mA
+20512fd,LTC2051HVCS8,min_op_supply_volt,3 V
+20512fd,LTC2051HVCS8,max_op_supply_volt,5 V
+20512fd,LTC2051HVCS8,max_op_supply_volt,±5 V
+20512fd,LTC2051HVCS8,min_op_temp,0
+20512fd,LTC2051HVCS8,max_op_temp,70
+20512fd,LTC2051HVCMS8,part_family,N
+20512fd,LTC2051HVCMS8,typ_gbp,3.0 MHz
+20512fd,LTC2051HVCMS8,typ_supply_current,0.75 mA
+20512fd,LTC2051HVCMS8,typ_supply_current,0.85 mA
+20512fd,LTC2051HVCMS8,min_op_supply_volt,3 V
+20512fd,LTC2051HVCMS8,max_op_supply_volt,5 V
+20512fd,LTC2051HVCMS8,max_op_supply_volt,±5 V
+20512fd,LTC2051HVCMS8,min_op_temp,0
+20512fd,LTC2051HVCMS8,max_op_temp,70
+20512fd,LTC2051HVCMS10,part_family,N
+20512fd,LTC2051HVCMS10,typ_gbp,3.0 MHz
+20512fd,LTC2051HVCMS10,typ_supply_current,0.75 mA
+20512fd,LTC2051HVCMS10,typ_supply_current,0.85 mA
+20512fd,LTC2051HVCMS10,min_op_supply_volt,3 V
+20512fd,LTC2051HVCMS10,max_op_supply_volt,5 V
+20512fd,LTC2051HVCMS10,max_op_supply_volt,±5 V
+20512fd,LTC2051HVCMS10,min_op_temp,0
+20512fd,LTC2051HVCMS10,max_op_temp,70
+20512fd,LTC2051IDD,part_family,N
+20512fd,LTC2051IDD,typ_gbp,3.0 MHz
+20512fd,LTC2051IDD,typ_supply_current,0.75 mA
+20512fd,LTC2051IDD,typ_supply_current,0.85 mA
+20512fd,LTC2051IDD,min_op_supply_volt,3 V
+20512fd,LTC2051IDD,max_op_supply_volt,5 V
+20512fd,LTC2051IDD,min_op_temp,-40
+20512fd,LTC2051IDD,max_op_temp,85
+20512fd,LTC2051IS8,part_family,N
+20512fd,LTC2051IS8,typ_gbp,3.0 MHz
+20512fd,LTC2051IS8,typ_supply_current,0.75 mA
+20512fd,LTC2051IS8,typ_supply_current,0.85 mA
+20512fd,LTC2051IS8,min_op_supply_volt,3 V
+20512fd,LTC2051IS8,max_op_supply_volt,5 V
+20512fd,LTC2051IS8,min_op_temp,-40
+20512fd,LTC2051IS8,max_op_temp,85
+20512fd,LTC2051IMS8,part_family,N
+20512fd,LTC2051IMS8,typ_gbp,3.0 MHz
+20512fd,LTC2051IMS8,typ_supply_current,0.75 mA
+20512fd,LTC2051IMS8,typ_supply_current,0.85 mA
+20512fd,LTC2051IMS8,min_op_supply_volt,3 V
+20512fd,LTC2051IMS8,max_op_supply_volt,5 V
+20512fd,LTC2051IMS8,min_op_temp,-40
+20512fd,LTC2051IMS8,max_op_temp,85
+20512fd,LTC2051IMS10,part_family,N
+20512fd,LTC2051IMS10,typ_gbp,3.0 MHz
+20512fd,LTC2051IMS10,typ_supply_current,0.75 mA
+20512fd,LTC2051IMS10,typ_supply_current,0.85 mA
+20512fd,LTC2051IMS10,min_op_supply_volt,3 V
+20512fd,LTC2051IMS10,max_op_supply_volt,5 V
+20512fd,LTC2051IMS10,min_op_temp,-40
+20512fd,LTC2051IMS10,max_op_temp,85
+20512fd,LTC2051HVIDD,part_family,N
+20512fd,LTC2051HVIDD,typ_gbp,3.0 MHz
+20512fd,LTC2051HVIDD,typ_supply_current,0.75 mA
+20512fd,LTC2051HVIDD,typ_supply_current,0.85 mA
+20512fd,LTC2051HVIDD,min_op_supply_volt,3 V
+20512fd,LTC2051HVIDD,max_op_supply_volt,5 V
+20512fd,LTC2051HVIDD,max_op_supply_volt,±5 V
+20512fd,LTC2051HVIDD,min_op_temp,-40
+20512fd,LTC2051HVIDD,max_op_temp,85
+20512fd,LTC2051HVIS8,part_family,N
+20512fd,LTC2051HVIS8,typ_gbp,3.0 MHz
+20512fd,LTC2051HVIS8,typ_supply_current,0.75 mA
+20512fd,LTC2051HVIS8,typ_supply_current,0.85 mA
+20512fd,LTC2051HVIS8,min_op_supply_volt,3 V
+20512fd,LTC2051HVIS8,max_op_supply_volt,5 V
+20512fd,LTC2051HVIS8,max_op_supply_volt,±5 V
+20512fd,LTC2051HVIS8,min_op_temp,-40
+20512fd,LTC2051HVIS8,max_op_temp,85
+20512fd,LTC2051HVIMS8,part_family,N
+20512fd,LTC2051HVIMS8,typ_gbp,3.0 MHz
+20512fd,LTC2051HVIMS8,typ_supply_current,0.75 mA
+20512fd,LTC2051HVIMS8,typ_supply_current,0.85 mA
+20512fd,LTC2051HVIMS8,min_op_supply_volt,3 V
+20512fd,LTC2051HVIMS8,max_op_supply_volt,5 V
+20512fd,LTC2051HVIMS8,max_op_supply_volt,±5 V
+20512fd,LTC2051HVIMS8,min_op_temp,-40
+20512fd,LTC2051HVIMS8,max_op_temp,85
+20512fd,LTC2051HVIMS10,part_family,N
+20512fd,LTC2051HVIMS10,typ_gbp,3.0 MHz
+20512fd,LTC2051HVIMS10,typ_supply_current,0.75 mA
+20512fd,LTC2051HVIMS10,typ_supply_current,0.85 mA
+20512fd,LTC2051HVIMS10,min_op_supply_volt,3 V
+20512fd,LTC2051HVIMS10,max_op_supply_volt,5 V
+20512fd,LTC2051HVIMS10,max_op_supply_volt,±5 V
+20512fd,LTC2051HVIMS10,min_op_temp,-40
+20512fd,LTC2051HVIMS10,max_op_temp,85
+20512fd,LTC2051HS8,part_family,N
+20512fd,LTC2051HS8,typ_gbp,3.0 MHz
+20512fd,LTC2051HS8,typ_supply_current,0.75 mA
+20512fd,LTC2051HS8,typ_supply_current,0.85 mA
+20512fd,LTC2051HS8,min_op_supply_volt,3 V
+20512fd,LTC2051HS8,max_op_supply_volt,5 V
+20512fd,LTC2051HS8,min_op_temp,-40
+20512fd,LTC2051HS8,max_op_temp,125
+20512fd,LTC2051HMS8,part_family,N
+20512fd,LTC2051HMS8,typ_gbp,3.0 MHz
+20512fd,LTC2051HMS8,typ_supply_current,0.75 mA
+20512fd,LTC2051HMS8,typ_supply_current,0.85 mA
+20512fd,LTC2051HMS8,min_op_supply_volt,3 V
+20512fd,LTC2051HMS8,max_op_supply_volt,5 V
+20512fd,LTC2051HMS8,min_op_temp,-40
+20512fd,LTC2051HMS8,max_op_temp,125
+20512fd,LTC2051HVHS8,part_family,N
+20512fd,LTC2051HVHS8,typ_gbp,3.0 MHz
+20512fd,LTC2051HVHS8,typ_supply_current,0.75 mA
+20512fd,LTC2051HVHS8,typ_supply_current,0.85 mA
+20512fd,LTC2051HVHS8,min_op_supply_volt,3 V
+20512fd,LTC2051HVHS8,max_op_supply_volt,5 V
+20512fd,LTC2051HVHS8,max_op_supply_volt,±5 V
+20512fd,LTC2051HVHS8,min_op_temp,-40
+20512fd,LTC2051HVHS8,max_op_temp,125
+20512fd,LTC2051HVHMS8,part_family,N
+20512fd,LTC2051HVHMS8,typ_gbp,3.0 MHz
+20512fd,LTC2051HVHMS8,typ_supply_current,0.75 mA
+20512fd,LTC2051HVHMS8,typ_supply_current,0.85 mA
+20512fd,LTC2051HVHMS8,min_op_supply_volt,3 V
+20512fd,LTC2051HVHMS8,max_op_supply_volt,5 V
+20512fd,LTC2051HVHMS8,max_op_supply_volt,±5 V
+20512fd,LTC2051HVHMS8,min_op_temp,-40
+20512fd,LTC2051HVHMS8,max_op_temp,125
+20512fd,LTC2052,part_family,Y
+20512fd,LTC2052,typ_gbp,3.0 MHz
+20512fd,LTC2052,typ_supply_current,0.75 mA
+20512fd,LTC2052,typ_supply_current,0.85 mA
+20512fd,LTC2052CS,part_family,N
+20512fd,LTC2052CS,typ_gbp,3.0 MHz
+20512fd,LTC2052CS,typ_supply_current,0.75 mA
+20512fd,LTC2052CS,typ_supply_current,0.85 mA
+20512fd,LTC2052CS,min_op_supply_volt,3 V
+20512fd,LTC2052CS,max_op_supply_volt,5 V
+20512fd,LTC2052CS,min_op_temp,0
+20512fd,LTC2052CS,max_op_temp,70
+20512fd,LTC2052CGN,part_family,N
+20512fd,LTC2052CGN,typ_gbp,3.0 MHz
+20512fd,LTC2052CGN,typ_supply_current,0.75 mA
+20512fd,LTC2052CGN,typ_supply_current,0.85 mA
+20512fd,LTC2052CGN,min_op_supply_volt,3 V
+20512fd,LTC2052CGN,max_op_supply_volt,5 V
+20512fd,LTC2052CGN,min_op_temp,0
+20512fd,LTC2052CGN,max_op_temp,70
+20512fd,LTC2052HVCS,part_family,N
+20512fd,LTC2052HVCS,typ_gbp,3.0 MHz
+20512fd,LTC2052HVCS,typ_supply_current,0.75 mA
+20512fd,LTC2052HVCS,typ_supply_current,0.85 mA
+20512fd,LTC2052HVCS,min_op_supply_volt,3 V
+20512fd,LTC2052HVCS,max_op_supply_volt,5 V
+20512fd,LTC2052HVCS,max_op_supply_volt,±5 V
+20512fd,LTC2052HVCS,min_op_temp,0
+20512fd,LTC2052HVCS,max_op_temp,70
+20512fd,LTC2052HVCGN,part_family,N
+20512fd,LTC2052HVCGN,typ_gbp,3.0 MHz
+20512fd,LTC2052HVCGN,typ_supply_current,0.75 mA
+20512fd,LTC2052HVCGN,typ_supply_current,0.85 mA
+20512fd,LTC2052HVCGN,min_op_supply_volt,3 V
+20512fd,LTC2052HVCGN,max_op_supply_volt,5 V
+20512fd,LTC2052HVCGN,max_op_supply_volt,±5 V
+20512fd,LTC2052HVCGN,min_op_temp,0
+20512fd,LTC2052HVCGN,max_op_temp,70
+20512fd,LTC2052IS,part_family,N
+20512fd,LTC2052IS,typ_gbp,3.0 MHz
+20512fd,LTC2052IS,typ_supply_current,0.75 mA
+20512fd,LTC2052IS,typ_supply_current,0.85 mA
+20512fd,LTC2052IS,min_op_supply_volt,3 V
+20512fd,LTC2052IS,max_op_supply_volt,5 V
+20512fd,LTC2052IS,min_op_temp,-40
+20512fd,LTC2052IS,max_op_temp,85
+20512fd,LTC2052IGN,part_family,N
+20512fd,LTC2052IGN,typ_gbp,3.0 MHz
+20512fd,LTC2052IGN,typ_supply_current,0.75 mA
+20512fd,LTC2052IGN,typ_supply_current,0.85 mA
+20512fd,LTC2052IGN,min_op_supply_volt,3 V
+20512fd,LTC2052IGN,max_op_supply_volt,5 V
+20512fd,LTC2052IGN,min_op_temp,-40
+20512fd,LTC2052IGN,max_op_temp,85
+20512fd,LTC2052HVIS,part_family,N
+20512fd,LTC2052HVIS,typ_gbp,3.0 MHz
+20512fd,LTC2052HVIS,typ_supply_current,0.75 mA
+20512fd,LTC2052HVIS,typ_supply_current,0.85 mA
+20512fd,LTC2052HVIS,min_op_supply_volt,3 V
+20512fd,LTC2052HVIS,max_op_supply_volt,5 V
+20512fd,LTC2052HVIS,max_op_supply_volt,±5 V
+20512fd,LTC2052HVIS,min_op_temp,-40
+20512fd,LTC2052HVIS,max_op_temp,85
+20512fd,LTC2052HVIGN,part_family,N
+20512fd,LTC2052HVIGN,typ_gbp,3.0 MHz
+20512fd,LTC2052HVIGN,typ_supply_current,0.75 mA
+20512fd,LTC2052HVIGN,typ_supply_current,0.85 mA
+20512fd,LTC2052HVIGN,min_op_supply_volt,3 V
+20512fd,LTC2052HVIGN,max_op_supply_volt,5 V
+20512fd,LTC2052HVIGN,max_op_supply_volt,±5 V
+20512fd,LTC2052HVIGN,min_op_temp,-40
+20512fd,LTC2052HVIGN,max_op_temp,85
+20512fd,LTC2052HS,part_family,N
+20512fd,LTC2052HS,typ_gbp,3.0 MHz
+20512fd,LTC2052HS,typ_supply_current,0.75 mA
+20512fd,LTC2052HS,typ_supply_current,0.85 mA
+20512fd,LTC2052HS,min_op_supply_volt,3 V
+20512fd,LTC2052HS,max_op_supply_volt,5 V
+20512fd,LTC2052HS,min_op_temp,-40
+20512fd,LTC2052HS,max_op_temp,125
+20512fd,LTC2052HGN,part_family,N
+20512fd,LTC2052HGN,typ_gbp,3.0 MHz
+20512fd,LTC2052HGN,typ_supply_current,0.75 mA
+20512fd,LTC2052HGN,typ_supply_current,0.85 mA
+20512fd,LTC2052HGN,min_op_supply_volt,3 V
+20512fd,LTC2052HGN,max_op_supply_volt,5 V
+20512fd,LTC2052HGN,min_op_temp,-40
+20512fd,LTC2052HGN,max_op_temp,125
+20512fd,LTC2052HVHS,part_family,N
+20512fd,LTC2052HVHS,typ_gbp,3.0 MHz
+20512fd,LTC2052HVHS,typ_supply_current,0.75 mA
+20512fd,LTC2052HVHS,typ_supply_current,0.85 mA
+20512fd,LTC2052HVHS,min_op_supply_volt,3 V
+20512fd,LTC2052HVHS,max_op_supply_volt,5 V
+20512fd,LTC2052HVHS,max_op_supply_volt,±5 V
+20512fd,LTC2052HVHS,min_op_temp,-40
+20512fd,LTC2052HVHS,max_op_temp,125
+20512fd,LTC2052HVHGN,part_family,N
+20512fd,LTC2052HVHGN,typ_gbp,3.0 MHz
+20512fd,LTC2052HVHGN,typ_supply_current,0.75 mA
+20512fd,LTC2052HVHGN,typ_supply_current,0.85 mA
+20512fd,LTC2052HVHGN,min_op_supply_volt,3 V
+20512fd,LTC2052HVHGN,max_op_supply_volt,5 V
+20512fd,LTC2052HVHGN,max_op_supply_volt,±5 V
+20512fd,LTC2052HVHGN,min_op_temp,-40
+20512fd,LTC2052HVHGN,max_op_temp,125
+ad620,AD620,part_family,Y
+ad620,AD620,typ_supply_current,0.9 mA
+ad620,AD620,min_op_supply_volt,±2.3 V
+ad620,AD620,max_op_supply_volt,±18 V
+ad620,AD620AN,part_family,N
+ad620,AD620AN,typ_supply_current,0.9 mA
+ad620,AD620AN,min_op_supply_volt,±2.3 V
+ad620,AD620AN,max_op_supply_volt,±18 V
+ad620,AD620AN,min_op_temp,-40
+ad620,AD620AN,max_op_temp,85
+ad620,AD620ANZ,part_family,N
+ad620,AD620ANZ,typ_supply_current,0.9 mA
+ad620,AD620ANZ,min_op_supply_volt,±2.3 V
+ad620,AD620ANZ,max_op_supply_volt,±18 V
+ad620,AD620ANZ,min_op_temp,-40
+ad620,AD620ANZ,max_op_temp,85
+ad620,AD620BN,part_family,N
+ad620,AD620BN,typ_supply_current,0.9 mA
+ad620,AD620BN,min_op_supply_volt,±2.3 V
+ad620,AD620BN,max_op_supply_volt,±18 V
+ad620,AD620BN,min_op_temp,-40
+ad620,AD620BN,max_op_temp,85
+ad620,AD620BNZ,part_family,N
+ad620,AD620BNZ,typ_supply_current,0.9 mA
+ad620,AD620BNZ,min_op_supply_volt,±2.3 V
+ad620,AD620BNZ,max_op_supply_volt,±18 V
+ad620,AD620BNZ,min_op_temp,-40
+ad620,AD620BNZ,max_op_temp,85
+ad620,AD620AR,part_family,N
+ad620,AD620AR,typ_supply_current,0.9 mA
+ad620,AD620AR,min_op_supply_volt,±2.3 V
+ad620,AD620AR,max_op_supply_volt,±18 V
+ad620,AD620AR,min_op_temp,-40
+ad620,AD620AR,max_op_temp,85
+ad620,AD620ARZ,part_family,N
+ad620,AD620ARZ,typ_supply_current,0.9 mA
+ad620,AD620ARZ,min_op_supply_volt,±2.3 V
+ad620,AD620ARZ,max_op_supply_volt,±18 V
+ad620,AD620ARZ,min_op_temp,-40
+ad620,AD620ARZ,max_op_temp,85
+ad620,AD620AR-REEL,part_family,N
+ad620,AD620AR-REEL,typ_supply_current,0.9 mA
+ad620,AD620AR-REEL,min_op_supply_volt,±2.3 V
+ad620,AD620AR-REEL,max_op_supply_volt,±18 V
+ad620,AD620AR-REEL,min_op_temp,-40
+ad620,AD620AR-REEL,max_op_temp,85
+ad620,AD620ARZ-REEL,part_family,N
+ad620,AD620ARZ-REEL,typ_supply_current,0.9 mA
+ad620,AD620ARZ-REEL,min_op_supply_volt,±2.3 V
+ad620,AD620ARZ-REEL,max_op_supply_volt,±18 V
+ad620,AD620ARZ-REEL,min_op_temp,-40
+ad620,AD620ARZ-REEL,max_op_temp,85
+ad620,AD620AR-REEL7,part_family,N
+ad620,AD620AR-REEL7,typ_supply_current,0.9 mA
+ad620,AD620AR-REEL7,min_op_supply_volt,±2.3 V
+ad620,AD620AR-REEL7,max_op_supply_volt,±18 V
+ad620,AD620AR-REEL7,min_op_temp,-40
+ad620,AD620AR-REEL7,max_op_temp,85
+ad620,AD620ARZ-REEL7,part_family,N
+ad620,AD620ARZ-REEL7,typ_supply_current,0.9 mA
+ad620,AD620ARZ-REEL7,min_op_supply_volt,±2.3 V
+ad620,AD620ARZ-REEL7,max_op_supply_volt,±18 V
+ad620,AD620ARZ-REEL7,min_op_temp,-40
+ad620,AD620ARZ-REEL7,max_op_temp,85
+ad620,AD620BR,part_family,N
+ad620,AD620BR,typ_supply_current,0.9 mA
+ad620,AD620BR,min_op_supply_volt,±2.3 V
+ad620,AD620BR,max_op_supply_volt,±18 V
+ad620,AD620BR,min_op_temp,-40
+ad620,AD620BR,max_op_temp,85
+ad620,AD620BRZ,part_family,N
+ad620,AD620BRZ,typ_supply_current,0.9 mA
+ad620,AD620BRZ,min_op_supply_volt,±2.3 V
+ad620,AD620BRZ,max_op_supply_volt,±18 V
+ad620,AD620BRZ,min_op_temp,-40
+ad620,AD620BRZ,max_op_temp,85
+ad620,AD620BR-REEL,part_family,N
+ad620,AD620BR-REEL,typ_supply_current,0.9 mA
+ad620,AD620BR-REEL,min_op_supply_volt,±2.3 V
+ad620,AD620BR-REEL,max_op_supply_volt,±18 V
+ad620,AD620BR-REEL,min_op_temp,-40
+ad620,AD620BR-REEL,max_op_temp,85
+ad620,AD620BRZ-RL,part_family,N
+ad620,AD620BRZ-RL,typ_supply_current,0.9 mA
+ad620,AD620BRZ-RL,min_op_supply_volt,±2.3 V
+ad620,AD620BRZ-RL,max_op_supply_volt,±18 V
+ad620,AD620BRZ-RL,min_op_temp,-40
+ad620,AD620BRZ-RL,max_op_temp,85
+ad620,AD620BR-REEL7,part_family,N
+ad620,AD620BR-REEL7,typ_supply_current,0.9 mA
+ad620,AD620BR-REEL7,min_op_supply_volt,±2.3 V
+ad620,AD620BR-REEL7,max_op_supply_volt,±18 V
+ad620,AD620BR-REEL7,min_op_temp,-40
+ad620,AD620BR-REEL7,max_op_temp,85
+ad620,AD620BRZ-R7,part_family,N
+ad620,AD620BRZ-R7,typ_supply_current,0.9 mA
+ad620,AD620BRZ-R7,min_op_supply_volt,±2.3 V
+ad620,AD620BRZ-R7,max_op_supply_volt,±18 V
+ad620,AD620BRZ-R7,min_op_temp,-40
+ad620,AD620BRZ-R7,max_op_temp,85
+ad620,AD620ACHIPS,part_family,N
+ad620,AD620ACHIPS,typ_supply_current,0.9 mA
+ad620,AD620ACHIPS,min_op_supply_volt,±2.3 V
+ad620,AD620ACHIPS,max_op_supply_volt,±18 V
+ad620,AD620ACHIPS,min_op_temp,-40
+ad620,AD620ACHIPS,max_op_temp,85
+ad620,AD620SQ/883B,part_family,N
+ad620,AD620SQ/883B,typ_supply_current,0.9 mA
+ad620,AD620SQ/883B,min_op_supply_volt,±2.3 V
+ad620,AD620SQ/883B,max_op_supply_volt,±18 V
+ad620,AD620SQ/883B,min_op_temp,-55
+ad620,AD620SQ/883B,max_op_temp,125
+ad746,AD746,part_family,Y
+ad746,AD746,typ_gbp,13.0 MHz
+ad746,AD746,typ_supply_current,7.0 mA
+ad746,AD746,min_op_supply_volt,±4.5 V
+ad746,AD746,max_op_supply_volt,±18 V
+ad746,AD746J,part_family,N
+ad746,AD746J,typ_gbp,13.0 MHz
+ad746,AD746J,typ_supply_current,7.0 mA
+ad746,AD746J,min_op_supply_volt,±4.5 V
+ad746,AD746J,max_op_supply_volt,±18 V
+ad746,AD746J,min_op_temp,0
+ad746,AD746J,max_op_temp,70
+ad746,AD746A,part_family,N
+ad746,AD746A,typ_gbp,13.0 MHz
+ad746,AD746A,typ_supply_current,7.0 mA
+ad746,AD746A,min_op_supply_volt,±4.5 V
+ad746,AD746A,max_op_supply_volt,±18 V
+ad746,AD746A,min_op_temp,-40
+ad746,AD746A,max_op_temp,85
+ad746,AD746B,part_family,N
+ad746,AD746B,typ_gbp,13.0 MHz
+ad746,AD746B,typ_supply_current,7.0 mA
+ad746,AD746B,min_op_supply_volt,±4.5 V
+ad746,AD746B,max_op_supply_volt,±18 V
+ad746,AD746B,min_op_temp,-40
+ad746,AD746B,max_op_temp,85
+ad746,AD746S,part_family,N
+ad746,AD746S,typ_gbp,13.0 MHz
+ad746,AD746S,typ_supply_current,7.0 mA
+ad746,AD746S,min_op_supply_volt,±4.5 V
+ad746,AD746S,max_op_supply_volt,±18 V
+ad746,AD746S,min_op_temp,-55
+ad746,AD746S,max_op_temp,125
+ad8014,AD8014,part_family,Y
+ad8014,AD8014,typ_supply_current,1.15 mA
+ad8014,AD8014,min_op_supply_volt,±2.25 V
+ad8014,AD8014,min_op_supply_volt,4.5 V
+ad8014,AD8014,max_op_supply_volt,±6.0 V
+ad8014,AD8014,max_op_supply_volt,12 V
+ad8014,AD8014,min_op_temp,-40
+ad8014,AD8014,max_op_temp,85
+ad8014,AD8014AR,part_family,N
+ad8014,AD8014AR,typ_supply_current,1.15 mA
+ad8014,AD8014AR,min_op_supply_volt,±2.25 V
+ad8014,AD8014AR,min_op_supply_volt,4.5 V
+ad8014,AD8014AR,max_op_supply_volt,±6.0 V
+ad8014,AD8014AR,max_op_supply_volt,12 V
+ad8014,AD8014AR,min_op_temp,-40
+ad8014,AD8014AR,max_op_temp,85
+ad8014,AD8014AR-REEL7,part_family,N
+ad8014,AD8014AR-REEL7,typ_supply_current,1.15 mA
+ad8014,AD8014AR-REEL7,min_op_supply_volt,±2.25 V
+ad8014,AD8014AR-REEL7,min_op_supply_volt,4.5 V
+ad8014,AD8014AR-REEL7,max_op_supply_volt,±6.0 V
+ad8014,AD8014AR-REEL7,max_op_supply_volt,12 V
+ad8014,AD8014AR-REEL7,min_op_temp,-40
+ad8014,AD8014AR-REEL7,max_op_temp,85
+ad8014,AD8014ARZ,part_family,N
+ad8014,AD8014ARZ,typ_supply_current,1.15 mA
+ad8014,AD8014ARZ,min_op_supply_volt,±2.25 V
+ad8014,AD8014ARZ,min_op_supply_volt,4.5 V
+ad8014,AD8014ARZ,max_op_supply_volt,±6.0 V
+ad8014,AD8014ARZ,max_op_supply_volt,12 V
+ad8014,AD8014ARZ,min_op_temp,-40
+ad8014,AD8014ARZ,max_op_temp,85
+ad8014,AD8014ARZ-REEL,part_family,N
+ad8014,AD8014ARZ-REEL,typ_supply_current,1.15 mA
+ad8014,AD8014ARZ-REEL,min_op_supply_volt,±2.25 V
+ad8014,AD8014ARZ-REEL,min_op_supply_volt,4.5 V
+ad8014,AD8014ARZ-REEL,max_op_supply_volt,±6.0 V
+ad8014,AD8014ARZ-REEL,max_op_supply_volt,12 V
+ad8014,AD8014ARZ-REEL,min_op_temp,-40
+ad8014,AD8014ARZ-REEL,max_op_temp,85
+ad8014,AD8014ARZ-REEL7,part_family,N
+ad8014,AD8014ARZ-REEL7,typ_supply_current,1.15 mA
+ad8014,AD8014ARZ-REEL7,min_op_supply_volt,±2.25 V
+ad8014,AD8014ARZ-REEL7,min_op_supply_volt,4.5 V
+ad8014,AD8014ARZ-REEL7,max_op_supply_volt,±6.0 V
+ad8014,AD8014ARZ-REEL7,max_op_supply_volt,12 V
+ad8014,AD8014ARZ-REEL7,min_op_temp,-40
+ad8014,AD8014ARZ-REEL7,max_op_temp,85
+ad8014,AD8014ART-R2,part_family,N
+ad8014,AD8014ART-R2,typ_supply_current,1.15 mA
+ad8014,AD8014ART-R2,min_op_supply_volt,±2.25 V
+ad8014,AD8014ART-R2,min_op_supply_volt,4.5 V
+ad8014,AD8014ART-R2,max_op_supply_volt,±6.0 V
+ad8014,AD8014ART-R2,max_op_supply_volt,12 V
+ad8014,AD8014ART-R2,min_op_temp,-40
+ad8014,AD8014ART-R2,max_op_temp,85
+ad8014,AD8014ART-REEL7,part_family,N
+ad8014,AD8014ART-REEL7,typ_supply_current,1.15 mA
+ad8014,AD8014ART-REEL7,min_op_supply_volt,±2.25 V
+ad8014,AD8014ART-REEL7,min_op_supply_volt,4.5 V
+ad8014,AD8014ART-REEL7,max_op_supply_volt,±6.0 V
+ad8014,AD8014ART-REEL7,max_op_supply_volt,12 V
+ad8014,AD8014ART-REEL7,min_op_temp,-40
+ad8014,AD8014ART-REEL7,max_op_temp,85
+ad8014,AD8014ARTZ-R2,part_family,N
+ad8014,AD8014ARTZ-R2,typ_supply_current,1.15 mA
+ad8014,AD8014ARTZ-R2,min_op_supply_volt,±2.25 V
+ad8014,AD8014ARTZ-R2,min_op_supply_volt,4.5 V
+ad8014,AD8014ARTZ-R2,max_op_supply_volt,±6.0 V
+ad8014,AD8014ARTZ-R2,max_op_supply_volt,12 V
+ad8014,AD8014ARTZ-R2,min_op_temp,-40
+ad8014,AD8014ARTZ-R2,max_op_temp,85
+ad8014,AD8014ARTZ-REEL,part_family,N
+ad8014,AD8014ARTZ-REEL,typ_supply_current,1.15 mA
+ad8014,AD8014ARTZ-REEL,min_op_supply_volt,±2.25 V
+ad8014,AD8014ARTZ-REEL,min_op_supply_volt,4.5 V
+ad8014,AD8014ARTZ-REEL,max_op_supply_volt,±6.0 V
+ad8014,AD8014ARTZ-REEL,max_op_supply_volt,12 V
+ad8014,AD8014ARTZ-REEL,min_op_temp,-40
+ad8014,AD8014ARTZ-REEL,max_op_temp,85
+ad8014,AD8014ARTZ-REEL7,part_family,N
+ad8014,AD8014ARTZ-REEL7,typ_supply_current,1.15 mA
+ad8014,AD8014ARTZ-REEL7,min_op_supply_volt,±2.25 V
+ad8014,AD8014ARTZ-REEL7,min_op_supply_volt,4.5 V
+ad8014,AD8014ARTZ-REEL7,max_op_supply_volt,±6.0 V
+ad8014,AD8014ARTZ-REEL7,max_op_supply_volt,12 V
+ad8014,AD8014ARTZ-REEL7,min_op_temp,-40
+ad8014,AD8014ARTZ-REEL7,max_op_temp,85
+ad8029_8030_8040,AD8029,part_family,Y
+ad8029_8030_8040,AD8029,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8029,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8029,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8029,min_op_temp,-40
+ad8029_8030_8040,AD8029,max_op_temp,125
+ad8029_8030_8040,AD8029ARZ,part_family,N
+ad8029_8030_8040,AD8029ARZ,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8029ARZ,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8029ARZ,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8029ARZ,min_op_temp,-40
+ad8029_8030_8040,AD8029ARZ,max_op_temp,125
+ad8029_8030_8040,AD8029AR-REEL,part_family,N
+ad8029_8030_8040,AD8029AR-REEL,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8029AR-REEL,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8029AR-REEL,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8029AR-REEL,min_op_temp,-40
+ad8029_8030_8040,AD8029AR-REEL,max_op_temp,125
+ad8029_8030_8040,AD8029ARZ-REEL,part_family,N
+ad8029_8030_8040,AD8029ARZ-REEL,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8029ARZ-REEL,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8029ARZ-REEL,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8029ARZ-REEL,min_op_temp,-40
+ad8029_8030_8040,AD8029ARZ-REEL,max_op_temp,125
+ad8029_8030_8040,AD8029AR-REEL7,part_family,N
+ad8029_8030_8040,AD8029AR-REEL7,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8029AR-REEL7,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8029AR-REEL7,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8029AR-REEL7,min_op_temp,-40
+ad8029_8030_8040,AD8029AR-REEL7,max_op_temp,125
+ad8029_8030_8040,AD8029ARZ-REEL7,part_family,N
+ad8029_8030_8040,AD8029ARZ-REEL7,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8029ARZ-REEL7,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8029ARZ-REEL7,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8029ARZ-REEL7,min_op_temp,-40
+ad8029_8030_8040,AD8029ARZ-REEL7,max_op_temp,125
+ad8029_8030_8040,AD8029AKSZ-R2,part_family,N
+ad8029_8030_8040,AD8029AKSZ-R2,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8029AKSZ-R2,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8029AKSZ-R2,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8029AKSZ-R2,min_op_temp,-40
+ad8029_8030_8040,AD8029AKSZ-R2,max_op_temp,125
+ad8029_8030_8040,AD8029AKSZ-REEL,part_family,N
+ad8029_8030_8040,AD8029AKSZ-REEL,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8029AKSZ-REEL,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8029AKSZ-REEL,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8029AKSZ-REEL,min_op_temp,-40
+ad8029_8030_8040,AD8029AKSZ-REEL,max_op_temp,125
+ad8029_8030_8040,AD8029AKSZ-REEL7,part_family,N
+ad8029_8030_8040,AD8029AKSZ-REEL7,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8029AKSZ-REEL7,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8029AKSZ-REEL7,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8029AKSZ-REEL7,min_op_temp,-40
+ad8029_8030_8040,AD8029AKSZ-REEL7,max_op_temp,125
+ad8029_8030_8040,AD8030,part_family,Y
+ad8029_8030_8040,AD8030,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8030,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8030,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8030,min_op_temp,-40
+ad8029_8030_8040,AD8030,max_op_temp,125
+ad8029_8030_8040,AD8030AR,part_family,N
+ad8029_8030_8040,AD8030AR,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8030AR,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8030AR,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8030AR,min_op_temp,-40
+ad8029_8030_8040,AD8030AR,max_op_temp,125
+ad8029_8030_8040,AD8030ARZ,part_family,N
+ad8029_8030_8040,AD8030ARZ,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8030ARZ,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8030ARZ,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8030ARZ,min_op_temp,-40
+ad8029_8030_8040,AD8030ARZ,max_op_temp,125
+ad8029_8030_8040,AD8030ARZ-REEL,part_family,N
+ad8029_8030_8040,AD8030ARZ-REEL,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8030ARZ-REEL,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8030ARZ-REEL,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8030ARZ-REEL,min_op_temp,-40
+ad8029_8030_8040,AD8030ARZ-REEL,max_op_temp,125
+ad8029_8030_8040,AD8030ARZ-REEL7,part_family,N
+ad8029_8030_8040,AD8030ARZ-REEL7,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8030ARZ-REEL7,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8030ARZ-REEL7,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8030ARZ-REEL7,min_op_temp,-40
+ad8029_8030_8040,AD8030ARZ-REEL7,max_op_temp,125
+ad8029_8030_8040,AD8030ARJZ-R2,part_family,N
+ad8029_8030_8040,AD8030ARJZ-R2,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8030ARJZ-R2,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8030ARJZ-R2,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8030ARJZ-R2,min_op_temp,-40
+ad8029_8030_8040,AD8030ARJZ-R2,max_op_temp,125
+ad8029_8030_8040,AD8030ARJZ-REEL,part_family,N
+ad8029_8030_8040,AD8030ARJZ-REEL,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8030ARJZ-REEL,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8030ARJZ-REEL,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8030ARJZ-REEL,min_op_temp,-40
+ad8029_8030_8040,AD8030ARJZ-REEL,max_op_temp,125
+ad8029_8030_8040,AD8030ARJZ-REEL7,part_family,N
+ad8029_8030_8040,AD8030ARJZ-REEL7,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8030ARJZ-REEL7,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8030ARJZ-REEL7,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8030ARJZ-REEL7,min_op_temp,-40
+ad8029_8030_8040,AD8030ARJZ-REEL7,max_op_temp,125
+ad8029_8030_8040,AD8040,part_family,Y
+ad8029_8030_8040,AD8040,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8040,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8040,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8040,min_op_temp,-40
+ad8029_8030_8040,AD8040,max_op_temp,125
+ad8029_8030_8040,AD8040ARZ,part_family,N
+ad8029_8030_8040,AD8040ARZ,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8040ARZ,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8040ARZ,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8040ARZ,min_op_temp,-40
+ad8029_8030_8040,AD8040ARZ,max_op_temp,125
+ad8029_8030_8040,AD8040ARZ-REEL,part_family,N
+ad8029_8030_8040,AD8040ARZ-REEL,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8040ARZ-REEL,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8040ARZ-REEL,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8040ARZ-REEL,min_op_temp,-40
+ad8029_8030_8040,AD8040ARZ-REEL,max_op_temp,125
+ad8029_8030_8040,AD8040ARZ-REEL7,part_family,N
+ad8029_8030_8040,AD8040ARZ-REEL7,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8040ARZ-REEL7,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8040ARZ-REEL7,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8040ARZ-REEL7,min_op_temp,-40
+ad8029_8030_8040,AD8040ARZ-REEL7,max_op_temp,125
+ad8029_8030_8040,AD8040ARUZ,part_family,N
+ad8029_8030_8040,AD8040ARUZ,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8040ARUZ,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8040ARUZ,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8040ARUZ,min_op_temp,-40
+ad8029_8030_8040,AD8040ARUZ,max_op_temp,125
+ad8029_8030_8040,AD8040ARU-REEL,part_family,N
+ad8029_8030_8040,AD8040ARU-REEL,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8040ARU-REEL,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8040ARU-REEL,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8040ARU-REEL,min_op_temp,-40
+ad8029_8030_8040,AD8040ARU-REEL,max_op_temp,125
+ad8029_8030_8040,AD8040ARUZ-REEL,part_family,N
+ad8029_8030_8040,AD8040ARUZ-REEL,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8040ARUZ-REEL,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8040ARUZ-REEL,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8040ARUZ-REEL,min_op_temp,-40
+ad8029_8030_8040,AD8040ARUZ-REEL,max_op_temp,125
+ad8029_8030_8040,AD8040ARUZ-REEL7,part_family,N
+ad8029_8030_8040,AD8040ARUZ-REEL7,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8040ARUZ-REEL7,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8040ARUZ-REEL7,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8040ARUZ-REEL7,min_op_temp,-40
+ad8029_8030_8040,AD8040ARUZ-REEL7,max_op_temp,125
+ad8029_8030_8040,AD8040WARUZ-REEL7,part_family,N
+ad8029_8030_8040,AD8040WARUZ-REEL7,typ_supply_current,1.3 mA
+ad8029_8030_8040,AD8040WARUZ-REEL7,min_op_supply_volt,2.7 V
+ad8029_8030_8040,AD8040WARUZ-REEL7,max_op_supply_volt,12 V
+ad8029_8030_8040,AD8040WARUZ-REEL7,min_op_temp,-40
+ad8029_8030_8040,AD8040WARUZ-REEL7,max_op_temp,125
+ad8055_8056,AD8055,part_family,Y
+ad8055_8056,AD8055,typ_supply_current,5.4 mA
+ad8055_8056,AD8055,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8055,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8055,min_op_temp,-40
+ad8055_8056,AD8055,max_op_temp,125
+ad8055_8056,AD8055AN,part_family,N
+ad8055_8056,AD8055AN,typ_supply_current,5.4 mA
+ad8055_8056,AD8055AN,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8055AN,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8055AN,min_op_temp,-40
+ad8055_8056,AD8055AN,max_op_temp,125
+ad8055_8056,AD8055ANZ,part_family,N
+ad8055_8056,AD8055ANZ,typ_supply_current,5.4 mA
+ad8055_8056,AD8055ANZ,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8055ANZ,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8055ANZ,min_op_temp,-40
+ad8055_8056,AD8055ANZ,max_op_temp,125
+ad8055_8056,AD8055AR,part_family,N
+ad8055_8056,AD8055AR,typ_supply_current,5.4 mA
+ad8055_8056,AD8055AR,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8055AR,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8055AR,min_op_temp,-40
+ad8055_8056,AD8055AR,max_op_temp,125
+ad8055_8056,AD8055AR-REEL,part_family,N
+ad8055_8056,AD8055AR-REEL,typ_supply_current,5.4 mA
+ad8055_8056,AD8055AR-REEL,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8055AR-REEL,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8055AR-REEL,min_op_temp,-40
+ad8055_8056,AD8055AR-REEL,max_op_temp,125
+ad8055_8056,AD8055AR-REEL7,part_family,N
+ad8055_8056,AD8055AR-REEL7,typ_supply_current,5.4 mA
+ad8055_8056,AD8055AR-REEL7,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8055AR-REEL7,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8055AR-REEL7,min_op_temp,-40
+ad8055_8056,AD8055AR-REEL7,max_op_temp,125
+ad8055_8056,AD8055ARZ,part_family,N
+ad8055_8056,AD8055ARZ,typ_supply_current,5.4 mA
+ad8055_8056,AD8055ARZ,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8055ARZ,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8055ARZ,min_op_temp,-40
+ad8055_8056,AD8055ARZ,max_op_temp,125
+ad8055_8056,AD8055ARZ-REEL,part_family,N
+ad8055_8056,AD8055ARZ-REEL,typ_supply_current,5.4 mA
+ad8055_8056,AD8055ARZ-REEL,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8055ARZ-REEL,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8055ARZ-REEL,min_op_temp,-40
+ad8055_8056,AD8055ARZ-REEL,max_op_temp,125
+ad8055_8056,AD8055ARZ-REEL7,part_family,N
+ad8055_8056,AD8055ARZ-REEL7,typ_supply_current,5.4 mA
+ad8055_8056,AD8055ARZ-REEL7,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8055ARZ-REEL7,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8055ARZ-REEL7,min_op_temp,-40
+ad8055_8056,AD8055ARZ-REEL7,max_op_temp,125
+ad8055_8056,AD8055ART-R2,part_family,N
+ad8055_8056,AD8055ART-R2,typ_supply_current,5.4 mA
+ad8055_8056,AD8055ART-R2,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8055ART-R2,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8055ART-R2,min_op_temp,-40
+ad8055_8056,AD8055ART-R2,max_op_temp,125
+ad8055_8056,AD8055ART-REEL,part_family,N
+ad8055_8056,AD8055ART-REEL,typ_supply_current,5.4 mA
+ad8055_8056,AD8055ART-REEL,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8055ART-REEL,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8055ART-REEL,min_op_temp,-40
+ad8055_8056,AD8055ART-REEL,max_op_temp,125
+ad8055_8056,AD8055ART-REEL7,part_family,N
+ad8055_8056,AD8055ART-REEL7,typ_supply_current,5.4 mA
+ad8055_8056,AD8055ART-REEL7,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8055ART-REEL7,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8055ART-REEL7,min_op_temp,-40
+ad8055_8056,AD8055ART-REEL7,max_op_temp,125
+ad8055_8056,AD8055ARTZ-R2,part_family,N
+ad8055_8056,AD8055ARTZ-R2,typ_supply_current,5.4 mA
+ad8055_8056,AD8055ARTZ-R2,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8055ARTZ-R2,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8055ARTZ-R2,min_op_temp,-40
+ad8055_8056,AD8055ARTZ-R2,max_op_temp,125
+ad8055_8056,AD8055ARTZ-REEL7,part_family,N
+ad8055_8056,AD8055ARTZ-REEL7,typ_supply_current,5.4 mA
+ad8055_8056,AD8055ARTZ-REEL7,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8055ARTZ-REEL7,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8055ARTZ-REEL7,min_op_temp,-40
+ad8055_8056,AD8055ARTZ-REEL7,max_op_temp,125
+ad8055_8056,AD8056,part_family,Y
+ad8055_8056,AD8056,typ_supply_current,10.0 mA
+ad8055_8056,AD8056,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056,min_op_temp,-40
+ad8055_8056,AD8056,max_op_temp,125
+ad8055_8056,AD8056AN,part_family,N
+ad8055_8056,AD8056AN,typ_supply_current,10.0 mA
+ad8055_8056,AD8056AN,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056AN,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056AN,min_op_temp,-40
+ad8055_8056,AD8056AN,max_op_temp,125
+ad8055_8056,AD8056ANZ,part_family,N
+ad8055_8056,AD8056ANZ,typ_supply_current,10.0 mA
+ad8055_8056,AD8056ANZ,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056ANZ,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056ANZ,min_op_temp,-40
+ad8055_8056,AD8056ANZ,max_op_temp,125
+ad8055_8056,AD8056AR,part_family,N
+ad8055_8056,AD8056AR,typ_supply_current,10.0 mA
+ad8055_8056,AD8056AR,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056AR,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056AR,min_op_temp,-40
+ad8055_8056,AD8056AR,max_op_temp,125
+ad8055_8056,AD8056AR-REEL,part_family,N
+ad8055_8056,AD8056AR-REEL,typ_supply_current,10.0 mA
+ad8055_8056,AD8056AR-REEL,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056AR-REEL,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056AR-REEL,min_op_temp,-40
+ad8055_8056,AD8056AR-REEL,max_op_temp,125
+ad8055_8056,AD8056AR-REEL7,part_family,N
+ad8055_8056,AD8056AR-REEL7,typ_supply_current,10.0 mA
+ad8055_8056,AD8056AR-REEL7,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056AR-REEL7,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056AR-REEL7,min_op_temp,-40
+ad8055_8056,AD8056AR-REEL7,max_op_temp,125
+ad8055_8056,AD8056ARZ,part_family,N
+ad8055_8056,AD8056ARZ,typ_supply_current,10.0 mA
+ad8055_8056,AD8056ARZ,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056ARZ,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056ARZ,min_op_temp,-40
+ad8055_8056,AD8056ARZ,max_op_temp,125
+ad8055_8056,AD8056ARZ-REEL,part_family,N
+ad8055_8056,AD8056ARZ-REEL,typ_supply_current,10.0 mA
+ad8055_8056,AD8056ARZ-REEL,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056ARZ-REEL,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056ARZ-REEL,min_op_temp,-40
+ad8055_8056,AD8056ARZ-REEL,max_op_temp,125
+ad8055_8056,AD8056ARZ-REEL7,part_family,N
+ad8055_8056,AD8056ARZ-REEL7,typ_supply_current,10.0 mA
+ad8055_8056,AD8056ARZ-REEL7,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056ARZ-REEL7,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056ARZ-REEL7,min_op_temp,-40
+ad8055_8056,AD8056ARZ-REEL7,max_op_temp,125
+ad8055_8056,AD8056ARM,part_family,N
+ad8055_8056,AD8056ARM,typ_supply_current,10.0 mA
+ad8055_8056,AD8056ARM,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056ARM,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056ARM,min_op_temp,-40
+ad8055_8056,AD8056ARM,max_op_temp,125
+ad8055_8056,AD8056ARM-REEL,part_family,N
+ad8055_8056,AD8056ARM-REEL,typ_supply_current,10.0 mA
+ad8055_8056,AD8056ARM-REEL,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056ARM-REEL,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056ARM-REEL,min_op_temp,-40
+ad8055_8056,AD8056ARM-REEL,max_op_temp,125
+ad8055_8056,AD8056ARM-REEL7,part_family,N
+ad8055_8056,AD8056ARM-REEL7,typ_supply_current,10.0 mA
+ad8055_8056,AD8056ARM-REEL7,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056ARM-REEL7,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056ARM-REEL7,min_op_temp,-40
+ad8055_8056,AD8056ARM-REEL7,max_op_temp,125
+ad8055_8056,AD8056ARMZ,part_family,N
+ad8055_8056,AD8056ARMZ,typ_supply_current,10.0 mA
+ad8055_8056,AD8056ARMZ,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056ARMZ,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056ARMZ,min_op_temp,-40
+ad8055_8056,AD8056ARMZ,max_op_temp,125
+ad8055_8056,AD8056ARMZ-REEL,part_family,N
+ad8055_8056,AD8056ARMZ-REEL,typ_supply_current,10.0 mA
+ad8055_8056,AD8056ARMZ-REEL,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056ARMZ-REEL,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056ARMZ-REEL,min_op_temp,-40
+ad8055_8056,AD8056ARMZ-REEL,max_op_temp,125
+ad8055_8056,AD8056ARMZ-REEL7,part_family,N
+ad8055_8056,AD8056ARMZ-REEL7,typ_supply_current,10.0 mA
+ad8055_8056,AD8056ARMZ-REEL7,min_op_supply_volt,±4.0 V
+ad8055_8056,AD8056ARMZ-REEL7,max_op_supply_volt,±6.0 V
+ad8055_8056,AD8056ARMZ-REEL7,min_op_temp,-40
+ad8055_8056,AD8056ARMZ-REEL7,max_op_temp,125
+ad8067,AD8067,part_family,Y
+ad8067,AD8067,typ_supply_current,6.5 mA
+ad8067,AD8067,typ_supply_current,6.4 mA
+ad8067,AD8067,typ_supply_current,6.6 mA
+ad8067,AD8067,min_op_supply_volt,5 V
+ad8067,AD8067,max_op_supply_volt,24 V
+ad8067,AD8067,min_op_temp,-40
+ad8067,AD8067,max_op_temp,85
+ad8067,AD8067ART-REEL,part_family,N
+ad8067,AD8067ART-REEL,typ_supply_current,6.5 mA
+ad8067,AD8067ART-REEL,typ_supply_current,6.4 mA
+ad8067,AD8067ART-REEL,typ_supply_current,6.6 mA
+ad8067,AD8067ART-REEL,min_op_supply_volt,5 V
+ad8067,AD8067ART-REEL,max_op_supply_volt,24 V
+ad8067,AD8067ART-REEL,min_op_temp,-40
+ad8067,AD8067ART-REEL,max_op_temp,85
+ad8067,AD8067ART-R2,part_family,N
+ad8067,AD8067ART-R2,typ_supply_current,6.5 mA
+ad8067,AD8067ART-R2,typ_supply_current,6.4 mA
+ad8067,AD8067ART-R2,typ_supply_current,6.6 mA
+ad8067,AD8067ART-R2,min_op_supply_volt,5 V
+ad8067,AD8067ART-R2,max_op_supply_volt,24 V
+ad8067,AD8067ART-R2,min_op_temp,-40
+ad8067,AD8067ART-R2,max_op_temp,85
+ad8067,AD8067ARTZ-REEL,part_family,N
+ad8067,AD8067ARTZ-REEL,typ_supply_current,6.5 mA
+ad8067,AD8067ARTZ-REEL,typ_supply_current,6.4 mA
+ad8067,AD8067ARTZ-REEL,typ_supply_current,6.6 mA
+ad8067,AD8067ARTZ-REEL,min_op_supply_volt,5 V
+ad8067,AD8067ARTZ-REEL,max_op_supply_volt,24 V
+ad8067,AD8067ARTZ-REEL,min_op_temp,-40
+ad8067,AD8067ARTZ-REEL,max_op_temp,85
+ad8067,AD8067ARTZ-REEL7,part_family,N
+ad8067,AD8067ARTZ-REEL7,typ_supply_current,6.5 mA
+ad8067,AD8067ARTZ-REEL7,typ_supply_current,6.4 mA
+ad8067,AD8067ARTZ-REEL7,typ_supply_current,6.6 mA
+ad8067,AD8067ARTZ-REEL7,min_op_supply_volt,5 V
+ad8067,AD8067ARTZ-REEL7,max_op_supply_volt,24 V
+ad8067,AD8067ARTZ-REEL7,min_op_temp,-40
+ad8067,AD8067ARTZ-REEL7,max_op_temp,85
+ad8067,AD8067ARTZ-R2,part_family,N
+ad8067,AD8067ARTZ-R2,typ_supply_current,6.5 mA
+ad8067,AD8067ARTZ-R2,typ_supply_current,6.4 mA
+ad8067,AD8067ARTZ-R2,typ_supply_current,6.6 mA
+ad8067,AD8067ARTZ-R2,min_op_supply_volt,5 V
+ad8067,AD8067ARTZ-R2,max_op_supply_volt,24 V
+ad8067,AD8067ARTZ-R2,min_op_temp,-40
+ad8067,AD8067ARTZ-R2,max_op_temp,85
+ad8220,AD8220,part_family,Y
+ad8220,AD8220,min_op_supply_volt,±2.25 V
+ad8220,AD8220,max_op_supply_volt,±18 V
+ad8220,AD8220ARMZ,part_family,N
+ad8220,AD8220ARMZ,min_op_supply_volt,±2.25 V
+ad8220,AD8220ARMZ,max_op_supply_volt,±18 V
+ad8220,AD8220ARMZ,min_op_temp,-40
+ad8220,AD8220ARMZ,max_op_temp,85
+ad8220,AD8220ARMZ-RL,part_family,N
+ad8220,AD8220ARMZ-RL,min_op_supply_volt,±2.25 V
+ad8220,AD8220ARMZ-RL,max_op_supply_volt,±18 V
+ad8220,AD8220ARMZ-RL,min_op_temp,-40
+ad8220,AD8220ARMZ-RL,max_op_temp,85
+ad8220,AD8220ARMZ-R7,part_family,N
+ad8220,AD8220ARMZ-R7,min_op_supply_volt,±2.25 V
+ad8220,AD8220ARMZ-R7,max_op_supply_volt,±18 V
+ad8220,AD8220ARMZ-R7,min_op_temp,-40
+ad8220,AD8220ARMZ-R7,max_op_temp,85
+ad8220,AD8220BRMZ,part_family,N
+ad8220,AD8220BRMZ,min_op_supply_volt,±2.25 V
+ad8220,AD8220BRMZ,max_op_supply_volt,±18 V
+ad8220,AD8220BRMZ,min_op_temp,-40
+ad8220,AD8220BRMZ,max_op_temp,85
+ad8220,AD8220BRMZ-RL,part_family,N
+ad8220,AD8220BRMZ-RL,min_op_supply_volt,±2.25 V
+ad8220,AD8220BRMZ-RL,max_op_supply_volt,±18 V
+ad8220,AD8220BRMZ-RL,min_op_temp,-40
+ad8220,AD8220BRMZ-RL,max_op_temp,85
+ad8220,AD8220BRMZ-R7,part_family,N
+ad8220,AD8220BRMZ-R7,min_op_supply_volt,±2.25 V
+ad8220,AD8220BRMZ-R7,max_op_supply_volt,±18 V
+ad8220,AD8220BRMZ-R7,min_op_temp,-40
+ad8220,AD8220BRMZ-R7,max_op_temp,85
+ad8220,AD8220WARMZ,part_family,N
+ad8220,AD8220WARMZ,min_op_supply_volt,±2.25 V
+ad8220,AD8220WARMZ,max_op_supply_volt,±18 V
+ad8220,AD8220WARMZ,min_op_temp,-40
+ad8220,AD8220WARMZ,max_op_temp,125
+ad8220,AD8220WARMZ-RL,part_family,N
+ad8220,AD8220WARMZ-RL,min_op_supply_volt,±2.25 V
+ad8220,AD8220WARMZ-RL,max_op_supply_volt,±18 V
+ad8220,AD8220WARMZ-RL,min_op_temp,-40
+ad8220,AD8220WARMZ-RL,max_op_temp,125
+ad8220,AD8220WARMZ-R7,part_family,N
+ad8220,AD8220WARMZ-R7,min_op_supply_volt,±2.25 V
+ad8220,AD8220WARMZ-R7,max_op_supply_volt,±18 V
+ad8220,AD8220WARMZ-R7,min_op_temp,-40
+ad8220,AD8220WARMZ-R7,max_op_temp,125
+ad823,AD823,part_family,Y
+ad823,AD823,typ_supply_current,5.2 mA
+ad823,AD823,typ_supply_current,5.0 mA
+ad823,AD823,typ_supply_current,7.0 mA
+ad823,AD823,min_op_supply_volt,3 V
+ad823,AD823,max_op_supply_volt,36 V
+ad823,AD823,min_op_temp,-40
+ad823,AD823,max_op_temp,85
+ad823,AD823ANZ,part_family,N
+ad823,AD823ANZ,typ_supply_current,5.2 mA
+ad823,AD823ANZ,typ_supply_current,5.0 mA
+ad823,AD823ANZ,typ_supply_current,7.0 mA
+ad823,AD823ANZ,min_op_supply_volt,3 V
+ad823,AD823ANZ,max_op_supply_volt,36 V
+ad823,AD823ANZ,min_op_temp,-40
+ad823,AD823ANZ,max_op_temp,85
+ad823,AD823AR,part_family,N
+ad823,AD823AR,typ_supply_current,5.2 mA
+ad823,AD823AR,typ_supply_current,5.0 mA
+ad823,AD823AR,typ_supply_current,7.0 mA
+ad823,AD823AR,min_op_supply_volt,3 V
+ad823,AD823AR,max_op_supply_volt,36 V
+ad823,AD823AR,min_op_temp,-40
+ad823,AD823AR,max_op_temp,85
+ad823,AD823AR-REEL,part_family,N
+ad823,AD823AR-REEL,typ_supply_current,5.2 mA
+ad823,AD823AR-REEL,typ_supply_current,5.0 mA
+ad823,AD823AR-REEL,typ_supply_current,7.0 mA
+ad823,AD823AR-REEL,min_op_supply_volt,3 V
+ad823,AD823AR-REEL,max_op_supply_volt,36 V
+ad823,AD823AR-REEL,min_op_temp,-40
+ad823,AD823AR-REEL,max_op_temp,85
+ad823,AD823AR-REEL7,part_family,N
+ad823,AD823AR-REEL7,typ_supply_current,5.2 mA
+ad823,AD823AR-REEL7,typ_supply_current,5.0 mA
+ad823,AD823AR-REEL7,typ_supply_current,7.0 mA
+ad823,AD823AR-REEL7,min_op_supply_volt,3 V
+ad823,AD823AR-REEL7,max_op_supply_volt,36 V
+ad823,AD823AR-REEL7,min_op_temp,-40
+ad823,AD823AR-REEL7,max_op_temp,85
+ad823,AD823ARZ,part_family,N
+ad823,AD823ARZ,typ_supply_current,5.2 mA
+ad823,AD823ARZ,typ_supply_current,5.0 mA
+ad823,AD823ARZ,typ_supply_current,7.0 mA
+ad823,AD823ARZ,min_op_supply_volt,3 V
+ad823,AD823ARZ,max_op_supply_volt,36 V
+ad823,AD823ARZ,min_op_temp,-40
+ad823,AD823ARZ,max_op_temp,85
+ad823,AD823ARZ-RL,part_family,N
+ad823,AD823ARZ-RL,typ_supply_current,5.2 mA
+ad823,AD823ARZ-RL,typ_supply_current,5.0 mA
+ad823,AD823ARZ-RL,typ_supply_current,7.0 mA
+ad823,AD823ARZ-RL,min_op_supply_volt,3 V
+ad823,AD823ARZ-RL,max_op_supply_volt,36 V
+ad823,AD823ARZ-RL,min_op_temp,-40
+ad823,AD823ARZ-RL,max_op_temp,85
+ad823,AD823ARZ-R7,part_family,N
+ad823,AD823ARZ-R7,typ_supply_current,5.2 mA
+ad823,AD823ARZ-R7,typ_supply_current,5.0 mA
+ad823,AD823ARZ-R7,typ_supply_current,7.0 mA
+ad823,AD823ARZ-R7,min_op_supply_volt,3 V
+ad823,AD823ARZ-R7,max_op_supply_volt,36 V
+ad823,AD823ARZ-R7,min_op_temp,-40
+ad823,AD823ARZ-R7,max_op_temp,85
+ad8290,AD8290,part_family,Y
+ad8290,AD8290,typ_supply_current,1.2 mA
+ad8290,AD8290,min_op_supply_volt,2.6 V
+ad8290,AD8290,max_op_supply_volt,5.5 V
+ad8290,AD8290,min_op_temp,-40
+ad8290,AD8290,max_op_temp,85
+ad8290,AD8290ACPZ-R2,part_family,N
+ad8290,AD8290ACPZ-R2,typ_supply_current,1.2 mA
+ad8290,AD8290ACPZ-R2,min_op_supply_volt,2.6 V
+ad8290,AD8290ACPZ-R2,max_op_supply_volt,5.5 V
+ad8290,AD8290ACPZ-R2,min_op_temp,-40
+ad8290,AD8290ACPZ-R2,max_op_temp,85
+ad8290,AD8290ACPZ-R7,part_family,N
+ad8290,AD8290ACPZ-R7,typ_supply_current,1.2 mA
+ad8290,AD8290ACPZ-R7,min_op_supply_volt,2.6 V
+ad8290,AD8290ACPZ-R7,max_op_supply_volt,5.5 V
+ad8290,AD8290ACPZ-R7,min_op_temp,-40
+ad8290,AD8290ACPZ-R7,max_op_temp,85
+ad8290,AD8290ACPZ-RL,part_family,N
+ad8290,AD8290ACPZ-RL,typ_supply_current,1.2 mA
+ad8290,AD8290ACPZ-RL,min_op_supply_volt,2.6 V
+ad8290,AD8290ACPZ-RL,max_op_supply_volt,5.5 V
+ad8290,AD8290ACPZ-RL,min_op_temp,-40
+ad8290,AD8290ACPZ-RL,max_op_temp,85
+ad8390,AD8390,part_family,Y
+ad8390,AD8390,typ_supply_current,5.2 mA
+ad8390,AD8390,typ_supply_current,3.8 mA
+ad8390,AD8390,typ_supply_current,2.5 mA
+ad8390,AD8390,typ_supply_current,0.57 mA
+ad8390,AD8390,typ_supply_current,10.0 mA
+ad8390,AD8390,typ_supply_current,6.7 mA
+ad8390,AD8390,typ_supply_current,0.67 mA
+ad8390,AD8390,typ_supply_current,4.5 mA
+ad8390,AD8390,typ_supply_current,3.3 mA
+ad8390,AD8390,typ_supply_current,2.1 mA
+ad8390,AD8390,typ_supply_current,0.43 mA
