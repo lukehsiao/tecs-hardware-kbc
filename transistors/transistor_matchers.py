@@ -8,7 +8,7 @@ from fonduer.candidates.matchers import (
     RegexMatchSpan,
     Union,
 )
-from fonduer.utils.data_model_utils import get_sentence_ngrams, overlap
+from fonduer.utils.data_model_utils import get_row_ngrams, get_sentence_ngrams, overlap
 
 logger = logging.getLogger(__name__)
 
@@ -111,8 +111,13 @@ def _attr_in_table(attr):
 
 def _get_ce_v_max_matcher():
     """Return a collector-emmiter voltage max matcher."""
+    ce_keywords = set(["collector emitter", "collector-emitter", "collector - emitter"])
+    ce_abbrevs = set(["ceo", "vceo"])
 
     def ce_v_max_conditions(attr):
+        ngrams = set(get_row_ngrams(attr, n_max=1))
+        if not overlap(ce_keywords.union(ce_abbrevs), ngrams):
+            return False
         if any(_ in attr.sentence.text.lower() for _ in ["vcb", "base"]):
             return False
 
