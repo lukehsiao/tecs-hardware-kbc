@@ -41,6 +41,7 @@ logging.basicConfig(
     stream=sys.stdout,
     format="[%(asctime)s][%(levelname)s] %(name)s:%(lineno)s - %(message)s",
     level=logging.INFO,
+    handlers=[logging.FileHandler(f"transistors.log"), logging.StreamHandler()],
 )
 logger = logging.getLogger(__name__)
 
