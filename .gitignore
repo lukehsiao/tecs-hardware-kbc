@@ -6,6 +6,8 @@ html/
 *.tar.gz
 *.tar.xz
 *.pkl
+pip-wheel-metadata/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
