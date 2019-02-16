@@ -1,5 +1,6 @@
 import csv
 import logging
+import os
 
 from fonduer.candidates.matchers import (
     DictionaryMatch,
@@ -12,7 +13,9 @@ from fonduer.utils.data_model_utils import get_row_ngrams, get_sentence_ngrams, 
 
 logger = logging.getLogger(__name__)
 
-DICT_PATH = "data/digikey_part_dictionary.csv"
+
+dirname = os.path.dirname(__file__)
+DICT_PATH = os.path.join(dirname, "data/digikey_part_dictionary.csv")
 
 
 def _get_digikey_parts_set(path):

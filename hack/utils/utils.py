@@ -18,7 +18,9 @@ def _files_in_dir(path):
     return [f[:-4] for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
 
 
-def parse_dataset(session, first_time=False, max_docs=float("inf"), parallel=4):
+def parse_dataset(
+    session, dirname, first_time=False, max_docs=float("inf"), parallel=4
+):
     """Parse the dataset into dev, test, and train.
 
     This expects that the data is located in data/dev/, data/test/, data/train/
@@ -37,8 +39,8 @@ def parse_dataset(session, first_time=False, max_docs=float("inf"), parallel=4):
     if first_time:
         for division in ["dev", "test", "train"]:
             logger.info(f"Parsing {division}...")
-            html_path = f"data/{division}/html/"
-            pdf_path = f"data/{division}/pdf/"
+            html_path = os.path.join(dirname, f"data/{division}/html/")
+            pdf_path = os.path.join(dirname, f"data/{division}/pdf/")
 
             doc_preprocessor = HTMLDocPreprocessor(html_path, max_docs=max_docs)
 
@@ -60,7 +62,7 @@ def parse_dataset(session, first_time=False, max_docs=float("inf"), parallel=4):
         logger.info("Reloading pre-parsed dataset.")
         all_docs = Parser(session).get_documents()
         for division in ["dev", "test", "train"]:
-            pdf_path = f"data/{division}/pdf/"
+            pdf_path = os.path.join(dirname, f"data/{division}/pdf/")
             if division == "dev":
                 dev_doc_names = _files_in_dir(pdf_path)
             if division == "test":

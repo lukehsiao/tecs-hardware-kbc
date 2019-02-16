@@ -1,6 +1,7 @@
 import codecs
 import csv
 import logging
+import os
 from builtins import range
 
 from fonduer.supervision.models import GoldLabel, GoldLabelKey
@@ -23,8 +24,12 @@ logger = logging.getLogger(__name__)
 
 def get_gold_dict(doc_on=True, part_on=True, val_on=True, attribute=None, docs=None):
 
+    dirname = os.path.dirname(__file__)
     gold_dict = set()
-    for filename in ["data/dev/dev_gold.csv", "data/test/test_gold.csv"]:
+    for filename in [
+        os.path.join(dirname, "data/dev/dev_gold.csv"),
+        os.path.join(dirname, "data/test/test_gold.csv"),
+    ]:
         with codecs.open(filename, encoding="utf-8") as csvfile:
             gold_reader = csv.reader(csvfile)
             for row in gold_reader:
