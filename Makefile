@@ -5,6 +5,6 @@ dev:
 
 clean:
 	pip uninstall -y hack 
-	rm -rf hack.egg-info
+	rm -rf hack.egg-info pip-wheel-metadata
 
 .PHONY: dev clean
