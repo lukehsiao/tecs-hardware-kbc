@@ -40,17 +40,20 @@ source .venv/bin/activate
 Any Python libraries installed will now be contained within this virtual
 environment. To deactivate the environment, simply run `deactivate`.
 
-Then, install Fonduer and any other python dependencies by running:
+Then, install Fonduer and any other Python dependencies by running:
 
 ```bash
-pip install -r requirements.txt
-pre-commit install
+$ make
 ```
 
 ## Running
 
-After installing all the requirements, just run:
+After installing all the requirements, and ensuring the necessary databases
+are created, you can run each individual hardware component script.
 
-```
-jupyter notebook
+### Transistors
+
+```bash
+$ createdb transistors
+$ python hack/transistors/transistors.py
 ```
