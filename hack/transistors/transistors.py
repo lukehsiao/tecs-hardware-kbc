@@ -385,9 +385,9 @@ def main(
 
 if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
-    parallel = len(os.sched_getaffinity(0)) // 2
+    parallel = len(os.sched_getaffinity(0)) // 3
     component = "transistors"
-    conn_string = f"postgresql://localhost:5432/{component}"
+    conn_string = f"postgresql:///"
     first_time = True
     relation = Relation.STG_TEMP_MIN
     logger.info(f"\n\n")
@@ -396,7 +396,6 @@ if __name__ == "__main__":
 
     main(
         conn_string,
-        max_docs=75,
         relation=relation,
         first_time=first_time,
         parallel=parallel,
