@@ -1,7 +1,6 @@
 import logging
 import os
 import pickle
-import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -14,30 +13,33 @@ from fonduer.parser.models import Document, Figure, Paragraph, Section, Sentence
 from fonduer.supervision import Labeler
 from metal import analysis
 from metal.label_model import LabelModel
-from transistor_matchers import get_matcher
-from transistor_throttlers import ce_v_max_filter, polarity_filter, stg_temp_filter
-from transistor_utils import entity_level_f1, load_transistor_labels
 
-from transistor_lfs import (
+from hack.transistors.transistor_lfs import (
     TRUE,
     ce_v_max_lfs,
     polarity_lfs,
     stg_temp_max_lfs,
     stg_temp_min_lfs,
 )
-from transistor_spaces import MentionNgramsPart, MentionNgramsTemp, MentionNgramsVolt
-
-try:
-    sys.path.append("..")
-    from utils import parse_dataset
-except Exception:
-    raise ValueError("Unable to import utils.")
+from hack.transistors.transistor_matchers import get_matcher
+from hack.transistors.transistor_spaces import (
+    MentionNgramsPart,
+    MentionNgramsTemp,
+    MentionNgramsVolt,
+)
+from hack.transistors.transistor_throttlers import (
+    ce_v_max_filter,
+    polarity_filter,
+    stg_temp_filter,
+)
+from hack.transistors.transistor_utils import entity_level_f1, load_transistor_labels
+from hack.utils import parse_dataset
 
 # Configure logging for Fonduer
 logging.basicConfig(
-    stream=sys.stdout,
     format="[%(asctime)s][%(levelname)s] %(name)s:%(lineno)s - %(message)s",
     level=logging.INFO,
+    handlers=[logging.FileHandler(f"transistors.log"), logging.StreamHandler()],
 )
 logger = logging.getLogger(__name__)
 
@@ -46,13 +48,13 @@ PARALLEL = len(os.sched_getaffinity(0)) // 2
 COMPONENT = "transistors"
 conn_string = "postgresql://localhost:5432/" + COMPONENT
 logger.info(f"PARALLEL: {PARALLEL}")
-FIRST_TIME = True
+FIRST_TIME = False
 
 
 def parsing(session, first_time=True, parallel=1, max_docs=float("inf")):
     logger.debug(f"Starting parsing...")
     docs, train_docs, dev_docs, test_docs = parse_dataset(
-        session, first_time=first_time, parallel=parallel, max_docs=25
+        session, first_time=first_time, parallel=parallel, max_docs=max_docs
     )
     logger.debug(f"Done")
 
@@ -220,11 +222,11 @@ def labeling(session, cands, cand_classes, split=1, train=False, parallelism=1):
     labeler = Labeler(
         session, [PartStgTempMin, PartStgTempMax, PartPolarity, PartCeVMax]
     )
-    if FIRST_TIME or True:
+    if FIRST_TIME:
         labeler.apply(
             split=split,
             lfs=[stg_temp_min_lfs, stg_temp_max_lfs, polarity_lfs, ce_v_max_lfs],
-            train=True,
+            train=train,
             parallelism=PARALLEL,
         )
 
@@ -356,7 +358,7 @@ def scoring(disc_models, test_cands, test_docs, F_test, parts_by_doc):
 def main():
     session = Meta.init(conn_string).Session()
     docs, train_docs, dev_docs, test_docs = parsing(
-        session, first_time=FIRST_TIME, parallel=PARALLEL
+        session, first_time=FIRST_TIME, parallel=PARALLEL, max_docs=10
     )
     mention_classes = mention_extraction(session, docs, parallel=PARALLEL)
     cands, cand_classes = candidate_extraction(

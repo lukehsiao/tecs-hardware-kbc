@@ -5,7 +5,7 @@ from builtins import range
 
 from fonduer.supervision.models import GoldLabel, GoldLabelKey
 
-from transistor_lfs import FALSE, TRUE
+from hack.transistors.transistor_lfs import FALSE, TRUE
 
 try:
     from IPython import get_ipython

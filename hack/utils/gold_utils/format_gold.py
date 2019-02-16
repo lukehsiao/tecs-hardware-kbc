@@ -2,7 +2,7 @@
 
 import csv
 
-from normalizers import (
+from hack.utils.gold_utils.normalizers import (
     gain_bandwidth_normalizer,
     opamp_part_normalizer,
     opamp_voltage_normalizer,

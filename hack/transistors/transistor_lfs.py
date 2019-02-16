@@ -23,7 +23,7 @@ from fonduer.utils.data_model_utils import (
     same_table,
 )
 
-from transistor_spaces import expand_part_range
+from hack.transistors.transistor_spaces import expand_part_range
 
 ABSTAIN = 0
 FALSE = 1

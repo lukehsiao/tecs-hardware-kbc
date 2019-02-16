@@ -8,7 +8,8 @@ from fonduer.utils.data_model_utils import (
     is_vert_aligned,
     same_table,
 )
-from transistor_spaces import expand_part_range
+
+from hack.transistors.transistor_spaces import expand_part_range
 
 logger = logging.getLogger(__name__)
 
