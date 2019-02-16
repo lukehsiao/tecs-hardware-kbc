@@ -1,6 +1,7 @@
 import logging
 import os
 import pickle
+from enum import Enum
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -35,26 +36,33 @@ from hack.transistors.transistor_throttlers import (
 from hack.transistors.transistor_utils import entity_level_f1, load_transistor_labels
 from hack.utils import parse_dataset
 
-# Configure logging for Fonduer
+# Configure logging for Hack
 logging.basicConfig(
     format="[%(asctime)s][%(levelname)s] %(name)s:%(lineno)s - %(message)s",
     level=logging.INFO,
-    handlers=[logging.FileHandler(f"transistors.log"), logging.StreamHandler()],
+    handlers=[
+        logging.FileHandler(
+            os.path.join(os.path.dirname(__file__), f"transistors.log")
+        ),
+        logging.StreamHandler(),
+    ],
 )
 logger = logging.getLogger(__name__)
 
-# See https://docs.python.org/3/library/os.html#os.cpu_count
-PARALLEL = len(os.sched_getaffinity(0)) // 2
-COMPONENT = "transistors"
-conn_string = "postgresql://localhost:5432/" + COMPONENT
-logger.info(f"PARALLEL: {PARALLEL}")
-FIRST_TIME = False
+
+# Enum for tracking
+class Relation(Enum):
+    STG_TEMP_MIN = "stg_temp_min"
+    STG_TEMP_MAX = "stg_temp_max"
+    POLARITY = "polarity"
+    CE_V_MAX = "ce_v_max"
 
 
 def parsing(session, first_time=True, parallel=1, max_docs=float("inf")):
+    dirname = os.path.dirname(__file__)
     logger.debug(f"Starting parsing...")
     docs, train_docs, dev_docs, test_docs = parse_dataset(
-        session, first_time=first_time, parallel=parallel, max_docs=max_docs
+        session, dirname, first_time=first_time, parallel=parallel, max_docs=max_docs
     )
     logger.debug(f"Done")
 
@@ -71,99 +79,76 @@ def parsing(session, first_time=True, parallel=1, max_docs=float("inf")):
     return docs, train_docs, dev_docs, test_docs
 
 
-def mention_extraction(session, docs, parallel=1):
+def mention_extraction(session, relation, docs, first_time=True, parallel=1):
     Part = mention_subclass("Part")
-    StgTempMin = mention_subclass("StgTempMin")
-    StgTempMax = mention_subclass("StgTempMax")
-    Polarity = mention_subclass("Polarity")
-    CeVMax = mention_subclass("CeVMax")
-
-    stg_temp_min_matcher = get_matcher("stg_temp_min")
-    stg_temp_max_matcher = get_matcher("stg_temp_max")
-    polarity_matcher = get_matcher("polarity")
-    ce_v_max_matcher = get_matcher("ce_v_max")
     part_matcher = get_matcher("part")
-
     part_ngrams = MentionNgramsPart(parts_by_doc=None, n_max=3)
-    temp_ngrams = MentionNgramsTemp(n_max=2)
-    volt_ngrams = MentionNgramsVolt(n_max=1)
-    polarity_ngrams = MentionNgrams(n_max=1)
+    if relation == Relation.STG_TEMP_MIN:
+        Attr = mention_subclass("StgTempMin")
+        attr_matcher = get_matcher("stg_temp_min")
+        attr_ngrams = MentionNgramsTemp(n_max=2)
+    elif relation == Relation.STG_TEMP_MAX:
+        Attr = mention_subclass("StgTempMax")
+        attr_matcher = get_matcher("stg_temp_max")
+        attr_ngrams = MentionNgramsTemp(n_max=2)
+    elif relation == Relation.POLARITY:
+        Attr = mention_subclass("Polarity")
+        attr_matcher = get_matcher("polarity")
+        attr_ngrams = MentionNgrams(n_max=1)
+    elif relation == Relation.CE_V_MAX:
+        Attr = mention_subclass("CeVMax")
+        attr_matcher = get_matcher("ce_v_max")
+        attr_ngrams = MentionNgramsVolt(n_max=1)
+    else:
+        raise ValueError(f"Invalid Relation: {relation}")
 
     mention_extractor = MentionExtractor(
-        session,
-        [Part, StgTempMin, StgTempMax, Polarity, CeVMax],
-        [part_ngrams, temp_ngrams, temp_ngrams, polarity_ngrams, volt_ngrams],
-        [
-            part_matcher,
-            stg_temp_min_matcher,
-            stg_temp_max_matcher,
-            polarity_matcher,
-            ce_v_max_matcher,
-        ],
+        session, [Part, Attr], [part_ngrams, attr_ngrams], [part_matcher, attr_matcher]
     )
 
-    if FIRST_TIME:
+    if first_time:
         mention_extractor.apply(docs, parallelism=parallel)
 
     logger.info(f"Total Mentions: {session.query(Mention).count()}")
     logger.info(f"Total Part: {session.query(Part).count()}")
-    logger.info(f"Total StgTempMin: {session.query(StgTempMin).count()}")
-    logger.info(f"Total StgTempMax: {session.query(StgTempMax).count()}")
-    logger.info(f"Total Polarity: {session.query(Polarity).count()}")
-    logger.info(f"Total CeVMax: {session.query(CeVMax).count()}")
-    return Part, StgTempMin, StgTempMax, Polarity, CeVMax
+    logger.info(f"Total Attr: {session.query(Attr).count()}")
+    return Part, Attr
 
 
 def candidate_extraction(
     session,
-    mention_classes,
+    relation,
+    part,
+    attr,
     train_docs,
     dev_docs,
     test_docs,
     first_time=True,
     parallel=1,
 ):
+    if relation == Relation.STG_TEMP_MIN:
+        Cand = candidate_subclass("PartStgTempMin", [part, attr])
+        throttler = stg_temp_filter
+    elif relation == Relation.STG_TEMP_MAX:
+        Cand = candidate_subclass("PartStgTempMax", [part, attr])
+        throttler = stg_temp_filter
+    elif relation == Relation.POLARITY:
+        Cand = candidate_subclass("PartPolarity", [part, attr])
+        throttler = polarity_filter
+    elif relation == Relation.CE_V_MAX:
+        Cand = candidate_subclass("PartCeVMax", [part, attr])
+        throttler = ce_v_max_filter
+    else:
+        raise ValueError(f"Invalid Relation: {relation}")
 
-    (Part, StgTempMin, StgTempMax, Polarity, CeVMax) = mention_classes
+    candidate_extractor = CandidateExtractor(session, [Cand], throttlers=[throttler])
 
-    PartStgTempMin = candidate_subclass("PartStgTempMin", [Part, StgTempMin])
-    PartStgTempMax = candidate_subclass("PartStgTempMax", [Part, StgTempMax])
-    PartPolarity = candidate_subclass("PartPolarity", [Part, Polarity])
-    PartCeVMax = candidate_subclass("PartCeVMax", [Part, CeVMax])
-
-    temp_throttler = stg_temp_filter
-    polarity_throttler = polarity_filter
-    ce_v_max_throttler = ce_v_max_filter
-
-    candidate_extractor = CandidateExtractor(
-        session,
-        [PartStgTempMin, PartStgTempMax, PartPolarity, PartCeVMax],
-        throttlers=[
-            temp_throttler,
-            temp_throttler,
-            polarity_throttler,
-            ce_v_max_throttler,
-        ],
-    )
-
-    if FIRST_TIME:
+    if first_time:
         for i, docs in enumerate([train_docs, dev_docs, test_docs]):
-            candidate_extractor.apply(docs, split=i, parallelism=PARALLEL)
-            count = (
-                session.query(PartStgTempMin).filter(PartStgTempMin.split == i).count()
-            )
-            logger.info(f"PartStgTempMin in split={i}: " f"{count}")
-            count = (
-                session.query(PartStgTempMax).filter(PartStgTempMax.split == i).count()
-            )
-            logger.info(f"PartStgTempMax in split={i}: " f"count")
+            candidate_extractor.apply(docs, split=i, parallelism=parallel)
             logger.info(
-                f"PartPolarity in split={i}: "
-                f"{session.query(PartPolarity).filter(PartPolarity.split == i).count()}"
-            )
-            logger.info(
-                f"PartCeVMax in split={i}: "
-                f"{session.query(PartCeVMax).filter(PartCeVMax.split == i).count()}"
+                f"Cand in split={i}: "
+                f"{session.query(Cand).filter(Cand.split == i).count()}"
             )
 
     train_cands = candidate_extractor.get_candidates(split=0)
@@ -174,19 +159,15 @@ def candidate_extraction(
     logger.info(f"Total dev candidate: {len(dev_cands[0])}")
     logger.info(f"Total test candidate: {len(test_cands[0])}")
 
-    return (
-        (train_cands, dev_cands, test_cands),
-        (PartStgTempMin, PartStgTempMax, PartPolarity, PartCeVMax),
-    )
+    return (Cand, train_cands, dev_cands, test_cands)
 
 
-def featurization(session, cands, cand_classes, first_time=True, parallel=1):
-    (PartStgTempMin, PartStgTempMax, PartPolarity, PartCeVMax) = cand_classes
-    (train_cands, dev_cands, test_cands) = cands
-    featurizer = Featurizer(
-        session, [PartStgTempMin, PartStgTempMax, PartPolarity, PartCeVMax]
-    )
-    if FIRST_TIME:
+def featurization(
+    session, train_cands, dev_cands, test_cands, Cand, first_time=True, parallel=1
+):
+    dirname = os.path.dirname(__file__)
+    featurizer = Featurizer(session, [Cand])
+    if first_time:
         logger.info("Starting featurizer...")
         featurizer.apply(split=0, train=True, parallelism=parallel)
         featurizer.apply(split=1, parallelism=parallel)
@@ -194,9 +175,18 @@ def featurization(session, cands, cand_classes, first_time=True, parallel=1):
         logger.info("Done")
 
     logger.info("Getting feature matrices...")
-    F_train = featurizer.get_feature_matrices(train_cands)
-    F_dev = featurizer.get_feature_matrices(dev_cands)
-    F_test = featurizer.get_feature_matrices(test_cands)
+    # Serialize feature matrices on first run
+    if first_time:
+        F_train = featurizer.get_feature_matrices(train_cands)
+        F_dev = featurizer.get_feature_matrices(dev_cands)
+        F_test = featurizer.get_feature_matrices(test_cands)
+        pickle.dump(F_train, open(os.path.join(dirname, "F_train.pkl"), "wb"))
+        pickle.dump(F_dev, open(os.path.join(dirname, "F_dev.pkl"), "wb"))
+        pickle.dump(F_test, open(os.path.join(dirname, "F_test.pkl"), "wb"))
+    else:
+        F_train = pickle.load(open(os.path.join(dirname, "F_train.pkl"), "rb"))
+        F_dev = pickle.load(open(os.path.join(dirname, "F_dev.pkl"), "rb"))
+        F_test = pickle.load(open(os.path.join(dirname, "F_test.pkl"), "rb"))
     logger.info("Done.")
 
     logger.info(f"Train shape: {F_train[0].shape}")
@@ -206,188 +196,162 @@ def featurization(session, cands, cand_classes, first_time=True, parallel=1):
     return F_train, F_dev, F_test
 
 
-def load_labels(session, cand_classes, first_time=False):
-    (PartStgTempMin, PartStgTempMax, PartPolarity, PartCeVMax) = cand_classes
-    if FIRST_TIME:
-        load_transistor_labels(
-            session,
-            [PartStgTempMin, PartStgTempMax, PartPolarity, PartCeVMax],
-            ["stg_temp_min", "stg_temp_max", "polarity", "ce_v_max"],
-            annotator_name="gold",
-        )
+def load_labels(session, relation, cand, first_time=True):
+    if first_time:
+        logger.info(f"Loading gold labels for {relation.value}")
+        load_transistor_labels(session, [cand], [relation.value], annotator_name="gold")
 
 
-def labeling(session, cands, cand_classes, split=1, train=False, parallelism=1):
-    (PartStgTempMin, PartStgTempMax, PartPolarity, PartCeVMax) = cand_classes
-    labeler = Labeler(
-        session, [PartStgTempMin, PartStgTempMax, PartPolarity, PartCeVMax]
-    )
-    if FIRST_TIME:
-        labeler.apply(
-            split=split,
-            lfs=[stg_temp_min_lfs, stg_temp_max_lfs, polarity_lfs, ce_v_max_lfs],
-            train=train,
-            parallelism=PARALLEL,
-        )
+def labeling(session, cands, cand, split=1, train=False, first_time=True, parallel=1):
+    labeler = Labeler(session, [cand])
+    if relation == Relation.STG_TEMP_MIN:
+        lfs = stg_temp_min_lfs
+    elif relation == Relation.STG_TEMP_MAX:
+        lfs = stg_temp_max_lfs
+    elif relation == Relation.POLARITY:
+        lfs = polarity_lfs
+    elif relation == Relation.CE_V_MAX:
+        lfs = ce_v_max_lfs
+    else:
+        raise ValueError(f"Invalid Relation: {relation}")
 
+    if first_time:
+        logger.info("Applying LFs...")
+        labeler.apply(split=split, lfs=[lfs], train=train, parallelism=parallel)
+        logger.info("Done...")
+
+    logger.info("Getting label matrices...")
     L_mat = labeler.get_label_matrices(cands)
     L_gold = labeler.get_gold_labels(cands, annotator="gold")
+    logger.info("Done...")
+    logger.info(f"L_mat shape: {L_mat[0].shape}")
+    logger.info(f"L_gold shape: {L_gold[0].shape}")
 
-    df = analysis.lf_summary(
-        L_mat[0],
-        lf_names=labeler.get_keys(),
-        Y=L_gold[0].todense().reshape(-1).tolist()[0],
-    )
-    print(df.to_string())
+    if train:
+        try:
+            df = analysis.lf_summary(
+                L_mat[0],
+                lf_names=labeler.get_keys(),
+                Y=L_gold[0].todense().reshape(-1).tolist()[0],
+            )
+            logger.info(df.to_string())
+        except Exception:
+            import pdb
+
+            pdb.set_trace()
 
     return L_mat, L_gold
 
 
-def generative_model(L_train):
-    stg_temp_min_model = LabelModel(k=2)
-    stg_temp_max_model = LabelModel(k=2)
-    polarity_model = LabelModel(k=2)
-    ce_v_max_model = LabelModel(k=2)
+def generative_model(relation, L_train, n_epochs=500, print_every=100):
+    model = LabelModel(k=2)
 
-    stg_temp_min_model.train_model(L_train[0], n_epochs=500, print_every=100)
-    stg_temp_max_model.train_model(L_train[1], n_epochs=500, print_every=100)
-    polarity_model.train_model(L_train[2], n_epochs=500, print_every=100)
-    ce_v_max_model.train_model(L_train[3], n_epochs=500, print_every=100)
+    logger.info("Training generative model...")
+    model.train_model(L_train[0], n_epochs=n_epochs, print_every=print_every)
+    logger.info("Done.")
 
-    stg_temp_min_marginals = stg_temp_min_model.predict_proba(L_train[0])
-    plt.hist(stg_temp_min_marginals[:, TRUE - 1], bins=20)
-    plt.savefig("stg_temp_min_marginals.pdf")
-    stg_temp_max_marginals = stg_temp_max_model.predict_proba(L_train[1])
-    polarity_marginals = polarity_model.predict_proba(L_train[2])
-    ce_v_max_marginals = ce_v_max_model.predict_proba(L_train[3])
-    return (
-        stg_temp_min_marginals,
-        stg_temp_max_marginals,
-        polarity_marginals,
-        ce_v_max_marginals,
-    )
+    marginals = model.predict_proba(L_train[0])
+    plt.hist(marginals[:, TRUE - 1], bins=20)
+    plt.savefig(f"{relation.value}_marginals.pdf")
+    return marginals
 
 
-def discriminative_model(train_cands, F_train, marginals):
-    (
-        stg_temp_min_marginals,
-        stg_temp_max_marginals,
-        polarity_marginals,
-        ce_v_max_marginals,
-    ) = marginals
-    stg_temp_min_disc_model = LogisticRegression()
-    stg_temp_max_disc_model = LogisticRegression()
-    polarity_disc_model = LogisticRegression()
-    ce_v_max_disc_model = LogisticRegression()
+def discriminative_model(train_cands, F_train, marginals, n_epochs=50, lr=0.001):
+    disc_model = LogisticRegression()
 
-    stg_temp_min_disc_model.train(
-        (train_cands[0], F_train[0]), stg_temp_min_marginals, n_epochs=50, lr=0.001
-    )
-    stg_temp_max_disc_model.train(
-        (train_cands[1], F_train[1]), stg_temp_max_marginals, n_epochs=50, lr=0.001
-    )
-    polarity_disc_model.train(
-        (train_cands[2], F_train[2]), polarity_marginals, n_epochs=50, lr=0.001
-    )
-    ce_v_max_disc_model.train(
-        (train_cands[3], F_train[3]), ce_v_max_marginals, n_epochs=50, lr=0.001
-    )
-    return (
-        stg_temp_min_disc_model,
-        stg_temp_max_disc_model,
-        polarity_disc_model,
-        ce_v_max_disc_model,
-    )
+    logger.info("Training discriminative model...")
+    disc_model.train((train_cands[0], F_train[0]), marginals, n_epochs=n_epochs, lr=lr)
+    logger.info("Done.")
+
+    return disc_model
 
 
 def load_parts_by_doc():
-    pickle_file = "data/parts_by_doc_dict.pkl"
+    dirname = os.path.dirname(__file__)
+    pickle_file = os.path.join(dirname, "data/parts_by_doc_dict.pkl")
     with open(pickle_file, "rb") as f:
         return pickle.load(f)
 
 
-def scoring(disc_models, test_cands, test_docs, F_test, parts_by_doc):
-    (
-        stg_temp_min_disc_model,
-        stg_temp_max_disc_model,
-        polarity_disc_model,
-        ce_v_max_disc_model,
-    ) = disc_models
+def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, b=0.6):
 
-    stg_temp_min_test_score = stg_temp_min_disc_model.predict(
-        (test_cands[0], F_test[0]), b=0.6, pos_label=TRUE
-    )
-    stg_temp_min_true_pred = [
-        test_cands[0][_] for _ in np.nditer(np.where(stg_temp_min_test_score == TRUE))
-    ]
+    test_score = disc_model.predict((test_cands[0], F_test[0]), b=b, pos_label=TRUE)
+
+    true_pred = [test_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))]
+
     (TP, FP, FN) = entity_level_f1(
-        stg_temp_min_true_pred, "stg_temp_min", test_docs, parts_by_doc=parts_by_doc
-    )
-
-    stg_temp_max_test_score = stg_temp_max_disc_model.predict(
-        (test_cands[1], F_test[1]), b=0.6, pos_label=TRUE
-    )
-    stg_temp_max_true_pred = [
-        test_cands[1][_] for _ in np.nditer(np.where(stg_temp_max_test_score == TRUE))
-    ]
-    (TP, FP, FN) = entity_level_f1(
-        stg_temp_max_true_pred, "stg_temp_max", test_docs, parts_by_doc=parts_by_doc
-    )
-
-    polarity_test_score = polarity_disc_model.predict(
-        (test_cands[2], F_test[2]), b=0.6, pos_label=TRUE
-    )
-    polarity_true_pred = [
-        test_cands[2][_] for _ in np.nditer(np.where(polarity_test_score == TRUE))
-    ]
-    (TP, FP, FN) = entity_level_f1(
-        polarity_true_pred, "polarity", test_docs, parts_by_doc=parts_by_doc
-    )
-
-    ce_v_max_test_score = ce_v_max_disc_model.predict(
-        (test_cands[3], F_test[3]), b=0.6, pos_label=TRUE
-    )
-    ce_v_max_true_pred = [
-        test_cands[3][_] for _ in np.nditer(np.where(ce_v_max_test_score == TRUE))
-    ]
-    (TP, FP, FN) = entity_level_f1(
-        ce_v_max_true_pred, "ce_v_max", test_docs, parts_by_doc=parts_by_doc
+        true_pred, relation.value, test_docs, parts_by_doc=parts_by_doc
     )
 
 
-def main():
+def main(
+    conn_string,
+    max_docs=float("inf"),
+    first_time=True,
+    parallel=2,
+    relation=Relation.STG_TEMP_MAX,
+):
     session = Meta.init(conn_string).Session()
     docs, train_docs, dev_docs, test_docs = parsing(
-        session, first_time=FIRST_TIME, parallel=PARALLEL, max_docs=10
+        session, first_time=first_time, parallel=parallel, max_docs=max_docs
     )
-    mention_classes = mention_extraction(session, docs, parallel=PARALLEL)
-    cands, cand_classes = candidate_extraction(
+
+    (Part, Attr) = mention_extraction(
+        session, relation, docs, first_time=first_time, parallel=parallel
+    )
+
+    (Cand, train_cands, dev_cands, test_cands) = candidate_extraction(
         session,
-        mention_classes,
+        relation,
+        Part,
+        Attr,
         train_docs,
         dev_docs,
         test_docs,
-        first_time=FIRST_TIME,
-        parallel=PARALLEL,
+        first_time=first_time,
+        parallel=parallel,
     )
     F_train, F_dev, F_test = featurization(
-        session, cands, cand_classes, first_time=FIRST_TIME, parallel=PARALLEL
+        session,
+        train_cands,
+        dev_cands,
+        test_cands,
+        Cand,
+        first_time=first_time,
+        parallel=parallel,
     )
-    load_labels(session, cand_classes, first_time=FIRST_TIME)
-    (train_cands, dev_cands, test_cands) = cands
+    load_labels(session, relation, Cand, first_time=first_time)
+    logger.info("Labeling training data...")
     L_train, L_gold_train = labeling(
-        session, train_cands, cand_classes, split=0, train=True, parallelism=PARALLEL
+        session, train_cands, Cand, split=0, train=True, parallel=parallel
     )
-    marginals = generative_model(L_train)
+    logger.info("Done.")
+
+    marginals = generative_model(relation, L_train)
+
     L_dev, L_gold_dev = labeling(
-        session, dev_cands, cand_classes, split=1, train=False, parallelism=PARALLEL
+        session, dev_cands, Cand, split=1, train=False, parallel=parallel
     )
 
     disc_models = discriminative_model(train_cands, F_train, marginals)
 
     parts_by_doc = load_parts_by_doc()
-    scoring(disc_models, test_cands, test_docs, F_test, parts_by_doc)
+    scoring(relation, disc_models, test_cands, test_docs, F_test, parts_by_doc)
 
 
 if __name__ == "__main__":
-    main()
+    # See https://docs.python.org/3/library/os.html#os.cpu_count
+    parallel = len(os.sched_getaffinity(0)) // 2
+    component = "transistors"
+    conn_string = f"postgresql://localhost:5432/{component}"
+    first_time = True
+    relation = Relation.STG_TEMP_MAX
+    logger.info(f"Beginning {component}::{relation.value} with parallel: {parallel}")
+
+    main(
+        conn_string,
+        max_docs=100,
+        relation=relation,
+        first_time=first_time,
+        parallel=parallel,
+    )

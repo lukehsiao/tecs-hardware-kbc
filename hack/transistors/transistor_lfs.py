@@ -189,7 +189,7 @@ def LF_other_minus_signs_in_row(c):
 
 stg_temp_lfs = [
     LF_collector_aligned,
-    LF_complement_left_row,
+    #  LF_complement_left_row,
     LF_current_aligned,
     LF_not_temp_relevant,
     LF_operating_row,
@@ -197,10 +197,10 @@ stg_temp_lfs = [
     LF_temp_on_high_page_num,
     LF_temp_outside_table,
     LF_temperature_row,
-    LF_test_condition_aligned,
-    LF_too_many_numbers_row,
+    #  LF_test_condition_aligned,
+    #  LF_too_many_numbers_row,
     LF_tstg_row,
-    LF_typ_row,
+    #  LF_typ_row,
     LF_voltage_row_part,
     LF_voltage_row_temp,
 ]
