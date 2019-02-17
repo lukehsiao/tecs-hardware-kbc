@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import pdb
 
 
@@ -24,8 +23,10 @@ def part_family_normalizer(family):
         return str(family)
     elif family == "N":
         return str(family)
+    elif family == "N/A":  # Account for Digikey not having any part_family
+        return str(family)
     else:
-        print("[ERROR]: Invalid part family")
+        print(f"[ERROR]: Invalid part family {family}")
         pdb.set_trace()
 
 
@@ -62,8 +63,8 @@ def gain_bandwidth_normalizer(gbp):
         """
         return str(value) + " " + unit
 
-    except Exception:
-        print("[ERROR]: " + str(parse))
+    except Exception as e:
+        print(f"[ERROR]: {e} on gain bandwidth {parse}")
         pdb.set_trace()
 
 
@@ -78,13 +79,11 @@ def supply_current_normalizer(supply_current):
     try:
         (value, unit) = parse["value"].split(" ")
         value = float(value)
-        """
         if unit == "mA":
             value = value * 1000
         elif unit == "nA":
             value = value / 1000
-        """
-        return str(value) + " " + unit
+        return value
     except Exception:
         print("[ERROR]: " + str(parse))
         pdb.set_trace()
@@ -111,35 +110,43 @@ def opamp_voltage_normalizer(supply_voltage):
     return str(value) + " " + unit
 
 
+"""
+GENERAL NORMALIZERS
+"""
+
+
+def general_normalizer(value):
+    # TODO: Right now this is only returning the raw values
+    return value.strip()
+
+
 def temperature_normalizer(temperature):
     try:
         (temp, unit) = temperature.rsplit(" ", 1)
         if unit != "C":
+            print(f"[ERROR]: Invalid temperature value {temperature}")
             pdb.set_trace()
         return int(temp)
-    except Exception:
-        print("[ERROR]: Incorrect Temperature Value")
+    except Exception as e:
+        print(f"[ERROR]: {e} on temperature value {temperature}")
         pdb.set_trace()
 
 
 def polarity_normalizer(polarity):
-    try:
-        if polarity in ["NPN", "PNP"]:
-            return polarity
-    except Exception:
-        print("[ERROR]: Incorrect Polarity Value")
-        pdb.set_trace()
+    if polarity in ["NPN", "PNP"]:
+        return polarity
+    print(f"[ERROR]: Incorrect polarity value {polarity}")
+    pdb.set_trace()
+    return "N/A"
 
 
 def dissipation_normalizer(dissipation):
-    if dissipation[0] == " ":
-        dissipation = dissipation[1:]
+    dissipation = dissipation.strip()
     return str(abs(round(float(dissipation.split(" ")[0]), 1)))
 
 
 def current_normalizer(current):
-    if current[0] == " ":
-        current = current[1:]
+    current = current.strip()
     return str(abs(round(float(current.split(" ")[0]), 1)))
 
 
