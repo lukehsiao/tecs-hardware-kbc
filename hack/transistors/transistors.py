@@ -371,9 +371,11 @@ def main(
 
     marginals = generative_model(relation, L_train)
 
+    logger.info("Labeling dev data...")
     L_dev, L_gold_dev = labeling(
         session, dev_cands, Cand, split=1, train=False, parallel=parallel
     )
+    logger.info("Done.")
 
     disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
 
@@ -387,7 +389,7 @@ if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
     parallel = len(os.sched_getaffinity(0)) // 3
     component = "transistors"
-    conn_string = f"postgresql:///"
+    conn_string = f"postgresql:///{component}"
     first_time = True
     relation = Relation.STG_TEMP_MIN
     logger.info(f"\n\n")
