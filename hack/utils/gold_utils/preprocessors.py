@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import pdb
 
@@ -190,10 +189,8 @@ def preprocess_c_current_max(current):
 
 def preprocess_polarity(polarity):
     # Takes in a polarity (i.e. NPN) and returns it if it is valid
-    if "NPN" in polarity:
-        return "NPN"
-    elif "PNP" in polarity:
-        return "PNP"
+    if polarity in ["NPN", "PNP"]:
+        return polarity
     elif polarity == "-":
         return "N/A"
     print(f"[ERROR]: Invalid polarity {polarity}")

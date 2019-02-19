@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
-This script should read in two CSVs (one from our labels and one from Digikey)
-and confirm that every value listed in our CSV is the same in Digikey's CSV.
+This script reads in two CSVs (one from our labels and one from Digikey) where:
+(filename, part_num, attribute_name, value) = line
+and confirms that every value listed in our CSV is the same in Digikey's CSV.
 """
 
 import csv
@@ -70,9 +70,13 @@ def compare_maps(digikey_map, our_map):
 Run comparison on transistor gold data
 """
 if __name__ == "__main__":
-    # Compare transistor digikey gold CSV and our dev gold CSV
+    # Change `our_csv` to the absolute path of your formatted gold label CSV
     our_csv = "/home/nchiang/repos/hack/transistors/data/dev/dev_gold.csv"
+
+    # Change `digikey_csv` to the absolute path of the formatted Digikey gold CSV
+    # that you want to compare with `our_csv`
     digikey_csv = "/home/nchiang/repos/hack/transistors/data/digikey_gold.csv"
+
     # Run comparison
     print(f"[INFO]: Running comparison on {digikey_csv} and {our_csv}")
     digikey_map = make_map(digikey_csv)

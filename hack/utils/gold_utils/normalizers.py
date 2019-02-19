@@ -25,6 +25,8 @@ def part_family_normalizer(family):
         return str(family)
     elif family == "N/A":  # Account for Digikey not having any part_family
         return str(family)
+    elif family is None:
+        return "N/A"
     else:
         print(f"[ERROR]: Invalid part family {family}")
         pdb.set_trace()
@@ -84,8 +86,8 @@ def supply_current_normalizer(supply_current):
         elif unit == "nA":
             value = value / 1000
         return value
-    except Exception:
-        print("[ERROR]: " + str(parse))
+    except Exception as e:
+        print(f"[ERROR]: {e} while normalizing supply_current {supply_current}")
         pdb.set_trace()
 
 
@@ -104,7 +106,7 @@ def opamp_voltage_normalizer(supply_voltage):
         pdb.set_trace()
 
     if unit != "V":
-        print("[ERROR]: Invalid supply voltage")
+        print(f"[ERROR]: Invalid supply voltage {supply_voltage}")
         pdb.set_trace()
 
     return str(value) + " " + unit
@@ -115,9 +117,28 @@ GENERAL NORMALIZERS
 """
 
 
+def doc_normalizer(doc_name):
+    if doc_name.endswith(".pdf"):
+        return doc_name.split(".pdf")[0]
+    elif doc_name.endswith(".PDF"):
+        return doc_name.split(".PDF")[0]
+    else:
+        print(f"[ERROR]: Invalid doc_name {doc_name}")
+        pdb.set_trace()
+
+
 def general_normalizer(value):
     # TODO: Right now this is only returning the raw values
     return value.strip()
+
+
+def manuf_normalizer(manuf):
+    return manuf.strip()  # TODO: Make a list of all known manufs
+
+
+def transistor_temp_normalizer(temperature):
+    # On some transistor datasheets the temperature unit is listed as a separate column
+    return round(float(temperature.strip()), 1)
 
 
 def temperature_normalizer(temperature):
@@ -126,7 +147,7 @@ def temperature_normalizer(temperature):
         if unit != "C":
             print(f"[ERROR]: Invalid temperature value {temperature}")
             pdb.set_trace()
-        return int(temp)
+        return round(float(temp), 1)
     except Exception as e:
         print(f"[ERROR]: {e} on temperature value {temperature}")
         pdb.set_trace()
@@ -147,13 +168,21 @@ def dissipation_normalizer(dissipation):
 
 def current_normalizer(current):
     current = current.strip()
-    return str(abs(round(float(current.split(" ")[0]), 1)))
+    try:
+        return str(abs(round(float(current.split(" ")[0]), 1)))
+    except Exception as e:
+        print(f"[ERROR]: {e} while normalizing current {current}")
+        pdb.set_trace()
 
 
 def voltage_normalizer(voltage):
-    voltage = voltage.replace("K", "000")
-    voltage = voltage.replace("k", "000")
-    return voltage.split(" ")[0].replace("-", "")
+    try:
+        voltage = voltage.replace("K", "000")
+        voltage = voltage.replace("k", "000")
+        return round(float(voltage.strip().split(" ")[0].replace("-", "")), 1)
+    except Exception as e:
+        print(f"[ERROR]: {e} while normalizing voltage {voltage}")
+        pdb.set_trace()
 
 
 def gain_normalizer(gain):
@@ -166,4 +195,4 @@ def gain_normalizer(gain):
 
 
 def old_dev_gain_normalizer(gain):
-    return str(abs(round(float(gain), 1)))
+    return str(abs(int(float(gain))))
