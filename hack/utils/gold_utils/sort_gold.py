@@ -1,18 +1,25 @@
 #!/usr/bin/env python
 
+"""
+This script takes in a gold CSV file, sorts it, and writes the sorted output to
+the specified gold output CSV.
+"""
+
 import csv
 import operator
 
-"""
-This script should take in a single gold CSV file and sort it into the same order
-as previously made gold files. (So as to maintain a clear git history)
-"""
-
 if __name__ == "__main__":
-    input = "/home/nchiang/repos/hack/hack/transistors/data/dev/old_dev_gold.csv"
-    output = "/home/nchiang/repos/hack/hack/transistors/data/dev/sorted_dev_gold.csv"
+    # Change `input` to the absolute path of the to-be-sorted raw CSV.
+    input = "/home/nchiang/repos/hack/hack/transistors/data/test/new_test_gold.csv"
+
+    # Change `output` to the absolute path of where you want the sorted output to
+    # be written.
+    output = (
+        "/home/nchiang/repos/hack/hack/transistors/data/test/new_sorted_test_gold.csv"
+    )
     data = csv.reader(open(input), delimiter=",")
-    # 0 specifies according to first column we want to sort
+
+    # 0 specifies according to first column we want to sort (i.e. filename)
     sortedlist = sorted(data, key=operator.itemgetter(0))
     # Write sorted data into output file
     with open(output, "w") as f:

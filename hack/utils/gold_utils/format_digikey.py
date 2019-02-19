@@ -1,5 +1,12 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+
+"""
+This script takes in a path containing Digikey's raw gold CSVs. It then reads in
+each raw CSV, formats it's gold data where:
+(filename, part_num, attribute_name, value) = line
+and writes the combined output to the specified output CSV.
+"""
+
 import csv
 import os
 
@@ -210,10 +217,16 @@ def format_digikey_gold(
 
 
 if __name__ == "__main__":
-    # Transform transistor CSVs
+    # Transform the transistor dataset
     component = "transistor"
+
+    # Change `digikey_csv_dir` to the absolute path where Digikey's raw CSVs are
+    # located.
     digikey_csv_dir = "/home/nchiang/repos/hack/transistors/data/csv/"
-    formatted_gold = "/home/nchiang/repos/hack/transistors/data/digikey_gold2.csv"
+
+    # Change `formatted_gold` to the absolute path of where you want the
+    # combined gold to be written.
+    formatted_gold = "/home/nchiang/repos/hack/transistors/data/debug/digikey_gold.csv"
     seen = set()
     # Run transformation
     for i, filename in enumerate(sorted(os.listdir(digikey_csv_dir))):
