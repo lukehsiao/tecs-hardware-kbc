@@ -3,6 +3,7 @@ import csv
 import logging
 import os
 from builtins import range
+from collections import namedtuple
 
 from fonduer.supervision.models import GoldLabel, GoldLabelKey
 
@@ -20,6 +21,8 @@ else:
 
 
 logger = logging.getLogger(__name__)
+
+Score = namedtuple("Score", ["f1", "prec", "rec", "TP", "FP", "FN"])
 
 
 def get_gold_dict(doc_on=True, part_on=True, val_on=True, attribute=None, docs=None):
@@ -180,16 +183,9 @@ def entity_level_f1(candidates, attribute=None, corpus=None, parts_by_doc=None):
     prec = TP / (TP + FP) if TP + FP > 0 else float("nan")
     rec = TP / (TP + FN) if TP + FN > 0 else float("nan")
     f1 = 2 * (prec * rec) / (prec + rec) if prec + rec > 0 else float("nan")
-    logger.info("========================================")
-    logger.info("Scoring on Entity-Level Gold Data")
-    logger.info("========================================")
-    logger.info(f"Corpus Precision {prec:.3}")
-    logger.info(f"Corpus Recall    {rec:.3}")
-    logger.info(f"Corpus F1        {f1:.3}")
-    logger.info("----------------------------------------")
-    logger.info(f"TP: {TP} | FP: {FP} | FN: {FN}")
-    logger.info("========================================\n")
-    return [sorted(list(x)) for x in [TP_set, FP_set, FN_set]]
+    return Score(
+        f1, prec, rec, sorted(list(TP_set)), sorted(list(FP_set)), sorted(list(FN_set))
+    )
 
 
 def get_implied_parts(part, doc, parts_by_doc):

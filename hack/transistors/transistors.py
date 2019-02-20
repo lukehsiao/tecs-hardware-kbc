@@ -33,7 +33,11 @@ from hack.transistors.transistor_throttlers import (
     polarity_filter,
     stg_temp_filter,
 )
-from hack.transistors.transistor_utils import entity_level_f1, load_transistor_labels
+from hack.transistors.transistor_utils import (
+    Score,
+    entity_level_f1,
+    load_transistor_labels,
+)
 from hack.utils import parse_dataset
 
 # Configure logging for Hack
@@ -273,15 +277,38 @@ def load_parts_by_doc():
         return pickle.load(f)
 
 
-def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, b=0.6):
+def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, num=100):
+    logger.info("Calculating the best F1 score and threshold (b)...")
 
-    test_score = disc_model.predict((test_cands[0], F_test[0]), b=b, pos_label=TRUE)
+    # Iterate over a range of `b` values in order to find the b with the
+    # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
+    Y_prob = disc_model.marginals((test_cands[0], F_test[0]))
 
-    true_pred = [test_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))]
+    # Get prediction for a particular b, store the full tuple to output
+    # (b, pref, rec, f1, TP, FP, FN)
+    best_result = Score(0, 0, 0, [], [], [])
+    best_b = 0
+    for b in np.linspace(0, 1, num=num):
+        test_score = np.array([TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob])
+        true_pred = [test_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))]
+        result = entity_level_f1(
+            true_pred, relation.value, test_docs, parts_by_doc=parts_by_doc
+        )
+        logger.info(f"{b}: f1 = {result.f1}")
+        if result.f1 > best_result.f1:
+            best_result = result
+            best_b = b
 
-    (TP, FP, FN) = entity_level_f1(
-        true_pred, relation.value, test_docs, parts_by_doc=parts_by_doc
-    )
+    logger.info("===================================================")
+    logger.info(f"Scoring on Entity-Level Gold Data with b={best_b}")
+    logger.info("===================================================")
+    logger.info(f"Corpus Precision {best_result.prec:.3}")
+    logger.info(f"Corpus Recall    {best_result.rec:.3}")
+    logger.info(f"Corpus F1        {best_result.f1:.3}")
+    logger.info("---------------------------------------------------")
+    logger.info(f"TP: {best_result.TP} | FP: {best_result.FP} | FN: {best_result.FN}")
+    logger.info("===================================================\n")
+    return best_result, best_b
 
 
 def main(
@@ -336,7 +363,9 @@ def main(
     disc_models = discriminative_model(train_cands, F_train, marginals)
 
     parts_by_doc = load_parts_by_doc()
-    scoring(relation, disc_models, test_cands, test_docs, F_test, parts_by_doc)
+    best_result, best_b = scoring(
+        relation, disc_models, test_cands, test_docs, F_test, parts_by_doc, num=100
+    )
 
 
 if __name__ == "__main__":
