@@ -227,7 +227,7 @@ def labeling(session, cands, cand, split=1, train=False, first_time=True, parall
     logger.info("Getting label matrices...")
     L_mat = labeler.get_label_matrices(cands)
     L_gold = labeler.get_gold_labels(cands, annotator="gold")
-    logger.info("Done...")
+    logger.info("Done.")
     logger.info(f"L_mat shape: {L_mat[0].shape}")
     logger.info(f"L_gold shape: {L_gold[0].shape}")
 
@@ -264,7 +264,13 @@ def discriminative_model(train_cands, F_train, marginals, n_epochs=50, lr=0.001)
     disc_model = SparseLogisticRegression()
 
     logger.info("Training discriminative model...")
-    disc_model.train((train_cands[0], F_train[0]), marginals, n_epochs=n_epochs, lr=lr)
+    disc_model.train(
+        (train_cands[0], F_train[0]),
+        marginals,
+        n_epochs=n_epochs,
+        lr=lr,
+        host_device="GPU",
+    )
     logger.info("Done.")
 
     return disc_model
@@ -387,7 +393,7 @@ def main(
 
 if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
-    parallel = len(os.sched_getaffinity(0)) // 4
+    parallel = 8  # len(os.sched_getaffinity(0)) // 4
     component = "transistors"
     conn_string = f"postgresql:///{component}"
     first_time = True
@@ -396,9 +402,4 @@ if __name__ == "__main__":
     logger.info(f"=" * 80)
     logger.info(f"Beginning {component}::{relation.value} with parallel: {parallel}")
 
-    main(
-        conn_string,
-        relation=relation,
-        first_time=first_time,
-        parallel=parallel,
-    )
+    main(conn_string, relation=relation, first_time=first_time, parallel=parallel)
