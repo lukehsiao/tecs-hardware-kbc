@@ -25,10 +25,10 @@ logger = logging.getLogger(__name__)
 Score = namedtuple("Score", ["f1", "prec", "rec", "TP", "FP", "FN"])
 
 
-def get_gold_dict(doc_on=True, part_on=True, val_on=True, attribute=None, docs=None):
+def get_gold_set(doc_on=True, part_on=True, val_on=True, attribute=None, docs=None):
 
     dirname = os.path.dirname(__file__)
-    gold_dict = set()
+    gold_set = set()
     for filename in [
         os.path.join(dirname, "data/dev/dev_gold.csv"),
         os.path.join(dirname, "data/test/test_gold.csv"),
@@ -50,9 +50,9 @@ def get_gold_dict(doc_on=True, part_on=True, val_on=True, attribute=None, docs=N
                             key.append(part.upper())
                         if val_on:
                             key.append(val.upper())
-                        gold_dict.add(tuple(key))
+                        gold_set.add(tuple(key))
 
-    return gold_dict
+    return gold_set
 
 
 def load_transistor_labels(session, candidate_classes, attribs, annotator_name="gold"):
@@ -93,7 +93,7 @@ def load_transistor_labels(session, candidate_classes, attribs, annotator_name="
         candidates.extend(session.query(candidate_class).all())
 
         logger.info(f"Loading {attrib} for {candidate_class}...")
-        gold_dict = get_gold_dict(attribute=attrib)
+        gold_set = get_gold_set(attribute=attrib)
 
         cand_total = len(candidates)
         logger.info(f"Loading {cand_total} candidate labels")
@@ -108,7 +108,7 @@ def load_transistor_labels(session, candidate_classes, attribs, annotator_name="
 
             label = session.query(GoldLabel).filter(GoldLabel.candidate == c).first()
             if label is None:
-                if (doc, part, val) in gold_dict:
+                if (doc, part, val) in gold_set:
                     values.append(TRUE)
                 else:
                     values.append(FALSE)
@@ -154,7 +154,7 @@ def entity_level_f1(candidates, attribute=None, corpus=None, parts_by_doc=None):
     """
     docs = [(doc.name).upper() for doc in corpus] if corpus else None
     val_on = attribute is not None
-    gold_set = get_gold_dict(
+    gold_set = get_gold_set(
         docs=docs, doc_on=True, part_on=True, val_on=val_on, attribute=attribute
     )
     if len(gold_set) == 0:
