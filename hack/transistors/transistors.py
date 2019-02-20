@@ -9,7 +9,7 @@ from fonduer import Meta
 from fonduer.candidates import CandidateExtractor, MentionExtractor, MentionNgrams
 from fonduer.candidates.models import Mention, candidate_subclass, mention_subclass
 from fonduer.features import Featurizer
-from fonduer.learning import LogisticRegression
+from fonduer.learning import SparseLogisticRegression
 from fonduer.parser.models import Document, Figure, Paragraph, Section, Sentence
 from fonduer.supervision import Labeler
 from metal import analysis
@@ -261,7 +261,7 @@ def generative_model(relation, L_train, n_epochs=500, print_every=100):
 
 
 def discriminative_model(train_cands, F_train, marginals, n_epochs=50, lr=0.001):
-    disc_model = LogisticRegression()
+    disc_model = SparseLogisticRegression()
 
     logger.info("Training discriminative model...")
     disc_model.train((train_cands[0], F_train[0]), marginals, n_epochs=n_epochs, lr=lr)
@@ -360,7 +360,7 @@ def main(
         session, dev_cands, Cand, split=1, train=False, parallel=parallel
     )
 
-    disc_models = discriminative_model(train_cands, F_train, marginals)
+    disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
 
     parts_by_doc = load_parts_by_doc()
     best_result, best_b = scoring(
