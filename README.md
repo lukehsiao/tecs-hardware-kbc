@@ -1,4 +1,3 @@
-![fonduer-logo](https://raw.githubusercontent.com/HazyResearch/fonduer/master/docs/static/img/fonduer-logo.png)
 # HACK: HArdware Component Knowledge Base
 
 ## Dependencies
