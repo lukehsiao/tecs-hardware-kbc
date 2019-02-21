@@ -314,7 +314,11 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
     logger.info(f"Corpus Recall    {best_result.rec:.3}")
     logger.info(f"Corpus F1        {best_result.f1:.3}")
     logger.info("---------------------------------------------------")
-    logger.info(f"TP: {best_result.TP} | FP: {best_result.FP} | FN: {best_result.FN}")
+    logger.info(
+        f"TP: {len(best_result.TP)} "
+        f"| FP: {len(best_result.FP)} "
+        f"| FN: {len(best_result.FN)}"
+    )
     logger.info("===================================================\n")
     return best_result, best_b
 
