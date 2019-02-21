@@ -2,39 +2,9 @@
 import pdb
 
 
-def split_val_condition(input_string):
-    """
-    Split and return a {'value': v, 'condition': c} dict for the value
-    and the condition.
-    Condition is empty if no condition was found.
-
-    @param input    A string of the form XXX @ YYYY
-    """
-    try:
-        (value, condition) = [x.strip() for x in input_string.split("@")]
-        return {"value": value, "condition": condition}
-    except ValueError:
-        # no condition was found
-        return {"value": input_string.strip(), "condition": None}
-
-
-def part_family_normalizer(family):
-    if family == "Y":
-        return str(family)
-    elif family == "N":
-        return str(family)
-    elif family == "N/A":  # Account for Digikey not having any part_family
-        return str(family)
-    elif family is None:
-        return "N/A"
-    else:
-        print(f"[ERROR]: Invalid part family {family}")
-        pdb.set_trace()
-
-
-def transistor_part_normalizer(part):
-    # Part number normalization
-    return part.replace(" ", "").upper()
+"""
+OPAMP NORMALIZERS
+"""
 
 
 def opamp_part_normalizer(part):
@@ -117,6 +87,36 @@ GENERAL NORMALIZERS
 """
 
 
+def split_val_condition(input_string):
+    """
+    Split and return a {'value': v, 'condition': c} dict for the value
+    and the condition.
+    Condition is empty if no condition was found.
+
+    @param input    A string of the form XXX @ YYYY
+    """
+    try:
+        (value, condition) = [x.strip() for x in input_string.split("@")]
+        return {"value": value, "condition": condition}
+    except ValueError:
+        # no condition was found
+        return {"value": input_string.strip(), "condition": None}
+
+
+def part_family_normalizer(family):
+    if family == "Y":
+        return str(family)
+    elif family == "N":
+        return str(family)
+    elif family == "N/A":  # Account for Digikey not having any part_family
+        return str(family)
+    elif family is None:
+        return "N/A"
+    else:
+        print(f"[ERROR]: Invalid part family {family}")
+        pdb.set_trace()
+
+
 def doc_normalizer(doc_name):
     if doc_name.endswith(".pdf"):
         return doc_name.split(".pdf")[0]
@@ -136,21 +136,33 @@ def manuf_normalizer(manuf):
     return manuf.strip()  # TODO: Make a list of all known manufs
 
 
-def transistor_temp_normalizer(temperature):
-    # On some transistor datasheets the temperature unit is listed as a separate column
-    return round(float(temperature.strip()), 1)
-
-
 def temperature_normalizer(temperature):
     try:
         (temp, unit) = temperature.rsplit(" ", 1)
         if unit != "C":
             print(f"[ERROR]: Invalid temperature value {temperature}")
             pdb.set_trace()
-        return round(float(temp), 1)
+        # return round(float(temp), 1)
+        return temp.strip()
     except Exception as e:
         print(f"[ERROR]: {e} on temperature value {temperature}")
         pdb.set_trace()
+
+
+"""
+TRANSISTOR NORMALIZERS
+"""
+
+
+def transistor_part_normalizer(part):
+    # Part number normalization
+    return part.replace(" ", "").upper()
+
+
+def transistor_temp_normalizer(temperature):
+    # On some transistor datasheets the temperature unit is listed as a separate column
+    # return round(float(temperature.strip()), 1)
+    return temperature.strip()
 
 
 def polarity_normalizer(polarity):
@@ -163,23 +175,24 @@ def polarity_normalizer(polarity):
 
 def dissipation_normalizer(dissipation):
     dissipation = dissipation.strip()
-    return str(abs(round(float(dissipation.split(" ")[0]), 1)))
+    return str(dissipation.split(" ")[0].strip().replace("-", ""))
 
 
 def current_normalizer(current):
     current = current.strip()
     try:
-        return str(abs(round(float(current.split(" ")[0]), 1)))
+        return str(current.split(" ")[0].strip().replace("-", ""))
     except Exception as e:
         print(f"[ERROR]: {e} while normalizing current {current}")
         pdb.set_trace()
 
 
 def voltage_normalizer(voltage):
+    voltage = voltage.strip()
     try:
         voltage = voltage.replace("K", "000")
         voltage = voltage.replace("k", "000")
-        return round(float(voltage.strip().split(" ")[0].replace("-", "")), 1)
+        return voltage.split(" ")[0].strip().replace("-", "")
     except Exception as e:
         print(f"[ERROR]: {e} while normalizing voltage {voltage}")
         pdb.set_trace()
@@ -191,7 +204,7 @@ def gain_normalizer(gain):
     gain = gain.replace(",", "")
     gain = gain.replace("K", "000")
     gain = gain.replace("k", "000")
-    return str(abs(round(float(gain.split(" ")[0]), 1)))
+    return str(gain.split(" ")[0].strip().replace("-", ""))
 
 
 def old_dev_gain_normalizer(gain):
