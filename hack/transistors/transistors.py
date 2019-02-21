@@ -40,6 +40,9 @@ from hack.transistors.transistor_utils import (
 )
 from hack.utils import parse_dataset
 
+# Use the first set of GPUs
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+
 # Configure logging for Hack
 logging.basicConfig(
     format="[%(asctime)s][%(levelname)s] %(name)s:%(lineno)s - %(message)s",
