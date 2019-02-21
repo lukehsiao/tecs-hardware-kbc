@@ -36,7 +36,7 @@ def get_gold_set(doc_on=True, part_on=True, val_on=True, attribute=None, docs=No
         with codecs.open(filename, encoding="utf-8") as csvfile:
             gold_reader = csv.reader(csvfile)
             for row in gold_reader:
-                (doc, part, attr, val) = row
+                (doc, _, part, attr, val) = row
                 if docs is None or doc.upper() in docs:
                     if attribute and attr != attribute:
                         continue
