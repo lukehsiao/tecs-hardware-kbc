@@ -140,7 +140,7 @@ def entity_confusion_matrix(pred, gold):
     return (TP, FP, FN)
 
 
-def entity_level_f1(candidates, attribute=None, corpus=None, parts_by_doc=None):
+def entity_level_scores(candidates, attribute=None, corpus=None, parts_by_doc=None):
     """Checks entity-level recall of candidates compared to gold.
 
     Turns a CandidateSet into a normal set of entity-level tuples
@@ -162,7 +162,6 @@ def entity_level_f1(candidates, attribute=None, corpus=None, parts_by_doc=None):
         logger.error("Gold set is empty.")
         return
     # Turn CandidateSet into set of tuples
-    logger.info("Preparing candidates...")
     entities = set()
     for i, c in enumerate(tqdm(candidates)):
         part = c[0].context.get_span()

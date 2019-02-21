@@ -35,7 +35,7 @@ from hack.transistors.transistor_throttlers import (
 )
 from hack.transistors.transistor_utils import (
     Score,
-    entity_level_f1,
+    entity_level_scores,
     load_transistor_labels,
 )
 from hack.utils import parse_dataset
@@ -289,15 +289,23 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
     best_result = Score(0, 0, 0, [], [], [])
     best_b = 0
     for b in np.linspace(0, 1, num=num):
-        test_score = np.array([TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob])
-        true_pred = [test_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))]
-        result = entity_level_f1(
-            true_pred, relation.value, test_docs, parts_by_doc=parts_by_doc
-        )
-        logger.info(f"{b}: f1 = {result.f1}")
-        if result.f1 > best_result.f1:
-            best_result = result
-            best_b = b
+        try:
+            test_score = np.array(
+                [TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob]
+            )
+            true_pred = [
+                test_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))
+            ]
+            result = entity_level_scores(
+                true_pred, relation.value, test_docs, parts_by_doc=parts_by_doc
+            )
+            logger.info(f"b = {b}, f1 = {result.f1}")
+            if result.f1 > best_result.f1:
+                best_result = result
+                best_b = b
+        except Exception as e:
+            logger.debug(f"{e}, skipping.")
+            break
 
     logger.info("===================================================")
     logger.info(f"Scoring on Entity-Level Gold Data with b={best_b}")
