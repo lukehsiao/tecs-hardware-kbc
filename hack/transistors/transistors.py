@@ -238,7 +238,7 @@ def labeling(session, cands, cand, split=1, train=False, first_time=True, parall
                 lf_names=labeler.get_keys(),
                 Y=L_gold[0].todense().reshape(-1).tolist()[0],
             )
-            logger.info(df.to_string())
+            logger.info(f"\n{df.to_string()}")
         except Exception:
             import pdb
 
@@ -297,7 +297,10 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
                 test_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))
             ]
             result = entity_level_scores(
-                true_pred, relation.value, test_docs, parts_by_doc=parts_by_doc
+                true_pred,
+                attribute=relation.value,
+                corpus=test_docs,
+                parts_by_doc=parts_by_doc,
             )
             logger.info(f"b = {b}, f1 = {result.f1}")
             if result.f1 > best_result.f1:
@@ -310,9 +313,9 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
     logger.info("===================================================")
     logger.info(f"Scoring on Entity-Level Gold Data with b={best_b}")
     logger.info("===================================================")
-    logger.info(f"Corpus Precision {best_result.prec:.3}")
-    logger.info(f"Corpus Recall    {best_result.rec:.3}")
-    logger.info(f"Corpus F1        {best_result.f1:.3}")
+    logger.info(f"Corpus Precision {best_result.prec:.3f}")
+    logger.info(f"Corpus Recall    {best_result.rec:.3f}")
+    logger.info(f"Corpus F1        {best_result.f1:.3f}")
     logger.info("---------------------------------------------------")
     logger.info(
         f"TP: {len(best_result.TP)} "
@@ -386,12 +389,14 @@ if __name__ == "__main__":
     component = "transistors"
     conn_string = f"postgresql://localhost:5432/{component}"
     first_time = True
-    relation = Relation.STG_TEMP_MAX
+    relation = Relation.STG_TEMP_MIN
+    logger.info(f"\n\n")
+    logger.info(f"=" * 80)
     logger.info(f"Beginning {component}::{relation.value} with parallel: {parallel}")
 
     main(
         conn_string,
-        max_docs=100,
+        max_docs=75,
         relation=relation,
         first_time=first_time,
         parallel=parallel,
