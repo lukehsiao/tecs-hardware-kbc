@@ -40,8 +40,6 @@ def get_gold_set(doc_on=True, part_on=True, val_on=True, attribute=None, docs=No
                 if docs is None or doc.upper() in docs:
                     if attribute and attr != attribute:
                         continue
-                    if val == TRUE:
-                        continue
                     else:
                         key = []
                         if doc_on:

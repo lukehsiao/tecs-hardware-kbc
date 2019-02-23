@@ -69,9 +69,9 @@ def _get_polarity_matcher():
 
 def _get_temp_matcher(temp_type):
     """Return the temperature matcher."""
-    if "max":
+    if temp_type == "max":
         return RegexMatchSpan(rgx=r"(?:[1][5-9]|20)[05]", longest_match_only=False)
-    elif "min":
+    elif temp_type == "min":
         return RegexMatchSpan(rgx=r"-[56][05]", longest_match_only=False)
     else:
         logger.warning(f"{temp_type} is not a valid temperature type.")

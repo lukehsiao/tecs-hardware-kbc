@@ -58,7 +58,7 @@ def LF_temperature_row(c):
 
 
 def LF_operating_row(c):
-    return TRUE if "operating" in get_row_ngrams(c[1]) else ABSTAIN
+    return FALSE if "operating" in get_row_ngrams(c[1]) else ABSTAIN
 
 
 def LF_tstg_row(c):
@@ -168,10 +168,6 @@ def LF_temp_on_high_page_num(c):
     return FALSE if c[1].context.get_attrib_tokens("page")[0] > 2 else ABSTAIN
 
 
-def LF_temp_outside_table(c):
-    return FALSE if not c[1].context.sentence.is_tabular() is None else ABSTAIN
-
-
 def LF_not_temp_relevant(c):
     return (
         FALSE
@@ -195,7 +191,6 @@ stg_temp_lfs = [
     LF_operating_row,
     LF_storage_row,
     LF_temp_on_high_page_num,
-    LF_temp_outside_table,
     LF_temperature_row,
     #  LF_test_condition_aligned,
     #  LF_too_many_numbers_row,
