@@ -266,6 +266,14 @@ def LF_polarity_transistor_type(c):
     )
 
 
+def LF_polarity_in_sentence(c):
+    sentence = c.part.context.sentence.text
+    if c[1].context.get_span() not in sentence:
+        return FALSE
+    else:
+        return ABSTAIN
+
+
 def LF_polarity_right_of_part(c):
     right_ngrams = set(get_right_ngrams(c.part, lower=False))
     return (
@@ -367,8 +375,14 @@ polarity_lfs = [
 def LF_aligned_or_global(c):
     return (
         TRUE
-        if (same_row(c) or is_horz_aligned(c) or not c.part.sentence.is_tabular())
-        else FALSE
+        if (
+            same_row(c)
+            or is_horz_aligned(c)
+            or same_col(c)
+            or is_vert_aligned(c)
+            or not c.part.context.sentence.is_tabular()
+        )
+        else ABSTAIN
     )
 
 
@@ -386,8 +400,11 @@ def LF_voltage_not_in_table(c):
 
 def LF_low_table_num(c):
     return (
-        FALSE
-        if (c[1].context.sentence.is_tabular() and c[1].parent.table.position > 2)
+        TRUE
+        if (
+            c[1].context.sentence.is_tabular()
+            and c[1].context.sentence.table.position <= 2
+        )
         else ABSTAIN
     )
 
@@ -417,15 +434,15 @@ def LF_too_many_numbers_horz(c):
 
 
 voltage_lfs = [
-    # LF_aligned_or_global,
-    # LF_same_table_must_align,
-    # LF_low_table_num,
+    LF_aligned_or_global,
+    LF_same_table_must_align,
+    LF_low_table_num,
     LF_voltage_not_in_table,
     LF_bad_keywords_in_row,
-    # LF_equals_in_row,
+    LF_equals_in_row,
     LF_current_in_row,
-    # LF_V_aligned,
-    # LF_too_many_numbers_horz
+    LF_V_aligned,
+    LF_too_many_numbers_horz,
 ]
 _CE_KEYWORDS = set(["collector emitter", "collector-emitter", "collector - emitter"])
 
@@ -470,6 +487,8 @@ _NON_CEV_KEYWORDS = set(
         "emitter base",
         "vebo",
         "ebo",
+        "breakdown",
+        "cutoff",
         "breakdown voltage",
         "emitter breakdown",
         "emitter breakdown voltage",
@@ -480,12 +499,12 @@ _NON_CEV_KEYWORDS = set(
 
 def LF_non_ce_voltages_in_row(c):
     return (
-        FALSE if overlap(_NON_CEV_KEYWORDS, get_row_ngrams(c[1], n_max=3)) else ABSTAIN
+        FALSE if overlap(_NON_CEV_KEYWORDS, get_row_ngrams(c[1], n_max=2)) else ABSTAIN
     )
 
 
 def LF_first_two_pages(c):
-    return TRUE if get_page(c) in [1, 2] else FALSE
+    return FALSE if get_page(c) not in [1, 2] else ABSTAIN
 
 
 def LF_part_ce_keywords_in_rows(c):
@@ -656,21 +675,21 @@ def LF_ce_keywords_no_part_horz(c):
 
 
 ce_v_max_lfs = voltage_lfs + [
-    # LF_ce_keywords_in_row,
-    # LF_ce_keywords_horz,
-    # LF_ce_abbrevs_in_row,
-    # LF_ce_abbrevs_horz,
-    # LF_head_ends_with_ceo,
+    LF_ce_keywords_in_row,
+    LF_ce_keywords_horz,
+    LF_ce_abbrevs_in_row,
+    LF_ce_abbrevs_horz,
+    LF_head_ends_with_ceo,
     LF_non_ce_voltages_in_row,
-    # LF_first_two_pages
-    # LF_part_ce_keywords_in_rows_cols_prefix,
+    LF_first_two_pages,
+    LF_part_ce_keywords_in_rows_cols_prefix,
     LF_part_ce_keywords_in_row_prefix_same_table,
     LF_part_ce_keywords_in_col_prefix_same_table,
-    LF_part_miss_match
-    # LF_part_ce_keywords_in_row_prefix,
-    # LF_ce_keywords_not_part_in_row_col_prefix,
-    # LF_part_ce_keywords_horz_prefix
-    # LF_not_valid_value
-    # LF_ce_keywords_no_part_in_rows,
-    # LF_ce_keywords_no_part_horz
+    LF_part_miss_match,
+    LF_part_ce_keywords_in_row_prefix,
+    LF_ce_keywords_not_part_in_row_col_prefix,
+    LF_part_ce_keywords_horz_prefix,
+    LF_not_valid_value,
+    LF_ce_keywords_no_part_in_rows,
+    LF_ce_keywords_no_part_horz,
 ]

@@ -90,11 +90,11 @@ def load_transistor_labels(session, candidate_classes, attribs, annotator_name="
     for candidate_class, attrib in zip(candidate_classes, attribs):
         candidates.extend(session.query(candidate_class).all())
 
-        logger.info(f"Loading {attrib} for {candidate_class}...")
+        logger.info(f"Loading {attrib} for {candidate_class.__tablename__}...")
         gold_set = get_gold_set(attribute=attrib)
 
         cand_total = len(candidates)
-        logger.info(f"Loading {cand_total} candidate labels")
+        logger.info(f"Loading {cand_total} candidate labels...")
         labels = 0
 
         cands = []
