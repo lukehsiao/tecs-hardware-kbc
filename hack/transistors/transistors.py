@@ -35,6 +35,7 @@ from hack.transistors.transistor_throttlers import (
 )
 from hack.transistors.transistor_utils import (
     Score,
+    digikey_entity_level_scores,
     entity_level_scores,
     load_transistor_labels,
 )
@@ -46,7 +47,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 # Configure logging for Hack
 logging.basicConfig(
     format="[%(asctime)s][%(levelname)s] %(name)s:%(lineno)s - %(message)s",
-    level=logging.INFO,
+    level=logging.DEBUG,
     handlers=[
         logging.FileHandler(
             os.path.join(os.path.dirname(__file__), f"transistors.log")
@@ -335,6 +336,58 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
     return best_result, best_b
 
 
+def digikey_scoring(
+    relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, num=100
+):
+    logger.info("Calculating the best Digikey based F1 score and threshold (b)...")
+
+    # Iterate over a range of `b` values in order to find the b with the
+    # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
+    Y_prob = disc_model.marginals((test_cands[0], F_test[0]))
+
+    # Get prediction for a particular b, store the full tuple to output
+    # (b, pref, rec, f1, TP, FP, FN)
+    best_result = Score(0, 0, 0, [], [], [])
+    best_b = 0
+    for b in np.linspace(0, 1, num=num):
+        try:
+            test_score = np.array(
+                [TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob]
+            )
+            true_pred = [
+                test_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))
+            ]
+            result = digikey_entity_level_scores(
+                true_pred,
+                attribute=relation.value,
+                corpus=test_docs,
+                parts_by_doc=parts_by_doc,
+            )
+            logger.info(f"b = {b}, f1 = {result.f1}")
+            if result.f1 > best_result.f1:
+                best_result = result
+                best_b = b
+        except Exception as e:
+            logger.debug(f"{e}, skipping.")
+            # import pdb; pdb.set_trace()
+            break
+
+    logger.info("=================================================================")
+    logger.info(f"Digikey based scoring on Entity-Level Gold Data with b={best_b}")
+    logger.info("=================================================================")
+    logger.info(f"Corpus Precision {best_result.prec:.3f}")
+    logger.info(f"Corpus Recall    {best_result.rec:.3f}")
+    logger.info(f"Corpus F1        {best_result.f1:.3f}")
+    logger.info("-----------------------------------------------------------------")
+    logger.info(
+        f"TP: {len(best_result.TP)} "
+        f"| FP: {len(best_result.FP)} "
+        f"| FN: {len(best_result.FN)}"
+    )
+    logger.info("=================================================================\n")
+    return best_result, best_b
+
+
 def main(
     conn_string,
     max_docs=float("inf"),
@@ -374,7 +427,13 @@ def main(
     load_labels(session, relation, Cand, first_time=first_time)
     logger.info("Labeling training data...")
     L_train, L_gold_train = labeling(
-        session, train_cands, Cand, split=0, train=True, parallel=parallel
+        session,
+        train_cands,
+        Cand,
+        split=0,
+        train=True,
+        parallel=parallel,
+        first_time=first_time,
     )
     logger.info("Done.")
 
@@ -382,7 +441,13 @@ def main(
 
     logger.info("Labeling dev data...")
     L_dev, L_gold_dev = labeling(
-        session, dev_cands, Cand, split=1, train=False, parallel=parallel
+        session,
+        dev_cands,
+        Cand,
+        split=1,
+        train=False,
+        parallel=parallel,
+        first_time=first_time,
     )
     logger.info("Done.")
 
@@ -393,6 +458,14 @@ def main(
         relation, disc_models, test_cands, test_docs, F_test, parts_by_doc, num=100
     )
 
+    """
+    Digikey comparison:
+    """
+
+    digikey_best_result, digikey_best_b = digikey_scoring(
+        relation, disc_models, test_cands, test_docs, F_test, parts_by_doc, num=100
+    )
+
 
 if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
@@ -400,7 +473,7 @@ if __name__ == "__main__":
     component = "transistors"
     conn_string = f"postgresql:///{component}"
     first_time = True
-    relation = Relation.STG_TEMP_MIN
+    relation = Relation.CE_V_MAX
     logger.info(f"\n\n")
     logger.info(f"=" * 80)
     logger.info(f"Beginning {component}::{relation.value} with parallel: {parallel}")

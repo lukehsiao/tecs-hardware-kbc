@@ -204,3 +204,89 @@ def entity_to_candidates(entity, candidate_subset):
         if c_entity == entity:
             matches.append(c)
     return matches
+
+
+"""
+Digikey comparison:
+"""
+
+
+def get_digikey_gold_set(doc_on=True, part_on=True, val_on=True, attribute=None):
+
+    dirname = os.path.dirname(__file__)
+    gold_set = set()
+    filename = os.path.join(dirname, "data/digikey_gold.csv")
+    with codecs.open(filename, encoding="utf-8") as csvfile:
+        gold_reader = csv.reader(csvfile)
+        for row in gold_reader:
+            (doc, manuf, part, attr, val) = row
+            # Remove unit from value (i.e. 100 MHz becomes 100)
+            val = val.strip().split(" ")[0]
+            # Only look at relevant labels
+            if attribute and attr != attribute:
+                continue
+            else:
+                key = []
+                if doc_on:
+                    key.append(doc.upper())
+                if part_on:
+                    key.append(part.upper())
+                if val_on:
+                    key.append(val.upper())
+                gold_set.add(tuple(key))
+
+    return gold_set
+
+
+def digikey_entity_level_scores(
+    candidates, attribute=None, corpus=None, parts_by_doc=None
+):
+    """Checks entity-level recall of candidates compared to Digikey's gold.
+
+    Turns a CandidateSet into a normal set of entity-level tuples
+    (doc, part, [attribute_value])
+    then compares this to the entity-level tuples found in the gold.
+
+    Example Usage:
+        from hardware_utils import entity_level_total_recall
+        candidates = # CandidateSet of all candidates you want to consider
+        entity_level_total_recall(candidates, 'stg_temp_min')
+    """
+    val_on = attribute is not None
+    logger.info(f"Getting Digikey label set for {attribute}...")
+    gold_set = get_digikey_gold_set(
+        # NOTE: Filenames are irrelevant as we do not have a unified way to
+        # identify filenames with Digikey's gold data
+        doc_on=True,
+        part_on=True,
+        val_on=val_on,
+        attribute=attribute,
+    )
+    if len(gold_set) == 0:
+        logger.info(f"Attribute: {attribute}")
+        logger.error("Gold set is empty.")
+        return
+    # Turn CandidateSet into set of tuples
+    entities = set()
+    for i, c in enumerate(tqdm(candidates)):
+        part = c[0].context.get_span()
+        doc = c[0].context.sentence.document.name.upper()
+        if attribute:
+            val = c[1].context.get_span()
+        for p in get_implied_parts(part, doc, parts_by_doc):
+            if attribute:
+                entities.add((doc, p, val))
+            else:
+                entities.add((doc, p))
+
+    (TP_set, FP_set, FN_set) = entity_confusion_matrix(entities, gold_set)
+    TP = len(TP_set)
+    FP = len(FP_set)
+    FN = len(FN_set)
+
+    prec = TP / (TP + FP) if TP + FP > 0 else float("nan")
+    rec = TP / (TP + FN) if TP + FN > 0 else float("nan")
+    f1 = 2 * (prec * rec) / (prec + rec) if prec + rec > 0 else float("nan")
+    return Score(
+        f1, prec, rec, sorted(list(TP_set)), sorted(list(FP_set)), sorted(list(FN_set))
+    )
