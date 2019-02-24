@@ -217,12 +217,20 @@ def LF_polarity_part_viz_aligned(c):
     return TRUE if is_horz_aligned(c) or is_vert_aligned(c) else ABSTAIN
 
 
-def LF_polarity_part_in_top_third(c):
+def LF_polarity_same_page(c):
+    return TRUE if (get_page(c.part) == get_page(c[1])) else ABSTAIN
+
+
+def LF_polarity_on_early_page(c):
+    return TRUE if (get_page(c.part) <= 2 and get_page(c[1]) <= 2) else ABSTAIN
+
+
+def LF_polarity_both_in_top_third(c):
     return (
         TRUE
         if (
             get_page(c.part) == 1
-            and get_page(c[1])
+            and get_page(c[1]) == 1
             and get_page_vert_percentile(c.part) > 0.33
             and get_page_vert_percentile(c[1]) > 0.33
         )
@@ -341,13 +349,15 @@ def LF_part_miss_match_polarity(c):
 
 
 polarity_lfs = [
-    # LF_polarity_description,
+    LF_polarity_same_page,
+    LF_polarity_description,
     LF_polarity_transistor_type,
     LF_polarity_part_tabular_aligned,
     LF_polarity_part_viz_aligned,
     LF_polarity_right_of_part,
-    # LF_both_in_top_third,
+    LF_polarity_on_early_page,
     LF_polarity_in_header_tag,
+    LF_polarity_both_in_top_third,
     LF_polarity_complement,
     LF_both_present,
 ]
