@@ -145,6 +145,10 @@ def get_matcher(name):
         return _get_temp_matcher("min")
     elif name == "stg_temp_max":
         return _get_temp_matcher("max")
+    elif name == "op_temp_min":
+        return _get_temp_matcher("min")
+    elif name == "op_temp_max":
+        return _get_temp_matcher("max")
     elif name == "polarity":
         return _get_polarity_matcher()
     elif name == "ce_v_max":

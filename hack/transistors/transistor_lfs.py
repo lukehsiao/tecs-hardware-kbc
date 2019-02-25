@@ -208,6 +208,51 @@ stg_temp_min_lfs = stg_temp_lfs + [
 ]
 
 
+# OPERATING TEMP LFS
+def LF_pos_operating_row(c):
+    return TRUE if "operating" in get_row_ngrams(c[1]) else ABSTAIN
+
+
+def LF_neg_storage_row(c):
+    return FALSE if "storage" in get_row_ngrams(c[1]) else ABSTAIN
+
+
+def LF_neg_tstg_row(c):
+    return (
+        FALSE if overlap(["tstg", "stg", "ts"], list(get_row_ngrams(c[1]))) else ABSTAIN
+    )
+
+
+def LF_pos_tj_row(c):
+    return TRUE if overlap(["tj", "j"], list(get_row_ngrams(c[1]))) else ABSTAIN
+
+
+op_temp_lfs = [
+    LF_collector_aligned,
+    #  LF_complement_left_row,
+    LF_current_aligned,
+    LF_not_temp_relevant,
+    LF_pos_operating_row,
+    LF_neg_storage_row,
+    LF_temp_on_high_page_num,
+    LF_temperature_row,
+    #  LF_test_condition_aligned,
+    #  LF_too_many_numbers_row,
+    LF_neg_tstg_row,
+    LF_pos_tj_row,
+    #  LF_typ_row,
+    LF_voltage_row_part,
+    LF_voltage_row_temp,
+]
+
+op_temp_max_lfs = op_temp_lfs + [LF_to_left, LF_negative_number_left]
+op_temp_min_lfs = op_temp_lfs + [
+    LF_to_right,
+    LF_positive_number_right,
+    LF_other_minus_signs_in_row,
+]
+
+
 # Polarity LFS
 def LF_polarity_part_tabular_aligned(c):
     return TRUE if same_row(c) or same_col(c) else ABSTAIN

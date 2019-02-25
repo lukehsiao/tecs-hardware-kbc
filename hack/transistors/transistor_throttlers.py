@@ -35,6 +35,15 @@ def stg_temp_filter(c):
     return part.context.sentence.is_tabular()
 
 
+def op_temp_filter(c):
+    (part, attr) = c
+    if same_table((part, attr)):
+        return is_horz_aligned((part, attr)) or is_vert_aligned((part, attr))
+
+    # Filter if not inside of a table
+    return part.context.sentence.is_tabular()
+
+
 def polarity_filter(c):
     (part, attr) = c
 

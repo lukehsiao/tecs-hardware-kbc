@@ -211,30 +211,37 @@ Digikey comparison:
 """
 
 
-def get_digikey_gold_set(doc_on=True, part_on=True, val_on=True, attribute=None):
+def get_digikey_gold_set(
+    doc_on=True, manuf_on=False, part_on=True, val_on=True, attribute=None, docs=None
+):
 
     dirname = os.path.dirname(__file__)
     gold_set = set()
-    filename = os.path.join(dirname, "data/digikey_gold.csv")
-    with codecs.open(filename, encoding="utf-8") as csvfile:
-        gold_reader = csv.reader(csvfile)
-        for row in gold_reader:
-            (doc, manuf, part, attr, val) = row
-            # Remove unit from value (i.e. 100 MHz becomes 100)
-            val = val.strip().split(" ")[0]
-            # Only look at relevant labels
-            if attribute and attr != attribute:
-                continue
-            else:
-                key = []
-                if doc_on:
-                    key.append(doc.upper())
-                if part_on:
-                    key.append(part.upper())
-                if val_on:
-                    key.append(val.upper())
-                gold_set.add(tuple(key))
-
+    for filename in [
+        os.path.join(dirname, "data/url_digikey_gold.csv"),
+        os.path.join(dirname, "data/standard_digikey_gold.csv"),
+    ]:
+        with codecs.open(filename, encoding="utf-8") as csvfile:
+            gold_reader = csv.reader(csvfile)
+            for row in gold_reader:
+                (doc, manuf, part, attr, val) = row
+                # Remove unit from value (i.e. 100 MHz becomes 100)
+                val = val.strip().split(" ")[0]
+                if docs is None or doc.upper() in docs:
+                    # Only look at relevant labels
+                    if attribute and attr != attribute:
+                        continue
+                    else:
+                        key = []
+                        if doc_on:
+                            key.append(doc.upper())
+                        if manuf_on:
+                            key.append(manuf.upper())
+                        if part_on:
+                            key.append(part.upper())
+                        if val_on:
+                            key.append(val.upper())
+                        gold_set.add(tuple(key))
     return gold_set
 
 
@@ -244,7 +251,7 @@ def digikey_entity_level_scores(
     """Checks entity-level recall of candidates compared to Digikey's gold.
 
     Turns a CandidateSet into a normal set of entity-level tuples
-    (doc, part, [attribute_value])
+    (part, [attribute_value])
     then compares this to the entity-level tuples found in the gold.
 
     Example Usage:
@@ -252,11 +259,13 @@ def digikey_entity_level_scores(
         candidates = # CandidateSet of all candidates you want to consider
         entity_level_total_recall(candidates, 'stg_temp_min')
     """
+    docs = [(doc.name).upper() for doc in corpus] if corpus else None
     val_on = attribute is not None
     logger.info(f"Getting Digikey label set for {attribute}...")
     gold_set = get_digikey_gold_set(
         # NOTE: Filenames are irrelevant as we do not have a unified way to
         # identify filenames with Digikey's gold data
+        docs=docs,
         doc_on=True,
         part_on=True,
         val_on=val_on,
@@ -265,7 +274,9 @@ def digikey_entity_level_scores(
     if len(gold_set) == 0:
         logger.info(f"Attribute: {attribute}")
         logger.error("Gold set is empty.")
-        return
+
+    # Turn CandidateSet into set of tuples
+    entities = set()
     # Turn CandidateSet into set of tuples
     entities = set()
     for i, c in enumerate(tqdm(candidates)):

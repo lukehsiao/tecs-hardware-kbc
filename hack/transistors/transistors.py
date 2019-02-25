@@ -18,6 +18,8 @@ from metal.label_model import LabelModel
 from hack.transistors.transistor_lfs import (
     TRUE,
     ce_v_max_lfs,
+    op_temp_max_lfs,
+    op_temp_min_lfs,
     polarity_lfs,
     stg_temp_max_lfs,
     stg_temp_min_lfs,
@@ -30,6 +32,7 @@ from hack.transistors.transistor_spaces import (
 )
 from hack.transistors.transistor_throttlers import (
     ce_v_max_filter,
+    op_temp_filter,
     polarity_filter,
     stg_temp_filter,
 )
@@ -47,7 +50,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 # Configure logging for Hack
 logging.basicConfig(
     format="[%(asctime)s][%(levelname)s] %(name)s:%(lineno)s - %(message)s",
-    level=logging.DEBUG,
+    level=logging.INFO,
     handlers=[
         logging.FileHandler(
             os.path.join(os.path.dirname(__file__), f"transistors.log")
@@ -62,6 +65,8 @@ logger = logging.getLogger(__name__)
 class Relation(Enum):
     STG_TEMP_MIN = "stg_temp_min"
     STG_TEMP_MAX = "stg_temp_max"
+    OP_TEMP_MIN = "op_temp_min"
+    OP_TEMP_MAX = "op_temp_max"
     POLARITY = "polarity"
     CE_V_MAX = "ce_v_max"
 
@@ -98,6 +103,14 @@ def mention_extraction(session, relation, docs, first_time=True, parallel=1):
     elif relation == Relation.STG_TEMP_MAX:
         Attr = mention_subclass("StgTempMax")
         attr_matcher = get_matcher("stg_temp_max")
+        attr_ngrams = MentionNgramsTemp(n_max=2)
+    elif relation == Relation.OP_TEMP_MIN:
+        Attr = mention_subclass("OpTempMin")
+        attr_matcher = get_matcher("op_temp_min")
+        attr_ngrams = MentionNgramsTemp(n_max=2)
+    elif relation == Relation.OP_TEMP_MAX:
+        Attr = mention_subclass("OpTempMax")
+        attr_matcher = get_matcher("op_temp_max")
         attr_ngrams = MentionNgramsTemp(n_max=2)
     elif relation == Relation.POLARITY:
         Attr = mention_subclass("Polarity")
@@ -140,6 +153,12 @@ def candidate_extraction(
     elif relation == Relation.STG_TEMP_MAX:
         Cand = candidate_subclass("PartStgTempMax", [part, attr])
         throttler = stg_temp_filter
+    elif relation == Relation.OP_TEMP_MIN:
+        Cand = candidate_subclass("PartOpTempMin", [part, attr])
+        throttler = op_temp_filter
+    elif relation == Relation.OP_TEMP_MAX:
+        Cand = candidate_subclass("PartOpTempMax", [part, attr])
+        throttler = op_temp_filter
     elif relation == Relation.POLARITY:
         Cand = candidate_subclass("PartPolarity", [part, attr])
         throttler = polarity_filter
@@ -216,6 +235,10 @@ def labeling(session, cands, cand, split=1, train=False, first_time=True, parall
         lfs = stg_temp_min_lfs
     elif relation == Relation.STG_TEMP_MAX:
         lfs = stg_temp_max_lfs
+    elif relation == Relation.OP_TEMP_MIN:
+        lfs = op_temp_min_lfs
+    elif relation == Relation.OP_TEMP_MAX:
+        lfs = op_temp_max_lfs
     elif relation == Relation.POLARITY:
         lfs = polarity_lfs
     elif relation == Relation.CE_V_MAX:
@@ -336,8 +359,20 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
     return best_result, best_b
 
 
+"""
+Digikey comparision:
+"""
+
+
 def digikey_scoring(
-    relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, num=100
+    relation,
+    disc_model,
+    test_cands,
+    test_docs,
+    F_test,
+    parts_by_doc,
+    num=100,
+    debug=False,
 ):
     logger.info("Calculating the best Digikey based F1 score and threshold (b)...")
 
@@ -369,7 +404,6 @@ def digikey_scoring(
                 best_b = b
         except Exception as e:
             logger.debug(f"{e}, skipping.")
-            # import pdb; pdb.set_trace()
             break
 
     logger.info("=================================================================")
@@ -385,7 +419,15 @@ def digikey_scoring(
         f"| FN: {len(best_result.FN)}"
     )
     logger.info("=================================================================\n")
-    return best_result, best_b
+    if not debug:
+        return best_result, best_b
+    logger.info(
+        f"Debugging {sum(len(best_result.FP), len(best_result.FN))}"
+        + "Digikey discrepancies..."
+    )
+    import pdb
+
+    pdb.set_trace()
 
 
 def main(
@@ -454,16 +496,23 @@ def main(
     disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
 
     parts_by_doc = load_parts_by_doc()
-    best_result, best_b = scoring(
-        relation, disc_models, test_cands, test_docs, F_test, parts_by_doc, num=100
-    )
+    # best_result, best_b = scoring(
+    #     relation, disc_models, test_cands, test_docs, F_test, parts_by_doc, num=100
+    # )
 
     """
     Digikey comparison:
     """
 
     digikey_best_result, digikey_best_b = digikey_scoring(
-        relation, disc_models, test_cands, test_docs, F_test, parts_by_doc, num=100
+        relation,
+        disc_models,
+        test_cands,
+        test_docs,
+        F_test,
+        parts_by_doc,
+        num=100,
+        debug=True,
     )
 
 
@@ -471,8 +520,8 @@ if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
     parallel = 8  # len(os.sched_getaffinity(0)) // 4
     component = "transistors"
-    conn_string = f"postgresql:///{component}"
-    first_time = True
+    conn_string = f"postgresql://localhost:5432/{component}"
+    first_time = False
     relation = Relation.CE_V_MAX
     logger.info(f"\n\n")
     logger.info(f"=" * 80)
