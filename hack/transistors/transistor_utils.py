@@ -49,7 +49,6 @@ def get_gold_set(doc_on=True, part_on=True, val_on=True, attribute=None, docs=No
                         if val_on:
                             key.append(val.upper())
                         gold_set.add(tuple(key))
-
     return gold_set
 
 
@@ -212,7 +211,7 @@ Digikey comparison:
 
 
 def get_digikey_gold_set(
-    doc_on=True, manuf_on=False, part_on=True, val_on=True, attribute=None, docs=None
+    doc_on=True, part_on=True, val_on=True, attribute=None, docs=None
 ):
 
     dirname = os.path.dirname(__file__)
@@ -235,13 +234,14 @@ def get_digikey_gold_set(
                         key = []
                         if doc_on:
                             key.append(doc.upper())
-                        if manuf_on:
-                            key.append(manuf.upper())
                         if part_on:
                             key.append(part.upper())
                         if val_on:
                             key.append(val.upper())
                         gold_set.add(tuple(key))
+    import pdb
+
+    pdb.set_trace()
     return gold_set
 
 
@@ -263,8 +263,9 @@ def digikey_entity_level_scores(
     val_on = attribute is not None
     logger.info(f"Getting Digikey label set for {attribute}...")
     gold_set = get_digikey_gold_set(
-        # NOTE: Filenames are irrelevant as we do not have a unified way to
-        # identify filenames with Digikey's gold data
+        # NOTE: We use both the manuf_part filename formatting and
+        # the native filenames (i.e. the PDF filename that would be
+        # downloaded) for comparisons
         docs=docs,
         doc_on=True,
         part_on=True,
@@ -275,8 +276,6 @@ def digikey_entity_level_scores(
         logger.info(f"Attribute: {attribute}")
         logger.error("Gold set is empty.")
 
-    # Turn CandidateSet into set of tuples
-    entities = set()
     # Turn CandidateSet into set of tuples
     entities = set()
     for i, c in enumerate(tqdm(candidates)):

@@ -50,7 +50,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 # Configure logging for Hack
 logging.basicConfig(
     format="[%(asctime)s][%(levelname)s] %(name)s:%(lineno)s - %(message)s",
-    level=logging.INFO,
+    level=logging.DEBUG,
     handlers=[
         logging.FileHandler(
             os.path.join(os.path.dirname(__file__), f"transistors.log")
@@ -74,7 +74,7 @@ class Relation(Enum):
 def parsing(session, first_time=True, parallel=1, max_docs=float("inf")):
     dirname = os.path.dirname(__file__)
     logger.debug(f"Starting parsing...")
-    docs, train_docs, dev_docs, test_docs = parse_dataset(
+    all_docs, train_docs, dev_docs, test_docs = parse_dataset(
         session, dirname, first_time=first_time, parallel=parallel, max_docs=max_docs
     )
     logger.debug(f"Done")
@@ -89,7 +89,7 @@ def parsing(session, first_time=True, parallel=1, max_docs=float("inf")):
     logger.info(f"Sentences: {session.query(Sentence).count()}")
     logger.info(f"Figures: {session.query(Figure).count()}")
 
-    return docs, train_docs, dev_docs, test_docs
+    return all_docs, train_docs, dev_docs, test_docs
 
 
 def mention_extraction(session, relation, docs, first_time=True, parallel=1):
@@ -141,6 +141,7 @@ def candidate_extraction(
     relation,
     part,
     attr,
+    all_docs,
     train_docs,
     dev_docs,
     test_docs,
@@ -181,12 +182,13 @@ def candidate_extraction(
     train_cands = candidate_extractor.get_candidates(split=0)
     dev_cands = candidate_extractor.get_candidates(split=1)
     test_cands = candidate_extractor.get_candidates(split=2)
+    all_cands = candidate_extractor.get_candidates(all_docs)
 
     logger.info(f"Total train candidate: {len(train_cands[0])}")
     logger.info(f"Total dev candidate: {len(dev_cands[0])}")
     logger.info(f"Total test candidate: {len(test_cands[0])}")
 
-    return (Cand, train_cands, dev_cands, test_cands)
+    return (Cand, all_cands, train_cands, dev_cands, test_cands)
 
 
 def featurization(
@@ -310,7 +312,9 @@ def load_parts_by_doc():
         return pickle.load(f)
 
 
-def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, num=100):
+def scoring(
+    relation, disc_model, test_cands, test_docs, F_test, parts_by_doc=None, num=100
+):
     logger.info("Calculating the best F1 score and threshold (b)...")
 
     # Iterate over a range of `b` values in order to find the b with the
@@ -365,20 +369,26 @@ Digikey comparision:
 
 
 def digikey_scoring(
+    session,
+    Cand,
     relation,
     disc_model,
-    test_cands,
-    test_docs,
-    F_test,
-    parts_by_doc,
+    all_cands,
+    all_docs,
+    parts_by_doc=None,
     num=100,
     debug=False,
+    parallel=4,
 ):
     logger.info("Calculating the best Digikey based F1 score and threshold (b)...")
 
+    # Get feature matrices for all candidates
+    featurizer = Featurizer(session, [Cand], parallelism=parallel)
+    F_all = featurizer.get_feature_matrices(all_cands)
+
     # Iterate over a range of `b` values in order to find the b with the
     # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
-    Y_prob = disc_model.marginals((test_cands[0], F_test[0]))
+    Y_prob = disc_model.marginals((all_cands[0], F_all[0]))
 
     # Get prediction for a particular b, store the full tuple to output
     # (b, pref, rec, f1, TP, FP, FN)
@@ -390,12 +400,12 @@ def digikey_scoring(
                 [TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob]
             )
             true_pred = [
-                test_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))
+                all_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))
             ]
             result = digikey_entity_level_scores(
                 true_pred,
                 attribute=relation.value,
-                corpus=test_docs,
+                corpus=all_docs,
                 parts_by_doc=parts_by_doc,
             )
             logger.info(f"b = {b}, f1 = {result.f1}")
@@ -404,6 +414,9 @@ def digikey_scoring(
                 best_b = b
         except Exception as e:
             logger.debug(f"{e}, skipping.")
+            import pdb
+
+            pdb.set_trace()
             break
 
     logger.info("=================================================================")
@@ -422,8 +435,8 @@ def digikey_scoring(
     if not debug:
         return best_result, best_b
     logger.info(
-        f"Debugging {sum(len(best_result.FP), len(best_result.FN))}"
-        + "Digikey discrepancies..."
+        f"Debugging {len(best_result.FP) + len(best_result.FN)}"
+        + " Digikey discrepancies..."
     )
     import pdb
 
@@ -438,19 +451,20 @@ def main(
     relation=Relation.STG_TEMP_MAX,
 ):
     session = Meta.init(conn_string).Session()
-    docs, train_docs, dev_docs, test_docs = parsing(
+    all_docs, train_docs, dev_docs, test_docs = parsing(
         session, first_time=first_time, parallel=parallel, max_docs=max_docs
     )
 
     (Part, Attr) = mention_extraction(
-        session, relation, docs, first_time=first_time, parallel=parallel
+        session, relation, all_docs, first_time=first_time, parallel=parallel
     )
 
-    (Cand, train_cands, dev_cands, test_cands) = candidate_extraction(
+    (Cand, all_cands, train_cands, dev_cands, test_cands) = candidate_extraction(
         session,
         relation,
         Part,
         Attr,
+        all_docs,
         train_docs,
         dev_docs,
         test_docs,
@@ -497,7 +511,7 @@ def main(
 
     parts_by_doc = load_parts_by_doc()
     # best_result, best_b = scoring(
-    #     relation, disc_models, test_cands, test_docs, F_test, parts_by_doc, num=100
+    #     relation, disc_models, test_cands, test_docs, F_test, parts_by_doc=parts_by_doc, num=100
     # )
 
     """
@@ -505,21 +519,23 @@ def main(
     """
 
     digikey_best_result, digikey_best_b = digikey_scoring(
+        session,
+        Cand,
         relation,
         disc_models,
-        test_cands,
-        test_docs,
-        F_test,
-        parts_by_doc,
-        num=100,
+        all_cands,
+        all_docs,
+        parts_by_doc=parts_by_doc,
         debug=True,
+        num=100,
+        parallel=parallel,
     )
 
 
 if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
-    parallel = 8  # len(os.sched_getaffinity(0)) // 4
-    component = "transistors"
+    parallel = 8  # Change parallel for watchog
+    component = "transistors_ce_v_max"
     conn_string = f"postgresql://localhost:5432/{component}"
     first_time = False
     relation = Relation.CE_V_MAX
@@ -527,4 +543,10 @@ if __name__ == "__main__":
     logger.info(f"=" * 80)
     logger.info(f"Beginning {component}::{relation.value} with parallel: {parallel}")
 
-    main(conn_string, relation=relation, first_time=first_time, parallel=parallel)
+    main(
+        conn_string,
+        max_docs=1000,
+        relation=relation,
+        first_time=first_time,
+        parallel=parallel,
+    )
