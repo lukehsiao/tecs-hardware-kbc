@@ -284,6 +284,9 @@ def digikey_entity_level_scores(
     if len(gold_set) == 0:
         logger.info(f"Attribute: {attribute}")
         logger.error("Gold set is empty.")
+    else:
+        logger.info(f"Attribute: {attribute}")
+        logger.info(f"Gold set is {len(gold_set)} entities long")
 
     # Turn CandidateSet into set of tuples
     entities = set()
@@ -306,6 +309,14 @@ def digikey_entity_level_scores(
     prec = TP / (TP + FP) if TP + FP > 0 else float("nan")
     rec = TP / (TP + FN) if TP + FN > 0 else float("nan")
     f1 = 2 * (prec * rec) / (prec + rec) if prec + rec > 0 else float("nan")
-    return (get_digikey_gold_dic(gold_set), Score(
-        f1, prec, rec, sorted(list(TP_set)), sorted(list(FP_set)), sorted(list(FN_set))
-    ))
+    return (
+        get_digikey_gold_dic(gold_set),
+        Score(
+            f1,
+            prec,
+            rec,
+            sorted(list(TP_set)),
+            sorted(list(FP_set)),
+            sorted(list(FN_set)),
+        ),
+    )

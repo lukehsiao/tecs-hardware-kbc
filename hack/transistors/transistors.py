@@ -75,7 +75,7 @@ class Relation(Enum):
 def parsing(session, first_time=True, parallel=1, max_docs=float("inf")):
     dirname = os.path.dirname(__file__)
     logger.debug(f"Starting parsing...")
-    all_docs, train_docs, dev_docs, test_docs = parse_dataset(
+    docs, train_docs, dev_docs, test_docs, analysis_docs = parse_dataset(
         session, dirname, first_time=first_time, parallel=parallel, max_docs=max_docs
     )
     logger.debug(f"Done")
@@ -83,6 +83,7 @@ def parsing(session, first_time=True, parallel=1, max_docs=float("inf")):
     logger.info(f"# of train Documents: {len(train_docs)}")
     logger.info(f"# of dev Documents: {len(dev_docs)}")
     logger.info(f"# of test Documents: {len(test_docs)}")
+    logger.info(f"# of analysis Documents: {len(analysis_docs)}")
 
     logger.info(f"Documents: {session.query(Document).count()}")
     logger.info(f"Sections: {session.query(Section).count()}")
@@ -90,7 +91,7 @@ def parsing(session, first_time=True, parallel=1, max_docs=float("inf")):
     logger.info(f"Sentences: {session.query(Sentence).count()}")
     logger.info(f"Figures: {session.query(Figure).count()}")
 
-    return all_docs, train_docs, dev_docs, test_docs
+    return docs, train_docs, dev_docs, test_docs, analysis_docs
 
 
 def mention_extraction(session, relation, docs, first_time=True, parallel=1):
@@ -142,10 +143,10 @@ def candidate_extraction(
     relation,
     part,
     attr,
-    all_docs,
     train_docs,
     dev_docs,
     test_docs,
+    analysis_docs,
     first_time=True,
     parallel=1,
 ):
@@ -173,7 +174,7 @@ def candidate_extraction(
     candidate_extractor = CandidateExtractor(session, [Cand], throttlers=[throttler])
 
     if first_time:
-        for i, docs in enumerate([train_docs, dev_docs, test_docs]):
+        for i, docs in enumerate([train_docs, dev_docs, test_docs, analysis_docs]):
             candidate_extractor.apply(docs, split=i, parallelism=parallel)
             logger.info(
                 f"Cand in split={i}: "
@@ -183,17 +184,25 @@ def candidate_extraction(
     train_cands = candidate_extractor.get_candidates(split=0)
     dev_cands = candidate_extractor.get_candidates(split=1)
     test_cands = candidate_extractor.get_candidates(split=2)
-    all_cands = candidate_extractor.get_candidates(all_docs)
+    analysis_cands = candidate_extractor.get_candidates(split=3)
 
     logger.info(f"Total train candidate: {len(train_cands[0])}")
     logger.info(f"Total dev candidate: {len(dev_cands[0])}")
     logger.info(f"Total test candidate: {len(test_cands[0])}")
+    logger.info(f"Total analysis candidate: {len(analysis_cands[0])}")
 
-    return (Cand, all_cands, train_cands, dev_cands, test_cands)
+    return (Cand, train_cands, dev_cands, test_cands, analysis_cands)
 
 
 def featurization(
-    session, train_cands, dev_cands, test_cands, Cand, first_time=True, parallel=1
+    session,
+    train_cands,
+    dev_cands,
+    test_cands,
+    analysis_cands,
+    Cand,
+    first_time=True,
+    parallel=1,
 ):
     dirname = os.path.dirname(__file__)
     featurizer = Featurizer(session, [Cand])
@@ -202,6 +211,7 @@ def featurization(
         featurizer.apply(split=0, train=True, parallelism=parallel)
         featurizer.apply(split=1, parallelism=parallel)
         featurizer.apply(split=2, parallelism=parallel)
+        featurizer.apply(split=3, parallelism=parallel)
         logger.info("Done")
 
     logger.info("Getting feature matrices...")
@@ -210,20 +220,24 @@ def featurization(
         F_train = featurizer.get_feature_matrices(train_cands)
         F_dev = featurizer.get_feature_matrices(dev_cands)
         F_test = featurizer.get_feature_matrices(test_cands)
+        F_analysis = featurizer.get_feature_matrices(analysis_cands)
         pickle.dump(F_train, open(os.path.join(dirname, "F_train.pkl"), "wb"))
         pickle.dump(F_dev, open(os.path.join(dirname, "F_dev.pkl"), "wb"))
         pickle.dump(F_test, open(os.path.join(dirname, "F_test.pkl"), "wb"))
+        pickle.dump(F_analysis, open(os.path.join(dirname, "F_analysis.pkl"), "wb"))
     else:
         F_train = pickle.load(open(os.path.join(dirname, "F_train.pkl"), "rb"))
         F_dev = pickle.load(open(os.path.join(dirname, "F_dev.pkl"), "rb"))
         F_test = pickle.load(open(os.path.join(dirname, "F_test.pkl"), "rb"))
+        F_analysis = pickle.load(open(os.path.join(dirname, "F_analysis.pkl"), "rb"))
     logger.info("Done.")
 
     logger.info(f"Train shape: {F_train[0].shape}")
     logger.info(f"Test shape: {F_test[0].shape}")
     logger.info(f"Dev shape: {F_dev[0].shape}")
+    logger.info(f"Analysis shape: {F_analysis[0].shape}")
 
-    return F_train, F_dev, F_test
+    return F_train, F_dev, F_test, F_analysis
 
 
 def load_labels(session, relation, cand, first_time=True):
@@ -372,19 +386,19 @@ Digikey comparision:
 def digikey_scoring(
     relation,
     disc_model,
-    cands,
-    docs,
-    F,
+    analysis_cands,
+    analysis_docs,
+    F_analysis,
     parts_by_doc=None,
     num=100,
     debug=False,
-    outfile="data/digikey_discrepancies",
+    outfile="data/digikey_discrepancies.csv",
 ):
     logger.info("Calculating the best Digikey based F1 score and threshold (b)...")
 
     # Iterate over a range of `b` values in order to find the b with the
     # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
-    Y_prob = disc_model.marginals((cands[0], F[0]))
+    Y_prob = disc_model.marginals((analysis_cands[0], F_analysis[0]))
 
     # Get prediction for a particular b, store the full tuple to output
     # (b, pref, rec, f1, TP, FP, FN)
@@ -392,16 +406,17 @@ def digikey_scoring(
     best_b = 0
     for b in np.linspace(0, 1, num=num):
         try:
-            test_score = np.array(
+            analysis_score = np.array(
                 [TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob]
             )
             true_pred = [
-                cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))
+                analysis_cands[0][_]
+                for _ in np.nditer(np.where(analysis_score == TRUE))
             ]
             (gold_dic, result) = digikey_entity_level_scores(
                 true_pred,
                 attribute=relation.value,
-                corpus=docs,
+                corpus=analysis_docs,
                 parts_by_doc=parts_by_doc,
             )
             logger.info(f"b = {b}, f1 = {result.f1}")
@@ -410,9 +425,6 @@ def digikey_scoring(
                 best_b = b
         except Exception as e:
             logger.debug(f"{e}, skipping.")
-            import pdb
-
-            pdb.set_trace()
             break
 
     logger.info("=================================================================")
@@ -430,27 +442,68 @@ def digikey_scoring(
     logger.info("=================================================================\n")
 
     if debug:
-        # Write discrepancies (false pos and false neg) to a CSV file for manual debugging
-        with open(outfile, 'w') as out:
+        # Write discrepancies (false pos and false neg) to a CSV file
+        # for manual debugging
+        with open(outfile, "w") as out:
             writer = csv.writer(out)
-            writer.writerow(("TYPE:", "FILENAME:", "PART:", "OURVAL:", "NOTES:"))
+            writer.writerow(("TYPE", "FILENAME", "PART", "OUR VALS", "NOTES"))
             for (doc, part, val) in best_result.FP:
                 if doc in gold_dic:
                     if part in gold_dic[doc]:
-                        writer.writerow(("FP", doc, part, val, "Digikey vals: " + str(gold_dic[doc][part])))
+                        writer.writerow(
+                            (
+                                "FP",
+                                doc,
+                                part,
+                                val,
+                                "Digikey vals: " + str(gold_dic[doc][part]),
+                            )
+                        )
                     else:
-                        writer.writerow(("FP", doc, part, val, "Digikey parts: " + str(gold_dic[doc])))
-                else:        
-                    writer.writerow(("FP", doc, part, val))
+                        writer.writerow(
+                            (
+                                "FP",
+                                doc,
+                                part,
+                                val,
+                                "Digikey parts: " + str(gold_dic[doc]),
+                            )
+                        )
+                else:
+                    writer.writerow(
+                        ("FP", doc, part, val, "Digikey does not have doc.")
+                    )
 
             for (doc, part, val) in best_result.FN:
                 if doc in gold_dic:
                     if part in gold_dic[doc]:
-                        writer.writerow(("FN", doc, part, val, "Digikey vals: " + str(gold_dic[doc][part])))
+                        writer.writerow(
+                            (
+                                "FN",
+                                doc,
+                                part,
+                                val,
+                                "Digikey vals: " + str(gold_dic[doc][part]),
+                            )
+                        )
                     else:
-                        writer.writerow(("FN", doc, part, val, "Digikey parts: " + str(gold_dic[doc])))
+                        writer.writerow(
+                            (
+                                "FN",
+                                doc,
+                                part,
+                                val,
+                                "Digikey parts: " + str(gold_dic[doc]),
+                            )
+                        )
                 else:
-                    writer.writerow(("FN", doc, part, val))
+                    writer.writerow(
+                        ("FN", doc, part, val, "Digikey does not have doc.")
+                    )
+
+        import pdb
+
+        pdb.set_trace()
 
     return best_result, best_b
 
@@ -463,31 +516,32 @@ def main(
     relation=Relation.STG_TEMP_MAX,
 ):
     session = Meta.init(conn_string).Session()
-    all_docs, train_docs, dev_docs, test_docs = parsing(
+    docs, train_docs, dev_docs, test_docs, analysis_docs = parsing(
         session, first_time=first_time, parallel=parallel, max_docs=max_docs
     )
 
     (Part, Attr) = mention_extraction(
-        session, relation, all_docs, first_time=first_time, parallel=parallel
+        session, relation, docs, first_time=first_time, parallel=parallel
     )
 
-    (Cand, all_cands, train_cands, dev_cands, test_cands) = candidate_extraction(
+    (Cand, train_cands, dev_cands, test_cands, analysis_cands) = candidate_extraction(
         session,
         relation,
         Part,
         Attr,
-        all_docs,
         train_docs,
         dev_docs,
         test_docs,
+        analysis_docs,
         first_time=first_time,
         parallel=parallel,
     )
-    F_train, F_dev, F_test = featurization(
+    F_train, F_dev, F_test, F_analysis = featurization(
         session,
         train_cands,
         dev_cands,
         test_cands,
+        analysis_cands,
         Cand,
         first_time=first_time,
         parallel=parallel,
@@ -507,6 +561,7 @@ def main(
 
     marginals = generative_model(relation, L_train)
 
+<<<<<<< HEAD
     logger.info("Labeling dev data...")
     L_dev, L_gold_dev = labeling(
         session,
@@ -518,13 +573,40 @@ def main(
         first_time=first_time,
     )
     logger.info("Done.")
+=======
+    # L_dev, L_gold_dev = labeling(
+    # session,
+    # dev_cands,
+    # Cand,
+    # split=1,
+    # train=True,
+    # parallel=parallel,
+    # first_time=first_time,
+    # )
+
+    # L_test, L_gold_test = labeling(
+    # session,
+    # test_cands,
+    # Cand,
+    # split=2,
+    # train=True,
+    # parallel=parallel,
+    # first_time=first_fime,
+    # )
+>>>>>>> feat(transistors): use custom analysis set for Digikey comparison
 
     disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
 
     parts_by_doc = load_parts_by_doc()
-    # best_result, best_b = scoring(
-    #    relation, disc_models, test_cands, test_docs, F_test, parts_by_doc=parts_by_doc, num=100
-    # )
+    best_result, best_b = scoring(
+        relation,
+        disc_models,
+        test_cands,
+        test_docs,
+        F_test,
+        parts_by_doc=parts_by_doc,
+        num=100,
+    )
 
     """
     Digikey comparison:
@@ -533,9 +615,9 @@ def main(
     digikey_best_result, digikey_best_b = digikey_scoring(
         relation,
         disc_models,
-        dev_cands,
-        dev_docs,
-        F_dev,
+        analysis_cands,
+        analysis_docs,
+        F_analysis,
         parts_by_doc=parts_by_doc,
         debug=True,
         num=100,
@@ -545,9 +627,9 @@ def main(
 if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
     parallel = 8  # Change parallel for watchog
-    component = "transistors_ce_v_max"
+    component = "transistors_analysis"
     conn_string = f"postgresql://localhost:5432/{component}"
-    first_time = False
+    first_time = True
     relation = Relation.CE_V_MAX
     logger.info(f"\n\n")
     logger.info(f"=" * 80)
@@ -555,7 +637,7 @@ if __name__ == "__main__":
 
     main(
         conn_string,
-        max_docs=1000,
+        max_docs=300,
         relation=relation,
         first_time=first_time,
         parallel=parallel,
