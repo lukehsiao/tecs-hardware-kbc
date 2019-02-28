@@ -223,7 +223,7 @@ def get_digikey_gold_set(
         with codecs.open(filename, encoding="utf-8") as csvfile:
             gold_reader = csv.reader(csvfile)
             for row in gold_reader:
-                (doc, manuf, part, attr, val) = row
+                (doc, manuf, part, attr, val, _) = row
                 # Remove unit from value (i.e. 100 MHz becomes 100)
                 # TODO: Normalize values as they are in transistor gold labels
                 val = val.strip().split(" ")[0]

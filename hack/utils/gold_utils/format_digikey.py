@@ -252,7 +252,7 @@ def format_digikey_gold(
 if __name__ == "__main__":
     # Transform the transistor dataset
     component = "transistor"
-    filenames = "standard"
+    filenames = "url"
 
     # Change `digikey_csv_dir` to the absolute path where Digikey's raw CSVs are
     # located.
