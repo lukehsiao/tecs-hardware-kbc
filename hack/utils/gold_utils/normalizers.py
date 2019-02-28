@@ -48,7 +48,7 @@ def supply_current_normalizer(supply_current):
     """
     # NOTE: Currently ignoring the conditions.
     parse = split_val_condition(supply_current)
-
+    
     # Process Units
     (value, unit) = parse["value"].split(" ")
     if unit == "mA":
