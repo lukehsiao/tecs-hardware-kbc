@@ -225,6 +225,7 @@ def get_digikey_gold_set(
             for row in gold_reader:
                 (doc, manuf, part, attr, val) = row
                 # Remove unit from value (i.e. 100 MHz becomes 100)
+                # TODO: Normalize values as they are in transistor gold labels
                 val = val.strip().split(" ")[0]
                 if docs is None or doc.upper() in docs:
                     # Only look at relevant labels
@@ -239,10 +240,18 @@ def get_digikey_gold_set(
                         if val_on:
                             key.append(val.upper())
                         gold_set.add(tuple(key))
-    import pdb
-
-    pdb.set_trace()
     return gold_set
+
+
+def get_digikey_gold_dic(gold_set):
+    gold_dic = {}
+    for (doc, part, val) in gold_set:
+        if doc in gold_dic:
+            if part in gold_dic[doc]:
+                gold_dic[doc][part].append(val)
+        else:
+            gold_dic[doc] = {part: [val]}
+    return gold_dic
 
 
 def digikey_entity_level_scores(
@@ -297,6 +306,6 @@ def digikey_entity_level_scores(
     prec = TP / (TP + FP) if TP + FP > 0 else float("nan")
     rec = TP / (TP + FN) if TP + FN > 0 else float("nan")
     f1 = 2 * (prec * rec) / (prec + rec) if prec + rec > 0 else float("nan")
-    return Score(
+    return (get_digikey_gold_dic(gold_set), Score(
         f1, prec, rec, sorted(list(TP_set)), sorted(list(FP_set)), sorted(list(FN_set))
-    )
+    ))

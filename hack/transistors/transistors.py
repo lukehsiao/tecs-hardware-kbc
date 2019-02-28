@@ -1,3 +1,4 @@
+import csv
 import logging
 import os
 import pickle
@@ -369,26 +370,21 @@ Digikey comparision:
 
 
 def digikey_scoring(
-    session,
-    Cand,
     relation,
     disc_model,
-    all_cands,
-    all_docs,
+    cands,
+    docs,
+    F,
     parts_by_doc=None,
     num=100,
     debug=False,
-    parallel=4,
+    outfile="data/digikey_discrepancies",
 ):
     logger.info("Calculating the best Digikey based F1 score and threshold (b)...")
 
-    # Get feature matrices for all candidates
-    featurizer = Featurizer(session, [Cand], parallelism=parallel)
-    F_all = featurizer.get_feature_matrices(all_cands)
-
     # Iterate over a range of `b` values in order to find the b with the
     # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
-    Y_prob = disc_model.marginals((all_cands[0], F_all[0]))
+    Y_prob = disc_model.marginals((cands[0], F[0]))
 
     # Get prediction for a particular b, store the full tuple to output
     # (b, pref, rec, f1, TP, FP, FN)
@@ -400,12 +396,12 @@ def digikey_scoring(
                 [TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob]
             )
             true_pred = [
-                all_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))
+                cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))
             ]
-            result = digikey_entity_level_scores(
+            (gold_dic, result) = digikey_entity_level_scores(
                 true_pred,
                 attribute=relation.value,
-                corpus=all_docs,
+                corpus=docs,
                 parts_by_doc=parts_by_doc,
             )
             logger.info(f"b = {b}, f1 = {result.f1}")
@@ -432,15 +428,31 @@ def digikey_scoring(
         f"| FN: {len(best_result.FN)}"
     )
     logger.info("=================================================================\n")
-    if not debug:
-        return best_result, best_b
-    logger.info(
-        f"Debugging {len(best_result.FP) + len(best_result.FN)}"
-        + " Digikey discrepancies..."
-    )
-    import pdb
 
-    pdb.set_trace()
+    if debug:
+        # Write discrepancies (false pos and false neg) to a CSV file for manual debugging
+        with open(outfile, 'w') as out:
+            writer = csv.writer(out)
+            writer.writerow(("TYPE:", "FILENAME:", "PART:", "OURVAL:", "NOTES:"))
+            for (doc, part, val) in best_result.FP:
+                if doc in gold_dic:
+                    if part in gold_dic[doc]:
+                        writer.writerow(("FP", doc, part, val, "Digikey vals: " + str(gold_dic[doc][part])))
+                    else:
+                        writer.writerow(("FP", doc, part, val, "Digikey parts: " + str(gold_dic[doc])))
+                else:        
+                    writer.writerow(("FP", doc, part, val))
+
+            for (doc, part, val) in best_result.FN:
+                if doc in gold_dic:
+                    if part in gold_dic[doc]:
+                        writer.writerow(("FN", doc, part, val, "Digikey vals: " + str(gold_dic[doc][part])))
+                    else:
+                        writer.writerow(("FN", doc, part, val, "Digikey parts: " + str(gold_dic[doc])))
+                else:
+                    writer.writerow(("FN", doc, part, val))
+
+    return best_result, best_b
 
 
 def main(
@@ -511,7 +523,7 @@ def main(
 
     parts_by_doc = load_parts_by_doc()
     # best_result, best_b = scoring(
-    #     relation, disc_models, test_cands, test_docs, F_test, parts_by_doc=parts_by_doc, num=100
+    #    relation, disc_models, test_cands, test_docs, F_test, parts_by_doc=parts_by_doc, num=100
     # )
 
     """
@@ -519,16 +531,14 @@ def main(
     """
 
     digikey_best_result, digikey_best_b = digikey_scoring(
-        session,
-        Cand,
         relation,
         disc_models,
-        all_cands,
-        all_docs,
+        dev_cands,
+        dev_docs,
+        F_dev,
         parts_by_doc=parts_by_doc,
         debug=True,
         num=100,
-        parallel=parallel,
     )
 
 
