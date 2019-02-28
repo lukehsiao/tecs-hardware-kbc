@@ -8,8 +8,8 @@ logger = logging.getLogger(__name__)
 
 def get_gain_matcher():
     def hertz_units(attr):
-        related_ngrams = set(get_sentence_ngrams(attr))
-        related_ngrams.add(get_row_ngrams(attr))
+        related_ngrams = set([_ for _ in get_sentence_ngrams(attr) if _])
+        related_ngrams.update([_ for _ in get_row_ngrams(attr) if _])
 
         for ngram in related_ngrams:
             if any(x in ngram.lower() for x in ["hz", "bandwidth", "gain"]):
@@ -29,8 +29,8 @@ def get_gain_matcher():
 
 def get_supply_current_matcher():
     def current_units(attr):
-        related_ngrams = set(get_sentence_ngrams(attr))
-        related_ngrams.add(get_row_ngrams(attr))
+        related_ngrams = set([_ for _ in get_sentence_ngrams(attr) if _])
+        related_ngrams.update([_ for _ in get_row_ngrams(attr) if _])
 
         for ngram in related_ngrams:
             if any(x in ngram.lower() for x in ["a", "current", "supply"]):
