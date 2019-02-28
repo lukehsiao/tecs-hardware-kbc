@@ -5,6 +5,7 @@ each raw CSV, formats it's gold data where:
 and writes the combined output to the specified output CSV.
 """
 
+
 import csv
 import logging
 import os
