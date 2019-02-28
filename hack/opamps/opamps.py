@@ -135,7 +135,7 @@ def featurization(
 def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
     session = Meta.init(conn_string).Session()
     docs, train_docs, dev_docs, test_docs = parsing(
-        session, first_time=False, parallel=parallel, max_docs=max_docs
+        session, first_time=True, parallel=parallel, max_docs=max_docs
     )
 
     (Gain, Current) = mention_extraction(
@@ -190,13 +190,13 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
 
 if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
-    parallel = len(os.sched_getaffinity(0)) // 2
+    parallel = 4
     component = "opamps"
-    conn_string = f"postgresql://localhost:5432/{component}"
+    conn_string = f"postgresql:///{component}"
     first_time = True
-    max_docs = 10
+    max_docs = 150
     logger.info(f"\n\n")
-    logger.info(f"=" * 80)
+    logger.info(f"=" * 30)
     logger.info(
         f"Beginning {component} with parallel: {parallel}, max_docs: {max_docs}"
     )
