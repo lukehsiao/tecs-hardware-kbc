@@ -35,9 +35,10 @@ def parse_dataset(
     train_docs = set()
     dev_docs = set()
     test_docs = set()
+    analysis_docs = set()
 
     if first_time:
-        for division in ["dev", "test", "train"]:
+        for division in ["dev", "test", "train", "analysis"]:
             logger.info(f"Parsing {division}...")
             html_path = os.path.join(dirname, f"data/{division}/html/")
             pdf_path = os.path.join(dirname, f"data/{division}/pdf/")
@@ -57,11 +58,14 @@ def parse_dataset(
             if division == "train":
                 corpus_parser.apply(doc_preprocessor, parallelism=parallel, clear=False)
                 train_docs = set(corpus_parser.get_last_documents())
+            if division == "analysis":
+                corpus_parser.apply(doc_preprocessor, parallelism=parallel, clear=False)
+                analysis_docs = set(corpus_parser.get_last_documents())
             all_docs = corpus_parser.get_documents()
     else:
         logger.info("Reloading pre-parsed dataset.")
         all_docs = Parser(session).get_documents()
-        for division in ["dev", "test", "train"]:
+        for division in ["dev", "test", "train", "analysis"]:
             pdf_path = os.path.join(dirname, f"data/{division}/pdf/")
             if division == "dev":
                 dev_doc_names = _files_in_dir(pdf_path)
@@ -69,6 +73,8 @@ def parse_dataset(
                 test_doc_names = _files_in_dir(pdf_path)
             if division == "train":
                 train_doc_names = _files_in_dir(pdf_path)
+            if division == "analysis":
+                analysis_doc_names = _files_in_dir(pdf_path)
 
         for doc in all_docs:
             if doc.name in dev_doc_names:
@@ -77,5 +83,7 @@ def parse_dataset(
                 test_docs.add(doc)
             if doc.name in train_doc_names:
                 train_docs.add(doc)
+            if doc.name in analysis_doc_names:
+                analysis_docs.add(doc)
 
-    return all_docs, train_docs, dev_docs, test_docs
+    return all_docs, train_docs, dev_docs, test_docs, analysis_docs

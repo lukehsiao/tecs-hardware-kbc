@@ -51,7 +51,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 # Configure logging for Hack
 logging.basicConfig(
     format="[%(asctime)s][%(levelname)s] %(name)s:%(lineno)s - %(message)s",
-    level=logging.DEBUG,
+    level=logging.INFO,
     handlers=[
         logging.FileHandler(
             os.path.join(os.path.dirname(__file__), f"transistors.log")
@@ -500,10 +500,6 @@ def digikey_scoring(
                     writer.writerow(
                         ("FN", doc, part, val, "Digikey does not have doc.")
                     )
-
-        import pdb
-
-        pdb.set_trace()
 
     return best_result, best_b
 
