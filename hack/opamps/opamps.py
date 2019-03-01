@@ -4,6 +4,7 @@ import pdb
 import pickle
 
 import matplotlib.pyplot as plt
+import numpy as np
 from fonduer import Meta
 from fonduer.candidates import CandidateExtractor, MentionExtractor
 from fonduer.candidates.models import Mention, candidate_subclass, mention_subclass
@@ -17,7 +18,7 @@ from metal.label_model import LabelModel
 from hack.opamps.opamp_lfs import TRUE, opamp_lfs
 from hack.opamps.opamp_matchers import get_gain_matcher, get_supply_current_matcher
 from hack.opamps.opamp_spaces import MentionNgramsOpamps
-from hack.opamps.opamp_utils import entity_level_scores, entity_to_candidates
+from hack.opamps.opamp_utils import entity_level_scores, entity_to_candidates, Score
 from hack.utils import parse_dataset
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
@@ -110,7 +111,6 @@ def candidate_extraction(
 def featurization(
     session, train_cands, dev_cands, test_cands, Cand, first_time=True, parallel=1
 ):
-    dirname = os.path.dirname(__file__)
     featurizer = Featurizer(session, [Cand])
     if first_time:
         logger.info("Starting featurizer...")
@@ -121,17 +121,9 @@ def featurization(
 
     logger.info("Getting feature matrices...")
     # Serialize feature matrices on first run
-    if first_time:
-        F_train = featurizer.get_feature_matrices(train_cands)
-        F_dev = featurizer.get_feature_matrices(dev_cands)
-        F_test = featurizer.get_feature_matrices(test_cands)
-        pickle.dump(F_train, open(os.path.join(dirname, "F_train.pkl"), "wb"))
-        pickle.dump(F_dev, open(os.path.join(dirname, "F_dev.pkl"), "wb"))
-        pickle.dump(F_test, open(os.path.join(dirname, "F_test.pkl"), "wb"))
-    else:
-        F_train = pickle.load(open(os.path.join(dirname, "F_train.pkl"), "rb"))
-        F_dev = pickle.load(open(os.path.join(dirname, "F_dev.pkl"), "rb"))
-        F_test = pickle.load(open(os.path.join(dirname, "F_test.pkl"), "rb"))
+    F_train = featurizer.get_feature_matrices(train_cands)
+    F_dev = featurizer.get_feature_matrices(dev_cands)
+    F_test = featurizer.get_feature_matrices(test_cands)
     logger.info("Done.")
 
     logger.info(f"Train shape: {F_train[0].shape}")
@@ -247,7 +239,7 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
     )
 
     (Gain, Current) = mention_extraction(
-        session, docs, first_time=False, parallel=parallel
+        session, docs, first_time=first_time, parallel=parallel
     )
 
     (Cand, train_cands, dev_cands, test_cands) = candidate_extraction(
@@ -256,7 +248,7 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
         train_docs,
         dev_docs,
         test_docs,
-        first_time=False,
+        first_time=first_time,
         parallel=parallel,
     )
     F_train, F_dev, F_test = featurization(
@@ -265,7 +257,7 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
         dev_cands,
         test_cands,
         Cand,
-        first_time=False,
+        first_time=first_time,
         parallel=parallel,
     )
     logger.info("Labeling training data...")
@@ -297,7 +289,7 @@ if __name__ == "__main__":
     component = "opamps"
     conn_string = f"postgresql:///{component}"
     first_time = True
-    max_docs = 150
+    max_docs = 200
     logger.info(f"\n\n")
     logger.info(f"=" * 30)
     logger.info(
