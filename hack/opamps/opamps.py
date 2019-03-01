@@ -3,15 +3,24 @@ import os
 import pdb
 import pickle
 
+import matplotlib.pyplot as plt
 from fonduer import Meta
 from fonduer.candidates import CandidateExtractor, MentionExtractor
 from fonduer.candidates.models import Mention, candidate_subclass, mention_subclass
 from fonduer.features import Featurizer
+from fonduer.learning import SparseLogisticRegression
 from fonduer.parser.models import Document, Figure, Paragraph, Section, Sentence
+from fonduer.supervision import Labeler
+from metal import analysis
+from metal.label_model import LabelModel
 
+from hack.opamps.opamp_lfs import TRUE, opamp_lfs
 from hack.opamps.opamp_matchers import get_gain_matcher, get_supply_current_matcher
 from hack.opamps.opamp_spaces import MentionNgramsOpamps
+from hack.opamps.opamp_utils import entity_level_scores, entity_to_candidates
 from hack.utils import parse_dataset
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 # Configure logging for Hack
 logging.basicConfig(
@@ -132,14 +141,113 @@ def featurization(
     return F_train, F_dev, F_test
 
 
+def generative_model(L_train, n_epochs=500, print_every=100):
+    model = LabelModel(k=2)
+
+    logger.info("Training generative model...")
+    model.train_model(L_train[0], n_epochs=n_epochs, print_every=print_every)
+    logger.info("Done.")
+
+    marginals = model.predict_proba(L_train[0])
+    plt.hist(marginals[:, TRUE - 1], bins=20)
+    plt.savefig(os.path.join(os.path.dirname(__file__), f"opamps_marginals.pdf"))
+    return marginals
+
+
+def discriminative_model(train_cands, F_train, marginals, n_epochs=50, lr=0.001):
+    disc_model = SparseLogisticRegression()
+
+    logger.info("Training discriminative model...")
+    disc_model.train(
+        (train_cands[0], F_train[0]),
+        marginals,
+        n_epochs=n_epochs,
+        lr=lr,
+        host_device="GPU",
+    )
+    logger.info("Done.")
+
+    return disc_model
+
+
+def labeling(session, cands, cand, split=1, train=False, first_time=True, parallel=1):
+    labeler = Labeler(session, [cand])
+    lfs = opamp_lfs
+
+    if first_time:
+        logger.info("Applying LFs...")
+        labeler.apply(split=split, lfs=[lfs], train=train, parallelism=parallel)
+        logger.info("Done...")
+
+    logger.info("Getting label matrices...")
+    L_mat = labeler.get_label_matrices(cands)
+    logger.info("Done...")
+    logger.info(f"L_mat shape: {L_mat[0].shape}")
+
+    if train:
+        try:
+            df = analysis.lf_summary(L_mat[0], lf_names=labeler.get_keys())
+            logger.info(f"\n{df.to_string()}")
+        except Exception:
+            import pdb
+
+            pdb.set_trace()
+
+    return L_mat
+
+
+def scoring(disc_model, test_cands, test_docs, F_test, num=100):
+    logger.info("Calculating the best F1 score and threshold (b)...")
+
+    # Iterate over a range of `b` values in order to find the b with the
+    # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
+    Y_prob = disc_model.marginals((test_cands[0], F_test[0]))
+
+    # Get prediction for a particular b, store the full tuple to output
+    # (b, pref, rec, f1, TP, FP, FN)
+    best_result = Score(0, 0, 0, [], [], [])
+    best_b = 0
+    for b in np.linspace(0, 1, num=num):
+        try:
+            test_score = np.array(
+                [TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob]
+            )
+            true_pred = [
+                test_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))
+            ]
+            result = entity_level_scores(true_pred, corpus=test_docs)
+            logger.info(f"b = {b}, f1 = {result.f1}")
+            if result.f1 > best_result.f1:
+                best_result = result
+                best_b = b
+        except Exception as e:
+            logger.debug(f"{e}, skipping.")
+            break
+
+    logger.info("===================================================")
+    logger.info(f"Scoring on Entity-Level Gold Data with b={best_b}")
+    logger.info("===================================================")
+    logger.info(f"Corpus Precision {best_result.prec:.3f}")
+    logger.info(f"Corpus Recall    {best_result.rec:.3f}")
+    logger.info(f"Corpus F1        {best_result.f1:.3f}")
+    logger.info("---------------------------------------------------")
+    logger.info(
+        f"TP: {len(best_result.TP)} "
+        f"| FP: {len(best_result.FP)} "
+        f"| FN: {len(best_result.FN)}"
+    )
+    logger.info("===================================================\n")
+    return best_result, best_b
+
+
 def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
     session = Meta.init(conn_string).Session()
     docs, train_docs, dev_docs, test_docs = parsing(
-        session, first_time=True, parallel=parallel, max_docs=max_docs
+        session, first_time=False, parallel=parallel, max_docs=max_docs
     )
 
     (Gain, Current) = mention_extraction(
-        session, docs, first_time=first_time, parallel=parallel
+        session, docs, first_time=False, parallel=parallel
     )
 
     (Cand, train_cands, dev_cands, test_cands) = candidate_extraction(
@@ -148,7 +256,7 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
         train_docs,
         dev_docs,
         test_docs,
-        first_time=first_time,
+        first_time=False,
         parallel=parallel,
     )
     F_train, F_dev, F_test = featurization(
@@ -157,32 +265,27 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
         dev_cands,
         test_cands,
         Cand,
-        first_time=first_time,
+        first_time=False,
         parallel=parallel,
     )
-    #  logger.info("Labeling training data...")
-    #  L_train, L_gold_train = labeling(
-    #      session, train_cands, Cand, split=0, train=True, parallel=parallel
-    #  )
-    #  logger.info("Done.")
-    #
-    #  marginals = generative_model(relation, L_train)
-    #
-    #  L_dev, L_gold_dev = labeling(
-    #      session, dev_cands, Cand, split=1, train=False, parallel=parallel
-    #  )
-    #
-    #  disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
-    #
-    #  parts_by_doc = load_parts_by_doc()
-    #  best_result, best_b = scoring(
-    #      relation, disc_models, test_cands, test_docs, F_test, parts_by_doc, num=100
-    #  )
-    #
-    #  try:
-    #      fp_cand = entity_to_candidates(best_result.FP[1], test_cands[0])
-    #  except Exception:
-    #      pass
+    logger.info("Labeling training data...")
+    L_train = labeling(
+        session, train_cands, Cand, split=0, train=True, parallel=parallel
+    )
+    logger.info("Done.")
+
+    marginals = generative_model(L_train)
+
+    labeling(session, dev_cands, Cand, split=1, train=False, parallel=parallel)
+
+    disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
+
+    best_result, best_b = scoring(disc_models, test_cands, test_docs, F_test, num=100)
+
+    try:
+        fp_cands = entity_to_candidates(best_result.FP[1], test_cands[0])
+    except Exception:
+        pass
 
     # End with an interactive prompt
     pdb.set_trace()

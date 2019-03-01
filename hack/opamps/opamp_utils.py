@@ -73,12 +73,11 @@ def entity_confusion_matrix(pred, gold):
     return (TP, FP, FN)
 
 
-def entity_level_scores(candidates, attribute=None, corpus=None):
+def entity_level_scores(candidates, corpus=None):
     """Checks entity-level recall of candidates compared to gold."""
     docs = [(doc.name).upper() for doc in corpus] if corpus else None
     gold_set = get_gold_set(docs=docs)
     if len(gold_set) == 0:
-        logger.info(f"Attribute: {attribute}")
         logger.error("Gold set is empty.")
         return
     # Turn CandidateSet into set of tuples
