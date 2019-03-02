@@ -31,7 +31,7 @@ def get_gain_matcher():
         filter_keywords = ["-3 db"]
         related_ngrams = set([_.lower() for _ in get_right_ngrams(attr, n_max=2) if _])
         related_ngrams.update(
-            [_.lower() for _ in get_row_ngrams(attr, n_max=1, window=3) if _]
+            [_.lower() for _ in get_row_ngrams(attr, n_max=1, spread=[2, 2]) if _]
         )
 
         if overlap(filter_keywords, related_ngrams):
@@ -60,7 +60,7 @@ def get_supply_current_matcher():
         keywords = ["current", "supply", "quiescent", "is"]
         related_ngrams = set([_.lower() for _ in get_right_ngrams(attr, n_max=1) if _])
         related_ngrams.update(
-            [_.lower() for _ in get_row_ngrams(attr, window=3, n_max=1) if _]
+            [_.lower() for _ in get_row_ngrams(attr, spread=[2, 2], n_max=1) if _]
         )
 
         if overlap(current_units, related_ngrams) and overlap(keywords, related_ngrams):
