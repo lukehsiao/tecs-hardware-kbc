@@ -26,7 +26,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 # Configure logging for Hack
 logging.basicConfig(
     format="[%(asctime)s][%(levelname)s] %(name)s:%(lineno)s - %(message)s",
-    level=logging.INFO,
+    level=logging.DEBUG,
     handlers=[
         logging.FileHandler(os.path.join(os.path.dirname(__file__), f"opamps.log")),
         logging.StreamHandler(),
@@ -218,13 +218,15 @@ def scoring(disc_model, cands, docs, F_mat, num=100):
             logger.debug(f"{e}, skipping.")
             break
         result = entity_level_scores(true_pred, corpus=docs)
-        logger.info(f"b = {b}, f1 = {result.f1}")
+        logger.info(
+            f"({b:.3f}): f1:{result.f1:.3f} p:{result.prec:.3f} r:{result.rec:.3f}"
+        )
         if result.f1 > best_result.f1:
             best_result = result
             best_b = b
 
     logger.info("===================================================")
-    logger.info(f"Scoring on Entity-Level Gold Data with b={best_b}")
+    logger.info(f"Scoring on Entity-Level Gold Data w/ b={best_b:.3f}")
     logger.info("===================================================")
     logger.info(f"Corpus Precision {best_result.prec:.3f}")
     logger.info(f"Corpus Recall    {best_result.rec:.3f}")
@@ -269,25 +271,13 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
     )
     logger.info("Labeling training data...")
     L_train = labeling(
-        session,
-        train_cands,
-        Cand,
-        split=0,
-        train=True,
-        parallel=parallel,
+        session, train_cands, Cand, split=0, train=True, parallel=parallel
     )
     logger.info("Done.")
 
     marginals = generative_model(L_train)
 
-    labeling(
-        session,
-        dev_cands,
-        Cand,
-        split=1,
-        train=False,
-        parallel=parallel,
-    )
+    labeling(session, dev_cands, Cand, split=1, train=False, parallel=parallel)
 
     disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
 
