@@ -1,17 +1,13 @@
 import logging
 import os
 import pickle
+from enum import Enum
 
 import matplotlib.pyplot as plt
 import numpy as np
 from fonduer import Meta
 from fonduer.candidates import CandidateExtractor, MentionExtractor, MentionNgrams
-from fonduer.candidates.models import (
-    Candidate,
-    Mention,
-    candidate_subclass,
-    mention_subclass,
-)
+from fonduer.candidates.models import Mention, candidate_subclass, mention_subclass
 from fonduer.features import Featurizer
 from fonduer.learning import SparseLogisticRegression
 from fonduer.parser.models import Document, Figure, Paragraph, Section, Sentence
@@ -61,6 +57,14 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+# Enum for tracking
+class Relation(Enum):
+    STG_TEMP_MIN = "stg_temp_min"
+    STG_TEMP_MAX = "stg_temp_max"
+    POLARITY = "polarity"
+    CE_V_MAX = "ce_v_max"
+
+
 def parsing(session, first_time=True, parallel=1, max_docs=float("inf")):
     dirname = os.path.dirname(__file__)
     logger.debug(f"Starting parsing...")
@@ -82,135 +86,77 @@ def parsing(session, first_time=True, parallel=1, max_docs=float("inf")):
     return docs, train_docs, dev_docs, test_docs
 
 
-def mention_extraction(
-    session,
-    docs,
-    first_time=True,
-    part=True,
-    stg_temp_min=True,
-    stg_temp_max=True,
-    polarity=True,
-    ce_v_max=True,
-    parallel=1,
-):
+def mention_extraction(session, relation, docs, first_time=True, parallel=1):
     Part = mention_subclass("Part")
     part_matcher = get_matcher("part")
     part_ngrams = MentionNgramsPart(parts_by_doc=None, n_max=3)
+    if relation == Relation.STG_TEMP_MIN:
+        Attr = mention_subclass("StgTempMin")
+        attr_matcher = get_matcher("stg_temp_min")
+        attr_ngrams = MentionNgramsTemp(n_max=2)
+    elif relation == Relation.STG_TEMP_MAX:
+        Attr = mention_subclass("StgTempMax")
+        attr_matcher = get_matcher("stg_temp_max")
+        attr_ngrams = MentionNgramsTemp(n_max=2)
+    elif relation == Relation.POLARITY:
+        Attr = mention_subclass("Polarity")
+        attr_matcher = get_matcher("polarity")
+        attr_ngrams = MentionNgrams(n_max=1)
+    elif relation == Relation.CE_V_MAX:
+        Attr = mention_subclass("CeVMax")
+        attr_matcher = get_matcher("ce_v_max")
+        attr_ngrams = MentionNgramsVolt(n_max=1)
+    else:
+        raise ValueError(f"Invalid Relation: {relation}")
 
-    StgTempMin = mention_subclass("StgTempMin")
-    stg_temp_min_matcher = get_matcher("stg_temp_min")
-    stg_temp_min_ngrams = MentionNgramsTemp(n_max=2)
-
-    StgTempMax = mention_subclass("StgTempMax")
-    stg_temp_max_matcher = get_matcher("stg_temp_max")
-    stg_temp_max_ngrams = MentionNgramsTemp(n_max=2)
-
-    Polarity = mention_subclass("Polarity")
-    polarity_matcher = get_matcher("polarity")
-    polarity_ngrams = MentionNgrams(n_max=1)
-
-    CeVMax = mention_subclass("CeVMax")
-    ce_v_max_matcher = get_matcher("ce_v_max")
-    ce_v_max_ngrams = MentionNgramsVolt(n_max=1)
-
-    mentions = []
-    ngrams = []
-    matchers = []
-
-    # Only do those that are incrementally enabled
-    if part:
-        mentions.append(Part)
-        ngrams.append(part_ngrams)
-        matchers.append(part_matcher)
-
-    if stg_temp_min:
-        mentions.append(StgTempMin)
-        ngrams.append(stg_temp_min_ngrams)
-        matchers.append(stg_temp_min_matcher)
-
-    if stg_temp_max:
-        mentions.append(StgTempMax)
-        ngrams.append(stg_temp_max_ngrams)
-        matchers.append(stg_temp_max_matcher)
-
-    if polarity:
-        mentions.append(Polarity)
-        ngrams.append(polarity_ngrams)
-        matchers.append(polarity_matcher)
-
-    if ce_v_max:
-        mentions.append(CeVMax)
-        ngrams.append(ce_v_max_ngrams)
-        matchers.append(ce_v_max_matcher)
-
-    mention_extractor = MentionExtractor(session, mentions, ngrams, matchers)
+    mention_extractor = MentionExtractor(
+        session, [Part, Attr], [part_ngrams, attr_ngrams], [part_matcher, attr_matcher]
+    )
 
     if first_time:
         mention_extractor.apply(docs, parallelism=parallel)
 
     logger.info(f"Total Mentions: {session.query(Mention).count()}")
     logger.info(f"Total Part: {session.query(Part).count()}")
-    logger.info(f"Total StgTempMin: {session.query(StgTempMin).count()}")
-    logger.info(f"Total StgTempMax: {session.query(StgTempMax).count()}")
-    logger.info(f"Total Polarity: {session.query(Polarity).count()}")
-    logger.info(f"Total CeVMax: {session.query(CeVMax).count()}")
-    return Part, StgTempMin, StgTempMax, Polarity, CeVMax
+    logger.info(f"Total Attr: {session.query(Attr).count()}")
+    return Part, Attr
 
 
 def candidate_extraction(
     session,
-    Part,
-    StgTempMin,
-    StgTempMax,
-    Polarity,
-    CeVMax,
+    relation,
+    part,
+    attr,
     train_docs,
     dev_docs,
     test_docs,
-    stg_temp_min=True,
-    stg_temp_max=True,
-    polarity=True,
-    ce_v_max=True,
     first_time=True,
     parallel=1,
 ):
-    PartStgTempMin = candidate_subclass("PartStgTempMin", [Part, StgTempMin])
-    stg_temp_min_throttler = stg_temp_filter
+    if relation == Relation.STG_TEMP_MIN:
+        Cand = candidate_subclass("PartStgTempMin", [part, attr])
+        throttler = stg_temp_filter
+    elif relation == Relation.STG_TEMP_MAX:
+        Cand = candidate_subclass("PartStgTempMax", [part, attr])
+        throttler = stg_temp_filter
+    elif relation == Relation.POLARITY:
+        Cand = candidate_subclass("PartPolarity", [part, attr])
+        throttler = polarity_filter
+    elif relation == Relation.CE_V_MAX:
+        Cand = candidate_subclass("PartCeVMax", [part, attr])
+        throttler = ce_v_max_filter
+    else:
+        raise ValueError(f"Invalid Relation: {relation}")
 
-    PartStgTempMax = candidate_subclass("PartStgTempMax", [Part, StgTempMax])
-    stg_temp_max_throttler = stg_temp_filter
-
-    PartPolarity = candidate_subclass("PartPolarity", [Part, Polarity])
-    polarity_throttler = polarity_filter
-
-    PartCeVMax = candidate_subclass("PartCeVMax", [Part, CeVMax])
-    ce_v_max_throttler = ce_v_max_filter
-
-    cands = []
-    throttlers = []
-    if stg_temp_min:
-        cands.append(PartStgTempMin)
-        throttlers.append(stg_temp_min_throttler)
-
-    if stg_temp_max:
-        cands.append(PartStgTempMax)
-        throttlers.append(stg_temp_max_throttler)
-
-    if polarity:
-        cands.append(PartPolarity)
-        throttlers.append(polarity_throttler)
-
-    if ce_v_max:
-        cands.append(PartCeVMax)
-        throttlers.append(ce_v_max_throttler)
-
-    candidate_extractor = CandidateExtractor(session, cands, throttlers=throttlers)
+    candidate_extractor = CandidateExtractor(session, [Cand], throttlers=[throttler])
 
     if first_time:
         for i, docs in enumerate([train_docs, dev_docs, test_docs]):
             candidate_extractor.apply(docs, split=i, parallelism=parallel)
-            num_cands = session.query(Candidate).filter(Candidate.split == i).count()
-            logger.info(f"Candidates in split={i}: {num_cands}")
+            logger.info(
+                f"Cand in split={i}: "
+                f"{session.query(Cand).filter(Cand.split == i).count()}"
+            )
 
     train_cands = candidate_extractor.get_candidates(split=0)
     dev_cands = candidate_extractor.get_candidates(split=1)
@@ -220,48 +166,14 @@ def candidate_extraction(
     logger.info(f"Total dev candidate: {len(dev_cands[0])}")
     logger.info(f"Total test candidate: {len(test_cands[0])}")
 
-    return (
-        PartStgTempMin,
-        PartStgTempMax,
-        PartPolarity,
-        PartCeVMax,
-        train_cands,
-        dev_cands,
-        test_cands,
-    )
+    return (Cand, train_cands, dev_cands, test_cands)
 
 
 def featurization(
-    session,
-    train_cands,
-    dev_cands,
-    test_cands,
-    PartStgTempMin,
-    PartStgTempMax,
-    PartPolarity,
-    PartCeVMax,
-    stg_temp_min=True,
-    stg_temp_max=True,
-    polarity=True,
-    ce_v_max=True,
-    first_time=True,
-    parallel=1,
+    session, train_cands, dev_cands, test_cands, Cand, first_time=True, parallel=1
 ):
     dirname = os.path.dirname(__file__)
-    cands = []
-    if stg_temp_min:
-        cands.append(PartStgTempMin)
-
-    if stg_temp_max:
-        cands.append(PartStgTempMax)
-
-    if polarity:
-        cands.append(PartPolarity)
-
-    if ce_v_max:
-        cands.append(PartCeVMax)
-
-    featurizer = Featurizer(session, cands)
+    featurizer = Featurizer(session, [Cand])
     if first_time:
         logger.info("Starting featurizer...")
         featurizer.apply(split=0, train=True, parallelism=parallel)
@@ -284,10 +196,9 @@ def featurization(
         F_test = pickle.load(open(os.path.join(dirname, "F_test.pkl"), "rb"))
     logger.info("Done.")
 
-    for i, cand in enumerate(cands):
-        logger.info(f"{cand} Train shape: {F_train[i].shape}")
-        logger.info(f"{cand} Test shape: {F_test[i].shape}")
-        logger.info(f"{cand} Dev shape: {F_dev[i].shape}")
+    logger.info(f"Train shape: {F_train[0].shape}")
+    logger.info(f"Test shape: {F_test[0].shape}")
+    logger.info(f"Dev shape: {F_dev[0].shape}")
 
     return F_train, F_dev, F_test
 
@@ -433,64 +344,54 @@ def main(
 ):
     session = Meta.init(conn_string).Session()
     docs, train_docs, dev_docs, test_docs = parsing(
-        session, first_time=False, parallel=parallel, max_docs=max_docs
+        session, first_time=True, parallel=parallel, max_docs=max_docs
     )
 
-    (Part, StgTempMin, StgTempMax, Polarity, CeVMax) = mention_extraction(
-        session, relation, docs, first_time=first_time, parallel=parallel
-    )
-
-    (
-        PartStgTempMin,
-        PartStgTempMax,
-        PartPolarity,
-        PartCeVMax,
-        train_cands,
-        dev_cands,
-        test_cands,
-    ) = candidate_extraction(
-        session,
-        Part,
-        StgTempMin,
-        StgTempMax,
-        Polarity,
-        CeVMax,
-        train_docs,
-        dev_docs,
-        test_docs,
-        first_time=first_time,
-        parallel=parallel,
-    )
-    F_train, F_dev, F_test = featurization(
-        session,
-        train_cands,
-        dev_cands,
-        test_cands,
-        Cand,
-        first_time=first_time,
-        parallel=parallel,
-    )
-    load_labels(session, relation, Cand, first_time=first_time)
-    logger.info("Labeling training data...")
-    L_train, L_gold_train = labeling(
-        session, train_cands, Cand, split=0, train=True, parallel=parallel, first_time=False
-    )
-    logger.info("Done.")
-
-    marginals = generative_model(relation, L_train)
-
-    logger.info("Labeling dev data...")
-    L_dev, L_gold_dev = labeling(
-        session, dev_cands, Cand, split=1, train=False, parallel=parallel, first_time=False
-    )
-    logger.info("Done.")
-
-    disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
-
-    parts_by_doc = load_parts_by_doc()
-    best_result, best_b = scoring(
-        relation, disc_models, test_cands, test_docs, F_test, parts_by_doc, num=100
-    )
+    #  (Part, Attr) = mention_extraction(
+    #      session, relation, docs, first_time=first_time, parallel=parallel
+    #  )
+    #
+    #  (Cand, train_cands, dev_cands, test_cands) = candidate_extraction(
+    #      session,
+    #      relation,
+    #      Part,
+    #      Attr,
+    #      train_docs,
+    #      dev_docs,
+    #      test_docs,
+    #      first_time=first_time,
+    #      parallel=parallel,
+    #  )
+    #  F_train, F_dev, F_test = featurization(
+    #      session,
+    #      train_cands,
+    #      dev_cands,
+    #      test_cands,
+    #      Cand,
+    #      first_time=first_time,
+    #      parallel=parallel,
+    #  )
+    #  load_labels(session, relation, Cand, first_time=first_time)
+    #  logger.info("Labeling training data...")
+    #  L_train, L_gold_train = labeling(
+    #      session, train_cands, Cand, split=0, train=True, parallel=parallel
+    #  )
+    #  logger.info("Done.")
+    #
+    #  marginals = generative_model(relation, L_train)
+    #
+    #  logger.info("Labeling dev data...")
+    #  L_dev, L_gold_dev = labeling(
+    #      session, dev_cands, Cand, split=1, train=False, parallel=parallel
+    #  )
+    #  logger.info("Done.")
+    #
+    #  disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
+    #
+    #  parts_by_doc = load_parts_by_doc()
+    #  best_result, best_b = scoring(
+    #      relation, disc_models, test_cands, test_docs, F_test, parts_by_doc, num=100
+    #  )
 
 
 if __name__ == "__main__":
@@ -498,11 +399,14 @@ if __name__ == "__main__":
     parallel = 8  # len(os.sched_getaffinity(0)) // 4
     component = "transistors"
     first_time = True
-    max_docs = 1000
-    conn_string = f"postgresql:///{component}_small"
+    max_docs = float('inf')
+    relation = Relation.CE_V_MAX
+    conn_string = f"postgresql:///{component}_full"
     logger.info(f"\n\n")
     logger.info(f"=" * 80)
-    logger.info(f"Small transistors with parallel: {parallel}, max_docs: {max_docs}")
+    logger.info(
+        f"All transistor relations with parallel: {parallel}, max_docs: {max_docs}"
+    )
 
     main(
         conn_string,
