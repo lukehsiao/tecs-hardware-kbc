@@ -3,6 +3,7 @@ import csv
 import logging
 import os
 import pdb
+from functools import lru_cache
 from builtins import range
 from collections import namedtuple
 
@@ -67,10 +68,43 @@ def entity_confusion_matrix(pred, gold):
         pred = set(pred)
     if not isinstance(gold, set):
         gold = set(gold)
+
     TP = pred.intersection(gold)
     FP = pred.difference(gold)
     FN = gold.difference(pred)
     return (TP, FP, FN)
+
+
+@lru_cache(maxsize=65536)
+def cand_to_entity(c):
+    doc = c[0].context.sentence.document.name.upper()
+    gain = c[0].context.get_span()
+    current = c[1].context.get_span()
+
+    gain_ngrams = set(get_row_ngrams(c[0], lower=False))
+    # Get a set of the hertz units
+    gain_ngrams = set([_ for _ in gain_ngrams if _ in ["kHz", "MHz", "GHz"]])
+    if len(gain_ngrams) > 1:
+        logger.debug(f"gain_ngrams: {gain_ngrams}")
+        return
+    elif len(gain_ngrams) == 0:
+        return
+
+    current_ngrams = set(get_row_ngrams(c[1], lower=False))
+    # Get a set of the current units
+    current_ngrams = set([_ for _ in current_ngrams if _ in ["mA", "uA", "μA"]])
+    if len(current_ngrams) > 1:
+        logger.debug(f"current_ngrams: {current_ngrams}")
+        return
+    elif len(current_ngrams) == 0:
+        return
+
+    # Convert to the appropriate quantities for scoring
+    return (
+        doc,
+        Quantity(f"{gain} {gain_ngrams.pop()}"),
+        Quantity(f"{current} {current_ngrams.pop()}"),
+    )
 
 
 def entity_level_scores(candidates, corpus=None):
@@ -80,40 +114,13 @@ def entity_level_scores(candidates, corpus=None):
     if len(gold_set) == 0:
         logger.error("Gold set is empty.")
         return
+
     # Turn CandidateSet into set of tuples
     entities = set()
     for i, c in enumerate(tqdm(candidates)):
-        doc = c[0].context.sentence.document.name.upper()
-        gain = c[0].context.get_span()
-        current = c[1].context.get_span()
-
-        gain_ngrams = set(get_row_ngrams(c[0], lower=False))
-        gain_ngrams.add(get_sentence_ngrams(c[0], lower=False))
-        gain_ngrams = [_ for _ in gain_ngrams if _.endswith("Hz")]
-        if len(gain_ngrams > 1):
-            logger.info(f"gain_ngrams: {gain_ngrams}")
-            pdb.set_trace()
-        elif len(gain_ngrams == 0):
-            pdb.set_trace()
-
-        current_ngrams = set(get_row_ngrams(c[1], lower=False))
-        current_ngrams.add(get_sentence_ngrams(c[1], lower=False))
-        current_ngrams = [_ for _ in current_ngrams if _.endswith("A")]
-        if len(current_ngrams > 1):
-            logger.info(f"current_ngrams: {current_ngrams}")
-            pdb.set_trace()
-        elif len(current_ngrams == 0):
-            pdb.set_trace()
-
-        # Convert to the appropriate quantities for scoring
-
-        entities.add(
-            (
-                doc,
-                Quantity(f"{gain} {gain_ngrams[0]}"),
-                Quantity(f"{current} {current_ngrams[0]}"),
-            )
-        )
+        entity = cand_to_entity(c)
+        if entity:
+            entities.add(entity)
 
     (TP_set, FP_set, FN_set) = entity_confusion_matrix(entities, gold_set)
     TP = len(TP_set)

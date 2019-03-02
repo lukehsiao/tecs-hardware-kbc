@@ -112,6 +112,7 @@ def featurization(
     session, train_cands, dev_cands, test_cands, Cand, first_time=True, parallel=1
 ):
     featurizer = Featurizer(session, [Cand])
+    dirname = os.path.dirname(__file__)
     if first_time:
         logger.info("Starting featurizer...")
         featurizer.apply(split=0, train=True, parallelism=parallel)
@@ -121,9 +122,17 @@ def featurization(
 
     logger.info("Getting feature matrices...")
     # Serialize feature matrices on first run
-    F_train = featurizer.get_feature_matrices(train_cands)
-    F_dev = featurizer.get_feature_matrices(dev_cands)
-    F_test = featurizer.get_feature_matrices(test_cands)
+    if first_time:
+        F_train = featurizer.get_feature_matrices(train_cands)
+        F_dev = featurizer.get_feature_matrices(dev_cands)
+        F_test = featurizer.get_feature_matrices(test_cands)
+        pickle.dump(F_train, open(os.path.join(dirname, "F_train.pkl"), "wb"))
+        pickle.dump(F_dev, open(os.path.join(dirname, "F_dev.pkl"), "wb"))
+        pickle.dump(F_test, open(os.path.join(dirname, "F_test.pkl"), "wb"))
+    else:
+        F_train = pickle.load(open(os.path.join(dirname, "F_train.pkl"), "rb"))
+        F_dev = pickle.load(open(os.path.join(dirname, "F_dev.pkl"), "rb"))
+        F_test = pickle.load(open(os.path.join(dirname, "F_test.pkl"), "rb"))
     logger.info("Done.")
 
     logger.info(f"Train shape: {F_train[0].shape}")
@@ -188,12 +197,12 @@ def labeling(session, cands, cand, split=1, train=False, first_time=True, parall
     return L_mat
 
 
-def scoring(disc_model, test_cands, test_docs, F_test, num=100):
+def scoring(disc_model, cands, docs, F_mat, num=100):
     logger.info("Calculating the best F1 score and threshold (b)...")
 
     # Iterate over a range of `b` values in order to find the b with the
     # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
-    Y_prob = disc_model.marginals((test_cands[0], F_test[0]))
+    Y_prob = disc_model.marginals((cands[0], F_mat[0]))
 
     # Get prediction for a particular b, store the full tuple to output
     # (b, pref, rec, f1, TP, FP, FN)
@@ -204,17 +213,15 @@ def scoring(disc_model, test_cands, test_docs, F_test, num=100):
             test_score = np.array(
                 [TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob]
             )
-            true_pred = [
-                test_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))
-            ]
-            result = entity_level_scores(true_pred, corpus=test_docs)
-            logger.info(f"b = {b}, f1 = {result.f1}")
-            if result.f1 > best_result.f1:
-                best_result = result
-                best_b = b
+            true_pred = [cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))]
         except Exception as e:
             logger.debug(f"{e}, skipping.")
             break
+        result = entity_level_scores(true_pred, corpus=docs)
+        logger.info(f"b = {b}, f1 = {result.f1}")
+        if result.f1 > best_result.f1:
+            best_result = result
+            best_b = b
 
     logger.info("===================================================")
     logger.info(f"Scoring on Entity-Level Gold Data with b={best_b}")
@@ -262,20 +269,34 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
     )
     logger.info("Labeling training data...")
     L_train = labeling(
-        session, train_cands, Cand, split=0, train=True, parallel=parallel
+        session,
+        train_cands,
+        Cand,
+        split=0,
+        train=True,
+        parallel=parallel,
+        first_time=False,
     )
     logger.info("Done.")
 
     marginals = generative_model(L_train)
 
-    labeling(session, dev_cands, Cand, split=1, train=False, parallel=parallel)
+    labeling(
+        session,
+        dev_cands,
+        Cand,
+        split=1,
+        train=False,
+        parallel=parallel,
+        first_time=False,
+    )
 
     disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
 
-    best_result, best_b = scoring(disc_models, test_cands, test_docs, F_test, num=100)
+    best_result, best_b = scoring(disc_models, dev_cands, dev_docs, F_dev, num=100)
 
     try:
-        fp_cands = entity_to_candidates(best_result.FP[1], test_cands[0])
+        fp_cands = entity_to_candidates(best_result.FP[1], dev_cands[0])
     except Exception:
         pass
 
@@ -285,11 +306,11 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
 
 if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
-    parallel = 4
+    parallel = 8
     component = "opamps"
     conn_string = f"postgresql:///{component}"
-    first_time = True
-    max_docs = 200
+    first_time = False
+    max_docs = 10
     logger.info(f"\n\n")
     logger.info(f"=" * 30)
     logger.info(
