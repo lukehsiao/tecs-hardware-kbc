@@ -42,7 +42,7 @@ def neg_gain_keywords_in_row(c):
     return (
         FALSE
         if overlap(
-            ["input", "noise", "f=", "f", "-3", "db", "dbc", "voltage", "range"],
+            ["small", "signal", "input", "noise", "f=", "f", "-3", "db", "dbm", "dbc", "voltage", "range"],
             [_.lower() for _ in get_row_ngrams(c.gain) if _],
         )
         else ABSTAIN
@@ -63,6 +63,16 @@ def neg_gain_keywords_in_column(c):
 # Supply Current LFs
 def pos_current(c):
     return TRUE if "current" in get_row_ngrams(c.supply_current) else ABSTAIN
+
+def neg_current_keywords_in_column(c):
+    return (
+        FALSE
+        if overlap(
+            ["over", "temperature", "vgn", "f", "-3", "db", "dbc"],
+            [_.lower() for _ in get_col_ngrams(c.gain) if _],
+        )
+        else ABSTAIN
+    )
 
 
 opamp_lfs = [

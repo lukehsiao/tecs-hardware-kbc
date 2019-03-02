@@ -4,7 +4,9 @@ from fonduer.candidates.matchers import Intersect, LambdaFunctionMatcher, RegexM
 from fonduer.utils.data_model_utils import (
     get_page,
     get_row_ngrams,
+    get_col_ngrams,
     get_sentence_ngrams,
+    get_right_ngrams,
     overlap,
 )
 
@@ -16,24 +18,24 @@ def _first_page_or_table(attr):
     return get_page(attr) or attr.sentence.is_tabular()
 
 
+def _condition(attr):
+    if overlap(["condition", "conditions"], get_col_ngrams(attr, n_max=1)):
+        return False
+    return True
+
+
 def get_gain_matcher():
     def hertz_units(attr):
-        keywords = [
-            "gain bandwidth",
-            "unity gain",
-            "mhz",
-            "khz",
-            "gbp",
-            "gbw",
-            "unity bandwidth",
-            "bandwidth product",
-        ]
-        related_ngrams = set(
-            [_.lower() for _ in get_sentence_ngrams(attr, n_max=2) if _]
-        )
+        hertz_units = ["mhz", "khz"]
+        keywords = ["gain", "unity", "bandwidth", "gbp", "gbw", "gbwp"]
+        filter_keywords = ["-3 db"]
+        related_ngrams = set([_.lower() for _ in get_right_ngrams(attr, n_max=2) if _])
         related_ngrams.update([_.lower() for _ in get_row_ngrams(attr, n_max=2) if _])
 
-        if overlap(keywords, related_ngrams):
+        if overlap(filter_keywords, related_ngrams):
+            return False
+
+        if overlap(hertz_units, related_ngrams) and overlap(keywords, related_ngrams):
             return True
 
         return False
@@ -44,20 +46,20 @@ def get_gain_matcher():
     )
 
     hertz_lambda = LambdaFunctionMatcher(func=hertz_units)
+    condition_lambda = LambdaFunctionMatcher(func=_condition)
     location_lambda = LambdaFunctionMatcher(func=_first_page_or_table)
 
-    return Intersect(gain_rgx, hertz_lambda, location_lambda)
+    return Intersect(gain_rgx, hertz_lambda, location_lambda, condition_lambda)
 
 
 def get_supply_current_matcher():
     def current_units(attr):
-        keywords = ["ma", "μa", "a", "supply current", "quiescent", "is"]
-        related_ngrams = set(
-            [_.lower() for _ in get_sentence_ngrams(attr, n_max=2) if _]
-        )
-        related_ngrams.update([_.lower() for _ in get_row_ngrams(attr, n_max=2) if _])
+        current_units = ["ma", "μa", "ua"]
+        keywords = ["current", "supply", "quiescent", "is"]
+        related_ngrams = set([_.lower() for _ in get_right_ngrams(attr, n_max=1) if _])
+        related_ngrams.update([_.lower() for _ in get_row_ngrams(attr, n_max=1) if _])
 
-        if overlap(keywords, related_ngrams):
+        if overlap(current_units, related_ngrams) and overlap(keywords, related_ngrams):
             return True
 
         return False
@@ -68,6 +70,7 @@ def get_supply_current_matcher():
     )
 
     current_lambda = LambdaFunctionMatcher(func=current_units)
+    condition_lambda = LambdaFunctionMatcher(func=_condition)
     location_lambda = LambdaFunctionMatcher(func=_first_page_or_table)
 
-    return Intersect(current_rgx, current_lambda, location_lambda)
+    return Intersect(current_rgx, condition_lambda, current_lambda, location_lambda)

@@ -239,10 +239,10 @@ def scoring(disc_model, cands, docs, F_mat, num=100):
     return best_result, best_b
 
 
-def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
+def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, parallel=2):
     session = Meta.init(conn_string).Session()
     docs, train_docs, dev_docs, test_docs = parsing(
-        session, first_time=False, parallel=parallel, max_docs=max_docs
+        session, first_time=parse, parallel=parallel, max_docs=max_docs
     )
 
     (Gain, Current) = mention_extraction(
@@ -275,7 +275,6 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
         split=0,
         train=True,
         parallel=parallel,
-        first_time=False,
     )
     logger.info("Done.")
 
@@ -288,7 +287,6 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
         split=1,
         train=False,
         parallel=parallel,
-        first_time=False,
     )
 
     disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
@@ -296,7 +294,7 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
     best_result, best_b = scoring(disc_models, dev_cands, dev_docs, F_dev, num=100)
 
     try:
-        fp_cands = entity_to_candidates(best_result.FP[1], dev_cands[0])
+        fp_cands = entity_to_candidates(best_result.FP[0], dev_cands[0])
     except Exception:
         pass
 
@@ -306,15 +304,22 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
 
 if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
-    parallel = 8
+    parallel = 16
     component = "opamps"
     conn_string = f"postgresql:///{component}"
-    first_time = False
-    max_docs = 10
+    first_time = True
+    parse = False
+    max_docs = 100
     logger.info(f"\n\n")
     logger.info(f"=" * 30)
     logger.info(
         f"Beginning {component} with parallel: {parallel}, max_docs: {max_docs}"
     )
 
-    main(conn_string, max_docs=max_docs, first_time=first_time, parallel=parallel)
+    main(
+        conn_string,
+        max_docs=max_docs,
+        parse=parse,
+        first_time=first_time,
+        parallel=parallel,
+    )

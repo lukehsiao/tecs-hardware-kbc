@@ -43,6 +43,8 @@ def get_gold_set(docs=None):
                     temp_dict[doc] = {"typ_gbp": set(), "typ_supply_current": set()}
                 if docs is None or doc.upper() in docs:
                     if attr in ["typ_gbp", "typ_supply_current"]:
+                        # replace 'u' with 'μ'
+                        val = val.replace("u", "μ")
                         # Allow the double of a +/- value to be valid also.
                         if val.startswith("±"):
                             temp_dict[doc][attr].add(2 * val[1:])
@@ -75,7 +77,6 @@ def entity_confusion_matrix(pred, gold):
     return (TP, FP, FN)
 
 
-@lru_cache(maxsize=65536)
 def cand_to_entity(c):
     doc = c[0].context.sentence.document.name.upper()
     gain = c[0].context.get_span()
@@ -138,11 +139,7 @@ def entity_level_scores(candidates, corpus=None):
 def entity_to_candidates(entity, candidate_subset):
     matches = []
     for c in candidate_subset:
-        c_entity = tuple(
-            [c[0].context.sentence.document.name.upper()]
-            + [c[i].context.get_span().upper() for i in range(len(c))]
-        )
-        c_entity = tuple([str(x) for x in c_entity])
+        c_entity = cand_to_entity(c)
         if c_entity == entity:
             matches.append(c)
     return matches
