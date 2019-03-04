@@ -56,7 +56,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 # Configure logging for Hack
 logging.basicConfig(
     format="[%(asctime)s][%(levelname)s] %(name)s:%(lineno)s - %(message)s",
-    level=logging.INFO,
+    level=logging.DEBUG,
     handlers=[
         logging.FileHandler(
             os.path.join(os.path.dirname(__file__), f"transistors.log")
@@ -618,7 +618,7 @@ if __name__ == "__main__":
     parallel = 8  # Change parallel for watchog
     component = "transistors_analysis"
     conn_string = f"postgresql://localhost:5432/{component}"
-    first_time = True
+    first_time = False
     relation = Relation.CE_V_MAX
     logger.info(f"\n\n")
     logger.info(f"=" * 80)
@@ -626,7 +626,7 @@ if __name__ == "__main__":
 
     main(
         conn_string,
-        max_docs=300,
+        max_docs=1000,
         relation=relation,
         first_time=first_time,
         parallel=parallel,

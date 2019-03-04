@@ -1,34 +1,83 @@
-import os
 import csv
+import logging
+import os
+import pdb
+
 from tqdm import tqdm
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-if __name__ == "__main__":
-    relpath = os.path.dirname(os.path.abspath(__file__))
 
+def get_filenames(filenames_file, testpath, devpath):
     # Generate list of filenames
     filenames = set()
-    with open(os.path.join(relpath, "analysis_dataset.csv"), "r") as inputcsv:
+    with open(filenames_file, "r") as inputcsv:
         reader = csv.reader(inputcsv)
         for row in reader:
             filename = row[0]
             filenames.add(filename)
 
-    # Move filenames to new dir
-    print(f"[INFO]: Moving {len(filenames)} files...")
-    endpath = os.path.join(relpath, "analysis/")
-    origpath = os.path.join(relpath, "train/")
-
-    # Ensure all filenames are in the orig dir
-    pdfpath = os.path.join(origpath, "pdf/")
+    # Get test filenames (filenames found in testpath
+    test_filenames = set()
+    pdfpath = os.path.join(testpath, "pdf/")
     for filename in filenames:
         pdf = filename + ".pdf"
         if pdf not in os.listdir(pdfpath):
-            raise ValueError(f"Filename {pdf} not in {pdfpath}")
+            logger.debug(f"Filename {pdf} not in {pdfpath}, skipping.")
+        else:
+            test_filenames.add(filename)
 
-    # Move filenames to new dir
+    # Get dev filenames (filenames found in devpath)
+    dev_filenames = set()
+    pdfpath = os.path.join(devpath, "pdf/")
+    for filename in filenames:
+        pdf = filename + ".pdf"
+        if pdf not in os.listdir(pdfpath):
+            logger.debug(f"Filename {pdf} not in {pdfpath}, skipping.")
+        else:
+            dev_filenames.add(filename)
+
+    # Double check filename consistency
+    if sorted(list(dev_filenames)) != sorted(
+        list(filenames.difference(test_filenames))
+    ):
+        logger.error(f"Filenames are not consistent.")
+        pdb.set_trace()
+
+    # Return final filename sets
+    return (filenames, test_filenames, dev_filenames)
+
+
+def move_files(filenames, origpath, endpath):
     for filename in tqdm(filenames):
         pdf = filename + ".pdf"
         html = filename + ".html"
-        os.rename(os.path.join(origpath, "pdf/" + pdf), os.path.join(endpath, "pdf/" + pdf))
-        os.rename(os.path.join(origpath, "html/" + html), os.path.join(endpath, "html/" + html))
+        os.rename(
+            os.path.join(origpath, "pdf/" + pdf), os.path.join(endpath, "pdf/" + pdf)
+        )
+        os.rename(
+            os.path.join(origpath, "html/" + html),
+            os.path.join(endpath, "html/" + html),
+        )
+
+
+if __name__ == "__main__":
+
+    # CSV of filenames in analysis dataset
+    dirname = os.path.dirname(__name__)
+    filenames_file = os.path.join(dirname, "../analysis_dataset.csv")
+
+    # Define dataset locations
+    testpath = os.path.join(dirname, "../test/")
+    devpath = os.path.join(dirname, "../dev/")
+    endpath = os.path.join(dirname, "../analysis/")
+
+    # Get target filenames
+    (filenames, test_filenames, dev_filenames) = get_filenames(
+        filenames_file, testpath, devpath
+    )
+
+    # Move files
+    move_files(test_filenames, testpath, endpath)
+    move_files(dev_filenames, devpath, endpath)
