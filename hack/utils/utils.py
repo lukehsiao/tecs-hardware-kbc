@@ -1,3 +1,8 @@
+"""
+NOTE: This script was optimized solely for the transistor comparison
+using the `Analysis` dataset.
+"""
+
 import logging
 import os
 
@@ -21,7 +26,7 @@ def _files_in_dir(path):
 def parse_dataset(
     session, dirname, first_time=False, max_docs=float("inf"), parallel=4
 ):
-    """Parse the dataset into dev, test, and train.
+    """Parse the dataset into dev, test, train, and analysis.
 
     This expects that the data is located in data/dev/, data/test/, data/train/
     directories, and each of those contains html/ and pdf/. Also expects that

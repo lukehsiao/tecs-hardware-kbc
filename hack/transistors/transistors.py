@@ -1,3 +1,8 @@
+"""
+NOTE: This script was optimized solely for the transistor comparison
+using the `Analysis` dataset.
+"""
+
 import csv
 import logging
 import os
@@ -602,7 +607,9 @@ def main(
         F_analysis,
         parts_by_doc=parts_by_doc,
         debug=True,
-        num=100,
+        num=66,  # NOTE: As of right now we only have 66 docs in the analysis dataset.
+        # TODO: Annotate more of train so as to have at least
+        # 100 docs in the analysis dataset.
     )
 
 
