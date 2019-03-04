@@ -557,19 +557,6 @@ def main(
 
     marginals = generative_model(relation, L_train)
 
-<<<<<<< HEAD
-    logger.info("Labeling dev data...")
-    L_dev, L_gold_dev = labeling(
-        session,
-        dev_cands,
-        Cand,
-        split=1,
-        train=False,
-        parallel=parallel,
-        first_time=first_time,
-    )
-    logger.info("Done.")
-=======
     # L_dev, L_gold_dev = labeling(
     # session,
     # dev_cands,
@@ -589,7 +576,6 @@ def main(
     # parallel=parallel,
     # first_time=first_fime,
     # )
->>>>>>> feat(transistors): use custom analysis set for Digikey comparison
 
     disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
 
