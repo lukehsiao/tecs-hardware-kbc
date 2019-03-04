@@ -7,6 +7,7 @@ preprocessors and normalizers after which they are written to an out CSV where:
 
 import csv
 import os
+import pdb
 
 from hack.utils.gold_utils.normalizers import (
     current_normalizer,
@@ -36,7 +37,6 @@ def format_gold(component, raw_gold_file, formatted_gold_file, seen, append=Fals
         reader = csv.reader(csvinput)
         next(reader, None)  # Skip header row
         for line in reader:
-
             if component == "opamp":
                 (
                     doc_name,
@@ -78,6 +78,28 @@ def format_gold(component, raw_gold_file, formatted_gold_file, seen, append=Fals
 
                 manuf = manuf_normalizer(manufacturer)
                 part_num = opamp_part_normalizer(part_num)
+
+                # Output tuples of each normalized attribute
+                for name, attr, normalizer in name_attr_norm:
+                    if "N/A" not in attr:
+                        for a in attr.split(delim):
+                            if len(a.strip()) > 0:
+                                try:
+                                    output = [
+                                        doc_name,
+                                        #  manuf,
+                                        part_num,
+                                        name,
+                                        normalizer(a),
+                                    ]
+                                except Exception as e:
+                                    print(f"[ERROR]: {e}")
+
+                                    pdb.set_trace()
+
+                                if tuple(output) not in seen:
+                                    writer.writerow(output)
+                                    seen.add(tuple(output))
 
             elif component == "transistor":
                 # This reads in our "Hardware Gold" raw gold CSV where a line
@@ -220,19 +242,19 @@ def format_gold(component, raw_gold_file, formatted_gold_file, seen, append=Fals
 
 if __name__ == "__main__":
     seen = set()  # set for fast O(1) amortized lookup
+    dirname = os.path.dirname(__file__)
 
-    # Change `raw_gold1` and `raw_gold2` to the absolute paths of your raw gold
+    # Change `raw_dev` and `raw_test` to the absolute paths of your raw gold
     # CSVs. NOTE: Make sure to change the `line = ()` in `format_gold()` to
     # match what a line actually is in your raw gold CSV.
-    raw_gold1 = "/home/nchiang/repos/hack/hack/transistors/data/raw_gold1.csv"
-    raw_gold2 = "/home/nchiang/repos/hack/hack/transistors/data/raw_gold2.csv"
+    raw_dev = os.path.join(dirname, "opamp_dev_gold.csv")
+    raw_test = os.path.join(dirname, "opamp_test_gold.csv")
 
-    # Change `formatted_gold` to the absolute path of where you want your final
-    # formatted output to be written.
-    formatted_gold = (
-        "/home/nchiang/repos/hack/hack/transistors/data/unsorted_formatted_gold.csv"
-    )
+    # Change `formatted_dev/test` to the absolute path of where you want your
+    # final formatted output to be written.
+    formatted_dev = os.path.join(dirname, "dev_gold.csv")
+    formatted_test = os.path.join(dirname, "test_gold.csv")
 
     # Run formatting
-    format_gold("transistor", raw_gold1, formatted_gold, seen)
-    format_gold("transistor2", raw_gold2, formatted_gold, seen, True)
+    format_gold("opamp", raw_dev, formatted_dev, seen)
+    format_gold("opamp", raw_test, formatted_test, seen)

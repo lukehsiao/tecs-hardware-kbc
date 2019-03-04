@@ -48,41 +48,31 @@ def supply_current_normalizer(supply_current):
     """
     # NOTE: Currently ignoring the conditions.
     parse = split_val_condition(supply_current)
-    
+
     # Process Units
-    try:
-        (value, unit) = parse["value"].split(" ")
-        value = float(value)
-        if unit == "mA":
-            return str(value) + " " + unit
-        elif unit == "nA":
-            return str(value) + " " + unit
-        else:
-            raise ValueError(f"Invalid units {unit}")
-    except Exception as e:
-        if supply_current.endswith("u A"):
-            return supply_current.replace("u A", "").strip()
-        print(f"[ERROR]: {e} while normalizing supply_current {supply_current}")
-        pdb.set_trace()
+    (value, unit) = parse["value"].split(" ")
+    if unit == "mA":
+        return value + " " + unit
+    elif unit == "nA":
+        return value + " " + unit
+    elif unit == "uA" or unit == "μA":
+        return value + " " + "uA"
+    else:
+        raise ValueError(f"Invalid supply_current units {unit}")
 
 
 def opamp_voltage_normalizer(supply_voltage):
     """
-    Normalize supply voltage into absolute values (remove +/-)
+    Normalize supply voltage values.
     """
     parse = split_val_condition(supply_voltage)
 
-    try:
-        if parse["value"].startswith("± "):
-            parse["value"] = parse["value"].replace("± ", "±")
-        (value, unit) = [i for i in parse["value"].split(" ") if i != ""]
-    except Exception:
-        print("[ERROR]: " + str(parse))
-        pdb.set_trace()
+    if parse["value"].startswith("± "):
+        parse["value"] = parse["value"].replace("± ", "±")
+    (value, unit) = [i for i in parse["value"].split(" ") if i != ""]
 
     if unit != "V":
-        print(f"[ERROR]: Invalid supply voltage {supply_voltage}")
-        pdb.set_trace()
+        raise ValueError(f"Invalid supply voltage {supply_voltage}")
 
     return str(value) + " " + unit
 
@@ -142,16 +132,12 @@ def manuf_normalizer(manuf):
 
 
 def temperature_normalizer(temperature):
-    try:
-        (temp, unit) = temperature.rsplit(" ", 1)
-        if unit != "C":
-            print(f"[ERROR]: Invalid temperature value {temperature}")
-            pdb.set_trace()
-        # return round(float(temp), 1)
-        return temp.strip()
-    except Exception as e:
-        print(f"[ERROR]: {e} on temperature value {temperature}")
+    (temp, unit) = temperature.rsplit(" ", 1)
+    if unit != "C":
+        print(f"[ERROR]: Invalid temperature value {temperature}")
         pdb.set_trace()
+    # return round(float(temp), 1)
+    return temp.strip()
 
 
 """
