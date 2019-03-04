@@ -3,11 +3,9 @@ import csv
 import logging
 import os
 import pdb
-from functools import lru_cache
-from builtins import range
 from collections import namedtuple
 
-from fonduer.utils.data_model_utils import get_row_ngrams, get_sentence_ngrams
+from fonduer.utils.data_model_utils import get_row_ngrams
 from quantiphy import Quantity
 
 try:
@@ -45,7 +43,10 @@ def get_gold_set(docs=None):
                     if attr in ["typ_gbp", "typ_supply_current"]:
                         # Allow the double of a +/- value to be valid also.
                         if val.startswith("±"):
-                            temp_dict[doc][attr].add(2 * val[1:])
+                            (value, unit) = val.split(" ")
+                            temp_dict[doc][attr].add(
+                                f"{str(2 * float(value[1:]))} {unit}"
+                            )
                             temp_dict[doc][attr].add(val[1:])
                         else:
                             temp_dict[doc][attr].add(val)
@@ -93,19 +94,26 @@ def cand_to_entity(c):
 
     current_ngrams = set(get_row_ngrams(c[1], lower=False))
     # Get a set of the current units
-    current_ngrams = set([_ for _ in current_ngrams if _ in ["mA", "uA", "μA"]])
+    current_ngrams = set([_ for _ in current_ngrams if _.endswith("A")])
+
     if len(current_ngrams) > 1:
         logger.debug(f"current_ngrams: {current_ngrams}")
         return
-    elif len(current_ngrams) == 0:
+
+    if len(current_ngrams) == 0:
         return
 
     # Convert to the appropriate quantities for scoring
-    return (
+    gain_unit = gain_ngrams.pop()
+
+    # Needed to handle Adobe's poor conversion of unicode mu
+    current_unit = current_ngrams.pop().replace("\uf06d", "μ")
+    result = (
         doc,
-        Quantity(f"{gain} {gain_ngrams.pop()}"),
-        Quantity(f"{current} {current_ngrams.pop()}"),
+        Quantity(f"{gain} {gain_unit}"),
+        Quantity(f"{current} {current_unit}"),
     )
+    return result
 
 
 def entity_level_scores(candidates, corpus=None):
@@ -118,7 +126,7 @@ def entity_level_scores(candidates, corpus=None):
 
     # Turn CandidateSet into set of tuples
     entities = set()
-    for c in candidates:
+    for c in tqdm(candidates):
         entity = cand_to_entity(c)
         if entity:
             entities.add(entity)

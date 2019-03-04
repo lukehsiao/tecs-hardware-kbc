@@ -2,11 +2,10 @@ import logging
 
 from fonduer.candidates.matchers import Intersect, LambdaFunctionMatcher, RegexMatchSpan
 from fonduer.utils.data_model_utils import (
-    get_page,
-    get_row_ngrams,
     get_col_ngrams,
-    get_sentence_ngrams,
+    get_page,
     get_right_ngrams,
+    get_row_ngrams,
     overlap,
 )
 
@@ -28,12 +27,12 @@ def get_gain_matcher():
     def hertz_units(attr):
         hertz_units = ["mhz", "khz"]
         keywords = ["gain", "unity", "bandwidth", "gbp", "gbw", "gbwp"]
-        #  filter_keywords = ["-3 db"]
+        filter_keywords = ["-3 db", "maximum"]
         related_ngrams = set(get_right_ngrams(attr, n_max=1, lower=True))
-        related_ngrams.update(get_row_ngrams(attr, spread=[2, 2], n_max=1, lower=True))
-        #
-        #  if overlap(filter_keywords, related_ngrams):
-        #      return False
+        related_ngrams.update(get_row_ngrams(attr, n_max=1, lower=True))
+
+        if overlap(filter_keywords, related_ngrams):
+            return False
 
         if overlap(hertz_units, related_ngrams) or overlap(keywords, related_ngrams):
             return True
@@ -54,10 +53,15 @@ def get_gain_matcher():
 
 def get_supply_current_matcher():
     def current_units(attr):
+
         current_units = ["ma", "μa", "ua", "a"]
-        keywords = ["supply", "quiescent", "is"]
+        keywords = ["supply", "quiescent", "is", "idd"]
+        filter_keywords = ["voltage", "offset", "bias"]
         related_ngrams = set(get_right_ngrams(attr, n_max=1, lower=True))
-        related_ngrams.update(get_row_ngrams(attr, spread=[2, 2], n_max=1, lower=True))
+        related_ngrams.update(get_row_ngrams(attr, n_max=1, lower=True))
+
+        if overlap(filter_keywords, related_ngrams):
+            return False
 
         if overlap(current_units, related_ngrams) or overlap(keywords, related_ngrams):
             return True
