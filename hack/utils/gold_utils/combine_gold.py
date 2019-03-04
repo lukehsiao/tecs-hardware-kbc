@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 This script reads in the dev gold and test gold label files. It then writes the
 combined contents of both files to a single CSV outfile so as to allow for the

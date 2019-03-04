@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 
+import logging
 import pdb
+import re
+
+import requests
+
+logger = logging.getLogger(__name__)
 
 # TODO: Make a list of all known manuf (in order to standardize them)
 KNOWN_MANUF = [
@@ -19,6 +25,12 @@ KNOWN_MANUF = [
     "Minilogic",
 ]
 
+# Specify user agent to avoid error code 403 while downloading CSVs and PDFs
+USER_AGENT = (
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+    + "(KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+)
+
 """
 TRANSISTOR PREPROCESSORS:
 """
@@ -32,12 +44,51 @@ def preprocess_url(url):
     # standard datasheet filenames: allows for convenient file lookup
 
 
+def preprocess_doc(url, session=None):
+    """Returns the filename of a given PDF based off of given URL"""
+    if url == "-":
+        return "N/A"
+    elif url.strip().endswith(".pdf"):
+        return url.split("/")[-1].strip(".pdf")
+    elif url.strip().endswith(".PDF"):
+        return url.split("/")[-1].strip(".PDF")
+    else:
+        logger.warning(f"Couldn't get filename for {url}")
+        return url.strip()
+
+
+def get_doc(url, session=requests.Session(), timeout=5):
+    """Returns the filename of a given PDF based off of given URL"""
+
+    headers = {"User-agent": USER_AGENT}
+
+    try:
+        r = session.head(url, allow_redirects=True, timeout=timeout)
+        d = r.headers["content-disposition"]
+        return str(re.findall("filename=(.+)", d)[0])
+
+    except Exception:
+        # Try again with headers
+        pass
+
+    try:
+        r = session.head(url, allow_redirects=True, headers=headers, timeout=timeout)
+        d = r.headers["content-disposition"]
+        return str(re.findall("filename=(.+)", d)[0])
+
+    except requests.exceptions.Timeout as e:
+        logger.warning(f"{e} on {url}.")
+        return url
+
+    except Exception as e:
+        logger.warning(f"Exception {e} on URL {url}")
+        return url
+
+
 def preprocess_manuf(manuf):
     if manuf == "-":
         return "N/A"
-    if manuf in KNOWN_MANUF:
-        return manuf  # TODO: Complete KNOWN_MANUF list
-    return manuf
+    return manuf.replace(" ", "")
 
 
 def add_space(type, value):
@@ -54,7 +105,7 @@ def add_space(type, value):
         elif value.endswith("A"):
             return value.replace("A", " A")
         else:
-            print(f"[WARNING]: Invalid {type} {value}")
+            logger.warning(f"Invalid {type} {value}")
             pdb.set_trace()
     elif type == "voltage":
         if value.endswith("mV"):
@@ -62,7 +113,7 @@ def add_space(type, value):
         elif value.endswith("V"):
             return value.replace("V", " V")
         else:
-            print(f"[WARNING]: Invalid {type} {value}")
+            logger.warning(f"Invalid {type} {value}")
             pdb.set_trace()
     elif type == "frequency":
         if value.endswith("MHz"):
@@ -72,7 +123,7 @@ def add_space(type, value):
         elif value.endswith("kHz"):
             return value.replace("kHz", " kHz")
         else:
-            print(f"[WARNING]: Invalid {type} {value}")
+            logger.warning(f"Invalid {type} {value}")
             pdb.set_trace()
     elif type == "power":
         if value.endswith("mW"):
@@ -80,7 +131,7 @@ def add_space(type, value):
         elif value.endswith("W"):
             return value.replace("W", " W")
         else:
-            print(f"[WARNING]: Invalid {type} {value}")
+            logger.warning(f"Invalid {type} {value}")
             pdb.set_trace()
 
 
@@ -115,9 +166,8 @@ def preprocess_dc_gain_min(gain):
         # Return final values (formatted as the value, a space, and the unit)
         return (dc_gain, implied_supply_current, implied_ce_v_max)
     except Exception as e:
-        print(
-            f"[ERROR]: {e} while preprocessing dc current gain min: {gain}"
-            + "returning N/A."
+        logger.error(
+            f"{e} while preprocessing dc current gain min: {gain}" + "returning N/A."
         )
         pdb.set_trace()  # TODO: Do we just want to return N/A or pdb?
         return "N/A"
@@ -151,8 +201,8 @@ def preprocess_vce_saturation_max(voltage):
         # Return final set
         return (vce_sat_max, implied_base_current, implied_supply_current)
     except Exception as e:
-        print(
-            f"[ERROR]: {e} while preprocessing collector emitter saturation"
+        logger.error(
+            f"{e} while preprocessing collector emitter saturation"
             + f" voltage max: {voltage} returning N/A."
         )
         pdb.set_trace()  # TODO: Do we just want to return N/A or pdb?
@@ -169,8 +219,8 @@ def preprocess_ce_v_max(voltage):
         return add_space("voltage", voltage)
     # TODO: Why do I even have this try and except here??
     except Exception as e:
-        print(
-            f"[ERROR]: {e} while preprocessing collector emitter"
+        logger.error(
+            f"{e} while preprocessing collector emitter"
             + f" voltage max: {voltage} returning N/A."
         )
         pdb.set_trace()  # TODO: Do we just want to return N/A or pdb?
@@ -193,7 +243,27 @@ def preprocess_polarity(polarity):
         return polarity
     elif polarity == "-":
         return "N/A"
-    print(f"[ERROR]: Invalid polarity {polarity}")
+
+    # Handle cases where polarity includes extra conditions
+    extras = [
+        " - Darlington",
+        " - Avalanche Mode",
+        " + Zener",
+        " - Trilinton, Zener Clamp",
+        " + Diode (Isolated)",
+        " + Zener Diode (Isolated)",
+        " - Emitter Switched Bipolar",
+    ]
+    for extra in extras:
+        if polarity.endswith(extra):
+            if polarity.strip(extra) in ["NPN", "PNP"]:
+                return polarity.strip(extra)
+
+    # Handle special cases
+    if polarity == "2 PNP (Dual)":
+        return "PNP"
+
+    logger.error(f"Invalid polarity {polarity}")
     pdb.set_trace()
     return "N/A"
 
@@ -276,8 +346,8 @@ def preprocess_operating_voltage(voltage):
             min_set.add(add_space("voltage", min_val))
             max_set.add(add_space("voltage", max_val))
         except ValueError as e:
-            print(
-                f"[ERROR]: {e} while preprocessing operating voltage: {voltage}"
+            logger.error(
+                f"{e} while preprocessing operating voltage: {voltage}"
                 + "returning N/A."
             )
             pdb.set_trace()
@@ -303,8 +373,8 @@ def preprocess_operating_temp(temperature):
         (min_temp, max_temp) = (min_temp.strip("(TJ)"), max_temp.strip("(TJ)"))
         return (min_temp, max_temp)
     except ValueError as e:
-        print(
-            f"[ERROR]: {e} while preprocessing operating temperature range: "
+        logger.error(
+            f"{e} while preprocessing operating temperature range: "
             + f"{temperature} returning N/A."
         )
         pdb.set_trace()

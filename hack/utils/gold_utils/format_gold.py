@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 This script reads in our raw gold files and parses them into attributes and
 their corresponding parts. It then passes those attributes through several
