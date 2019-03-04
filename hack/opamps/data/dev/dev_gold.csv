@@ -4572,7 +4572,7 @@ tlv2322,TLV2322,max_op_supply_volt,8 V
 tlv2322,TLV2322,min_op_temp,-40
 tlv2322,TLV2322,max_op_temp,85
 tlv2322,TLV2322Y,part_family,Y
-tlv2322,TLV2322Y,typ_gbp,28.0 kHz
+tlv2322,TLV2322Y,typ_gbp,27.0 kHz
 tlv2322,TLV2322Y,typ_gbp,85.0 kHz
 tlv2322,TLV2322Y,typ_gbp,21.0 kHz
 tlv2322,TLV2322Y,typ_gbp,55.0 kHz
@@ -4583,7 +4583,7 @@ tlv2322,TLV2322Y,max_op_supply_volt,8 V
 tlv2322,TLV2322Y,min_op_temp,-40
 tlv2322,TLV2322Y,max_op_temp,85
 tlv2322,TLV2324,part_family,Y
-tlv2322,TLV2324,typ_gbp,29.0 kHz
+tlv2322,TLV2324,typ_gbp,27.0 kHz
 tlv2322,TLV2324,typ_gbp,85.0 kHz
 tlv2322,TLV2324,typ_gbp,21.0 kHz
 tlv2322,TLV2324,typ_gbp,55.0 kHz
@@ -4594,7 +4594,7 @@ tlv2322,TLV2324,max_op_supply_volt,8 V
 tlv2322,TLV2324,min_op_temp,-40
 tlv2322,TLV2324,max_op_temp,85
 tlv2322,TLV2324Y,part_family,Y
-tlv2322,TLV2324Y,typ_gbp,30.0 kHz
+tlv2322,TLV2324Y,typ_gbp,27.0 kHz
 tlv2322,TLV2324Y,typ_gbp,85.0 kHz
 tlv2322,TLV2324Y,typ_gbp,21.0 kHz
 tlv2322,TLV2324Y,typ_gbp,55.0 kHz
@@ -4605,7 +4605,7 @@ tlv2322,TLV2324Y,max_op_supply_volt,8 V
 tlv2322,TLV2324Y,min_op_temp,-40
 tlv2322,TLV2324Y,max_op_temp,85
 tlv2322,TLV2322ID,part_family,N
-tlv2322,TLV2322ID,typ_gbp,31.0 kHz
+tlv2322,TLV2322ID,typ_gbp,27.0 kHz
 tlv2322,TLV2322ID,typ_gbp,85.0 kHz
 tlv2322,TLV2322ID,typ_gbp,21.0 kHz
 tlv2322,TLV2322ID,typ_gbp,55.0 kHz
@@ -4616,7 +4616,7 @@ tlv2322,TLV2322ID,max_op_supply_volt,8 V
 tlv2322,TLV2322ID,min_op_temp,-40
 tlv2322,TLV2322ID,max_op_temp,85
 tlv2322,TLV2322IDR,part_family,N
-tlv2322,TLV2322IDR,typ_gbp,32.0 kHz
+tlv2322,TLV2322IDR,typ_gbp,27.0 kHz
 tlv2322,TLV2322IDR,typ_gbp,85.0 kHz
 tlv2322,TLV2322IDR,typ_gbp,21.0 kHz
 tlv2322,TLV2322IDR,typ_gbp,55.0 kHz
@@ -4627,7 +4627,7 @@ tlv2322,TLV2322IDR,max_op_supply_volt,8 V
 tlv2322,TLV2322IDR,min_op_temp,-40
 tlv2322,TLV2322IDR,max_op_temp,85
 tlv2322,TLV232IDRG4,part_family,N
-tlv2322,TLV232IDRG4,typ_gbp,33.0 kHz
+tlv2322,TLV232IDRG4,typ_gbp,27.0 kHz
 tlv2322,TLV232IDRG4,typ_gbp,85.0 kHz
 tlv2322,TLV232IDRG4,typ_gbp,21.0 kHz
 tlv2322,TLV232IDRG4,typ_gbp,55.0 kHz
@@ -4638,7 +4638,7 @@ tlv2322,TLV232IDRG4,max_op_supply_volt,8 V
 tlv2322,TLV232IDRG4,min_op_temp,-40
 tlv2322,TLV232IDRG4,max_op_temp,85
 tlv2322,TLV2322IP,part_family,N
-tlv2322,TLV2322IP,typ_gbp,34.0 kHz
+tlv2322,TLV2322IP,typ_gbp,27.0 kHz
 tlv2322,TLV2322IP,typ_gbp,85.0 kHz
 tlv2322,TLV2322IP,typ_gbp,21.0 kHz
 tlv2322,TLV2322IP,typ_gbp,55.0 kHz
@@ -4649,7 +4649,7 @@ tlv2322,TLV2322IP,max_op_supply_volt,8 V
 tlv2322,TLV2322IP,min_op_temp,-40
 tlv2322,TLV2322IP,max_op_temp,85
 tlv2322,TLV2322IPW,part_family,N
-tlv2322,TLV2322IPW,typ_gbp,35.0 kHz
+tlv2322,TLV2322IPW,typ_gbp,27.0 kHz
 tlv2322,TLV2322IPW,typ_gbp,85.0 kHz
 tlv2322,TLV2322IPW,typ_gbp,21.0 kHz
 tlv2322,TLV2322IPW,typ_gbp,55.0 kHz
@@ -4660,7 +4660,7 @@ tlv2322,TLV2322IPW,max_op_supply_volt,8 V
 tlv2322,TLV2322IPW,min_op_temp,-40
 tlv2322,TLV2322IPW,max_op_temp,85
 tlv2322,TLV2322IPWLE,part_family,N
-tlv2322,TLV2322IPWLE,typ_gbp,36.0 kHz
+tlv2322,TLV2322IPWLE,typ_gbp,27.0 kHz
 tlv2322,TLV2322IPWLE,typ_gbp,85.0 kHz
 tlv2322,TLV2322IPWLE,typ_gbp,21.0 kHz
 tlv2322,TLV2322IPWLE,typ_gbp,55.0 kHz
@@ -4671,7 +4671,7 @@ tlv2322,TLV2322IPWLE,max_op_supply_volt,8 V
 tlv2322,TLV2322IPWLE,min_op_temp,-40
 tlv2322,TLV2322IPWLE,max_op_temp,85
 tlv2322,TLV2322IPWR,part_family,N
-tlv2322,TLV2322IPWR,typ_gbp,37.0 kHz
+tlv2322,TLV2322IPWR,typ_gbp,27.0 kHz
 tlv2322,TLV2322IPWR,typ_gbp,85.0 kHz
 tlv2322,TLV2322IPWR,typ_gbp,21.0 kHz
 tlv2322,TLV2322IPWR,typ_gbp,55.0 kHz
@@ -4682,7 +4682,7 @@ tlv2322,TLV2322IPWR,max_op_supply_volt,8 V
 tlv2322,TLV2322IPWR,min_op_temp,-40
 tlv2322,TLV2322IPWR,max_op_temp,85
 tlv2322,TLV2324ID,part_family,N
-tlv2322,TLV2324ID,typ_gbp,38.0 kHz
+tlv2322,TLV2324ID,typ_gbp,27.0 kHz
 tlv2322,TLV2324ID,typ_gbp,85.0 kHz
 tlv2322,TLV2324ID,typ_gbp,21.0 kHz
 tlv2322,TLV2324ID,typ_gbp,55.0 kHz
@@ -4693,7 +4693,7 @@ tlv2322,TLV2324ID,max_op_supply_volt,8 V
 tlv2322,TLV2324ID,min_op_temp,-40
 tlv2322,TLV2324ID,max_op_temp,85
 tlv2322,TLV2324IDG4,part_family,N
-tlv2322,TLV2324IDG4,typ_gbp,39.0 kHz
+tlv2322,TLV2324IDG4,typ_gbp,27.0 kHz
 tlv2322,TLV2324IDG4,typ_gbp,85.0 kHz
 tlv2322,TLV2324IDG4,typ_gbp,21.0 kHz
 tlv2322,TLV2324IDG4,typ_gbp,55.0 kHz
@@ -4704,7 +4704,7 @@ tlv2322,TLV2324IDG4,max_op_supply_volt,8 V
 tlv2322,TLV2324IDG4,min_op_temp,-40
 tlv2322,TLV2324IDG4,max_op_temp,85
 tlv2322,TLV2324IDR,part_family,N
-tlv2322,TLV2324IDR,typ_gbp,40.0 kHz
+tlv2322,TLV2324IDR,typ_gbp,27.0 kHz
 tlv2322,TLV2324IDR,typ_gbp,85.0 kHz
 tlv2322,TLV2324IDR,typ_gbp,21.0 kHz
 tlv2322,TLV2324IDR,typ_gbp,55.0 kHz
@@ -4715,7 +4715,7 @@ tlv2322,TLV2324IDR,max_op_supply_volt,8 V
 tlv2322,TLV2324IDR,min_op_temp,-40
 tlv2322,TLV2324IDR,max_op_temp,85
 tlv2322,TLV2324IN,part_family,N
-tlv2322,TLV2324IN,typ_gbp,41.0 kHz
+tlv2322,TLV2324IN,typ_gbp,27.0 kHz
 tlv2322,TLV2324IN,typ_gbp,85.0 kHz
 tlv2322,TLV2324IN,typ_gbp,21.0 kHz
 tlv2322,TLV2324IN,typ_gbp,55.0 kHz
@@ -4726,7 +4726,7 @@ tlv2322,TLV2324IN,max_op_supply_volt,8 V
 tlv2322,TLV2324IN,min_op_temp,-40
 tlv2322,TLV2324IN,max_op_temp,85
 tlv2322,TLV2324IPW,part_family,N
-tlv2322,TLV2324IPW,typ_gbp,42.0 kHz
+tlv2322,TLV2324IPW,typ_gbp,27.0 kHz
 tlv2322,TLV2324IPW,typ_gbp,85.0 kHz
 tlv2322,TLV2324IPW,typ_gbp,21.0 kHz
 tlv2322,TLV2324IPW,typ_gbp,55.0 kHz
@@ -4737,7 +4737,7 @@ tlv2322,TLV2324IPW,max_op_supply_volt,8 V
 tlv2322,TLV2324IPW,min_op_temp,-40
 tlv2322,TLV2324IPW,max_op_temp,85
 tlv2322,TLV2324IPWLE,part_family,N
-tlv2322,TLV2324IPWLE,typ_gbp,43.0 kHz
+tlv2322,TLV2324IPWLE,typ_gbp,27.0 kHz
 tlv2322,TLV2324IPWLE,typ_gbp,85.0 kHz
 tlv2322,TLV2324IPWLE,typ_gbp,21.0 kHz
 tlv2322,TLV2324IPWLE,typ_gbp,55.0 kHz
@@ -4748,7 +4748,7 @@ tlv2322,TLV2324IPWLE,max_op_supply_volt,8 V
 tlv2322,TLV2324IPWLE,min_op_temp,-40
 tlv2322,TLV2324IPWLE,max_op_temp,85
 tlv2322,TLV2324IPWR,part_family,N
-tlv2322,TLV2324IPWR,typ_gbp,44.0 kHz
+tlv2322,TLV2324IPWR,typ_gbp,27.0 kHz
 tlv2322,TLV2324IPWR,typ_gbp,85.0 kHz
 tlv2322,TLV2324IPWR,typ_gbp,21.0 kHz
 tlv2322,TLV2324IPWR,typ_gbp,55.0 kHz
@@ -4759,6 +4759,4 @@ tlv2322,TLV2324IPWR,max_op_supply_volt,8 V
 tlv2322,TLV2324IPWR,min_op_temp,-40
 tlv2322,TLV2324IPWR,max_op_temp,85
 tlv2322,TLV2324Y,part_family,N
-tlv2322,TLV2324Y,typ_gbp,45.0 kHz
 tlv2322,TLV2322Y,part_family,N
-tlv2322,TLV2322Y,typ_gbp,46.0 kHz
