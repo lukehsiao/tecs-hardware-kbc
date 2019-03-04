@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 This script takes in a path containing Digikey's raw gold CSVs. It then reads in
 each raw CSV, formats it's gold data where:
@@ -8,7 +6,10 @@ and writes the combined output to the specified output CSV.
 """
 
 import csv
+import logging
 import os
+
+import requests
 
 from hack.utils.gold_utils.normalizers import (
     gain_bandwidth_normalizer,
@@ -25,6 +26,7 @@ from hack.utils.gold_utils.preprocessors import (
     preprocess_c_current_max,
     preprocess_ce_v_max,
     preprocess_dc_gain_min,
+    preprocess_doc,
     preprocess_freq_transition,
     preprocess_gbp,
     preprocess_manuf,
@@ -33,13 +35,25 @@ from hack.utils.gold_utils.preprocessors import (
     preprocess_polarity,
     preprocess_pwr_max,
     preprocess_supply_current,
-    preprocess_url,
     preprocess_vce_saturation_max,
 )
 
+# Configure logging for Hack
+logging.basicConfig(
+    format="[%(asctime)s][%(levelname)s] %(name)s:%(lineno)s - %(message)s",
+    level=logging.DEBUG,
+    handlers=[
+        logging.FileHandler(
+            os.path.join(os.path.dirname(__file__), f"format_digikey.log")
+        ),
+        logging.StreamHandler(),
+    ],
+)
+logger = logging.getLogger(__name__)
+
 
 def format_digikey_gold(
-    component, raw_gold_file, formatted_gold_file, seen, append=False
+    component, raw_gold_file, formatted_gold_file, seen, append=False, filenames="standard",
 ):
     delim = ";"
     with open(raw_gold_file, "r") as csvinput, open(
@@ -48,16 +62,28 @@ def format_digikey_gold(
         writer = csv.writer(csvoutput, lineterminator="\n")
         reader = csv.reader(csvinput)
         next(reader, None)  # Skip header row
+        session = requests.Session()  # Only initialize a requests.Session() once
         for line in reader:
             if component == "opamp":
                 """
                 TODO: Opamp formatting has not been vetted yet...
                 """
-                # TODO: Do we want to just skip adding the ones that have missing docs?
-                doc_name = preprocess_url(line[0])
+                
+                manuf = preprocess_manuf(line[4])  # TODO: These don't match
+                part_num = opamp_part_normalizer(line[3])
+		
+		# Right now, we get the filename from the URLs headers
+                if filenames == "url":
+                    doc_name = preprocess_doc(url, session=session)
+                elif filenames == "standard":
+                    # Set the doc_name to be manuf_partnum.pdf (as digikeyscraper does)
+                    doc_name = f"{manuf}_{part_num}"
+                else:
+                    logger.debug(f"Invalid filename format {filenames}, reverting to standard")
+                    doc_name = f"{manuf}_{part_num}"
+
                 part_family = "N/A"  # Digkey does not have part_family attribute
                 part_num = line[3]
-                manufacturer = line[4]  # TODO: These don't match
                 typ_gbp = preprocess_gbp(line[18])
                 typ_supply_current = preprocess_supply_current(line[22])
                 (min_op_supply_volt, max_op_supply_volt) = preprocess_operating_voltage(
@@ -87,8 +113,6 @@ def format_digikey_gold(
                     ("min_op_temp", min_op_temp, temperature_normalizer),
                     ("max_op_temp", max_op_temp, temperature_normalizer),
                 ]
-
-                part_num = opamp_part_normalizer(part_num)
 
             elif component == "transistor":
 
@@ -132,10 +156,19 @@ def format_digikey_gold(
                 NOTE: Normalization renders all CSVs the same (i.e. set units).
                 """
 
-                # Right now, we just use URLs for filenames
-                doc_name = preprocess_url(url)  # Checks for invalid URLs
                 manuf = preprocess_manuf(manufacturer)
+                part_num = transistor_part_normalizer(manuf_part_num)
 
+                # Right now, we get the filename from the URLs headers
+                if filenames == "url":
+                    doc_name = preprocess_doc(url, session=session)
+                elif filenames == "standard":
+                    # Set the doc_name to be manuf_partnum.pdf (as digikeyscraper does)
+                    doc_name = f"{manuf}_{part_num}"
+                else:
+                    logger.debug(f"Invalid filename format {filenames}, reverting to standard")
+                    doc_name = f"{manuf}_{part_num}"
+		
                 # Extract implied values from attribute conditions
                 # TODO: maybe check if the implied_supply_current's match?
                 (
@@ -199,10 +232,8 @@ def format_digikey_gold(
                     ("vce_sat_max", vce_saturation_max, general_normalizer),
                 ]
 
-                part_num = transistor_part_normalizer(manuf_part_num)
-
             else:
-                print("[ERROR]: Invalid hardware component")
+                logger.error(f"Invalid hardware component {component}")
                 os.exit()
 
             # Output tuples of each normalized attribute
@@ -210,7 +241,8 @@ def format_digikey_gold(
                 if "N/A" not in attr:
                     for a in attr.split(delim):
                         if len(a.strip()) > 0:
-                            output = [doc_name, manuf, part_num, name, normalizer(a)]
+                            source_file = str(raw_gold_file.split("/")[-1])
+                            output = [doc_name, manuf, part_num, name, normalizer(a), source_file]
                             if tuple(output) not in seen:
                                 writer.writerow(output)
                                 seen.add(tuple(output))
@@ -219,23 +251,26 @@ def format_digikey_gold(
 if __name__ == "__main__":
     # Transform the transistor dataset
     component = "transistor"
+    filenames = "url"
 
     # Change `digikey_csv_dir` to the absolute path where Digikey's raw CSVs are
     # located.
-    digikey_csv_dir = "/home/nchiang/repos/hack/transistors/data/csv/"
+    digikey_csv_dir = "/home/nchiang/repos/hack/hack/transistors/data/csv/"
 
     # Change `formatted_gold` to the absolute path of where you want the
     # combined gold to be written.
-    formatted_gold = "/home/nchiang/repos/hack/transistors/data/debug/digikey_gold.csv"
+    formatted_gold = (
+       f"/home/nchiang/repos/hack/hack/transistors/data/{filenames}_digikey_gold.csv"
+    )
     seen = set()
     # Run transformation
     for i, filename in enumerate(sorted(os.listdir(digikey_csv_dir))):
         if filename.endswith(".csv"):
             raw_path = os.path.join(digikey_csv_dir, filename)
-            print(f"[INFO]: Parsing {raw_path}")
+            logger.info(f"[INFO]: Parsing {raw_path}")
             if i == 0:  # create file on first iteration
-                format_digikey_gold(component, raw_path, formatted_gold, seen)
+                format_digikey_gold(component, raw_path, formatted_gold, seen, filenames=filenames)
             else:  # then just append to that same file
                 format_digikey_gold(
-                    component, raw_path, formatted_gold, seen, append=True
+                    component, raw_path, formatted_gold, seen, append=True, filenames=filenames
                 )

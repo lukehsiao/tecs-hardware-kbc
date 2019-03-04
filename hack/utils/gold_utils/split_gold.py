@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 This script takes in a single file of gold labels and parses them into the
 respective `dev` and `test` sets based on previously defined filenames in old

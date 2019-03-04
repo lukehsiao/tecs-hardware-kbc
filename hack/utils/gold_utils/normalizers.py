@@ -36,6 +36,8 @@ def gain_bandwidth_normalizer(gbp):
         return str(value) + " " + unit
 
     except Exception as e:
+        if gbp.endswith("MHz"):
+            return gbp.replace("MHz", "").strip()
         print(f"[ERROR]: {e} on gain bandwidth {parse}")
         pdb.set_trace()
 
@@ -46,17 +48,20 @@ def supply_current_normalizer(supply_current):
     """
     # NOTE: Currently ignoring the conditions.
     parse = split_val_condition(supply_current)
-
+    
     # Process Units
     try:
         (value, unit) = parse["value"].split(" ")
         value = float(value)
         if unit == "mA":
-            value = value * 1000
+            return str(value) + " " + unit
         elif unit == "nA":
-            value = value / 1000
-        return value
+            return str(value) + " " + unit
+        else:
+            raise ValueError(f"Invalid units {unit}")
     except Exception as e:
+        if supply_current.endswith("u A"):
+            return supply_current.replace("u A", "").strip()
         print(f"[ERROR]: {e} while normalizing supply_current {supply_current}")
         pdb.set_trace()
 
@@ -70,7 +75,7 @@ def opamp_voltage_normalizer(supply_voltage):
     try:
         if parse["value"].startswith("± "):
             parse["value"] = parse["value"].replace("± ", "±")
-        (value, unit) = parse["value"].split(" ")
+        (value, unit) = [i for i in parse["value"].split(" ") if i != ""]
     except Exception:
         print("[ERROR]: " + str(parse))
         pdb.set_trace()

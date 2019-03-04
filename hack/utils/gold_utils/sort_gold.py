@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 This script takes in a gold CSV file, sorts it, and writes the sorted output to
 the specified gold output CSV.
@@ -10,12 +8,12 @@ import operator
 
 if __name__ == "__main__":
     # Change `input` to the absolute path of the to-be-sorted raw CSV.
-    input = "/home/nchiang/repos/hack/hack/transistors/data/test/new_test_gold.csv"
+    input = "/home/nchiang/repos/hack/hack/transistors/data/unsorted_formatted_gold.csv"
 
     # Change `output` to the absolute path of where you want the sorted output to
     # be written.
     output = (
-        "/home/nchiang/repos/hack/hack/transistors/data/test/new_sorted_test_gold.csv"
+        "/home/nchiang/repos/hack/hack/transistors/data/formatted_gold.csv"
     )
     data = csv.reader(open(input), delimiter=",")
 
