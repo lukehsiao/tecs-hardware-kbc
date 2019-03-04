@@ -1,10 +1,12 @@
 import logging
 import os
 import pdb
+import math
 import pickle
 
 import matplotlib.pyplot as plt
 import numpy as np
+from pprint import pformat
 from fonduer import Meta
 from fonduer.candidates import CandidateExtractor, MentionExtractor
 from fonduer.candidates.models import Mention, candidate_subclass, mention_subclass
@@ -26,7 +28,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 # Configure logging for Hack
 logging.basicConfig(
     format="[%(asctime)s][%(levelname)s] %(name)s:%(lineno)s - %(message)s",
-    level=logging.DEBUG,
+    level=logging.INFO,
     handlers=[
         logging.FileHandler(os.path.join(os.path.dirname(__file__), f"opamps.log")),
         logging.StreamHandler(),
@@ -200,6 +202,11 @@ def labeling(session, cands, cand, split=1, train=False, first_time=True, parall
 def scoring(disc_model, cands, docs, F_mat, num=100):
     logger.info("Calculating the best F1 score and threshold (b)...")
 
+    # First, check total recall
+    result = entity_level_scores(cands[0], corpus=docs)
+
+    logger.info(f"Total Recall: {result.rec:.3f}")
+
     # Iterate over a range of `b` values in order to find the b with the
     # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
     Y_prob = disc_model.marginals((cands[0], F_mat[0]))
@@ -219,8 +226,9 @@ def scoring(disc_model, cands, docs, F_mat, num=100):
             break
         result = entity_level_scores(true_pred, corpus=docs)
         logger.info(
-            f"({b:.3f}): f1:{result.f1:.3f} p:{result.prec:.3f} r:{result.rec:.3f}"
+            f"({b:.3f}), f1:{result.f1:.3f} p:{result.prec:.3f} r:{result.rec:.3f}"
         )
+
         if result.f1 > best_result.f1:
             best_result = result
             best_b = b
@@ -247,6 +255,9 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         session, first_time=parse, parallel=parallel, max_docs=max_docs
     )
 
+    logger.info(f"Test Docs: {pformat(test_docs)}")
+    logger.info(f"Dev Docs: {pformat(dev_docs)}")
+
     (Gain, Current) = mention_extraction(
         session, docs, first_time=first_time, parallel=parallel
     )
@@ -271,20 +282,34 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
     )
     logger.info("Labeling training data...")
     L_train = labeling(
-        session, train_cands, Cand, split=0, train=True, parallel=parallel
+        session,
+        train_cands,
+        Cand,
+        split=0,
+        train=True,
+        first_time=False,
+        parallel=parallel,
     )
     logger.info("Done.")
 
     marginals = generative_model(L_train)
 
-    labeling(session, dev_cands, Cand, split=1, train=False, parallel=parallel)
+    labeling(
+        session,
+        dev_cands,
+        Cand,
+        split=1,
+        train=False,
+        first_time=False,
+        parallel=parallel,
+    )
 
     disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
 
     best_result, best_b = scoring(disc_models, dev_cands, dev_docs, F_dev, num=100)
 
     try:
-        fp_cands = entity_to_candidates(best_result.FP[0], dev_cands[0])
+        fp_cands = entity_to_candidates(best_result.FP[0], test_cands[0])
     except Exception:
         pass
 
@@ -294,10 +319,10 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
 
 if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
-    parallel = 16
+    parallel = 8
     component = "opamps"
     conn_string = f"postgresql:///{component}"
-    first_time = True
+    first_time = False
     parse = False
     max_docs = 100
     logger.info(f"\n\n")

@@ -43,8 +43,6 @@ def get_gold_set(docs=None):
                     temp_dict[doc] = {"typ_gbp": set(), "typ_supply_current": set()}
                 if docs is None or doc.upper() in docs:
                     if attr in ["typ_gbp", "typ_supply_current"]:
-                        # replace 'u' with 'μ'
-                        val = val.replace("u", "μ")
                         # Allow the double of a +/- value to be valid also.
                         if val.startswith("±"):
                             temp_dict[doc][attr].add(2 * val[1:])
@@ -60,7 +58,9 @@ def get_gold_set(docs=None):
     for doc, values in temp_dict.items():
         for gain in values["typ_gbp"]:
             for current in values["typ_supply_current"]:
-                gold_set.add((doc.upper(), Quantity(gain), Quantity(current)))
+                gold_set.add(
+                    (doc.upper(), Quantity(gain), Quantity(current.replace("u", "μ")))
+                )
 
     return gold_set
 
@@ -118,7 +118,7 @@ def entity_level_scores(candidates, corpus=None):
 
     # Turn CandidateSet into set of tuples
     entities = set()
-    for i, c in enumerate(tqdm(candidates)):
+    for c in candidates:
         entity = cand_to_entity(c)
         if entity:
             entities.add(entity)
@@ -127,6 +127,7 @@ def entity_level_scores(candidates, corpus=None):
     TP = len(TP_set)
     FP = len(FP_set)
     FN = len(FN_set)
+    pdb.set_trace()
 
     prec = TP / (TP + FP) if TP + FP > 0 else float("nan")
     rec = TP / (TP + FN) if TP + FN > 0 else float("nan")

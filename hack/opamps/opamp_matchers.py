@@ -28,12 +28,14 @@ def get_gain_matcher():
     def hertz_units(attr):
         hertz_units = ["mhz", "khz"]
         keywords = ["gain", "unity", "bandwidth", "gbp", "gbw", "gbwp"]
-        related_ngrams = set([_.lower() for _ in get_right_ngrams(attr, n_max=2) if _])
-        related_ngrams.update(
-            [_.lower() for _ in get_row_ngrams(attr, n_max=1, spread=[3, 3]) if _]
-        )
+        #  filter_keywords = ["-3 db"]
+        related_ngrams = set(get_right_ngrams(attr, n_max=1, lower=True))
+        related_ngrams.update(get_row_ngrams(attr, spread=[2, 2], n_max=1, lower=True))
+        #
+        #  if overlap(filter_keywords, related_ngrams):
+        #      return False
 
-        if overlap(hertz_units, related_ngrams) and overlap(keywords, related_ngrams):
+        if overlap(hertz_units, related_ngrams) or overlap(keywords, related_ngrams):
             return True
 
         return False
@@ -47,19 +49,17 @@ def get_gain_matcher():
     condition_lambda = LambdaFunctionMatcher(func=_condition)
     location_lambda = LambdaFunctionMatcher(func=_first_page_or_table)
 
-    return Intersect(gain_rgx, hertz_lambda, location_lambda, condition_lambda)
+    return Intersect(hertz_lambda, gain_rgx, location_lambda, condition_lambda)
 
 
 def get_supply_current_matcher():
     def current_units(attr):
-        current_units = ["ma", "μa", "ua"]
-        keywords = ["current", "supply", "quiescent", "is"]
-        related_ngrams = set([_.lower() for _ in get_right_ngrams(attr, n_max=1) if _])
-        related_ngrams.update(
-            [_.lower() for _ in get_row_ngrams(attr, spread=[3, 3], n_max=1) if _]
-        )
+        current_units = ["ma", "μa", "ua", "a"]
+        keywords = ["supply", "quiescent", "is"]
+        related_ngrams = set(get_right_ngrams(attr, n_max=1, lower=True))
+        related_ngrams.update(get_row_ngrams(attr, spread=[2, 2], n_max=1, lower=True))
 
-        if overlap(current_units, related_ngrams) and overlap(keywords, related_ngrams):
+        if overlap(current_units, related_ngrams) or overlap(keywords, related_ngrams):
             return True
 
         return False
@@ -73,4 +73,4 @@ def get_supply_current_matcher():
     condition_lambda = LambdaFunctionMatcher(func=_condition)
     location_lambda = LambdaFunctionMatcher(func=_first_page_or_table)
 
-    return Intersect(current_rgx, condition_lambda, current_lambda, location_lambda)
+    return Intersect(current_rgx, current_lambda, condition_lambda, location_lambda)
