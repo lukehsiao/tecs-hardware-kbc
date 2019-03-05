@@ -6,6 +6,7 @@ using the `Analysis` dataset.
 import csv
 import logging
 import os
+import pdb
 import pickle
 from enum import Enum
 
@@ -289,8 +290,6 @@ def labeling(session, cands, cand, split=1, train=False, first_time=True, parall
             )
             logger.info(f"\n{df.to_string()}")
         except Exception:
-            import pdb
-
             pdb.set_trace()
 
     return L_mat, L_gold
@@ -451,7 +450,7 @@ def digikey_scoring(
         # for manual debugging
         with open(outfile, "w") as out:
             writer = csv.writer(out)
-            writer.writerow(("TYPE", "FILENAME", "PART", "OUR VALS", "NOTES"))
+            writer.writerow(("Type:", "Filename:", "Part:", "Our Vals:", "Notes:"))
             for (doc, part, val) in best_result.FP:
                 if doc in gold_dic:
                     if part in gold_dic[doc]:
@@ -616,7 +615,7 @@ def main(
 if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
     parallel = 8  # Change parallel for watchog
-    component = "transistors_analysis"
+    component = "large_transistors_analysis"
     conn_string = f"postgresql://localhost:5432/{component}"
     first_time = False
     relation = Relation.CE_V_MAX
@@ -626,7 +625,7 @@ if __name__ == "__main__":
 
     main(
         conn_string,
-        max_docs=1000,
+        max_docs=3000,
         relation=relation,
         first_time=first_time,
         parallel=parallel,

@@ -7,6 +7,7 @@ import codecs
 import csv
 import logging
 import os
+import pdb
 from builtins import range
 from collections import namedtuple
 
@@ -218,31 +219,34 @@ Digikey comparison:
 def get_digikey_gold_set(
     doc_on=True, part_on=True, val_on=True, attribute=None, docs=None
 ):
-
-    dirname = os.path.dirname(__file__)
-    gold_set = set()
-    digikey_goldfile = (os.path.join(dirname, "data/standard_digikey_gold.csv"),)
-    with codecs.open(digikey_goldfile, encoding="utf-8") as csvfile:
-        gold_reader = csv.reader(csvfile)
-        for row in gold_reader:
-            (doc, manuf, part, attr, val, _) = row
-            # Remove unit from value (i.e. 100 MHz becomes 100)
-            # TODO: Normalize values as they are in transistor gold labels
-            val = val.strip().split(" ")[0]
-            if docs is None or doc.upper() in docs:
-                # Only look at relevant labels
-                if attribute and attr != attribute:
-                    continue
-                else:
-                    key = []
-                    if doc_on:
-                        key.append(doc.upper())
-                    if part_on:
-                        key.append(part.upper())
-                    if val_on:
-                        key.append(val.upper())
-                    gold_set.add(tuple(key))
-    return gold_set
+    try:
+        dirname = os.path.dirname(__file__)
+        gold_set = set()
+        digikey_goldfile = os.path.join(dirname, "data/standard_digikey_gold.csv")
+        with codecs.open(digikey_goldfile, encoding="utf-8") as csvfile:
+            gold_reader = csv.reader(csvfile)
+            for row in gold_reader:
+                (doc, manuf, part, attr, val, _) = row
+                # Remove unit from value (i.e. 100 MHz becomes 100)
+                # TODO: Normalize values as they are in transistor gold labels
+                val = val.strip().split(" ")[0]
+                if docs is None or doc.upper() in docs:
+                    # Only look at relevant labels
+                    if attribute and attr != attribute:
+                        continue
+                    else:
+                        key = []
+                        if doc_on:
+                            key.append(doc.upper())
+                        if part_on:
+                            key.append(part.upper())
+                        if val_on:
+                            key.append(val.upper())
+                        gold_set.add(tuple(key))
+        return gold_set
+    except Exception as e:
+        logger.error(f"{e} while fetching Digikey's gold set.")
+        pdb.set_trace()
 
 
 def get_digikey_gold_dic(gold_set):
