@@ -202,11 +202,6 @@ def labeling(session, cands, cand, split=1, train=False, first_time=True, parall
 def scoring(disc_model, cands, docs, F_mat, num=100):
     logger.info("Calculating the best F1 score and threshold (b)...")
 
-    # First, check total recall
-    result = entity_level_scores(cands[0], corpus=docs)
-
-    logger.info(f"Total Recall: {result.rec:.3f}")
-
     # Iterate over a range of `b` values in order to find the b with the
     # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
     Y_prob = disc_model.marginals((cands[0], F_mat[0]))
@@ -271,47 +266,52 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         first_time=first_time,
         parallel=parallel,
     )
-    F_train, F_dev, F_test = featurization(
-        session,
-        train_cands,
-        dev_cands,
-        test_cands,
-        Cand,
-        first_time=first_time,
-        parallel=parallel,
-    )
-    logger.info("Labeling training data...")
-    L_train = labeling(
-        session,
-        train_cands,
-        Cand,
-        split=0,
-        train=True,
-        first_time=False,
-        parallel=parallel,
-    )
-    logger.info("Done.")
 
-    marginals = generative_model(L_train)
+    # First, check total recall
+    result = entity_level_scores(dev_cands[0], corpus=dev_docs)
+    logger.info(f"Total Dev Recall: {result.rec:.3f}")
+    result = entity_level_scores(test_cands[0], corpus=test_docs)
+    logger.info(f"Total Test Recall: {result.rec:.3f}")
 
-    labeling(
-        session,
-        dev_cands,
-        Cand,
-        split=1,
-        train=False,
-        first_time=False,
-        parallel=parallel,
-    )
+    #  F_train, F_dev, F_test = featurization(
+    #      session,
+    #      train_cands,
+    #      dev_cands,
+    #      test_cands,
+    #      Cand,
+    #      first_time=first_time,
+    #      parallel=parallel,
+    #  )
+    #  logger.info("Labeling training data...")
+    #  L_train = labeling(
+    #      session,
+    #      train_cands,
+    #      Cand,
+    #      split=0,
+    #      train=True,
+    #      parallel=parallel,
+    #  )
+    #  logger.info("Done.")
+    #
+    #  marginals = generative_model(L_train)
+    #
+    #  labeling(
+    #      session,
+    #      dev_cands,
+    #      Cand,
+    #      split=1,
+    #      train=False,
+    #      parallel=parallel,
+    #  )
 
-    disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
-
-    best_result, best_b = scoring(disc_models, dev_cands, dev_docs, F_dev, num=100)
-
-    try:
-        fp_cands = entity_to_candidates(best_result.FP[0], test_cands[0])
-    except Exception:
-        pass
+    #  disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
+    #
+    #  best_result, best_b = scoring(disc_models, dev_cands, dev_docs, F_dev, num=100)
+    #
+    #  try:
+    #      fp_cands = entity_to_candidates(best_result.FP[0], test_cands[0])
+    #  except Exception:
+    #      pass
 
     # End with an interactive prompt
     pdb.set_trace()
@@ -322,7 +322,7 @@ if __name__ == "__main__":
     parallel = 8
     component = "opamps"
     conn_string = f"postgresql:///{component}"
-    first_time = False
+    first_time = True
     parse = False
     max_docs = 100
     logger.info(f"\n\n")

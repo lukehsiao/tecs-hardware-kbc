@@ -43,7 +43,7 @@ def pos_gain(c):
 def pos_gain_keywords(c):
     return (
         TRUE
-        if overlap(["typ", "typ."], [_.lower() for _ in get_col_ngrams(c.gain) if _])
+        if overlap(["typ", "typ."], get_col_ngrams(c.gain, lower=True))
         else ABSTAIN
     )
 
@@ -90,6 +90,12 @@ def neg_gain_keywords_in_column(c):
 def pos_current(c):
     return TRUE if "current" in get_row_ngrams(c.supply_current) else ABSTAIN
 
+def pos_current_typ(c):
+    return (
+        TRUE
+        if overlap(["typ", "typ."], get_col_ngrams(c.supply_current, lower=True))
+        else ABSTAIN
+    )
 
 def neg_current_keywords_in_column(c):
     return (
@@ -133,4 +139,5 @@ opamp_lfs = [
     neg_current_keywords_in_vert,
     neg_current_keywords_in_column,
     high_page_num,
+    pos_current_typ,
 ]
