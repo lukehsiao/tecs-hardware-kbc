@@ -159,7 +159,6 @@ def entity_level_scores(candidates, corpus=None):
     prec = TP / (TP + FP) if TP + FP > 0 else float("nan")
     rec = TP / (TP + FN) if TP + FN > 0 else float("nan")
     f1 = 2 * (prec * rec) / (prec + rec) if prec + rec > 0 else float("nan")
-    pdb.set_trace()
     return Score(
         f1, prec, rec, sorted(list(TP_set)), sorted(list(FP_set)), sorted(list(FN_set))
     )

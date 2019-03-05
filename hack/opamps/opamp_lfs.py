@@ -25,13 +25,19 @@ FALSE = 1
 TRUE = 2
 
 
-def high_page_num(c):
+def neg_low_page_num(c):
     gain_pg = get_page(c.gain)
     current_pg = get_page(c.supply_current)
 
-    if gain_pg > 10 or current_pg > 10:
+    if gain_pg > 8 or current_pg > 8:
         return FALSE
 
+    return ABSTAIN
+
+
+def pos_same_page(c):
+    if get_page(c.gain) == get_page(c.supply_current):
+        return TRUE
     return ABSTAIN
 
 
@@ -54,6 +60,7 @@ def neg_gain_keywords_in_row(c):
         if overlap(
             [
                 "small",
+                "current",
                 "thd",
                 "signal",
                 "flatness",
@@ -79,7 +86,18 @@ def neg_gain_keywords_in_column(c):
     return (
         FALSE
         if overlap(
-            ["test", "condition", "conditions", "vgn", "f", "-3", "db", "dbc"],
+            [
+                "max",
+                "min",
+                "test",
+                "condition",
+                "conditions",
+                "vgn",
+                "f",
+                "-3",
+                "db",
+                "dbc",
+            ],
             get_col_ngrams(c.gain, lower=True),
         )
         else ABSTAIN
@@ -88,7 +106,16 @@ def neg_gain_keywords_in_column(c):
 
 # Supply Current LFs
 def pos_current(c):
-    return TRUE if "current" in get_row_ngrams(c.supply_current) else ABSTAIN
+    row_ngrams = list(get_row_ngrams(c.supply_current))
+    keywords = ["supply", "quiescent", "iq", "is", "idd"]
+    return TRUE if overlap(keywords, row_ngrams) else ABSTAIN
+
+
+def pos_current_units(c):
+    row_ngrams = list(get_row_ngrams(c.supply_current))
+    current_units = ["ma", "μa", "ua", "µa", "\uf06da"]
+    return TRUE if overlap(current_units, row_ngrams) else ABSTAIN
+
 
 def pos_current_typ(c):
     return (
@@ -96,6 +123,7 @@ def pos_current_typ(c):
         if overlap(["typ", "typ."], get_col_ngrams(c.supply_current, lower=True))
         else ABSTAIN
     )
+
 
 def neg_current_keywords_in_column(c):
     return (
@@ -106,6 +134,7 @@ def neg_current_keywords_in_column(c):
         )
         else ABSTAIN
     )
+
 
 def neg_current_keywords_in_vert(c):
     return (
@@ -133,11 +162,13 @@ opamp_lfs = [
     pos_gain,
     pos_gain_keywords,
     pos_current,
+    pos_current_units,
+    pos_current_typ,
     neg_gain_keywords_in_row,
     neg_gain_keywords_in_column,
     neg_current_keywords_in_row,
     neg_current_keywords_in_vert,
     neg_current_keywords_in_column,
-    high_page_num,
-    pos_current_typ,
+    neg_low_page_num,
+    pos_same_page,
 ]
