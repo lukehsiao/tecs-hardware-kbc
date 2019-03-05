@@ -18,7 +18,7 @@ class MentionNgramsOpamps(MentionNgrams):
                 ts.get_span(),
                 re.U,
             )
-            m2 = re.match(r"^(\d+)\s*\.\s*(\d+)$", ts.get_span())
+            m2 = re.match(r"^(\d+)\s*\.?\s*(\d+)$", ts.get_span())
             if m:
                 if m.group(1) is None:
                     temp = ""
