@@ -94,7 +94,7 @@ def cand_to_entity(c):
 
     current_ngrams = set(get_row_ngrams(c[1], lower=False))
     # Get a set of the current units
-    current_ngrams = set([_ for _ in current_ngrams if _.endswith("A")])
+    current_ngrams = set([_ for _ in current_ngrams if _ and _.endswith("A")])
 
     if len(current_ngrams) > 1:
         logger.debug(f"current_ngrams: {current_ngrams}")
@@ -108,12 +108,33 @@ def cand_to_entity(c):
 
     # Needed to handle Adobe's poor conversion of unicode mu
     current_unit = current_ngrams.pop().replace("\uf06d", "μ")
-    result = (
-        doc,
-        Quantity(f"{gain} {gain_unit}"),
-        Quantity(f"{current} {current_unit}"),
-    )
-    return result
+
+    # Allow the double of a +/- value to be valid also.
+    try:
+        if current.startswith("±"):
+            result = (
+                doc,
+                Quantity(f"{gain} {gain_unit}"),
+                Quantity(f"{str(2 * float(current[1:]))} {current_unit}"),
+            )
+            yield result
+
+            result = (
+                doc,
+                Quantity(f"{gain} {gain_unit}"),
+                Quantity(f"{current[1:]} {current_unit}"),
+            )
+            yield result
+        else:
+            result = (
+                doc,
+                Quantity(f"{gain} {gain_unit}"),
+                Quantity(f"{current} {current_unit}"),
+            )
+            yield result
+    except Exception:
+        logger.debug(f"{gain} {gain_unit} or {current} {current_unit} is not valid.")
+        return
 
 
 def entity_level_scores(candidates, corpus=None):
@@ -127,19 +148,18 @@ def entity_level_scores(candidates, corpus=None):
     # Turn CandidateSet into set of tuples
     entities = set()
     for c in tqdm(candidates):
-        entity = cand_to_entity(c)
-        if entity:
+        for entity in cand_to_entity(c):
             entities.add(entity)
 
     (TP_set, FP_set, FN_set) = entity_confusion_matrix(entities, gold_set)
     TP = len(TP_set)
     FP = len(FP_set)
     FN = len(FN_set)
-    pdb.set_trace()
 
     prec = TP / (TP + FP) if TP + FP > 0 else float("nan")
     rec = TP / (TP + FN) if TP + FN > 0 else float("nan")
     f1 = 2 * (prec * rec) / (prec + rec) if prec + rec > 0 else float("nan")
+    pdb.set_trace()
     return Score(
         f1, prec, rec, sorted(list(TP_set)), sorted(list(FP_set)), sorted(list(FN_set))
     )
@@ -148,7 +168,7 @@ def entity_level_scores(candidates, corpus=None):
 def entity_to_candidates(entity, candidate_subset):
     matches = []
     for c in candidate_subset:
-        c_entity = cand_to_entity(c)
-        if c_entity == entity:
-            matches.append(c)
+        for c_entity in cand_to_entity(c):
+            if c_entity == entity:
+                matches.append(c)
     return matches

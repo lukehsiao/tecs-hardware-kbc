@@ -26,15 +26,27 @@ def _condition(attr):
 def get_gain_matcher():
     def hertz_units(attr):
         hertz_units = ["mhz", "khz"]
-        keywords = ["gain", "unity", "bandwidth", "gbp", "gbw", "gbwp"]
-        filter_keywords = ["-3 db", "maximum"]
+        keywords = [
+            "product",
+            "gain",
+            "gain",
+            "unity",
+            "bandwidth",
+            "gbp",
+            "gbw",
+            "gbwp",
+        ]
+        filter_keywords = ["-3 db", "maximum", "minimum", "impedance", "voltage"]
         related_ngrams = set(get_right_ngrams(attr, n_max=1, lower=True))
-        related_ngrams.update(get_row_ngrams(attr, n_max=1, lower=True))
+        related_ngrams.update(get_row_ngrams(attr, n_max=1, spread=[-2, 2], lower=True))
 
-        if overlap(filter_keywords, related_ngrams):
+        if attr.get_span().strip() == "0":
             return False
 
-        if overlap(hertz_units, related_ngrams) or overlap(keywords, related_ngrams):
+        if overlap(filter_keywords, get_row_ngrams(attr, n_max=1, lower=True)):
+            return False
+
+        if overlap(hertz_units, related_ngrams) and overlap(keywords, related_ngrams):
             return True
 
         return False
@@ -54,16 +66,23 @@ def get_gain_matcher():
 def get_supply_current_matcher():
     def current_units(attr):
 
-        current_units = ["ma", "μa", "ua", "a"]
-        keywords = ["supply", "quiescent", "is", "idd"]
-        filter_keywords = ["voltage", "offset", "bias"]
+        # NOTE: These two symbols for mu are unique, not duplicates.
+        current_units = ["ma", "μa", "ua", "µa", "\uf06da"]
+        keywords = ["supply", "quiescent", "iq", "is", "idd"]
+        filter_keywords = [
+            "voltage",
+            "offset",
+            "bias",
+            "logic",
+            "shutdown",
+        ]
         related_ngrams = set(get_right_ngrams(attr, n_max=1, lower=True))
-        related_ngrams.update(get_row_ngrams(attr, n_max=1, lower=True))
+        related_ngrams.update(get_row_ngrams(attr, n_max=1, spread=[-2, 2], lower=True))
 
-        if overlap(filter_keywords, related_ngrams):
+        if overlap(filter_keywords, get_row_ngrams(attr, n_max=1, lower=True)):
             return False
 
-        if overlap(current_units, related_ngrams) or overlap(keywords, related_ngrams):
+        if overlap(current_units, related_ngrams) and overlap(keywords, related_ngrams):
             return True
 
         return False
