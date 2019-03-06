@@ -362,6 +362,7 @@ def scoring(
             if result.f1 > best_result.f1:
                 best_result = result
                 best_b = b
+                best_true_pred = true_pred
         except Exception as e:
             logger.debug(f"{e}, skipping.")
             break
@@ -379,7 +380,7 @@ def scoring(
         f"| FN: {len(best_result.FN)}"
     )
     logger.info("===================================================\n")
-    return best_result, best_b
+    return best_result, best_b, best_true_pred
 
 
 """
@@ -393,55 +394,105 @@ def digikey_scoring(
     analysis_cands,
     analysis_docs,
     F_analysis,
+    gold="digikey",
     parts_by_doc=None,
     num=100,
     debug=False,
     outfile="data/digikey_discrepancies.csv",
 ):
-    logger.info("Calculating the best Digikey based F1 score and threshold (b)...")
+    if gold == "digikey":  # Use Digikey as gold
+        logger.info("Calculating the best Digikey based F1 score and threshold (b)...")
 
-    # Iterate over a range of `b` values in order to find the b with the
-    # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
-    Y_prob = disc_model.marginals((analysis_cands[0], F_analysis[0]))
+        # Iterate over a range of `b` values in order to find the b with the
+        # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
+        Y_prob = disc_model.marginals((analysis_cands[0], F_analysis[0]))
 
-    # Get prediction for a particular b, store the full tuple to output
-    # (b, pref, rec, f1, TP, FP, FN)
-    best_result = Score(0, 0, 0, [], [], [])
-    best_b = 0
-    for b in np.linspace(0, 1, num=num):
-        try:
-            analysis_score = np.array(
-                [TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob]
-            )
-            true_pred = [
-                analysis_cands[0][_]
-                for _ in np.nditer(np.where(analysis_score == TRUE))
-            ]
-            (gold_dic, result) = digikey_entity_level_scores(
-                true_pred,
-                attribute=relation.value,
-                corpus=analysis_docs,
-                parts_by_doc=parts_by_doc,
-            )
-            logger.info(f"b = {b}, f1 = {result.f1}")
-            if result.f1 > best_result.f1:
-                best_result = result
-                best_b = b
-        except Exception as e:
-            logger.debug(f"{e}, skipping.")
-            break
+        # Get prediction for a particular b, store the full tuple to output
+        # (b, pref, rec, f1, TP, FP, FN)
+        best_result = Score(0, 0, 0, [], [], [])
+        best_b = 0
+        for b in np.linspace(0, 1, num=num):
+            try:
+                analysis_score = np.array(
+                    [TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob]
+                )
+                true_pred = [
+                    analysis_cands[0][_]
+                    for _ in np.nditer(np.where(analysis_score == TRUE))
+                ]
+                (_, result) = digikey_entity_level_scores(
+                    true_pred,
+                    attribute=relation.value,
+                    corpus=analysis_docs,
+                    parts_by_doc=parts_by_doc,
+                )
+                logger.info(f"b = {b}, f1 = {result.f1}")
+                if result.f1 > best_result.f1:
+                    best_result = result
+                    best_b = b
+                    best_true_pred = true_pred
+            except Exception as e:
+                logger.debug(f"{e}, skipping.")
+                break
+
+    elif gold == "ours":  # Use our gold labels for classification
+        logger.info("Calcularing the best F1 score and threshold (b)...")
+
+        # Iterate over a range of `b` values in order to find the b with the
+        # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
+        Y_prob = disc_model.marginals((analysis_cands[0], F_analysis[0]))
+
+        # Get prediction for a particular b, store the full tuple to output
+        # (b, pref, rec, f1, TP, FP, FN)
+        best_result = Score(0, 0, 0, [], [], [])
+        best_b = 0
+        for b in np.linspace(0, 1, num=num):
+            try:
+                analysis_score = np.array(
+                    [TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob]
+                )
+                true_pred = [
+                    analysis_cands[0][_]
+                    for _ in np.nditer(np.where(analysis_score == TRUE))
+                ]
+                result = entity_level_scores(
+                    true_pred,
+                    attribute=relation.value,
+                    corpus=analysis_docs,
+                    parts_by_doc=parts_by_doc,
+                )
+                logger.info(f"b = {b}, f1 = {result.f1}")
+                if result.f1 > best_result.f1:
+                    best_result = result
+                    best_b = b
+                    best_true_pred = true_pred
+            except Exception as e:
+                logger.debug(f"{e}, skipping.")
+                break
+    else:
+        logger.error("Invalid gold type {gold}")
+        pdb.set_trace()
+
+    # Compare results with Digikey gold
+    logger.info("Comparing final results with Digikey...")
+    (gold_dic, end_result) = digikey_entity_level_scores(
+        best_true_pred,
+        attribute=relation.value,
+        corpus=analysis_docs,
+        parts_by_doc=parts_by_doc,
+    )
 
     logger.info("=================================================================")
     logger.info(f"Digikey based scoring on Entity-Level Gold Data with b={best_b}")
     logger.info("=================================================================")
-    logger.info(f"Corpus Precision {best_result.prec:.3f}")
-    logger.info(f"Corpus Recall    {best_result.rec:.3f}")
-    logger.info(f"Corpus F1        {best_result.f1:.3f}")
+    logger.info(f"Corpus Precision {end_result.prec:.3f}")
+    logger.info(f"Corpus Recall    {end_result.rec:.3f}")
+    logger.info(f"Corpus F1        {end_result.f1:.3f}")
     logger.info("-----------------------------------------------------------------")
     logger.info(
-        f"TP: {len(best_result.TP)} "
-        f"| FP: {len(best_result.FP)} "
-        f"| FN: {len(best_result.FN)}"
+        f"TP: {len(end_result.TP)} "
+        f"| FP: {len(end_result.FP)} "
+        f"| FN: {len(end_result.FN)}"
     )
     logger.info("=================================================================\n")
 
@@ -584,7 +635,7 @@ def main(
     disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
 
     parts_by_doc = load_parts_by_doc()
-    best_result, best_b = scoring(
+    best_result, best_b, best_true_pred = scoring(
         relation,
         disc_models,
         test_cands,
@@ -615,7 +666,7 @@ def main(
 if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
     parallel = 8  # Change parallel for watchog
-    component = "large_transistors_analysis"
+    component = "our_gold_large_transistor_analysis"
     conn_string = f"postgresql://localhost:5432/{component}"
     first_time = False
     relation = Relation.CE_V_MAX
