@@ -150,10 +150,10 @@ def generative_model(L_train, n_epochs=500, print_every=100):
     model = LabelModel(k=2)
 
     logger.info(f"Training generative model for...")
-    model.train_model(L_train[0], n_epochs=n_epochs, print_every=print_every)
+    model.train_model(L_train, n_epochs=n_epochs, print_every=print_every)
     logger.info("Done.")
 
-    marginals = model.predict_proba(L_train[0])
+    marginals = model.predict_proba(L_train)
     plt.hist(marginals[:, TRUE - 1], bins=20)
     plt.savefig(os.path.join(os.path.dirname(__file__), f"opamps_marginals.pdf"))
     return marginals
@@ -290,8 +290,6 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
     )
     logger.info("Done.")
 
-    marginals = generative_model(L_train)
-
     logger.info("Labeling dev data...")
     labeling(
         session,
@@ -303,11 +301,25 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         first_time=False,
         parallel=parallel,
     )
+
+    marginals = generative_model(L_train[0])
+
     disc_models = discriminative_model(
         train_cands[0], F_train[0], marginals, n_epochs=10
     )
     best_result, best_b = scoring(
         disc_models, dev_cands[0], dev_docs, F_dev[0], num=100
+    )
+
+    print_scores(best_result, best_b)
+
+    marginals = generative_model(L_train[1])
+
+    disc_models = discriminative_model(
+        train_cands[1], F_train[1], marginals, n_epochs=10
+    )
+    best_result, best_b = scoring(
+        disc_models, dev_cands[1], dev_docs, F_dev[1], num=100
     )
 
     print_scores(best_result, best_b)
