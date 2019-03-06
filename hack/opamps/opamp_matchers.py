@@ -3,7 +3,6 @@ import logging
 from fonduer.candidates.matchers import Intersect, LambdaFunctionMatcher, RegexMatchSpan
 from fonduer.utils.data_model_utils import (
     get_col_ngrams,
-    get_neighbor_cell_ngrams,
     get_page,
     get_right_ngrams,
     get_row_ngrams,
@@ -40,15 +39,6 @@ def get_gain_matcher():
         filter_keywords = ["-3 db", "maximum", "minimum", "impedance"]
         related_ngrams = set(get_right_ngrams(attr, n_max=1, lower=True))
         related_ngrams.update(get_row_ngrams(attr, n_max=1, spread=[-2, 2], lower=True))
-        right_ngrams = set(
-            [
-                x[0]
-                for x in get_neighbor_cell_ngrams(
-                    attr, n_max=1, dist=4, directions=True
-                )
-                if x[-1] == "RIGHT"
-            ]
-        )
 
         if attr.get_span().strip() == "0":
             return False
@@ -56,7 +46,7 @@ def get_gain_matcher():
         if overlap(filter_keywords, get_row_ngrams(attr, n_max=1, lower=True)):
             return False
 
-        if overlap(hertz_units, right_ngrams) and overlap(keywords, related_ngrams):
+        if overlap(hertz_units, related_ngrams) and overlap(keywords, related_ngrams):
             return True
 
         return False
@@ -83,20 +73,10 @@ def get_supply_current_matcher():
         related_ngrams = set(get_right_ngrams(attr, n_max=1, lower=True))
         related_ngrams.update(get_row_ngrams(attr, n_max=1, spread=[-2, 2], lower=True))
 
-        right_ngrams = set(
-            [
-                x[0]
-                for x in get_neighbor_cell_ngrams(
-                    attr, n_max=1, dist=4, directions=True
-                )
-                if x[-1] == "RIGHT"
-            ]
-        )
-
         if overlap(filter_keywords, get_row_ngrams(attr, n_max=1, lower=True)):
             return False
 
-        if overlap(current_units, right_ngrams) and overlap(keywords, related_ngrams):
+        if overlap(current_units, related_ngrams) and overlap(keywords, related_ngrams):
             return True
 
         return False

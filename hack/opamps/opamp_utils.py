@@ -4,7 +4,7 @@ import logging
 import os
 from collections import namedtuple
 
-from fonduer.utils.data_model_utils import get_neighbor_cell_ngrams
+from fonduer.utils.data_model_utils import get_neighbor_cell_ngrams, get_row_ngrams
 from quantiphy import Quantity
 
 try:
@@ -102,6 +102,7 @@ def cand_to_entity(c, is_gain=True):
         return
     if is_gain:
         gain = c[0].context.get_span()
+        row_ngrams = set(get_row_ngrams(c[0], n_max=1, lower=False))
         right_ngrams = set(
             [
                 x[0]
@@ -113,14 +114,20 @@ def cand_to_entity(c, is_gain=True):
         )
         # Get a set of the hertz units
         right_ngrams = set([_ for _ in right_ngrams if _ in ["kHz", "MHz", "GHz"]])
-        if len(right_ngrams) > 1:
-            logger.debug(f"right_ngrams: {right_ngrams}")
-            return
-        elif len(right_ngrams) == 0:
-            return
+        row_ngrams = set([_ for _ in row_ngrams if _ in ["kHz", "MHz", "GHz"]])
 
+        # Use both as a heirarchy to be more accepting of related units. Using
+        # right_ngrams alone hurts recall.
+        #
         # Convert to the appropriate quantities for scoring
-        gain_unit = right_ngrams.pop()
+        if len(right_ngrams) == 1:
+            gain_unit = right_ngrams.pop()
+        elif len(row_ngrams) == 1:
+            gain_unit = row_ngrams.pop()
+        else:
+            logger.debug(f"right_ngrams: {right_ngrams}")
+            logger.debug(f"row_ngrams: {right_ngrams}")
+            return
 
         try:
             result = (doc, Quantity(f"{gain} {gain_unit}"))
@@ -132,6 +139,7 @@ def cand_to_entity(c, is_gain=True):
         current = c[0].context.get_span()
         valid_units = ["mA", "μA", "uA", "µA", "\uf06dA"]
 
+        row_ngrams = set(get_row_ngrams(c[0], n_max=1, lower=False))
         right_ngrams = set(
             [
                 x[0]
@@ -143,16 +151,18 @@ def cand_to_entity(c, is_gain=True):
         )
         # Get a set of the current units
         right_ngrams = set([_ for _ in right_ngrams if _ in valid_units])
+        row_ngrams = set([_ for _ in row_ngrams if _ in valid_units])
 
-        if len(right_ngrams) > 1:
+        # The .replace() is needed to handle Adobe's poor conversion of unicode
+        # mu.
+        if len(right_ngrams) == 1:
+            current_unit = right_ngrams.pop().replace("\uf06d", "μ")
+        elif len(row_ngrams) == 1:
+            current_unit = row_ngrams.pop().replace("\uf06d", "μ")
+        else:
             logger.debug(f"right_ngrams: {right_ngrams}")
+            logger.debug(f"row_ngrams: {right_ngrams}")
             return
-
-        if len(right_ngrams) == 0:
-            return
-
-        # Needed to handle Adobe's poor conversion of unicode mu
-        current_unit = right_ngrams.pop().replace("\uf06d", "μ")
 
         # Allow the double of a +/- value to be valid also.
         try:
