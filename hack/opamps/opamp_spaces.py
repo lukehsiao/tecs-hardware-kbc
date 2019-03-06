@@ -56,5 +56,6 @@ class MentionNgramsCurrent(MentionNgrams):
                     else [None],
                     meta=None,
                 )
-            else:
-                yield ts
+
+            # Yield both the implicit span, and the explicit span.
+            yield ts
