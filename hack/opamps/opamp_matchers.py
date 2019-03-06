@@ -36,7 +36,7 @@ def get_gain_matcher():
             "gbw",
             "gbwp",
         ]
-        filter_keywords = ["-3 db", "maximum", "minimum", "impedance", "voltage"]
+        filter_keywords = ["-3 db", "maximum", "minimum", "impedance"]
         related_ngrams = set(get_right_ngrams(attr, n_max=1, lower=True))
         related_ngrams.update(get_row_ngrams(attr, n_max=1, spread=[-2, 2], lower=True))
 
