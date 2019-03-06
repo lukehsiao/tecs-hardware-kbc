@@ -24,7 +24,22 @@ logger = logging.getLogger(__name__)
 Score = namedtuple("Score", ["f1", "prec", "rec", "TP", "FP", "FN"])
 
 
-def get_gold_set(docs=None):
+def print_scores(best_result, best_b):
+    logger.info("===================================================")
+    logger.info(f"Scoring on Entity-Level Gold Data w/ b={best_b:.3f}")
+    logger.info("===================================================")
+    logger.info(f"Corpus Precision {best_result.prec:.3f}")
+    logger.info(f"Corpus Recall    {best_result.rec:.3f}")
+    logger.info(f"Corpus F1        {best_result.f1:.3f}")
+    logger.info("---------------------------------------------------")
+    logger.info(
+        f"TP: {len(best_result.TP)} "
+        f"| FP: {len(best_result.FP)} "
+        f"| FN: {len(best_result.FN)}"
+    )
+    logger.info("===================================================\n")
+
+def get_gold_set(docs=None, is_gain=True):
 
     dirname = os.path.dirname(__file__)
     gold_set = set()
@@ -57,10 +72,15 @@ def get_gold_set(docs=None):
     # NOTE: We are making the perhaps too broad assumptiion that all pairs of
     # true supply currents and GBP in a datasheet are valid.
     for doc, values in temp_dict.items():
-        for gain in values["typ_gbp"]:
+        if is_gain:
+            for gain in values["typ_gbp"]:
+                gold_set.add(
+                    (doc.upper(), Quantity(gain))
+                )
+        else:
             for current in values["typ_supply_current"]:
                 gold_set.add(
-                    (doc.upper(), Quantity(gain), Quantity(current.replace("u", "μ")))
+                    (doc.upper(), Quantity(current.replace("u", "μ")))
                 )
 
     return gold_set
@@ -78,69 +98,81 @@ def entity_confusion_matrix(pred, gold):
     return (TP, FP, FN)
 
 
-def cand_to_entity(c):
-    doc = c[0].context.sentence.document.name.upper()
-    gain = c[0].context.get_span()
-    current = c[1].context.get_span()
-
-    gain_ngrams = set(get_row_ngrams(c[0], lower=False))
-    # Get a set of the hertz units
-    gain_ngrams = set([_ for _ in gain_ngrams if _ in ["kHz", "MHz", "GHz"]])
-    if len(gain_ngrams) > 1:
-        logger.debug(f"gain_ngrams: {gain_ngrams}")
-        return
-    elif len(gain_ngrams) == 0:
-        return
-
-    current_ngrams = set(get_row_ngrams(c[1], lower=False))
-    # Get a set of the current units
-    current_ngrams = set([_ for _ in current_ngrams if _ and _.endswith("A")])
-
-    if len(current_ngrams) > 1:
-        logger.debug(f"current_ngrams: {current_ngrams}")
-        return
-
-    if len(current_ngrams) == 0:
-        return
-
-    # Convert to the appropriate quantities for scoring
-    gain_unit = gain_ngrams.pop()
-
-    # Needed to handle Adobe's poor conversion of unicode mu
-    current_unit = current_ngrams.pop().replace("\uf06d", "μ")
-
-    # Allow the double of a +/- value to be valid also.
+def cand_to_entity(c, is_gain=True):
     try:
-        if current.startswith("±"):
-            result = (
-                doc,
-                Quantity(f"{gain} {gain_unit}"),
-                Quantity(f"{str(2 * float(current[1:]))} {current_unit}"),
-            )
-            yield result
-
-            result = (
-                doc,
-                Quantity(f"{gain} {gain_unit}"),
-                Quantity(f"{current[1:]} {current_unit}"),
-            )
-            yield result
-        else:
-            result = (
-                doc,
-                Quantity(f"{gain} {gain_unit}"),
-                Quantity(f"{current} {current_unit}"),
-            )
-            yield result
-    except Exception:
-        logger.debug(f"{gain} {gain_unit} or {current} {current_unit} is not valid.")
+        doc = c[0].context.sentence.document.name.upper()
+    except Exception as e:
+        logger.warning(f"{e}, skipping {c}")
         return
+    if is_gain:
+        gain = c[0].context.get_span()
+        gain_ngrams = set(get_row_ngrams(c[0], lower=False))
+        # Get a set of the hertz units
+        gain_ngrams = set([_ for _ in gain_ngrams if _ in ["kHz", "MHz", "GHz"]])
+        if len(gain_ngrams) > 1:
+            logger.debug(f"gain_ngrams: {gain_ngrams}")
+            return
+        elif len(gain_ngrams) == 0:
+            return
+
+        # Convert to the appropriate quantities for scoring
+        gain_unit = gain_ngrams.pop()
+
+        try:
+            result = (
+                doc,
+                Quantity(f"{gain} {gain_unit}"),
+            )
+            yield result
+        except Exception:
+            logger.debug(f"{doc}: {gain} {gain_unit} is not valid.")
+            return
+    else:
+        current = c[0].context.get_span()
+
+        current_ngrams = set(get_row_ngrams(c[0], lower=False))
+        # Get a set of the current units
+        current_ngrams = set([_ for _ in current_ngrams if _ and _.endswith("A")])
+
+        if len(current_ngrams) > 1:
+            logger.debug(f"current_ngrams: {current_ngrams}")
+            return
+
+        if len(current_ngrams) == 0:
+            return
+
+        # Needed to handle Adobe's poor conversion of unicode mu
+        current_unit = current_ngrams.pop().replace("\uf06d", "μ")
+
+        # Allow the double of a +/- value to be valid also.
+        try:
+            if current.startswith("±"):
+                result = (
+                    doc,
+                    Quantity(f"{str(2 * float(current[1:]))} {current_unit}"),
+                )
+                yield result
+
+                result = (
+                    doc,
+                    Quantity(f"{current[1:]} {current_unit}"),
+                )
+                yield result
+            else:
+                result = (
+                    doc,
+                    Quantity(f"{current} {current_unit}"),
+                )
+                yield result
+        except Exception:
+            logger.debug(f"{doc}: {current} {current_unit} is not valid.")
+            return
 
 
-def entity_level_scores(candidates, corpus=None):
+def entity_level_scores(candidates, is_gain=True, corpus=None):
     """Checks entity-level recall of candidates compared to gold."""
     docs = [(doc.name).upper() for doc in corpus] if corpus else None
-    gold_set = get_gold_set(docs=docs)
+    gold_set = get_gold_set(docs=docs, is_gain=is_gain)
     if len(gold_set) == 0:
         logger.error("Gold set is empty.")
         return
@@ -148,7 +180,7 @@ def entity_level_scores(candidates, corpus=None):
     # Turn CandidateSet into set of tuples
     entities = set()
     for c in tqdm(candidates):
-        for entity in cand_to_entity(c):
+        for entity in cand_to_entity(c, is_gain=is_gain):
             entities.add(entity)
 
     (TP_set, FP_set, FN_set) = entity_confusion_matrix(entities, gold_set)
@@ -164,10 +196,10 @@ def entity_level_scores(candidates, corpus=None):
     )
 
 
-def entity_to_candidates(entity, candidate_subset):
+def entity_to_candidates(entity, candidate_subset, is_gain=True):
     matches = []
     for c in candidate_subset:
-        for c_entity in cand_to_entity(c):
+        for c_entity in cand_to_entity(c, is_gain=is_gain):
             if c_entity == entity:
                 matches.append(c)
     return matches

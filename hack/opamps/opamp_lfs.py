@@ -26,18 +26,9 @@ TRUE = 2
 
 
 def neg_low_page_num(c):
-    gain_pg = get_page(c.gain)
-    current_pg = get_page(c.supply_current)
-
-    if gain_pg > 8 or current_pg > 8:
+    if get_page(c[0]) > 8:
         return FALSE
 
-    return ABSTAIN
-
-
-def pos_same_page(c):
-    if get_page(c.gain) == get_page(c.supply_current):
-        return TRUE
     return ABSTAIN
 
 
@@ -158,17 +149,20 @@ def neg_current_keywords_in_row(c):
     )
 
 
-opamp_lfs = [
+gain_lfs = [
     pos_gain,
     pos_gain_keywords,
+    neg_gain_keywords_in_row,
+    neg_gain_keywords_in_column,
+    neg_low_page_num,
+]
+
+current_lfs = [
     pos_current,
     pos_current_units,
     pos_current_typ,
-    neg_gain_keywords_in_row,
-    neg_gain_keywords_in_column,
     neg_current_keywords_in_row,
     neg_current_keywords_in_vert,
     neg_current_keywords_in_column,
     neg_low_page_num,
-    pos_same_page,
 ]
