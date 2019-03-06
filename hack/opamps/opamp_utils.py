@@ -178,9 +178,6 @@ def cand_to_entity(c, is_gain=True):
             else:
                 result = (doc, Quantity(f"{current} {current_unit}"))
                 yield result
-
-            result = (doc, Quantity(f"{current} {current_unit}"))
-            yield result
         except Exception:
             logger.debug(f"{doc}: {current} {current_unit} is not valid.")
             return
