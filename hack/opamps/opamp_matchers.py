@@ -69,13 +69,7 @@ def get_supply_current_matcher():
         # NOTE: These two symbols for mu are unique, not duplicates.
         current_units = ["ma", "μa", "ua", "µa", "\uf06da"]
         keywords = ["supply", "quiescent", "iq", "is", "idd"]
-        filter_keywords = [
-            "voltage",
-            "offset",
-            "bias",
-            "logic",
-            "shutdown",
-        ]
+        filter_keywords = ["voltage", "offset", "bias", "logic", "shutdown"]
         related_ngrams = set(get_right_ngrams(attr, n_max=1, lower=True))
         related_ngrams.update(get_row_ngrams(attr, n_max=1, spread=[-2, 2], lower=True))
 
@@ -89,7 +83,7 @@ def get_supply_current_matcher():
 
     # match 4-digit integers, or two-digit floats up with 2 points of precision
     current_rgx = RegexMatchSpan(
-        rgx=r"^(?:\d{1,2}\.\d{1,2}|\d{1,4})$", longest_match_only=False
+        rgx=r"(±?\d{1,2}\.\d{1,2}|\d{1,4})", longest_match_only=False
     )
 
     current_lambda = LambdaFunctionMatcher(func=current_units)

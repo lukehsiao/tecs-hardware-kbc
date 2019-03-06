@@ -18,7 +18,7 @@ class MentionNgramsOpamps(MentionNgrams):
                 ts.get_span(),
                 re.U,
             )
-            m2 = re.match(r"^(±)?(\d+)\s*\.?\s*(\d+)$", ts.get_span())
+            m2 = re.match(r"^(\d+)\s*\.?\s*(\d+)$", ts.get_span())
             if m:
                 if m.group(1) is None:
                     temp = ""
@@ -65,42 +65,8 @@ class MentionNgramsOpamps(MentionNgrams):
                 )
             if m2:
                 # Handle case that random spaces are inserted (e.g. "2 . 3")
-                if m2.group(2) and m2.group(3):
-                    temp = f"{m2.group(2)}.{m2.group(3)}"
-                    if m2.group(1):
-                        # if there is a +/-, double the value here
-                        double_temp = str(float(temp) * 2)
-                        yield TemporaryImplicitSpanMention(
-                            sentence=ts.sentence,
-                            char_start=ts.char_start,
-                            char_end=ts.char_end,
-                            expander_key="opamp_exp",
-                            position=0,
-                            text=double_temp,
-                            words=[double_temp],
-                            lemmas=[double_temp],
-                            pos_tags=[ts.get_attrib_tokens("pos_tags")[-1]],
-                            ner_tags=[ts.get_attrib_tokens("ner_tags")[-1]],
-                            dep_parents=[ts.get_attrib_tokens("dep_parents")[-1]],
-                            dep_labels=[ts.get_attrib_tokens("dep_labels")[-1]],
-                            page=[ts.get_attrib_tokens("page")[-1]]
-                            if ts.sentence.is_visual()
-                            else [None],
-                            top=[ts.get_attrib_tokens("top")[-1]]
-                            if ts.sentence.is_visual()
-                            else [None],
-                            left=[ts.get_attrib_tokens("left")[-1]]
-                            if ts.sentence.is_visual()
-                            else [None],
-                            bottom=[ts.get_attrib_tokens("bottom")[-1]]
-                            if ts.sentence.is_visual()
-                            else [None],
-                            right=[ts.get_attrib_tokens("right")[-1]]
-                            if ts.sentence.is_visual()
-                            else [None],
-                            meta=None,
-                        )
-
+                if m2.group(1) and m2.group(2):
+                    temp = f"{m2.group(1)}.{m2.group(2)}"
                     yield TemporaryImplicitSpanMention(
                         sentence=ts.sentence,
                         char_start=ts.char_start,
