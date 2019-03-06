@@ -138,20 +138,9 @@ def cand_to_entity(c, is_gain=True):
         # Needed to handle Adobe's poor conversion of unicode mu
         current_unit = current_ngrams.pop().replace("\uf06d", "μ")
 
-        # Allow the double of a +/- value to be valid also.
         try:
-            if current.startswith("±"):
-                result = (
-                    doc,
-                    Quantity(f"{str(2 * float(current[1:]))} {current_unit}"),
-                )
-                yield result
-
-                result = (doc, Quantity(f"{current[1:]} {current_unit}"))
-                yield result
-            else:
-                result = (doc, Quantity(f"{current} {current_unit}"))
-                yield result
+            result = (doc, Quantity(f"{current} {current_unit}"))
+            yield result
         except Exception:
             logger.debug(f"{doc}: {current} {current_unit} is not valid.")
             return
