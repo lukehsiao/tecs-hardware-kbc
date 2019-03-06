@@ -1,12 +1,11 @@
 import logging
 import os
 import pdb
-import math
 import pickle
+from pprint import pformat
 
 import matplotlib.pyplot as plt
 import numpy as np
-from pprint import pformat
 from fonduer import Meta
 from fonduer.candidates import CandidateExtractor, MentionExtractor
 from fonduer.candidates.models import Mention, candidate_subclass, mention_subclass
@@ -17,10 +16,15 @@ from fonduer.supervision import Labeler
 from metal import analysis
 from metal.label_model import LabelModel
 
-from hack.opamps.opamp_lfs import TRUE, opamp_lfs
+from hack.opamps.opamp_lfs import TRUE, current_lfs, gain_lfs
 from hack.opamps.opamp_matchers import get_gain_matcher, get_supply_current_matcher
 from hack.opamps.opamp_spaces import MentionNgramsOpamps
-from hack.opamps.opamp_utils import entity_level_scores, entity_to_candidates, Score
+from hack.opamps.opamp_utils import (
+    Score,
+    entity_level_scores,
+    entity_to_candidates,
+    print_scores,
+)
 from hack.utils import parse_dataset
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
@@ -82,38 +86,33 @@ def mention_extraction(session, docs, first_time=True, parallel=1):
     return Gain, Current
 
 
-def candidate_extraction(
-    session, mentions, train_docs, dev_docs, test_docs, first_time=True, parallel=1
-):
+def candidate_extraction(session, mentions, docs, first_time=True, parallel=1):
     (gain, current) = mentions
-    Cand = candidate_subclass("GainCurrent", [gain, current])
-    #  throttler = stg_temp_filter
+    (train_docs, dev_docs, test_docs) = docs
+    GainCand = candidate_subclass("GainCand", [gain])
+    CurrentCand = candidate_subclass("CurrentCand", [current])
 
-    candidate_extractor = CandidateExtractor(session, [Cand])
+    candidate_extractor = CandidateExtractor(session, [GainCand, CurrentCand])
 
     if first_time:
         for i, docs in enumerate([train_docs, dev_docs, test_docs]):
             candidate_extractor.apply(docs, split=i, parallelism=parallel)
             logger.info(
-                f"Cand in split={i}: "
-                f"{session.query(Cand).filter(Cand.split == i).count()}"
+                f"GainCand in split={i}: "
+                f"{session.query(GainCand).filter(GainCand.split == i).count()}"
+            )
+            logger.info(
+                f"CurrentCand in split={i}: "
+                f"{session.query(CurrentCand).filter(CurrentCand.split == i).count()}"
             )
 
-    train_cands = candidate_extractor.get_candidates(split=0)
-    dev_cands = candidate_extractor.get_candidates(split=1)
-    test_cands = candidate_extractor.get_candidates(split=2)
-
-    logger.info(f"Total train candidate: {len(train_cands[0])}")
-    logger.info(f"Total dev candidate: {len(dev_cands[0])}")
-    logger.info(f"Total test candidate: {len(test_cands[0])}")
-
-    return (Cand, train_cands, dev_cands, test_cands)
+    return (GainCand, CurrentCand), candidate_extractor
 
 
-def featurization(
-    session, train_cands, dev_cands, test_cands, Cand, first_time=True, parallel=1
-):
-    featurizer = Featurizer(session, [Cand])
+def featurization(session, cand_sets, cand_classes, first_time=True, parallel=1):
+    GainCand, CurrentCand = cand_classes
+    (train_cands, dev_cands, test_cands) = cand_sets
+    featurizer = Featurizer(session, [GainCand, CurrentCand])
     dirname = os.path.dirname(__file__)
     if first_time:
         logger.info("Starting featurizer...")
@@ -137,9 +136,12 @@ def featurization(
         F_test = pickle.load(open(os.path.join(dirname, "F_test.pkl"), "rb"))
     logger.info("Done.")
 
-    logger.info(f"Train shape: {F_train[0].shape}")
-    logger.info(f"Test shape: {F_test[0].shape}")
-    logger.info(f"Dev shape: {F_dev[0].shape}")
+    logger.info(f"Train shape 0: {F_train[0].shape}")
+    logger.info(f"Train shape 1: {F_train[1].shape}")
+    logger.info(f"Test shape 0: {F_test[0].shape}")
+    logger.info(f"Test shape 1: {F_test[1].shape}")
+    logger.info(f"Dev shape 0: {F_dev[0].shape}")
+    logger.info(f"Dev shape 1: {F_dev[1].shape}")
 
     return F_train, F_dev, F_test
 
@@ -147,7 +149,7 @@ def featurization(
 def generative_model(L_train, n_epochs=500, print_every=100):
     model = LabelModel(k=2)
 
-    logger.info("Training generative model...")
+    logger.info(f"Training generative model for...")
     model.train_model(L_train[0], n_epochs=n_epochs, print_every=print_every)
     logger.info("Done.")
 
@@ -162,24 +164,21 @@ def discriminative_model(train_cands, F_train, marginals, n_epochs=50, lr=0.001)
 
     logger.info("Training discriminative model...")
     disc_model.train(
-        (train_cands[0], F_train[0]),
-        marginals,
-        n_epochs=n_epochs,
-        lr=lr,
-        host_device="GPU",
+        (train_cands, F_train), marginals, n_epochs=n_epochs, lr=lr, host_device="GPU"
     )
     logger.info("Done.")
 
     return disc_model
 
 
-def labeling(session, cands, cand, split=1, train=False, first_time=True, parallel=1):
-    labeler = Labeler(session, [cand])
-    lfs = opamp_lfs
+def labeling(
+    session, cands, cand_classes, split=1, lfs=None, train=False, first_time=True, parallel=1
+):
+    labeler = Labeler(session, cand_classes)
 
     if first_time:
         logger.info("Applying LFs...")
-        labeler.apply(split=split, lfs=[lfs], train=train, parallelism=parallel)
+        labeler.apply(split=split, lfs=lfs, train=train, parallelism=parallel)
         logger.info("Done...")
 
     logger.info("Getting label matrices...")
@@ -204,7 +203,7 @@ def scoring(disc_model, cands, docs, F_mat, num=100):
 
     # Iterate over a range of `b` values in order to find the b with the
     # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
-    Y_prob = disc_model.marginals((cands[0], F_mat[0]))
+    Y_prob = disc_model.marginals((cands, F_mat))
 
     # Get prediction for a particular b, store the full tuple to output
     # (b, pref, rec, f1, TP, FP, FN)
@@ -215,7 +214,7 @@ def scoring(disc_model, cands, docs, F_mat, num=100):
             test_score = np.array(
                 [TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob]
             )
-            true_pred = [cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))]
+            true_pred = [cands[_] for _ in np.nditer(np.where(test_score == TRUE))]
         except Exception as e:
             logger.debug(f"{e}, skipping.")
             break
@@ -228,23 +227,10 @@ def scoring(disc_model, cands, docs, F_mat, num=100):
             best_result = result
             best_b = b
 
-    logger.info("===================================================")
-    logger.info(f"Scoring on Entity-Level Gold Data w/ b={best_b:.3f}")
-    logger.info("===================================================")
-    logger.info(f"Corpus Precision {best_result.prec:.3f}")
-    logger.info(f"Corpus Recall    {best_result.rec:.3f}")
-    logger.info(f"Corpus F1        {best_result.f1:.3f}")
-    logger.info("---------------------------------------------------")
-    logger.info(
-        f"TP: {len(best_result.TP)} "
-        f"| FP: {len(best_result.FP)} "
-        f"| FN: {len(best_result.FN)}"
-    )
-    logger.info("===================================================\n")
     return best_result, best_b
 
 
-def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, parallel=2):
+def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, parallel=1):
     session = Meta.init(conn_string).Session()
     docs, train_docs, dev_docs, test_docs = parsing(
         session, first_time=parse, parallel=parallel, max_docs=max_docs
@@ -257,68 +243,86 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         session, docs, first_time=first_time, parallel=parallel
     )
 
-    (Cand, train_cands, dev_cands, test_cands) = candidate_extraction(
+    (GainCand, CurrentCand), candidate_extractor = candidate_extraction(
         session,
         (Gain, Current),
-        train_docs,
-        dev_docs,
-        test_docs,
+        (train_docs, dev_docs, test_docs),
+        first_time=first_time,
+        parallel=parallel,
+    )
+    train_cands = candidate_extractor.get_candidates(split=0)
+    dev_cands = candidate_extractor.get_candidates(split=1)
+    test_cands = candidate_extractor.get_candidates(split=2)
+    logger.info(f"Total train candidate: {len(train_cands[0])}")
+    logger.info(f"Total dev candidate: {len(dev_cands[0])}")
+    logger.info(f"Total test candidate: {len(test_cands[0])}")
+
+    logger.info("Done w/ candidate extraction.")
+
+    # First, check total recall
+    result = entity_level_scores(dev_cands[0], corpus=dev_docs)
+    logger.info(f"Gain Total Dev Recall: {result.rec:.3f}")
+    result = entity_level_scores(test_cands[0], corpus=test_docs)
+    logger.info(f"Gain Total Test Recall: {result.rec:.3f}")
+
+    result = entity_level_scores(dev_cands[1], corpus=dev_docs, is_gain=False)
+    logger.info(f"Current Total Dev Recall: {result.rec:.3f}")
+    result = entity_level_scores(test_cands[1], corpus=test_docs, is_gain=False)
+    logger.info(f"Current Test Recall: {result.rec:.3f}")
+
+    F_train, F_dev, F_test = featurization(
+        session,
+        (train_cands, dev_cands, test_cands),
+        (GainCand, CurrentCand),
         first_time=first_time,
         parallel=parallel,
     )
 
-    # First, check total recall
-    result = entity_level_scores(dev_cands[0], corpus=dev_docs)
-    logger.info(f"Total Dev Recall: {result.rec:.3f}")
-    result = entity_level_scores(test_cands[0], corpus=test_docs)
-    logger.info(f"Total Test Recall: {result.rec:.3f}")
+    logger.info("Labeling training data...")
+    L_train = labeling(
+        session,
+        train_cands,
+        [GainCand, CurrentCand],
+        split=0,
+        lfs=[gain_lfs, current_lfs],
+        train=True,
+        parallel=parallel,
+    )
+    logger.info("Done.")
 
-    #  F_train, F_dev, F_test = featurization(
-    #      session,
-    #      train_cands,
-    #      dev_cands,
-    #      test_cands,
-    #      Cand,
-    #      first_time=first_time,
-    #      parallel=parallel,
-    #  )
-    #  logger.info("Labeling training data...")
-    #  L_train = labeling(
-    #      session,
-    #      train_cands,
-    #      Cand,
-    #      split=0,
-    #      train=True,
-    #      parallel=parallel,
-    #  )
-    #  logger.info("Done.")
-    #
-    #  marginals = generative_model(L_train)
-    #
-    #  labeling(
-    #      session,
-    #      dev_cands,
-    #      Cand,
-    #      split=1,
-    #      train=False,
-    #      parallel=parallel,
-    #  )
+    marginals = generative_model(L_train)
 
-    #  disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
-    #
-    #  best_result, best_b = scoring(disc_models, dev_cands, dev_docs, F_dev, num=100)
-    #
-    #  try:
-    #      fp_cands = entity_to_candidates(best_result.FP[0], test_cands[0])
-    #  except Exception:
-    #      pass
+    logger.info("Labeling dev data...")
+    labeling(
+        session,
+        dev_cands,
+        [GainCand, CurrentCand],
+        split=1,
+        lfs=[gain_lfs, current_lfs],
+        train=False,
+        first_time=False,
+        parallel=parallel,
+    )
+    disc_models = discriminative_model(
+        train_cands[0], F_train[0], marginals, n_epochs=10
+    )
+    best_result, best_b = scoring(
+        disc_models, dev_cands[0], dev_docs, F_dev[0], num=100
+    )
+
+    print_scores(best_result, best_b)
+
+
+    try:
+        fp_cands == entity_to_candidates(best_result.FP[0], test_cands[0])
+    except Exception:
+        pass
 
     # End with an interactive prompt
     pdb.set_trace()
 
 
 if __name__ == "__main__":
-    # See https://docs.python.org/3/library/os.html#os.cpu_count
     parallel = 8
     component = "opamps"
     conn_string = f"postgresql:///{component}"
