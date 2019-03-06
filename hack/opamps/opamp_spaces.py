@@ -13,16 +13,18 @@ class MentionNgramsCurrent(MentionNgrams):
 
     def apply(self, doc):
         for ts in MentionNgrams.apply(self, doc):
-            m = re.match(r"^(±)?\s*(\d+)\s*\.?\s*(\d*)$", ts.get_span())
+            m = re.match(r"^(±)?\s*(\d+)\s*(\.)?\s*(\d*)$", ts.get_span())
             if m:
-                # Handle case that random spaces are inserted (e.g. "2 . 3")
+                # Handle case that random spaces are inserted (e.g. "± 2  . 3")
                 temp = ""
                 if m.group(1):
-                    temp += "±"
+                    temp += m.group(1)
                 if m.group(2):
                     temp += m.group(2)
                 if m.group(3):
                     temp += m.group(3)
+                if m.group(4):
+                    temp += m.group(4)
 
                 yield TemporaryImplicitSpanMention(
                     sentence=ts.sentence,

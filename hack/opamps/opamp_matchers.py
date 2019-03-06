@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 def _first_page_or_table(attr):
     """Must be in the first page, or in a table."""
-    return get_page(attr) or attr.sentence.is_tabular()
+    return bool(get_page(attr) or attr.sentence.is_tabular())
 
 
 def _condition(attr):
@@ -93,4 +93,4 @@ def get_supply_current_matcher():
     condition_lambda = LambdaFunctionMatcher(func=_condition)
     location_lambda = LambdaFunctionMatcher(func=_first_page_or_table)
 
-    return Intersect(current_rgx, current_lambda, condition_lambda, location_lambda)
+    return Intersect(condition_lambda, location_lambda, current_rgx, current_lambda)
