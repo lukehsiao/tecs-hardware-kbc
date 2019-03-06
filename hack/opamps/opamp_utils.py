@@ -2,7 +2,6 @@ import codecs
 import csv
 import logging
 import os
-import pdb
 from collections import namedtuple
 
 from fonduer.utils.data_model_utils import get_row_ngrams
@@ -39,6 +38,7 @@ def print_scores(best_result, best_b):
     )
     logger.info("===================================================\n")
 
+
 def get_gold_set(docs=None, is_gain=True):
 
     dirname = os.path.dirname(__file__)
@@ -74,14 +74,10 @@ def get_gold_set(docs=None, is_gain=True):
     for doc, values in temp_dict.items():
         if is_gain:
             for gain in values["typ_gbp"]:
-                gold_set.add(
-                    (doc.upper(), Quantity(gain))
-                )
+                gold_set.add((doc.upper(), Quantity(gain)))
         else:
             for current in values["typ_supply_current"]:
-                gold_set.add(
-                    (doc.upper(), Quantity(current.replace("u", "μ")))
-                )
+                gold_set.add((doc.upper(), Quantity(current.replace("u", "μ"))))
 
     return gold_set
 
@@ -119,20 +115,18 @@ def cand_to_entity(c, is_gain=True):
         gain_unit = gain_ngrams.pop()
 
         try:
-            result = (
-                doc,
-                Quantity(f"{gain} {gain_unit}"),
-            )
+            result = (doc, Quantity(f"{gain} {gain_unit}"))
             yield result
         except Exception:
             logger.debug(f"{doc}: {gain} {gain_unit} is not valid.")
             return
     else:
         current = c[0].context.get_span()
+        valid_units = ["mA", "μA", "uA", "µA", "\uf06dA"]
 
         current_ngrams = set(get_row_ngrams(c[0], lower=False))
         # Get a set of the current units
-        current_ngrams = set([_ for _ in current_ngrams if _ and _.endswith("A")])
+        current_ngrams = set([_ for _ in current_ngrams if _ in valid_units])
 
         if len(current_ngrams) > 1:
             logger.debug(f"current_ngrams: {current_ngrams}")
@@ -153,16 +147,10 @@ def cand_to_entity(c, is_gain=True):
                 )
                 yield result
 
-                result = (
-                    doc,
-                    Quantity(f"{current[1:]} {current_unit}"),
-                )
+                result = (doc, Quantity(f"{current[1:]} {current_unit}"))
                 yield result
             else:
-                result = (
-                    doc,
-                    Quantity(f"{current} {current_unit}"),
-                )
+                result = (doc, Quantity(f"{current} {current_unit}"))
                 yield result
         except Exception:
             logger.debug(f"{doc}: {current} {current_unit} is not valid.")
