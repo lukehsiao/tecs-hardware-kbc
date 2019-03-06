@@ -73,6 +73,9 @@ def get_supply_current_matcher():
         related_ngrams = set(get_right_ngrams(attr, n_max=1, lower=True))
         related_ngrams.update(get_row_ngrams(attr, n_max=1, spread=[-2, 2], lower=True))
 
+        if attr.get_span().strip() == "0":
+            return False
+
         if overlap(filter_keywords, get_row_ngrams(attr, n_max=1, lower=True)):
             return False
 
@@ -83,7 +86,7 @@ def get_supply_current_matcher():
 
     # match 4-digit integers, or two-digit floats up with 2 points of precision
     current_rgx = RegexMatchSpan(
-        rgx=r"(±?\d{1,2}\.\d{1,2}|\d{1,4})", longest_match_only=False
+        rgx=r"(±?\d{1,2}\.\d{1,2}|±?\d{1,4})", longest_match_only=False
     )
 
     current_lambda = LambdaFunctionMatcher(func=current_units)

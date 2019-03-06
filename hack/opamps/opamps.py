@@ -7,7 +7,7 @@ from pprint import pformat
 import matplotlib.pyplot as plt
 import numpy as np
 from fonduer import Meta
-from fonduer.candidates import CandidateExtractor, MentionExtractor
+from fonduer.candidates import CandidateExtractor, MentionExtractor, MentionNgrams
 from fonduer.candidates.models import Mention, candidate_subclass, mention_subclass
 from fonduer.features import Featurizer
 from fonduer.learning import SparseLogisticRegression
@@ -18,7 +18,7 @@ from metal.label_model import LabelModel
 
 from hack.opamps.opamp_lfs import TRUE, current_lfs, gain_lfs
 from hack.opamps.opamp_matchers import get_gain_matcher, get_supply_current_matcher
-from hack.opamps.opamp_spaces import MentionNgramsOpamps
+from hack.opamps.opamp_spaces import MentionNgramsCurrent
 from hack.opamps.opamp_utils import (
     Score,
     entity_level_scores,
@@ -65,10 +65,10 @@ def parsing(session, first_time=False, parallel=4, max_docs=float("inf")):
 def mention_extraction(session, docs, first_time=True, parallel=1):
     Gain = mention_subclass("Gain")
     gain_matcher = get_gain_matcher()
-    gain_ngrams = MentionNgramsOpamps(n_max=2)
+    gain_ngrams = MentionNgrams(n_max=2)
     Current = mention_subclass("SupplyCurrent")
     current_matcher = get_supply_current_matcher()
-    current_ngrams = MentionNgramsOpamps(n_max=2)
+    current_ngrams = MentionNgramsCurrent(n_max=2)
 
     mention_extractor = MentionExtractor(
         session,
