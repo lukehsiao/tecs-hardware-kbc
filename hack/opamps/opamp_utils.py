@@ -126,8 +126,8 @@ def cand_to_entity(c, is_gain=True):
         elif len(row_ngrams) == 1:
             gain_unit = row_ngrams.pop()
         else:
-            #  logger.debug(f"right_ngrams: {right_ngrams}")
-            #  logger.debug(f"row_ngrams: {right_ngrams}")
+            logger.debug(f"right_ngrams: {right_ngrams}")
+            logger.debug(f"row_ngrams: {right_ngrams}")
             return
 
         try:
