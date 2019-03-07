@@ -16,13 +16,15 @@ from fonduer.supervision import Labeler
 from metal import analysis
 from metal.label_model import LabelModel
 
-from hack.opamps.opamp_lfs import TRUE, current_lfs, gain_lfs
+from hack.opamps.opamp_lfs import FALSE, TRUE, current_lfs, gain_lfs
 from hack.opamps.opamp_matchers import get_gain_matcher, get_supply_current_matcher
 from hack.opamps.opamp_spaces import MentionNgramsCurrent
 from hack.opamps.opamp_utils import (
     Score,
+    cand_to_entity,
     entity_level_scores,
     entity_to_candidates,
+    get_gold_set,
     print_scores,
 )
 from hack.utils import parse_dataset
@@ -172,10 +174,8 @@ def discriminative_model(train_cands, F_train, marginals, n_epochs=50, lr=0.001)
 
 
 def labeling(
-    session, cands, cand_classes, split=1, lfs=None, train=False, first_time=True, parallel=1
+    labeler, cands, split=1, lfs=None, train=False, first_time=True, parallel=1
 ):
-    labeler = Labeler(session, cand_classes)
-
     if first_time:
         logger.info("Applying LFs...")
         labeler.apply(split=split, lfs=lfs, train=train, parallelism=parallel)
@@ -185,17 +185,6 @@ def labeling(
     L_mat = labeler.get_label_matrices(cands)
     logger.info("Done...")
     logger.info(f"L_mat shape: {L_mat[0].shape}")
-
-    if train:
-        try:
-            df = analysis.lf_summary(L_mat[0], lf_names=labeler.get_keys())
-            logger.info(f"\n{df.to_string()}")
-            df = analysis.lf_summary(L_mat[1], lf_names=labeler.get_keys())
-            logger.info(f"\n{df.to_string()}")
-        except Exception:
-            import pdb
-
-            pdb.set_trace()
 
     return L_mat
 
@@ -286,10 +275,10 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
     )
 
     logger.info("Labeling training data...")
+    labeler = Labeler(session, [GainCand, CurrentCand])
     L_train = labeling(
-        session,
+        labeler,
         train_cands,
-        [GainCand, CurrentCand],
         split=0,
         lfs=[gain_lfs, current_lfs],
         train=True,
@@ -298,15 +287,28 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
     logger.info("Done.")
 
     logger.info("Labeling dev data...")
-    labeling(
-        session,
+    L_dev = labeling(
+        labeler,
         dev_cands,
-        [GainCand, CurrentCand],
         split=1,
         lfs=[gain_lfs, current_lfs],
         train=False,
         parallel=parallel,
     )
+
+    # Evaluate LF accuracy
+    dev_gold_entities = get_gold_set(is_gain=True)
+
+    L_dev_gt = []
+    for c in dev_cands[0]:
+        flag = FALSE
+        for entity in cand_to_entity(c, is_gain=True):
+            if entity in dev_gold_entities:
+                flag = TRUE
+        L_dev_gt.append(flag)
+
+    df = analysis.lf_summary(L_dev[0], lf_names=labeler.get_keys(), Y=np.array(L_dev_gt))
+    logger.info(f"\n{df.to_string()}")
 
     marginals = generative_model(L_train[0])
 
@@ -314,7 +316,7 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         train_cands[0], F_train[0], marginals, n_epochs=10
     )
     best_result, best_b = scoring(
-        disc_models, dev_cands[0], dev_docs, F_dev[0], num=100
+        disc_models, dev_cands[0], dev_docs, F_dev[0], num=30
     )
 
     print_scores(best_result, best_b)
@@ -333,7 +335,7 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         train_cands[1], F_train[1], marginals, n_epochs=10
     )
     best_result, best_b = scoring(
-        disc_models, dev_cands[1], dev_docs, F_dev[1], num=100
+        disc_models, dev_cands[1], dev_docs, F_dev[1], num=30
     )
 
     print_scores(best_result, best_b)
