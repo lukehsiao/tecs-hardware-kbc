@@ -27,6 +27,17 @@ logger = logging.getLogger(__name__)
 Score = namedtuple("Score", ["f1", "prec", "rec", "TP", "FP", "FN"])
 
 
+def get_gold_dic(gold_set):
+    gold_dic = {}
+    for (doc, part, val) in gold_set:
+        if doc in gold_dic:
+            if part in gold_dic[doc]:
+                gold_dic[doc][part].append(val)
+        else:
+            gold_dic[doc] = {part: [val]}
+    return gold_dic
+
+
 def get_gold_set(doc_on=True, part_on=True, val_on=True, attribute=None, docs=None):
 
     dirname = os.path.dirname(__file__)
@@ -140,6 +151,31 @@ def entity_confusion_matrix(pred, gold):
     return (TP, FP, FN)
 
 
+def compare_entities(
+    entities, attribute, gold_dic=None, outfile="../our_discrepancies.csv"
+):
+    """Compare given entities to gold labels
+    and write any discrepancies to a CSV file."""
+
+    if gold_dic is None:
+        gold_dic = get_gold_dic(get_gold_set(attribute=attribute))
+    outfile = os.path.join(os.path.dirname(__name__), outfile)
+
+    # Write discrepancies to a CSV file
+    # for manual debugging
+    with open(outfile, "w") as out:
+        writer = csv.writer(out)
+        writer.writerow(("Filename:", "Part:", "Our Vals:", "Notes:"))
+        for (doc, part, val) in entities:
+            if doc in gold_dic:
+                if part in gold_dic[doc]:
+                    writer.writerow((doc, part, val, f"Gold vals: gold_dic[doc][part]"))
+                else:
+                    writer.writerow((doc, part, val, f"Gold parts: {gold_dic[doc]}"))
+            else:
+                writer.writerow((doc, part, val, f"Gold does not have doc {doc}."))
+
+
 def entity_level_scores(entities, attribute=None, corpus=None):
     """Checks entity-level recall of candidates compared to gold.
 
@@ -148,9 +184,9 @@ def entity_level_scores(entities, attribute=None, corpus=None):
     then compares this to the entity-level tuples found in the gold.
 
     Example Usage:
-        from hardware_utils import entity_level_total_recall
-        candidates = # CandidateSet of all candidates you want to consider
-        entity_level_total_recall(candidates, 'stg_temp_min')
+    from hardware_utils import entity_level_total_recall
+    candidates = # CandidateSet of all candidates you want to consider
+    entity_level_total_recall(candidates, 'stg_temp_min')
     """
     docs = [(doc.name).upper() for doc in corpus] if corpus else None
     val_on = attribute is not None

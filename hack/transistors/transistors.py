@@ -36,6 +36,7 @@ from hack.transistors.transistor_throttlers import (
 from hack.transistors.transistor_utils import (
     Score,
     candidates_to_entities,
+    compare_entities,
     entity_level_scores,
     load_transistor_labels,
     parse_dataset,
@@ -303,7 +304,7 @@ def load_parts_by_doc():
         return pickle.load(f)
 
 
-def scoring(relation, disc_model, cands, docs, F, parts_by_doc, num=100):
+def scoring(relation, disc_model, cands, docs, F, parts_by_doc, debug=False, num=100):
     logger.info("Calculating the best F1 score and threshold (b)...")
 
     # Iterate over a range of `b` values in order to find the b with the
@@ -329,9 +330,16 @@ def scoring(relation, disc_model, cands, docs, F, parts_by_doc, num=100):
             if result.f1 > best_result.f1:
                 best_result = result
                 best_b = b
+                best_true_pred = true_pred
         except Exception as e:
             logger.debug(f"{e}, skipping.")
             break
+
+    if debug:
+        # Compare our TRUE cands with our gold labels
+        # and write any discrepancies to a CSV.
+        best_entities = candidates_to_entities(best_true_pred)
+        compare_entities(best_entities, relation.value)
 
     logger.info("===================================================")
     logger.info(f"Scoring on Entity-Level Gold Data with b={best_b}")
@@ -407,6 +415,17 @@ def main(
     parts_by_doc = load_parts_by_doc()
     best_result, best_b = scoring(
         relation, disc_models, test_cands, test_docs, F_test, parts_by_doc, num=100
+    )
+
+    analysis_result, analysis_b = scoring(
+        relation,
+        disc_models,
+        analysis_cands,
+        analysis_docs,
+        F_analysis,
+        parts_by_doc,
+        num=66,
+        debug=True,
     )
 
 
