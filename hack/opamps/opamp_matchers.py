@@ -3,6 +3,7 @@ import logging
 from fonduer.candidates.matchers import Intersect, LambdaFunctionMatcher, RegexMatchSpan
 from fonduer.utils.data_model_utils import (
     get_col_ngrams,
+    get_cell_ngrams,
     get_page,
     get_right_ngrams,
     get_row_ngrams,
@@ -39,6 +40,10 @@ def get_gain_matcher():
         filter_keywords = ["-3 db", "maximum", "minimum", "impedance"]
         related_ngrams = set(get_right_ngrams(attr, n_max=1, lower=True))
         related_ngrams.update(get_row_ngrams(attr, n_max=1, spread=[-2, 2], lower=True))
+        cell_ngrams = set(get_cell_ngrams(attr, n_max=1, lower=True))
+
+        if "f" in cell_ngrams and "=" in cell_ngrams:
+            return False
 
         if attr.get_span().strip() == "0":
             return False

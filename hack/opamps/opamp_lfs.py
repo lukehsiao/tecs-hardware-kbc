@@ -1,10 +1,12 @@
 from fonduer.utils.data_model_utils import (
     get_aligned_ngrams,
     get_col_ngrams,
+    get_cell_ngrams,
     get_head_ngrams,
     get_horz_ngrams,
     get_left_ngrams,
     get_neighbor_sentence_ngrams,
+    get_neighbor_cell_ngrams,
     get_page,
     get_page_vert_percentile,
     get_right_ngrams,
@@ -34,7 +36,11 @@ def neg_low_page_num(c):
 
 # Gain LFs
 def pos_gain(c):
-    return TRUE if "gain" in get_row_ngrams(c.gain) else ABSTAIN
+    row_ngrams = set(get_row_ngrams(c.gain, lower=True))
+    if overlap(["gain", "bandwidth", "unity"], row_ngrams):
+        return TRUE
+    else:
+        ABSTAIN
 
 
 def pos_gain_keywords(c):
@@ -45,12 +51,48 @@ def pos_gain_keywords(c):
     )
 
 
+def neg_gain_keywords_in_cell(c):
+    return (
+        FALSE
+        if overlap(
+            ["g", "vo", "vpp", "f=", "f", "="], get_cell_ngrams(c.gain, lower=True)
+        )
+        else ABSTAIN
+    )
+
+
+def neg_gain_too_many_words_in_cell(c):
+    cell_ngrams = list(get_cell_ngrams(c.gain))
+    if len(cell_ngrams) >= 4:
+        return FALSE
+    else:
+        ABSTAIN
+
+
+def neg_gain_keywords_in_right_cell(c):
+    right_ngrams = set(
+        [
+            x[0]
+            for x in get_neighbor_cell_ngrams(
+                c[0], n_max=1, dist=5, directions=True, lower=False
+            )
+            if x[-1] == "RIGHT"
+        ]
+    )
+    if not overlap(["kHz", "MHz", "GHz"], right_ngrams):
+        return FALSE
+
+    return ABSTAIN
+
+
 def neg_gain_keywords_in_row(c):
     return (
         FALSE
         if overlap(
             [
                 "small",
+                "full",
+                "flat",
                 "current",
                 "thd",
                 "signal",
@@ -63,7 +105,15 @@ def neg_gain_keywords_in_row(c):
                 "power",
                 "db",
                 "dbm",
+                "output",
+                "impedence",
+                "delay",
+                "capacitance",
+                "range",
+                "ratio",
                 "dbc",
+                "temperature",
+                "common",
                 "voltage",
                 "range",
             ],
@@ -154,6 +204,9 @@ gain_lfs = [
     pos_gain_keywords,
     neg_gain_keywords_in_row,
     neg_gain_keywords_in_column,
+    neg_gain_keywords_in_cell,
+    neg_gain_keywords_in_right_cell,
+    neg_gain_too_many_words_in_cell,
     neg_low_page_num,
 ]
 

@@ -91,18 +91,19 @@ def cand_to_entity(c, is_gain=True):
     except Exception as e:
         logger.warning(f"{e}, skipping {c}")
         return
+
+    row_ngrams = set(get_row_ngrams(c[0], n_max=1, lower=False))
+    right_ngrams = set(
+        [
+            x[0]
+            for x in get_neighbor_cell_ngrams(
+                c[0], n_max=1, dist=5, directions=True, lower=False
+            )
+            if x[-1] == "RIGHT"
+        ]
+    )
     if is_gain:
         gain = c[0].context.get_span()
-        row_ngrams = set(get_row_ngrams(c[0], n_max=1, lower=False))
-        right_ngrams = set(
-            [
-                x[0]
-                for x in get_neighbor_cell_ngrams(
-                    c[0], n_max=1, dist=5, directions=True, lower=False
-                )
-                if x[-1] == "RIGHT"
-            ]
-        )
         # Get a set of the hertz units
         right_ngrams = set([_ for _ in right_ngrams if _ in ["kHz", "MHz", "GHz"]])
         row_ngrams = set([_ for _ in row_ngrams if _ in ["kHz", "MHz", "GHz"]])
@@ -116,9 +117,19 @@ def cand_to_entity(c, is_gain=True):
         elif len(row_ngrams) == 1:
             gain_unit = row_ngrams.pop()
         else:
-            logger.debug(f"right_ngrams: {right_ngrams}")
-            logger.debug(f"row_ngrams: {right_ngrams}")
-            return
+            # Try looking at increasingly more rows up to the LIMIT for a valid
+            # current unit.
+            gain_unit = None
+            for i in range(LIMIT):
+                rel_ngrams = set(
+                    get_row_ngrams(c[0], n_max=1, spread=[-i, i], lower=False)
+                )
+                rel_ngrams = set([_ for _ in rel_ngrams if _ in ["kHz", "MHz", "GHz"]])
+                if len(rel_ngrams) == 1:
+                    gain_unit = rel_ngrams.pop()
+                    break
+            if not gain_unit:
+                return
 
         try:
             result = (doc, Quantity(f"{gain} {gain_unit}"))
@@ -130,16 +141,6 @@ def cand_to_entity(c, is_gain=True):
         current = c[0].context.get_span()
         valid_units = ["mA", "μA", "uA", "µA", "\uf06dA"]
 
-        row_ngrams = set(get_row_ngrams(c[0], n_max=1, lower=False))
-        right_ngrams = set(
-            [
-                x[0]
-                for x in get_neighbor_cell_ngrams(
-                    c[0], n_max=1, dist=5, directions=True, lower=False
-                )
-                if x[-1] == "RIGHT"
-            ]
-        )
         # Get a set of the current units
         right_ngrams = set([_ for _ in right_ngrams if _ in valid_units])
         row_ngrams = set([_ for _ in row_ngrams if _ in valid_units])

@@ -238,8 +238,8 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         session, first_time=parse, parallel=parallel, max_docs=max_docs
     )
 
-    logger.info(f"Test Docs: {pformat(test_docs)}")
-    logger.info(f"Dev Docs: {pformat(dev_docs)}")
+    logger.debug(f"Test Docs: {pformat(test_docs)}")
+    logger.debug(f"Dev Docs: {pformat(dev_docs)}")
 
     (Gain, Current) = mention_extraction(
         session, docs, first_time=first_time, parallel=parallel
@@ -262,19 +262,19 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
     logger.info("Done w/ candidate extraction.")
 
     # First, check total recall
-    result = entity_level_scores(dev_cands[0], corpus=dev_docs)
-    logger.info(f"Gain Total Dev Recall: {result.rec:.3f}")
-    logger.info(f"\n{pformat(result.FN)}")
-    result = entity_level_scores(test_cands[0], corpus=test_docs)
-    logger.info(f"Gain Total Test Recall: {result.rec:.3f}")
-    logger.info(f"\n{pformat(result.FN)}")
-
-    result = entity_level_scores(dev_cands[1], corpus=dev_docs, is_gain=False)
-    logger.info(f"Current Total Dev Recall: {result.rec:.3f}")
-    logger.info(f"\n{pformat(result.FN)}")
-    result = entity_level_scores(test_cands[1], corpus=test_docs, is_gain=False)
-    logger.info(f"Current Test Recall: {result.rec:.3f}")
-    logger.info(f"\n{pformat(result.FN)}")
+    #  result = entity_level_scores(dev_cands[0], corpus=dev_docs)
+    #  logger.info(f"Gain Total Dev Recall: {result.rec:.3f}")
+    #  logger.info(f"\n{pformat(result.FN)}")
+    #  result = entity_level_scores(test_cands[0], corpus=test_docs)
+    #  logger.info(f"Gain Total Test Recall: {result.rec:.3f}")
+    #  logger.info(f"\n{pformat(result.FN)}")
+    #
+    #  result = entity_level_scores(dev_cands[1], corpus=dev_docs, is_gain=False)
+    #  logger.info(f"Current Total Dev Recall: {result.rec:.3f}")
+    #  logger.info(f"\n{pformat(result.FN)}")
+    #  result = entity_level_scores(test_cands[1], corpus=test_docs, is_gain=False)
+    #  logger.info(f"Current Test Recall: {result.rec:.3f}")
+    #  logger.info(f"\n{pformat(result.FN)}")
 
 
     F_train, F_dev, F_test = featurization(
