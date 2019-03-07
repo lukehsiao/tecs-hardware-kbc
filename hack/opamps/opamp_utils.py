@@ -7,16 +7,6 @@ from collections import namedtuple
 from fonduer.utils.data_model_utils import get_neighbor_cell_ngrams, get_row_ngrams
 from quantiphy import Quantity
 
-try:
-    from IPython import get_ipython
-
-    if "IPKernelApp" not in get_ipython().config:
-        raise ImportError("console")
-except (AttributeError, ImportError):
-    from tqdm import tqdm
-else:
-    from tqdm import tqdm_notebook as tqdm
-
 
 logger = logging.getLogger(__name__)
 
@@ -205,7 +195,7 @@ def entity_level_scores(candidates, is_gain=True, corpus=None):
 
     # Turn CandidateSet into set of tuples
     entities = set()
-    for c in tqdm(candidates):
+    for c in candidates:
         for entity in cand_to_entity(c, is_gain=is_gain):
             entities.add(entity)
 
