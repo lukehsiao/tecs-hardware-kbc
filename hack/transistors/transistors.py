@@ -35,6 +35,7 @@ from hack.transistors.transistor_throttlers import (
 )
 from hack.transistors.transistor_utils import (
     Score,
+    candidates_to_entities,
     entity_level_scores,
     load_transistor_labels,
 )
@@ -306,10 +307,9 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
                 test_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))
             ]
             result = entity_level_scores(
-                true_pred,
+                candidates_to_entities(true_pred, parts_by_doc=parts_by_doc),
                 attribute=relation.value,
                 corpus=test_docs,
-                parts_by_doc=parts_by_doc,
             )
             logger.info(f"b = {b}, f1 = {result.f1}")
             if result.f1 > best_result.f1:

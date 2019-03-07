@@ -138,7 +138,7 @@ def entity_confusion_matrix(pred, gold):
     return (TP, FP, FN)
 
 
-def entity_level_scores(candidates, attribute=None, corpus=None, parts_by_doc=None):
+def entity_level_scores(entities, attribute=None, corpus=None):
     """Checks entity-level recall of candidates compared to gold.
 
     Turns a CandidateSet into a normal set of entity-level tuples
@@ -159,18 +159,6 @@ def entity_level_scores(candidates, attribute=None, corpus=None, parts_by_doc=No
         logger.info(f"Attribute: {attribute}")
         logger.error("Gold set is empty.")
         return
-    # Turn CandidateSet into set of tuples
-    entities = set()
-    for i, c in enumerate(tqdm(candidates)):
-        part = c[0].context.get_span()
-        doc = c[0].context.sentence.document.name.upper()
-        if attribute:
-            val = c[1].context.get_span()
-        for p in get_implied_parts(part, doc, parts_by_doc):
-            if attribute:
-                entities.add((doc, p, val))
-            else:
-                entities.add((doc, p))
 
     (TP_set, FP_set, FN_set) = entity_confusion_matrix(entities, gold_set)
     TP = len(TP_set)
@@ -191,6 +179,22 @@ def get_implied_parts(part, doc, parts_by_doc):
         for p in parts_by_doc[doc]:
             if p.startswith(part) and len(part) >= 4:
                 yield p
+
+
+def candidates_to_entities(candidates, val_on=True, parts_by_doc=None):
+    # Turn CandidateSet into set of tuples
+    entities = set()
+    for i, c in enumerate(tqdm(candidates)):
+        part = c[0].context.get_span()
+        doc = c[0].context.sentence.document.name.upper()
+        if val_on:
+            val = c[1].context.get_span()
+        for p in get_implied_parts(part, doc, parts_by_doc):
+            if val_on:
+                entities.add((doc, p, val))
+            else:
+                entities.add((doc, p))
+    return entities
 
 
 def entity_to_candidates(entity, candidate_subset):
