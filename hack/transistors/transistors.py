@@ -432,12 +432,19 @@ def main(
 if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
     parallel = 8  # len(os.sched_getaffinity(0)) // 4
-    component = "transistors"
+    max_docs = 300
+    component = "transistors_small"
     conn_string = f"postgresql:///{component}"
     first_time = True
-    relation = Relation.STG_TEMP_MIN
+    relation = Relation.CE_V_MAX
     logger.info(f"\n\n")
     logger.info(f"=" * 80)
     logger.info(f"Beginning {component}::{relation.value} with parallel: {parallel}")
 
-    main(conn_string, relation=relation, first_time=first_time, parallel=parallel)
+    main(
+        conn_string,
+        relation=relation,
+        first_time=first_time,
+        parallel=parallel,
+        max_docs=max_docs,
+    )

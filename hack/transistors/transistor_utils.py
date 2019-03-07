@@ -345,4 +345,4 @@ def parse_dataset(
             if doc.name in analysis_doc_names:
                 analysis_docs.add(doc)
 
-    return all_docs, train_docs, dev_docs, test_docs
+    return all_docs, train_docs, dev_docs, test_docs, analysis_docs
