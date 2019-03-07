@@ -167,8 +167,15 @@ def discriminative_model(
     disc_model = SparseLogisticRegression()
 
     logger.info("Training discriminative model...")
+    marginals = []
+    for y in Y_dev:
+        if y == 1:
+            marginals.append([1.0, 0.0])
+        else:
+            marginals.append([0.0, 1.0])
+    marginals = np.array(marginals)
     disc_model.train(
-        (train_cands, F_train),
+        X_dev,
         marginals,
         X_dev=X_dev,
         Y_dev=Y_dev,
@@ -197,7 +204,7 @@ def labeling(
     return L_mat
 
 
-def scoring(disc_model, cands, docs, F_mat, num=100):
+def scoring(disc_model, cands, docs, F_mat, is_gain=True,  num=100):
     logger.info("Calculating the best F1 score and threshold (b)...")
 
     # Iterate over a range of `b` values in order to find the b with the
@@ -217,7 +224,7 @@ def scoring(disc_model, cands, docs, F_mat, num=100):
         except Exception as e:
             logger.debug(f"{e}, skipping.")
             break
-        result = entity_level_scores(true_pred, corpus=docs)
+        result = entity_level_scores(true_pred, corpus=docs, is_gain=is_gain)
         logger.info(
             f"({b:.3f}), f1:{result.f1:.3f} p:{result.prec:.3f} r:{result.rec:.3f}"
         )
@@ -289,6 +296,7 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         split=0,
         lfs=[gain_lfs, current_lfs],
         train=True,
+        first_time=False,
         parallel=parallel,
     )
     logger.info("Done.")
@@ -300,6 +308,7 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         split=1,
         lfs=[gain_lfs, current_lfs],
         train=False,
+        first_time=False,
         parallel=parallel,
     )
 
@@ -329,31 +338,38 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         Y_dev=L_dev_gt,
         n_epochs=500,
     )
-    best_result, best_b = scoring(disc_models, dev_cands[0], dev_docs, F_dev[0], num=30)
+    best_result, best_b = scoring(disc_models, test_cands[0], test_docs, F_test[0], num=50)
 
     print_scores(best_result, best_b)
 
-    try:
-        fp_cands == entity_to_candidates(best_result.FP[0], test_cands[0])
-    except Exception:
-        pass
+    L_dev_gt = []
+    dev_gold_entities = get_gold_set(is_gain=False)
+    for c in dev_cands[1]:
+        flag = FALSE
+        for entity in cand_to_entity(c, is_gain=False):
+            if entity in dev_gold_entities:
+                flag = TRUE
+        L_dev_gt.append(flag)
 
-    # End with an interactive prompt
-    pdb.set_trace()
+    df = analysis.lf_summary(
+        L_dev[1], lf_names=labeler.get_keys(), Y=np.array(L_dev_gt)
+    )
 
+    logger.info(f"\n{df.to_string()}")
     marginals = generative_model(L_train[1])
 
+
     disc_models = discriminative_model(
-        train_cands[1], F_train[1], marginals, n_epochs=10
+        train_cands[1],
+        F_train[1],
+        marginals,
+        X_dev=(dev_cands[1], F_dev[1]),
+        Y_dev=L_dev_gt,
+        n_epochs=100,
     )
-    best_result, best_b = scoring(disc_models, dev_cands[1], dev_docs, F_dev[1], num=30)
+    best_result, best_b = scoring(disc_models, test_cands[1], test_docs, F_test[1], is_gain=False, num=50)
 
     print_scores(best_result, best_b)
-
-    try:
-        fp_cands == entity_to_candidates(best_result.FP[0], test_cands[1])
-    except Exception:
-        pass
 
     # End with an interactive prompt
     pdb.set_trace()
