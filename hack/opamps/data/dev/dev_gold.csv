@@ -2225,6 +2225,7 @@ opa1654,OPA1654AIPWR,min_op_temp,-40
 opa1654,OPA1654AIPWR,max_op_temp,85
 opa191,OPA191,part_family,Y
 opa191,OPA191,typ_gbp,2.5 MHz
+opa191,OPA191,typ_gbp,2.2 MHz
 opa191,OPA191,typ_supply_current,140 uA
 opa191,OPA191,min_op_supply_volt,4.5 V
 opa191,OPA191,min_op_supply_volt,±2.25 V
@@ -2234,6 +2235,7 @@ opa191,OPA191,min_op_temp,-40
 opa191,OPA191,max_op_temp,125
 opa191,OPA191ID,part_family,N
 opa191,OPA191ID,typ_gbp,2.5 MHz
+opa191,OPA191ID,typ_gbp,2.2 MHz
 opa191,OPA191ID,typ_supply_current,140 uA
 opa191,OPA191ID,min_op_supply_volt,4.5 V
 opa191,OPA191ID,min_op_supply_volt,±2.25 V
@@ -2243,6 +2245,7 @@ opa191,OPA191ID,min_op_temp,-40
 opa191,OPA191ID,max_op_temp,125
 opa191,OPA191IDBVR,part_family,N
 opa191,OPA191IDBVR,typ_gbp,2.5 MHz
+opa191,OPA191IDBVR,typ_gbp,2.2 MHz
 opa191,OPA191IDBVR,typ_supply_current,140 uA
 opa191,OPA191IDBVR,min_op_supply_volt,4.5 V
 opa191,OPA191IDBVR,min_op_supply_volt,±2.25 V
@@ -2252,6 +2255,7 @@ opa191,OPA191IDBVR,min_op_temp,-40
 opa191,OPA191IDBVR,max_op_temp,125
 opa191,OPA191IDBVT,part_family,N
 opa191,OPA191IDBVT,typ_gbp,2.5 MHz
+opa191,OPA191IDBVT,typ_gbp,2.2 MHz
 opa191,OPA191IDBVT,typ_supply_current,140 uA
 opa191,OPA191IDBVT,min_op_supply_volt,4.5 V
 opa191,OPA191IDBVT,min_op_supply_volt,±2.25 V
@@ -2261,6 +2265,7 @@ opa191,OPA191IDBVT,min_op_temp,-40
 opa191,OPA191IDBVT,max_op_temp,125
 opa191,OPA191IDGKR,part_family,N
 opa191,OPA191IDGKR,typ_gbp,2.5 MHz
+opa191,OPA191IDGKR,typ_gbp,2.2 MHz
 opa191,OPA191IDGKR,typ_supply_current,140 uA
 opa191,OPA191IDGKR,min_op_supply_volt,4.5 V
 opa191,OPA191IDGKR,min_op_supply_volt,±2.25 V
@@ -2270,6 +2275,7 @@ opa191,OPA191IDGKR,min_op_temp,-40
 opa191,OPA191IDGKR,max_op_temp,125
 opa191,OPA191IDGKT,part_family,N
 opa191,OPA191IDGKT,typ_gbp,2.5 MHz
+opa191,OPA191IDGKT,typ_gbp,2.2 MHz
 opa191,OPA191IDGKT,typ_supply_current,140 uA
 opa191,OPA191IDGKT,min_op_supply_volt,4.5 V
 opa191,OPA191IDGKT,min_op_supply_volt,±2.25 V
@@ -2279,6 +2285,7 @@ opa191,OPA191IDGKT,min_op_temp,-40
 opa191,OPA191IDGKT,max_op_temp,125
 opa191,OPA191IDR,part_family,N
 opa191,OPA191IDR,typ_gbp,2.5 MHz
+opa191,OPA191IDR,typ_gbp,2.2 MHz
 opa191,OPA191IDR,typ_supply_current,140 uA
 opa191,OPA191IDR,min_op_supply_volt,4.5 V
 opa191,OPA191IDR,min_op_supply_volt,±2.25 V
@@ -2288,6 +2295,7 @@ opa191,OPA191IDR,min_op_temp,-40
 opa191,OPA191IDR,max_op_temp,125
 opa191,OPA2191,part_family,Y
 opa191,OPA2191,typ_gbp,2.5 MHz
+opa191,OPA2191,typ_gbp,2.2 MHz
 opa191,OPA2191,typ_supply_current,140 uA
 opa191,OPA2191,min_op_supply_volt,4.5 V
 opa191,OPA2191,min_op_supply_volt,±2.25 V
@@ -2297,6 +2305,7 @@ opa191,OPA2191,min_op_temp,-40
 opa191,OPA2191,max_op_temp,125
 opa191,OPA2191ID,part_family,N
 opa191,OPA2191ID,typ_gbp,2.5 MHz
+opa191,OPA2191ID,typ_gbp,2.2 MHz
 opa191,OPA2191ID,typ_supply_current,140 uA
 opa191,OPA2191ID,min_op_supply_volt,4.5 V
 opa191,OPA2191ID,min_op_supply_volt,±2.25 V
@@ -2306,6 +2315,7 @@ opa191,OPA2191ID,min_op_temp,-40
 opa191,OPA2191ID,max_op_temp,125
 opa191,OPA2191DR,part_family,N
 opa191,OPA2191DR,typ_gbp,2.5 MHz
+opa191,OPA2191DR,typ_gbp,2.2 MHz
 opa191,OPA2191DR,typ_supply_current,140 uA
 opa191,OPA2191DR,min_op_supply_volt,4.5 V
 opa191,OPA2191DR,min_op_supply_volt,±2.25 V
@@ -2315,6 +2325,7 @@ opa191,OPA2191DR,min_op_temp,-40
 opa191,OPA2191DR,max_op_temp,125
 opa191,OPA4191,part_family,Y
 opa191,OPA4191,typ_gbp,2.5 MHz
+opa191,OPA4191,typ_gbp,2.2 MHz
 opa191,OPA4191,typ_supply_current,140 uA
 opa191,OPA4191,min_op_supply_volt,4.5 V
 opa191,OPA4191,min_op_supply_volt,±2.25 V
@@ -2324,6 +2335,7 @@ opa191,OPA4191,min_op_temp,-40
 opa191,OPA4191,max_op_temp,125
 opa191,OPA4191ID,part_family,N
 opa191,OPA4191ID,typ_gbp,2.5 MHz
+opa191,OPA4191ID,typ_gbp,2.2 MHz
 opa191,OPA4191ID,typ_supply_current,140 uA
 opa191,OPA4191ID,min_op_supply_volt,4.5 V
 opa191,OPA4191ID,min_op_supply_volt,±2.25 V
@@ -2333,6 +2345,7 @@ opa191,OPA4191ID,min_op_temp,-40
 opa191,OPA4191ID,max_op_temp,125
 opa191,OPA4191DR,part_family,N
 opa191,OPA4191DR,typ_gbp,2.5 MHz
+opa191,OPA4191DR,typ_gbp,2.2 MHz
 opa191,OPA4191DR,typ_supply_current,140 uA
 opa191,OPA4191DR,min_op_supply_volt,4.5 V
 opa191,OPA4191DR,min_op_supply_volt,±2.25 V
