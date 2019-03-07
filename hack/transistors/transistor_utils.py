@@ -2,6 +2,7 @@ import codecs
 import csv
 import logging
 import os
+import pdb
 from builtins import range
 from collections import namedtuple
 
@@ -27,7 +28,7 @@ logger = logging.getLogger(__name__)
 Score = namedtuple("Score", ["f1", "prec", "rec", "TP", "FP", "FN"])
 
 
-def get_gold_dic(gold_set):
+def gold_set_to_dic(gold_set):
     gold_dic = {}
     for (doc, part, val) in gold_set:
         if doc in gold_dic:
@@ -38,14 +39,30 @@ def get_gold_dic(gold_set):
     return gold_dic
 
 
-def get_gold_set(doc_on=True, part_on=True, val_on=True, attribute=None, docs=None):
-
-    dirname = os.path.dirname(__file__)
+def gold_dic_to_set(gold_dic):
     gold_set = set()
-    for filename in [
-        os.path.join(dirname, "data/dev/dev_gold.csv"),
-        os.path.join(dirname, "data/test/test_gold.csv"),
-    ]:
+    try:
+        for doc in gold_dic:
+            for part in gold_dic[doc]:
+                for attr in gold_dic[doc][part]:
+                    gold_set.add((doc, part, attr))
+    except Exception as e:
+        logger.error(f"{e} while converting a {len(gold_dic)} long dict to entity set.")
+        pdb.set_trace()
+
+
+def get_gold_set(
+    doc_on=True, part_on=True, val_on=True, attribute=None, docs=None, gold=None
+):
+    if gold is None:
+        dirname = os.path.dirname(__file__)
+        gold = [
+            os.path.join(dirname, "data/dev/dev_gold.csv"),
+            os.path.join(dirname, "data/test/test_gold.csv"),
+        ]
+
+    gold_set = set()
+    for filename in gold:
         with codecs.open(filename, encoding="utf-8") as csvfile:
             gold_reader = csv.reader(csvfile)
             for row in gold_reader:
@@ -152,13 +169,16 @@ def entity_confusion_matrix(pred, gold):
 
 
 def compare_entities(
-    entities, attribute, gold_dic=None, outfile="../our_discrepancies.csv"
+    entities, attribute=None, gold_dic=None, outfile="../our_discrepancies.csv"
 ):
     """Compare given entities to gold labels
     and write any discrepancies to a CSV file."""
 
-    if gold_dic is None:
-        gold_dic = get_gold_dic(get_gold_set(attribute=attribute))
+    if gold_dic is None and attribute is None:
+        logger.error("Compare entities needs an attribute or gold_dic.")
+    elif gold_dic is None and attribute is not None:
+        gold_dic = gold_set_to_dic(get_gold_set(attribute=attribute))
+
     outfile = os.path.join(os.path.dirname(__name__), outfile)
 
     # Write discrepancies to a CSV file
@@ -168,15 +188,17 @@ def compare_entities(
         writer.writerow(("Filename:", "Part:", "Our Vals:", "Notes:"))
         for (doc, part, val) in entities:
             if doc in gold_dic:
-                if part in gold_dic[doc]:
-                    writer.writerow((doc, part, val, f"Gold vals: gold_dic[doc][part]"))
+                if part in gold_dic[doc] and val not in gold_dic[doc][part]:
+                    writer.writerow(
+                        (doc, part, val, f"Gold vals: {gold_dic[doc][part]}")
+                    )
                 else:
                     writer.writerow((doc, part, val, f"Gold parts: {gold_dic[doc]}"))
             else:
                 writer.writerow((doc, part, val, f"Gold does not have doc {doc}."))
 
 
-def entity_level_scores(entities, attribute=None, corpus=None):
+def entity_level_scores(entities, attribute=None, corpus=None, gold_set=None):
     """Checks entity-level recall of candidates compared to gold.
 
     Turns a CandidateSet into a normal set of entity-level tuples
@@ -190,9 +212,10 @@ def entity_level_scores(entities, attribute=None, corpus=None):
     """
     docs = [(doc.name).upper() for doc in corpus] if corpus else None
     val_on = attribute is not None
-    gold_set = get_gold_set(
-        docs=docs, doc_on=True, part_on=True, val_on=val_on, attribute=attribute
-    )
+    if gold_set is None:
+        gold_set = get_gold_set(
+            docs=docs, doc_on=True, part_on=True, val_on=val_on, attribute=attribute
+        )
     if len(gold_set) == 0:
         logger.info(f"Attribute: {attribute}")
         logger.error("Gold set is empty.")

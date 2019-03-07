@@ -339,7 +339,7 @@ def scoring(relation, disc_model, cands, docs, F, parts_by_doc, debug=False, num
         # Compare our TRUE cands with our gold labels
         # and write any discrepancies to a CSV.
         best_entities = candidates_to_entities(best_true_pred)
-        compare_entities(best_entities, relation.value)
+        compare_entities(best_entities, attribute=relation.value)
 
     logger.info("===================================================")
     logger.info(f"Scoring on Entity-Level Gold Data with b={best_b}")
