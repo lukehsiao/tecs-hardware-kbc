@@ -68,10 +68,10 @@ def get_supply_current_matcher():
 
         # NOTE: These two symbols for mu are unique, not duplicates.
         current_units = ["ma", "μa", "ua", "µa", "\uf06da"]
-        keywords = ["supply", "quiescent", "iq", "is", "idd"]
+        keywords = ["supply", "quiescent", "iq", "is", "idd", "icc"]
         filter_keywords = ["voltage", "offset", "bias", "logic", "shutdown"]
         related_ngrams = set(get_right_ngrams(attr, n_max=1, lower=True))
-        related_ngrams.update(get_row_ngrams(attr, n_max=1, spread=[-2, 2], lower=True))
+        related_ngrams.update(get_row_ngrams(attr, n_max=1, spread=[-5, 5], lower=True))
 
         if attr.get_span().strip() == "0":
             return False

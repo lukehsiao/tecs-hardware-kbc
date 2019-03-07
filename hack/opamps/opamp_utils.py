@@ -21,6 +21,7 @@ else:
 logger = logging.getLogger(__name__)
 
 Score = namedtuple("Score", ["f1", "prec", "rec", "TP", "FP", "FN"])
+LIMIT = 8
 
 
 def print_scores(best_result, best_b):
@@ -160,9 +161,20 @@ def cand_to_entity(c, is_gain=True):
         elif len(row_ngrams) == 1:
             current_unit = row_ngrams.pop().replace("\uf06d", "μ")
         else:
-            #  logger.debug(f"right_ngrams: {right_ngrams}")
-            #  logger.debug(f"row_ngrams: {right_ngrams}")
-            return
+            # Try looking at increasingly more rows up to the LIMIT for a valid
+            # current unit.
+            current_unit = None
+            for i in range(LIMIT):
+                rel_ngrams = set(
+                    get_row_ngrams(c[0], n_max=1, spread=[-i, i], lower=False)
+                )
+                rel_ngrams = set([_ for _ in rel_ngrams if _ in valid_units])
+                if len(rel_ngrams) == 1:
+                    current_unit = rel_ngrams.pop().replace("\uf06d", "μ")
+                    break
+
+            if not current_unit:
+                return
 
         # Allow the double of a +/- value to be valid also.
         try:
