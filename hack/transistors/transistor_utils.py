@@ -5,6 +5,8 @@ import os
 from builtins import range
 from collections import namedtuple
 
+from fonduer.parser import Parser
+from fonduer.parser.preprocessors import HTMLDocPreprocessor
 from fonduer.supervision.models import GoldLabel, GoldLabelKey
 
 from hack.transistors.transistor_lfs import FALSE, TRUE
@@ -208,3 +210,80 @@ def entity_to_candidates(entity, candidate_subset):
         if c_entity == entity:
             matches.append(c)
     return matches
+
+
+def _files_in_dir(path):
+    """Return the filenames, but drops the ".pdf" extension."""
+    return [f[:-4] for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+
+
+def parse_dataset(
+    session, dirname, first_time=False, max_docs=float("inf"), parallel=4
+):
+    """Parse the dataset into dev, test, train, and analysis.
+
+    This expects that the data is located in data/dev/, data/test/,
+    data/train/, data/analysis/ directories, and each of those
+    contains html/ and pdf/. Also expects that the filenames of
+    the HTML and PDF match.
+
+    :param session: The database session
+    :param max_docs: The maximum number of documents to parse from each set.
+        Defaults to parsing all documents.
+    :rtype: (all_docs, train_docs, dev_docs, test_docs, analysis_docs)
+    """
+    train_docs = set()
+    dev_docs = set()
+    test_docs = set()
+    analysis_docs = set()
+
+    if first_time:
+        for division in ["dev", "test", "train", "analysis"]:
+            logger.info(f"Parsing {division}...")
+            html_path = os.path.join(dirname, f"data/{division}/html/")
+            pdf_path = os.path.join(dirname, f"data/{division}/pdf/")
+
+            doc_preprocessor = HTMLDocPreprocessor(html_path, max_docs=max_docs)
+
+            corpus_parser = Parser(
+                session, structural=True, lingual=True, visual=True, pdf_path=pdf_path
+            )
+            # Do not want to clear the database when parsing test and train
+            if division == "dev":
+                corpus_parser.apply(doc_preprocessor, parallelism=parallel)
+                dev_docs = set(corpus_parser.get_last_documents())
+            if division == "test":
+                corpus_parser.apply(doc_preprocessor, parallelism=parallel, clear=False)
+                test_docs = set(corpus_parser.get_last_documents())
+            if division == "train":
+                corpus_parser.apply(doc_preprocessor, parallelism=parallel, clear=False)
+                train_docs = set(corpus_parser.get_last_documents())
+            if division == "analysis":
+                corpus_parser.apply(doc_preprocessor, parallelism=parallel, clear=False)
+                analysis_docs = set(corpus_parser.get_last_documents())
+            all_docs = corpus_parser.get_documents()
+    else:
+        logger.info("Reloading pre-parsed dataset.")
+        all_docs = Parser(session).get_documents()
+        for division in ["dev", "test", "train", "analysis"]:
+            pdf_path = os.path.join(dirname, f"data/{division}/pdf/")
+            if division == "dev":
+                dev_doc_names = _files_in_dir(pdf_path)
+            if division == "test":
+                test_doc_names = _files_in_dir(pdf_path)
+            if division == "train":
+                train_doc_names = _files_in_dir(pdf_path)
+            if division == "analysis":
+                analysis_doc_names = _files_in_dir(pdf_path)
+
+        for doc in all_docs:
+            if doc.name in dev_doc_names:
+                dev_docs.add(doc)
+            if doc.name in test_doc_names:
+                test_docs.add(doc)
+            if doc.name in train_doc_names:
+                train_docs.add(doc)
+            if doc.name in analysis_doc_names:
+                analysis_docs.add(doc)
+
+    return all_docs, train_docs, dev_docs, test_docs

@@ -38,8 +38,8 @@ from hack.transistors.transistor_utils import (
     candidates_to_entities,
     entity_level_scores,
     load_transistor_labels,
+    parse_dataset,
 )
-from hack.utils import parse_dataset
 
 # Use the first set of GPUs
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
@@ -69,7 +69,7 @@ class Relation(Enum):
 def parsing(session, first_time=True, parallel=1, max_docs=float("inf")):
     dirname = os.path.dirname(__file__)
     logger.debug(f"Starting parsing...")
-    docs, train_docs, dev_docs, test_docs = parse_dataset(
+    docs, train_docs, dev_docs, test_docs, analysis_docs = parse_dataset(
         session, dirname, first_time=first_time, parallel=parallel, max_docs=max_docs
     )
     logger.debug(f"Done")
@@ -77,6 +77,7 @@ def parsing(session, first_time=True, parallel=1, max_docs=float("inf")):
     logger.info(f"# of train Documents: {len(train_docs)}")
     logger.info(f"# of dev Documents: {len(dev_docs)}")
     logger.info(f"# of test Documents: {len(test_docs)}")
+    logger.info(f"# of analysis Documents: {len(analysis_docs)}")
 
     logger.info(f"Documents: {session.query(Document).count()}")
     logger.info(f"Sections: {session.query(Section).count()}")
@@ -84,7 +85,7 @@ def parsing(session, first_time=True, parallel=1, max_docs=float("inf")):
     logger.info(f"Sentences: {session.query(Sentence).count()}")
     logger.info(f"Figures: {session.query(Figure).count()}")
 
-    return docs, train_docs, dev_docs, test_docs
+    return docs, train_docs, dev_docs, test_docs, analysis_docs
 
 
 def mention_extraction(session, relation, docs, first_time=True, parallel=1):
@@ -131,6 +132,7 @@ def candidate_extraction(
     train_docs,
     dev_docs,
     test_docs,
+    analysis_docs,
     first_time=True,
     parallel=1,
 ):
@@ -152,7 +154,7 @@ def candidate_extraction(
     candidate_extractor = CandidateExtractor(session, [Cand], throttlers=[throttler])
 
     if first_time:
-        for i, docs in enumerate([train_docs, dev_docs, test_docs]):
+        for i, docs in enumerate([train_docs, dev_docs, test_docs, analysis_docs]):
             candidate_extractor.apply(docs, split=i, parallelism=parallel)
             logger.info(
                 f"Cand in split={i}: "
@@ -162,16 +164,25 @@ def candidate_extraction(
     train_cands = candidate_extractor.get_candidates(split=0)
     dev_cands = candidate_extractor.get_candidates(split=1)
     test_cands = candidate_extractor.get_candidates(split=2)
+    analysis_cands = candidate_extractor.get_candidates(split=3)
 
     logger.info(f"Total train candidate: {len(train_cands[0])}")
     logger.info(f"Total dev candidate: {len(dev_cands[0])}")
     logger.info(f"Total test candidate: {len(test_cands[0])}")
+    logger.info(f"Total analysis candidate: {len(analysis_cands[0])}")
 
-    return (Cand, train_cands, dev_cands, test_cands)
+    return (Cand, train_cands, dev_cands, test_cands, analysis_cands)
 
 
 def featurization(
-    session, train_cands, dev_cands, test_cands, Cand, first_time=True, parallel=1
+    session,
+    train_cands,
+    dev_cands,
+    test_cands,
+    analysis_cands,
+    Cand,
+    first_time=True,
+    parallel=1,
 ):
     dirname = os.path.dirname(__file__)
     featurizer = Featurizer(session, [Cand])
@@ -180,6 +191,7 @@ def featurization(
         featurizer.apply(split=0, train=True, parallelism=parallel)
         featurizer.apply(split=1, parallelism=parallel)
         featurizer.apply(split=2, parallelism=parallel)
+        featurizer.apply(split=3, parallelism=parallel)
         logger.info("Done")
 
     logger.info("Getting feature matrices...")
@@ -188,20 +200,24 @@ def featurization(
         F_train = featurizer.get_feature_matrices(train_cands)
         F_dev = featurizer.get_feature_matrices(dev_cands)
         F_test = featurizer.get_feature_matrices(test_cands)
+        F_analysis = featurizer.get_feature_matrices(analysis_cands)
         pickle.dump(F_train, open(os.path.join(dirname, "F_train.pkl"), "wb"))
         pickle.dump(F_dev, open(os.path.join(dirname, "F_dev.pkl"), "wb"))
         pickle.dump(F_test, open(os.path.join(dirname, "F_test.pkl"), "wb"))
+        pickle.dump(F_analysis, open(os.path.join(dirname, "F_analysis.pkl"), "wb"))
     else:
         F_train = pickle.load(open(os.path.join(dirname, "F_train.pkl"), "rb"))
         F_dev = pickle.load(open(os.path.join(dirname, "F_dev.pkl"), "rb"))
         F_test = pickle.load(open(os.path.join(dirname, "F_test.pkl"), "rb"))
+        F_analysis = pickle.load(open(os.path.join(dirname, "F_analysis.pkl"), "rb"))
     logger.info("Done.")
 
     logger.info(f"Train shape: {F_train[0].shape}")
     logger.info(f"Test shape: {F_test[0].shape}")
     logger.info(f"Dev shape: {F_dev[0].shape}")
+    logger.info(f"Analysis shape: {F_analysis[0].shape}")
 
-    return F_train, F_dev, F_test
+    return F_train, F_dev, F_test, F_analysis
 
 
 def load_labels(session, relation, cand, first_time=True):
@@ -287,12 +303,12 @@ def load_parts_by_doc():
         return pickle.load(f)
 
 
-def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, num=100):
+def scoring(relation, disc_model, cands, docs, F, parts_by_doc, num=100):
     logger.info("Calculating the best F1 score and threshold (b)...")
 
     # Iterate over a range of `b` values in order to find the b with the
     # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
-    Y_prob = disc_model.marginals((test_cands[0], F_test[0]))
+    Y_prob = disc_model.marginals((cands[0], F[0]))
 
     # Get prediction for a particular b, store the full tuple to output
     # (b, pref, rec, f1, TP, FP, FN)
@@ -303,13 +319,11 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
             test_score = np.array(
                 [TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob]
             )
-            true_pred = [
-                test_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))
-            ]
+            true_pred = [cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))]
             result = entity_level_scores(
                 candidates_to_entities(true_pred, parts_by_doc=parts_by_doc),
                 attribute=relation.value,
-                corpus=test_docs,
+                corpus=docs,
             )
             logger.info(f"b = {b}, f1 = {result.f1}")
             if result.f1 > best_result.f1:
@@ -343,7 +357,7 @@ def main(
     relation=Relation.STG_TEMP_MAX,
 ):
     session = Meta.init(conn_string).Session()
-    docs, train_docs, dev_docs, test_docs = parsing(
+    docs, train_docs, dev_docs, test_docs, analysis_docs = parsing(
         session, first_time=first_time, parallel=parallel, max_docs=max_docs
     )
 
@@ -351,7 +365,7 @@ def main(
         session, relation, docs, first_time=first_time, parallel=parallel
     )
 
-    (Cand, train_cands, dev_cands, test_cands) = candidate_extraction(
+    (Cand, train_cands, dev_cands, test_cands, analysis_cands) = candidate_extraction(
         session,
         relation,
         Part,
@@ -359,14 +373,16 @@ def main(
         train_docs,
         dev_docs,
         test_docs,
+        analysis_docs,
         first_time=first_time,
         parallel=parallel,
     )
-    F_train, F_dev, F_test = featurization(
+    F_train, F_dev, F_test, F_analysis = featurization(
         session,
         train_cands,
         dev_cands,
         test_cands,
+        analysis_cands,
         Cand,
         first_time=first_time,
         parallel=parallel,
