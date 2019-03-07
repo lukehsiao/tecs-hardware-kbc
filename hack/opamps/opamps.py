@@ -313,7 +313,7 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
     marginals = generative_model(L_train[0])
 
     disc_models = discriminative_model(
-        train_cands[0], F_train[0], marginals, n_epochs=10
+        train_cands[0], F_train[0], marginals, n_epochs=50
     )
     best_result, best_b = scoring(
         disc_models, dev_cands[0], dev_docs, F_dev[0], num=30

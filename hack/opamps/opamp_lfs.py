@@ -34,23 +34,46 @@ def neg_low_page_num(c):
     return ABSTAIN
 
 
-# Gain LFs
 def pos_gain(c):
     row_ngrams = set(get_row_ngrams(c.gain, lower=True))
-    if overlap(["gain", "bandwidth", "unity"], row_ngrams):
+    #     print("row_ngrams", row_ngrams)
+    if overlap(["gain"], row_ngrams):
         return TRUE
     else:
         ABSTAIN
 
-def pos_gain_keyword(c):
-    col_ngrams = set(get_col_ngrams(c.gain, lower=True))
-    if overlap(["typ.", "typ"], col_ngrams):
-        return TRUE
-    else:
-        ABSTAIN
 
+def pos_gain_keywords(c):
+    vert_ngrams = set(get_vert_ngrams(c.gain, n_max=1, lower=True))
+    row_ngrams = set(get_row_ngrams(c.gain, lower=True))
+    if overlap(["typ", "typ."], vert_ngrams) and overlap(["khz", "mhz"], row_ngrams):
+        return TRUE
+
+    return ABSTAIN
+
+
+def neg_keywords(c):
+    horz_ngrams = set(get_horz_ngrams(c.gain, lower=True))
+    if overlap(["bandwidth"], horz_ngrams) and not overlap(["gain"], horz_ngrams):
+        return FALSE
+
+    return ABSTAIN
+
+
+def pos_sen_lf(c):
+    if (
+        pos_gain(c) == TRUE
+        and pos_gain_keywords(c) == TRUE
+        and neg_keywords(c) == ABSTAIN
+    ):
+        return TRUE
+
+    return FALSE
+
+
+# Gain LFs
 def pos_gain_header_unit(c):
-    row_ngrams = set(get_row_ngrams(c.gain, n_max=1, lower=True))
+    horz_ngrams = set(get_horz_ngrams(c.gain, n_max=1, lower=True))
     vert_ngrams = set(get_vert_ngrams(c.gain, n_max=1, lower=True))
     right_ngrams = set(
         [
@@ -62,7 +85,7 @@ def pos_gain_header_unit(c):
         ]
     )
     if (
-        overlap(["gain", "unity"], row_ngrams)
+        overlap(["gain", "unity"], horz_ngrams)
         and overlap(["mhz", "khz"], right_ngrams)
         and overlap(["typ", "typ."], vert_ngrams)
     ):
@@ -147,6 +170,7 @@ def neg_gain_keywords_in_horz(c):
         return FALSE
     else:
         return ABSTAIN
+
 
 def neg_gain_keywords_in_row(c):
     row_ngrams = set(get_row_ngrams(c.gain, n_max=1, lower=True))
@@ -264,25 +288,23 @@ def neg_current_keywords_in_row(c):
 
 
 gain_lfs = [
-    neg_gain_bandwidth_missing_gain,
-    neg_gain_keywords_in_cell,
-    neg_gain_keywords_in_column,
-    neg_gain_keywords_in_horz,
-    neg_gain_keywords_in_right_cell,
-    neg_gain_keywords_in_row,
-    neg_gain_too_many_words_in_cell,
-    neg_low_page_num,
-    pos_gain,
-    pos_gain_header_unit,
-    pos_gain_keyword,
+    #  neg_gain_bandwidth_missing_gain,
+    #  neg_gain_keywords_in_cell,
+    #  neg_gain_keywords_in_column,
+    #  neg_gain_keywords_in_horz,
+    #  neg_gain_keywords_in_right_cell,
+    #  neg_gain_keywords_in_row,
+    #  neg_gain_too_many_words_in_cell,
+    #  neg_low_page_num,
+    pos_sen_lf,
 ]
 
 current_lfs = [
-    pos_current,
-    pos_current_units,
-    pos_current_typ,
+    neg_current_keywords_in_column,
     neg_current_keywords_in_row,
     neg_current_keywords_in_vert,
-    neg_current_keywords_in_column,
     neg_low_page_num,
+    pos_current,
+    pos_current_typ,
+    pos_current_units,
 ]
