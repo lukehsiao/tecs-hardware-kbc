@@ -1523,160 +1523,160 @@ lmc6442_april162015,5962-9761301QXA,min_op_temp,-55
 lmc6442_april162015,5962-9761301QXA,max_op_temp,125
 lmc6462_lmc6464,LMC6462,part_family,Y
 lmc6462_lmc6464,LMC6462,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462,min_op_temp,-40
 lmc6462_lmc6464,LMC6462,max_op_temp,85
 lmc6462_lmc6464,LMC6462AIM,part_family,N
 lmc6462_lmc6464,LMC6462AIM,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462AIM,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462AIM,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462AIM,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462AIM,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462AIM,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462AIM,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462AIM,min_op_temp,-40
 lmc6462_lmc6464,LMC6462AIM,max_op_temp,85
 lmc6462_lmc6464,LMC6462AIM/NOPB,part_family,N
 lmc6462_lmc6464,LMC6462AIM/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462AIM/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462AIM/NOPB,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462AIM/NOPB,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462AIM/NOPB,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462AIM/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462AIM/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462AIM/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6462AIM/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6462AIMX/NOPB,part_family,N
 lmc6462_lmc6464,LMC6462AIMX/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462AIMX/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462AIMX/NOPB,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462AIMX/NOPB,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462AIMX/NOPB,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462AIMX/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462AIMX/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462AIMX/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6462AIMX/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6462AIN,part_family,N
 lmc6462_lmc6464,LMC6462AIN,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462AIN,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462AIN,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462AIN,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462AIN,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462AIN,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462AIN,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462AIN,min_op_temp,-40
 lmc6462_lmc6464,LMC6462AIN,max_op_temp,85
 lmc6462_lmc6464,LMC6462AIN/NOPB,part_family,N
 lmc6462_lmc6464,LMC6462AIN/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462AIN/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462AIN/NOPB,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462AIN/NOPB,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462AIN/NOPB,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462AIN/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462AIN/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462AIN/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6462AIN/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6462BIM/NOPB,part_family,N
 lmc6462_lmc6464,LMC6462BIM/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462BIM/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462BIM/NOPB,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462BIM/NOPB,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462BIM/NOPB,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462BIM/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462BIM/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462BIM/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6462BIM/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6462BIMX/NOPB,part_family,N
 lmc6462_lmc6464,LMC6462BIMX/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462BIMX/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462BIMX/NOPB,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462BIMX/NOPB,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462BIMX/NOPB,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462BIMX/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462BIMX/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462BIMX/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6462BIMX/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6462BIN,part_family,N
 lmc6462_lmc6464,LMC6462BIN,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462BIN,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462BIN,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462BIN,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462BIN,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462BIN,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462BIN,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462BIN,min_op_temp,-40
 lmc6462_lmc6464,LMC6462BIN,max_op_temp,85
 lmc6462_lmc6464,LMC6462BIN/NOPB,part_family,N
 lmc6462_lmc6464,LMC6462BIN/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462BIN/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462BIN/NOPB,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462BIN/NOPB,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462BIN/NOPB,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462BIN/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462BIN/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462BIN/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6462BIN/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6464,part_family,Y
 lmc6462_lmc6464,LMC6464,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464,min_op_temp,-40
 lmc6462_lmc6464,LMC6464,max_op_temp,85
 lmc6462_lmc6464,LMC6464AIM,part_family,N
 lmc6462_lmc6464,LMC6464AIM,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464AIM,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464AIM,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464AIM,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464AIM,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464AIM,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464AIM,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464AIM,min_op_temp,-40
 lmc6462_lmc6464,LMC6464AIM,max_op_temp,85
 lmc6462_lmc6464,LMC6464AIM/NOPB,part_family,N
 lmc6462_lmc6464,LMC6464AIM/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464AIM/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464AIM/NOPB,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464AIM/NOPB,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464AIM/NOPB,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464AIM/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464AIM/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464AIM/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6464AIM/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6464AIMX,part_family,N
 lmc6462_lmc6464,LMC6464AIMX,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464AIMX,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464AIMX,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464AIMX,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464AIMX,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464AIMX,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464AIMX,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464AIMX,min_op_temp,-40
 lmc6462_lmc6464,LMC6464AIMX,max_op_temp,85
 lmc6462_lmc6464,LMC6464AIMX/NOPB,part_family,N
 lmc6462_lmc6464,LMC6464AIMX/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464AIMX/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464AIMX/NOPB,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464AIMX/NOPB,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464AIMX/NOPB,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464AIMX/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464AIMX/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464AIMX/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6464AIMX/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6464BIM,part_family,N
 lmc6462_lmc6464,LMC6464BIM,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464BIM,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464BIM,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464BIM,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464BIM,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464BIM,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464BIM,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464BIM,min_op_temp,-40
 lmc6462_lmc6464,LMC6464BIM,max_op_temp,85
 lmc6462_lmc6464,LMC6464BIM/NOPB,part_family,N
 lmc6462_lmc6464,LMC6464BIM/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464BIM/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464BIM/NOPB,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464BIM/NOPB,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464BIM/NOPB,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464BIM/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464BIM/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464BIM/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6464BIM/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6464BIMX,part_family,N
 lmc6462_lmc6464,LMC6464BIMX,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464BIMX,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464BIMX,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464BIMX,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464BIMX,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464BIMX,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464BIMX,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464BIMX,min_op_temp,-40
 lmc6462_lmc6464,LMC6464BIMX,max_op_temp,85
 lmc6462_lmc6464,LMC6464BIN,part_family,N
 lmc6462_lmc6464,LMC6464BIN,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464BIN,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464BIN,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464BIN,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464BIN,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464BIN,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464BIN,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464BIN,min_op_temp,-40
 lmc6462_lmc6464,LMC6464BIN,max_op_temp,85
 lmc6462_lmc6464,LMC6464BIN/NOPB,part_family,N
 lmc6462_lmc6464,LMC6464BIN/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464BIN/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464BIN/NOPB,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464BIN/NOPB,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464BIN/NOPB,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464BIN/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464BIN/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464BIN/NOPB,min_op_temp,-40
