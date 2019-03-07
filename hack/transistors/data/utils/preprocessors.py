@@ -1,18 +1,90 @@
-import os
 import csv
 import logging
+import os
 import pdb
-import re
-
-import requests
 
 logger = logging.getLogger(__name__)
 
-# Specify user agent to avoid error code 403 while downloading CSVs and PDFs
-USER_AGENT = (
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
-    + "(KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
-)
+
+# A list of known manufacturers
+VALID_MANUF = [
+    "NXP Semiconductors",
+    "STMicroelectronics",
+    "ON Semiconductor",
+    "Fairchild",
+    "AUK",
+    "MCC",
+    "Taiwan",
+    "Bourns",
+    "Central Semiconductor",
+    "Diodes Incorporated",
+    "Diotec",
+    "Fairchild Semiconductor",
+    "Infineon",
+    "JCST",
+    "KEC",
+    "Vishay",
+    "Lite-on",
+    "Vishay/Lite-on",
+    "Minilogic",
+    "Motorola",
+    "Micro Commercial Components",
+    "Microsemi",
+    "Philips",
+    "Panjit",
+    "Rectron",
+    "Secos",
+    "Siemens",
+    "Sanken",
+    "Tak Cheong",
+    "TT Electronics",
+    "UTC",
+    "General",
+    "Weitron",
+    "Mouser",
+    "Rohm Semiconductor",
+    "Aeroflex",
+]
+
+
+# A list of manufacturers to be filtered that we know do not appear in dev and test
+# gold labels and thus are not in the `docs` dict returned by `get_docs()`
+INVALID_MANUF = [
+    "Nexperia USA Inc.",
+    "Renesas Electronics America",
+    "Comchip Technology",
+    "Toshiba Semiconductor and Storage",
+    "Panasonic Electronic Components",
+    "WeEn Semiconductors",
+    "M/A-Com Technology Solutions",
+    "Texas Instruments",
+    "Parallax Inc.",
+    "SANYO Semiconductor (U.S.A) Corporation",
+]
+
+
+# A dictionary of common manufacturer acronyms that maps to a value
+# in VALID_MANUF
+# TODO: Vishay/Lite-on is recognized as it's own manuf here, should we
+# combine Vishay and Lite-on into that manuf?
+MANUF = {
+    "Micro Commercial Co": "Micro Commercial Components",
+    "On Semiconductor": "ON Semiconductor",
+    "Central": "Central Semiconductor",
+    "Central Semiconductor Corp": "Central Semiconductor",
+    "ST": "STMicroelectronics",
+    "NXP": "NXP Semiconductors",
+    "Rohm": "Rohm Semiconductor",
+    "Microsemi Corporation": "Microsemi",
+    "TT Electronics/Optek Technology": "TT Electronics",
+    "Taiwan Semiconductor Corporation": "Taiwan",
+    "Infineon Technologies": "Infineon",
+    "MICROSS/On Semiconductor": "ON Semiconductor",
+    "NXP USA Inc.": "NXP Semiconductors",
+    "Vishay Semiconductor Diodes Division": "Vishay",
+    "Bourns Inc.": "Bourns",
+}
+
 
 """
 TRANSISTOR PREPROCESSORS:
@@ -27,22 +99,49 @@ def preprocess_url(url):
     # standard datasheet filenames: allows for convenient file lookup
 
 
-def get_docs(dev_gold=os.path.join(os.path.dirname(os.path.abspath(__file__)), "../dev/dev_gold.csv"), test_gold=os.path.join(os.path.dirname(os.path.abspath(__file__)), "../test/test_gold.csv"), debug=False):
+def preprocess_manuf(manuf):
+    if manuf in VALID_MANUF or manuf == "N/A":
+        return manuf
+    elif manuf in MANUF:
+        return MANUF[manuf]
+    elif manuf in INVALID_MANUF:
+        return "N/A"
+    else:
+        logger.error(f"Invalid manuf {manuf}.")
+        pdb.set_trace()
+
+
+def get_docs(
+    dev_gold=os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "../dev/dev_gold.csv"
+    ),
+    test_gold=os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "../test/test_gold.csv"
+    ),
+    debug=False,
+):
     """Reads in the dev and test gold files and returns a dictionary that can be used
     to find a filename through manuf and part number."""
     duplicate_filenames = set()
     docs = {}
-    with open(dev_gold, 'r') as dev, open(test_gold, 'r') as test:
+    with open(dev_gold, "r") as dev, open(test_gold, "r") as test:
         devreader = csv.reader(dev)
         testreader = csv.reader(test)
 
         # Read in dev gold
         for line in devreader:
             (filename, manuf, part, attr, val) = line
+            manuf = preprocess_manuf(manuf)
+            # Skip invalid manuf (i.e. manuf that appear in INVALID_MANUF)
+            if manuf == "N/A" or manuf is None:
+                continue
             if manuf in docs:
                 if part in docs[manuf]:
                     if docs[manuf][part] != filename:
-                        logger.warning(f"Filenames {docs[manuf][part]} and {filename} do not match, using {filename}.")
+                        logger.warning(
+                            f"Filenames {docs[manuf][part]} and "
+                            + f"{filename} do not match, using {filename}."
+                        )
                         duplicate_filenames.add((filename, docs[manuf][part]))
                 # Only use the last seen filename
                 docs[manuf][part] = filename
@@ -52,10 +151,17 @@ def get_docs(dev_gold=os.path.join(os.path.dirname(os.path.abspath(__file__)), "
         # Read in test gold
         for line in testreader:
             (filename, manuf, part, attr, val) = line
+            manuf = preprocess_manuf(manuf)
+            # Skip invalid manuf (i.e. manuf that appear in INVALID_MANUF)
+            if manuf == "N/A" or manuf is None:
+                continue
             if manuf in docs:
                 if part in docs[manuf]:
                     if docs[manuf][part] != filename:
-                        logger.warning(f"Filenames {docs[manuf][part]} and {filename} do not match, using {filename}.")
+                        logger.warning(
+                            f"Filenames {docs[manuf][part]} and "
+                            + f"{filename} do not match, using {filename}."
+                        )
                         duplicate_filenames.append((filename, docs[manuf][part]))
                 # Only use the last seen filename
                 docs[manuf][part] = filename
@@ -63,13 +169,14 @@ def get_docs(dev_gold=os.path.join(os.path.dirname(os.path.abspath(__file__)), "
                 docs[manuf] = {part: filename}
 
         if debug:
-            print(f"There were {len(duplicate_filenames)} duplicate files:")
-            print(f"Duplicate filenames {duplicate_filenames}")
-            pdb.set_trace()
-
-        elif len(docs) != 0:
+            if len(duplicate_filenames) != 0:
+                logger.error(f"There were {len(duplicate_filenames)} duplicate files:")
+                logger.error(f"Duplicate filenames {duplicate_filenames}")
+                pdb.set_trace()
+        if len(docs) != 0 and docs is not None:
             return docs
-        else: 
+
+        else:
             logger.error(f"Gold document reference is empty.")
             pdb.set_trace()
 
@@ -84,27 +191,32 @@ def preprocess_doc(manuf, part, url, docformat="standard", docs=get_docs(debug=T
         elif url.strip().endswith(".PDF"):
             return url.split("/")[-1].strip(".PDF")
         else:
-            logger.warning(f"Couldn't get filename for {url}.")
+            logger.warning(f"Couldn't get filename for {url}, using URL.")
             return url.strip()
-    
+
     elif docformat == "standard":
         # Get filename by cross referencing with our gold labels
         try:
+            manuf = preprocess_manuf(manuf)
+            # Skip invalid manuf that we know are not in `docs`
+            # (i.e. manuf that appear in INVALID_MANUF)
+            if manuf == "N/A" or manuf is None:
+                return "N/A"
+            # Otherwise, get the filename from doc_name
             doc_name = docs[manuf][part]
             return doc_name.replace(".pdf", "").replace(".PDF", "").strip()
         except Exception as e:
-            logger.error(f"{e} while fetching doc_name for {manuf}, {part}.")
-            pdb.set_trace()
+            if manuf not in docs:
+                logger.error(f"Manuf {manuf} not found in {[i for i in docs]}.")
+                pdb.set_trace()
+            logger.warning(
+                f"{e} while fetching doc_name for {manuf}: {part}, skipping."
+            )
+            return "N/A"
 
     else:
         logger.error(f"Invalid filename format {format}, using standard.")
         return preprocess_doc(manuf, part, url, docs=docs)
-
-
-def preprocess_manuf(manuf):
-    if manuf == "-":
-        return "N/A"
-    return manuf.replace(" ", "")
 
 
 def add_space(type, value):
