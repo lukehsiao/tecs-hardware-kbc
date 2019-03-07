@@ -190,6 +190,8 @@ def labeling(
         try:
             df = analysis.lf_summary(L_mat[0], lf_names=labeler.get_keys())
             logger.info(f"\n{df.to_string()}")
+            df = analysis.lf_summary(L_mat[1], lf_names=labeler.get_keys())
+            logger.info(f"\n{df.to_string()}")
         except Exception:
             import pdb
 
@@ -253,9 +255,9 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
     train_cands = candidate_extractor.get_candidates(split=0)
     dev_cands = candidate_extractor.get_candidates(split=1)
     test_cands = candidate_extractor.get_candidates(split=2)
-    logger.info(f"Total train candidate: {len(train_cands[0])}")
-    logger.info(f"Total dev candidate: {len(dev_cands[0])}")
-    logger.info(f"Total test candidate: {len(test_cands[0])}")
+    logger.info(f"Total train candidate: {len(train_cands[0]) + len(train_cands[1])}")
+    logger.info(f"Total dev candidate: {len(dev_cands[0]) + len(dev_cands[1])}")
+    logger.info(f"Total test candidate: {len(test_cands[0]) + len(test_cands[1])}")
 
     logger.info("Done w/ candidate extraction.")
 
