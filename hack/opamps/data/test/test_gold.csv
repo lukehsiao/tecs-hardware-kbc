@@ -5800,7 +5800,7 @@ ncs20071-d,NCS20071SN2T1G,max_op_supply_volt,±18 V
 ncs20071-d,NCS20071SN2T1G,min_op_temp,-40
 ncs20071-d,NCS20071SN2T1G,max_op_temp,125
 ncs20071-d,NCS20071XV53T2G,part_family,N
-ncs20071-d,NCS20071XV53T2G,typ_gbp,4.0 MHz
+ncs20071-d,NCS20071XV53T2G,typ_gbp,3.0 MHz
 ncs20071-d,NCS20071XV53T2G,typ_gbp,3.2 MHz
 ncs20071-d,NCS20071XV53T2G,typ_supply_current,405 uA
 ncs20071-d,NCS20071XV53T2G,typ_supply_current,410 uA
@@ -5813,7 +5813,7 @@ ncs20071-d,NCS20071XV53T2G,max_op_supply_volt,±18 V
 ncs20071-d,NCS20071XV53T2G,min_op_temp,-40
 ncs20071-d,NCS20071XV53T2G,max_op_temp,125
 ncs20071-d,NCV20071,part_family,Y
-ncs20071-d,NCV20071,typ_gbp,4.0 MHz
+ncs20071-d,NCV20071,typ_gbp,3.0 MHz
 ncs20071-d,NCV20071,typ_gbp,3.2 MHz
 ncs20071-d,NCV20071,typ_supply_current,405 uA
 ncs20071-d,NCV20071,typ_supply_current,410 uA
@@ -5826,7 +5826,7 @@ ncs20071-d,NCV20071,max_op_supply_volt,±18 V
 ncs20071-d,NCV20071,min_op_temp,-40
 ncs20071-d,NCV20071,max_op_temp,125
 ncs20071-d,NCV20071SN2T1G,part_family,N
-ncs20071-d,NCV20071SN2T1G,typ_gbp,5.0 MHz
+ncs20071-d,NCV20071SN2T1G,typ_gbp,3.0 MHz
 ncs20071-d,NCV20071SN2T1G,typ_gbp,3.2 MHz
 ncs20071-d,NCV20071SN2T1G,typ_supply_current,405 uA
 ncs20071-d,NCV20071SN2T1G,typ_supply_current,410 uA
@@ -5839,7 +5839,7 @@ ncs20071-d,NCV20071SN2T1G,max_op_supply_volt,±18 V
 ncs20071-d,NCV20071SN2T1G,min_op_temp,-40
 ncs20071-d,NCV20071SN2T1G,max_op_temp,125
 ncs20071-d,NCV20071XV53T2G,part_family,N
-ncs20071-d,NCV20071XV53T2G,typ_gbp,5.0 MHz
+ncs20071-d,NCV20071XV53T2G,typ_gbp,3.0 MHz
 ncs20071-d,NCV20071XV53T2G,typ_gbp,3.2 MHz
 ncs20071-d,NCV20071XV53T2G,typ_supply_current,405 uA
 ncs20071-d,NCV20071XV53T2G,typ_supply_current,410 uA
@@ -5852,7 +5852,7 @@ ncs20071-d,NCV20071XV53T2G,max_op_supply_volt,±18 V
 ncs20071-d,NCV20071XV53T2G,min_op_temp,-40
 ncs20071-d,NCV20071XV53T2G,max_op_temp,125
 ncs20071-d,NCS20072,part_family,Y
-ncs20071-d,NCS20072,typ_gbp,6.0 MHz
+ncs20071-d,NCS20072,typ_gbp,3.0 MHz
 ncs20071-d,NCS20072,typ_gbp,3.2 MHz
 ncs20071-d,NCS20072,typ_supply_current,405 uA
 ncs20071-d,NCS20072,typ_supply_current,410 uA
@@ -5865,7 +5865,7 @@ ncs20071-d,NCS20072,max_op_supply_volt,±18 V
 ncs20071-d,NCS20072,min_op_temp,-40
 ncs20071-d,NCS20072,max_op_temp,125
 ncs20071-d,NCS20072DMR2G,part_family,N
-ncs20071-d,NCS20072DMR2G,typ_gbp,6.0 MHz
+ncs20071-d,NCS20072DMR2G,typ_gbp,3.0 MHz
 ncs20071-d,NCS20072DMR2G,typ_gbp,3.2 MHz
 ncs20071-d,NCS20072DMR2G,typ_supply_current,405 uA
 ncs20071-d,NCS20072DMR2G,typ_supply_current,410 uA
@@ -5878,7 +5878,7 @@ ncs20071-d,NCS20072DMR2G,max_op_supply_volt,±18 V
 ncs20071-d,NCS20072DMR2G,min_op_temp,-40
 ncs20071-d,NCS20072DMR2G,max_op_temp,125
 ncs20071-d,NCS20072DR2G,part_family,N
-ncs20071-d,NCS20072DR2G,typ_gbp,7.0 MHz
+ncs20071-d,NCS20072DR2G,typ_gbp,3.0 MHz
 ncs20071-d,NCS20072DR2G,typ_gbp,3.2 MHz
 ncs20071-d,NCS20072DR2G,typ_supply_current,405 uA
 ncs20071-d,NCS20072DR2G,typ_supply_current,410 uA
@@ -5891,7 +5891,7 @@ ncs20071-d,NCS20072DR2G,max_op_supply_volt,±18 V
 ncs20071-d,NCS20072DR2G,min_op_temp,-40
 ncs20071-d,NCS20072DR2G,max_op_temp,125
 ncs20071-d,NCS20072DTBR2G,part_family,N
-ncs20071-d,NCS20072DTBR2G,typ_gbp,7.0 MHz
+ncs20071-d,NCS20072DTBR2G,typ_gbp,3.0 MHz
 ncs20071-d,NCS20072DTBR2G,typ_gbp,3.2 MHz
 ncs20071-d,NCS20072DTBR2G,typ_supply_current,405 uA
 ncs20071-d,NCS20072DTBR2G,typ_supply_current,410 uA
@@ -5904,7 +5904,7 @@ ncs20071-d,NCS20072DTBR2G,max_op_supply_volt,±18 V
 ncs20071-d,NCS20072DTBR2G,min_op_temp,-40
 ncs20071-d,NCS20072DTBR2G,max_op_temp,125
 ncs20071-d,NCV20072,part_family,Y
-ncs20071-d,NCV20072,typ_gbp,8.0 MHz
+ncs20071-d,NCV20072,typ_gbp,3.0 MHz
 ncs20071-d,NCV20072,typ_gbp,3.2 MHz
 ncs20071-d,NCV20072,typ_supply_current,405 uA
 ncs20071-d,NCV20072,typ_supply_current,410 uA
@@ -5917,7 +5917,7 @@ ncs20071-d,NCV20072,max_op_supply_volt,±18 V
 ncs20071-d,NCV20072,min_op_temp,-40
 ncs20071-d,NCV20072,max_op_temp,125
 ncs20071-d,NCV20072DMR2G,part_family,N
-ncs20071-d,NCV20072DMR2G,typ_gbp,8.0 MHz
+ncs20071-d,NCV20072DMR2G,typ_gbp,3.0 MHz
 ncs20071-d,NCV20072DMR2G,typ_gbp,3.2 MHz
 ncs20071-d,NCV20072DMR2G,typ_supply_current,405 uA
 ncs20071-d,NCV20072DMR2G,typ_supply_current,410 uA
@@ -5930,7 +5930,7 @@ ncs20071-d,NCV20072DMR2G,max_op_supply_volt,±18 V
 ncs20071-d,NCV20072DMR2G,min_op_temp,-40
 ncs20071-d,NCV20072DMR2G,max_op_temp,125
 ncs20071-d,NCV20072DR2G,part_family,N
-ncs20071-d,NCV20072DR2G,typ_gbp,9.0 MHz
+ncs20071-d,NCV20072DR2G,typ_gbp,3.0 MHz
 ncs20071-d,NCV20072DR2G,typ_gbp,3.2 MHz
 ncs20071-d,NCV20072DR2G,typ_supply_current,405 uA
 ncs20071-d,NCV20072DR2G,typ_supply_current,410 uA
@@ -5943,7 +5943,7 @@ ncs20071-d,NCV20072DR2G,max_op_supply_volt,±18 V
 ncs20071-d,NCV20072DR2G,min_op_temp,-40
 ncs20071-d,NCV20072DR2G,max_op_temp,125
 ncs20071-d,NCV20072DTBR2G,part_family,N
-ncs20071-d,NCV20072DTBR2G,typ_gbp,9.0 MHz
+ncs20071-d,NCV20072DTBR2G,typ_gbp,3.0 MHz
 ncs20071-d,NCV20072DTBR2G,typ_gbp,3.2 MHz
 ncs20071-d,NCV20072DTBR2G,typ_supply_current,405 uA
 ncs20071-d,NCV20072DTBR2G,typ_supply_current,410 uA
@@ -5956,7 +5956,7 @@ ncs20071-d,NCV20072DTBR2G,max_op_supply_volt,±18 V
 ncs20071-d,NCV20072DTBR2G,min_op_temp,-40
 ncs20071-d,NCV20072DTBR2G,max_op_temp,125
 ncs20071-d,NCS20074,part_family,Y
-ncs20071-d,NCS20074,typ_gbp,10.0 MHz
+ncs20071-d,NCS20074,typ_gbp,3.0 MHz
 ncs20071-d,NCS20074,typ_gbp,3.2 MHz
 ncs20071-d,NCS20074,typ_supply_current,405 uA
 ncs20071-d,NCS20074,typ_supply_current,410 uA
@@ -5969,7 +5969,7 @@ ncs20071-d,NCS20074,max_op_supply_volt,±18 V
 ncs20071-d,NCS20074,min_op_temp,-40
 ncs20071-d,NCS20074,max_op_temp,125
 ncs20071-d,NCS20074DR2G,part_family,N
-ncs20071-d,NCS20074DR2G,typ_gbp,10.0 MHz
+ncs20071-d,NCS20074DR2G,typ_gbp,3.0 MHz
 ncs20071-d,NCS20074DR2G,typ_gbp,3.2 MHz
 ncs20071-d,NCS20074DR2G,typ_supply_current,405 uA
 ncs20071-d,NCS20074DR2G,typ_supply_current,410 uA
@@ -5982,7 +5982,7 @@ ncs20071-d,NCS20074DR2G,max_op_supply_volt,±18 V
 ncs20071-d,NCS20074DR2G,min_op_temp,-40
 ncs20071-d,NCS20074DR2G,max_op_temp,125
 ncs20071-d,NCS20074DTBR2G,part_family,N
-ncs20071-d,NCS20074DTBR2G,typ_gbp,11.0 MHz
+ncs20071-d,NCS20074DTBR2G,typ_gbp,3.0 MHz
 ncs20071-d,NCS20074DTBR2G,typ_gbp,3.2 MHz
 ncs20071-d,NCS20074DTBR2G,typ_supply_current,405 uA
 ncs20071-d,NCS20074DTBR2G,typ_supply_current,410 uA
@@ -5995,7 +5995,7 @@ ncs20071-d,NCS20074DTBR2G,max_op_supply_volt,±18 V
 ncs20071-d,NCS20074DTBR2G,min_op_temp,-40
 ncs20071-d,NCS20074DTBR2G,max_op_temp,125
 ncs20071-d,NCV20074,part_family,Y
-ncs20071-d,NCV20074,typ_gbp,11.0 MHz
+ncs20071-d,NCV20074,typ_gbp,3.0 MHz
 ncs20071-d,NCV20074,typ_gbp,3.2 MHz
 ncs20071-d,NCV20074,typ_supply_current,405 uA
 ncs20071-d,NCV20074,typ_supply_current,410 uA
@@ -6008,7 +6008,7 @@ ncs20071-d,NCV20074,max_op_supply_volt,±18 V
 ncs20071-d,NCV20074,min_op_temp,-40
 ncs20071-d,NCV20074,max_op_temp,125
 ncs20071-d,NCV20074DR2G,part_family,N
-ncs20071-d,NCV20074DR2G,typ_gbp,12.0 MHz
+ncs20071-d,NCV20074DR2G,typ_gbp,3.0 MHz
 ncs20071-d,NCV20074DR2G,typ_gbp,3.2 MHz
 ncs20071-d,NCV20074DR2G,typ_supply_current,405 uA
 ncs20071-d,NCV20074DR2G,typ_supply_current,410 uA
@@ -6021,7 +6021,7 @@ ncs20071-d,NCV20074DR2G,max_op_supply_volt,±18 V
 ncs20071-d,NCV20074DR2G,min_op_temp,-40
 ncs20071-d,NCV20074DR2G,max_op_temp,125
 ncs20071-d,NCV20074DTBR2G,part_family,N
-ncs20071-d,NCV20074DTBR2G,typ_gbp,12.0 MHz
+ncs20071-d,NCV20074DTBR2G,typ_gbp,3.0 MHz
 ncs20071-d,NCV20074DTBR2G,typ_gbp,3.2 MHz
 ncs20071-d,NCV20074DTBR2G,typ_supply_current,405 uA
 ncs20071-d,NCV20074DTBR2G,typ_supply_current,410 uA
