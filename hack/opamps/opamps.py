@@ -264,13 +264,18 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
     # First, check total recall
     result = entity_level_scores(dev_cands[0], corpus=dev_docs)
     logger.info(f"Gain Total Dev Recall: {result.rec:.3f}")
+    logger.info(f"\n{pformat(result.FN)}")
     result = entity_level_scores(test_cands[0], corpus=test_docs)
     logger.info(f"Gain Total Test Recall: {result.rec:.3f}")
+    logger.info(f"\n{pformat(result.FN)}")
 
     result = entity_level_scores(dev_cands[1], corpus=dev_docs, is_gain=False)
     logger.info(f"Current Total Dev Recall: {result.rec:.3f}")
+    logger.info(f"\n{pformat(result.FN)}")
     result = entity_level_scores(test_cands[1], corpus=test_docs, is_gain=False)
     logger.info(f"Current Test Recall: {result.rec:.3f}")
+    logger.info(f"\n{pformat(result.FN)}")
+
 
     F_train, F_dev, F_test = featurization(
         session,
@@ -300,7 +305,6 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         split=1,
         lfs=[gain_lfs, current_lfs],
         train=False,
-        first_time=False,
         parallel=parallel,
     )
 
@@ -315,6 +319,14 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
 
     print_scores(best_result, best_b)
 
+    try:
+        fp_cands == entity_to_candidates(best_result.FP[0], test_cands[0])
+    except Exception:
+        pass
+
+    # End with an interactive prompt
+    pdb.set_trace()
+
     marginals = generative_model(L_train[1])
 
     disc_models = discriminative_model(
@@ -328,7 +340,7 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
 
 
     try:
-        fp_cands == entity_to_candidates(best_result.FP[0], test_cands[0])
+        fp_cands == entity_to_candidates(best_result.FP[0], test_cands[1])
     except Exception:
         pass
 
@@ -340,7 +352,7 @@ if __name__ == "__main__":
     parallel = 8
     component = "opamps"
     conn_string = f"postgresql:///{component}"
-    first_time = True
+    first_time = False
     parse = False
     max_docs = 100
     logger.info(f"\n\n")
