@@ -23,8 +23,8 @@ from fonduer.utils.data_model_utils import (
 )
 
 ABSTAIN = 0
-FALSE = 1
-TRUE = 2
+TRUE = 1
+FALSE = 2
 
 
 def neg_low_page_num(c):
