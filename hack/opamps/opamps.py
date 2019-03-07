@@ -70,7 +70,7 @@ def mention_extraction(session, docs, first_time=True, parallel=1):
     gain_ngrams = MentionNgrams(n_max=2)
     Current = mention_subclass("SupplyCurrent")
     current_matcher = get_supply_current_matcher()
-    current_ngrams = MentionNgramsCurrent(n_max=2)
+    current_ngrams = MentionNgramsCurrent(n_max=3)
 
     mention_extractor = MentionExtractor(
         session,
@@ -161,12 +161,20 @@ def generative_model(L_train, n_epochs=500, print_every=100):
     return marginals
 
 
-def discriminative_model(train_cands, F_train, marginals, n_epochs=50, lr=0.001):
+def discriminative_model(
+    train_cands, F_train, marginals, X_dev=None, Y_dev=None, n_epochs=50, lr=0.001
+):
     disc_model = SparseLogisticRegression()
 
     logger.info("Training discriminative model...")
     disc_model.train(
-        (train_cands, F_train), marginals, n_epochs=n_epochs, lr=lr, host_device="GPU"
+        (train_cands, F_train),
+        marginals,
+        X_dev=X_dev,
+        Y_dev=Y_dev,
+        n_epochs=n_epochs,
+        lr=lr,
+        host_device="GPU",
     )
     logger.info("Done.")
 
@@ -265,7 +273,6 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
     #  logger.info(f"Current Test Recall: {result.rec:.3f}")
     #  logger.info(f"\n{pformat(result.FN)}")
 
-
     F_train, F_dev, F_test = featurization(
         session,
         (train_cands, dev_cands, test_cands),
@@ -307,17 +314,22 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
                 flag = TRUE
         L_dev_gt.append(flag)
 
-    df = analysis.lf_summary(L_dev[0], lf_names=labeler.get_keys(), Y=np.array(L_dev_gt))
+    df = analysis.lf_summary(
+        L_dev[0], lf_names=labeler.get_keys(), Y=np.array(L_dev_gt)
+    )
     logger.info(f"\n{df.to_string()}")
 
     marginals = generative_model(L_train[0])
 
     disc_models = discriminative_model(
-        train_cands[0], F_train[0], marginals, n_epochs=50
+        train_cands[0],
+        F_train[0],
+        marginals,
+        X_dev=(dev_cands[0], F_dev[0]),
+        Y_dev=L_dev_gt,
+        n_epochs=500,
     )
-    best_result, best_b = scoring(
-        disc_models, dev_cands[0], dev_docs, F_dev[0], num=30
-    )
+    best_result, best_b = scoring(disc_models, dev_cands[0], dev_docs, F_dev[0], num=30)
 
     print_scores(best_result, best_b)
 
@@ -334,12 +346,9 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
     disc_models = discriminative_model(
         train_cands[1], F_train[1], marginals, n_epochs=10
     )
-    best_result, best_b = scoring(
-        disc_models, dev_cands[1], dev_docs, F_dev[1], num=30
-    )
+    best_result, best_b = scoring(disc_models, dev_cands[1], dev_docs, F_dev[1], num=30)
 
     print_scores(best_result, best_b)
-
 
     try:
         fp_cands == entity_to_candidates(best_result.FP[0], test_cands[1])
