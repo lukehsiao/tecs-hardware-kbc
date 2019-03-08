@@ -300,7 +300,7 @@ def discriminative_model(train_cands, F_train, marginals, n_epochs=50, lr=0.001)
 
 def load_parts_by_doc():
     dirname = os.path.dirname(__file__)
-    pickle_file = os.path.join(dirname, "data/parts_by_doc_dict.pkl")
+    pickle_file = os.path.join(dirname, "data/parts_by_doc_new.pkl")
     with open(pickle_file, "rb") as f:
         return pickle.load(f)
 
