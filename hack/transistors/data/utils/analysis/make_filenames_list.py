@@ -24,7 +24,7 @@ if __name__ == "__main__":
     # Write filenames to CSV
     with open(
         os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), "../../analysis_dataset.csv"
+            os.path.dirname(os.path.abspath(__file__)), "../../analysis/filenames.csv"
         ),
         "w",
     ) as outfile:

@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def get_filenames(filenames_file, testpath, devpath):
+def get_dataset_filenames(filenames_file, testpath, devpath):
     # Generate list of filenames
     filenames = set()
     with open(filenames_file, "r") as inputcsv:
@@ -74,7 +74,7 @@ if __name__ == "__main__":
     endpath = os.path.join(dirname, "../../analysis/")
 
     # Get target filenames
-    (filenames, test_filenames, dev_filenames) = get_filenames(
+    (filenames, test_filenames, dev_filenames) = get_dataset_filenames(
         filenames_file, testpath, devpath
     )
 
