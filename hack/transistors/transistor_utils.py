@@ -306,10 +306,10 @@ def entity_level_scores(
         metric = get_gold_set(
             docs=docs, doc_on=True, part_on=True, val_on=val_on, attribute=attribute
         )
-    if len(metric) == 0:
-        logger.info(f"Attribute: {attribute}")
-        logger.error("Gold set is empty.")
-        return
+    # if len(metric) == 0:
+    # logger.info(f"Attribute: {attribute}")
+    # logger.error("Gold set is empty.")
+    # return
 
     (TP_set, FP_set, FN_set) = entity_confusion_matrix(entities, metric)
     TP = len(TP_set)

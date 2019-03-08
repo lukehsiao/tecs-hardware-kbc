@@ -6,10 +6,13 @@ and compare those cands with our gold data.
 import csv
 import logging
 import os
-import pdb
+
+import numpy as np
+from tqdm import tqdm
 
 from hack.transistors.data.utils.compare_gold import print_score
 from hack.transistors.transistor_utils import (
+    Score,
     compare_entities,
     entity_level_scores,
     get_gold_set,
@@ -22,7 +25,7 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
-def get_entity_set(file, parts_by_doc, b=0.5):
+def get_entity_set(file, parts_by_doc, b=0.0):
     entities = set()
     errors = set()
     with open(file, "r") as input:
@@ -41,7 +44,6 @@ def get_entity_set(file, parts_by_doc, b=0.5):
                 continue
             except Exception as e:
                 logger.error(f"{e} while getting entity set from {file}.")
-                pdb.set_trace()
     return entities
 
 
@@ -71,11 +73,10 @@ def filter_filenames(entities, filenames):
             f"Filtering for {len(get_filenames(entities))} "
             + "entity filenames turned up empty."
         )
-        pdb.set_trace()
     return result
 
 
-def main(relation=Relation.CE_V_MAX, b=0.5, outfile="discrepancies.csv"):
+def main(relation=Relation.CE_V_MAX, outfile="discrepancies.csv"):
 
     # First, read in CSV and convert to entity set
     dirname = os.path.dirname(__name__)
@@ -96,27 +97,45 @@ def main(relation=Relation.CE_V_MAX, b=0.5, outfile="discrepancies.csv"):
     )
     logger.info(f"Original gold set is {len(get_filenames(gold))} filenames long.")
 
-    # Get implied parts as well from entities
-    parts_by_doc = load_parts_by_doc()
-    dev_entities = get_entity_set(dev_file, parts_by_doc, b=b)
-    test_entities = get_entity_set(test_file, parts_by_doc, b=b)
-    entities = filter_filenames(dev_entities.union(test_entities), get_filenames(gold))
-    entity_dic = gold_set_to_dic(entities)
-    logger.info(f"Entity set is {len(get_filenames(entities))} filenames long.")
+    logger.info(f"Determining best b...")
+    best_score = Score(0, 0, 0, [], [], [])
+    best_b = 0
+    for b in tqdm(np.linspace(0.5, 1, num=1000)):
+        # Get implied parts as well from entities
+        parts_by_doc = load_parts_by_doc()
+        dev_entities = get_entity_set(dev_file, parts_by_doc, b=b)
+        test_entities = get_entity_set(test_file, parts_by_doc, b=b)
+        entities = filter_filenames(
+            dev_entities.union(test_entities), get_filenames(gold)
+        )
+        entity_dic = gold_set_to_dic(entities)
 
-    # Trim gold to exactly the filenames in entities
-    gold = filter_filenames(gold, get_filenames(entities))
-    logger.info(f"Trimmed gold set is now {len(get_filenames(gold))} filenames long.")
+        # Trim gold to exactly the filenames in entities
+        gold = filter_filenames(gold, get_filenames(entities))
 
-    # Score entities against gold data and generate comparison CSV
-    score = entity_level_scores(entities, attribute=relation.value, metric=gold)
-    print_score(score, entities=f"cands > {b}", metric="our gold labels")
+        # Score entities against gold data and generate comparison CSV
+        score = entity_level_scores(entities, attribute=relation.value, metric=gold)
+        logger.info(f"b = {b}\n" + f"f1 = {score.f1}")
+        if score.f1 > best_score.f1:
+            best_score = score
+            best_b = b
+            best_entities = entities
+            best_gold = gold
+
+    logger.info(f"Entity set is {len(get_filenames(best_entities))} filenames long.")
+    logger.info(
+        f"Trimmed gold set is now {len(get_filenames(best_gold))} filenames long."
+    )
+    print_score(best_score, entities=f"cands > {best_b}", metric="our gold labels")
 
     compare_entities(
-        set(score.FP), attribute=relation.value, type="FP", outfile=discrepancy_file
+        set(best_score.FP),
+        attribute=relation.value,
+        type="FP",
+        outfile=discrepancy_file,
     )
     compare_entities(
-        set(score.FN),
+        set(best_score.FN),
         attribute=relation.value,
         type="FN",
         outfile=discrepancy_file,
@@ -127,5 +146,4 @@ def main(relation=Relation.CE_V_MAX, b=0.5, outfile="discrepancies.csv"):
 
 if __name__ == "__main__":
     outfile = "data_discrepancies.csv"
-    b = 0.99
-    main(outfile=outfile, b=b)
+    main(outfile=outfile)
