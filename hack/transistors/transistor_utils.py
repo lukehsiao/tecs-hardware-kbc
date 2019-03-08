@@ -325,7 +325,6 @@ def entity_level_scores(
 
 
 def get_implied_parts(part, doc, parts_by_doc):
-    yield part
     if parts_by_doc:
         for p in parts_by_doc[doc]:
             if p.startswith(part) and len(part) >= 4:

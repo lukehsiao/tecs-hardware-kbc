@@ -75,50 +75,6 @@ def filter_filenames(entities, filenames):
     return result
 
 
-def valid_entities(docs, dev_docs, test_docs, dirname=os.path.dirname(__name__)):
-    # Check to ensure that docs is made up of dev_docs and test_docs
-    expected_docs = set()
-    for filename in dev_docs:
-        expected_docs.add(filename)
-    for filename in test_docs:
-        expected_docs.add(filename)
-
-    if sorted(list(docs)) != sorted(list(expected_docs)):
-        logger.error(f"Full docs is not made up of solely dev and test docs.")
-        pdb.set_trace()
-
-    # Check that dev_docs and test_docs are in their respective dirs.
-    dev_gold = os.path.join(dirname, "data/dev/dev_gold.csv")
-    test_gold = os.path.join(dirname, "data/test/test_gold.csv")
-
-    expected_dev = get_filenames(get_gold_set(dev_gold))
-    expected_test = get_filenames(get_gold_set(test_gold))
-
-    difference_dev = set()
-    for filename in dev_docs:
-        if filename not in expected_dev:
-            difference_dev.add(filename)
-
-    difference_test = set()
-    for filename in test_docs:
-        if filename not in expected_test:
-            difference_test.add(filename)
-
-    if len(difference_test) > 0 and len(difference_dev) > 0:
-        logger.error(
-            f"Both dev and test sets do not match with their respective gold data."
-        )
-        pdb.set_trace()
-    elif len(difference_test) > 0:
-        logger.error(f"Test set does not match with test gold.")
-        pdb.set_trace()
-    elif len(difference_dev) > 0:
-        logger.error(f"Dev test set does not match with dev gold.")
-        pdb.set_trace()
-    else:
-        return True
-
-
 def main(relation=Relation.CE_V_MAX, b=0.5, outfile="discrepancies.csv"):
 
     # First, read in CSV and convert to entity set
@@ -127,13 +83,18 @@ def main(relation=Relation.CE_V_MAX, b=0.5, outfile="discrepancies.csv"):
     dev_file = os.path.join(dirname, "ce_v_max_dev_set_probs.csv")
     filenames_file = os.path.join(dirname, "data/analysis/filenames.csv")
     discrepancy_file = os.path.join(dirname, outfile)
+    logger.info(
+        f"Analysis dataset is {len(get_filenames_from_file(filenames_file))}"
+        + " filenames long."
+    )
 
     # Only look at entities that occur in Digikey's gold as well
     gold_file = os.path.join(dirname, "data/analysis/our_gold.csv")
     gold = filter_filenames(
-        get_gold_set(gold_file), get_filenames_from_file(filenames_file)
+        get_gold_set(gold_file, attribute=relation.value),
+        get_filenames_from_file(filenames_file),
     )
-    logger.info(f"Gold set is {len(get_filenames(gold))} filenames long.")
+    logger.info(f"Original gold set is {len(get_filenames(gold))} filenames long.")
 
     # Get implied parts as well from entities
     parts_by_doc = load_parts_by_doc()
@@ -141,10 +102,11 @@ def main(relation=Relation.CE_V_MAX, b=0.5, outfile="discrepancies.csv"):
     test_entities = get_entity_set(test_file, parts_by_doc, b=b)
     entities = filter_filenames(dev_entities.union(test_entities), get_filenames(gold))
     entity_dic = gold_set_to_dic(entities)
-
     logger.info(f"Entity set is {len(get_filenames(entities))} filenames long.")
 
-    pdb.set_trace()
+    # Trim gold to exactly the filenames in entities
+    gold = filter_filenames(gold, get_filenames(entities))
+    logger.info(f"Trimmed gold set is now {len(get_filenames(gold))} filenames long.")
 
     # Score entities against gold data and generate comparison CSV
     score = entity_level_scores(entities, attribute=relation.value, metric=gold)
@@ -165,5 +127,5 @@ def main(relation=Relation.CE_V_MAX, b=0.5, outfile="discrepancies.csv"):
 
 if __name__ == "__main__":
     outfile = "data_discrepancies.csv"
-    b = 0.0
+    b = 0.99
     main(outfile=outfile, b=b)
