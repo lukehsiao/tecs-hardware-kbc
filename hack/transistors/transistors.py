@@ -363,6 +363,8 @@ def main(
     first_time=True,
     parallel=2,
     relation=Relation.STG_TEMP_MAX,
+    debug=False,
+    outfile=os.path.join(os.path.dirname(__name__), "discrepancies.csv"),
 ):
     session = Meta.init(conn_string).Session()
     docs, train_docs, dev_docs, test_docs, analysis_docs = parsing(
@@ -428,11 +430,30 @@ def main(
         debug=True,
     )
 
+    if debug:
+        # Run comparison to generate discrepancy files for manual debugging
+        compare_entities(
+            set(analysis_result.FP),
+            type="FP",
+            attribute=relation.value,
+            outfile=outfile,
+        )
+        compare_entities(
+            set(analysis_result.FN),
+            type="FN",
+            attribute=relation.value,
+            outfile=outfile,
+            append=True,
+        )
+
 
 if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
     parallel = 8  # len(os.sched_getaffinity(0)) // 4
     max_docs = 300
+    # Outfile to write discrepancies between cands >b and our gold data
+    # found in the analysis dataset.
+    outfile = os.path.join(os.path.dirname(__name__), "data_discrepancies.csv")
     component = "transistors_small"
     conn_string = f"postgresql:///{component}"
     first_time = True
@@ -447,4 +468,6 @@ if __name__ == "__main__":
         first_time=first_time,
         parallel=parallel,
         max_docs=max_docs,
+        outfile=outfile,
+        debug=True,
     )
