@@ -171,6 +171,7 @@ def entity_confusion_matrix(pred, gold):
 def compare_entities(
     entities,
     attribute=None,
+    entity_dic=None,
     gold_dic=None,
     type=None,
     outfile="../our_discrepancies.csv",
@@ -184,21 +185,68 @@ def compare_entities(
     elif gold_dic is None and attribute is not None:
         gold_dic = gold_set_to_dic(get_gold_set(attribute=attribute))
 
-    outfile = os.path.join(os.path.dirname(__name__), outfile)
+    if entity_dic is None:
+        # TODO: Right now we just convert entities to gold_dic
+        # for referencing to fill `Notes:` --> But that is the same thing
+        # as referencing the gold_dic.
+        entity_dic = gold_set_to_dic(entities)
 
     # Write discrepancies to a CSV file
     # for manual debugging
+    outfile = os.path.join(os.path.dirname(__name__), outfile)
     with open(outfile, "a") if append else open(outfile, "w") as out:
         writer = csv.writer(out)
         if not append:  # Only write header row if none already exists
             if type is not None:
-                writer.writerow(("Type:", "Filename:", "Part:", "Our Vals:", "Notes:"))
+                writer.writerow(
+                    (
+                        "Type:",
+                        "Filename:",
+                        "Part:",
+                        "Our Vals:",
+                        "Notes:",
+                        "Discrepancy Type:",
+                        "Discrepancy Notes:",
+                        "Annotator:",
+                    )
+                )
             else:
-                writer.writerow(("Filename:", "Part:", "Our Vals:", "Notes:"))
-        for (doc, part, val) in entities:
-            if doc.upper() in gold_dic:
-                if part.upper() in gold_dic[doc.upper()]:
-                    if type is not None:
+                writer.writerow(
+                    (
+                        "Filename:",
+                        "Part:",
+                        "Our Vals:",
+                        "Notes:",
+                        "Discrepancy Type:",
+                        "Discrepancy Notes:",
+                        "Annotator:",
+                    )
+                )
+        if type == "FN":  # We only care about the entities data for `Notes:`
+            for (doc, part, val) in entities:
+                if doc.upper() in entity_dic:
+                    if part.upper() in entity_dic[doc.upper()]:
+                        writer.writerow(
+                            (
+                                type,
+                                doc,
+                                part,
+                                val,
+                                f"Entity vals: {entity_dic[doc.upper()][part.upper()]}",
+                            )
+                        )
+                    else:
+                        writer.writerow(
+                            (type, doc, part, val, f"Entity parts: {entity_dic[doc]}")
+                        )
+                else:
+                    writer.writerow(
+                        (type, doc, part, val, f"Entities do not have doc {doc}.")
+                    )
+        elif type == "FP":  # We only care about the gold data for `Notes:`
+            for (doc, part, val) in entities:
+                if doc.upper() in gold_dic:
+                    if part.upper() in gold_dic[doc.upper()]:
                         writer.writerow(
                             (
                                 type,
@@ -210,6 +258,18 @@ def compare_entities(
                         )
                     else:
                         writer.writerow(
+                            (type, doc, part, val, f"Gold parts: {gold_dic[doc]}")
+                        )
+                else:
+                    writer.writerow(
+                        (type, doc, part, val, f"Gold does not have doc {doc}.")
+                    )
+
+        else:  # TODO: Show both (for now, just shows gold)
+            for (doc, part, val) in entities:
+                if doc.upper() in gold_dic:
+                    if part.upper() in gold_dic[doc.upper()]:
+                        writer.writerow(
                             (
                                 doc,
                                 part,
@@ -217,20 +277,10 @@ def compare_entities(
                                 f"Gold vals: {gold_dic[doc.upper()][part.upper()]}",
                             )
                         )
-                else:
-                    if type is not None:
-                        writer.writerow(
-                            (type, doc, part, val, f"Gold parts: {gold_dic[doc]}")
-                        )
                     else:
                         writer.writerow(
                             (doc, part, val, f"Gold parts: {gold_dic[doc]}")
                         )
-            else:
-                if type is not None:
-                    writer.writerow(
-                        (type, doc, part, val, f"Gold does not have doc {doc}.")
-                    )
                 else:
                     writer.writerow((doc, part, val, f"Gold does not have doc {doc}."))
 

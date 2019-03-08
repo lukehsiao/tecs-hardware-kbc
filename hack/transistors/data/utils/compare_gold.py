@@ -74,7 +74,13 @@ if __name__ == "__main__":
     print_score(score, entities=digikey_gold, metric=our_gold)
 
     # Run final comparison using FN and FP
-    compare_entities(set(score.FN), type="FN", gold_dic=our_gold_dic, outfile=outfile)
+    compare_entities(
+        set(score.FN),
+        entity_dic=digikey_gold_dic,
+        type="FN",
+        gold_dic=our_gold_dic,
+        outfile=outfile,
+    )
     compare_entities(
         set(score.FP), type="FP", append=True, gold_dic=our_gold_dic, outfile=outfile
     )

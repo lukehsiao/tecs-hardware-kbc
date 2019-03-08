@@ -38,6 +38,7 @@ from hack.transistors.transistor_utils import (
     candidates_to_entities,
     compare_entities,
     entity_level_scores,
+    gold_set_to_dic,
     load_transistor_labels,
     parse_dataset,
 )
@@ -354,7 +355,7 @@ def scoring(relation, disc_model, cands, docs, F, parts_by_doc, debug=False, num
         f"| FN: {len(best_result.FN)}"
     )
     logger.info("===================================================\n")
-    return best_result, best_b
+    return best_result, best_b, best_true_pred
 
 
 def main(
@@ -415,11 +416,11 @@ def main(
     disc_models = discriminative_model(train_cands, F_train, marginals, n_epochs=10)
 
     parts_by_doc = load_parts_by_doc()
-    best_result, best_b = scoring(
+    best_result, best_b, best_true_pred = scoring(
         relation, disc_models, test_cands, test_docs, F_test, parts_by_doc, num=100
     )
 
-    analysis_result, analysis_b = scoring(
+    analysis_result, analysis_b, analysis_true_pred = scoring(
         relation,
         disc_models,
         analysis_cands,
@@ -431,6 +432,11 @@ def main(
     )
 
     if debug:
+        # Get original dict of cands >b to provide relevant info in outfile
+        orig_dic = gold_set_to_dic(
+            candidates_to_entities(analysis_true_pred, parts_by_doc=parts_by_doc)
+        )
+
         # Run comparison to generate discrepancy files for manual debugging
         compare_entities(
             set(analysis_result.FP),
@@ -441,6 +447,7 @@ def main(
         compare_entities(
             set(analysis_result.FN),
             type="FN",
+            entity_dic=orig_dic,
             attribute=relation.value,
             outfile=outfile,
             append=True,
