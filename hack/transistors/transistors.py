@@ -463,7 +463,7 @@ if __name__ == "__main__":
     outfile = os.path.join(os.path.dirname(__name__), "data_discrepancies.csv")
     component = "transistors_small"
     conn_string = f"postgresql:///{component}"
-    first_time = True
+    first_time = False
     relation = Relation.CE_V_MAX
     logger.info(f"\n\n")
     logger.info(f"=" * 80)

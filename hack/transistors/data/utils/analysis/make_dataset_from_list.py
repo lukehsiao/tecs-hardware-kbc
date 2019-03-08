@@ -66,12 +66,12 @@ if __name__ == "__main__":
 
     # CSV of filenames in analysis dataset
     dirname = os.path.dirname(__name__)
-    filenames_file = os.path.join(dirname, "../analysis_dataset.csv")
+    filenames_file = os.path.join(dirname, "../../analysis/filenames.csv")
 
     # Define dataset locations
-    testpath = os.path.join(dirname, "../test/")
-    devpath = os.path.join(dirname, "../dev/")
-    endpath = os.path.join(dirname, "../analysis/")
+    testpath = os.path.join(dirname, "../../test/")
+    devpath = os.path.join(dirname, "../../dev/")
+    endpath = os.path.join(dirname, "../../analysis/")
 
     # Get target filenames
     (filenames, test_filenames, dev_filenames) = get_filenames(
