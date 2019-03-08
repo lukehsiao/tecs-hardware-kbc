@@ -169,7 +169,12 @@ def entity_confusion_matrix(pred, gold):
 
 
 def compare_entities(
-    entities, attribute=None, gold_dic=None, outfile="../our_discrepancies.csv"
+    entities,
+    attribute=None,
+    gold_dic=None,
+    type=None,
+    outfile="../our_discrepancies.csv",
+    append=False,
 ):
     """Compare given entities to gold labels
     and write any discrepancies to a CSV file."""
@@ -183,22 +188,56 @@ def compare_entities(
 
     # Write discrepancies to a CSV file
     # for manual debugging
-    with open(outfile, "w") as out:
+    with open(outfile, "a") if append else open(outfile, "w") as out:
         writer = csv.writer(out)
-        writer.writerow(("Filename:", "Part:", "Our Vals:", "Notes:"))
+        if not append:  # Only write header row if none already exists
+            if type is not None:
+                writer.writerow(("Type:", "Filename:", "Part:", "Our Vals:", "Notes:"))
+            else:
+                writer.writerow(("Filename:", "Part:", "Our Vals:", "Notes:"))
         for (doc, part, val) in entities:
-            if doc in gold_dic:
-                if part in gold_dic[doc] and val not in gold_dic[doc][part]:
+            if doc.upper() in gold_dic:
+                if part.upper() in gold_dic[doc.upper()]:
+                    if type is not None:
+                        writer.writerow(
+                            (
+                                type,
+                                doc,
+                                part,
+                                val,
+                                f"Gold vals: {gold_dic[doc.upper()][part.upper()]}",
+                            )
+                        )
+                    else:
+                        writer.writerow(
+                            (
+                                doc,
+                                part,
+                                val,
+                                f"Gold vals: {gold_dic[doc.upper()][part.upper()]}",
+                            )
+                        )
+                else:
+                    if type is not None:
+                        writer.writerow(
+                            (type, doc, part, val, f"Gold parts: {gold_dic[doc]}")
+                        )
+                    else:
+                        writer.writerow(
+                            (doc, part, val, f"Gold parts: {gold_dic[doc]}")
+                        )
+            else:
+                if type is not None:
                     writer.writerow(
-                        (doc, part, val, f"Gold vals: {gold_dic[doc][part]}")
+                        (type, doc, part, val, f"Gold does not have doc {doc}.")
                     )
                 else:
-                    writer.writerow((doc, part, val, f"Gold parts: {gold_dic[doc]}"))
-            else:
-                writer.writerow((doc, part, val, f"Gold does not have doc {doc}."))
+                    writer.writerow((doc, part, val, f"Gold does not have doc {doc}."))
 
 
-def entity_level_scores(entities, attribute=None, corpus=None, gold_set=None):
+def entity_level_scores(
+    entities, attribute=None, corpus=None, metric=None, debug=False
+):
     """Checks entity-level recall of candidates compared to gold.
 
     Turns a CandidateSet into a normal set of entity-level tuples
@@ -212,16 +251,16 @@ def entity_level_scores(entities, attribute=None, corpus=None, gold_set=None):
     """
     docs = [(doc.name).upper() for doc in corpus] if corpus else None
     val_on = attribute is not None
-    if gold_set is None:
-        gold_set = get_gold_set(
+    if metric is None:
+        metric = get_gold_set(
             docs=docs, doc_on=True, part_on=True, val_on=val_on, attribute=attribute
         )
-    if len(gold_set) == 0:
+    if len(metric) == 0:
         logger.info(f"Attribute: {attribute}")
         logger.error("Gold set is empty.")
         return
 
-    (TP_set, FP_set, FN_set) = entity_confusion_matrix(entities, gold_set)
+    (TP_set, FP_set, FN_set) = entity_confusion_matrix(entities, metric)
     TP = len(TP_set)
     FP = len(FP_set)
     FN = len(FN_set)

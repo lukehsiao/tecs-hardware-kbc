@@ -1,11 +1,27 @@
-"""
-This script takes in a single file of gold labels and parses them into the
-respective `dev` and `test` sets based on previously defined filenames in old
-`dev_gold.csv` and `test_gold.csv` gold label files.
-"""
-
 import csv
+import logging
+import operator
 import pdb
+
+logger = logging.getLogger(__name__)
+
+
+def sort_gold(gold_file):
+    # Change `output` to the absolute path of where you want the sorted output to
+    # be written.
+    gold_filename = gold_file.split("/")[-1]
+    output = gold_file.replace(gold_filename, "") + "sorted_" + gold_filename
+    data = csv.reader(open(gold_file), delimiter=",")
+
+    # 0 specifies according to first column we want to sort (i.e. filename)
+    sortedlist = sorted(data, key=operator.itemgetter(0))
+    # Write sorted data into output file
+    with open(output, "w") as f:
+        fileWriter = csv.writer(f, delimiter=",")
+        for row in sortedlist:
+            fileWriter.writerow(row)
+
+    return output
 
 
 def split_gold(combinedfile, devfile, testfile, devoutfile, testoutfile):
@@ -44,23 +60,12 @@ def split_gold(combinedfile, devfile, testfile, devoutfile, testoutfile):
                 pdb.set_trace()
 
 
-if __name__ == "__main__":
-    # Split our combined gold dataset into the respective dev and test sets
-
-    # Change `combinedfile` to the absolute path of your combined gold file.
-    combinedfile = "/home/nchiang/repos/hack/hack/transistors/data/formatted_gold.csv"
-
-    # Change `devfile` and `testfile` to the absolute paths of your original
-    # `dev` and `test` gold label files.
-    devfile = "/home/nchiang/repos/hack/hack/transistors/data/dev/dev_gold.csv"
-    testfile = "/home/nchiang/repos/hack/hack/transistors/data/test/test_gold.csv"
-
-    # Change `devoutfile` and `testoutfile` to the absolute paths of where you
-    # want the final outputs from `combinedfile` to be written.
-    devoutfile = "/home/nchiang/repos/hack/hack/transistors/data/dev/new_dev_gold.csv"
-    testoutfile = (
-        "/home/nchiang/repos/hack/hack/transistors/data/test/new_test_gold.csv"
-    )
-
-    # Run split
-    split_gold(combinedfile, devfile, testfile, devoutfile, testoutfile)
+def combine_csv(combined, dev, test):
+    with open(combined, "w") as out, open(dev, "r") as in1, open(test, "r") as in2:
+        reader1 = csv.reader(in1)
+        reader2 = csv.reader(in2)
+        writer = csv.writer(out)
+        for line in reader1:
+            writer.writerow(line)
+        for line in reader2:
+            writer.writerow(line)
