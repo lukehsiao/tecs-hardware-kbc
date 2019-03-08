@@ -1,3 +1,4 @@
+import csv
 import logging
 import os
 import pdb
@@ -204,7 +205,45 @@ def labeling(
     return L_mat
 
 
-def scoring(disc_model, cands, docs, F_mat, is_gain=True,  num=100):
+def output_csv(cands, Y_prob, is_gain=True, append=False):
+    if is_gain:
+        filename = "output_gain.csv"
+    else:
+        filename = "output_current.csv"
+    if append:
+        with open(filename, "a") as csvfile:
+            writer = csv.writer(csvfile)
+            for i, c in enumerate(cands):
+                for entity in cand_to_entity(c, is_gain=is_gain):
+                    if is_gain:
+                        writer.writerow(
+                            [entity[0], entity[1].real / 1e3, Y_prob[i][TRUE - 1]]
+                        )
+                    else:
+                        writer.writerow(
+                            [entity[0], entity[1].real * 1e6, Y_prob[i][TRUE - 1]]
+                        )
+    else:
+        with open(filename, "w") as csvfile:
+            writer = csv.writer(csvfile)
+            if is_gain:
+                writer.writerow(["Document", "GBWP (kHz)", "p"])
+            else:
+                writer.writerow(["Document", "Supply Current (uA)", "p"])
+
+            for i, c in enumerate(cands):
+                for entity in cand_to_entity(c, is_gain=is_gain):
+                    if is_gain:
+                        writer.writerow(
+                            [entity[0], entity[1].real / 1e3, Y_prob[i][TRUE - 1]]
+                        )
+                    else:
+                        writer.writerow(
+                            [entity[0], entity[1].real * 1e6, Y_prob[i][TRUE - 1]]
+                        )
+
+
+def scoring(disc_model, cands, docs, F_mat, is_gain=True, num=100):
     logger.info("Calculating the best F1 score and threshold (b)...")
 
     # Iterate over a range of `b` values in order to find the b with the
@@ -314,7 +353,6 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
 
     # Evaluate LF accuracy
     dev_gold_entities = get_gold_set(is_gain=True)
-
     L_dev_gt = []
     for c in dev_cands[0]:
         flag = FALSE
@@ -338,12 +376,24 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         Y_dev=L_dev_gt,
         n_epochs=500,
     )
-    best_result, best_b = scoring(disc_models, test_cands[0], test_docs, F_test[0], num=50)
+    best_result, best_b = scoring(
+        disc_models, test_cands[0], test_docs, F_test[0], num=50
+    )
 
     print_scores(best_result, best_b)
 
-    L_dev_gt = []
+    Y_prob = disc_models.marginals((train_cands[0], F_train[0]))
+    output_csv(train_cands[0], Y_prob, is_gain=True)
+
+    Y_prob = disc_models.marginals((test_cands[0], F_test[0]))
+    output_csv(test_cands[0], Y_prob, is_gain=True, append=True)
+
+    Y_prob = disc_models.marginals((dev_cands[0], F_dev[0]))
+    output_csv(dev_cands[0], Y_prob, is_gain=True, append=True)
+
+
     dev_gold_entities = get_gold_set(is_gain=False)
+    L_dev_gt = []
     for c in dev_cands[1]:
         flag = FALSE
         for entity in cand_to_entity(c, is_gain=False):
@@ -357,7 +407,6 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
 
     logger.info(f"\n{df.to_string()}")
     marginals = generative_model(L_train[1])
-
 
     disc_models = discriminative_model(
         train_cands[1],
