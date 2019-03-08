@@ -286,7 +286,7 @@ def compare_entities(
 
 
 def entity_level_scores(
-    entities, attribute=None, corpus=None, metric=None, debug=False
+    entities, attribute=None, corpus=None, metric=None, docs=None, debug=False
 ):
     """Checks entity-level recall of candidates compared to gold.
 
@@ -299,7 +299,8 @@ def entity_level_scores(
     candidates = # CandidateSet of all candidates you want to consider
     entity_level_total_recall(candidates, 'stg_temp_min')
     """
-    docs = [(doc.name).upper() for doc in corpus] if corpus else None
+    if docs is None or len(docs) == 0:
+        docs = [(doc.name).upper() for doc in corpus] if corpus else None
     val_on = attribute is not None
     if metric is None:
         metric = get_gold_set(

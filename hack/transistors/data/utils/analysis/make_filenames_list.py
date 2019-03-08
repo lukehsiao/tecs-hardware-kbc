@@ -10,7 +10,7 @@ if __name__ == "__main__":
     # Make a list of filenames to write
     filenames = set()
     for filename in os.listdir(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), "../analysis/pdf/")
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../analysis/pdf/")
     ):
         if not filename.endswith(".pdf"):
             logger.error(f"Invalid filename {filename}")
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     # Write filenames to CSV
     with open(
         os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), "../analysis_dataset.csv"
+            os.path.dirname(os.path.abspath(__file__)), "../../analysis_dataset.csv"
         ),
         "w",
     ) as outfile:
