@@ -217,29 +217,29 @@ def output_csv(cands, Y_prob, is_gain=True, append=False):
                 for entity in cand_to_entity(c, is_gain=is_gain):
                     if is_gain:
                         writer.writerow(
-                            [entity[0], entity[1].real / 1e3, Y_prob[i][TRUE - 1]]
+                            [entity[0], entity[1].real / 1e3, c[0].context.sentence.position, Y_prob[i][TRUE - 1]]
                         )
                     else:
                         writer.writerow(
-                            [entity[0], entity[1].real * 1e6, Y_prob[i][TRUE - 1]]
+                            [entity[0], entity[1].real * 1e6, c[0].context.sentence.position, Y_prob[i][TRUE - 1]]
                         )
     else:
         with open(filename, "w") as csvfile:
             writer = csv.writer(csvfile)
             if is_gain:
-                writer.writerow(["Document", "GBWP (kHz)", "p"])
+                writer.writerow(["Document", "GBWP (kHz)", "sent", "p"])
             else:
-                writer.writerow(["Document", "Supply Current (uA)", "p"])
+                writer.writerow(["Document", "Supply Current (uA)", "sent", "p"])
 
             for i, c in enumerate(cands):
                 for entity in cand_to_entity(c, is_gain=is_gain):
                     if is_gain:
                         writer.writerow(
-                            [entity[0], entity[1].real / 1e3, Y_prob[i][TRUE - 1]]
+                            [entity[0], entity[1].real / 1e3, c[0].context.sentence.position, Y_prob[i][TRUE - 1]]
                         )
                     else:
                         writer.writerow(
-                            [entity[0], entity[1].real * 1e6, Y_prob[i][TRUE - 1]]
+                            [entity[0], entity[1].real * 1e6, c[0].context.sentence.position, Y_prob[i][TRUE - 1]]
                         )
 
 
@@ -281,18 +281,25 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         session, first_time=parse, parallel=parallel, max_docs=max_docs
     )
 
-    logger.debug(f"Test Docs: {pformat(test_docs)}")
-    logger.debug(f"Dev Docs: {pformat(dev_docs)}")
+    train_docs = list(train_docs)[:500]
+    dev_docs = list(dev_docs)[:500]
+    test_docs = list(test_docs)[:500]
+    docs = train_docs + dev_docs + test_docs
+
+    logger.info(f"# of Documents: {len(docs)}")
+    logger.info(f"# of train Documents: {len(train_docs)}")
+    logger.info(f"# of dev Documents: {len(dev_docs)}")
+    logger.info(f"# of test Documents: {len(test_docs)}")
 
     (Gain, Current) = mention_extraction(
-        session, docs, first_time=first_time, parallel=parallel
+        session, docs, first_time=False, parallel=parallel
     )
 
     (GainCand, CurrentCand), candidate_extractor = candidate_extraction(
         session,
         (Gain, Current),
         (train_docs, dev_docs, test_docs),
-        first_time=first_time,
+        first_time=False,
         parallel=parallel,
     )
     train_cands = candidate_extractor.get_candidates(split=0)
@@ -391,7 +398,6 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
     Y_prob = disc_models.marginals((dev_cands[0], F_dev[0]))
     output_csv(dev_cands[0], Y_prob, is_gain=True, append=True)
 
-
     dev_gold_entities = get_gold_set(is_gain=False)
     L_dev_gt = []
     for c in dev_cands[1]:
@@ -416,21 +422,32 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         Y_dev=L_dev_gt,
         n_epochs=100,
     )
-    best_result, best_b = scoring(disc_models, test_cands[1], test_docs, F_test[1], is_gain=False, num=50)
+    best_result, best_b = scoring(
+        disc_models, test_cands[1], test_docs, F_test[1], is_gain=False, num=50
+    )
 
     print_scores(best_result, best_b)
+
+    Y_prob = disc_models.marginals((train_cands[1], F_train[1]))
+    output_csv(train_cands[1], Y_prob, is_gain=False)
+
+    Y_prob = disc_models.marginals((test_cands[1], F_test[1]))
+    output_csv(test_cands[1], Y_prob, is_gain=False, append=True)
+
+    Y_prob = disc_models.marginals((dev_cands[1], F_dev[1]))
+    output_csv(dev_cands[1], Y_prob, is_gain=False, append=True)
 
     # End with an interactive prompt
     pdb.set_trace()
 
 
 if __name__ == "__main__":
-    parallel = 8
-    component = "opamps"
+    parallel = 4
+    component = "opamps_full"
     conn_string = f"postgresql:///{component}"
-    first_time = False
+    first_time = True
     parse = False
-    max_docs = 100
+    max_docs = 500
     logger.info(f"\n\n")
     logger.info(f"=" * 30)
     logger.info(
