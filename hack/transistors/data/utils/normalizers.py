@@ -1,90 +1,7 @@
-#!/usr/bin/env python
+import logging
 import pdb
 
-
-"""
-OPAMP NORMALIZERS
-"""
-
-
-def opamp_part_normalizer(part):
-    # TODO: Digikey actually has weird formatting on their part numbers,
-    #       which will require more normalization than we had to do with
-    #       transistors.
-    return part.replace(" ", "").upper()
-
-
-def gain_bandwidth_normalizer(gbp):
-    """
-    Normalize the gain bandwidth product into kHz.
-    """
-    parse = split_val_condition(gbp)
-
-    # NOTE: We currently ignore the conditions
-
-    # Process Units
-    try:
-        (value, unit) = parse["value"].split(" ")
-        value = float(value)
-        """
-        if unit == "MHz":
-            value = value * 1000
-        elif unit == "kHz":
-            # already kHz
-            pass
-        """
-        return str(value) + " " + unit
-
-    except Exception as e:
-        if gbp.endswith("MHz"):
-            return gbp.replace("MHz", "").strip()
-        print(f"[ERROR]: {e} on gain bandwidth {parse}")
-        pdb.set_trace()
-
-
-def supply_current_normalizer(supply_current):
-    """
-    Normalize input quiescent supply current to uA
-    """
-    # NOTE: Currently ignoring the conditions.
-    parse = split_val_condition(supply_current)
-    
-    # Process Units
-    try:
-        (value, unit) = parse["value"].split(" ")
-        value = float(value)
-        if unit == "mA":
-            return str(value) + " " + unit
-        elif unit == "nA":
-            return str(value) + " " + unit
-        else:
-            raise ValueError(f"Invalid units {unit}")
-    except Exception as e:
-        if supply_current.endswith("u A"):
-            return supply_current.replace("u A", "").strip()
-        print(f"[ERROR]: {e} while normalizing supply_current {supply_current}")
-        pdb.set_trace()
-
-
-def opamp_voltage_normalizer(supply_voltage):
-    """
-    Normalize supply voltage into absolute values (remove +/-)
-    """
-    parse = split_val_condition(supply_voltage)
-
-    try:
-        if parse["value"].startswith("± "):
-            parse["value"] = parse["value"].replace("± ", "±")
-        (value, unit) = [i for i in parse["value"].split(" ") if i != ""]
-    except Exception:
-        print("[ERROR]: " + str(parse))
-        pdb.set_trace()
-
-    if unit != "V":
-        print(f"[ERROR]: Invalid supply voltage {supply_voltage}")
-        pdb.set_trace()
-
-    return str(value) + " " + unit
+logger = logging.getLogger(__name__)
 
 
 """
@@ -118,7 +35,7 @@ def part_family_normalizer(family):
     elif family is None:
         return "N/A"
     else:
-        print(f"[ERROR]: Invalid part family {family}")
+        logger.error(f"Invalid part family {family}")
         pdb.set_trace()
 
 
@@ -128,7 +45,7 @@ def doc_normalizer(doc_name):
     elif doc_name.endswith(".PDF"):
         return doc_name.split(".PDF")[0]
     else:
-        print(f"[ERROR]: Invalid doc_name {doc_name}")
+        logger.error(f"Invalid doc_name {doc_name}")
         pdb.set_trace()
 
 
@@ -145,12 +62,12 @@ def temperature_normalizer(temperature):
     try:
         (temp, unit) = temperature.rsplit(" ", 1)
         if unit != "C":
-            print(f"[ERROR]: Invalid temperature value {temperature}")
+            logger.error(f"Invalid temperature value {temperature}")
             pdb.set_trace()
         # return round(float(temp), 1)
         return temp.strip()
     except Exception as e:
-        print(f"[ERROR]: {e} on temperature value {temperature}")
+        logger.error(f"{e} on temperature value {temperature}")
         pdb.set_trace()
 
 
@@ -173,7 +90,7 @@ def transistor_temp_normalizer(temperature):
 def polarity_normalizer(polarity):
     if polarity in ["NPN", "PNP"]:
         return polarity
-    print(f"[ERROR]: Incorrect polarity value {polarity}")
+    logger.error(f"Incorrect polarity value {polarity}")
     pdb.set_trace()
     return "N/A"
 
@@ -188,7 +105,7 @@ def current_normalizer(current):
     try:
         return str(current.split(" ")[0].strip().replace("-", ""))
     except Exception as e:
-        print(f"[ERROR]: {e} while normalizing current {current}")
+        logger.error(f"{e} while normalizing current {current}")
         pdb.set_trace()
 
 
@@ -199,7 +116,7 @@ def voltage_normalizer(voltage):
         voltage = voltage.replace("k", "000")
         return voltage.split(" ")[0].strip().replace("-", "")
     except Exception as e:
-        print(f"[ERROR]: {e} while normalizing voltage {voltage}")
+        logger.error(f"{e} while normalizing voltage {voltage}")
         pdb.set_trace()
 
 
