@@ -2,6 +2,7 @@ import codecs
 import csv
 import logging
 import os
+import pdb
 from builtins import range
 from collections import namedtuple
 
@@ -25,14 +26,41 @@ logger = logging.getLogger(__name__)
 Score = namedtuple("Score", ["f1", "prec", "rec", "TP", "FP", "FN"])
 
 
-def get_gold_set(doc_on=True, part_on=True, val_on=True, attribute=None, docs=None):
+def gold_set_to_dic(gold_set):
+    gold_dic = {}
+    for (doc, part, val) in gold_set:
+        if doc in gold_dic:
+            if part in gold_dic[doc]:
+                gold_dic[doc][part].append(val)
+        else:
+            gold_dic[doc] = {part: [val]}
+    return gold_dic
 
-    dirname = os.path.dirname(__file__)
+
+def gold_dic_to_set(gold_dic):
     gold_set = set()
-    for filename in [
-        os.path.join(dirname, "data/dev/dev_gold.csv"),
-        os.path.join(dirname, "data/test/test_gold.csv"),
-    ]:
+    try:
+        for doc in gold_dic:
+            for part in gold_dic[doc]:
+                for attr in gold_dic[doc][part]:
+                    gold_set.add((doc, part, attr))
+    except Exception as e:
+        logger.error(f"{e} while converting a {len(gold_dic)} long dict to entity set.")
+        pdb.set_trace()
+
+
+def get_gold_set(
+    doc_on=True, part_on=True, val_on=True, attribute=None, docs=None, gold=None
+):
+    if gold is None:
+        dirname = os.path.dirname(__file__)
+        gold = [
+            os.path.join(dirname, "data/dev/dev_gold.csv"),
+            os.path.join(dirname, "data/test/test_gold.csv"),
+        ]
+
+    gold_set = set()
+    for filename in gold:
         with codecs.open(filename, encoding="utf-8") as csvfile:
             gold_reader = csv.reader(csvfile)
             for row in gold_reader:
@@ -138,7 +166,126 @@ def entity_confusion_matrix(pred, gold):
     return (TP, FP, FN)
 
 
-def entity_level_scores(candidates, attribute=None, corpus=None, parts_by_doc=None):
+def compare_entities(
+    entities,
+    attribute=None,
+    entity_dic=None,
+    gold_dic=None,
+    type=None,
+    outfile="../our_discrepancies.csv",
+    append=False,
+):
+    """Compare given entities to gold labels
+    and write any discrepancies to a CSV file."""
+
+    if gold_dic is None and attribute is None:
+        logger.error("Compare entities needs an attribute or gold_dic.")
+    elif gold_dic is None and attribute is not None:
+        gold_dic = gold_set_to_dic(get_gold_set(attribute=attribute))
+
+    if entity_dic is None:
+        # TODO: Right now we just convert entities to gold_dic
+        # for referencing to fill `Notes:` --> But that is the same thing
+        # as referencing the gold_dic.
+        entity_dic = gold_set_to_dic(entities)
+
+    # Write discrepancies to a CSV file
+    # for manual debugging
+    outfile = os.path.join(os.path.dirname(__name__), outfile)
+    with open(outfile, "a") if append else open(outfile, "w") as out:
+        writer = csv.writer(out)
+        if not append:  # Only write header row if none already exists
+            if type is not None:
+                writer.writerow(
+                    (
+                        "Type:",
+                        "Filename:",
+                        "Part:",
+                        "Our Vals:",
+                        "Notes:",
+                        "Discrepancy Type:",
+                        "Discrepancy Notes:",
+                        "Annotator:",
+                    )
+                )
+            else:
+                writer.writerow(
+                    (
+                        "Filename:",
+                        "Part:",
+                        "Our Vals:",
+                        "Notes:",
+                        "Discrepancy Type:",
+                        "Discrepancy Notes:",
+                        "Annotator:",
+                    )
+                )
+        if type == "FN":  # We only care about the entities data for `Notes:`
+            for (doc, part, val) in entities:
+                if doc.upper() in entity_dic:
+                    if part.upper() in entity_dic[doc.upper()]:
+                        writer.writerow(
+                            (
+                                type,
+                                doc,
+                                part,
+                                val,
+                                f"Entity vals: {entity_dic[doc.upper()][part.upper()]}",
+                            )
+                        )
+                    else:
+                        writer.writerow(
+                            (type, doc, part, val, f"Entity parts: {entity_dic[doc]}")
+                        )
+                else:
+                    writer.writerow(
+                        (type, doc, part, val, f"Entities do not have doc {doc}.")
+                    )
+        elif type == "FP":  # We only care about the gold data for `Notes:`
+            for (doc, part, val) in entities:
+                if doc.upper() in gold_dic:
+                    if part.upper() in gold_dic[doc.upper()]:
+                        writer.writerow(
+                            (
+                                type,
+                                doc,
+                                part,
+                                val,
+                                f"Gold vals: {gold_dic[doc.upper()][part.upper()]}",
+                            )
+                        )
+                    else:
+                        writer.writerow(
+                            (type, doc, part, val, f"Gold parts: {gold_dic[doc]}")
+                        )
+                else:
+                    writer.writerow(
+                        (type, doc, part, val, f"Gold does not have doc {doc}.")
+                    )
+
+        else:  # TODO: Show both (for now, just shows gold)
+            for (doc, part, val) in entities:
+                if doc.upper() in gold_dic:
+                    if part.upper() in gold_dic[doc.upper()]:
+                        writer.writerow(
+                            (
+                                doc,
+                                part,
+                                val,
+                                f"Gold vals: {gold_dic[doc.upper()][part.upper()]}",
+                            )
+                        )
+                    else:
+                        writer.writerow(
+                            (doc, part, val, f"Gold parts: {gold_dic[doc]}")
+                        )
+                else:
+                    writer.writerow((doc, part, val, f"Gold does not have doc {doc}."))
+
+
+def entity_level_scores(
+    entities, attribute=None, corpus=None, metric=None, docs=None, debug=False
+):
     """Checks entity-level recall of candidates compared to gold.
 
     Turns a CandidateSet into a normal set of entity-level tuples
@@ -150,29 +297,19 @@ def entity_level_scores(candidates, attribute=None, corpus=None, parts_by_doc=No
         candidates = # CandidateSet of all candidates you want to consider
         entity_level_total_recall(candidates, 'stg_temp_min')
     """
-    docs = [(doc.name).upper() for doc in corpus] if corpus else None
+    if docs is None or len(docs) == 0:
+        docs = [(doc.name).upper() for doc in corpus] if corpus else None
     val_on = attribute is not None
-    gold_set = get_gold_set(
-        docs=docs, doc_on=True, part_on=True, val_on=val_on, attribute=attribute
-    )
-    if len(gold_set) == 0:
+    if metric is None:
+        metric = get_gold_set(
+            docs=docs, doc_on=True, part_on=True, val_on=val_on, attribute=attribute
+        )
+    if len(metric) == 0:
         logger.info(f"Attribute: {attribute}")
-        logger.error("Gold set is empty.")
+        logger.error("Gold metric set is empty.")
         return
-    # Turn CandidateSet into set of tuples
-    entities = set()
-    for i, c in enumerate(tqdm(candidates)):
-        part = c[0].context.get_span()
-        doc = c[0].context.sentence.document.name.upper()
-        if attribute:
-            val = c[1].context.get_span()
-        for p in get_implied_parts(part, doc, parts_by_doc):
-            if attribute:
-                entities.add((doc, p, val))
-            else:
-                entities.add((doc, p))
 
-    (TP_set, FP_set, FN_set) = entity_confusion_matrix(entities, gold_set)
+    (TP_set, FP_set, FN_set) = entity_confusion_matrix(entities, metric)
     TP = len(TP_set)
     FP = len(FP_set)
     FN = len(FN_set)
@@ -203,3 +340,24 @@ def entity_to_candidates(entity, candidate_subset):
         if c_entity == entity:
             matches.append(c)
     return matches
+
+
+def candidates_to_entities(candidates, val_on=True, parts_by_doc=None):
+    # Turn CandidateSet into set of tuples
+    entities = set()
+    for i, c in enumerate(tqdm(candidates)):
+        part = c[0].context.get_span()
+        doc = c[0].context.sentence.document.name.upper()
+        if val_on:
+            val = c[1].context.get_span()
+        for p in get_implied_parts(part, doc, parts_by_doc):
+            if val_on:
+                entities.add((doc, p, val))
+            else:
+                entities.add((doc, p))
+    return entities
+
+
+def _files_in_dir(path):
+    """Return the filenames, but drops the ".pdf" extension."""
+    return [f[:-4] for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
