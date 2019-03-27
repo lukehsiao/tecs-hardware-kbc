@@ -478,19 +478,64 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=2):
     )
     logger.info("Done.")
 
+    parts_by_doc = load_parts_by_doc()
+
+    relation = "stg_temp_min"
     marginals = generative_model(L_train[0])
     disc_models = discriminative_model(
         train_cands[0], F_train[0], marginals, n_epochs=100
     )
-
-    parts_by_doc = load_parts_by_doc()
-    relation = "stg_temp_min"
     best_result, best_b = scoring(
         relation,
         disc_models,
         test_cands[0],
         test_docs,
         F_test[0],
+        parts_by_doc,
+        num=100,
+    )
+
+    relation = "stg_temp_max"
+    marginals = generative_model(L_train[1])
+    disc_models = discriminative_model(
+        train_cands[1], F_train[1], marginals, n_epochs=100
+    )
+    best_result, best_b = scoring(
+        relation,
+        disc_models,
+        test_cands[1],
+        test_docs,
+        F_test[1],
+        parts_by_doc,
+        num=100,
+    )
+
+    relation = "polarity"
+    marginals = generative_model(L_train[2])
+    disc_models = discriminative_model(
+        train_cands[2], F_train[2], marginals, n_epochs=100
+    )
+    best_result, best_b = scoring(
+        relation,
+        disc_models,
+        test_cands[2],
+        test_docs,
+        F_test[2],
+        parts_by_doc,
+        num=100,
+    )
+
+    relation = "ce_v_max"
+    marginals = generative_model(L_train[3])
+    disc_models = discriminative_model(
+        train_cands[3], F_train[3], marginals, n_epochs=100
+    )
+    best_result, best_b = scoring(
+        relation,
+        disc_models,
+        test_cands[3],
+        test_docs,
+        F_test[3],
         parts_by_doc,
         num=100,
     )
