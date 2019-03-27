@@ -56,3 +56,17 @@ are created, you can run each individual hardware component script.
 $ createdb transistors
 $ python hack/transistors/transistors.py
 ```
+
+### Op Amps
+
+```bash
+$ createdb opamps
+$ python hack/opamps/opamps.py
+```
+
+### Circular Connectors
+
+```bash
+$ createdb circular_connectors
+$ python hack/circular_connectors/circular_connectors.py
+```
