@@ -84,3 +84,13 @@ $ python hack/opamps/opamps.py
 $ createdb circular_connectors
 $ python hack/circular_connectors/circular_connectors.py
 ```
+
+## Analysis
+
+After running transistors.py to create a HACK knowledge base, you can then run
+the analysis scripts which will score that database against our gold labels.
+
+```bash
+$ python hack/transistors/get_entities.py
+$ python hack/transistors/analysis.py
+```
