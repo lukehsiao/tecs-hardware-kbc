@@ -35,6 +35,7 @@ from hack.transistors.transistor_throttlers import (
 )
 from hack.transistors.transistor_utils import (
     Score,
+    candidates_to_entities,
     entity_level_scores,
     load_transistor_labels,
 )
@@ -281,7 +282,7 @@ def discriminative_model(train_cands, F_train, marginals, n_epochs=50, lr=0.001)
 
 def load_parts_by_doc():
     dirname = os.path.dirname(__file__)
-    pickle_file = os.path.join(dirname, "data/parts_by_doc_dict.pkl")
+    pickle_file = os.path.join(dirname, "data/parts_by_doc_new.pkl")
     with open(pickle_file, "rb") as f:
         return pickle.load(f)
 
@@ -306,10 +307,9 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
                 test_cands[0][_] for _ in np.nditer(np.where(test_score == TRUE))
             ]
             result = entity_level_scores(
-                true_pred,
+                candidates_to_entities(true_pred, parts_by_doc=parts_by_doc),
                 attribute=relation.value,
                 corpus=test_docs,
-                parts_by_doc=parts_by_doc,
             )
             logger.info(f"b = {b}, f1 = {result.f1}")
             if result.f1 > best_result.f1:
@@ -398,11 +398,18 @@ if __name__ == "__main__":
     # See https://docs.python.org/3/library/os.html#os.cpu_count
     parallel = 8  # len(os.sched_getaffinity(0)) // 4
     component = "transistors"
-    conn_string = f"postgresql:///{component}"
+    conn_string = f"postgresql:///{component}_small"
     first_time = True
+    max_docs = 500
     relation = Relation.STG_TEMP_MIN
     logger.info(f"\n\n")
-    logger.info(f"=" * 80)
-    logger.info(f"Beginning {component}::{relation.value} with parallel: {parallel}")
+    logger.info(f"=" * 30)
+    logger.info(f"{component}::{relation.value} | par: {parallel} | docs: {max_docs}")
 
-    main(conn_string, relation=relation, first_time=first_time, parallel=parallel)
+    main(
+        conn_string,
+        relation=relation,
+        max_docs=max_docs,
+        first_time=first_time,
+        parallel=parallel,
+    )

@@ -7,36 +7,30 @@ from fonduer.candidates.models.implicit_span_mention import TemporaryImplicitSpa
 logger = logging.getLogger(__name__)
 
 
-class MentionNgramsOpamps(MentionNgrams):
+class MentionNgramsCurrent(MentionNgrams):
     def __init__(self, n_max=2, split_tokens=["-", "/"]):
         super(MentionNgrams, self).__init__(n_max=n_max, split_tokens=split_tokens)
 
     def apply(self, doc):
         for ts in MentionNgrams.apply(self, doc):
-            m = re.match(
-                r"^([\+\-\u2010\u2011\u2012\u2013\u2014\u2212\uf02d])?(\s*)(\d+)$",
-                ts.get_span(),
-                re.U,
-            )
+            m = re.match(r"^(±)?\s*(\d+)\s*(\.)?\s*(\d*)$", ts.get_span())
             if m:
-                if m.group(1) is None:
-                    temp = ""
-                elif m.group(1) == "+":
-                    if m.group(2) != "":
-                        # If bigram '+ 150' is seen, accept the unigram '150',
-                        # not both
-                        continue
-                    temp = ""
-                else:  # m.group(1) is a type of negative sign
-                    # A bigram '- 150' is different from unigram '150', so we
-                    # keep the implicit '-150'
-                    temp = "-"
-                temp += m.group(3)
+                # Handle case that random spaces are inserted (e.g. "± 2  . 3")
+                temp = ""
+                if m.group(1):
+                    temp += m.group(1)
+                if m.group(2):
+                    temp += m.group(2)
+                if m.group(3):
+                    temp += m.group(3)
+                if m.group(4):
+                    temp += m.group(4)
+
                 yield TemporaryImplicitSpanMention(
                     sentence=ts.sentence,
                     char_start=ts.char_start,
                     char_end=ts.char_end,
-                    expander_key="temp_expander",
+                    expander_key="opamp_exp",
                     position=0,
                     text=temp,
                     words=[temp],

@@ -1,4 +1,4 @@
-# HACK: HArdware Component Knowledge Base
+# HACK: Automatically generating HArdware Component Knowledge Bases
 
 ## Dependencies
 
@@ -42,7 +42,21 @@ environment. To deactivate the environment, simply run `deactivate`.
 Then, install Fonduer and any other Python dependencies by running:
 
 ```bash
-$ make
+$ make dev
+```
+
+## Downloading the Datasets
+
+Each component has its own dataset which must be downloaded before running. To
+do so, navigate to each component's directory and run the download data script.
+Note that you must navigate to the directory before running the script, since
+the script will automatically unpack into the `data` directory.
+
+For example, to download the Op-Amp dataset:
+
+```
+$ cd hack/opamps/
+$ ./download_data.sh
 ```
 
 ## Running
@@ -55,4 +69,28 @@ are created, you can run each individual hardware component script.
 ```bash
 $ createdb transistors
 $ python hack/transistors/transistors.py
+```
+
+### Op Amps
+
+```bash
+$ createdb opamps
+$ python hack/opamps/opamps.py
+```
+
+### Circular Connectors
+
+```bash
+$ createdb circular_connectors
+$ python hack/circular_connectors/circular_connectors.py
+```
+
+## Analysis
+
+After running transistors.py to create a HACK knowledge base, you can then run
+the analysis scripts which will score that database against our gold labels.
+
+```bash
+$ python hack/transistors/get_entities.py
+$ python hack/transistors/analysis.py
 ```

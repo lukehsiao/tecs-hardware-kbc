@@ -9,13 +9,8 @@ import csv
 import logging
 import os
 
-import requests
-
 from hack.transistors.data.utils.normalizers import (
     general_normalizer,
-    part_family_normalizer,
-    supply_current_normalizer,
-    temperature_normalizer,
     transistor_part_normalizer,
 )
 from hack.transistors.data.utils.preprocessors import (
@@ -27,10 +22,8 @@ from hack.transistors.data.utils.preprocessors import (
     preprocess_freq_transition,
     preprocess_manuf,
     preprocess_operating_temp,
-    preprocess_operating_voltage,
     preprocess_polarity,
     preprocess_pwr_max,
-    preprocess_supply_current,
     preprocess_vce_saturation_max,
 )
 
@@ -43,7 +36,7 @@ logger = logging.getLogger(__name__)
 
 
 def format_digikey_gold(
-    raw_gold_file, formatted_gold_file, seen, append=False, filenames="standard",
+    raw_gold_file, formatted_gold_file, seen, append=False, filenames="standard"
 ):
     delim = ";"
     with open(raw_gold_file, "r") as csvinput, open(
@@ -97,6 +90,16 @@ def format_digikey_gold(
             part_num = transistor_part_normalizer(manuf_part_num)
             doc_name = preprocess_doc(manuf, part_num, url, docformat=filenames)
 
+            # For analysis purposes, skip datasheets that `get_docs()`
+            # cannot get a filename for (i.e. datasheets that are not
+            # in the dev or test dataset)
+            if manuf == "N/A" or manuf is None or doc_name == "N/A" or doc_name is None:
+                logger.warning(
+                    f"Doc not found for manuf {manufacturer} "
+                    + f"and part {manuf_part_num}, skipping."
+                )
+                continue
+
             # Extract implied values from attribute conditions
             # TODO: maybe check if the implied_supply_current's match?
             (
@@ -133,7 +136,7 @@ def format_digikey_gold(
 
             # Map each attribute to its corresponding normalizer
             name_attr_norm = [  # TODO: Update normalizers
-            # Data that both Digikey and our labels have:
+                # Data that both Digikey and our labels have:
                 ("polarity", polarity, general_normalizer),
                 ("c_current_max", c_current_max, general_normalizer),
                 ("ce_v_max", ce_v_max, general_normalizer),
@@ -146,19 +149,11 @@ def format_digikey_gold(
                 ("freq_transition", freq_transition, general_normalizer),
                 # Data that was implied by the conditions of other data:
                 ("implied_ce_v_max", implied_ce_v_max, general_normalizer),
-                (
-                    "implied_supply_current",
-                    implied_supply_current,
-                    general_normalizer,
-                ),
-                (
-                "implied_supply_current",
-                    implied_supply_current1,
-                    general_normalizer,
-                ),
+                ("implied_supply_current", implied_supply_current, general_normalizer),
+                ("implied_supply_current", implied_supply_current1, general_normalizer),
                 ("implied_base_current", implied_base_current, general_normalizer),
                 ("vce_sat_max", vce_saturation_max, general_normalizer),
-                ]
+            ]
 
             # Output tuples of each normalized attribute
             for name, attr, normalizer in name_attr_norm:
@@ -166,7 +161,14 @@ def format_digikey_gold(
                     for a in attr.split(delim):
                         if len(a.strip()) > 0:
                             source_file = str(raw_gold_file.split("/")[-1])
-                            output = [doc_name, manuf, part_num, name, normalizer(a), source_file]
+                            output = [
+                                doc_name,
+                                manuf,
+                                part_num,
+                                name,
+                                normalizer(a),
+                                source_file,
+                            ]
                             if tuple(output) not in seen:
                                 writer.writerow(output)
                                 seen.add(tuple(output))
@@ -183,7 +185,7 @@ if __name__ == "__main__":
     # Change `formatted_gold` to the absolute path of where you want the
     # combined gold to be written.
     formatted_gold = (
-       f"/home/nchiang/repos/hack/hack/transistors/data/{filenames}_digikey_gold.csv"
+        f"/home/nchiang/repos/hack/hack/transistors/data/{filenames}_digikey_gold.csv"
     )
     seen = set()
     # Run transformation

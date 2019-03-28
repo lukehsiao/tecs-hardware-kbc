@@ -577,8 +577,10 @@ ad8519_8529,AD8529ARMZ-REEL,max_op_temp,125
 ad8574-ep,AD8574-EP,part_family,Y
 ad8574-ep,AD8574-EP,typ_gbp,1.0 MHz
 ad8574-ep,AD8574-EP,typ_gbp,1.5 MHz
+ad8574-ep,AD8574-EP,typ_supply_current,950 uA
 ad8574-ep,AD8574-EP,typ_supply_current,750 uA
 ad8574-ep,AD8574-EP,typ_supply_current,850 uA
+ad8574-ep,AD8574-EP,typ_supply_current,1000 uA
 ad8574-ep,AD8574-EP,min_op_supply_volt,2.7 V
 ad8574-ep,AD8574-EP,max_op_supply_volt,6 V
 ad8574-ep,AD8574-EP,max_op_supply_volt,5.5 V
@@ -587,8 +589,10 @@ ad8574-ep,AD8574-EP,max_op_temp,125
 ad8574-ep,AD8574TRU-EP,part_family,N
 ad8574-ep,AD8574TRU-EP,typ_gbp,1.0 MHz
 ad8574-ep,AD8574TRU-EP,typ_gbp,1.5 MHz
+ad8574-ep,AD8574TRU-EP,typ_supply_current,950 uA
 ad8574-ep,AD8574TRU-EP,typ_supply_current,750 uA
 ad8574-ep,AD8574TRU-EP,typ_supply_current,850 uA
+ad8574-ep,AD8574TRU-EP,typ_supply_current,1000 uA
 ad8574-ep,AD8574TRU-EP,min_op_supply_volt,2.7 V
 ad8574-ep,AD8574TRU-EP,max_op_supply_volt,6 V
 ad8574-ep,AD8574TRU-EP,max_op_supply_volt,5.5 V
@@ -597,8 +601,10 @@ ad8574-ep,AD8574TRU-EP,max_op_temp,126
 ad8574-ep,AD8574TRU-EP-RL,part_family,N
 ad8574-ep,AD8574TRU-EP-RL,typ_gbp,1.0 MHz
 ad8574-ep,AD8574TRU-EP-RL,typ_gbp,1.5 MHz
+ad8574-ep,AD8574TRU-EP-RL,typ_supply_current,950 uA
 ad8574-ep,AD8574TRU-EP-RL,typ_supply_current,750 uA
 ad8574-ep,AD8574TRU-EP-RL,typ_supply_current,850 uA
+ad8574-ep,AD8574TRU-EP-RL,typ_supply_current,1000 uA
 ad8574-ep,AD8574TRU-EP-RL,min_op_supply_volt,2.7 V
 ad8574-ep,AD8574TRU-EP-RL,max_op_supply_volt,6 V
 ad8574-ep,AD8574TRU-EP-RL,max_op_supply_volt,5.5 V
@@ -808,21 +814,24 @@ ada4855-3,ADA4855-3YCP-EBZ,min_op_temp,-40
 ada4855-3,ADA4855-3YCP-EBZ,max_op_temp,105
 amc1100,AMC1100,part_family,Y
 amc1100,AMC1100,typ_supply_current,5.4 mA
-amc1100,AMC1100,typ_supply_current,8 mA
+amc1100,AMC1100,typ_supply_current,3.8 mA
+amc1100,AMC1100,typ_supply_current,4.4 mA
 amc1100,AMC1100,min_op_supply_volt,2.7 V
 amc1100,AMC1100,max_op_supply_volt,5.5 V
 amc1100,AMC1100,min_op_temp,-40
 amc1100,AMC1100,max_op_temp,105
 amc1100,AMC1100DUB,part_family,N
 amc1100,AMC1100DUB,typ_supply_current,5.4 mA
-amc1100,AMC1100DUB,typ_supply_current,8 mA
+amc1100,AMC1100DUB,typ_supply_current,3.8 mA
+amc1100,AMC1100DUB,typ_supply_current,4.4 mA
 amc1100,AMC1100DUB,min_op_supply_volt,2.7 V
 amc1100,AMC1100DUB,max_op_supply_volt,5.5 V
 amc1100,AMC1100DUB,min_op_temp,-40
 amc1100,AMC1100DUB,max_op_temp,105
 amc1100,AMC1100BWV,part_family,N
 amc1100,AMC1100BWV,typ_supply_current,5.4 mA
-amc1100,AMC1100BWV,typ_supply_current,8 mA
+amc1100,AMC1100BWV,typ_supply_current,3.8 mA
+amc1100,AMC1100BWV,typ_supply_current,4.4 mA
 amc1100,AMC1100BWV,min_op_supply_volt,2.7 V
 amc1100,AMC1100BWV,max_op_supply_volt,5.5 V
 amc1100,AMC1100BWV,min_op_temp,-40
@@ -1523,160 +1532,160 @@ lmc6442_april162015,5962-9761301QXA,min_op_temp,-55
 lmc6442_april162015,5962-9761301QXA,max_op_temp,125
 lmc6462_lmc6464,LMC6462,part_family,Y
 lmc6462_lmc6464,LMC6462,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462,min_op_temp,-40
 lmc6462_lmc6464,LMC6462,max_op_temp,85
 lmc6462_lmc6464,LMC6462AIM,part_family,N
 lmc6462_lmc6464,LMC6462AIM,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462AIM,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462AIM,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462AIM,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462AIM,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462AIM,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462AIM,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462AIM,min_op_temp,-40
 lmc6462_lmc6464,LMC6462AIM,max_op_temp,85
 lmc6462_lmc6464,LMC6462AIM/NOPB,part_family,N
 lmc6462_lmc6464,LMC6462AIM/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462AIM/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462AIM/NOPB,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462AIM/NOPB,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462AIM/NOPB,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462AIM/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462AIM/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462AIM/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6462AIM/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6462AIMX/NOPB,part_family,N
 lmc6462_lmc6464,LMC6462AIMX/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462AIMX/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462AIMX/NOPB,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462AIMX/NOPB,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462AIMX/NOPB,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462AIMX/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462AIMX/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462AIMX/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6462AIMX/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6462AIN,part_family,N
 lmc6462_lmc6464,LMC6462AIN,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462AIN,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462AIN,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462AIN,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462AIN,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462AIN,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462AIN,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462AIN,min_op_temp,-40
 lmc6462_lmc6464,LMC6462AIN,max_op_temp,85
 lmc6462_lmc6464,LMC6462AIN/NOPB,part_family,N
 lmc6462_lmc6464,LMC6462AIN/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462AIN/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462AIN/NOPB,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462AIN/NOPB,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462AIN/NOPB,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462AIN/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462AIN/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462AIN/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6462AIN/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6462BIM/NOPB,part_family,N
 lmc6462_lmc6464,LMC6462BIM/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462BIM/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462BIM/NOPB,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462BIM/NOPB,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462BIM/NOPB,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462BIM/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462BIM/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462BIM/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6462BIM/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6462BIMX/NOPB,part_family,N
 lmc6462_lmc6464,LMC6462BIMX/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462BIMX/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462BIMX/NOPB,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462BIMX/NOPB,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462BIMX/NOPB,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462BIMX/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462BIMX/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462BIMX/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6462BIMX/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6462BIN,part_family,N
 lmc6462_lmc6464,LMC6462BIN,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462BIN,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462BIN,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462BIN,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462BIN,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462BIN,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462BIN,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462BIN,min_op_temp,-40
 lmc6462_lmc6464,LMC6462BIN,max_op_temp,85
 lmc6462_lmc6464,LMC6462BIN/NOPB,part_family,N
 lmc6462_lmc6464,LMC6462BIN/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6462BIN/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6462BIN/NOPB,typ_supply_current,25 uA
+lmc6462_lmc6464,LMC6462BIN/NOPB,typ_supply_current,40 uA
+lmc6462_lmc6464,LMC6462BIN/NOPB,typ_supply_current,50 uA
 lmc6462_lmc6464,LMC6462BIN/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6462BIN/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6462BIN/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6462BIN/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6464,part_family,Y
 lmc6462_lmc6464,LMC6464,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464,min_op_temp,-40
 lmc6462_lmc6464,LMC6464,max_op_temp,85
 lmc6462_lmc6464,LMC6464AIM,part_family,N
 lmc6462_lmc6464,LMC6464AIM,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464AIM,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464AIM,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464AIM,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464AIM,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464AIM,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464AIM,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464AIM,min_op_temp,-40
 lmc6462_lmc6464,LMC6464AIM,max_op_temp,85
 lmc6462_lmc6464,LMC6464AIM/NOPB,part_family,N
 lmc6462_lmc6464,LMC6464AIM/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464AIM/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464AIM/NOPB,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464AIM/NOPB,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464AIM/NOPB,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464AIM/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464AIM/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464AIM/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6464AIM/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6464AIMX,part_family,N
 lmc6462_lmc6464,LMC6464AIMX,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464AIMX,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464AIMX,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464AIMX,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464AIMX,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464AIMX,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464AIMX,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464AIMX,min_op_temp,-40
 lmc6462_lmc6464,LMC6464AIMX,max_op_temp,85
 lmc6462_lmc6464,LMC6464AIMX/NOPB,part_family,N
 lmc6462_lmc6464,LMC6464AIMX/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464AIMX/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464AIMX/NOPB,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464AIMX/NOPB,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464AIMX/NOPB,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464AIMX/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464AIMX/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464AIMX/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6464AIMX/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6464BIM,part_family,N
 lmc6462_lmc6464,LMC6464BIM,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464BIM,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464BIM,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464BIM,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464BIM,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464BIM,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464BIM,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464BIM,min_op_temp,-40
 lmc6462_lmc6464,LMC6464BIM,max_op_temp,85
 lmc6462_lmc6464,LMC6464BIM/NOPB,part_family,N
 lmc6462_lmc6464,LMC6464BIM/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464BIM/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464BIM/NOPB,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464BIM/NOPB,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464BIM/NOPB,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464BIM/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464BIM/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464BIM/NOPB,min_op_temp,-40
 lmc6462_lmc6464,LMC6464BIM/NOPB,max_op_temp,85
 lmc6462_lmc6464,LMC6464BIMX,part_family,N
 lmc6462_lmc6464,LMC6464BIMX,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464BIMX,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464BIMX,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464BIMX,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464BIMX,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464BIMX,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464BIMX,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464BIMX,min_op_temp,-40
 lmc6462_lmc6464,LMC6464BIMX,max_op_temp,85
 lmc6462_lmc6464,LMC6464BIN,part_family,N
 lmc6462_lmc6464,LMC6464BIN,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464BIN,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464BIN,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464BIN,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464BIN,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464BIN,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464BIN,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464BIN,min_op_temp,-40
 lmc6462_lmc6464,LMC6464BIN,max_op_temp,85
 lmc6462_lmc6464,LMC6464BIN/NOPB,part_family,N
 lmc6462_lmc6464,LMC6464BIN/NOPB,typ_gbp,50.0 kHz
-lmc6462_lmc6464,LMC6464BIN/NOPB,typ_supply_current,20 uA
-lmc6462_lmc6464,LMC6464BIN/NOPB,typ_supply_current,22.5 uA
+lmc6462_lmc6464,LMC6464BIN/NOPB,typ_supply_current,80 uA
+lmc6462_lmc6464,LMC6464BIN/NOPB,typ_supply_current,90 uA
 lmc6462_lmc6464,LMC6464BIN/NOPB,min_op_supply_volt,3.0 V
 lmc6462_lmc6464,LMC6464BIN/NOPB,max_op_supply_volt,15.5 V
 lmc6462_lmc6464,LMC6464BIN/NOPB,min_op_temp,-40
@@ -2066,14 +2075,12 @@ max44260-max44263,MAX44263AXA+,min_op_temp,-40
 max44260-max44263,MAX44263AXA+,max_op_temp,125
 mp39u,MP39,part_family,N
 mp39u,MP39,typ_gbp,2.0 MHz
-mp39u,MP39,typ_supply_current,26 mA
 mp39u,MP39,min_op_supply_volt,±15 V
 mp39u,MP39,max_op_supply_volt,±50 V
 mp39u,MP39,min_op_temp,-40
 mp39u,MP39,max_op_temp,85
 mp39u,MP39A,part_family,N
 mp39u,MP39A,typ_gbp,2.0 MHz
-mp39u,MP39A,typ_supply_current,26 mA
 mp39u,MP39A,min_op_supply_volt,±15 V
 mp39u,MP39A,max_op_supply_volt,±50 V
 mp39u,MP39A,min_op_temp,-40
@@ -2087,30 +2094,35 @@ muses01,MUSES01,min_op_temp,-40
 muses01,MUSES01,max_op_temp,85
 onet4201pa,ONET4201PA,part_family,Y
 onet4201pa,ONET4201PA,typ_supply_current,35 mA
+onet4201pa,ONET4201PA,typ_supply_current,27 mA
 onet4201pa,ONET4201PA,min_op_supply_volt,3 V
 onet4201pa,ONET4201PA,max_op_supply_volt,3.6 V
 onet4201pa,ONET4201PA,min_op_temp,-40
 onet4201pa,ONET4201PA,max_op_temp,85
 onet4201pa,ONET4201PARGTR,part_family,N
 onet4201pa,ONET4201PARGTR,typ_supply_current,35 mA
+onet4201pa,ONET4201PARGTR,typ_supply_current,27 mA
 onet4201pa,ONET4201PARGTR,min_op_supply_volt,3 V
 onet4201pa,ONET4201PARGTR,max_op_supply_volt,3.6 V
 onet4201pa,ONET4201PARGTR,min_op_temp,-40
 onet4201pa,ONET4201PARGTR,max_op_temp,85
 onet4201pa,ONET4201PARGTRG4,part_family,N
 onet4201pa,ONET4201PARGTRG4,typ_supply_current,35 mA
+onet4201pa,ONET4201PARGTRG4,typ_supply_current,27 mA
 onet4201pa,ONET4201PARGTRG4,min_op_supply_volt,3 V
 onet4201pa,ONET4201PARGTRG4,max_op_supply_volt,3.6 V
 onet4201pa,ONET4201PARGTRG4,min_op_temp,-40
 onet4201pa,ONET4201PARGTRG4,max_op_temp,85
 onet4201pa,ONET4201PARGTT,part_family,N
 onet4201pa,ONET4201PARGTT,typ_supply_current,35 mA
+onet4201pa,ONET4201PARGTT,typ_supply_current,27 mA
 onet4201pa,ONET4201PARGTT,min_op_supply_volt,3 V
 onet4201pa,ONET4201PARGTT,max_op_supply_volt,3.6 V
 onet4201pa,ONET4201PARGTT,min_op_temp,-40
 onet4201pa,ONET4201PARGTT,max_op_temp,85
 onet4201pa,ONET4201PARGTTG4,part_family,N
 onet4201pa,ONET4201PARGTTG4,typ_supply_current,35 mA
+onet4201pa,ONET4201PARGTTG4,typ_supply_current,27 mA
 onet4201pa,ONET4201PARGTTG4,min_op_supply_volt,3 V
 onet4201pa,ONET4201PARGTTG4,max_op_supply_volt,3.6 V
 onet4201pa,ONET4201PARGTTG4,min_op_temp,-40
@@ -2225,6 +2237,7 @@ opa1654,OPA1654AIPWR,min_op_temp,-40
 opa1654,OPA1654AIPWR,max_op_temp,85
 opa191,OPA191,part_family,Y
 opa191,OPA191,typ_gbp,2.5 MHz
+opa191,OPA191,typ_gbp,2.2 MHz
 opa191,OPA191,typ_supply_current,140 uA
 opa191,OPA191,min_op_supply_volt,4.5 V
 opa191,OPA191,min_op_supply_volt,±2.25 V
@@ -2234,6 +2247,7 @@ opa191,OPA191,min_op_temp,-40
 opa191,OPA191,max_op_temp,125
 opa191,OPA191ID,part_family,N
 opa191,OPA191ID,typ_gbp,2.5 MHz
+opa191,OPA191ID,typ_gbp,2.2 MHz
 opa191,OPA191ID,typ_supply_current,140 uA
 opa191,OPA191ID,min_op_supply_volt,4.5 V
 opa191,OPA191ID,min_op_supply_volt,±2.25 V
@@ -2243,6 +2257,7 @@ opa191,OPA191ID,min_op_temp,-40
 opa191,OPA191ID,max_op_temp,125
 opa191,OPA191IDBVR,part_family,N
 opa191,OPA191IDBVR,typ_gbp,2.5 MHz
+opa191,OPA191IDBVR,typ_gbp,2.2 MHz
 opa191,OPA191IDBVR,typ_supply_current,140 uA
 opa191,OPA191IDBVR,min_op_supply_volt,4.5 V
 opa191,OPA191IDBVR,min_op_supply_volt,±2.25 V
@@ -2252,6 +2267,7 @@ opa191,OPA191IDBVR,min_op_temp,-40
 opa191,OPA191IDBVR,max_op_temp,125
 opa191,OPA191IDBVT,part_family,N
 opa191,OPA191IDBVT,typ_gbp,2.5 MHz
+opa191,OPA191IDBVT,typ_gbp,2.2 MHz
 opa191,OPA191IDBVT,typ_supply_current,140 uA
 opa191,OPA191IDBVT,min_op_supply_volt,4.5 V
 opa191,OPA191IDBVT,min_op_supply_volt,±2.25 V
@@ -2261,6 +2277,7 @@ opa191,OPA191IDBVT,min_op_temp,-40
 opa191,OPA191IDBVT,max_op_temp,125
 opa191,OPA191IDGKR,part_family,N
 opa191,OPA191IDGKR,typ_gbp,2.5 MHz
+opa191,OPA191IDGKR,typ_gbp,2.2 MHz
 opa191,OPA191IDGKR,typ_supply_current,140 uA
 opa191,OPA191IDGKR,min_op_supply_volt,4.5 V
 opa191,OPA191IDGKR,min_op_supply_volt,±2.25 V
@@ -2270,6 +2287,7 @@ opa191,OPA191IDGKR,min_op_temp,-40
 opa191,OPA191IDGKR,max_op_temp,125
 opa191,OPA191IDGKT,part_family,N
 opa191,OPA191IDGKT,typ_gbp,2.5 MHz
+opa191,OPA191IDGKT,typ_gbp,2.2 MHz
 opa191,OPA191IDGKT,typ_supply_current,140 uA
 opa191,OPA191IDGKT,min_op_supply_volt,4.5 V
 opa191,OPA191IDGKT,min_op_supply_volt,±2.25 V
@@ -2279,6 +2297,7 @@ opa191,OPA191IDGKT,min_op_temp,-40
 opa191,OPA191IDGKT,max_op_temp,125
 opa191,OPA191IDR,part_family,N
 opa191,OPA191IDR,typ_gbp,2.5 MHz
+opa191,OPA191IDR,typ_gbp,2.2 MHz
 opa191,OPA191IDR,typ_supply_current,140 uA
 opa191,OPA191IDR,min_op_supply_volt,4.5 V
 opa191,OPA191IDR,min_op_supply_volt,±2.25 V
@@ -2288,6 +2307,7 @@ opa191,OPA191IDR,min_op_temp,-40
 opa191,OPA191IDR,max_op_temp,125
 opa191,OPA2191,part_family,Y
 opa191,OPA2191,typ_gbp,2.5 MHz
+opa191,OPA2191,typ_gbp,2.2 MHz
 opa191,OPA2191,typ_supply_current,140 uA
 opa191,OPA2191,min_op_supply_volt,4.5 V
 opa191,OPA2191,min_op_supply_volt,±2.25 V
@@ -2297,6 +2317,7 @@ opa191,OPA2191,min_op_temp,-40
 opa191,OPA2191,max_op_temp,125
 opa191,OPA2191ID,part_family,N
 opa191,OPA2191ID,typ_gbp,2.5 MHz
+opa191,OPA2191ID,typ_gbp,2.2 MHz
 opa191,OPA2191ID,typ_supply_current,140 uA
 opa191,OPA2191ID,min_op_supply_volt,4.5 V
 opa191,OPA2191ID,min_op_supply_volt,±2.25 V
@@ -2306,6 +2327,7 @@ opa191,OPA2191ID,min_op_temp,-40
 opa191,OPA2191ID,max_op_temp,125
 opa191,OPA2191DR,part_family,N
 opa191,OPA2191DR,typ_gbp,2.5 MHz
+opa191,OPA2191DR,typ_gbp,2.2 MHz
 opa191,OPA2191DR,typ_supply_current,140 uA
 opa191,OPA2191DR,min_op_supply_volt,4.5 V
 opa191,OPA2191DR,min_op_supply_volt,±2.25 V
@@ -2315,6 +2337,7 @@ opa191,OPA2191DR,min_op_temp,-40
 opa191,OPA2191DR,max_op_temp,125
 opa191,OPA4191,part_family,Y
 opa191,OPA4191,typ_gbp,2.5 MHz
+opa191,OPA4191,typ_gbp,2.2 MHz
 opa191,OPA4191,typ_supply_current,140 uA
 opa191,OPA4191,min_op_supply_volt,4.5 V
 opa191,OPA4191,min_op_supply_volt,±2.25 V
@@ -2324,6 +2347,7 @@ opa191,OPA4191,min_op_temp,-40
 opa191,OPA4191,max_op_temp,125
 opa191,OPA4191ID,part_family,N
 opa191,OPA4191ID,typ_gbp,2.5 MHz
+opa191,OPA4191ID,typ_gbp,2.2 MHz
 opa191,OPA4191ID,typ_supply_current,140 uA
 opa191,OPA4191ID,min_op_supply_volt,4.5 V
 opa191,OPA4191ID,min_op_supply_volt,±2.25 V
@@ -2333,6 +2357,7 @@ opa191,OPA4191ID,min_op_temp,-40
 opa191,OPA4191ID,max_op_temp,125
 opa191,OPA4191DR,part_family,N
 opa191,OPA4191DR,typ_gbp,2.5 MHz
+opa191,OPA4191DR,typ_gbp,2.2 MHz
 opa191,OPA4191DR,typ_supply_current,140 uA
 opa191,OPA4191DR,min_op_supply_volt,4.5 V
 opa191,OPA4191DR,min_op_supply_volt,±2.25 V
@@ -3153,11 +3178,13 @@ rcv420,RCV420JP,max_op_temp,70
 ths3001,THS3001,part_family,Y
 ths3001,THS3001,typ_supply_current,5.5 mA
 ths3001,THS3001,typ_supply_current,6.6 mA
+ths3001,THS3001,typ_supply_current,6.9 mA
 ths3001,THS3001,min_op_temp,-40
 ths3001,THS3001,max_op_temp,85
 ths3001,THS3001CD,part_family,N
 ths3001,THS3001CD,typ_supply_current,5.5 mA
 ths3001,THS3001CD,typ_supply_current,6.6 mA
+ths3001,THS3001CD,typ_supply_current,6.9 mA
 ths3001,THS3001CD,min_op_supply_volt,9 V
 ths3001,THS3001CD,min_op_supply_volt,±4.5 V
 ths3001,THS3001CD,max_op_supply_volt,32 V
@@ -3167,6 +3194,7 @@ ths3001,THS3001CD,max_op_temp,70
 ths3001,THS3001CDG4,part_family,N
 ths3001,THS3001CDG4,typ_supply_current,5.5 mA
 ths3001,THS3001CDG4,typ_supply_current,6.6 mA
+ths3001,THS3001CDG4,typ_supply_current,6.9 mA
 ths3001,THS3001CDG4,min_op_supply_volt,9 V
 ths3001,THS3001CDG4,min_op_supply_volt,±4.5 V
 ths3001,THS3001CDG4,max_op_supply_volt,32 V
@@ -3176,6 +3204,7 @@ ths3001,THS3001CDG4,max_op_temp,70
 ths3001,THS3001CDGN,part_family,N
 ths3001,THS3001CDGN,typ_supply_current,5.5 mA
 ths3001,THS3001CDGN,typ_supply_current,6.6 mA
+ths3001,THS3001CDGN,typ_supply_current,6.9 mA
 ths3001,THS3001CDGN,min_op_supply_volt,9 V
 ths3001,THS3001CDGN,min_op_supply_volt,±4.5 V
 ths3001,THS3001CDGN,max_op_supply_volt,32 V
@@ -3185,6 +3214,7 @@ ths3001,THS3001CDGN,max_op_temp,70
 ths3001,THS3001CDGNG4,part_family,N
 ths3001,THS3001CDGNG4,typ_supply_current,5.5 mA
 ths3001,THS3001CDGNG4,typ_supply_current,6.6 mA
+ths3001,THS3001CDGNG4,typ_supply_current,6.9 mA
 ths3001,THS3001CDGNG4,min_op_supply_volt,9 V
 ths3001,THS3001CDGNG4,min_op_supply_volt,±4.5 V
 ths3001,THS3001CDGNG4,max_op_supply_volt,32 V
@@ -3194,6 +3224,7 @@ ths3001,THS3001CDGNG4,max_op_temp,70
 ths3001,THS3001CDGNR,part_family,N
 ths3001,THS3001CDGNR,typ_supply_current,5.5 mA
 ths3001,THS3001CDGNR,typ_supply_current,6.6 mA
+ths3001,THS3001CDGNR,typ_supply_current,6.9 mA
 ths3001,THS3001CDGNR,min_op_supply_volt,9 V
 ths3001,THS3001CDGNR,min_op_supply_volt,±4.5 V
 ths3001,THS3001CDGNR,max_op_supply_volt,32 V
@@ -3203,6 +3234,7 @@ ths3001,THS3001CDGNR,max_op_temp,70
 ths3001,THS3001CDR,part_family,N
 ths3001,THS3001CDR,typ_supply_current,5.5 mA
 ths3001,THS3001CDR,typ_supply_current,6.6 mA
+ths3001,THS3001CDR,typ_supply_current,6.9 mA
 ths3001,THS3001CDR,min_op_supply_volt,9 V
 ths3001,THS3001CDR,min_op_supply_volt,±4.5 V
 ths3001,THS3001CDR,max_op_supply_volt,32 V
@@ -3212,6 +3244,7 @@ ths3001,THS3001CDR,max_op_temp,70
 ths3001,THS3001CDRG4,part_family,N
 ths3001,THS3001CDRG4,typ_supply_current,5.5 mA
 ths3001,THS3001CDRG4,typ_supply_current,6.6 mA
+ths3001,THS3001CDRG4,typ_supply_current,6.9 mA
 ths3001,THS3001CDRG4,min_op_supply_volt,9 V
 ths3001,THS3001CDRG4,min_op_supply_volt,±4.5 V
 ths3001,THS3001CDRG4,max_op_supply_volt,32 V
@@ -3251,6 +3284,7 @@ ths3001,THS3001HVIDVNG4,max_op_temp,85
 ths3001,THS3001ID,part_family,N
 ths3001,THS3001ID,typ_supply_current,5.5 mA
 ths3001,THS3001ID,typ_supply_current,6.6 mA
+ths3001,THS3001ID,typ_supply_current,6.9 mA
 ths3001,THS3001ID,min_op_supply_volt,9 V
 ths3001,THS3001ID,min_op_supply_volt,±4.5 V
 ths3001,THS3001ID,max_op_supply_volt,32 V
@@ -3260,6 +3294,7 @@ ths3001,THS3001ID,max_op_temp,85
 ths3001,THS3001IDG4,part_family,N
 ths3001,THS3001IDG4,typ_supply_current,5.5 mA
 ths3001,THS3001IDG4,typ_supply_current,6.6 mA
+ths3001,THS3001IDG4,typ_supply_current,6.9 mA
 ths3001,THS3001IDG4,min_op_supply_volt,9 V
 ths3001,THS3001IDG4,min_op_supply_volt,±4.5 V
 ths3001,THS3001IDG4,max_op_supply_volt,32 V
@@ -3269,6 +3304,7 @@ ths3001,THS3001IDG4,max_op_temp,85
 ths3001,THS3001IDGN,part_family,N
 ths3001,THS3001IDGN,typ_supply_current,5.5 mA
 ths3001,THS3001IDGN,typ_supply_current,6.6 mA
+ths3001,THS3001IDGN,typ_supply_current,6.9 mA
 ths3001,THS3001IDGN,min_op_supply_volt,9 V
 ths3001,THS3001IDGN,min_op_supply_volt,±4.5 V
 ths3001,THS3001IDGN,max_op_supply_volt,32 V
@@ -3278,6 +3314,7 @@ ths3001,THS3001IDGN,max_op_temp,85
 ths3001,THS3001IDGNG4,part_family,N
 ths3001,THS3001IDGNG4,typ_supply_current,5.5 mA
 ths3001,THS3001IDGNG4,typ_supply_current,6.6 mA
+ths3001,THS3001IDGNG4,typ_supply_current,6.9 mA
 ths3001,THS3001IDGNG4,min_op_supply_volt,9 V
 ths3001,THS3001IDGNG4,min_op_supply_volt,±4.5 V
 ths3001,THS3001IDGNG4,max_op_supply_volt,32 V
@@ -3287,6 +3324,7 @@ ths3001,THS3001IDGNG4,max_op_temp,85
 ths3001,THS3001IDGNR,part_family,N
 ths3001,THS3001IDGNR,typ_supply_current,5.5 mA
 ths3001,THS3001IDGNR,typ_supply_current,6.6 mA
+ths3001,THS3001IDGNR,typ_supply_current,6.9 mA
 ths3001,THS3001IDGNR,min_op_supply_volt,9 V
 ths3001,THS3001IDGNR,min_op_supply_volt,±4.5 V
 ths3001,THS3001IDGNR,max_op_supply_volt,32 V
@@ -3296,6 +3334,7 @@ ths3001,THS3001IDGNR,max_op_temp,85
 ths3001,THS3001IDR,part_family,N
 ths3001,THS3001IDR,typ_supply_current,5.5 mA
 ths3001,THS3001IDR,typ_supply_current,6.6 mA
+ths3001,THS3001IDR,typ_supply_current,6.9 mA
 ths3001,THS3001IDR,min_op_supply_volt,9 V
 ths3001,THS3001IDR,min_op_supply_volt,±4.5 V
 ths3001,THS3001IDR,max_op_supply_volt,32 V
@@ -3562,7 +3601,6 @@ ths4062,5962-9960101QPA,max_op_temp,125
 ths4211,THS4211,part_family,Y
 ths4211,THS4211,typ_gbp,350.0 MHz
 ths4211,THS4211,typ_gbp,300.0 MHz
-ths4211,THS4211,typ_supply_current,19 mA
 ths4211,THS4211,min_op_supply_volt,5 V
 ths4211,THS4211,min_op_supply_volt,±2.5 V
 ths4211,THS4211,max_op_supply_volt,15 V
@@ -3572,7 +3610,6 @@ ths4211,THS4211,max_op_temp,85
 ths4211,THS4211D,part_family,N
 ths4211,THS4211D,typ_gbp,350.0 MHz
 ths4211,THS4211D,typ_gbp,300.0 MHz
-ths4211,THS4211D,typ_supply_current,19 mA
 ths4211,THS4211D,min_op_supply_volt,5 V
 ths4211,THS4211D,min_op_supply_volt,±2.5 V
 ths4211,THS4211D,max_op_supply_volt,15 V
@@ -3582,7 +3619,6 @@ ths4211,THS4211D,max_op_temp,85
 ths4211,THS4211DG4,part_family,N
 ths4211,THS4211DG4,typ_gbp,350.0 MHz
 ths4211,THS4211DG4,typ_gbp,300.0 MHz
-ths4211,THS4211DG4,typ_supply_current,19 mA
 ths4211,THS4211DG4,min_op_supply_volt,5 V
 ths4211,THS4211DG4,min_op_supply_volt,±2.5 V
 ths4211,THS4211DG4,max_op_supply_volt,15 V
@@ -3592,7 +3628,6 @@ ths4211,THS4211DG4,max_op_temp,85
 ths4211,THS4211DGK,part_family,N
 ths4211,THS4211DGK,typ_gbp,350.0 MHz
 ths4211,THS4211DGK,typ_gbp,300.0 MHz
-ths4211,THS4211DGK,typ_supply_current,19 mA
 ths4211,THS4211DGK,min_op_supply_volt,5 V
 ths4211,THS4211DGK,min_op_supply_volt,±2.5 V
 ths4211,THS4211DGK,max_op_supply_volt,15 V
@@ -3602,7 +3637,6 @@ ths4211,THS4211DGK,max_op_temp,85
 ths4211,THS4211DGKR,part_family,N
 ths4211,THS4211DGKR,typ_gbp,350.0 MHz
 ths4211,THS4211DGKR,typ_gbp,300.0 MHz
-ths4211,THS4211DGKR,typ_supply_current,19 mA
 ths4211,THS4211DGKR,min_op_supply_volt,5 V
 ths4211,THS4211DGKR,min_op_supply_volt,±2.5 V
 ths4211,THS4211DGKR,max_op_supply_volt,15 V
@@ -3612,7 +3646,6 @@ ths4211,THS4211DGKR,max_op_temp,85
 ths4211,THS4211DGN,part_family,N
 ths4211,THS4211DGN,typ_gbp,350.0 MHz
 ths4211,THS4211DGN,typ_gbp,300.0 MHz
-ths4211,THS4211DGN,typ_supply_current,19 mA
 ths4211,THS4211DGN,min_op_supply_volt,5 V
 ths4211,THS4211DGN,min_op_supply_volt,±2.5 V
 ths4211,THS4211DGN,max_op_supply_volt,15 V
@@ -3622,7 +3655,6 @@ ths4211,THS4211DGN,max_op_temp,85
 ths4211,THS4211DGNR,part_family,N
 ths4211,THS4211DGNR,typ_gbp,350.0 MHz
 ths4211,THS4211DGNR,typ_gbp,300.0 MHz
-ths4211,THS4211DGNR,typ_supply_current,19 mA
 ths4211,THS4211DGNR,min_op_supply_volt,5 V
 ths4211,THS4211DGNR,min_op_supply_volt,±2.5 V
 ths4211,THS4211DGNR,max_op_supply_volt,15 V
@@ -3632,7 +3664,6 @@ ths4211,THS4211DGNR,max_op_temp,85
 ths4211,THS4211DGNRG4,part_family,N
 ths4211,THS4211DGNRG4,typ_gbp,350.0 MHz
 ths4211,THS4211DGNRG4,typ_gbp,300.0 MHz
-ths4211,THS4211DGNRG4,typ_supply_current,19 mA
 ths4211,THS4211DGNRG4,min_op_supply_volt,5 V
 ths4211,THS4211DGNRG4,min_op_supply_volt,±2.5 V
 ths4211,THS4211DGNRG4,max_op_supply_volt,15 V
@@ -3642,7 +3673,6 @@ ths4211,THS4211DGNRG4,max_op_temp,85
 ths4211,THS4211DR,part_family,N
 ths4211,THS4211DR,typ_gbp,350.0 MHz
 ths4211,THS4211DR,typ_gbp,300.0 MHz
-ths4211,THS4211DR,typ_supply_current,19 mA
 ths4211,THS4211DR,min_op_supply_volt,5 V
 ths4211,THS4211DR,min_op_supply_volt,±2.5 V
 ths4211,THS4211DR,max_op_supply_volt,15 V
@@ -3652,7 +3682,6 @@ ths4211,THS4211DR,max_op_temp,85
 ths4211,THS4211DRBR,part_family,N
 ths4211,THS4211DRBR,typ_gbp,350.0 MHz
 ths4211,THS4211DRBR,typ_gbp,300.0 MHz
-ths4211,THS4211DRBR,typ_supply_current,19 mA
 ths4211,THS4211DRBR,min_op_supply_volt,5 V
 ths4211,THS4211DRBR,min_op_supply_volt,±2.5 V
 ths4211,THS4211DRBR,max_op_supply_volt,15 V
@@ -3662,7 +3691,6 @@ ths4211,THS4211DRBR,max_op_temp,85
 ths4211,THS4211DRBT,part_family,N
 ths4211,THS4211DRBT,typ_gbp,350.0 MHz
 ths4211,THS4211DRBT,typ_gbp,300.0 MHz
-ths4211,THS4211DRBT,typ_supply_current,19 mA
 ths4211,THS4211DRBT,min_op_supply_volt,5 V
 ths4211,THS4211DRBT,min_op_supply_volt,±2.5 V
 ths4211,THS4211DRBT,max_op_supply_volt,15 V
@@ -3672,7 +3700,6 @@ ths4211,THS4211DRBT,max_op_temp,85
 ths4211,THS4211DRBTG4,part_family,N
 ths4211,THS4211DRBTG4,typ_gbp,350.0 MHz
 ths4211,THS4211DRBTG4,typ_gbp,300.0 MHz
-ths4211,THS4211DRBTG4,typ_supply_current,19 mA
 ths4211,THS4211DRBTG4,min_op_supply_volt,5 V
 ths4211,THS4211DRBTG4,min_op_supply_volt,±2.5 V
 ths4211,THS4211DRBTG4,max_op_supply_volt,15 V
@@ -3682,7 +3709,6 @@ ths4211,THS4211DRBTG4,max_op_temp,85
 ths4211,THS4211DRG4,part_family,N
 ths4211,THS4211DRG4,typ_gbp,350.0 MHz
 ths4211,THS4211DRG4,typ_gbp,300.0 MHz
-ths4211,THS4211DRG4,typ_supply_current,19 mA
 ths4211,THS4211DRG4,min_op_supply_volt,5 V
 ths4211,THS4211DRG4,min_op_supply_volt,±2.5 V
 ths4211,THS4211DRG4,max_op_supply_volt,15 V
@@ -3692,7 +3718,6 @@ ths4211,THS4211DRG4,max_op_temp,85
 ths4211,THS4215,part_family,Y
 ths4211,THS4215,typ_gbp,350.0 MHz
 ths4211,THS4215,typ_gbp,300.0 MHz
-ths4211,THS4215,typ_supply_current,19 mA
 ths4211,THS4215,min_op_supply_volt,5 V
 ths4211,THS4215,min_op_supply_volt,±2.5 V
 ths4211,THS4215,max_op_supply_volt,15 V
@@ -3702,7 +3727,6 @@ ths4211,THS4215,max_op_temp,85
 ths4211,THS4215D,part_family,N
 ths4211,THS4215D,typ_gbp,350.0 MHz
 ths4211,THS4215D,typ_gbp,300.0 MHz
-ths4211,THS4215D,typ_supply_current,19 mA
 ths4211,THS4215D,min_op_supply_volt,5 V
 ths4211,THS4215D,min_op_supply_volt,±2.5 V
 ths4211,THS4215D,max_op_supply_volt,15 V
@@ -3712,7 +3736,6 @@ ths4211,THS4215D,max_op_temp,85
 ths4211,THS4215DR,part_family,N
 ths4211,THS4215DR,typ_gbp,350.0 MHz
 ths4211,THS4215DR,typ_gbp,300.0 MHz
-ths4211,THS4215DR,typ_supply_current,19 mA
 ths4211,THS4215DR,min_op_supply_volt,5 V
 ths4211,THS4215DR,min_op_supply_volt,±2.5 V
 ths4211,THS4215DR,max_op_supply_volt,15 V
@@ -3722,7 +3745,6 @@ ths4211,THS4215DR,max_op_temp,85
 ths4211,THS4215DGK,part_family,N
 ths4211,THS4215DGK,typ_gbp,350.0 MHz
 ths4211,THS4215DGK,typ_gbp,300.0 MHz
-ths4211,THS4215DGK,typ_supply_current,19 mA
 ths4211,THS4215DGK,min_op_supply_volt,5 V
 ths4211,THS4215DGK,min_op_supply_volt,±2.5 V
 ths4211,THS4215DGK,max_op_supply_volt,15 V
@@ -3732,7 +3754,6 @@ ths4211,THS4215DGK,max_op_temp,85
 ths4211,THS4215DGKR,part_family,N
 ths4211,THS4215DGKR,typ_gbp,350.0 MHz
 ths4211,THS4215DGKR,typ_gbp,300.0 MHz
-ths4211,THS4215DGKR,typ_supply_current,19 mA
 ths4211,THS4215DGKR,min_op_supply_volt,5 V
 ths4211,THS4215DGKR,min_op_supply_volt,±2.5 V
 ths4211,THS4215DGKR,max_op_supply_volt,15 V
@@ -3742,7 +3763,6 @@ ths4211,THS4215DGKR,max_op_temp,85
 ths4211,THS4215DGN,part_family,N
 ths4211,THS4215DGN,typ_gbp,350.0 MHz
 ths4211,THS4215DGN,typ_gbp,300.0 MHz
-ths4211,THS4215DGN,typ_supply_current,19 mA
 ths4211,THS4215DGN,min_op_supply_volt,5 V
 ths4211,THS4215DGN,min_op_supply_volt,±2.5 V
 ths4211,THS4215DGN,max_op_supply_volt,15 V
@@ -3752,7 +3772,6 @@ ths4211,THS4215DGN,max_op_temp,85
 ths4211,THS4215DRBR,part_family,N
 ths4211,THS4215DRBR,typ_gbp,350.0 MHz
 ths4211,THS4215DRBR,typ_gbp,300.0 MHz
-ths4211,THS4215DRBR,typ_supply_current,19 mA
 ths4211,THS4215DRBR,min_op_supply_volt,5 V
 ths4211,THS4215DRBR,min_op_supply_volt,±2.5 V
 ths4211,THS4215DRBR,max_op_supply_volt,15 V
@@ -3762,7 +3781,6 @@ ths4211,THS4215DRBR,max_op_temp,85
 ths4211,THS4215DRBT,part_family,N
 ths4211,THS4215DRBT,typ_gbp,350.0 MHz
 ths4211,THS4215DRBT,typ_gbp,300.0 MHz
-ths4211,THS4215DRBT,typ_supply_current,19 mA
 ths4211,THS4215DRBT,min_op_supply_volt,5 V
 ths4211,THS4215DRBT,min_op_supply_volt,±2.5 V
 ths4211,THS4215DRBT,max_op_supply_volt,15 V
@@ -3772,7 +3790,6 @@ ths4211,THS4215DRBT,max_op_temp,85
 ths4211,THS4215DGNR,part_family,N
 ths4211,THS4215DGNR,typ_gbp,350.0 MHz
 ths4211,THS4215DGNR,typ_gbp,300.0 MHz
-ths4211,THS4215DGNR,typ_supply_current,19 mA
 ths4211,THS4215DGNR,min_op_supply_volt,5 V
 ths4211,THS4215DGNR,min_op_supply_volt,±2.5 V
 ths4211,THS4215DGNR,max_op_supply_volt,15 V
@@ -3782,7 +3799,6 @@ ths4211,THS4215DGNR,max_op_temp,85
 ths4271-ep,THS4271-EP,part_family,Y
 ths4271-ep,THS4271-EP,typ_gbp,400.0 MHz
 ths4271-ep,THS4271-EP,typ_gbp,350.0 MHz
-ths4271-ep,THS4271-EP,typ_supply_current,22 mA
 ths4271-ep,THS4271-EP,min_op_supply_volt,5 V
 ths4271-ep,THS4271-EP,min_op_supply_volt,±2.5 V
 ths4271-ep,THS4271-EP,max_op_supply_volt,10 V
@@ -3792,7 +3808,6 @@ ths4271-ep,THS4271-EP,max_op_temp,125
 ths4271-ep,THS4271MDGNTEP,part_family,N
 ths4271-ep,THS4271MDGNTEP,typ_gbp,400.0 MHz
 ths4271-ep,THS4271MDGNTEP,typ_gbp,350.0 MHz
-ths4271-ep,THS4271MDGNTEP,typ_supply_current,22 mA
 ths4271-ep,THS4271MDGNTEP,min_op_supply_volt,5 V
 ths4271-ep,THS4271MDGNTEP,min_op_supply_volt,±2.5 V
 ths4271-ep,THS4271MDGNTEP,max_op_supply_volt,10 V
@@ -3802,7 +3817,6 @@ ths4271-ep,THS4271MDGNTEP,max_op_temp,125
 ths4271-ep,THS4271MDGNREP,part_family,N
 ths4271-ep,THS4271MDGNREP,typ_gbp,400.0 MHz
 ths4271-ep,THS4271MDGNREP,typ_gbp,350.0 MHz
-ths4271-ep,THS4271MDGNREP,typ_supply_current,22 mA
 ths4271-ep,THS4271MDGNREP,min_op_supply_volt,5 V
 ths4271-ep,THS4271MDGNREP,min_op_supply_volt,±2.5 V
 ths4271-ep,THS4271MDGNREP,max_op_supply_volt,10 V
@@ -3812,7 +3826,6 @@ ths4271-ep,THS4271MDGNREP,max_op_temp,125
 ths4271-ep,V62/05610-01YE,part_family,N
 ths4271-ep,V62/05610-01YE,typ_gbp,400.0 MHz
 ths4271-ep,V62/05610-01YE,typ_gbp,350.0 MHz
-ths4271-ep,V62/05610-01YE,typ_supply_current,22 mA
 ths4271-ep,V62/05610-01YE,min_op_supply_volt,5 V
 ths4271-ep,V62/05610-01YE,min_op_supply_volt,±2.5 V
 ths4271-ep,V62/05610-01YE,max_op_supply_volt,10 V
@@ -3821,35 +3834,56 @@ ths4271-ep,V62/05610-01YE,min_op_temp,-55
 ths4271-ep,V62/05610-01YE,max_op_temp,125
 tl051,TL051ACD,part_family,N
 tl051,TL051ACD,typ_gbp,3.0 MHz
+tl051,TL051ACD,typ_gbp,3.2 MHz
+tl051,TL051ACD,typ_gbp,2.7 MHz
 tl051,TL051ACD,typ_gbp,3.1 MHz
+tl051,TL051ACD,typ_gbp,3.3 MHz
+tl051,TL051ACD,typ_gbp,2.8 MHz
 tl051,TL051ACD,typ_supply_current,2.6 mA
 tl051,TL051ACD,typ_supply_current,2.7 mA
+tl051,TL051ACD,typ_supply_current,2.8 mA
 tl051,TL051ACD,min_op_supply_volt,±5 V
 tl051,TL051ACD,max_op_supply_volt,±15 V
 tl051,TL051ACD,min_op_temp,0
 tl051,TL051ACD,max_op_temp,70
 tl051,TL051ACDG4,part_family,N
 tl051,TL051ACDG4,typ_gbp,3.0 MHz
+tl051,TL051ACDG4,typ_gbp,3.2 MHz
+tl051,TL051ACDG4,typ_gbp,2.7 MHz
 tl051,TL051ACDG4,typ_gbp,3.1 MHz
+tl051,TL051ACDG4,typ_gbp,3.3 MHz
+tl051,TL051ACDG4,typ_gbp,2.8 MHz
 tl051,TL051ACDG4,typ_supply_current,2.6 mA
 tl051,TL051ACDG4,typ_supply_current,2.7 mA
+tl051,TL051ACDG4,typ_supply_current,2.8 mA
 tl051,TL051ACDG4,min_op_supply_volt,±5 V
 tl051,TL051ACDG4,max_op_supply_volt,±15 V
 tl051,TL051ACDG4,min_op_temp,0
 tl051,TL051ACDG4,max_op_temp,70
 tl051,TL051ACP,part_family,N
 tl051,TL051ACP,typ_gbp,3.0 MHz
+tl051,TL051ACP,typ_gbp,3.2 MHz
+tl051,TL051ACP,typ_gbp,2.7 MHz
 tl051,TL051ACP,typ_gbp,3.1 MHz
+tl051,TL051ACP,typ_gbp,3.3 MHz
+tl051,TL051ACP,typ_gbp,2.8 MHz
 tl051,TL051ACP,typ_supply_current,2.6 mA
 tl051,TL051ACP,typ_supply_current,2.7 mA
+tl051,TL051ACP,typ_supply_current,2.8 mA
 tl051,TL051ACP,min_op_supply_volt,±5 V
 tl051,TL051ACP,max_op_supply_volt,±15 V
 tl051,TL051ACP,min_op_temp,0
 tl051,TL051ACP,max_op_temp,70
 tl051,TL051AID,part_family,N
 tl051,TL051AID,typ_gbp,3.0 MHz
+tl051,TL051AID,typ_gbp,3.5 MHz
+tl051,TL051AID,typ_gbp,2.6 MHz
 tl051,TL051AID,typ_gbp,3.1 MHz
+tl051,TL051AID,typ_gbp,3.6 MHz
+tl051,TL051AID,typ_gbp,2.7 MHz
 tl051,TL051AID,typ_supply_current,2.6 mA
+tl051,TL051AID,typ_supply_current,2.4 mA
+tl051,TL051AID,typ_supply_current,2.5 mA
 tl051,TL051AID,typ_supply_current,2.7 mA
 tl051,TL051AID,min_op_supply_volt,±5 V
 tl051,TL051AID,max_op_supply_volt,±15 V
@@ -3857,8 +3891,14 @@ tl051,TL051AID,min_op_temp,-40
 tl051,TL051AID,max_op_temp,85
 tl051,TL051AIP,part_family,N
 tl051,TL051AIP,typ_gbp,3.0 MHz
+tl051,TL051AIP,typ_gbp,3.5 MHz
+tl051,TL051AIP,typ_gbp,2.6 MHz
 tl051,TL051AIP,typ_gbp,3.1 MHz
+tl051,TL051AIP,typ_gbp,3.6 MHz
+tl051,TL051AIP,typ_gbp,2.7 MHz
 tl051,TL051AIP,typ_supply_current,2.6 mA
+tl051,TL051AIP,typ_supply_current,2.4 mA
+tl051,TL051AIP,typ_supply_current,2.5 mA
 tl051,TL051AIP,typ_supply_current,2.7 mA
 tl051,TL051AIP,min_op_supply_volt,±5 V
 tl051,TL051AIP,max_op_supply_volt,±15 V
@@ -3866,53 +3906,84 @@ tl051,TL051AIP,min_op_temp,-40
 tl051,TL051AIP,max_op_temp,85
 tl051,TL051CD,part_family,N
 tl051,TL051CD,typ_gbp,3.0 MHz
+tl051,TL051CD,typ_gbp,3.2 MHz
+tl051,TL051CD,typ_gbp,2.7 MHz
 tl051,TL051CD,typ_gbp,3.1 MHz
+tl051,TL051CD,typ_gbp,3.3 MHz
+tl051,TL051CD,typ_gbp,2.8 MHz
 tl051,TL051CD,typ_supply_current,2.6 mA
 tl051,TL051CD,typ_supply_current,2.7 mA
+tl051,TL051CD,typ_supply_current,2.8 mA
 tl051,TL051CD,min_op_supply_volt,±5 V
 tl051,TL051CD,max_op_supply_volt,±15 V
 tl051,TL051CD,min_op_temp,0
 tl051,TL051CD,max_op_temp,70
 tl051,TL051CDR,part_family,N
 tl051,TL051CDR,typ_gbp,3.0 MHz
+tl051,TL051CDR,typ_gbp,3.2 MHz
+tl051,TL051CDR,typ_gbp,2.7 MHz
 tl051,TL051CDR,typ_gbp,3.1 MHz
+tl051,TL051CDR,typ_gbp,3.3 MHz
+tl051,TL051CDR,typ_gbp,2.8 MHz
 tl051,TL051CDR,typ_supply_current,2.6 mA
 tl051,TL051CDR,typ_supply_current,2.7 mA
+tl051,TL051CDR,typ_supply_current,2.8 mA
 tl051,TL051CDR,min_op_supply_volt,±5 V
 tl051,TL051CDR,max_op_supply_volt,±15 V
 tl051,TL051CDR,min_op_temp,0
 tl051,TL051CDR,max_op_temp,70
 tl051,TL051CDRG4,part_family,N
 tl051,TL051CDRG4,typ_gbp,3.0 MHz
+tl051,TL051CDRG4,typ_gbp,3.2 MHz
+tl051,TL051CDRG4,typ_gbp,2.7 MHz
 tl051,TL051CDRG4,typ_gbp,3.1 MHz
+tl051,TL051CDRG4,typ_gbp,3.3 MHz
+tl051,TL051CDRG4,typ_gbp,2.8 MHz
 tl051,TL051CDRG4,typ_supply_current,2.6 mA
 tl051,TL051CDRG4,typ_supply_current,2.7 mA
+tl051,TL051CDRG4,typ_supply_current,2.8 mA
 tl051,TL051CDRG4,min_op_supply_volt,±5 V
 tl051,TL051CDRG4,max_op_supply_volt,±15 V
 tl051,TL051CDRG4,min_op_temp,0
 tl051,TL051CDRG4,max_op_temp,70
 tl051,TL051CP,part_family,N
 tl051,TL051CP,typ_gbp,3.0 MHz
+tl051,TL051CP,typ_gbp,3.2 MHz
+tl051,TL051CP,typ_gbp,2.7 MHz
 tl051,TL051CP,typ_gbp,3.1 MHz
+tl051,TL051CP,typ_gbp,3.3 MHz
+tl051,TL051CP,typ_gbp,2.8 MHz
 tl051,TL051CP,typ_supply_current,2.6 mA
 tl051,TL051CP,typ_supply_current,2.7 mA
+tl051,TL051CP,typ_supply_current,2.8 mA
 tl051,TL051CP,min_op_supply_volt,±5 V
 tl051,TL051CP,max_op_supply_volt,±15 V
 tl051,TL051CP,min_op_temp,0
 tl051,TL051CP,max_op_temp,70
 tl051,TL051CPE4,part_family,N
 tl051,TL051CPE4,typ_gbp,3.0 MHz
+tl051,TL051CPE4,typ_gbp,3.2 MHz
+tl051,TL051CPE4,typ_gbp,2.7 MHz
 tl051,TL051CPE4,typ_gbp,3.1 MHz
+tl051,TL051CPE4,typ_gbp,3.3 MHz
+tl051,TL051CPE4,typ_gbp,2.8 MHz
 tl051,TL051CPE4,typ_supply_current,2.6 mA
 tl051,TL051CPE4,typ_supply_current,2.7 mA
+tl051,TL051CPE4,typ_supply_current,2.8 mA
 tl051,TL051CPE4,min_op_supply_volt,±5 V
 tl051,TL051CPE4,max_op_supply_volt,±15 V
 tl051,TL051CPE4,min_op_temp,0
 tl051,TL051CPE4,max_op_temp,70
 tl051,TL051ID,part_family,N
 tl051,TL051ID,typ_gbp,3.0 MHz
+tl051,TL051ID,typ_gbp,3.5 MHz
+tl051,TL051ID,typ_gbp,2.6 MHz
 tl051,TL051ID,typ_gbp,3.1 MHz
+tl051,TL051ID,typ_gbp,3.6 MHz
+tl051,TL051ID,typ_gbp,2.7 MHz
 tl051,TL051ID,typ_supply_current,2.6 mA
+tl051,TL051ID,typ_supply_current,2.4 mA
+tl051,TL051ID,typ_supply_current,2.5 mA
 tl051,TL051ID,typ_supply_current,2.7 mA
 tl051,TL051ID,min_op_supply_volt,±5 V
 tl051,TL051ID,max_op_supply_volt,±15 V
@@ -3920,8 +3991,14 @@ tl051,TL051ID,min_op_temp,-40
 tl051,TL051ID,max_op_temp,85
 tl051,TL051IDR,part_family,N
 tl051,TL051IDR,typ_gbp,3.0 MHz
+tl051,TL051IDR,typ_gbp,3.5 MHz
+tl051,TL051IDR,typ_gbp,2.6 MHz
 tl051,TL051IDR,typ_gbp,3.1 MHz
+tl051,TL051IDR,typ_gbp,3.6 MHz
+tl051,TL051IDR,typ_gbp,2.7 MHz
 tl051,TL051IDR,typ_supply_current,2.6 mA
+tl051,TL051IDR,typ_supply_current,2.4 mA
+tl051,TL051IDR,typ_supply_current,2.5 mA
 tl051,TL051IDR,typ_supply_current,2.7 mA
 tl051,TL051IDR,min_op_supply_volt,±5 V
 tl051,TL051IDR,max_op_supply_volt,±15 V
@@ -3929,8 +4006,14 @@ tl051,TL051IDR,min_op_temp,-40
 tl051,TL051IDR,max_op_temp,85
 tl051,TL051IP,part_family,N
 tl051,TL051IP,typ_gbp,3.0 MHz
+tl051,TL051IP,typ_gbp,3.5 MHz
+tl051,TL051IP,typ_gbp,2.6 MHz
 tl051,TL051IP,typ_gbp,3.1 MHz
+tl051,TL051IP,typ_gbp,3.6 MHz
+tl051,TL051IP,typ_gbp,2.7 MHz
 tl051,TL051IP,typ_supply_current,2.6 mA
+tl051,TL051IP,typ_supply_current,2.4 mA
+tl051,TL051IP,typ_supply_current,2.5 mA
 tl051,TL051IP,typ_supply_current,2.7 mA
 tl051,TL051IP,min_op_supply_volt,±5 V
 tl051,TL051IP,max_op_supply_volt,±15 V
@@ -3938,7 +4021,12 @@ tl051,TL051IP,min_op_temp,0
 tl051,TL051IP,max_op_temp,70
 tl051,TL052ACD,part_family,N
 tl051,TL052ACD,typ_gbp,3.0 MHz
+tl051,TL052ACD,typ_gbp,3.2 MHz
+tl051,TL052ACD,typ_gbp,2.6 MHz
+tl051,TL052ACD,typ_gbp,2.7 MHz
 tl051,TL052ACD,typ_supply_current,4.6 mA
+tl051,TL052ACD,typ_supply_current,4.7 mA
+tl051,TL052ACD,typ_supply_current,4.4 mA
 tl051,TL052ACD,typ_supply_current,4.8 mA
 tl051,TL052ACD,min_op_supply_volt,±5 V
 tl051,TL052ACD,max_op_supply_volt,±15 V
@@ -3946,7 +4034,12 @@ tl051,TL052ACD,min_op_temp,0
 tl051,TL052ACD,max_op_temp,70
 tl051,TL052ACDG4,part_family,N
 tl051,TL052ACDG4,typ_gbp,3.0 MHz
+tl051,TL052ACDG4,typ_gbp,3.2 MHz
+tl051,TL052ACDG4,typ_gbp,2.6 MHz
+tl051,TL052ACDG4,typ_gbp,2.7 MHz
 tl051,TL052ACDG4,typ_supply_current,4.6 mA
+tl051,TL052ACDG4,typ_supply_current,4.7 mA
+tl051,TL052ACDG4,typ_supply_current,4.4 mA
 tl051,TL052ACDG4,typ_supply_current,4.8 mA
 tl051,TL052ACDG4,min_op_supply_volt,±5 V
 tl051,TL052ACDG4,max_op_supply_volt,±15 V
@@ -3954,7 +4047,12 @@ tl051,TL052ACDG4,min_op_temp,0
 tl051,TL052ACDG4,max_op_temp,70
 tl051,TL052ACDR,part_family,N
 tl051,TL052ACDR,typ_gbp,3.0 MHz
+tl051,TL052ACDR,typ_gbp,3.2 MHz
+tl051,TL052ACDR,typ_gbp,2.6 MHz
+tl051,TL052ACDR,typ_gbp,2.7 MHz
 tl051,TL052ACDR,typ_supply_current,4.6 mA
+tl051,TL052ACDR,typ_supply_current,4.7 mA
+tl051,TL052ACDR,typ_supply_current,4.4 mA
 tl051,TL052ACDR,typ_supply_current,4.8 mA
 tl051,TL052ACDR,min_op_supply_volt,±5 V
 tl051,TL052ACDR,max_op_supply_volt,±15 V
@@ -3962,7 +4060,12 @@ tl051,TL052ACDR,min_op_temp,0
 tl051,TL052ACDR,max_op_temp,70
 tl051,TL052ACDRG4,part_family,N
 tl051,TL052ACDRG4,typ_gbp,3.0 MHz
+tl051,TL052ACDRG4,typ_gbp,3.2 MHz
+tl051,TL052ACDRG4,typ_gbp,2.6 MHz
+tl051,TL052ACDRG4,typ_gbp,2.7 MHz
 tl051,TL052ACDRG4,typ_supply_current,4.6 mA
+tl051,TL052ACDRG4,typ_supply_current,4.7 mA
+tl051,TL052ACDRG4,typ_supply_current,4.4 mA
 tl051,TL052ACDRG4,typ_supply_current,4.8 mA
 tl051,TL052ACDRG4,min_op_supply_volt,±5 V
 tl051,TL052ACDRG4,max_op_supply_volt,±15 V
@@ -3970,7 +4073,12 @@ tl051,TL052ACDRG4,min_op_temp,0
 tl051,TL052ACDRG4,max_op_temp,70
 tl051,TL052ACP,part_family,N
 tl051,TL052ACP,typ_gbp,3.0 MHz
+tl051,TL052ACP,typ_gbp,3.2 MHz
+tl051,TL052ACP,typ_gbp,2.6 MHz
+tl051,TL052ACP,typ_gbp,2.7 MHz
 tl051,TL052ACP,typ_supply_current,4.6 mA
+tl051,TL052ACP,typ_supply_current,4.7 mA
+tl051,TL052ACP,typ_supply_current,4.4 mA
 tl051,TL052ACP,typ_supply_current,4.8 mA
 tl051,TL052ACP,min_op_supply_volt,±5 V
 tl051,TL052ACP,max_op_supply_volt,±15 V
@@ -3978,7 +4086,12 @@ tl051,TL052ACP,min_op_temp,0
 tl051,TL052ACP,max_op_temp,70
 tl051,TL052ACPE4,part_family,N
 tl051,TL052ACPE4,typ_gbp,3.0 MHz
+tl051,TL052ACPE4,typ_gbp,3.2 MHz
+tl051,TL052ACPE4,typ_gbp,2.6 MHz
+tl051,TL052ACPE4,typ_gbp,2.7 MHz
 tl051,TL052ACPE4,typ_supply_current,4.6 mA
+tl051,TL052ACPE4,typ_supply_current,4.7 mA
+tl051,TL052ACPE4,typ_supply_current,4.4 mA
 tl051,TL052ACPE4,typ_supply_current,4.8 mA
 tl051,TL052ACPE4,min_op_supply_volt,±5 V
 tl051,TL052ACPE4,max_op_supply_volt,±15 V
@@ -3986,63 +4099,97 @@ tl051,TL052ACPE4,min_op_temp,0
 tl051,TL052ACPE4,max_op_temp,70
 tl051,TL052AID,part_family,N
 tl051,TL052AID,typ_gbp,3.0 MHz
+tl051,TL052AID,typ_gbp,3.5 MHz
+tl051,TL052AID,typ_gbp,2.5 MHz
+tl051,TL052AID,typ_gbp,3.6 MHz
+tl051,TL052AID,typ_gbp,2.6 MHz
 tl051,TL052AID,typ_supply_current,4.6 mA
+tl051,TL052AID,typ_supply_current,4.5 mA
+tl051,TL052AID,typ_supply_current,4.4 mA
 tl051,TL052AID,typ_supply_current,4.8 mA
+tl051,TL052AID,typ_supply_current,4.7 mA
 tl051,TL052AID,min_op_supply_volt,±5 V
 tl051,TL052AID,max_op_supply_volt,±15 V
 tl051,TL052AID,min_op_temp,-40
 tl051,TL052AID,max_op_temp,85
 tl051,TL052AIDE4,part_family,N
 tl051,TL052AIDE4,typ_gbp,3.0 MHz
+tl051,TL052AIDE4,typ_gbp,3.5 MHz
+tl051,TL052AIDE4,typ_gbp,2.5 MHz
+tl051,TL052AIDE4,typ_gbp,3.6 MHz
+tl051,TL052AIDE4,typ_gbp,2.6 MHz
 tl051,TL052AIDE4,typ_supply_current,4.6 mA
+tl051,TL052AIDE4,typ_supply_current,4.5 mA
+tl051,TL052AIDE4,typ_supply_current,4.4 mA
 tl051,TL052AIDE4,typ_supply_current,4.8 mA
+tl051,TL052AIDE4,typ_supply_current,4.7 mA
 tl051,TL052AIDE4,min_op_supply_volt,±5 V
 tl051,TL052AIDE4,max_op_supply_volt,±15 V
 tl051,TL052AIDE4,min_op_temp,-40
 tl051,TL052AIDE4,max_op_temp,85
 tl051,TL052AIDG4,part_family,N
 tl051,TL052AIDG4,typ_gbp,3.0 MHz
+tl051,TL052AIDG4,typ_gbp,3.5 MHz
+tl051,TL052AIDG4,typ_gbp,2.5 MHz
+tl051,TL052AIDG4,typ_gbp,3.6 MHz
+tl051,TL052AIDG4,typ_gbp,2.6 MHz
 tl051,TL052AIDG4,typ_supply_current,4.6 mA
+tl051,TL052AIDG4,typ_supply_current,4.5 mA
+tl051,TL052AIDG4,typ_supply_current,4.4 mA
 tl051,TL052AIDG4,typ_supply_current,4.8 mA
+tl051,TL052AIDG4,typ_supply_current,4.7 mA
 tl051,TL052AIDG4,min_op_supply_volt,±5 V
 tl051,TL052AIDG4,max_op_supply_volt,±15 V
 tl051,TL052AIDG4,min_op_temp,-40
 tl051,TL052AIDG4,max_op_temp,85
 tl051,TL052AIDR,part_family,N
 tl051,TL052AIDR,typ_gbp,3.0 MHz
+tl051,TL052AIDR,typ_gbp,3.5 MHz
+tl051,TL052AIDR,typ_gbp,2.5 MHz
+tl051,TL052AIDR,typ_gbp,3.6 MHz
+tl051,TL052AIDR,typ_gbp,2.6 MHz
 tl051,TL052AIDR,typ_supply_current,4.6 mA
+tl051,TL052AIDR,typ_supply_current,4.5 mA
+tl051,TL052AIDR,typ_supply_current,4.4 mA
 tl051,TL052AIDR,typ_supply_current,4.8 mA
+tl051,TL052AIDR,typ_supply_current,4.7 mA
 tl051,TL052AIDR,min_op_supply_volt,±5 V
 tl051,TL052AIDR,max_op_supply_volt,±15 V
 tl051,TL052AIDR,min_op_temp,-40
 tl051,TL052AIDR,max_op_temp,85
 tl051,TL052AIP,part_family,N
 tl051,TL052AIP,typ_gbp,3.0 MHz
+tl051,TL052AIP,typ_gbp,3.5 MHz
+tl051,TL052AIP,typ_gbp,2.5 MHz
+tl051,TL052AIP,typ_gbp,3.6 MHz
+tl051,TL052AIP,typ_gbp,2.6 MHz
 tl051,TL052AIP,typ_supply_current,4.6 mA
+tl051,TL052AIP,typ_supply_current,4.5 mA
+tl051,TL052AIP,typ_supply_current,4.4 mA
 tl051,TL052AIP,typ_supply_current,4.8 mA
+tl051,TL052AIP,typ_supply_current,4.7 mA
 tl051,TL052AIP,min_op_supply_volt,±5 V
 tl051,TL052AIP,max_op_supply_volt,±15 V
 tl051,TL052AIP,min_op_temp,0
 tl051,TL052AIP,max_op_temp,70
 tl051,TL052AMFKB,part_family,N
-tl051,TL052AMFKB,typ_gbp,3.0 MHz
-tl051,TL052AMFKB,typ_supply_current,4.6 mA
-tl051,TL052AMFKB,typ_supply_current,4.8 mA
 tl051,TL052AMFKB,min_op_supply_volt,±5 V
 tl051,TL052AMFKB,max_op_supply_volt,±15 V
 tl051,TL052AMFKB,min_op_temp,-55
 tl051,TL052AMFKB,max_op_temp,125
 tl051,TL052AMJGB,part_family,N
-tl051,TL052AMJGB,typ_gbp,3.0 MHz
-tl051,TL052AMJGB,typ_supply_current,4.6 mA
-tl051,TL052AMJGB,typ_supply_current,4.8 mA
 tl051,TL052AMJGB,min_op_supply_volt,±5 V
 tl051,TL052AMJGB,max_op_supply_volt,±15 V
 tl051,TL052AMJGB,min_op_temp,-55
 tl051,TL052AMJGB,max_op_temp,125
 tl051,TL052CD,part_family,N
 tl051,TL052CD,typ_gbp,3.0 MHz
+tl051,TL052CD,typ_gbp,3.2 MHz
+tl051,TL052CD,typ_gbp,2.6 MHz
+tl051,TL052CD,typ_gbp,2.7 MHz
 tl051,TL052CD,typ_supply_current,4.6 mA
+tl051,TL052CD,typ_supply_current,4.7 mA
+tl051,TL052CD,typ_supply_current,4.4 mA
 tl051,TL052CD,typ_supply_current,4.8 mA
 tl051,TL052CD,min_op_supply_volt,±5 V
 tl051,TL052CD,max_op_supply_volt,±15 V
@@ -4050,7 +4197,12 @@ tl051,TL052CD,min_op_temp,0
 tl051,TL052CD,max_op_temp,70
 tl051,TL052CDG4,part_family,N
 tl051,TL052CDG4,typ_gbp,3.0 MHz
+tl051,TL052CDG4,typ_gbp,3.2 MHz
+tl051,TL052CDG4,typ_gbp,2.6 MHz
+tl051,TL052CDG4,typ_gbp,2.7 MHz
 tl051,TL052CDG4,typ_supply_current,4.6 mA
+tl051,TL052CDG4,typ_supply_current,4.7 mA
+tl051,TL052CDG4,typ_supply_current,4.4 mA
 tl051,TL052CDG4,typ_supply_current,4.8 mA
 tl051,TL052CDG4,min_op_supply_volt,±5 V
 tl051,TL052CDG4,max_op_supply_volt,±15 V
@@ -4058,7 +4210,12 @@ tl051,TL052CDG4,min_op_temp,0
 tl051,TL052CDG4,max_op_temp,70
 tl051,TL052CDR,part_family,N
 tl051,TL052CDR,typ_gbp,3.0 MHz
+tl051,TL052CDR,typ_gbp,3.2 MHz
+tl051,TL052CDR,typ_gbp,2.6 MHz
+tl051,TL052CDR,typ_gbp,2.7 MHz
 tl051,TL052CDR,typ_supply_current,4.6 mA
+tl051,TL052CDR,typ_supply_current,4.7 mA
+tl051,TL052CDR,typ_supply_current,4.4 mA
 tl051,TL052CDR,typ_supply_current,4.8 mA
 tl051,TL052CDR,min_op_supply_volt,±5 V
 tl051,TL052CDR,max_op_supply_volt,±15 V
@@ -4066,7 +4223,12 @@ tl051,TL052CDR,min_op_temp,0
 tl051,TL052CDR,max_op_temp,70
 tl051,TL052CDRE4,part_family,N
 tl051,TL052CDRE4,typ_gbp,3.0 MHz
+tl051,TL052CDRE4,typ_gbp,3.2 MHz
+tl051,TL052CDRE4,typ_gbp,2.6 MHz
+tl051,TL052CDRE4,typ_gbp,2.7 MHz
 tl051,TL052CDRE4,typ_supply_current,4.6 mA
+tl051,TL052CDRE4,typ_supply_current,4.7 mA
+tl051,TL052CDRE4,typ_supply_current,4.4 mA
 tl051,TL052CDRE4,typ_supply_current,4.8 mA
 tl051,TL052CDRE4,min_op_supply_volt,±5 V
 tl051,TL052CDRE4,max_op_supply_volt,±15 V
@@ -4074,7 +4236,12 @@ tl051,TL052CDRE4,min_op_temp,0
 tl051,TL052CDRE4,max_op_temp,70
 tl051,TL052CDRG4,part_family,N
 tl051,TL052CDRG4,typ_gbp,3.0 MHz
+tl051,TL052CDRG4,typ_gbp,3.2 MHz
+tl051,TL052CDRG4,typ_gbp,2.6 MHz
+tl051,TL052CDRG4,typ_gbp,2.7 MHz
 tl051,TL052CDRG4,typ_supply_current,4.6 mA
+tl051,TL052CDRG4,typ_supply_current,4.7 mA
+tl051,TL052CDRG4,typ_supply_current,4.4 mA
 tl051,TL052CDRG4,typ_supply_current,4.8 mA
 tl051,TL052CDRG4,min_op_supply_volt,±5 V
 tl051,TL052CDRG4,max_op_supply_volt,±15 V
@@ -4082,7 +4249,12 @@ tl051,TL052CDRG4,min_op_temp,0
 tl051,TL052CDRG4,max_op_temp,70
 tl051,TL052CP,part_family,N
 tl051,TL052CP,typ_gbp,3.0 MHz
+tl051,TL052CP,typ_gbp,3.2 MHz
+tl051,TL052CP,typ_gbp,2.6 MHz
+tl051,TL052CP,typ_gbp,2.7 MHz
 tl051,TL052CP,typ_supply_current,4.6 mA
+tl051,TL052CP,typ_supply_current,4.7 mA
+tl051,TL052CP,typ_supply_current,4.4 mA
 tl051,TL052CP,typ_supply_current,4.8 mA
 tl051,TL052CP,min_op_supply_volt,±5 V
 tl051,TL052CP,max_op_supply_volt,±15 V
@@ -4090,7 +4262,12 @@ tl051,TL052CP,min_op_temp,0
 tl051,TL052CP,max_op_temp,70
 tl051,TL052CPSR,part_family,N
 tl051,TL052CPSR,typ_gbp,3.0 MHz
+tl051,TL052CPSR,typ_gbp,3.2 MHz
+tl051,TL052CPSR,typ_gbp,2.6 MHz
+tl051,TL052CPSR,typ_gbp,2.7 MHz
 tl051,TL052CPSR,typ_supply_current,4.6 mA
+tl051,TL052CPSR,typ_supply_current,4.7 mA
+tl051,TL052CPSR,typ_supply_current,4.4 mA
 tl051,TL052CPSR,typ_supply_current,4.8 mA
 tl051,TL052CPSR,min_op_supply_volt,±5 V
 tl051,TL052CPSR,max_op_supply_volt,±15 V
@@ -4098,304 +4275,462 @@ tl051,TL052CPSR,min_op_temp,0
 tl051,TL052CPSR,max_op_temp,70
 tl051,TL052ID,part_family,N
 tl051,TL052ID,typ_gbp,3.0 MHz
+tl051,TL052ID,typ_gbp,3.5 MHz
+tl051,TL052ID,typ_gbp,2.5 MHz
+tl051,TL052ID,typ_gbp,3.6 MHz
+tl051,TL052ID,typ_gbp,2.6 MHz
 tl051,TL052ID,typ_supply_current,4.6 mA
+tl051,TL052ID,typ_supply_current,4.5 mA
+tl051,TL052ID,typ_supply_current,4.4 mA
 tl051,TL052ID,typ_supply_current,4.8 mA
+tl051,TL052ID,typ_supply_current,4.7 mA
 tl051,TL052ID,min_op_supply_volt,±5 V
 tl051,TL052ID,max_op_supply_volt,±15 V
 tl051,TL052ID,min_op_temp,-40
 tl051,TL052ID,max_op_temp,85
 tl051,TL052IDG4,part_family,N
 tl051,TL052IDG4,typ_gbp,3.0 MHz
+tl051,TL052IDG4,typ_gbp,3.5 MHz
+tl051,TL052IDG4,typ_gbp,2.5 MHz
+tl051,TL052IDG4,typ_gbp,3.6 MHz
+tl051,TL052IDG4,typ_gbp,2.6 MHz
 tl051,TL052IDG4,typ_supply_current,4.6 mA
+tl051,TL052IDG4,typ_supply_current,4.5 mA
+tl051,TL052IDG4,typ_supply_current,4.4 mA
 tl051,TL052IDG4,typ_supply_current,4.8 mA
+tl051,TL052IDG4,typ_supply_current,4.7 mA
 tl051,TL052IDG4,min_op_supply_volt,±5 V
 tl051,TL052IDG4,max_op_supply_volt,±15 V
 tl051,TL052IDG4,min_op_temp,-40
 tl051,TL052IDG4,max_op_temp,85
 tl051,TL052IDR,part_family,N
 tl051,TL052IDR,typ_gbp,3.0 MHz
+tl051,TL052IDR,typ_gbp,3.5 MHz
+tl051,TL052IDR,typ_gbp,2.5 MHz
+tl051,TL052IDR,typ_gbp,3.6 MHz
+tl051,TL052IDR,typ_gbp,2.6 MHz
 tl051,TL052IDR,typ_supply_current,4.6 mA
+tl051,TL052IDR,typ_supply_current,4.5 mA
+tl051,TL052IDR,typ_supply_current,4.4 mA
 tl051,TL052IDR,typ_supply_current,4.8 mA
+tl051,TL052IDR,typ_supply_current,4.7 mA
 tl051,TL052IDR,min_op_supply_volt,±5 V
 tl051,TL052IDR,max_op_supply_volt,±15 V
 tl051,TL052IDR,min_op_temp,-40
 tl051,TL052IDR,max_op_temp,85
 tl051,TL052IDRE4,part_family,N
 tl051,TL052IDRE4,typ_gbp,3.0 MHz
+tl051,TL052IDRE4,typ_gbp,3.5 MHz
+tl051,TL052IDRE4,typ_gbp,2.5 MHz
+tl051,TL052IDRE4,typ_gbp,3.6 MHz
+tl051,TL052IDRE4,typ_gbp,2.6 MHz
 tl051,TL052IDRE4,typ_supply_current,4.6 mA
+tl051,TL052IDRE4,typ_supply_current,4.5 mA
+tl051,TL052IDRE4,typ_supply_current,4.4 mA
 tl051,TL052IDRE4,typ_supply_current,4.8 mA
+tl051,TL052IDRE4,typ_supply_current,4.7 mA
 tl051,TL052IDRE4,min_op_supply_volt,±5 V
 tl051,TL052IDRE4,max_op_supply_volt,±15 V
 tl051,TL052IDRE4,min_op_temp,-40
 tl051,TL052IDRE4,max_op_temp,85
 tl051,TL052IP,part_family,N
 tl051,TL052IP,typ_gbp,3.0 MHz
+tl051,TL052IP,typ_gbp,3.5 MHz
+tl051,TL052IP,typ_gbp,2.5 MHz
+tl051,TL052IP,typ_gbp,3.6 MHz
+tl051,TL052IP,typ_gbp,2.6 MHz
 tl051,TL052IP,typ_supply_current,4.6 mA
+tl051,TL052IP,typ_supply_current,4.5 mA
+tl051,TL052IP,typ_supply_current,4.4 mA
 tl051,TL052IP,typ_supply_current,4.8 mA
+tl051,TL052IP,typ_supply_current,4.7 mA
 tl051,TL052IP,min_op_supply_volt,±5 V
 tl051,TL052IP,max_op_supply_volt,±15 V
 tl051,TL052IP,min_op_temp,-40
 tl051,TL052IP,max_op_temp,85
 tl051,TL052IPE4,part_family,N
 tl051,TL052IPE4,typ_gbp,3.0 MHz
+tl051,TL052IPE4,typ_gbp,3.5 MHz
+tl051,TL052IPE4,typ_gbp,2.5 MHz
+tl051,TL052IPE4,typ_gbp,3.6 MHz
+tl051,TL052IPE4,typ_gbp,2.6 MHz
 tl051,TL052IPE4,typ_supply_current,4.6 mA
+tl051,TL052IPE4,typ_supply_current,4.5 mA
+tl051,TL052IPE4,typ_supply_current,4.4 mA
 tl051,TL052IPE4,typ_supply_current,4.8 mA
+tl051,TL052IPE4,typ_supply_current,4.7 mA
 tl051,TL052IPE4,min_op_supply_volt,±5 V
 tl051,TL052IPE4,max_op_supply_volt,±15 V
 tl051,TL052IPE4,min_op_temp,-40
 tl051,TL052IPE4,max_op_temp,85
 tl051,TL052MFKB,part_family,N
-tl051,TL052MFKB,typ_gbp,3.0 MHz
-tl051,TL052MFKB,typ_supply_current,4.6 mA
-tl051,TL052MFKB,typ_supply_current,4.8 mA
 tl051,TL052MFKB,min_op_supply_volt,±5 V
 tl051,TL052MFKB,max_op_supply_volt,±15 V
 tl051,TL052MFKB,min_op_temp,-55
 tl051,TL052MFKB,max_op_temp,125
 tl051,TL052MJG,part_family,N
-tl051,TL052MJG,typ_gbp,3.0 MHz
-tl051,TL052MJG,typ_supply_current,4.6 mA
-tl051,TL052MJG,typ_supply_current,4.8 mA
 tl051,TL052MJG,min_op_supply_volt,±5 V
 tl051,TL052MJG,max_op_supply_volt,±15 V
 tl051,TL052MJG,min_op_temp,-55
 tl051,TL052MJG,max_op_temp,125
 tl051,TL052MJGB,part_family,N
-tl051,TL052MJGB,typ_gbp,3.0 MHz
-tl051,TL052MJGB,typ_supply_current,4.6 mA
-tl051,TL052MJGB,typ_supply_current,4.8 mA
 tl051,TL052MJGB,min_op_supply_volt,±5 V
 tl051,TL052MJGB,max_op_supply_volt,±15 V
 tl051,TL052MJGB,min_op_temp,-55
 tl051,TL052MJGB,max_op_temp,125
 tl051,TL054ACD,part_family,N
 tl051,TL054ACD,typ_gbp,2.7 MHz
+tl051,TL054ACD,typ_gbp,3.0 MHz
+tl051,TL054ACD,typ_gbp,2.4 MHz
 tl051,TL054ACD,typ_supply_current,8.1 mA
+tl051,TL054ACD,typ_supply_current,8.2 mA
+tl051,TL054ACD,typ_supply_current,7.9 mA
 tl051,TL054ACD,typ_supply_current,8.4 mA
+tl051,TL054ACD,typ_supply_current,8.5 mA
 tl051,TL054ACD,min_op_supply_volt,±5 V
 tl051,TL054ACD,max_op_supply_volt,±15 V
 tl051,TL054ACD,min_op_temp,0
 tl051,TL054ACD,max_op_temp,70
 tl051,TL054ACDE4,part_family,N
 tl051,TL054ACDE4,typ_gbp,2.7 MHz
+tl051,TL054ACDE4,typ_gbp,3.0 MHz
+tl051,TL054ACDE4,typ_gbp,2.4 MHz
 tl051,TL054ACDE4,typ_supply_current,8.1 mA
+tl051,TL054ACDE4,typ_supply_current,8.2 mA
+tl051,TL054ACDE4,typ_supply_current,7.9 mA
 tl051,TL054ACDE4,typ_supply_current,8.4 mA
+tl051,TL054ACDE4,typ_supply_current,8.5 mA
 tl051,TL054ACDE4,min_op_supply_volt,±5 V
 tl051,TL054ACDE4,max_op_supply_volt,±15 V
 tl051,TL054ACDE4,min_op_temp,0
 tl051,TL054ACDE4,max_op_temp,70
 tl051,TL054ACDG4,part_family,N
 tl051,TL054ACDG4,typ_gbp,2.7 MHz
+tl051,TL054ACDG4,typ_gbp,3.0 MHz
+tl051,TL054ACDG4,typ_gbp,2.4 MHz
 tl051,TL054ACDG4,typ_supply_current,8.1 mA
+tl051,TL054ACDG4,typ_supply_current,8.2 mA
+tl051,TL054ACDG4,typ_supply_current,7.9 mA
 tl051,TL054ACDG4,typ_supply_current,8.4 mA
+tl051,TL054ACDG4,typ_supply_current,8.5 mA
 tl051,TL054ACDG4,min_op_supply_volt,±5 V
 tl051,TL054ACDG4,max_op_supply_volt,±15 V
 tl051,TL054ACDG4,min_op_temp,0
 tl051,TL054ACDG4,max_op_temp,70
 tl051,TL054ACDR,part_family,N
 tl051,TL054ACDR,typ_gbp,2.7 MHz
+tl051,TL054ACDR,typ_gbp,3.0 MHz
+tl051,TL054ACDR,typ_gbp,2.4 MHz
 tl051,TL054ACDR,typ_supply_current,8.1 mA
+tl051,TL054ACDR,typ_supply_current,8.2 mA
+tl051,TL054ACDR,typ_supply_current,7.9 mA
 tl051,TL054ACDR,typ_supply_current,8.4 mA
+tl051,TL054ACDR,typ_supply_current,8.5 mA
 tl051,TL054ACDR,min_op_supply_volt,±5 V
 tl051,TL054ACDR,max_op_supply_volt,±15 V
 tl051,TL054ACDR,min_op_temp,0
 tl051,TL054ACDR,max_op_temp,70
 tl051,TL054ACN,part_family,N
 tl051,TL054ACN,typ_gbp,2.7 MHz
+tl051,TL054ACN,typ_gbp,3.0 MHz
+tl051,TL054ACN,typ_gbp,2.4 MHz
 tl051,TL054ACN,typ_supply_current,8.1 mA
+tl051,TL054ACN,typ_supply_current,8.2 mA
+tl051,TL054ACN,typ_supply_current,7.9 mA
 tl051,TL054ACN,typ_supply_current,8.4 mA
+tl051,TL054ACN,typ_supply_current,8.5 mA
 tl051,TL054ACN,min_op_supply_volt,±5 V
 tl051,TL054ACN,max_op_supply_volt,±15 V
 tl051,TL054ACN,min_op_temp,0
 tl051,TL054ACN,max_op_temp,70
 tl051,TL054AID,part_family,N
 tl051,TL054AID,typ_gbp,2.7 MHz
+tl051,TL054AID,typ_gbp,3.3 MHz
+tl051,TL054AID,typ_gbp,2.3 MHz
+tl051,TL054AID,typ_gbp,2.4 MHz
 tl051,TL054AID,typ_supply_current,8.1 mA
+tl051,TL054AID,typ_supply_current,7.9 mA
+tl051,TL054AID,typ_supply_current,7.6 mA
 tl051,TL054AID,typ_supply_current,8.4 mA
+tl051,TL054AID,typ_supply_current,8.2 mA
 tl051,TL054AID,min_op_supply_volt,±5 V
 tl051,TL054AID,max_op_supply_volt,±15 V
 tl051,TL054AID,min_op_temp,-40
 tl051,TL054AID,max_op_temp,85
 tl051,TL054AIDG4,part_family,N
 tl051,TL054AIDG4,typ_gbp,2.7 MHz
+tl051,TL054AIDG4,typ_gbp,3.3 MHz
+tl051,TL054AIDG4,typ_gbp,2.3 MHz
+tl051,TL054AIDG4,typ_gbp,2.4 MHz
 tl051,TL054AIDG4,typ_supply_current,8.1 mA
+tl051,TL054AIDG4,typ_supply_current,7.9 mA
+tl051,TL054AIDG4,typ_supply_current,7.6 mA
 tl051,TL054AIDG4,typ_supply_current,8.4 mA
+tl051,TL054AIDG4,typ_supply_current,8.2 mA
 tl051,TL054AIDG4,min_op_supply_volt,±5 V
 tl051,TL054AIDG4,max_op_supply_volt,±15 V
 tl051,TL054AIDG4,min_op_temp,-40
 tl051,TL054AIDG4,max_op_temp,85
 tl051,TL054AIDR,part_family,N
 tl051,TL054AIDR,typ_gbp,2.7 MHz
+tl051,TL054AIDR,typ_gbp,3.3 MHz
+tl051,TL054AIDR,typ_gbp,2.3 MHz
+tl051,TL054AIDR,typ_gbp,2.4 MHz
 tl051,TL054AIDR,typ_supply_current,8.1 mA
+tl051,TL054AIDR,typ_supply_current,7.9 mA
+tl051,TL054AIDR,typ_supply_current,7.6 mA
 tl051,TL054AIDR,typ_supply_current,8.4 mA
+tl051,TL054AIDR,typ_supply_current,8.2 mA
 tl051,TL054AIDR,min_op_supply_volt,±5 V
 tl051,TL054AIDR,max_op_supply_volt,±15 V
 tl051,TL054AIDR,min_op_temp,-40
 tl051,TL054AIDR,max_op_temp,85
 tl051,TL054AIDRE4,part_family,N
 tl051,TL054AIDRE4,typ_gbp,2.7 MHz
+tl051,TL054AIDRE4,typ_gbp,3.3 MHz
+tl051,TL054AIDRE4,typ_gbp,2.3 MHz
+tl051,TL054AIDRE4,typ_gbp,2.4 MHz
 tl051,TL054AIDRE4,typ_supply_current,8.1 mA
+tl051,TL054AIDRE4,typ_supply_current,7.9 mA
+tl051,TL054AIDRE4,typ_supply_current,7.6 mA
 tl051,TL054AIDRE4,typ_supply_current,8.4 mA
+tl051,TL054AIDRE4,typ_supply_current,8.2 mA
 tl051,TL054AIDRE4,min_op_supply_volt,±5 V
 tl051,TL054AIDRE4,max_op_supply_volt,±15 V
 tl051,TL054AIDRE4,min_op_temp,-40
 tl051,TL054AIDRE4,max_op_temp,85
 tl051,TL054AIN,part_family,N
 tl051,TL054AIN,typ_gbp,2.7 MHz
+tl051,TL054AIN,typ_gbp,3.3 MHz
+tl051,TL054AIN,typ_gbp,2.3 MHz
+tl051,TL054AIN,typ_gbp,2.4 MHz
 tl051,TL054AIN,typ_supply_current,8.1 mA
+tl051,TL054AIN,typ_supply_current,7.9 mA
+tl051,TL054AIN,typ_supply_current,7.6 mA
 tl051,TL054AIN,typ_supply_current,8.4 mA
+tl051,TL054AIN,typ_supply_current,8.2 mA
 tl051,TL054AIN,min_op_supply_volt,±5 V
 tl051,TL054AIN,max_op_supply_volt,±15 V
 tl051,TL054AIN,min_op_temp,-40
 tl051,TL054AIN,max_op_temp,85
 tl051,TL054AMFKB,part_family,N
-tl051,TL054AMFKB,typ_gbp,2.7 MHz
-tl051,TL054AMFKB,typ_supply_current,8.1 mA
-tl051,TL054AMFKB,typ_supply_current,8.4 mA
 tl051,TL054AMFKB,min_op_supply_volt,±5 V
 tl051,TL054AMFKB,max_op_supply_volt,±15 V
 tl051,TL054AMFKB,min_op_temp,-55
 tl051,TL054AMFKB,max_op_temp,125
 tl051,TL054AMJB,part_family,N
-tl051,TL054AMJB,typ_gbp,2.7 MHz
-tl051,TL054AMJB,typ_supply_current,8.1 mA
-tl051,TL054AMJB,typ_supply_current,8.4 mA
 tl051,TL054AMJB,min_op_supply_volt,±5 V
 tl051,TL054AMJB,max_op_supply_volt,±15 V
 tl051,TL054AMJB,min_op_temp,-55
 tl051,TL054AMJB,max_op_temp,125
 tl051,TL054CD,part_family,N
 tl051,TL054CD,typ_gbp,2.7 MHz
+tl051,TL054CD,typ_gbp,3.0 MHz
+tl051,TL054CD,typ_gbp,2.4 MHz
 tl051,TL054CD,typ_supply_current,8.1 mA
+tl051,TL054CD,typ_supply_current,8.2 mA
+tl051,TL054CD,typ_supply_current,7.9 mA
 tl051,TL054CD,typ_supply_current,8.4 mA
+tl051,TL054CD,typ_supply_current,8.5 mA
 tl051,TL054CD,min_op_supply_volt,±5 V
 tl051,TL054CD,max_op_supply_volt,±15 V
 tl051,TL054CD,min_op_temp,0
 tl051,TL054CD,max_op_temp,70
 tl051,TL054CDBR,part_family,N
 tl051,TL054CDBR,typ_gbp,2.7 MHz
+tl051,TL054CDBR,typ_gbp,3.0 MHz
+tl051,TL054CDBR,typ_gbp,2.4 MHz
 tl051,TL054CDBR,typ_supply_current,8.1 mA
+tl051,TL054CDBR,typ_supply_current,8.2 mA
+tl051,TL054CDBR,typ_supply_current,7.9 mA
 tl051,TL054CDBR,typ_supply_current,8.4 mA
+tl051,TL054CDBR,typ_supply_current,8.5 mA
 tl051,TL054CDBR,min_op_supply_volt,±5 V
 tl051,TL054CDBR,max_op_supply_volt,±15 V
 tl051,TL054CDBR,min_op_temp,0
 tl051,TL054CDBR,max_op_temp,70
 tl051,TL054CDE4,part_family,N
 tl051,TL054CDE4,typ_gbp,2.7 MHz
+tl051,TL054CDE4,typ_gbp,3.0 MHz
+tl051,TL054CDE4,typ_gbp,2.4 MHz
 tl051,TL054CDE4,typ_supply_current,8.1 mA
+tl051,TL054CDE4,typ_supply_current,8.2 mA
+tl051,TL054CDE4,typ_supply_current,7.9 mA
 tl051,TL054CDE4,typ_supply_current,8.4 mA
+tl051,TL054CDE4,typ_supply_current,8.5 mA
 tl051,TL054CDE4,min_op_supply_volt,±5 V
 tl051,TL054CDE4,max_op_supply_volt,±15 V
 tl051,TL054CDE4,min_op_temp,0
 tl051,TL054CDE4,max_op_temp,70
 tl051,TL054CDR,part_family,N
 tl051,TL054CDR,typ_gbp,2.7 MHz
+tl051,TL054CDR,typ_gbp,3.0 MHz
+tl051,TL054CDR,typ_gbp,2.4 MHz
 tl051,TL054CDR,typ_supply_current,8.1 mA
+tl051,TL054CDR,typ_supply_current,8.2 mA
+tl051,TL054CDR,typ_supply_current,7.9 mA
 tl051,TL054CDR,typ_supply_current,8.4 mA
+tl051,TL054CDR,typ_supply_current,8.5 mA
 tl051,TL054CDR,min_op_supply_volt,±5 V
 tl051,TL054CDR,max_op_supply_volt,±15 V
 tl051,TL054CDR,min_op_temp,0
 tl051,TL054CDR,max_op_temp,70
 tl051,TL054CDRG4,part_family,N
 tl051,TL054CDRG4,typ_gbp,2.7 MHz
+tl051,TL054CDRG4,typ_gbp,3.0 MHz
+tl051,TL054CDRG4,typ_gbp,2.4 MHz
 tl051,TL054CDRG4,typ_supply_current,8.1 mA
+tl051,TL054CDRG4,typ_supply_current,8.2 mA
+tl051,TL054CDRG4,typ_supply_current,7.9 mA
 tl051,TL054CDRG4,typ_supply_current,8.4 mA
+tl051,TL054CDRG4,typ_supply_current,8.5 mA
 tl051,TL054CDRG4,min_op_supply_volt,±5 V
 tl051,TL054CDRG4,max_op_supply_volt,±15 V
 tl051,TL054CDRG4,min_op_temp,0
 tl051,TL054CDRG4,max_op_temp,70
 tl051,TL054CN,part_family,N
 tl051,TL054CN,typ_gbp,2.7 MHz
+tl051,TL054CN,typ_gbp,3.0 MHz
+tl051,TL054CN,typ_gbp,2.4 MHz
 tl051,TL054CN,typ_supply_current,8.1 mA
+tl051,TL054CN,typ_supply_current,8.2 mA
+tl051,TL054CN,typ_supply_current,7.9 mA
 tl051,TL054CN,typ_supply_current,8.4 mA
+tl051,TL054CN,typ_supply_current,8.5 mA
 tl051,TL054CN,min_op_supply_volt,±5 V
 tl051,TL054CN,max_op_supply_volt,±15 V
 tl051,TL054CN,min_op_temp,0
 tl051,TL054CN,max_op_temp,70
 tl051,TL054CNE4,part_family,N
 tl051,TL054CNE4,typ_gbp,2.7 MHz
+tl051,TL054CNE4,typ_gbp,3.0 MHz
+tl051,TL054CNE4,typ_gbp,2.4 MHz
 tl051,TL054CNE4,typ_supply_current,8.1 mA
+tl051,TL054CNE4,typ_supply_current,8.2 mA
+tl051,TL054CNE4,typ_supply_current,7.9 mA
 tl051,TL054CNE4,typ_supply_current,8.4 mA
+tl051,TL054CNE4,typ_supply_current,8.5 mA
 tl051,TL054CNE4,min_op_supply_volt,±5 V
 tl051,TL054CNE4,max_op_supply_volt,±15 V
 tl051,TL054CNE4,min_op_temp,0
 tl051,TL054CNE4,max_op_temp,70
 tl051,TL054CNSR,part_family,N
 tl051,TL054CNSR,typ_gbp,2.7 MHz
+tl051,TL054CNSR,typ_gbp,3.0 MHz
+tl051,TL054CNSR,typ_gbp,2.4 MHz
 tl051,TL054CNSR,typ_supply_current,8.1 mA
+tl051,TL054CNSR,typ_supply_current,8.2 mA
+tl051,TL054CNSR,typ_supply_current,7.9 mA
 tl051,TL054CNSR,typ_supply_current,8.4 mA
+tl051,TL054CNSR,typ_supply_current,8.5 mA
 tl051,TL054CNSR,min_op_supply_volt,±5 V
 tl051,TL054CNSR,max_op_supply_volt,±15 V
 tl051,TL054CNSR,min_op_temp,0
 tl051,TL054CNSR,max_op_temp,70
 tl051,TL054ID,part_family,N
 tl051,TL054ID,typ_gbp,2.7 MHz
+tl051,TL054ID,typ_gbp,3.3 MHz
+tl051,TL054ID,typ_gbp,2.3 MHz
+tl051,TL054ID,typ_gbp,2.4 MHz
 tl051,TL054ID,typ_supply_current,8.1 mA
+tl051,TL054ID,typ_supply_current,7.9 mA
+tl051,TL054ID,typ_supply_current,7.6 mA
 tl051,TL054ID,typ_supply_current,8.4 mA
+tl051,TL054ID,typ_supply_current,8.2 mA
 tl051,TL054ID,min_op_supply_volt,±5 V
 tl051,TL054ID,max_op_supply_volt,±15 V
 tl051,TL054ID,min_op_temp,-40
 tl051,TL054ID,max_op_temp,85
 tl051,TL054IDE4,part_family,N
 tl051,TL054IDE4,typ_gbp,2.7 MHz
+tl051,TL054IDE4,typ_gbp,3.3 MHz
+tl051,TL054IDE4,typ_gbp,2.3 MHz
+tl051,TL054IDE4,typ_gbp,2.4 MHz
 tl051,TL054IDE4,typ_supply_current,8.1 mA
+tl051,TL054IDE4,typ_supply_current,7.9 mA
+tl051,TL054IDE4,typ_supply_current,7.6 mA
 tl051,TL054IDE4,typ_supply_current,8.4 mA
+tl051,TL054IDE4,typ_supply_current,8.2 mA
 tl051,TL054IDE4,min_op_supply_volt,±5 V
 tl051,TL054IDE4,max_op_supply_volt,±15 V
 tl051,TL054IDE4,min_op_temp,-40
 tl051,TL054IDE4,max_op_temp,85
 tl051,TL054IDG4,part_family,N
 tl051,TL054IDG4,typ_gbp,2.7 MHz
+tl051,TL054IDG4,typ_gbp,3.3 MHz
+tl051,TL054IDG4,typ_gbp,2.3 MHz
+tl051,TL054IDG4,typ_gbp,2.4 MHz
 tl051,TL054IDG4,typ_supply_current,8.1 mA
+tl051,TL054IDG4,typ_supply_current,7.9 mA
+tl051,TL054IDG4,typ_supply_current,7.6 mA
 tl051,TL054IDG4,typ_supply_current,8.4 mA
+tl051,TL054IDG4,typ_supply_current,8.2 mA
 tl051,TL054IDG4,min_op_supply_volt,±5 V
 tl051,TL054IDG4,max_op_supply_volt,±15 V
 tl051,TL054IDG4,min_op_temp,-40
 tl051,TL054IDG4,max_op_temp,85
 tl051,TL054IDR,part_family,N
 tl051,TL054IDR,typ_gbp,2.7 MHz
+tl051,TL054IDR,typ_gbp,3.3 MHz
+tl051,TL054IDR,typ_gbp,2.3 MHz
+tl051,TL054IDR,typ_gbp,2.4 MHz
 tl051,TL054IDR,typ_supply_current,8.1 mA
+tl051,TL054IDR,typ_supply_current,7.9 mA
+tl051,TL054IDR,typ_supply_current,7.6 mA
 tl051,TL054IDR,typ_supply_current,8.4 mA
+tl051,TL054IDR,typ_supply_current,8.2 mA
 tl051,TL054IDR,min_op_supply_volt,±5 V
 tl051,TL054IDR,max_op_supply_volt,±15 V
 tl051,TL054IDR,min_op_temp,-40
 tl051,TL054IDR,max_op_temp,85
 tl051,TL054IDRG4,part_family,N
 tl051,TL054IDRG4,typ_gbp,2.7 MHz
+tl051,TL054IDRG4,typ_gbp,3.3 MHz
+tl051,TL054IDRG4,typ_gbp,2.3 MHz
+tl051,TL054IDRG4,typ_gbp,2.4 MHz
 tl051,TL054IDRG4,typ_supply_current,8.1 mA
+tl051,TL054IDRG4,typ_supply_current,7.9 mA
+tl051,TL054IDRG4,typ_supply_current,7.6 mA
 tl051,TL054IDRG4,typ_supply_current,8.4 mA
+tl051,TL054IDRG4,typ_supply_current,8.2 mA
 tl051,TL054IDRG4,min_op_supply_volt,±5 V
 tl051,TL054IDRG4,max_op_supply_volt,±15 V
 tl051,TL054IDRG4,min_op_temp,-40
 tl051,TL054IDRG4,max_op_temp,85
 tl051,TL054IN,part_family,N
 tl051,TL054IN,typ_gbp,2.7 MHz
+tl051,TL054IN,typ_gbp,3.3 MHz
+tl051,TL054IN,typ_gbp,2.3 MHz
+tl051,TL054IN,typ_gbp,2.4 MHz
 tl051,TL054IN,typ_supply_current,8.1 mA
+tl051,TL054IN,typ_supply_current,7.9 mA
+tl051,TL054IN,typ_supply_current,7.6 mA
 tl051,TL054IN,typ_supply_current,8.4 mA
+tl051,TL054IN,typ_supply_current,8.2 mA
 tl051,TL054IN,min_op_supply_volt,±5 V
 tl051,TL054IN,max_op_supply_volt,±15 V
 tl051,TL054IN,min_op_temp,-40
 tl051,TL054IN,max_op_temp,85
 tl051,TL054INMJB,part_family,N
 tl051,TL054INMJB,typ_gbp,2.7 MHz
+tl051,TL054INMJB,typ_gbp,3.3 MHz
+tl051,TL054INMJB,typ_gbp,2.3 MHz
+tl051,TL054INMJB,typ_gbp,2.4 MHz
 tl051,TL054INMJB,typ_supply_current,8.1 mA
+tl051,TL054INMJB,typ_supply_current,7.9 mA
+tl051,TL054INMJB,typ_supply_current,7.6 mA
 tl051,TL054INMJB,typ_supply_current,8.4 mA
+tl051,TL054INMJB,typ_supply_current,8.2 mA
 tl051,TL054INMJB,min_op_supply_volt,±5 V
 tl051,TL054INMJB,max_op_supply_volt,±15 V
 tl051,TL054INMJB,min_op_temp,-55
 tl051,TL054INMJB,max_op_temp,125
 tl051,TL054MFKB,part_family,N
-tl051,TL054MFKB,typ_gbp,2.7 MHz
-tl051,TL054MFKB,typ_supply_current,8.1 mA
-tl051,TL054MFKB,typ_supply_current,8.4 mA
 tl051,TL054MFKB,min_op_supply_volt,±5 V
 tl051,TL054MFKB,max_op_supply_volt,±15 V
 tl051,TL054MFKB,min_op_temp,-55
 tl051,TL054MFKB,max_op_temp,125
 tl051,TL054MJ,part_family,N
-tl051,TL054MJ,typ_gbp,2.7 MHz
-tl051,TL054MJ,typ_supply_current,8.1 mA
-tl051,TL054MJ,typ_supply_current,8.4 mA
 tl051,TL054MJ,min_op_supply_volt,±5 V
 tl051,TL054MJ,max_op_supply_volt,±15 V
 tl051,TL054MJ,min_op_temp,-55
