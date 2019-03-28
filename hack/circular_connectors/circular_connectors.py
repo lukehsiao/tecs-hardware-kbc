@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 import logging
 import os
 
@@ -15,14 +18,19 @@ from hack.circular_connectors.disc_model.torchnet import get_cnn
 from hack.circular_connectors.utils import ImageList, transform
 from hack.utils import parse_dataset
 
-#  from utils import *
+# Configure logging for Fonduer
+logger = logging.getLogger(__name__)
 
+TRUE = 1
+FALSE = 2
+ABSTAIN = 0
 
-PARALLEL = 16
+PARALLEL = 16  # assuming a quad-core machine
 ATTRIBUTE = "circular_connectors"
 conn_string = "postgresql://localhost:5432/" + ATTRIBUTE
+
+# If you've run this before, set FIRST_TIME to False to save time
 FIRST_TIME = False
-logger = logging.getLogger(__name__)
 
 em_config = {
     # GENERAL
@@ -115,7 +123,6 @@ em_config = {
 
 session = Meta.init(conn_string).Session()
 
-
 dirname = "."
 
 docs, train_docs, dev_docs, test_docs = parse_dataset(
@@ -131,9 +138,7 @@ logger.info(f"Paragraphs: {session.query(Paragraph).count()}")
 logger.info(f"Sentences: {session.query(Sentence).count()}")
 logger.info(f"Figures: {session.query(Figure).count()}")
 
-
 Thumbnails = mention_subclass("Thumbnails")
-
 thumbnails_img = MentionFigures()
 
 
@@ -161,9 +166,7 @@ if FIRST_TIME:
 
 logger.info("Total Mentions: {}".format(session.query(Mention).count()))
 
-
 ThumbnailLabel = candidate_subclass("ThumbnailLabel", [Thumbnails])
-
 
 candidate_extractor = CandidateExtractor(
     session, [ThumbnailLabel], throttlers=[None], parallelism=PARALLEL
@@ -188,10 +191,6 @@ for line in fin:
     gt.add("::".join(line.lower().split()))
 fin.close()
 
-TRUE = 1
-FALSE = 2
-ABSTAIN = 0
-
 
 def LF_gt_label(c):
     doc_file_id = (
@@ -206,7 +205,6 @@ ans = {0: 0, 1: 0, 2: 0}
 gt_dev_pb = []
 gt_dev = []
 gt_test = []
-
 for cand in dev_cands[0]:
     if LF_gt_label(cand) == 1:
         ans[1] += 1
@@ -217,14 +215,10 @@ for cand in dev_cands[0]:
         gt_dev_pb.append([0.0, 1.0])
         gt_dev.append(2.0)
 
-logger.info(f"ans: {ans}")
-
 ans = {0: 0, 1: 0, 2: 0}
 for cand in test_cands[0]:
     gt_test.append(LF_gt_label(cand))
     ans[gt_test[-1]] += 1
-
-logger.info(f"ans: {ans}")
 
 batch_size = 64
 input_size = 224
@@ -243,6 +237,7 @@ train_loader = torch.utils.data.DataLoader(
 dev_loader = torch.utils.data.DataLoader(
     ImageList(
         data=dev_cands[0],
+        #         label=torch.Tensor(gt_dev),
         label=gt_dev,
         transform=transform(input_size),
         prefix="data/dev/html/",
@@ -258,18 +253,17 @@ test_loader = torch.utils.data.DataLoader(
         transform=transform(input_size),
         prefix="data/test/html/",
     ),
-    batch_size=batch_size,
+    batch_size=100,
     shuffle=False,
 )
 
 log_config = {"log_dir": "./run_logs", "run_name": "image"}
 
-tuner_config = {"max_search": 1}
+tuner_config = {"max_search": 3}
 search_space = {
     "l2": [0.001, 0.0001, 0.00001],  # linear range
     "lr": {"range": [0.0001, 0.1], "scale": "log"},  # log range
 }
-
 
 train_config = em_config["train_config"]
 
@@ -293,25 +287,7 @@ init_args = [[num_classes]]
 init_kwargs = {"input_module": input_module}
 init_kwargs.update(em_config)
 
-# init_kwargs.update(em_config)
-# max_search = tuner_config['max_search']
-# metric = train_config['validation_metric']
-
-# Training model as a single pass
-# if args.single_pass:
-# end_model = EndModel(
-#    [hidden_size, fc_size, num_classes],
-#    input_module=input_module,use_cuda='True'
-#     **em_config
-# )
-# end_model.train_model(
-#    train_data=train_loader,
-#    dev_data=dev_loader,
-#     **train_config
-# )
-
 # Searching model
-# else:
 searcher = RandomSearchTuner(EndModel, **log_config)
 
 end_model = searcher.search(
@@ -330,3 +306,67 @@ scores = end_model.score(
 )
 
 labels, _, probs = end_model._get_predictions(test_loader, return_probs=True)
+
+# ```
+# ============================================================
+# [SUMMARY]
+# Best model: [0]
+# Best config: {'l2': 0.0001, 'lr': 0.0010025532524850966}
+# Best score: 0.9955849889624724
+# ============================================================
+# Accuracy: 0.926
+# Precision: 0.675
+# Recall: 0.856
+# F1: 0.755
+# Roc-auc: 0.964
+#         y=1    y=2
+#  l=1    137    66
+#  l=2    23     982
+# ```
+
+pred_dict = {}
+
+for c, y in zip(test_cands[0], probs[:, 0]):
+    doc_file_id = (
+        f"{c[0].context.figure.document.name.lower()}.pdf::"
+        "{os.path.basename(c[0].context.figure.url.lower())}"
+    )
+    pred_dict[doc_file_id] = y
+
+
+all_test_fig_id = set()
+
+for doc in test_docs:
+    for fig in doc.figures:
+        doc_file_id = f"{doc.name.lower()}.pdf::{os.path.basename(fig.url.lower())}"
+        all_test_fig_id.add(doc_file_id)
+
+
+b = 0.7
+
+tp = 0
+fp = 0
+fn = 0
+
+for id in all_test_fig_id:
+    if id in gt:
+        p = True
+    else:
+        p = False
+    if id in pred_dict and pred_dict[id] >= b:
+        t = True
+    else:
+        t = False
+
+    if t and p:
+        tp += 1
+    if t and not p:
+        fp += 1
+    if not t and p:
+        fn += 1
+
+prec = tp / (tp + fp)
+rec = tp / (tp + fn)
+f1 = 2 * prec * rec / (prec + rec)
+
+logger.info(f"{tp}, {fp}, {fn}, {prec}, {rec}, {f1}")
