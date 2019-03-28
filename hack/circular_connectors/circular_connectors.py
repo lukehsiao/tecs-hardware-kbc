@@ -27,10 +27,14 @@ ABSTAIN = 0
 
 PARALLEL = 16  # assuming a quad-core machine
 ATTRIBUTE = "circular_connectors"
-conn_string = "postgresql://localhost:5432/" + ATTRIBUTE
+conn_string = "postgresql:///" + ATTRIBUTE
 
 # If you've run this before, set FIRST_TIME to False to save time
 FIRST_TIME = False
+
+log_config = {"log_dir": "./run_logs", "run_name": "image"}
+
+tuner_config = {"max_search": 3}
 
 em_config = {
     # GENERAL
@@ -62,7 +66,7 @@ em_config = {
     # models...
     "skip_head": True,
     # GPU
-    "use_cuda": True,
+    "device": "cuda",
     # MODEL CLASS
     "resnet18"
     # DATA CONFIG
@@ -120,9 +124,10 @@ em_config = {
     },
 }
 
-
 session = Meta.init(conn_string).Session()
 
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+logger.info(f"CWD: {os.getcwd()}")
 dirname = "."
 
 docs, train_docs, dev_docs, test_docs = parse_dataset(
@@ -139,6 +144,7 @@ logger.info(f"Sentences: {session.query(Sentence).count()}")
 logger.info(f"Figures: {session.query(Figure).count()}")
 
 Thumbnails = mention_subclass("Thumbnails")
+
 thumbnails_img = MentionFigures()
 
 
@@ -159,7 +165,6 @@ class HasFigures(_Matcher):
 mention_extractor = MentionExtractor(
     session, [Thumbnails], [thumbnails_img], [HasFigures()], parallelism=PARALLEL
 )
-
 
 if FIRST_TIME:
     mention_extractor.apply(docs)
@@ -195,7 +200,7 @@ fin.close()
 def LF_gt_label(c):
     doc_file_id = (
         f"{c[0].context.figure.document.name.lower()}.pdf::"
-        "{os.path.basename(c[0].context.figure.url.lower())}"
+        f"{os.path.basename(c[0].context.figure.url.lower())}"
     )
     return TRUE if doc_file_id in gt else FALSE
 
@@ -205,6 +210,7 @@ ans = {0: 0, 1: 0, 2: 0}
 gt_dev_pb = []
 gt_dev = []
 gt_test = []
+
 for cand in dev_cands[0]:
     if LF_gt_label(cand) == 1:
         ans[1] += 1
@@ -237,7 +243,6 @@ train_loader = torch.utils.data.DataLoader(
 dev_loader = torch.utils.data.DataLoader(
     ImageList(
         data=dev_cands[0],
-        #         label=torch.Tensor(gt_dev),
         label=gt_dev,
         transform=transform(input_size),
         prefix="data/dev/html/",
@@ -257,16 +262,12 @@ test_loader = torch.utils.data.DataLoader(
     shuffle=False,
 )
 
-log_config = {"log_dir": "./run_logs", "run_name": "image"}
-
-tuner_config = {"max_search": 3}
 search_space = {
     "l2": [0.001, 0.0001, 0.00001],  # linear range
     "lr": {"range": [0.0001, 0.1], "scale": "log"},  # log range
 }
 
 train_config = em_config["train_config"]
-
 
 # Defining network parameters
 num_classes = 2
@@ -280,7 +281,6 @@ torch.cuda.set_device(1)
 
 # Initializing input module
 input_module = get_cnn("resnet18", pretrained=pretrained, num_classes=num_classes)
-
 
 # Initializing model object
 init_args = [[num_classes]]
@@ -302,10 +302,8 @@ end_model = searcher.search(
 
 # Evaluating model
 scores = end_model.score(
-    test_loader, metric=["accuracy", "precision", "recall", "f1", "roc-auc"]
+    test_loader, metric=["accuracy", "precision", "recall", "f1"], break_ties="abstain"
 )
-
-labels, _, probs = end_model._get_predictions(test_loader, return_probs=True)
 
 # ```
 # ============================================================
@@ -324,49 +322,51 @@ labels, _, probs = end_model._get_predictions(test_loader, return_probs=True)
 #  l=2    23     982
 # ```
 
-pred_dict = {}
-
-for c, y in zip(test_cands[0], probs[:, 0]):
-    doc_file_id = (
-        f"{c[0].context.figure.document.name.lower()}.pdf::"
-        "{os.path.basename(c[0].context.figure.url.lower())}"
-    )
-    pred_dict[doc_file_id] = y
-
-
-all_test_fig_id = set()
-
-for doc in test_docs:
-    for fig in doc.figures:
-        doc_file_id = f"{doc.name.lower()}.pdf::{os.path.basename(fig.url.lower())}"
-        all_test_fig_id.add(doc_file_id)
-
-
-b = 0.7
-
-tp = 0
-fp = 0
-fn = 0
-
-for id in all_test_fig_id:
-    if id in gt:
-        p = True
-    else:
-        p = False
-    if id in pred_dict and pred_dict[id] >= b:
-        t = True
-    else:
-        t = False
-
-    if t and p:
-        tp += 1
-    if t and not p:
-        fp += 1
-    if not t and p:
-        fn += 1
-
-prec = tp / (tp + fp)
-rec = tp / (tp + fn)
-f1 = 2 * prec * rec / (prec + rec)
-
-logger.info(f"{tp}, {fp}, {fn}, {prec}, {rec}, {f1}")
+# labels, _, probs = end_model._get_predictions(
+#     test_loader, return_probs=True, break_ties="abstain"
+# )
+#
+# pred_dict = {}
+#
+# for c, y in zip(test_cands[0], probs[:, 0]):
+#     doc_file_id = (
+#         f"{c[0].context.figure.document.name.lower()}.pdf::"
+#         f"{os.path.basename(c[0].context.figure.url.lower())}"
+#     )
+#     pred_dict[doc_file_id] = y
+#
+# all_test_fig_id = set()
+#
+# for doc in test_docs:
+#     for fig in doc.figures:
+#         doc_file_id = f"{doc.name.lower()}.pdf::{os.path.basename(fig.url.lower())}"
+#         all_test_fig_id.add(doc_file_id)
+#
+# b = 0.7
+#
+# tp = 0
+# fp = 0
+# fn = 0
+#
+# for id in all_test_fig_id:
+#     if id in gt:
+#         p = True
+#     else:
+#         p = False
+#     if id in pred_dict and pred_dict[id] >= b:
+#         t = True
+#     else:
+#         t = False
+#
+#     if t and p:
+#         tp += 1
+#     if t and not p:
+#         fp += 1
+#     if not t and p:
+#         fn += 1
+#
+# prec = tp / (tp + fp)
+# rec = tp / (tp + fn)
+# f1 = 2 * prec * rec / (prec + rec)
+#
+# tp, fp, fn, prec, rec, f1
