@@ -30,7 +30,7 @@ ATTRIBUTE = "circular_connectors"
 conn_string = "postgresql:///" + ATTRIBUTE
 
 # If you've run this before, set FIRST_TIME to False to save time
-FIRST_TIME = False
+FIRST_TIME = True
 
 log_config = {"log_dir": "./run_logs", "run_name": "image"}
 
