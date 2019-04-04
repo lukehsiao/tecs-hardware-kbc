@@ -5,7 +5,7 @@ import logging
 import os
 
 import torch
-from fonduer import Meta
+from fonduer import Meta, init_logging
 from fonduer.candidates import CandidateExtractor, MentionExtractor, MentionFigures
 from fonduer.candidates.matchers import _Matcher
 from fonduer.candidates.models import Mention, candidate_subclass, mention_subclass
@@ -26,7 +26,7 @@ FALSE = 2
 ABSTAIN = 0
 
 PARALLEL = 16  # assuming a quad-core machine
-ATTRIBUTE = "circular_connectors"
+ATTRIBUTE = "circular_connectors_full"
 conn_string = "postgresql:///" + ATTRIBUTE
 
 # If you've run this before, set FIRST_TIME to False to save time
@@ -124,6 +124,7 @@ em_config = {
     },
 }
 
+init_logging(log_dir="logs")
 session = Meta.init(conn_string).Session()
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -131,7 +132,7 @@ logger.info(f"CWD: {os.getcwd()}")
 dirname = "."
 
 docs, train_docs, dev_docs, test_docs = parse_dataset(
-    session, dirname, first_time=FIRST_TIME, parallel=PARALLEL, max_docs=100
+    session, dirname, first_time=FIRST_TIME, parallel=PARALLEL, max_docs=float("inf")
 )
 logger.info(f"# of train Documents: {len(train_docs)}")
 logger.info(f"# of dev Documents: {len(dev_docs)}")

@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import csv
 import logging
 import os
 import pickle
-import csv
 
 import numpy as np
 from fonduer import Meta, init_logging
@@ -41,9 +41,9 @@ from hack.transistors.transistor_throttlers import (
 )
 from hack.transistors.transistor_utils import (
     Score,
-    entity_level_scores,
-    candidates_to_entities,
     cand_to_entity,
+    candidates_to_entities,
+    entity_level_scores,
     load_transistor_labels,
 )
 from hack.utils import parse_dataset
@@ -51,7 +51,6 @@ from hack.utils import parse_dataset
 # Use the first set of GPUs
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
-init_logging(log_dir="logs")
 logger = logging.getLogger(__name__)
 
 
@@ -383,22 +382,22 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
 def dump_candidates(cands, Y_prob, outfile):
     """Output the ce_v_max candidates and their probabilities for later analysis."""
     dirname = os.path.dirname(__file__)
-
     with open(os.path.join(dirname, outfile), "w") as csvfile:
         writer = csv.writer(csvfile)
         for i, c in enumerate(cands):
-            for (doc, part, val) in cand_to_entity(c):
-                writer.writerow([doc, part, val, Y_prob[i][TRUE - 1]])
+            (doc, part, val) = cand_to_entity(c)
+            writer.writerow([doc, part, val, Y_prob[i][TRUE - 1]])
 
 
 def main(conn_string, max_docs=float("inf"), first_time=True, parallel=4):
+    init_logging(log_dir="logs")
     session = Meta.init(conn_string).Session()
     docs, train_docs, dev_docs, test_docs = parsing(
-        session, first_time=True, parallel=parallel, max_docs=max_docs
+        session, first_time=first_time, parallel=parallel, max_docs=max_docs
     )
 
     Part, StgTempMin, StgTempMax, Polarity, CeVMax = mention_extraction(
-        session, docs, first_time=True, parallel=parallel
+        session, docs, first_time=first_time, parallel=parallel
     )
 
     (
@@ -419,7 +418,7 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=4):
         train_docs,
         dev_docs,
         test_docs,
-        first_time=True,
+        first_time=first_time,
         parallel=parallel,
     )
 
@@ -538,7 +537,7 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=4):
 
 if __name__ == "__main__":
     parallel = 16  # len(os.sched_getaffinity(0)) // 4
-    component = "transistors"
+    component = "transistors_luke"
     first_time = True
     max_docs = float("inf")
     conn_string = f"postgresql:///{component}"
