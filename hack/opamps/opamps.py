@@ -457,7 +457,7 @@ if __name__ == "__main__":
     conn_string = f"postgresql:///{component}"
     first_time = True
     parse = True
-    max_docs = 500
+    max_docs = float("inf")
     logger.info(f"\n\n")
     logger.info(f"=" * 30)
     logger.info(
