@@ -378,153 +378,153 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
     return best_result, best_b
 
 
-parallel = 16  # len(os.sched_getaffinity(0)) // 4
-component = "transistors"
-first_time = True
-max_docs = 500
-conn_string = f"postgresql:///{component}_all_relations"
-logger.info(f"\n\n")
-logger.info(f"=" * 80)
-logger.info(f"Small transistors with parallel: {parallel}, max_docs: {max_docs}")
-
-session = Meta.init(conn_string).Session()
-docs, train_docs, dev_docs, test_docs = parsing(
-    session, first_time=True, parallel=parallel, max_docs=max_docs
-)
-
-Part, StgTempMin, StgTempMax, Polarity, CeVMax = mention_extraction(
-    session, docs, first_time=True, parallel=parallel
-)
-
-
-(
-    PartStgTempMin,
-    PartStgTempMax,
-    PartPolarity,
-    PartCeVMax,
-    train_cands,
-    dev_cands,
-    test_cands,
-) = candidate_extraction(
-    session,
-    Part,
-    StgTempMin,
-    StgTempMax,
-    Polarity,
-    CeVMax,
-    train_docs,
-    dev_docs,
-    test_docs,
-    first_time=True,
-    parallel=parallel,
-)
-
-
-pickle_file = "data/parts_by_doc_new.pkl"
-with open(pickle_file, "rb") as f:
-    parts_by_doc = pickle.load(f)
-
-# First, check total recall
-for i, name in enumerate(["stg_temp_min", "stg_temp_max", "polarity", "ce_v_max"]):
-    logger.info(name)
-    result = entity_level_scores(
-        candidates_to_entities(dev_cands[i], parts_by_doc=parts_by_doc),
-        attribute=name,
-        corpus=dev_docs,
+def main(conn_string, max_docs=float("inf"), first_time=True, parallel=4):
+    session = Meta.init(conn_string).Session()
+    docs, train_docs, dev_docs, test_docs = parsing(
+        session, first_time=True, parallel=parallel, max_docs=max_docs
     )
-    logger.info(f"Gain Total Dev Recall: {result.rec:.3f}")
-    result = entity_level_scores(
-        candidates_to_entities(test_cands[i], parts_by_doc=parts_by_doc),
-        attribute=name,
-        corpus=test_docs,
+
+    Part, StgTempMin, StgTempMax, Polarity, CeVMax = mention_extraction(
+        session, docs, first_time=True, parallel=parallel
     )
-    logger.info(f"Gain Total Test Recall: {result.rec:.3f}")
+
+    (
+        PartStgTempMin,
+        PartStgTempMax,
+        PartPolarity,
+        PartCeVMax,
+        train_cands,
+        dev_cands,
+        test_cands,
+    ) = candidate_extraction(
+        session,
+        Part,
+        StgTempMin,
+        StgTempMax,
+        Polarity,
+        CeVMax,
+        train_docs,
+        dev_docs,
+        test_docs,
+        first_time=True,
+        parallel=parallel,
+    )
+
+    pickle_file = "data/parts_by_doc_new.pkl"
+    with open(pickle_file, "rb") as f:
+        parts_by_doc = pickle.load(f)
+
+    # First, check total recall
+    for i, name in enumerate(["stg_temp_min", "stg_temp_max", "polarity", "ce_v_max"]):
+        logger.info(name)
+        result = entity_level_scores(
+            candidates_to_entities(dev_cands[i], parts_by_doc=parts_by_doc),
+            attribute=name,
+            corpus=dev_docs,
+        )
+        logger.info(f"Gain Total Dev Recall: {result.rec:.3f}")
+        result = entity_level_scores(
+            candidates_to_entities(test_cands[i], parts_by_doc=parts_by_doc),
+            attribute=name,
+            corpus=test_docs,
+        )
+        logger.info(f"Gain Total Test Recall: {result.rec:.3f}")
+
+    F_train, F_dev, F_test = featurization(
+        session,
+        train_cands,
+        dev_cands,
+        test_cands,
+        PartStgTempMin,
+        PartStgTempMax,
+        PartPolarity,
+        PartCeVMax,
+        first_time=first_time,
+        parallel=parallel,
+    )
+
+    logger.info("Labeling training data...")
+    L_train, L_gold_train = labeling(
+        session,
+        train_cands,
+        [PartStgTempMin, PartStgTempMax, PartPolarity, PartCeVMax],
+        [stg_temp_min_lfs, stg_temp_max_lfs, polarity_lfs, ce_v_max_lfs],
+        split=0,
+        train=True,
+        parallel=parallel,
+        first_time=True,
+    )
+    logger.info("Done.")
+
+    relation = "stg_temp_min"
+    marginals_stg_temp_min = generative_model(L_train[0])
+    disc_model_stg_temp_min = discriminative_model(
+        train_cands[0], F_train[0], marginals_stg_temp_min, n_epochs=100
+    )
+    best_result, best_b = scoring(
+        relation,
+        disc_model_stg_temp_min,
+        test_cands[0],
+        test_docs,
+        F_test[0],
+        parts_by_doc,
+        num=100,
+    )
+
+    relation = "stg_temp_max"
+    marginals_stg_temp_max = generative_model(L_train[1])
+    disc_model_stg_temp_max = discriminative_model(
+        train_cands[1], F_train[1], marginals_stg_temp_max, n_epochs=100
+    )
+    best_result, best_b = scoring(
+        relation,
+        disc_model_stg_temp_max,
+        test_cands[1],
+        test_docs,
+        F_test[1],
+        parts_by_doc,
+        num=100,
+    )
+
+    relation = "polarity"
+    marginals_polarity = generative_model(L_train[2])
+    disc_model_polarity = discriminative_model(
+        train_cands[2], F_train[2], marginals_polarity, n_epochs=100
+    )
+    best_result, best_b = scoring(
+        relation,
+        disc_model_polarity,
+        test_cands[2],
+        test_docs,
+        F_test[2],
+        parts_by_doc,
+        num=100,
+    )
+
+    relation = "ce_v_max"
+    marginals_ce_v_max = generative_model(L_train[3])
+    disc_model_ce_v_max = discriminative_model(
+        train_cands[3], F_train[3], marginals_ce_v_max, n_epochs=100
+    )
+    best_result, best_b = scoring(
+        relation,
+        disc_model_ce_v_max,
+        test_cands[3],
+        test_docs,
+        F_test[3],
+        parts_by_doc,
+        num=100,
+    )
 
 
-F_train, F_dev, F_test = featurization(
-    session,
-    train_cands,
-    dev_cands,
-    test_cands,
-    PartStgTempMin,
-    PartStgTempMax,
-    PartPolarity,
-    PartCeVMax,
-    first_time=first_time,
-    parallel=parallel,
-)
+if __name__ == "__main__":
+    parallel = 16  # len(os.sched_getaffinity(0)) // 4
+    component = "transistors"
+    first_time = True
+    max_docs = 500
+    conn_string = f"postgresql:///{component}"
+    logger.info(f"\n\n")
+    logger.info(f"=" * 30)
+    logger.info(f"{component}::all_relations | par: {parallel} | docs: {max_docs}")
 
-logger.info("Labeling training data...")
-L_train, L_gold_train = labeling(
-    session,
-    train_cands,
-    [PartStgTempMin, PartStgTempMax, PartPolarity, PartCeVMax],
-    [stg_temp_min_lfs, stg_temp_max_lfs, polarity_lfs, ce_v_max_lfs],
-    split=0,
-    train=True,
-    parallel=parallel,
-    first_time=True,
-)
-logger.info("Done.")
-
-
-relation = "stg_temp_min"
-marginals_stg_temp_min = generative_model(L_train[0])
-disc_model_stg_temp_min = discriminative_model(
-    train_cands[0], F_train[0], marginals_stg_temp_min, n_epochs=100
-)
-best_result, best_b = scoring(
-    relation,
-    disc_model_stg_temp_min,
-    test_cands[0],
-    test_docs,
-    F_test[0],
-    parts_by_doc,
-    num=100,
-)
-
-relation = "stg_temp_max"
-marginals_stg_temp_max = generative_model(L_train[1])
-disc_model_stg_temp_max = discriminative_model(
-    train_cands[1], F_train[1], marginals_stg_temp_max, n_epochs=100
-)
-best_result, best_b = scoring(
-    relation,
-    disc_model_stg_temp_max,
-    test_cands[1],
-    test_docs,
-    F_test[1],
-    parts_by_doc,
-    num=100,
-)
-
-relation = "polarity"
-marginals_polarity = generative_model(L_train[2])
-disc_model_polarity = discriminative_model(
-    train_cands[2], F_train[2], marginals_polarity, n_epochs=100
-)
-best_result, best_b = scoring(
-    relation,
-    disc_model_polarity,
-    test_cands[2],
-    test_docs,
-    F_test[2],
-    parts_by_doc,
-    num=100,
-)
-
-
-relation = "ce_v_max"
-marginals_ce_v_max = generative_model(L_train[3])
-disc_model_ce_v_max = discriminative_model(
-    train_cands[3], F_train[3], marginals_ce_v_max, n_epochs=100
-)
-best_result, best_b = scoring(
-    relation,
-    disc_model_ce_v_max,
-    test_cands[3],
-    test_docs,
-    F_test[3],
-    parts_by_doc,
-    num=100,
-)
+    main(conn_string, max_docs=max_docs, first_time=first_time, parallel=parallel)
