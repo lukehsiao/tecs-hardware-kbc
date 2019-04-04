@@ -341,6 +341,14 @@ def entity_to_candidates(entity, candidate_subset):
     return matches
 
 
+def cand_to_entity(c):
+    """Convert a single candidate to an entity."""
+    part = c[0].context.get_span()
+    doc = c[0].context.sentence.document.name.upper()
+    val = c[1].context.get_span()
+    return (doc, part, val)
+
+
 def candidates_to_entities(candidates, val_on=True, parts_by_doc=None):
     # Turn CandidateSet into set of tuples
     entities = set()

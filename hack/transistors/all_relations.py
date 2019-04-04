@@ -4,6 +4,7 @@
 import logging
 import os
 import pickle
+import csv
 
 import numpy as np
 from fonduer import Meta, init_logging
@@ -42,6 +43,7 @@ from hack.transistors.transistor_utils import (
     Score,
     entity_level_scores,
     candidates_to_entities,
+    cand_to_entity,
     load_transistor_labels,
 )
 from hack.utils import parse_dataset
@@ -378,6 +380,17 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
     return best_result, best_b
 
 
+def dump_candidates(cands, Y_prob, outfile):
+    """Output the ce_v_max candidates and their probabilities for later analysis."""
+    dirname = os.path.dirname(__file__)
+
+    with open(os.path.join(dirname, outfile), "w") as csvfile:
+        writer = csv.writer(csvfile)
+        for i, c in enumerate(cands):
+            for (doc, part, val) in cand_to_entity(c):
+                writer.writerow([doc, part, val, Y_prob[i][TRUE - 1]])
+
+
 def main(conn_string, max_docs=float("inf"), first_time=True, parallel=4):
     session = Meta.init(conn_string).Session()
     docs, train_docs, dev_docs, test_docs = parsing(
@@ -516,12 +529,18 @@ def main(conn_string, max_docs=float("inf"), first_time=True, parallel=4):
         num=100,
     )
 
+    # Dump CSV files for CE_V_MAX for digi-key analysis
+    Y_prob = disc_model_ce_v_max.marginals((test_cands[3], F_test[3]))
+    dump_candidates(test_cands[3], Y_prob, "ce_v_max_test_probs.csv")
+    Y_prob = disc_model_ce_v_max.marginals((dev_cands[3], F_dev[3]))
+    dump_candidates(dev_cands[3], Y_prob, "ce_v_max_dev_probs.csv")
+
 
 if __name__ == "__main__":
     parallel = 16  # len(os.sched_getaffinity(0)) // 4
     component = "transistors"
     first_time = True
-    max_docs = 500
+    max_docs = float("inf")
     conn_string = f"postgresql:///{component}"
     logger.info(f"\n\n")
     logger.info(f"=" * 30)
