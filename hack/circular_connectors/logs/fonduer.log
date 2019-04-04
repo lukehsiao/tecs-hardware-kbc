@@ -1,0 +1,287 @@
+[2019-04-04 09:58:19,135][INFO] fonduer.meta:50 - Setting logging directory to: /tmp/2019-04-04_09-58-19
+[2019-04-04 09:58:19,137][INFO] __main__:130 - CWD: /lfs/raiders4/0/lwhsiao/repos/hack/hack/circular_connectors
+[2019-04-04 09:58:19,137][INFO] hack.utils.utils:41 - Parsing dev...
+[2019-04-04 09:58:22,027][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-04 09:59:03,800][INFO] hack.utils.utils:41 - Parsing test...
+[2019-04-04 09:59:13,519][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-04 09:59:38,904][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/test/pdf/teconnectivityampconnectors_796497-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/test/pdf/teconnectivityampconnectors_796497-1.pdf
+[2019-04-04 09:59:38,951][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/test/pdf/teconnectivityampconnectors_213597-4.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/test/pdf/teconnectivityampconnectors_213597-4.pdf
+[2019-04-04 10:11:20,414][INFO] hack.utils.utils:41 - Parsing train...
+[2019-04-04 10:14:34,573][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-04 10:23:14,776][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-206455-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-206455-1.pdf
+[2019-04-04 10:23:15,535][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-206934-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-206934-1.pdf
+[2019-04-04 10:23:15,576][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-207303-4.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-207303-4.pdf
+[2019-04-04 10:23:15,853][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-2823446-7.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-2823446-7.pdf
+[2019-04-04 10:23:15,977][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-2823449-4.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-2823449-4.pdf
+[2019-04-04 10:23:15,988][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-2823450-4.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-2823450-4.pdf
+[2019-04-04 10:23:16,351][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-796387-2.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-796387-2.pdf
+[2019-04-04 10:23:16,501][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-796404-2.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-796404-2.pdf
+[2019-04-04 10:23:16,536][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-796409-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-796409-1.pdf
+[2019-04-04 10:23:16,570][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-796435-2.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-796435-2.pdf
+[2019-04-04 10:23:16,622][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-796403-2.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-796403-2.pdf
+[2019-04-04 10:23:16,628][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-796375-2.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1-796375-2.pdf
+[2019-04-04 10:23:16,839][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1838277-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1838277-1.pdf
+[2019-04-04 10:23:16,912][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1986377-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1986377-1.pdf
+[2019-04-04 10:23:16,980][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1838893-2.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1838893-2.pdf
+[2019-04-04 10:23:16,993][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1838415-4.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_1838415-4.pdf
+[2019-04-04 10:23:17,276][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_207216-2.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_207216-2.pdf
+[2019-04-04 10:23:17,323][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_207890-2.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_207890-2.pdf
+[2019-04-04 10:23:17,383][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_208132-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_208132-1.pdf
+[2019-04-04 10:23:17,645][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_208283-4.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_208283-4.pdf
+[2019-04-04 10:23:17,683][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_208223-9.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_208223-9.pdf
+[2019-04-04 10:23:17,742][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_208657-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_208657-1.pdf
+[2019-04-04 10:23:18,557][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213729-9.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213729-9.pdf
+[2019-04-04 10:23:18,603][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213734-2.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213734-2.pdf
+[2019-04-04 10:23:18,959][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213780-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213780-1.pdf
+[2019-04-04 10:23:19,084][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213798-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213798-1.pdf
+[2019-04-04 10:23:19,086][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213782-4.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213782-4.pdf
+[2019-04-04 10:23:19,379][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213854-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213854-1.pdf
+[2019-04-04 10:23:19,559][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213856-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213856-1.pdf
+[2019-04-04 10:23:19,605][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213859-2.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_213859-2.pdf
+[2019-04-04 10:23:25,165][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_750329-2.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_750329-2.pdf
+[2019-04-04 10:23:25,288][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_788194-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_788194-1.pdf
+[2019-04-04 10:23:25,417][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_796329-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_796329-1.pdf
+[2019-04-04 10:23:25,501][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_796406-4.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_796406-4.pdf
+[2019-04-04 10:23:25,528][ERROR] fonduer.parser.visual_linker:54 - Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_796502-1.pdf
+Traceback (most recent call last):
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 52, in parse_visual
+    self.extract_pdf_words()
+  File "/lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/fonduer/parser/visual_linker.py", line 88, in extract_pdf_words
+    f"Words could not be extracted from PDF: {self.pdf_file}"
+RuntimeError: Words could not be extracted from PDF: ./data/train/pdf/teconnectivityampconnectors_796502-1.pdf
+[2019-04-04 11:03:31,123][INFO] __main__:136 - # of train Documents: 4845
+[2019-04-04 11:03:31,124][INFO] __main__:137 - # of dev Documents: 100
+[2019-04-04 11:03:31,124][INFO] __main__:138 - # of test Documents: 98
+[2019-04-04 11:03:31,379][INFO] __main__:140 - Documents: 5043
+[2019-04-04 11:03:31,640][INFO] __main__:141 - Sections: 5043
+[2019-04-04 11:03:34,096][INFO] __main__:142 - Paragraphs: 1077572
+[2019-04-04 11:03:40,492][INFO] __main__:143 - Sentences: 1119364
+[2019-04-04 11:03:42,120][INFO] __main__:144 - Figures: 213981
+[2019-04-04 11:03:42,254][INFO] fonduer.candidates.mentions:460 - Clearing table: thumbnails
+[2019-04-04 11:03:42,281][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-04 11:04:54,129][INFO] __main__:172 - Total Mentions: 37426
+[2019-04-04 11:04:54,154][INFO] fonduer.candidates.candidates:125 - Clearing table thumbnail_label (split 0)
+[2019-04-04 11:04:54,182][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-04 11:05:21,175][INFO] fonduer.candidates.candidates:125 - Clearing table thumbnail_label (split 1)
+[2019-04-04 11:05:21,191][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-04 11:05:23,183][INFO] fonduer.candidates.candidates:125 - Clearing table thumbnail_label (split 2)
+[2019-04-04 11:05:23,189][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-04 11:05:28,288][INFO] __main__:189 - Total train candidate:	35765
+[2019-04-04 11:05:28,288][INFO] __main__:190 - Total dev candidate:	453
+[2019-04-04 11:05:28,289][INFO] __main__:191 - Total test candidate:	1208
