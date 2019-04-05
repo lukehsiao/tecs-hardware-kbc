@@ -68,7 +68,7 @@ are created, you can run each individual hardware component script.
 
 ```bash
 $ createdb transistors
-$ python hack/transistors/transistors.py
+$ python hack/transistors/transistors_all.py
 ```
 
 ### Op Amps
