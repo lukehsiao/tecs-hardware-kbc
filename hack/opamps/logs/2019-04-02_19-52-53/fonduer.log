@@ -1,0 +1,605 @@
+[2019-04-02 19:52:53,689][INFO] fonduer.meta:50 - Setting logging directory to: hack/opamps/logs/2019-04-02_19-52-53
+[2019-04-02 19:52:53,727][INFO] fonduer.meta:134 - Connecting user:None to None:None/opamps_test
+[2019-04-02 19:52:53,728][INFO] fonduer.meta:161 - Initializing the storage schema
+[2019-04-02 19:52:54,219][INFO] hack.utils.utils:41 - Parsing dev...
+[2019-04-02 19:53:17,382][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-02 19:58:01,425][INFO] hack.utils.utils:41 - Parsing test...
+[2019-04-02 19:59:05,703][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-02 20:09:27,228][INFO] hack.utils.utils:41 - Parsing train...
+[2019-04-02 20:30:13,334][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-02 23:53:10,068][INFO] __main__:45 - # of train Documents: 3118
+[2019-04-02 23:53:10,068][INFO] __main__:46 - # of dev Documents: 50
+[2019-04-02 23:53:10,068][INFO] __main__:47 - # of test Documents: 100
+[2019-04-02 23:53:10,087][INFO] __main__:49 - Documents: 3268
+[2019-04-02 23:53:10,107][INFO] __main__:50 - Sections: 3268
+[2019-04-02 23:53:23,738][INFO] __main__:51 - Paragraphs: 5488639
+[2019-04-02 23:54:15,146][INFO] __main__:52 - Sentences: 5873859
+[2019-04-02 23:54:22,056][INFO] __main__:53 - Figures: 564686
+[2019-04-02 23:54:22,057][INFO] __main__:299 - # of Documents: 3268
+[2019-04-02 23:54:22,057][INFO] __main__:300 - # of train Documents: 3118
+[2019-04-02 23:54:22,057][INFO] __main__:301 - # of dev Documents: 50
+[2019-04-02 23:54:22,057][INFO] __main__:302 - # of test Documents: 100
+[2019-04-02 23:54:22,111][INFO] fonduer.candidates.mentions:460 - Clearing table: gain
+[2019-04-02 23:54:22,129][INFO] fonduer.candidates.mentions:460 - Clearing table: supply_current
+[2019-04-02 23:54:22,135][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-03 07:15:43,528][INFO] __main__:76 - Total Mentions: 200693
+[2019-04-03 07:15:43,601][INFO] __main__:77 - Total Gain: 62023
+[2019-04-03 07:15:43,754][INFO] __main__:78 - Total Current: 138670
+[2019-04-03 07:15:43,800][INFO] fonduer.candidates.candidates:125 - Clearing table gain_cand (split 0)
+[2019-04-03 07:15:43,832][INFO] fonduer.candidates.candidates:125 - Clearing table current_cand (split 0)
+[2019-04-03 07:15:43,848][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-03 07:17:38,883][INFO] __main__:94 - GainCand in split=0: 59145
+[2019-04-03 07:17:39,035][INFO] __main__:98 - CurrentCand in split=0: 131540
+[2019-04-03 07:17:39,036][INFO] fonduer.candidates.candidates:125 - Clearing table gain_cand (split 1)
+[2019-04-03 07:17:39,038][INFO] fonduer.candidates.candidates:125 - Clearing table current_cand (split 1)
+[2019-04-03 07:17:39,041][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-03 07:17:47,525][INFO] __main__:94 - GainCand in split=1: 842
+[2019-04-03 07:17:47,552][INFO] __main__:98 - CurrentCand in split=1: 2233
+[2019-04-03 07:17:47,552][INFO] fonduer.candidates.candidates:125 - Clearing table gain_cand (split 2)
+[2019-04-03 07:17:47,555][INFO] fonduer.candidates.candidates:125 - Clearing table current_cand (split 2)
+[2019-04-03 07:17:47,556][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-03 07:17:57,973][INFO] __main__:94 - GainCand in split=2: 2036
+[2019-04-03 07:17:57,996][INFO] __main__:98 - CurrentCand in split=2: 4897
+[2019-04-03 07:18:05,005][INFO] __main__:318 - Total train candidate: 190685
+[2019-04-03 07:18:05,006][INFO] __main__:319 - Total dev candidate: 3075
+[2019-04-03 07:18:05,006][INFO] __main__:320 - Total test candidate: 6933
+[2019-04-03 07:18:05,006][INFO] __main__:322 - Done w/ candidate extraction.
+[2019-04-03 07:18:05,006][INFO] __main__:111 - Starting featurizer...
+[2019-04-03 07:18:12,823][INFO] fonduer.features.featurizer:190 - Clearing Features (split 0)
+[2019-04-03 07:18:12,835][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-03 19:00:02,236][INFO] fonduer.features.featurizer:190 - Clearing Features (split 1)
+[2019-04-03 19:00:02,259][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-03 19:14:22,931][INFO] fonduer.features.featurizer:190 - Clearing Features (split 2)
+[2019-04-03 19:14:22,955][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-03 19:40:29,289][INFO] __main__:115 - Done
+[2019-04-03 19:40:29,291][INFO] __main__:117 - Getting feature matrices...
+[2019-04-03 19:47:20,258][INFO] __main__:130 - Done.
+[2019-04-03 19:47:20,258][INFO] __main__:132 - Train shape 0: (59145, 189515)
+[2019-04-03 19:47:20,258][INFO] __main__:133 - Train shape 1: (131540, 189515)
+[2019-04-03 19:47:20,258][INFO] __main__:134 - Test shape 0: (2036, 189515)
+[2019-04-03 19:47:20,259][INFO] __main__:135 - Test shape 1: (4897, 189515)
+[2019-04-03 19:47:20,259][INFO] __main__:136 - Dev shape 0: (842, 189515)
+[2019-04-03 19:47:20,259][INFO] __main__:137 - Dev shape 1: (2233, 189515)
+[2019-04-03 19:47:20,259][INFO] __main__:347 - Labeling training data...
+[2019-04-03 19:47:20,259][INFO] __main__:186 - Applying LFs...
+[2019-04-03 19:47:41,412][INFO] fonduer.supervision.labeler:219 - Clearing Labels (split 0)
+[2019-04-03 19:47:41,423][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-03 21:24:37,335][INFO] __main__:188 - Done...
+[2019-04-03 21:24:37,341][INFO] __main__:190 - Getting label matrices...
+[2019-04-03 21:29:53,921][INFO] __main__:192 - Done...
+[2019-04-03 21:29:53,922][INFO] __main__:193 - L_mat shape: (59145, 8)
+[2019-04-03 21:29:53,922][INFO] __main__:358 - Done.
+[2019-04-03 21:29:53,922][INFO] __main__:360 - Labeling dev data...
+[2019-04-03 21:29:53,922][INFO] __main__:186 - Applying LFs...
+[2019-04-03 21:29:54,351][INFO] fonduer.supervision.labeler:219 - Clearing Labels (split 1)
+[2019-04-03 21:29:54,487][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-03 21:31:58,810][INFO] __main__:188 - Done...
+[2019-04-03 21:31:58,814][INFO] __main__:190 - Getting label matrices...
+[2019-04-03 21:32:03,848][INFO] __main__:192 - Done...
+[2019-04-03 21:32:03,848][INFO] __main__:193 - L_mat shape: (842, 8)
+[2019-04-03 21:38:08,229][INFO] __main__:384 - 
+                                           j Polarity  Coverage  Overlaps  Conflicts  Correct  Incorrect  Emp. Acc.
+LabelKey (neg_current_keywords_in_column)  0       []       0.0       0.0        0.0        0          0        NaN
+LabelKey (neg_current_keywords_in_row)     1       []       0.0       0.0        0.0        0          0        NaN
+LabelKey (neg_current_keywords_in_vert)    2       []       0.0       0.0        0.0        0          0        NaN
+LabelKey (neg_low_page_num)                3       []       0.0       0.0        0.0        0          0        NaN
+LabelKey (pos_current)                     4       []       0.0       0.0        0.0        0          0        NaN
+LabelKey (pos_current_typ)                 5       []       0.0       0.0        0.0        0          0        NaN
+LabelKey (pos_current_units)               6       []       0.0       0.0        0.0        0          0        NaN
+LabelKey (pos_sen_lf)                      7   [1, 2]       1.0       0.0        0.0      785         57   0.932304
+[2019-04-03 21:38:08,231][INFO] __main__:145 - Training generative model for...
+[2019-04-03 21:38:09,068][INFO] __main__:147 - Done.
+[2019-04-03 21:38:09,304][INFO] __main__:160 - Training discriminative model...
+[2019-04-03 21:38:09,305][INFO] fonduer.learning.classifier:142 - Loading default parameters for Sparse Logistic Regression
+[2019-04-03 21:38:09,312][INFO] fonduer.learning.classifier:213 - Using GPU...
+[2019-04-03 21:38:09,312][INFO] fonduer.learning.classifier:215 - Settings: {'log_dir': 'hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression', 'n_epochs': 500, 'lr': 0.001, 'batch_size': 256, 'shuffle': True, 'seed': 1234, 'host_device': 'GPU', 'bias': False, 'input_dim': 189516}
+[2019-04-03 21:38:14,165][INFO] fonduer.learning.classifier:233 - [SparseLogisticRegression] Training model
+[2019-04-03 21:38:14,166][INFO] fonduer.learning.classifier:235 - [SparseLogisticRegression] n_train=842 #epochs=500 batch size=256
+[2019-04-03 21:38:14,598][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:14,605][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 5 (0.37s)	Average loss=0.282446	Dev F1=0.00
+[2019-04-03 21:38:14,609][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_5.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:15,039][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:15,044][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 10 (0.81s)	Average loss=0.202263	Dev F1=61.64
+[2019-04-03 21:38:15,048][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_10.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:15,467][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:15,473][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 15 (1.24s)	Average loss=0.151128	Dev F1=81.18
+[2019-04-03 21:38:15,476][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_15.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:15,887][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:15,892][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 20 (1.66s)	Average loss=0.113064	Dev F1=92.63
+[2019-04-03 21:38:15,896][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_20.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:16,303][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:16,309][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 25 (2.08s)	Average loss=0.098314	Dev F1=94.85
+[2019-04-03 21:38:16,312][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_25.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:16,744][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:16,750][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 30 (2.51s)	Average loss=0.080445	Dev F1=95.92
+[2019-04-03 21:38:16,754][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_30.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:17,163][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:17,169][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 35 (2.94s)	Average loss=0.069161	Dev F1=95.92
+[2019-04-03 21:38:17,173][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_35.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:17,583][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:17,589][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 40 (3.36s)	Average loss=0.058958	Dev F1=95.92
+[2019-04-03 21:38:17,593][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_40.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:18,011][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:18,018][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 45 (3.79s)	Average loss=0.055674	Dev F1=95.92
+[2019-04-03 21:38:18,034][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_45.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:18,451][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:18,457][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 50 (4.23s)	Average loss=0.049241	Dev F1=96.97
+[2019-04-03 21:38:18,461][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_50.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:18,872][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:18,877][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 55 (4.65s)	Average loss=0.047004	Dev F1=96.97
+[2019-04-03 21:38:18,881][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_55.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:19,293][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:19,299][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 60 (5.07s)	Average loss=0.042388	Dev F1=96.97
+[2019-04-03 21:38:19,303][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_60.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:19,718][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:19,724][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 65 (5.49s)	Average loss=0.046293	Dev F1=96.97
+[2019-04-03 21:38:19,727][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_65.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:20,150][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:20,156][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 70 (5.93s)	Average loss=0.039809	Dev F1=96.97
+[2019-04-03 21:38:20,160][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_70.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:20,573][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:20,579][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 75 (6.35s)	Average loss=0.034654	Dev F1=97.49
+[2019-04-03 21:38:20,584][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_75.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:20,990][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:20,995][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 80 (6.76s)	Average loss=0.036135	Dev F1=96.97
+[2019-04-03 21:38:20,999][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_80.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:21,399][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:21,404][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 85 (7.18s)	Average loss=0.031177	Dev F1=96.97
+[2019-04-03 21:38:21,408][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_85.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:21,814][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:21,820][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 90 (7.59s)	Average loss=0.029642	Dev F1=96.97
+[2019-04-03 21:38:21,823][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_90.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:22,239][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:22,244][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 95 (8.01s)	Average loss=0.030231	Dev F1=98.00
+[2019-04-03 21:38:22,248][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_95.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:22,659][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:22,664][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 100 (8.44s)	Average loss=0.025373	Dev F1=97.51
+[2019-04-03 21:38:22,668][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_100.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:23,076][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:23,082][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 105 (8.85s)	Average loss=0.026368	Dev F1=98.00
+[2019-04-03 21:38:23,086][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_105.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:23,493][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:23,499][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 110 (9.27s)	Average loss=0.025553	Dev F1=98.00
+[2019-04-03 21:38:23,502][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_110.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:23,916][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:23,921][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 115 (9.69s)	Average loss=0.024554	Dev F1=98.00
+[2019-04-03 21:38:23,925][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_115.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:24,329][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:24,334][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 120 (10.11s)	Average loss=0.025485	Dev F1=97.49
+[2019-04-03 21:38:24,393][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_120.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:24,887][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:24,893][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 125 (10.66s)	Average loss=0.021969	Dev F1=98.00
+[2019-04-03 21:38:24,897][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_125.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:25,316][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:25,322][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 130 (11.09s)	Average loss=0.021985	Dev F1=98.00
+[2019-04-03 21:38:25,326][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_130.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:25,748][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:25,753][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 135 (11.52s)	Average loss=0.022136	Dev F1=98.00
+[2019-04-03 21:38:25,757][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_135.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:26,163][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:26,169][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 140 (11.94s)	Average loss=0.019928	Dev F1=98.00
+[2019-04-03 21:38:26,173][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_140.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:26,570][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:26,575][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 145 (12.35s)	Average loss=0.018730	Dev F1=98.51
+[2019-04-03 21:38:26,579][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_145.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:26,978][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:26,984][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 150 (12.75s)	Average loss=0.018788	Dev F1=98.51
+[2019-04-03 21:38:26,988][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_150.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:27,387][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:27,393][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 155 (13.16s)	Average loss=0.016776	Dev F1=98.51
+[2019-04-03 21:38:27,396][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_155.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:27,805][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:27,810][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 160 (13.58s)	Average loss=0.017308	Dev F1=98.51
+[2019-04-03 21:38:27,814][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_160.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:28,220][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:28,228][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 165 (14.00s)	Average loss=0.015832	Dev F1=98.51
+[2019-04-03 21:38:28,232][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_165.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:28,635][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:28,640][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 170 (14.41s)	Average loss=0.016740	Dev F1=98.51
+[2019-04-03 21:38:28,644][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_170.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:29,055][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:29,061][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 175 (14.83s)	Average loss=0.016607	Dev F1=98.51
+[2019-04-03 21:38:29,065][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_175.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:29,470][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:29,476][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 180 (15.25s)	Average loss=0.018403	Dev F1=98.51
+[2019-04-03 21:38:29,480][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_180.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:29,886][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:29,891][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 185 (15.66s)	Average loss=0.014963	Dev F1=99.00
+[2019-04-03 21:38:29,895][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_185.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:30,304][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:30,310][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 190 (16.08s)	Average loss=0.015604	Dev F1=99.00
+[2019-04-03 21:38:30,313][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_190.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:30,714][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:30,720][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 195 (16.49s)	Average loss=0.014762	Dev F1=99.00
+[2019-04-03 21:38:30,723][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_195.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:31,125][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:31,130][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 200 (16.90s)	Average loss=0.012399	Dev F1=99.00
+[2019-04-03 21:38:31,134][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_200.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:31,533][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:31,539][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 205 (17.31s)	Average loss=0.015615	Dev F1=99.00
+[2019-04-03 21:38:31,543][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_205.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:31,947][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:31,952][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 210 (17.72s)	Average loss=0.012894	Dev F1=99.00
+[2019-04-03 21:38:31,956][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_210.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:32,361][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:32,366][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 215 (18.14s)	Average loss=0.011731	Dev F1=99.00
+[2019-04-03 21:38:32,370][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_215.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:32,777][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:32,782][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 220 (18.55s)	Average loss=0.011294	Dev F1=99.50
+[2019-04-03 21:38:32,786][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_220.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:33,195][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:33,201][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 225 (18.97s)	Average loss=0.013813	Dev F1=99.50
+[2019-04-03 21:38:33,204][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_225.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:33,604][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:33,609][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 230 (19.38s)	Average loss=0.013031	Dev F1=99.50
+[2019-04-03 21:38:33,613][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_230.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:34,017][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:34,023][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 235 (19.79s)	Average loss=0.011562	Dev F1=99.50
+[2019-04-03 21:38:34,026][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_235.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:34,430][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:34,436][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 240 (20.21s)	Average loss=0.012756	Dev F1=99.50
+[2019-04-03 21:38:34,439][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_240.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:34,851][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:34,856][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 245 (20.63s)	Average loss=0.010379	Dev F1=99.50
+[2019-04-03 21:38:34,860][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_245.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:35,280][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:35,285][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 250 (21.06s)	Average loss=0.011764	Dev F1=99.50
+[2019-04-03 21:38:35,289][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_250.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:35,700][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:35,705][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 255 (21.48s)	Average loss=0.012410	Dev F1=99.50
+[2019-04-03 21:38:35,709][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_255.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:36,121][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:36,127][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 260 (21.90s)	Average loss=0.010407	Dev F1=99.50
+[2019-04-03 21:38:36,131][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_260.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:36,533][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:36,539][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 265 (22.31s)	Average loss=0.009209	Dev F1=99.50
+[2019-04-03 21:38:36,542][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_265.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:36,946][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:36,952][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 270 (22.72s)	Average loss=0.009987	Dev F1=99.50
+[2019-04-03 21:38:36,956][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_270.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:37,354][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:37,359][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 275 (23.13s)	Average loss=0.009882	Dev F1=99.50
+[2019-04-03 21:38:37,363][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_275.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:37,768][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:37,773][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 280 (23.54s)	Average loss=0.010081	Dev F1=99.50
+[2019-04-03 21:38:37,777][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_280.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:38,184][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:38,190][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 285 (23.96s)	Average loss=0.009340	Dev F1=100.00
+[2019-04-03 21:38:38,193][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_285.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:38,699][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:38,705][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 290 (24.48s)	Average loss=0.009680	Dev F1=99.50
+[2019-04-03 21:38:38,708][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_290.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:39,105][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:39,110][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 295 (24.88s)	Average loss=0.009670	Dev F1=99.50
+[2019-04-03 21:38:39,114][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_295.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:39,518][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:39,523][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 300 (25.30s)	Average loss=0.010493	Dev F1=99.50
+[2019-04-03 21:38:39,527][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_300.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:39,933][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:39,939][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 305 (25.71s)	Average loss=0.008645	Dev F1=99.50
+[2019-04-03 21:38:39,942][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_305.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:40,349][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:40,354][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 310 (26.12s)	Average loss=0.008183	Dev F1=99.50
+[2019-04-03 21:38:40,358][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_310.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:40,758][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:40,763][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 315 (26.54s)	Average loss=0.007905	Dev F1=99.50
+[2019-04-03 21:38:40,767][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_315.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:41,167][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:41,172][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 320 (26.94s)	Average loss=0.008437	Dev F1=100.00
+[2019-04-03 21:38:41,176][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_320.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:41,571][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:41,576][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 325 (27.35s)	Average loss=0.009921	Dev F1=99.50
+[2019-04-03 21:38:41,580][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_325.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:41,980][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:41,985][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 330 (27.75s)	Average loss=0.007813	Dev F1=100.00
+[2019-04-03 21:38:41,989][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_330.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:42,392][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:42,398][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 335 (28.17s)	Average loss=0.007008	Dev F1=100.00
+[2019-04-03 21:38:42,401][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_335.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:42,807][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:42,812][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 340 (28.58s)	Average loss=0.007970	Dev F1=100.00
+[2019-04-03 21:38:42,816][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_340.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:43,231][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:43,237][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 345 (29.01s)	Average loss=0.007859	Dev F1=100.00
+[2019-04-03 21:38:43,240][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_345.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:43,636][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:43,642][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 350 (29.41s)	Average loss=0.008804	Dev F1=100.00
+[2019-04-03 21:38:43,645][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_350.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:44,051][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:44,056][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 355 (29.83s)	Average loss=0.007092	Dev F1=100.00
+[2019-04-03 21:38:44,060][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_355.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:44,460][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:44,465][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 360 (30.24s)	Average loss=0.006436	Dev F1=100.00
+[2019-04-03 21:38:44,469][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_360.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:44,881][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:44,886][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 365 (30.66s)	Average loss=0.008424	Dev F1=100.00
+[2019-04-03 21:38:44,890][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_365.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:45,297][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:45,303][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 370 (31.07s)	Average loss=0.007610	Dev F1=100.00
+[2019-04-03 21:38:45,306][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_370.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:45,714][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:45,719][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 375 (31.49s)	Average loss=0.006172	Dev F1=100.00
+[2019-04-03 21:38:45,723][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_375.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:46,125][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:46,130][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 380 (31.90s)	Average loss=0.007614	Dev F1=100.00
+[2019-04-03 21:38:46,134][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_380.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:46,134][INFO] fonduer.learning.classifier:305 - Saving best checkpoint hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression/checkpoint_epoch_380.pt.
+[2019-04-03 21:38:46,539][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:46,545][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 385 (32.32s)	Average loss=0.006711	Dev F1=100.00
+[2019-04-03 21:38:46,548][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_385.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:46,959][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:46,964][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 390 (32.74s)	Average loss=0.006345	Dev F1=100.00
+[2019-04-03 21:38:46,968][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_390.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:47,369][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:47,374][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 395 (33.15s)	Average loss=0.005768	Dev F1=100.00
+[2019-04-03 21:38:47,378][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_395.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:47,783][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:47,788][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 400 (33.56s)	Average loss=0.007062	Dev F1=100.00
+[2019-04-03 21:38:47,792][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_400.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:48,203][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:48,208][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 405 (33.98s)	Average loss=0.005409	Dev F1=100.00
+[2019-04-03 21:38:48,212][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_405.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:48,617][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:48,623][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 410 (34.39s)	Average loss=0.006414	Dev F1=100.00
+[2019-04-03 21:38:48,627][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_410.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:49,033][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:49,039][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 415 (34.81s)	Average loss=0.006963	Dev F1=100.00
+[2019-04-03 21:38:49,043][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_415.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:49,440][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:49,445][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 420 (35.22s)	Average loss=0.005061	Dev F1=100.00
+[2019-04-03 21:38:49,449][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_420.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:49,858][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:49,864][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 425 (35.63s)	Average loss=0.007311	Dev F1=100.00
+[2019-04-03 21:38:49,868][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_425.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:50,264][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:50,269][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 430 (36.04s)	Average loss=0.005114	Dev F1=100.00
+[2019-04-03 21:38:50,273][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_430.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:50,680][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:50,685][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 435 (36.46s)	Average loss=0.005059	Dev F1=100.00
+[2019-04-03 21:38:50,689][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_435.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:51,091][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:51,096][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 440 (36.87s)	Average loss=0.005445	Dev F1=100.00
+[2019-04-03 21:38:51,100][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_440.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:51,501][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:51,507][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 445 (37.28s)	Average loss=0.004789	Dev F1=100.00
+[2019-04-03 21:38:51,510][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_445.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:51,921][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:51,927][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 450 (37.70s)	Average loss=0.005048	Dev F1=100.00
+[2019-04-03 21:38:51,935][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_450.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:52,340][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:52,345][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 455 (38.12s)	Average loss=0.005582	Dev F1=100.00
+[2019-04-03 21:38:52,349][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_455.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:52,754][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:52,759][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 460 (38.53s)	Average loss=0.005478	Dev F1=100.00
+[2019-04-03 21:38:52,769][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_460.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:53,176][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:53,181][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 465 (38.95s)	Average loss=0.005942	Dev F1=100.00
+[2019-04-03 21:38:53,185][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_465.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:53,590][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:53,595][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 470 (39.37s)	Average loss=0.004867	Dev F1=100.00
+[2019-04-03 21:38:53,599][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_470.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:54,006][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:54,011][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 475 (39.78s)	Average loss=0.004426	Dev F1=100.00
+[2019-04-03 21:38:54,015][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_475.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:54,412][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:54,418][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 480 (40.19s)	Average loss=0.004963	Dev F1=100.00
+[2019-04-03 21:38:54,421][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_480.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:54,828][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:54,834][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 485 (40.60s)	Average loss=0.004989	Dev F1=100.00
+[2019-04-03 21:38:54,838][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_485.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:55,238][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:55,244][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 490 (41.02s)	Average loss=0.005937	Dev F1=100.00
+[2019-04-03 21:38:55,247][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_490.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:55,660][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:55,666][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 495 (41.42s)	Average loss=0.004451	Dev F1=100.00
+[2019-04-03 21:38:55,670][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_495.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:56,068][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-03 21:38:56,073][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 500 (41.84s)	Average loss=0.005864	Dev F1=100.00
+[2019-04-03 21:38:56,077][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_500.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:56,077][INFO] fonduer.learning.classifier:327 - [SparseLogisticRegression] Training done (41.91s)
+[2019-04-03 21:38:56,077][INFO] fonduer.learning.classifier:330 - Loading best checkpoint
+[2019-04-03 21:38:56,082][INFO] fonduer.learning.classifier:546 - [SparseLogisticRegression] Model loaded as best_model.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-03_21-38-09_SparseLogisticRegression
+[2019-04-03 21:38:56,082][INFO] __main__:177 - Done.
+[2019-04-03 21:38:56,083][INFO] __main__:260 - Calculating the best F1 score and threshold (b)...
+[2019-04-03 21:49:51,238][INFO] __main__:281 - (0.000), f1:0.194 p:0.109 r:0.912
+[2019-04-03 21:49:52,780][INFO] __main__:281 - (0.020), f1:0.447 p:0.300 r:0.877
+[2019-04-03 21:49:53,815][INFO] __main__:281 - (0.041), f1:0.549 p:0.400 r:0.877
+[2019-04-03 21:49:54,631][INFO] __main__:281 - (0.061), f1:0.621 p:0.483 r:0.868
+[2019-04-03 21:49:55,310][INFO] __main__:281 - (0.082), f1:0.656 p:0.530 r:0.860
+[2019-04-03 21:49:55,931][INFO] __main__:281 - (0.102), f1:0.676 p:0.565 r:0.842
+[2019-04-03 21:49:56,496][INFO] __main__:281 - (0.122), f1:0.704 p:0.609 r:0.833
+[2019-04-03 21:49:57,025][INFO] __main__:281 - (0.143), f1:0.722 p:0.638 r:0.833
+[2019-04-03 21:49:57,525][INFO] __main__:281 - (0.163), f1:0.732 p:0.664 r:0.816
+[2019-04-03 21:49:58,031][INFO] __main__:281 - (0.184), f1:0.744 p:0.684 r:0.816
+[2019-04-03 21:49:58,522][INFO] __main__:281 - (0.204), f1:0.742 p:0.687 r:0.807
+[2019-04-03 21:49:58,990][INFO] __main__:281 - (0.224), f1:0.743 p:0.695 r:0.798
+[2019-04-03 21:49:59,448][INFO] __main__:281 - (0.245), f1:0.747 p:0.709 r:0.789
+[2019-04-03 21:49:59,904][INFO] __main__:281 - (0.265), f1:0.750 p:0.714 r:0.789
+[2019-04-03 21:50:00,372][INFO] __main__:281 - (0.286), f1:0.757 p:0.736 r:0.781
+[2019-04-03 21:50:00,824][INFO] __main__:281 - (0.306), f1:0.750 p:0.737 r:0.763
+[2019-04-03 21:50:01,264][INFO] __main__:281 - (0.327), f1:0.751 p:0.748 r:0.754
+[2019-04-03 21:50:01,696][INFO] __main__:281 - (0.347), f1:0.758 p:0.761 r:0.754
+[2019-04-03 21:50:02,147][INFO] __main__:281 - (0.367), f1:0.750 p:0.764 r:0.737
+[2019-04-03 21:50:02,584][INFO] __main__:281 - (0.388), f1:0.753 p:0.771 r:0.737
+[2019-04-03 21:50:03,007][INFO] __main__:281 - (0.408), f1:0.748 p:0.769 r:0.728
+[2019-04-03 21:50:03,416][INFO] __main__:281 - (0.429), f1:0.736 p:0.764 r:0.711
+[2019-04-03 21:50:03,822][INFO] __main__:281 - (0.449), f1:0.736 p:0.764 r:0.711
+[2019-04-03 21:50:04,225][INFO] __main__:281 - (0.469), f1:0.725 p:0.760 r:0.693
+[2019-04-03 21:50:04,628][INFO] __main__:281 - (0.490), f1:0.728 p:0.767 r:0.693
+[2019-04-03 21:50:05,043][INFO] __main__:281 - (0.510), f1:0.728 p:0.767 r:0.693
+[2019-04-03 21:50:05,444][INFO] __main__:281 - (0.531), f1:0.722 p:0.765 r:0.684
+[2019-04-03 21:50:05,836][INFO] __main__:281 - (0.551), f1:0.720 p:0.770 r:0.675
+[2019-04-03 21:50:06,223][INFO] __main__:281 - (0.571), f1:0.708 p:0.765 r:0.658
+[2019-04-03 21:50:06,606][INFO] __main__:281 - (0.592), f1:0.711 p:0.773 r:0.658
+[2019-04-03 21:50:06,981][INFO] __main__:281 - (0.612), f1:0.711 p:0.773 r:0.658
+[2019-04-03 21:50:07,358][INFO] __main__:281 - (0.633), f1:0.705 p:0.771 r:0.649
+[2019-04-03 21:50:07,733][INFO] __main__:281 - (0.653), f1:0.705 p:0.771 r:0.649
+[2019-04-03 21:50:08,115][INFO] __main__:281 - (0.673), f1:0.702 p:0.777 r:0.640
+[2019-04-03 21:50:08,550][INFO] __main__:281 - (0.694), f1:0.696 p:0.774 r:0.632
+[2019-04-03 21:50:08,922][INFO] __main__:281 - (0.714), f1:0.689 p:0.772 r:0.623
+[2019-04-03 21:50:09,288][INFO] __main__:281 - (0.735), f1:0.689 p:0.772 r:0.623
+[2019-04-03 21:50:09,641][INFO] __main__:281 - (0.755), f1:0.689 p:0.772 r:0.623
+[2019-04-03 21:50:09,991][INFO] __main__:281 - (0.776), f1:0.676 p:0.767 r:0.605
+[2019-04-03 21:50:10,335][INFO] __main__:281 - (0.796), f1:0.657 p:0.759 r:0.579
+[2019-04-03 21:50:10,679][INFO] __main__:281 - (0.816), f1:0.657 p:0.759 r:0.579
+[2019-04-03 21:50:11,017][INFO] __main__:281 - (0.837), f1:0.629 p:0.747 r:0.544
+[2019-04-03 21:50:11,363][INFO] __main__:281 - (0.857), f1:0.629 p:0.747 r:0.544
+[2019-04-03 21:50:11,696][INFO] __main__:281 - (0.878), f1:0.636 p:0.765 r:0.544
+[2019-04-03 21:50:12,014][INFO] __main__:281 - (0.898), f1:0.611 p:0.763 r:0.509
+[2019-04-03 21:50:12,317][INFO] __main__:281 - (0.918), f1:0.616 p:0.803 r:0.500
+[2019-04-03 21:50:12,617][INFO] __main__:281 - (0.939), f1:0.601 p:0.797 r:0.482
+[2019-04-03 21:50:12,874][INFO] __main__:281 - (0.959), f1:0.430 p:0.773 r:0.298
+[2019-04-03 21:50:13,088][INFO] __main__:281 - (0.980), f1:0.288 p:0.800 r:0.175
+[2019-04-03 21:50:13,099][INFO] hack.opamps.opamp_utils:18 - ===================================================
+[2019-04-03 21:50:13,099][INFO] hack.opamps.opamp_utils:19 - Scoring on Entity-Level Gold Data w/ b=0.347
+[2019-04-03 21:50:13,099][INFO] hack.opamps.opamp_utils:20 - ===================================================
+[2019-04-03 21:50:13,099][INFO] hack.opamps.opamp_utils:21 - Corpus Precision 0.761
+[2019-04-03 21:50:13,099][INFO] hack.opamps.opamp_utils:22 - Corpus Recall    0.754
+[2019-04-03 21:50:13,099][INFO] hack.opamps.opamp_utils:23 - Corpus F1        0.758
+[2019-04-03 21:50:13,099][INFO] hack.opamps.opamp_utils:24 - ---------------------------------------------------
+[2019-04-03 21:50:13,099][INFO] hack.opamps.opamp_utils:26 - TP: 86 | FP: 27 | FN: 28
+[2019-04-03 21:50:13,100][INFO] hack.opamps.opamp_utils:30 - ===================================================
+
+[2019-04-04 04:02:32,498][INFO] __main__:424 - 
+                                           j Polarity  Coverage  Overlaps  Conflicts  Correct  Incorrect  Emp. Acc.
+LabelKey (neg_current_keywords_in_column)  0        2  0.629198  0.622481   0.485446     1335         70   0.950178
+LabelKey (neg_current_keywords_in_row)     1        2  0.450515  0.406180   0.338110      991         15   0.985089
+LabelKey (neg_current_keywords_in_vert)    2        2  0.585311  0.579937   0.462159     1239         68   0.947972
+LabelKey (neg_low_page_num)                3        2  0.172414  0.171070   0.154948      345         40   0.896104
+LabelKey (pos_current)                     4        1  0.411106  0.394089   0.330497      150        768   0.163399
+LabelKey (pos_current_typ)                 5        1  0.459919  0.434841   0.391850      136        891   0.132425
+LabelKey (pos_current_units)               6        1  0.405732  0.399463   0.334080      154        752   0.169978
+LabelKey (pos_sen_lf)                      7       []  0.000000  0.000000   0.000000        0          0        NaN
+[2019-04-04 04:02:32,499][INFO] __main__:145 - Training generative model for...
+[2019-04-04 04:02:33,287][INFO] __main__:147 - Done.
+[2019-04-04 04:02:33,472][INFO] __main__:160 - Training discriminative model...
+[2019-04-04 04:02:33,474][INFO] fonduer.learning.classifier:142 - Loading default parameters for Sparse Logistic Regression
+[2019-04-04 04:02:33,498][INFO] fonduer.learning.classifier:213 - Using GPU...
+[2019-04-04 04:02:33,499][INFO] fonduer.learning.classifier:215 - Settings: {'log_dir': 'hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression', 'n_epochs': 100, 'lr': 0.001, 'batch_size': 256, 'shuffle': True, 'seed': 1234, 'host_device': 'GPU', 'bias': False, 'input_dim': 189516}
+[2019-04-04 04:02:33,528][INFO] fonduer.learning.classifier:233 - [SparseLogisticRegression] Training model
+[2019-04-04 04:02:33,528][INFO] fonduer.learning.classifier:235 - [SparseLogisticRegression] n_train=2233 #epochs=100 batch size=256
+[2019-04-04 04:02:34,933][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:34,945][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 5 (1.12s)	Average loss=0.186143	Dev F1=15.91
+[2019-04-04 04:02:34,950][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_5.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:36,179][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:36,191][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 10 (2.46s)	Average loss=0.127340	Dev F1=47.89
+[2019-04-04 04:02:36,196][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_10.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:37,453][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:37,468][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 15 (3.69s)	Average loss=0.096261	Dev F1=73.44
+[2019-04-04 04:02:37,473][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_15.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:38,787][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:38,799][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 20 (5.03s)	Average loss=0.076269	Dev F1=85.92
+[2019-04-04 04:02:38,803][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_20.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:40,086][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:40,098][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 25 (6.32s)	Average loss=0.062335	Dev F1=90.54
+[2019-04-04 04:02:40,102][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_25.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:41,421][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:41,432][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 30 (7.61s)	Average loss=0.051974	Dev F1=92.05
+[2019-04-04 04:02:41,436][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_30.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:42,786][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:42,799][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 35 (8.94s)	Average loss=0.044622	Dev F1=94.16
+[2019-04-04 04:02:42,803][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_35.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:44,091][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:44,103][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 40 (10.33s)	Average loss=0.038457	Dev F1=97.16
+[2019-04-04 04:02:44,107][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_40.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:45,366][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:45,378][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 45 (11.60s)	Average loss=0.033498	Dev F1=98.76
+[2019-04-04 04:02:45,382][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_45.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:46,573][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:46,584][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 50 (12.87s)	Average loss=0.029860	Dev F1=98.76
+[2019-04-04 04:02:46,588][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_50.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:47,781][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:47,792][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 55 (14.08s)	Average loss=0.026760	Dev F1=99.07
+[2019-04-04 04:02:47,817][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_55.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:49,032][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:49,043][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 60 (15.33s)	Average loss=0.023825	Dev F1=99.07
+[2019-04-04 04:02:49,062][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_60.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:50,374][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:50,386][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 65 (16.57s)	Average loss=0.021819	Dev F1=99.38
+[2019-04-04 04:02:50,390][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_65.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:51,607][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:51,618][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 70 (17.90s)	Average loss=0.019593	Dev F1=99.38
+[2019-04-04 04:02:51,623][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_70.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:52,876][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:52,888][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 75 (19.12s)	Average loss=0.018263	Dev F1=99.38
+[2019-04-04 04:02:52,892][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_75.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:54,189][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:54,206][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 80 (20.39s)	Average loss=0.016645	Dev F1=99.38
+[2019-04-04 04:02:54,214][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_80.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:54,214][INFO] fonduer.learning.classifier:305 - Saving best checkpoint hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression/checkpoint_epoch_80.pt.
+[2019-04-04 04:02:55,507][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:55,519][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 85 (21.73s)	Average loss=0.015373	Dev F1=99.38
+[2019-04-04 04:02:55,523][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_85.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:56,800][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:56,811][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 90 (23.10s)	Average loss=0.014183	Dev F1=99.38
+[2019-04-04 04:02:56,815][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_90.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:58,031][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:58,042][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 95 (24.33s)	Average loss=0.013226	Dev F1=99.69
+[2019-04-04 04:02:58,046][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_95.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:58,046][INFO] fonduer.learning.classifier:305 - Saving best checkpoint hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression/checkpoint_epoch_95.pt.
+[2019-04-04 04:02:59,303][INFO] fonduer.learning.classifier:403 - Using positive label class 1 with threshold 0.5
+[2019-04-04 04:02:59,315][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 100 (25.60s)	Average loss=0.012234	Dev F1=99.69
+[2019-04-04 04:02:59,319][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_100.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:59,319][INFO] fonduer.learning.classifier:327 - [SparseLogisticRegression] Training done (25.79s)
+[2019-04-04 04:02:59,319][INFO] fonduer.learning.classifier:330 - Loading best checkpoint
+[2019-04-04 04:02:59,323][INFO] fonduer.learning.classifier:546 - [SparseLogisticRegression] Model loaded as best_model.pt in hack/opamps/logs/2019-04-02_19-52-53/2019-04-04_04-02-33_SparseLogisticRegression
+[2019-04-04 04:02:59,327][INFO] __main__:177 - Done.
+[2019-04-04 04:02:59,327][INFO] __main__:260 - Calculating the best F1 score and threshold (b)...
+[2019-04-04 04:13:07,825][INFO] __main__:281 - (0.000), f1:0.145 p:0.078 r:0.937
+[2019-04-04 04:13:10,979][INFO] __main__:281 - (0.020), f1:0.336 p:0.206 r:0.917
+[2019-04-04 04:13:13,021][INFO] __main__:281 - (0.041), f1:0.417 p:0.274 r:0.878
+[2019-04-04 04:13:14,544][INFO] __main__:281 - (0.061), f1:0.470 p:0.325 r:0.854
+[2019-04-04 04:13:15,783][INFO] __main__:281 - (0.082), f1:0.509 p:0.369 r:0.820
+[2019-04-04 04:13:16,890][INFO] __main__:281 - (0.102), f1:0.534 p:0.401 r:0.800
+[2019-04-04 04:13:17,910][INFO] __main__:281 - (0.122), f1:0.540 p:0.418 r:0.766
+[2019-04-04 04:13:18,836][INFO] __main__:281 - (0.143), f1:0.542 p:0.436 r:0.717
+[2019-04-04 04:13:19,694][INFO] __main__:281 - (0.163), f1:0.556 p:0.460 r:0.702
+[2019-04-04 04:13:20,524][INFO] __main__:281 - (0.184), f1:0.567 p:0.480 r:0.693
+[2019-04-04 04:13:21,289][INFO] __main__:281 - (0.204), f1:0.552 p:0.480 r:0.649
+[2019-04-04 04:13:22,007][INFO] __main__:281 - (0.224), f1:0.563 p:0.504 r:0.639
+[2019-04-04 04:13:22,688][INFO] __main__:281 - (0.245), f1:0.570 p:0.527 r:0.620
+[2019-04-04 04:13:23,346][INFO] __main__:281 - (0.265), f1:0.570 p:0.539 r:0.605
+[2019-04-04 04:13:23,982][INFO] __main__:281 - (0.286), f1:0.563 p:0.543 r:0.585
+[2019-04-04 04:13:24,592][INFO] __main__:281 - (0.306), f1:0.562 p:0.564 r:0.561
+[2019-04-04 04:13:25,175][INFO] __main__:281 - (0.327), f1:0.568 p:0.585 r:0.551
+[2019-04-04 04:13:25,735][INFO] __main__:281 - (0.347), f1:0.563 p:0.599 r:0.532
+[2019-04-04 04:13:26,270][INFO] __main__:281 - (0.367), f1:0.561 p:0.613 r:0.517
+[2019-04-04 04:13:26,786][INFO] __main__:281 - (0.388), f1:0.555 p:0.620 r:0.502
+[2019-04-04 04:13:27,280][INFO] __main__:281 - (0.408), f1:0.545 p:0.627 r:0.483
+[2019-04-04 04:13:27,763][INFO] __main__:281 - (0.429), f1:0.542 p:0.634 r:0.473
+[2019-04-04 04:13:28,229][INFO] __main__:281 - (0.449), f1:0.526 p:0.634 r:0.449
+[2019-04-04 04:13:28,674][INFO] __main__:281 - (0.469), f1:0.523 p:0.647 r:0.439
+[2019-04-04 04:13:29,105][INFO] __main__:281 - (0.490), f1:0.519 p:0.669 r:0.424
+[2019-04-04 04:13:29,526][INFO] __main__:281 - (0.510), f1:0.514 p:0.675 r:0.415
+[2019-04-04 04:13:29,941][INFO] __main__:281 - (0.531), f1:0.508 p:0.680 r:0.405
+[2019-04-04 04:13:30,341][INFO] __main__:281 - (0.551), f1:0.506 p:0.689 r:0.400
+[2019-04-04 04:13:30,725][INFO] __main__:281 - (0.571), f1:0.495 p:0.693 r:0.385
+[2019-04-04 04:13:31,099][INFO] __main__:281 - (0.592), f1:0.487 p:0.710 r:0.371
+[2019-04-04 04:13:31,467][INFO] __main__:281 - (0.612), f1:0.481 p:0.718 r:0.361
+[2019-04-04 04:13:31,830][INFO] __main__:281 - (0.633), f1:0.480 p:0.737 r:0.356
+[2019-04-04 04:13:32,170][INFO] __main__:281 - (0.653), f1:0.454 p:0.767 r:0.322
+[2019-04-04 04:13:32,500][INFO] __main__:281 - (0.673), f1:0.460 p:0.805 r:0.322
+[2019-04-04 04:13:32,819][INFO] __main__:281 - (0.694), f1:0.448 p:0.829 r:0.307
+[2019-04-04 04:13:33,125][INFO] __main__:281 - (0.714), f1:0.422 p:0.829 r:0.283
+[2019-04-04 04:13:33,426][INFO] __main__:281 - (0.735), f1:0.406 p:0.833 r:0.268
+[2019-04-04 04:13:33,713][INFO] __main__:281 - (0.755), f1:0.385 p:0.850 r:0.249
+[2019-04-04 04:13:33,990][INFO] __main__:281 - (0.776), f1:0.364 p:0.887 r:0.229
+[2019-04-04 04:13:34,258][INFO] __main__:281 - (0.796), f1:0.341 p:0.915 r:0.210
+[2019-04-04 04:13:34,518][INFO] __main__:281 - (0.816), f1:0.308 p:0.905 r:0.185
+[2019-04-04 04:13:34,764][INFO] __main__:281 - (0.837), f1:0.280 p:0.895 r:0.166
+[2019-04-04 04:13:35,003][INFO] __main__:281 - (0.857), f1:0.261 p:0.939 r:0.151
+[2019-04-04 04:13:35,225][INFO] __main__:281 - (0.878), f1:0.192 p:0.917 r:0.107
+[2019-04-04 04:13:35,441][INFO] __main__:281 - (0.898), f1:0.185 p:0.955 r:0.102
+[2019-04-04 04:13:35,645][INFO] __main__:281 - (0.918), f1:0.144 p:0.941 r:0.078
+[2019-04-04 04:13:35,845][INFO] __main__:281 - (0.939), f1:0.110 p:0.923 r:0.059
+[2019-04-04 04:13:36,029][INFO] __main__:281 - (0.959), f1:0.029 p:0.750 r:0.015
+[2019-04-04 04:13:36,055][INFO] hack.opamps.opamp_utils:18 - ===================================================
+[2019-04-04 04:13:36,055][INFO] hack.opamps.opamp_utils:19 - Scoring on Entity-Level Gold Data w/ b=0.265
+[2019-04-04 04:13:36,055][INFO] hack.opamps.opamp_utils:20 - ===================================================
+[2019-04-04 04:13:36,055][INFO] hack.opamps.opamp_utils:21 - Corpus Precision 0.539
+[2019-04-04 04:13:36,055][INFO] hack.opamps.opamp_utils:22 - Corpus Recall    0.605
+[2019-04-04 04:13:36,055][INFO] hack.opamps.opamp_utils:23 - Corpus F1        0.570
+[2019-04-04 04:13:36,055][INFO] hack.opamps.opamp_utils:24 - ---------------------------------------------------
+[2019-04-04 04:13:36,055][INFO] hack.opamps.opamp_utils:26 - TP: 124 | FP: 106 | FN: 81
+[2019-04-04 04:13:36,055][INFO] hack.opamps.opamp_utils:30 - ===================================================
+

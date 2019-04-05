@@ -8,6 +8,10 @@ html/
 *.pkl
 pip-wheel-metadata/
 
+# Logs
+logs/
+run_logs/
+checkpoints/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

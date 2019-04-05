@@ -3,11 +3,10 @@ import logging
 import os
 import pdb
 import pickle
-from pprint import pformat
 
 import matplotlib.pyplot as plt
 import numpy as np
-from fonduer import Meta
+from fonduer import Meta, init_logging
 from fonduer.candidates import CandidateExtractor, MentionExtractor, MentionNgrams
 from fonduer.candidates.models import Mention, candidate_subclass, mention_subclass
 from fonduer.features import Featurizer
@@ -24,23 +23,14 @@ from hack.opamps.opamp_utils import (
     Score,
     cand_to_entity,
     entity_level_scores,
-    entity_to_candidates,
     get_gold_set,
     print_scores,
 )
 from hack.utils import parse_dataset
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 # Configure logging for Hack
-logging.basicConfig(
-    format="[%(asctime)s][%(levelname)s] %(name)s:%(lineno)s - %(message)s",
-    level=logging.INFO,
-    handlers=[
-        logging.FileHandler(os.path.join(os.path.dirname(__file__), f"opamps.log")),
-        logging.StreamHandler(),
-    ],
-)
 logger = logging.getLogger(__name__)
 
 
@@ -206,10 +196,13 @@ def labeling(
 
 
 def output_csv(cands, Y_prob, is_gain=True, append=False):
+    dirname = os.path.dirname(__file__)
     if is_gain:
         filename = "output_gain.csv"
     else:
         filename = "output_current.csv"
+    filename = os.path.join(dirname, filename)
+
     if append:
         with open(filename, "a") as csvfile:
             writer = csv.writer(csvfile)
@@ -217,11 +210,21 @@ def output_csv(cands, Y_prob, is_gain=True, append=False):
                 for entity in cand_to_entity(c, is_gain=is_gain):
                     if is_gain:
                         writer.writerow(
-                            [entity[0], entity[1].real / 1e3, c[0].context.sentence.position, Y_prob[i][TRUE - 1]]
+                            [
+                                entity[0],
+                                entity[1].real / 1e3,
+                                c[0].context.sentence.position,
+                                Y_prob[i][TRUE - 1],
+                            ]
                         )
                     else:
                         writer.writerow(
-                            [entity[0], entity[1].real * 1e6, c[0].context.sentence.position, Y_prob[i][TRUE - 1]]
+                            [
+                                entity[0],
+                                entity[1].real * 1e6,
+                                c[0].context.sentence.position,
+                                Y_prob[i][TRUE - 1],
+                            ]
                         )
     else:
         with open(filename, "w") as csvfile:
@@ -235,11 +238,21 @@ def output_csv(cands, Y_prob, is_gain=True, append=False):
                 for entity in cand_to_entity(c, is_gain=is_gain):
                     if is_gain:
                         writer.writerow(
-                            [entity[0], entity[1].real / 1e3, c[0].context.sentence.position, Y_prob[i][TRUE - 1]]
+                            [
+                                entity[0],
+                                entity[1].real / 1e3,
+                                c[0].context.sentence.position,
+                                Y_prob[i][TRUE - 1],
+                            ]
                         )
                     else:
                         writer.writerow(
-                            [entity[0], entity[1].real * 1e6, c[0].context.sentence.position, Y_prob[i][TRUE - 1]]
+                            [
+                                entity[0],
+                                entity[1].real * 1e6,
+                                c[0].context.sentence.position,
+                                Y_prob[i][TRUE - 1],
+                            ]
                         )
 
 
@@ -276,15 +289,12 @@ def scoring(disc_model, cands, docs, F_mat, is_gain=True, num=100):
 
 
 def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, parallel=1):
+    dirname = os.path.dirname(__file__)
+    init_logging(log_dir=os.path.join(dirname, "logs"))
     session = Meta.init(conn_string).Session()
     docs, train_docs, dev_docs, test_docs = parsing(
         session, first_time=parse, parallel=parallel, max_docs=max_docs
     )
-
-    train_docs = list(train_docs)[:500]
-    dev_docs = list(dev_docs)[:500]
-    test_docs = list(test_docs)[:500]
-    docs = train_docs + dev_docs + test_docs
 
     logger.info(f"# of Documents: {len(docs)}")
     logger.info(f"# of train Documents: {len(train_docs)}")
@@ -292,14 +302,14 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
     logger.info(f"# of test Documents: {len(test_docs)}")
 
     (Gain, Current) = mention_extraction(
-        session, docs, first_time=False, parallel=parallel
+        session, docs, first_time=first_time, parallel=parallel
     )
 
     (GainCand, CurrentCand), candidate_extractor = candidate_extraction(
         session,
         (Gain, Current),
         (train_docs, dev_docs, test_docs),
-        first_time=False,
+        first_time=first_time,
         parallel=parallel,
     )
     train_cands = candidate_extractor.get_candidates(split=0)
@@ -342,7 +352,7 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         split=0,
         lfs=[gain_lfs, current_lfs],
         train=True,
-        first_time=False,
+        first_time=first_time,
         parallel=parallel,
     )
     logger.info("Done.")
@@ -354,7 +364,7 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
         split=1,
         lfs=[gain_lfs, current_lfs],
         train=False,
-        first_time=False,
+        first_time=first_time,
         parallel=parallel,
     )
 
@@ -442,12 +452,12 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
 
 
 if __name__ == "__main__":
-    parallel = 4
-    component = "opamps_full"
+    parallel = 16
+    component = "opamps_test"
     conn_string = f"postgresql:///{component}"
     first_time = True
-    parse = False
-    max_docs = 500
+    parse = True
+    max_docs = float("inf")
     logger.info(f"\n\n")
     logger.info(f"=" * 30)
     logger.info(
