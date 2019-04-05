@@ -1,0 +1,755 @@
+[2019-04-04 15:35:34,898][INFO] fonduer.meta:50 - Setting logging directory to: logs/2019-04-04_15-35-34
+[2019-04-04 15:35:34,938][INFO] fonduer.meta:134 - Connecting user:None to None:None/transistors_luke
+[2019-04-04 15:35:34,939][INFO] fonduer.meta:161 - Initializing the storage schema
+[2019-04-04 15:35:35,477][INFO] hack.utils.utils:41 - Parsing dev...
+[2019-04-04 15:35:48,648][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-04 15:38:47,764][INFO] hack.utils.utils:41 - Parsing test...
+[2019-04-04 15:38:56,562][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-04 15:40:46,890][INFO] hack.utils.utils:41 - Parsing train...
+[2019-04-04 15:53:51,983][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-04 16:20:18,770][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2019-04-04 16:20:19,107][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2019-04-04 16:20:19,452][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2019-04-04 16:20:19,843][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2019-04-04 16:20:20,217][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2019-04-04 16:20:20,597][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2019-04-04 16:20:20,969][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2019-04-04 16:20:21,310][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2019-04-04 16:20:21,695][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2019-04-04 18:19:01,362][INFO] __main__:65 - # of train Documents: 6770
+[2019-04-04 18:19:01,363][INFO] __main__:66 - # of dev Documents: 120
+[2019-04-04 18:19:01,364][INFO] __main__:67 - # of test Documents: 75
+[2019-04-04 18:19:01,504][INFO] __main__:69 - Documents: 6965
+[2019-04-04 18:19:01,634][INFO] __main__:70 - Sections: 6965
+[2019-04-04 18:19:09,251][INFO] __main__:71 - Paragraphs: 3511406
+[2019-04-04 18:19:40,751][INFO] __main__:72 - Sentences: 3646310
+[2019-04-04 18:19:47,134][INFO] __main__:73 - Figures: 216817
+[2019-04-04 18:19:47,319][INFO] fonduer.candidates.mentions:460 - Clearing table: part
+[2019-04-04 18:19:47,579][INFO] fonduer.candidates.mentions:460 - Clearing table: stg_temp_min
+[2019-04-04 18:19:47,580][INFO] fonduer.candidates.mentions:460 - Clearing table: stg_temp_max
+[2019-04-04 18:19:47,582][INFO] fonduer.candidates.mentions:460 - Clearing table: polarity
+[2019-04-04 18:19:47,583][INFO] fonduer.candidates.mentions:460 - Clearing table: ce_v_max
+[2019-04-04 18:19:47,591][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-04 20:53:05,223][INFO] __main__:144 - Total Mentions: 220243
+[2019-04-04 20:53:05,363][INFO] __main__:145 - Total Part: 103600
+[2019-04-04 20:53:05,419][INFO] __main__:146 - Total StgTempMin: 21306
+[2019-04-04 20:53:05,480][INFO] __main__:147 - Total StgTempMax: 59740
+[2019-04-04 20:53:05,524][INFO] __main__:148 - Total Polarity: 25173
+[2019-04-04 20:53:05,563][INFO] __main__:149 - Total CeVMax: 10424
+[2019-04-04 20:53:05,726][INFO] fonduer.candidates.candidates:125 - Clearing table part_stg_temp_min (split 0)
+[2019-04-04 20:53:05,806][INFO] fonduer.candidates.candidates:125 - Clearing table part_stg_temp_max (split 0)
+[2019-04-04 20:53:05,808][INFO] fonduer.candidates.candidates:125 - Clearing table part_polarity (split 0)
+[2019-04-04 20:53:05,810][INFO] fonduer.candidates.candidates:125 - Clearing table part_ce_v_max (split 0)
+[2019-04-04 20:53:05,826][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-04 22:00:23,328][INFO] __main__:206 - Candidates in split=0: 1571617
+[2019-04-04 22:00:23,339][INFO] fonduer.candidates.candidates:125 - Clearing table part_stg_temp_min (split 1)
+[2019-04-04 22:00:23,345][INFO] fonduer.candidates.candidates:125 - Clearing table part_stg_temp_max (split 1)
+[2019-04-04 22:00:23,346][INFO] fonduer.candidates.candidates:125 - Clearing table part_polarity (split 1)
+[2019-04-04 22:00:23,348][INFO] fonduer.candidates.candidates:125 - Clearing table part_ce_v_max (split 1)
+[2019-04-04 22:00:23,351][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-04 22:02:30,534][INFO] __main__:206 - Candidates in split=1: 51864
+[2019-04-04 22:02:30,534][INFO] fonduer.candidates.candidates:125 - Clearing table part_stg_temp_min (split 2)
+[2019-04-04 22:02:30,536][INFO] fonduer.candidates.candidates:125 - Clearing table part_stg_temp_max (split 2)
+[2019-04-04 22:02:30,538][INFO] fonduer.candidates.candidates:125 - Clearing table part_polarity (split 2)
+[2019-04-04 22:02:30,540][INFO] fonduer.candidates.candidates:125 - Clearing table part_ce_v_max (split 2)
+[2019-04-04 22:02:30,543][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-04 22:03:19,882][INFO] __main__:206 - Candidates in split=2: 4983
+[2019-04-04 22:04:04,810][INFO] __main__:212 - Total train candidate: 174710
+[2019-04-04 22:04:04,810][INFO] __main__:213 - Total dev candidate: 7268
+[2019-04-04 22:04:04,811][INFO] __main__:214 - Total test candidate: 566
+[2019-04-04 22:04:04,812][INFO] __main__:431 - stg_temp_min
+[2019-04-04 22:04:15,286][INFO] __main__:437 - Gain Total Dev Recall: 0.689
+[2019-04-04 22:04:17,240][INFO] __main__:443 - Gain Total Test Recall: 0.588
+[2019-04-04 22:04:17,240][INFO] __main__:431 - stg_temp_max
+[2019-04-04 22:04:23,206][INFO] __main__:437 - Gain Total Dev Recall: 0.815
+[2019-04-04 22:04:24,943][INFO] __main__:443 - Gain Total Test Recall: 0.692
+[2019-04-04 22:04:24,943][INFO] __main__:431 - polarity
+[2019-04-04 22:04:31,295][INFO] __main__:437 - Gain Total Dev Recall: 0.898
+[2019-04-04 22:04:34,199][INFO] __main__:443 - Gain Total Test Recall: 0.922
+[2019-04-04 22:04:34,200][INFO] __main__:431 - ce_v_max
+[2019-04-04 22:04:36,134][INFO] __main__:437 - Gain Total Dev Recall: 0.860
+[2019-04-04 22:04:37,170][INFO] __main__:443 - Gain Total Test Recall: 0.768
+[2019-04-04 22:04:37,170][INFO] __main__:259 - Starting featurizer...
+[2019-04-04 22:05:45,054][INFO] fonduer.features.featurizer:190 - Clearing Features (split 0)
+[2019-04-04 22:05:45,077][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-05 04:30:48,899][INFO] fonduer.features.featurizer:190 - Clearing Features (split 1)
+[2019-04-05 04:30:49,165][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-05 04:41:33,331][INFO] fonduer.features.featurizer:190 - Clearing Features (split 2)
+[2019-04-05 04:41:33,364][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-05 04:46:06,334][INFO] __main__:263 - Done
+[2019-04-05 04:46:06,338][INFO] __main__:265 - Getting feature matrices...
+[2019-04-05 05:46:47,972][INFO] __main__:277 - Done.
+[2019-04-05 05:46:47,972][INFO] __main__:280 - <class 'fonduer.candidates.models.candidate.PartStgTempMin'> Train shape: (174710, 328833)
+[2019-04-05 05:46:47,973][INFO] __main__:281 - <class 'fonduer.candidates.models.candidate.PartStgTempMin'> Test shape: (566, 328833)
+[2019-04-05 05:46:47,973][INFO] __main__:282 - <class 'fonduer.candidates.models.candidate.PartStgTempMin'> Dev shape: (7268, 328833)
+[2019-04-05 05:46:47,973][INFO] __main__:280 - <class 'fonduer.candidates.models.candidate.PartStgTempMax'> Train shape: (639900, 328833)
+[2019-04-05 05:46:47,973][INFO] __main__:281 - <class 'fonduer.candidates.models.candidate.PartStgTempMax'> Test shape: (1621, 328833)
+[2019-04-05 05:46:47,973][INFO] __main__:282 - <class 'fonduer.candidates.models.candidate.PartStgTempMax'> Dev shape: (25456, 328833)
+[2019-04-05 05:46:47,974][INFO] __main__:280 - <class 'fonduer.candidates.models.candidate.PartPolarity'> Train shape: (544801, 328833)
+[2019-04-05 05:46:47,974][INFO] __main__:281 - <class 'fonduer.candidates.models.candidate.PartPolarity'> Test shape: (2007, 328833)
+[2019-04-05 05:46:47,974][INFO] __main__:282 - <class 'fonduer.candidates.models.candidate.PartPolarity'> Dev shape: (12717, 328833)
+[2019-04-05 05:46:47,974][INFO] __main__:280 - <class 'fonduer.candidates.models.candidate.PartCeVMax'> Train shape: (212206, 328833)
+[2019-04-05 05:46:47,974][INFO] __main__:281 - <class 'fonduer.candidates.models.candidate.PartCeVMax'> Test shape: (789, 328833)
+[2019-04-05 05:46:47,975][INFO] __main__:282 - <class 'fonduer.candidates.models.candidate.PartCeVMax'> Dev shape: (6423, 328833)
+[2019-04-05 05:46:47,975][INFO] __main__:458 - Labeling training data...
+[2019-04-05 05:46:47,975][INFO] __main__:299 - Applying LFs...
+[2019-04-05 05:48:05,021][INFO] fonduer.supervision.labeler:219 - Clearing Labels (split 0)
+[2019-04-05 05:48:05,049][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-05 08:47:41,832][INFO] __main__:301 - Done...
+[2019-04-05 08:47:41,852][INFO] __main__:303 - Getting label matrices...
+[2019-04-05 09:42:42,081][INFO] __main__:306 - Done.
+[2019-04-05 09:42:42,081][INFO] __main__:307 - L_mat shape: (174710, 44)
+[2019-04-05 09:42:42,081][INFO] __main__:308 - L_gold shape: (174710, 1)
+[2019-04-05 09:42:42,088][INFO] __main__:469 - Done.
+[2019-04-05 09:42:42,123][INFO] __main__:316 - Training generative model...
+[2019-04-05 09:42:45,491][INFO] __main__:318 - Done.
+[2019-04-05 09:42:45,906][INFO] __main__:327 - Training discriminative model...
+[2019-04-05 09:42:45,945][INFO] fonduer.learning.classifier:142 - Loading default parameters for Sparse Logistic Regression
+[2019-04-05 09:42:46,571][INFO] fonduer.learning.classifier:213 - Using GPU...
+[2019-04-05 09:42:46,572][INFO] fonduer.learning.classifier:215 - Settings: {'log_dir': 'logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression', 'n_epochs': 100, 'lr': 0.001, 'batch_size': 256, 'shuffle': True, 'seed': 1234, 'host_device': 'GPU', 'bias': False, 'input_dim': 328834}
+[2019-04-05 09:42:52,773][INFO] fonduer.learning.classifier:233 - [SparseLogisticRegression] Training model
+[2019-04-05 09:42:52,773][INFO] fonduer.learning.classifier:235 - [SparseLogisticRegression] n_train=174710 #epochs=100 batch size=256
+[2019-04-05 09:45:15,661][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 5 (142.89s)	Average loss=0.138383
+[2019-04-05 09:45:15,668][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_5.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 09:47:29,969][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 10 (277.19s)	Average loss=0.138076
+[2019-04-05 09:47:29,995][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_10.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 09:49:42,908][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 15 (410.13s)	Average loss=0.138350
+[2019-04-05 09:49:42,915][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_15.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 09:51:51,631][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 20 (538.86s)	Average loss=0.138088
+[2019-04-05 09:51:51,658][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_20.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 09:54:03,515][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 25 (670.74s)	Average loss=0.138146
+[2019-04-05 09:54:03,521][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_25.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 09:56:21,713][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 30 (808.94s)	Average loss=0.138077
+[2019-04-05 09:56:21,721][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_30.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 09:58:32,502][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 35 (939.73s)	Average loss=0.138072
+[2019-04-05 09:58:32,508][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_35.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:00:23,026][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 40 (1050.25s)	Average loss=0.137916
+[2019-04-05 10:00:23,032][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_40.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:02:14,599][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 45 (1161.82s)	Average loss=0.138036
+[2019-04-05 10:02:14,605][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_45.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:04:06,631][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 50 (1273.86s)	Average loss=0.138228
+[2019-04-05 10:04:06,639][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_50.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:06:24,126][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 55 (1411.35s)	Average loss=0.138188
+[2019-04-05 10:06:24,132][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_55.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:08:38,084][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 60 (1545.31s)	Average loss=0.137990
+[2019-04-05 10:08:38,090][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_60.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:10:53,504][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 65 (1680.73s)	Average loss=0.137892
+[2019-04-05 10:10:53,510][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_65.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:13:06,671][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 70 (1813.90s)	Average loss=0.138067
+[2019-04-05 10:13:06,679][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_70.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:15:23,460][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 75 (1950.69s)	Average loss=0.137978
+[2019-04-05 10:15:23,467][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_75.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:17:41,834][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 80 (2089.06s)	Average loss=0.137998
+[2019-04-05 10:17:41,840][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_80.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:19:51,553][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 85 (2218.78s)	Average loss=0.137906
+[2019-04-05 10:19:51,559][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_85.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:22:07,751][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 90 (2354.98s)	Average loss=0.138036
+[2019-04-05 10:22:07,757][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_90.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:24:21,849][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 95 (2489.07s)	Average loss=0.138149
+[2019-04-05 10:24:21,855][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_95.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:26:33,507][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 100 (2620.73s)	Average loss=0.138191
+[2019-04-05 10:26:33,514][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_100.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:26:33,515][INFO] fonduer.learning.classifier:317 - Saving final model as best checkpoint logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression/checkpoint_epoch_100.pt.
+[2019-04-05 10:26:33,521][INFO] fonduer.learning.classifier:327 - [SparseLogisticRegression] Training done (2620.75s)
+[2019-04-05 10:26:33,521][INFO] fonduer.learning.classifier:330 - Loading best checkpoint
+[2019-04-05 10:26:33,528][INFO] fonduer.learning.classifier:546 - [SparseLogisticRegression] Model loaded as best_model.pt in logs/2019-04-04_15-35-34/2019-04-05_09-42-45_SparseLogisticRegression
+[2019-04-05 10:26:33,583][INFO] __main__:331 - Done.
+[2019-04-05 10:26:33,585][INFO] __main__:337 - Calculating the best F1 score and threshold (b)...
+[2019-04-05 10:26:36,460][INFO] __main__:358 - b = 0.0, f1 = 0.6617647058823528
+[2019-04-05 10:26:36,667][INFO] __main__:358 - b = 0.010101010101010102, f1 = 0.6642066420664207
+[2019-04-05 10:26:36,853][INFO] __main__:358 - b = 0.020202020202020204, f1 = 0.6666666666666667
+[2019-04-05 10:26:37,023][INFO] __main__:358 - b = 0.030303030303030304, f1 = 0.6741573033707866
+[2019-04-05 10:26:37,194][INFO] __main__:358 - b = 0.04040404040404041, f1 = 0.6870229007633588
+[2019-04-05 10:26:37,366][INFO] __main__:358 - b = 0.05050505050505051, f1 = 0.6870229007633588
+[2019-04-05 10:26:37,560][INFO] __main__:358 - b = 0.06060606060606061, f1 = 0.7114624505928854
+[2019-04-05 10:26:37,738][INFO] __main__:358 - b = 0.07070707070707072, f1 = 0.7114624505928854
+[2019-04-05 10:26:37,909][INFO] __main__:358 - b = 0.08080808080808081, f1 = 0.7142857142857143
+[2019-04-05 10:26:38,075][INFO] __main__:358 - b = 0.09090909090909091, f1 = 0.7171314741035857
+[2019-04-05 10:26:38,277][INFO] __main__:358 - b = 0.10101010101010102, f1 = 0.7228915662650602
+[2019-04-05 10:26:38,442][INFO] __main__:358 - b = 0.11111111111111112, f1 = 0.7228915662650602
+[2019-04-05 10:26:38,613][INFO] __main__:358 - b = 0.12121212121212122, f1 = 0.7228915662650602
+[2019-04-05 10:26:38,785][INFO] __main__:358 - b = 0.13131313131313133, f1 = 0.7228915662650602
+[2019-04-05 10:26:38,988][INFO] __main__:358 - b = 0.14141414141414144, f1 = 0.7287449392712552
+[2019-04-05 10:26:39,175][INFO] __main__:358 - b = 0.15151515151515152, f1 = 0.7287449392712552
+[2019-04-05 10:26:39,343][INFO] __main__:358 - b = 0.16161616161616163, f1 = 0.7287449392712552
+[2019-04-05 10:26:39,511][INFO] __main__:358 - b = 0.17171717171717174, f1 = 0.7287449392712552
+[2019-04-05 10:26:39,680][INFO] __main__:358 - b = 0.18181818181818182, f1 = 0.7287449392712552
+[2019-04-05 10:26:39,850][INFO] __main__:358 - b = 0.19191919191919193, f1 = 0.7287449392712552
+[2019-04-05 10:26:40,019][INFO] __main__:358 - b = 0.20202020202020204, f1 = 0.7287449392712552
+[2019-04-05 10:26:40,222][INFO] __main__:358 - b = 0.21212121212121213, f1 = 0.7287449392712552
+[2019-04-05 10:26:40,358][INFO] __main__:358 - b = 0.22222222222222224, f1 = 0.7287449392712552
+[2019-04-05 10:26:40,527][INFO] __main__:358 - b = 0.23232323232323235, f1 = 0.7287449392712552
+[2019-04-05 10:26:40,697][INFO] __main__:358 - b = 0.24242424242424243, f1 = 0.7287449392712552
+[2019-04-05 10:26:40,891][INFO] __main__:358 - b = 0.25252525252525254, f1 = 0.7287449392712552
+[2019-04-05 10:26:41,068][INFO] __main__:358 - b = 0.26262626262626265, f1 = 0.7287449392712552
+[2019-04-05 10:26:41,215][INFO] __main__:358 - b = 0.27272727272727276, f1 = 0.7287449392712552
+[2019-04-05 10:26:41,386][INFO] __main__:358 - b = 0.2828282828282829, f1 = 0.7287449392712552
+[2019-04-05 10:26:41,542][INFO] __main__:358 - b = 0.29292929292929293, f1 = 0.7287449392712552
+[2019-04-05 10:26:41,738][INFO] __main__:358 - b = 0.30303030303030304, f1 = 0.7287449392712552
+[2019-04-05 10:26:41,888][INFO] __main__:358 - b = 0.31313131313131315, f1 = 0.7287449392712552
+[2019-04-05 10:26:42,051][INFO] __main__:358 - b = 0.32323232323232326, f1 = 0.7287449392712552
+[2019-04-05 10:26:42,245][INFO] __main__:358 - b = 0.33333333333333337, f1 = 0.7287449392712552
+[2019-04-05 10:26:42,387][INFO] __main__:358 - b = 0.3434343434343435, f1 = 0.7287449392712552
+[2019-04-05 10:26:42,556][INFO] __main__:358 - b = 0.3535353535353536, f1 = 0.7287449392712552
+[2019-04-05 10:26:42,725][INFO] __main__:358 - b = 0.36363636363636365, f1 = 0.7287449392712552
+[2019-04-05 10:26:42,910][INFO] __main__:358 - b = 0.37373737373737376, f1 = 0.7287449392712552
+[2019-04-05 10:26:43,072][INFO] __main__:358 - b = 0.38383838383838387, f1 = 0.7287449392712552
+[2019-04-05 10:26:43,240][INFO] __main__:358 - b = 0.393939393939394, f1 = 0.7287449392712552
+[2019-04-05 10:26:43,413][INFO] __main__:358 - b = 0.4040404040404041, f1 = 0.7287449392712552
+[2019-04-05 10:26:43,593][INFO] __main__:358 - b = 0.4141414141414142, f1 = 0.7287449392712552
+[2019-04-05 10:26:43,743][INFO] __main__:358 - b = 0.42424242424242425, f1 = 0.7287449392712552
+[2019-04-05 10:26:43,868][INFO] __main__:358 - b = 0.43434343434343436, f1 = 0.7287449392712552
+[2019-04-05 10:26:44,055][INFO] __main__:358 - b = 0.4444444444444445, f1 = 0.7287449392712552
+[2019-04-05 10:26:44,197][INFO] __main__:358 - b = 0.4545454545454546, f1 = 0.7287449392712552
+[2019-04-05 10:26:44,363][INFO] __main__:358 - b = 0.4646464646464647, f1 = 0.7287449392712552
+[2019-04-05 10:26:44,527][INFO] __main__:358 - b = 0.4747474747474748, f1 = 0.7287449392712552
+[2019-04-05 10:26:44,698][INFO] __main__:358 - b = 0.48484848484848486, f1 = 0.7287449392712552
+[2019-04-05 10:26:44,856][INFO] __main__:358 - b = 0.494949494949495, f1 = 0.7287449392712552
+[2019-04-05 10:26:45,022][INFO] __main__:358 - b = 0.5050505050505051, f1 = 0.7287449392712552
+[2019-04-05 10:26:45,154][INFO] __main__:358 - b = 0.5151515151515152, f1 = 0.7287449392712552
+[2019-04-05 10:26:45,286][INFO] __main__:358 - b = 0.5252525252525253, f1 = 0.7287449392712552
+[2019-04-05 10:26:45,451][INFO] __main__:358 - b = 0.5353535353535354, f1 = 0.7287449392712552
+[2019-04-05 10:26:45,618][INFO] __main__:358 - b = 0.5454545454545455, f1 = 0.7287449392712552
+[2019-04-05 10:26:45,787][INFO] __main__:358 - b = 0.5555555555555556, f1 = 0.7287449392712552
+[2019-04-05 10:26:45,951][INFO] __main__:358 - b = 0.5656565656565657, f1 = 0.7287449392712552
+[2019-04-05 10:26:46,118][INFO] __main__:358 - b = 0.5757575757575758, f1 = 0.7287449392712552
+[2019-04-05 10:26:46,288][INFO] __main__:358 - b = 0.5858585858585859, f1 = 0.7287449392712552
+[2019-04-05 10:26:46,446][INFO] __main__:358 - b = 0.595959595959596, f1 = 0.7287449392712552
+[2019-04-05 10:26:46,581][INFO] __main__:358 - b = 0.6060606060606061, f1 = 0.7287449392712552
+[2019-04-05 10:26:46,719][INFO] __main__:358 - b = 0.6161616161616162, f1 = 0.7287449392712552
+[2019-04-05 10:26:46,857][INFO] __main__:358 - b = 0.6262626262626263, f1 = 0.7287449392712552
+[2019-04-05 10:26:46,993][INFO] __main__:358 - b = 0.6363636363636365, f1 = 0.7287449392712552
+[2019-04-05 10:26:47,197][INFO] __main__:358 - b = 0.6464646464646465, f1 = 0.7287449392712552
+[2019-04-05 10:26:47,450][INFO] __main__:358 - b = 0.6565656565656566, f1 = 0.7287449392712552
+[2019-04-05 10:26:47,661][INFO] __main__:358 - b = 0.6666666666666667, f1 = 0.7287449392712552
+[2019-04-05 10:26:47,859][INFO] __main__:358 - b = 0.6767676767676768, f1 = 0.7287449392712552
+[2019-04-05 10:26:48,094][INFO] __main__:358 - b = 0.686868686868687, f1 = 0.7287449392712552
+[2019-04-05 10:26:48,230][INFO] __main__:358 - b = 0.696969696969697, f1 = 0.7287449392712552
+[2019-04-05 10:26:48,428][INFO] __main__:358 - b = 0.7070707070707072, f1 = 0.7287449392712552
+[2019-04-05 10:26:48,614][INFO] __main__:358 - b = 0.7171717171717172, f1 = 0.7287449392712552
+[2019-04-05 10:26:48,812][INFO] __main__:358 - b = 0.7272727272727273, f1 = 0.7287449392712552
+[2019-04-05 10:26:48,957][INFO] __main__:358 - b = 0.7373737373737375, f1 = 0.7287449392712552
+[2019-04-05 10:26:49,122][INFO] __main__:358 - b = 0.7474747474747475, f1 = 0.7287449392712552
+[2019-04-05 10:26:49,286][INFO] __main__:358 - b = 0.7575757575757577, f1 = 0.7287449392712552
+[2019-04-05 10:26:49,452][INFO] __main__:358 - b = 0.7676767676767677, f1 = 0.7287449392712552
+[2019-04-05 10:26:49,642][INFO] __main__:358 - b = 0.7777777777777778, f1 = 0.7287449392712552
+[2019-04-05 10:26:49,823][INFO] __main__:358 - b = 0.787878787878788, f1 = 0.7287449392712552
+[2019-04-05 10:26:49,974][INFO] __main__:358 - b = 0.797979797979798, f1 = 0.7287449392712552
+[2019-04-05 10:26:50,111][INFO] __main__:358 - b = 0.8080808080808082, f1 = 0.7287449392712552
+[2019-04-05 10:26:50,293][INFO] __main__:358 - b = 0.8181818181818182, f1 = 0.7287449392712552
+[2019-04-05 10:26:50,476][INFO] __main__:358 - b = 0.8282828282828284, f1 = 0.7287449392712552
+[2019-04-05 10:26:50,653][INFO] __main__:358 - b = 0.8383838383838385, f1 = 0.7287449392712552
+[2019-04-05 10:26:50,777][INFO] __main__:358 - b = 0.8484848484848485, f1 = 0.7287449392712552
+[2019-04-05 10:26:50,912][INFO] __main__:358 - b = 0.8585858585858587, f1 = 0.7287449392712552
+[2019-04-05 10:26:51,048][INFO] __main__:358 - b = 0.8686868686868687, f1 = 0.7287449392712552
+[2019-04-05 10:26:51,185][INFO] __main__:358 - b = 0.8787878787878789, f1 = 0.7287449392712552
+[2019-04-05 10:26:51,321][INFO] __main__:358 - b = 0.888888888888889, f1 = 0.7287449392712552
+[2019-04-05 10:26:51,501][INFO] __main__:358 - b = 0.8989898989898991, f1 = 0.7287449392712552
+[2019-04-05 10:26:51,651][INFO] __main__:358 - b = 0.9090909090909092, f1 = 0.7317073170731707
+[2019-04-05 10:26:51,802][INFO] __main__:358 - b = 0.9191919191919192, f1 = 0.7317073170731707
+[2019-04-05 10:26:51,933][INFO] __main__:358 - b = 0.9292929292929294, f1 = 0.7346938775510204
+[2019-04-05 10:26:52,066][INFO] __main__:358 - b = 0.9393939393939394, f1 = 0.7295081967213114
+[2019-04-05 10:26:52,202][INFO] __main__:358 - b = 0.9494949494949496, f1 = 0.7295081967213114
+[2019-04-05 10:26:52,337][INFO] __main__:358 - b = 0.9595959595959597, f1 = 0.7355371900826446
+[2019-04-05 10:26:52,485][INFO] __main__:358 - b = 0.9696969696969697, f1 = 0.7355371900826446
+[2019-04-05 10:26:52,673][INFO] __main__:358 - b = 0.9797979797979799, f1 = 0.7355371900826446
+[2019-04-05 10:26:52,900][INFO] __main__:358 - b = 0.98989898989899, f1 = 0.7355371900826446
+[2019-04-05 10:26:52,904][INFO] __main__:366 - ===================================================
+[2019-04-05 10:26:52,904][INFO] __main__:367 - Scoring on Entity-Level Gold Data with b=0.9595959595959597
+[2019-04-05 10:26:52,904][INFO] __main__:368 - ===================================================
+[2019-04-05 10:26:52,904][INFO] __main__:369 - Corpus Precision 1.000
+[2019-04-05 10:26:52,920][INFO] __main__:370 - Corpus Recall    0.582
+[2019-04-05 10:26:52,920][INFO] __main__:371 - Corpus F1        0.736
+[2019-04-05 10:26:52,920][INFO] __main__:372 - ---------------------------------------------------
+[2019-04-05 10:26:52,920][INFO] __main__:374 - TP: 89 | FP: 0 | FN: 64
+[2019-04-05 10:26:52,920][INFO] __main__:378 - ===================================================
+
+[2019-04-05 10:26:52,921][INFO] __main__:316 - Training generative model...
+[2019-04-05 10:26:56,619][INFO] __main__:318 - Done.
+[2019-04-05 10:26:57,224][INFO] __main__:327 - Training discriminative model...
+[2019-04-05 10:26:57,243][INFO] fonduer.learning.classifier:142 - Loading default parameters for Sparse Logistic Regression
+[2019-04-05 10:26:59,002][INFO] fonduer.learning.classifier:213 - Using GPU...
+[2019-04-05 10:26:59,003][INFO] fonduer.learning.classifier:215 - Settings: {'log_dir': 'logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression', 'n_epochs': 100, 'lr': 0.001, 'batch_size': 256, 'shuffle': True, 'seed': 1234, 'host_device': 'GPU', 'bias': False, 'input_dim': 328834}
+[2019-04-05 10:26:59,052][INFO] fonduer.learning.classifier:233 - [SparseLogisticRegression] Training model
+[2019-04-05 10:26:59,052][INFO] fonduer.learning.classifier:235 - [SparseLogisticRegression] n_train=639888 #epochs=100 batch size=256
+[2019-04-05 10:34:18,158][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 5 (439.10s)	Average loss=0.445448
+[2019-04-05 10:34:18,165][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_5.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 10:41:20,566][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 10 (861.51s)	Average loss=0.445546
+[2019-04-05 10:41:20,572][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_10.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 10:48:22,539][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 15 (1283.48s)	Average loss=0.445534
+[2019-04-05 10:48:22,545][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_15.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 10:55:24,497][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 20 (1705.44s)	Average loss=0.445515
+[2019-04-05 10:55:24,503][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_20.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 11:02:26,413][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 25 (2127.36s)	Average loss=0.445407
+[2019-04-05 11:02:26,420][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_25.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 11:09:28,538][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 30 (2549.48s)	Average loss=0.445563
+[2019-04-05 11:09:28,544][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_30.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 11:16:30,585][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 35 (2971.53s)	Average loss=0.445608
+[2019-04-05 11:16:30,592][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_35.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 11:23:31,666][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 40 (3392.61s)	Average loss=0.445420
+[2019-04-05 11:23:31,672][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_40.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 11:30:32,442][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 45 (3813.39s)	Average loss=0.445467
+[2019-04-05 11:30:32,448][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_45.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 11:37:32,204][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 50 (4233.15s)	Average loss=0.445524
+[2019-04-05 11:37:32,210][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_50.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 11:44:31,946][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 55 (4652.89s)	Average loss=0.445415
+[2019-04-05 11:44:31,961][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_55.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 11:51:31,005][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 60 (5071.95s)	Average loss=0.445473
+[2019-04-05 11:51:31,011][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_60.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 11:58:29,794][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 65 (5490.74s)	Average loss=0.445515
+[2019-04-05 11:58:29,800][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_65.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 12:05:29,340][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 70 (5910.28s)	Average loss=0.445512
+[2019-04-05 12:05:29,347][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_70.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 12:12:37,145][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 75 (6338.09s)	Average loss=0.445587
+[2019-04-05 12:12:37,151][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_75.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 12:19:43,054][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 80 (6764.00s)	Average loss=0.445482
+[2019-04-05 12:19:43,061][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_80.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 12:26:47,194][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 85 (7188.14s)	Average loss=0.445559
+[2019-04-05 12:26:47,201][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_85.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 12:33:47,880][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 90 (7608.82s)	Average loss=0.445589
+[2019-04-05 12:33:47,886][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_90.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 12:40:47,279][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 95 (8028.22s)	Average loss=0.445526
+[2019-04-05 12:40:47,285][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_95.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 12:47:46,520][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 100 (8447.46s)	Average loss=0.445666
+[2019-04-05 12:47:46,526][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_100.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 12:47:46,526][INFO] fonduer.learning.classifier:317 - Saving final model as best checkpoint logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression/checkpoint_epoch_100.pt.
+[2019-04-05 12:47:46,532][INFO] fonduer.learning.classifier:327 - [SparseLogisticRegression] Training done (8447.48s)
+[2019-04-05 12:47:46,532][INFO] fonduer.learning.classifier:330 - Loading best checkpoint
+[2019-04-05 12:47:46,538][INFO] fonduer.learning.classifier:546 - [SparseLogisticRegression] Model loaded as best_model.pt in logs/2019-04-04_15-35-34/2019-04-05_10-26-57_SparseLogisticRegression
+[2019-04-05 12:47:46,649][INFO] __main__:331 - Done.
+[2019-04-05 12:47:46,650][INFO] __main__:337 - Calculating the best F1 score and threshold (b)...
+[2019-04-05 12:47:50,144][INFO] __main__:358 - b = 0.0, f1 = 0.4832214765100672
+[2019-04-05 12:47:50,345][INFO] __main__:358 - b = 0.010101010101010102, f1 = 0.5179856115107914
+[2019-04-05 12:47:50,543][INFO] __main__:358 - b = 0.020202020202020204, f1 = 0.5333333333333332
+[2019-04-05 12:47:50,737][INFO] __main__:358 - b = 0.030303030303030304, f1 = 0.542713567839196
+[2019-04-05 12:47:50,951][INFO] __main__:358 - b = 0.04040404040404041, f1 = 0.5567010309278351
+[2019-04-05 12:47:51,142][INFO] __main__:358 - b = 0.05050505050505051, f1 = 0.5595854922279793
+[2019-04-05 12:47:51,331][INFO] __main__:358 - b = 0.06060606060606061, f1 = 0.576
+[2019-04-05 12:47:51,520][INFO] __main__:358 - b = 0.07070707070707072, f1 = 0.5806451612903226
+[2019-04-05 12:47:51,708][INFO] __main__:358 - b = 0.08080808080808081, f1 = 0.5837837837837837
+[2019-04-05 12:47:51,894][INFO] __main__:358 - b = 0.09090909090909091, f1 = 0.5885558583106266
+[2019-04-05 12:47:52,081][INFO] __main__:358 - b = 0.10101010101010102, f1 = 0.5917808219178082
+[2019-04-05 12:47:52,273][INFO] __main__:358 - b = 0.11111111111111112, f1 = 0.5999999999999999
+[2019-04-05 12:47:52,457][INFO] __main__:358 - b = 0.12121212121212122, f1 = 0.6016713091922006
+[2019-04-05 12:47:52,641][INFO] __main__:358 - b = 0.13131313131313133, f1 = 0.5988023952095809
+[2019-04-05 12:47:52,827][INFO] __main__:358 - b = 0.14141414141414144, f1 = 0.617283950617284
+[2019-04-05 12:47:53,011][INFO] __main__:358 - b = 0.15151515151515152, f1 = 0.6211180124223603
+[2019-04-05 12:47:53,191][INFO] __main__:358 - b = 0.16161616161616163, f1 = 0.625
+[2019-04-05 12:47:53,392][INFO] __main__:358 - b = 0.17171717171717174, f1 = 0.625
+[2019-04-05 12:47:53,590][INFO] __main__:358 - b = 0.18181818181818182, f1 = 0.6389776357827476
+[2019-04-05 12:47:53,813][INFO] __main__:358 - b = 0.19191919191919193, f1 = 0.6535947712418301
+[2019-04-05 12:47:53,959][INFO] __main__:358 - b = 0.20202020202020204, f1 = 0.6578947368421052
+[2019-04-05 12:47:54,137][INFO] __main__:358 - b = 0.21212121212121213, f1 = 0.6666666666666666
+[2019-04-05 12:47:54,317][INFO] __main__:358 - b = 0.22222222222222224, f1 = 0.6711409395973156
+[2019-04-05 12:47:54,490][INFO] __main__:358 - b = 0.23232323232323235, f1 = 0.6779661016949153
+[2019-04-05 12:47:54,677][INFO] __main__:358 - b = 0.24242424242424243, f1 = 0.6802721088435374
+[2019-04-05 12:47:54,872][INFO] __main__:358 - b = 0.25252525252525254, f1 = 0.6825938566552903
+[2019-04-05 12:47:55,056][INFO] __main__:358 - b = 0.26262626262626265, f1 = 0.6896551724137931
+[2019-04-05 12:47:55,269][INFO] __main__:358 - b = 0.27272727272727276, f1 = 0.6968641114982579
+[2019-04-05 12:47:55,443][INFO] __main__:358 - b = 0.2828282828282829, f1 = 0.7117437722419929
+[2019-04-05 12:47:55,627][INFO] __main__:358 - b = 0.29292929292929293, f1 = 0.7117437722419929
+[2019-04-05 12:47:55,821][INFO] __main__:358 - b = 0.30303030303030304, f1 = 0.7142857142857142
+[2019-04-05 12:47:55,993][INFO] __main__:358 - b = 0.31313131313131315, f1 = 0.7168458781362008
+[2019-04-05 12:47:56,185][INFO] __main__:358 - b = 0.32323232323232326, f1 = 0.7194244604316549
+[2019-04-05 12:47:56,361][INFO] __main__:358 - b = 0.33333333333333337, f1 = 0.7194244604316549
+[2019-04-05 12:47:56,573][INFO] __main__:358 - b = 0.3434343434343435, f1 = 0.7194244604316549
+[2019-04-05 12:47:56,774][INFO] __main__:358 - b = 0.3535353535353536, f1 = 0.7272727272727274
+[2019-04-05 12:47:56,974][INFO] __main__:358 - b = 0.36363636363636365, f1 = 0.7272727272727274
+[2019-04-05 12:47:57,138][INFO] __main__:358 - b = 0.37373737373737376, f1 = 0.7224334600760456
+[2019-04-05 12:47:57,287][INFO] __main__:358 - b = 0.38383838383838387, f1 = 0.7224334600760456
+[2019-04-05 12:47:57,468][INFO] __main__:358 - b = 0.393939393939394, f1 = 0.7224334600760456
+[2019-04-05 12:47:57,633][INFO] __main__:358 - b = 0.4040404040404041, f1 = 0.7224334600760456
+[2019-04-05 12:47:57,805][INFO] __main__:358 - b = 0.4141414141414142, f1 = 0.7224334600760456
+[2019-04-05 12:47:57,993][INFO] __main__:358 - b = 0.42424242424242425, f1 = 0.7224334600760456
+[2019-04-05 12:47:58,167][INFO] __main__:358 - b = 0.43434343434343436, f1 = 0.7224334600760456
+[2019-04-05 12:47:58,367][INFO] __main__:358 - b = 0.4444444444444445, f1 = 0.7224334600760456
+[2019-04-05 12:47:58,572][INFO] __main__:358 - b = 0.4545454545454546, f1 = 0.7307692307692307
+[2019-04-05 12:47:58,781][INFO] __main__:358 - b = 0.4646464646464647, f1 = 0.7307692307692307
+[2019-04-05 12:47:58,981][INFO] __main__:358 - b = 0.4747474747474748, f1 = 0.7364341085271319
+[2019-04-05 12:47:59,198][INFO] __main__:358 - b = 0.48484848484848486, f1 = 0.7364341085271319
+[2019-04-05 12:47:59,373][INFO] __main__:358 - b = 0.494949494949495, f1 = 0.7364341085271319
+[2019-04-05 12:47:59,534][INFO] __main__:358 - b = 0.5050505050505051, f1 = 0.7421875
+[2019-04-05 12:47:59,707][INFO] __main__:358 - b = 0.5151515151515152, f1 = 0.7421875
+[2019-04-05 12:47:59,877][INFO] __main__:358 - b = 0.5252525252525253, f1 = 0.7421875
+[2019-04-05 12:48:00,039][INFO] __main__:358 - b = 0.5353535353535354, f1 = 0.7421875
+[2019-04-05 12:48:00,205][INFO] __main__:358 - b = 0.5454545454545455, f1 = 0.7421875
+[2019-04-05 12:48:00,377][INFO] __main__:358 - b = 0.5555555555555556, f1 = 0.7421875
+[2019-04-05 12:48:00,580][INFO] __main__:358 - b = 0.5656565656565657, f1 = 0.7421875
+[2019-04-05 12:48:00,775][INFO] __main__:358 - b = 0.5757575757575758, f1 = 0.7421875
+[2019-04-05 12:48:00,963][INFO] __main__:358 - b = 0.5858585858585859, f1 = 0.7421875
+[2019-04-05 12:48:01,152][INFO] __main__:358 - b = 0.595959595959596, f1 = 0.7421875
+[2019-04-05 12:48:01,316][INFO] __main__:358 - b = 0.6060606060606061, f1 = 0.7421875
+[2019-04-05 12:48:01,496][INFO] __main__:358 - b = 0.6161616161616162, f1 = 0.7421875
+[2019-04-05 12:48:01,634][INFO] __main__:358 - b = 0.6262626262626263, f1 = 0.7421875
+[2019-04-05 12:48:01,828][INFO] __main__:358 - b = 0.6363636363636365, f1 = 0.7421875
+[2019-04-05 12:48:02,005][INFO] __main__:358 - b = 0.6464646464646465, f1 = 0.7421875
+[2019-04-05 12:48:02,177][INFO] __main__:358 - b = 0.6565656565656566, f1 = 0.7421875
+[2019-04-05 12:48:02,337][INFO] __main__:358 - b = 0.6666666666666667, f1 = 0.7421875
+[2019-04-05 12:48:02,515][INFO] __main__:358 - b = 0.6767676767676768, f1 = 0.7421875
+[2019-04-05 12:48:02,700][INFO] __main__:358 - b = 0.686868686868687, f1 = 0.7421875
+[2019-04-05 12:48:02,856][INFO] __main__:358 - b = 0.696969696969697, f1 = 0.7421875
+[2019-04-05 12:48:03,042][INFO] __main__:358 - b = 0.7070707070707072, f1 = 0.7421875
+[2019-04-05 12:48:03,220][INFO] __main__:358 - b = 0.7171717171717172, f1 = 0.7421875
+[2019-04-05 12:48:03,392][INFO] __main__:358 - b = 0.7272727272727273, f1 = 0.7421875
+[2019-04-05 12:48:03,573][INFO] __main__:358 - b = 0.7373737373737375, f1 = 0.7421875
+[2019-04-05 12:48:03,740][INFO] __main__:358 - b = 0.7474747474747475, f1 = 0.7372549019607842
+[2019-04-05 12:48:03,878][INFO] __main__:358 - b = 0.7575757575757577, f1 = 0.7372549019607842
+[2019-04-05 12:48:04,025][INFO] __main__:358 - b = 0.7676767676767677, f1 = 0.7372549019607842
+[2019-04-05 12:48:04,194][INFO] __main__:358 - b = 0.7777777777777778, f1 = 0.7372549019607842
+[2019-04-05 12:48:04,366][INFO] __main__:358 - b = 0.787878787878788, f1 = 0.7372549019607842
+[2019-04-05 12:48:04,535][INFO] __main__:358 - b = 0.797979797979798, f1 = 0.7372549019607842
+[2019-04-05 12:48:04,711][INFO] __main__:358 - b = 0.8080808080808082, f1 = 0.7372549019607842
+[2019-04-05 12:48:04,849][INFO] __main__:358 - b = 0.8181818181818182, f1 = 0.7372549019607842
+[2019-04-05 12:48:05,035][INFO] __main__:358 - b = 0.8282828282828284, f1 = 0.7372549019607842
+[2019-04-05 12:48:05,274][INFO] __main__:358 - b = 0.8383838383838385, f1 = 0.732283464566929
+[2019-04-05 12:48:05,488][INFO] __main__:358 - b = 0.8484848484848485, f1 = 0.732283464566929
+[2019-04-05 12:48:05,689][INFO] __main__:358 - b = 0.8585858585858587, f1 = 0.732283464566929
+[2019-04-05 12:48:05,955][INFO] __main__:358 - b = 0.8686868686868687, f1 = 0.732283464566929
+[2019-04-05 12:48:06,140][INFO] __main__:358 - b = 0.8787878787878789, f1 = 0.732283464566929
+[2019-04-05 12:48:06,300][INFO] __main__:358 - b = 0.888888888888889, f1 = 0.732283464566929
+[2019-04-05 12:48:06,483][INFO] __main__:358 - b = 0.8989898989898991, f1 = 0.732283464566929
+[2019-04-05 12:48:06,646][INFO] __main__:358 - b = 0.9090909090909092, f1 = 0.7272727272727274
+[2019-04-05 12:48:06,817][INFO] __main__:358 - b = 0.9191919191919192, f1 = 0.7272727272727274
+[2019-04-05 12:48:06,993][INFO] __main__:358 - b = 0.9292929292929294, f1 = 0.7272727272727274
+[2019-04-05 12:48:07,177][INFO] __main__:358 - b = 0.9393939393939394, f1 = 0.7272727272727274
+[2019-04-05 12:48:07,327][INFO] __main__:358 - b = 0.9494949494949496, f1 = 0.7272727272727274
+[2019-04-05 12:48:07,502][INFO] __main__:358 - b = 0.9595959595959597, f1 = 0.7272727272727274
+[2019-04-05 12:48:07,666][INFO] __main__:358 - b = 0.9696969696969697, f1 = 0.7272727272727274
+[2019-04-05 12:48:07,826][INFO] __main__:358 - b = 0.9797979797979799, f1 = 0.7272727272727274
+[2019-04-05 12:48:07,989][INFO] __main__:358 - b = 0.98989898989899, f1 = 0.7235772357723577
+[2019-04-05 12:48:08,003][INFO] __main__:366 - ===================================================
+[2019-04-05 12:48:08,004][INFO] __main__:367 - Scoring on Entity-Level Gold Data with b=0.5050505050505051
+[2019-04-05 12:48:08,004][INFO] __main__:368 - ===================================================
+[2019-04-05 12:48:08,004][INFO] __main__:369 - Corpus Precision 0.950
+[2019-04-05 12:48:08,004][INFO] __main__:370 - Corpus Recall    0.609
+[2019-04-05 12:48:08,004][INFO] __main__:371 - Corpus F1        0.742
+[2019-04-05 12:48:08,004][INFO] __main__:372 - ---------------------------------------------------
+[2019-04-05 12:48:08,005][INFO] __main__:374 - TP: 95 | FP: 5 | FN: 61
+[2019-04-05 12:48:08,005][INFO] __main__:378 - ===================================================
+
+[2019-04-05 12:48:08,006][INFO] __main__:316 - Training generative model...
+[2019-04-05 12:48:11,151][INFO] __main__:318 - Done.
+[2019-04-05 12:48:11,674][INFO] __main__:327 - Training discriminative model...
+[2019-04-05 12:48:11,694][INFO] fonduer.learning.classifier:142 - Loading default parameters for Sparse Logistic Regression
+[2019-04-05 12:48:12,942][INFO] fonduer.learning.classifier:213 - Using GPU...
+[2019-04-05 12:48:12,942][INFO] fonduer.learning.classifier:215 - Settings: {'log_dir': 'logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression', 'n_epochs': 100, 'lr': 0.001, 'batch_size': 256, 'shuffle': True, 'seed': 1234, 'host_device': 'GPU', 'bias': False, 'input_dim': 328834}
+[2019-04-05 12:48:13,039][INFO] fonduer.learning.classifier:233 - [SparseLogisticRegression] Training model
+[2019-04-05 12:48:13,039][INFO] fonduer.learning.classifier:235 - [SparseLogisticRegression] n_train=454475 #epochs=100 batch size=256
+[2019-04-05 12:51:52,027][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 5 (218.99s)	Average loss=0.318305
+[2019-04-05 12:51:52,034][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_5.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 12:55:29,650][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 10 (436.61s)	Average loss=0.318221
+[2019-04-05 12:55:29,657][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_10.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 12:59:08,080][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 15 (655.04s)	Average loss=0.318186
+[2019-04-05 12:59:08,086][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_15.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:02:45,759][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 20 (872.72s)	Average loss=0.318105
+[2019-04-05 13:02:45,766][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_20.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:06:23,499][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 25 (1090.46s)	Average loss=0.318177
+[2019-04-05 13:06:23,505][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_25.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:10:01,503][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 30 (1308.46s)	Average loss=0.318210
+[2019-04-05 13:10:01,509][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_30.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:13:39,740][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 35 (1526.70s)	Average loss=0.318162
+[2019-04-05 13:13:39,746][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_35.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:17:17,527][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 40 (1744.48s)	Average loss=0.318190
+[2019-04-05 13:17:17,533][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_40.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:20:55,374][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 45 (1962.33s)	Average loss=0.318079
+[2019-04-05 13:20:55,380][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_45.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:24:33,125][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 50 (2180.08s)	Average loss=0.318030
+[2019-04-05 13:24:33,131][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_50.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:28:11,250][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 55 (2398.21s)	Average loss=0.318105
+[2019-04-05 13:28:11,256][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_55.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:31:49,146][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 60 (2616.10s)	Average loss=0.318156
+[2019-04-05 13:31:49,152][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_60.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:35:27,563][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 65 (2834.52s)	Average loss=0.318185
+[2019-04-05 13:35:27,569][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_65.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:39:06,154][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 70 (3053.11s)	Average loss=0.318092
+[2019-04-05 13:39:06,160][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_70.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:42:44,634][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 75 (3271.59s)	Average loss=0.318022
+[2019-04-05 13:42:44,640][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_75.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:46:22,529][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 80 (3489.49s)	Average loss=0.318120
+[2019-04-05 13:46:22,535][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_80.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:50:00,962][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 85 (3707.92s)	Average loss=0.318126
+[2019-04-05 13:50:00,968][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_85.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:53:39,115][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 90 (3926.07s)	Average loss=0.318100
+[2019-04-05 13:53:39,122][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_90.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 13:57:17,502][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 95 (4144.46s)	Average loss=0.318118
+[2019-04-05 13:57:17,508][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_95.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 14:00:55,215][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 100 (4362.17s)	Average loss=0.318123
+[2019-04-05 14:00:55,221][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_100.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 14:00:55,221][INFO] fonduer.learning.classifier:317 - Saving final model as best checkpoint logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression/checkpoint_epoch_100.pt.
+[2019-04-05 14:00:55,226][INFO] fonduer.learning.classifier:327 - [SparseLogisticRegression] Training done (4362.19s)
+[2019-04-05 14:00:55,226][INFO] fonduer.learning.classifier:330 - Loading best checkpoint
+[2019-04-05 14:00:55,233][INFO] fonduer.learning.classifier:546 - [SparseLogisticRegression] Model loaded as best_model.pt in logs/2019-04-04_15-35-34/2019-04-05_12-48-11_SparseLogisticRegression
+[2019-04-05 14:00:55,312][INFO] __main__:331 - Done.
+[2019-04-05 14:00:55,313][INFO] __main__:337 - Calculating the best F1 score and threshold (b)...
+[2019-04-05 14:01:00,430][INFO] __main__:358 - b = 0.0, f1 = 0.8867924528301887
+[2019-04-05 14:01:00,673][INFO] __main__:358 - b = 0.010101010101010102, f1 = 0.8867924528301887
+[2019-04-05 14:01:00,901][INFO] __main__:358 - b = 0.020202020202020204, f1 = 0.8867924528301887
+[2019-04-05 14:01:01,157][INFO] __main__:358 - b = 0.030303030303030304, f1 = 0.8867924528301887
+[2019-04-05 14:01:01,401][INFO] __main__:358 - b = 0.04040404040404041, f1 = 0.8867924528301887
+[2019-04-05 14:01:01,621][INFO] __main__:358 - b = 0.05050505050505051, f1 = 0.8867924528301887
+[2019-04-05 14:01:01,849][INFO] __main__:358 - b = 0.06060606060606061, f1 = 0.8867924528301887
+[2019-04-05 14:01:02,041][INFO] __main__:358 - b = 0.07070707070707072, f1 = 0.8867924528301887
+[2019-04-05 14:01:02,290][INFO] __main__:358 - b = 0.08080808080808081, f1 = 0.8867924528301887
+[2019-04-05 14:01:02,510][INFO] __main__:358 - b = 0.09090909090909091, f1 = 0.8867924528301887
+[2019-04-05 14:01:02,786][INFO] __main__:358 - b = 0.10101010101010102, f1 = 0.8867924528301887
+[2019-04-05 14:01:03,002][INFO] __main__:358 - b = 0.11111111111111112, f1 = 0.8867924528301887
+[2019-04-05 14:01:03,213][INFO] __main__:358 - b = 0.12121212121212122, f1 = 0.8867924528301887
+[2019-04-05 14:01:03,460][INFO] __main__:358 - b = 0.13131313131313133, f1 = 0.8867924528301887
+[2019-04-05 14:01:03,673][INFO] __main__:358 - b = 0.14141414141414144, f1 = 0.8867924528301887
+[2019-04-05 14:01:03,911][INFO] __main__:358 - b = 0.15151515151515152, f1 = 0.8867924528301887
+[2019-04-05 14:01:04,130][INFO] __main__:358 - b = 0.16161616161616163, f1 = 0.8867924528301887
+[2019-04-05 14:01:04,333][INFO] __main__:358 - b = 0.17171717171717174, f1 = 0.8867924528301887
+[2019-04-05 14:01:04,544][INFO] __main__:358 - b = 0.18181818181818182, f1 = 0.8867924528301887
+[2019-04-05 14:01:04,755][INFO] __main__:358 - b = 0.19191919191919193, f1 = 0.8867924528301887
+[2019-04-05 14:01:04,996][INFO] __main__:358 - b = 0.20202020202020204, f1 = 0.8867924528301887
+[2019-04-05 14:01:05,171][INFO] __main__:358 - b = 0.21212121212121213, f1 = 0.8867924528301887
+[2019-04-05 14:01:05,390][INFO] __main__:358 - b = 0.22222222222222224, f1 = 0.8867924528301887
+[2019-04-05 14:01:05,638][INFO] __main__:358 - b = 0.23232323232323235, f1 = 0.8867924528301887
+[2019-04-05 14:01:05,845][INFO] __main__:358 - b = 0.24242424242424243, f1 = 0.8867924528301887
+[2019-04-05 14:01:06,058][INFO] __main__:358 - b = 0.25252525252525254, f1 = 0.8867924528301887
+[2019-04-05 14:01:06,304][INFO] __main__:358 - b = 0.26262626262626265, f1 = 0.8867924528301887
+[2019-04-05 14:01:06,532][INFO] __main__:358 - b = 0.27272727272727276, f1 = 0.8867924528301887
+[2019-04-05 14:01:06,730][INFO] __main__:358 - b = 0.2828282828282829, f1 = 0.8867924528301887
+[2019-04-05 14:01:06,964][INFO] __main__:358 - b = 0.29292929292929293, f1 = 0.8867924528301887
+[2019-04-05 14:01:07,168][INFO] __main__:358 - b = 0.30303030303030304, f1 = 0.8867924528301887
+[2019-04-05 14:01:07,420][INFO] __main__:358 - b = 0.31313131313131315, f1 = 0.8867924528301887
+[2019-04-05 14:01:07,662][INFO] __main__:358 - b = 0.32323232323232326, f1 = 0.8867924528301887
+[2019-04-05 14:01:07,860][INFO] __main__:358 - b = 0.33333333333333337, f1 = 0.8867924528301887
+[2019-04-05 14:01:08,103][INFO] __main__:358 - b = 0.3434343434343435, f1 = 0.8867924528301887
+[2019-04-05 14:01:08,303][INFO] __main__:358 - b = 0.3535353535353536, f1 = 0.8867924528301887
+[2019-04-05 14:01:08,508][INFO] __main__:358 - b = 0.36363636363636365, f1 = 0.8867924528301887
+[2019-04-05 14:01:08,717][INFO] __main__:358 - b = 0.37373737373737376, f1 = 0.8867924528301887
+[2019-04-05 14:01:08,932][INFO] __main__:358 - b = 0.38383838383838387, f1 = 0.8867924528301887
+[2019-04-05 14:01:09,137][INFO] __main__:358 - b = 0.393939393939394, f1 = 0.8867924528301887
+[2019-04-05 14:01:09,369][INFO] __main__:358 - b = 0.4040404040404041, f1 = 0.8867924528301887
+[2019-04-05 14:01:09,601][INFO] __main__:358 - b = 0.4141414141414142, f1 = 0.8867924528301887
+[2019-04-05 14:01:09,808][INFO] __main__:358 - b = 0.42424242424242425, f1 = 0.8867924528301887
+[2019-04-05 14:01:10,024][INFO] __main__:358 - b = 0.43434343434343436, f1 = 0.8867924528301887
+[2019-04-05 14:01:10,208][INFO] __main__:358 - b = 0.4444444444444445, f1 = 0.8867924528301887
+[2019-04-05 14:01:10,409][INFO] __main__:358 - b = 0.4545454545454546, f1 = 0.8867924528301887
+[2019-04-05 14:01:10,608][INFO] __main__:358 - b = 0.4646464646464647, f1 = 0.8867924528301887
+[2019-04-05 14:01:10,803][INFO] __main__:358 - b = 0.4747474747474748, f1 = 0.8867924528301887
+[2019-04-05 14:01:11,052][INFO] __main__:358 - b = 0.48484848484848486, f1 = 0.8867924528301887
+[2019-04-05 14:01:11,256][INFO] __main__:358 - b = 0.494949494949495, f1 = 0.8867924528301887
+[2019-04-05 14:01:11,458][INFO] __main__:358 - b = 0.5050505050505051, f1 = 0.8867924528301887
+[2019-04-05 14:01:11,686][INFO] __main__:358 - b = 0.5151515151515152, f1 = 0.8867924528301887
+[2019-04-05 14:01:11,882][INFO] __main__:358 - b = 0.5252525252525253, f1 = 0.8867924528301887
+[2019-04-05 14:01:12,056][INFO] __main__:358 - b = 0.5353535353535354, f1 = 0.8867924528301887
+[2019-04-05 14:01:12,270][INFO] __main__:358 - b = 0.5454545454545455, f1 = 0.8867924528301887
+[2019-04-05 14:01:12,472][INFO] __main__:358 - b = 0.5555555555555556, f1 = 0.8867924528301887
+[2019-04-05 14:01:12,701][INFO] __main__:358 - b = 0.5656565656565657, f1 = 0.8867924528301887
+[2019-04-05 14:01:12,899][INFO] __main__:358 - b = 0.5757575757575758, f1 = 0.8867924528301887
+[2019-04-05 14:01:13,118][INFO] __main__:358 - b = 0.5858585858585859, f1 = 0.8867924528301887
+[2019-04-05 14:01:13,326][INFO] __main__:358 - b = 0.595959595959596, f1 = 0.8867924528301887
+[2019-04-05 14:01:13,514][INFO] __main__:358 - b = 0.6060606060606061, f1 = 0.8867924528301887
+[2019-04-05 14:01:13,725][INFO] __main__:358 - b = 0.6161616161616162, f1 = 0.8867924528301887
+[2019-04-05 14:01:13,947][INFO] __main__:358 - b = 0.6262626262626263, f1 = 0.8867924528301887
+[2019-04-05 14:01:14,165][INFO] __main__:358 - b = 0.6363636363636365, f1 = 0.8867924528301887
+[2019-04-05 14:01:14,377][INFO] __main__:358 - b = 0.6464646464646465, f1 = 0.8867924528301887
+[2019-04-05 14:01:14,540][INFO] __main__:358 - b = 0.6565656565656566, f1 = 0.8867924528301887
+[2019-04-05 14:01:14,749][INFO] __main__:358 - b = 0.6666666666666667, f1 = 0.8867924528301887
+[2019-04-05 14:01:14,956][INFO] __main__:358 - b = 0.6767676767676768, f1 = 0.8867924528301887
+[2019-04-05 14:01:15,152][INFO] __main__:358 - b = 0.686868686868687, f1 = 0.8867924528301887
+[2019-04-05 14:01:15,371][INFO] __main__:358 - b = 0.696969696969697, f1 = 0.8867924528301887
+[2019-04-05 14:01:15,550][INFO] __main__:358 - b = 0.7070707070707072, f1 = 0.8867924528301887
+[2019-04-05 14:01:15,740][INFO] __main__:358 - b = 0.7171717171717172, f1 = 0.8867924528301887
+[2019-04-05 14:01:15,948][INFO] __main__:358 - b = 0.7272727272727273, f1 = 0.8867924528301887
+[2019-04-05 14:01:16,164][INFO] __main__:358 - b = 0.7373737373737375, f1 = 0.8867924528301887
+[2019-04-05 14:01:16,361][INFO] __main__:358 - b = 0.7474747474747475, f1 = 0.8867924528301887
+[2019-04-05 14:01:16,576][INFO] __main__:358 - b = 0.7575757575757577, f1 = 0.8867924528301887
+[2019-04-05 14:01:16,817][INFO] __main__:358 - b = 0.7676767676767677, f1 = 0.8867924528301887
+[2019-04-05 14:01:17,034][INFO] __main__:358 - b = 0.7777777777777778, f1 = 0.8867924528301887
+[2019-04-05 14:01:17,300][INFO] __main__:358 - b = 0.787878787878788, f1 = 0.8867924528301887
+[2019-04-05 14:01:17,530][INFO] __main__:358 - b = 0.797979797979798, f1 = 0.8867924528301887
+[2019-04-05 14:01:17,742][INFO] __main__:358 - b = 0.8080808080808082, f1 = 0.8867924528301887
+[2019-04-05 14:01:17,948][INFO] __main__:358 - b = 0.8181818181818182, f1 = 0.8867924528301887
+[2019-04-05 14:01:18,156][INFO] __main__:358 - b = 0.8282828282828284, f1 = 0.8867924528301887
+[2019-04-05 14:01:18,357][INFO] __main__:358 - b = 0.8383838383838385, f1 = 0.8867924528301887
+[2019-04-05 14:01:18,561][INFO] __main__:358 - b = 0.8484848484848485, f1 = 0.8895899053627759
+[2019-04-05 14:01:18,741][INFO] __main__:358 - b = 0.8585858585858587, f1 = 0.8895899053627759
+[2019-04-05 14:01:18,959][INFO] __main__:358 - b = 0.8686868686868687, f1 = 0.8895899053627759
+[2019-04-05 14:01:19,146][INFO] __main__:358 - b = 0.8787878787878789, f1 = 0.8924050632911392
+[2019-04-05 14:01:19,351][INFO] __main__:358 - b = 0.888888888888889, f1 = 0.8952380952380952
+[2019-04-05 14:01:19,536][INFO] __main__:358 - b = 0.8989898989898991, f1 = 0.8980891719745223
+[2019-04-05 14:01:19,731][INFO] __main__:358 - b = 0.9090909090909092, f1 = 0.8980891719745223
+[2019-04-05 14:01:19,936][INFO] __main__:358 - b = 0.9191919191919192, f1 = 0.8980891719745223
+[2019-04-05 14:01:20,125][INFO] __main__:358 - b = 0.9292929292929294, f1 = 0.8980891719745223
+[2019-04-05 14:01:20,335][INFO] __main__:358 - b = 0.9393939393939394, f1 = 0.8980891719745223
+[2019-04-05 14:01:20,545][INFO] __main__:358 - b = 0.9494949494949496, f1 = 0.8980891719745223
+[2019-04-05 14:01:20,694][INFO] __main__:358 - b = 0.9595959595959597, f1 = 0.8945686900958466
+[2019-04-05 14:01:20,877][INFO] __main__:358 - b = 0.9696969696969697, f1 = 0.8945686900958466
+[2019-04-05 14:01:21,070][INFO] __main__:358 - b = 0.9797979797979799, f1 = 0.8766233766233765
+[2019-04-05 14:01:21,251][INFO] __main__:358 - b = 0.98989898989899, f1 = 0.8712871287128714
+[2019-04-05 14:01:21,273][INFO] __main__:366 - ===================================================
+[2019-04-05 14:01:21,273][INFO] __main__:367 - Scoring on Entity-Level Gold Data with b=0.8989898989898991
+[2019-04-05 14:01:21,273][INFO] __main__:368 - ===================================================
+[2019-04-05 14:01:21,274][INFO] __main__:369 - Corpus Precision 0.876
+[2019-04-05 14:01:21,274][INFO] __main__:370 - Corpus Recall    0.922
+[2019-04-05 14:01:21,274][INFO] __main__:371 - Corpus F1        0.898
+[2019-04-05 14:01:21,274][INFO] __main__:372 - ---------------------------------------------------
+[2019-04-05 14:01:21,274][INFO] __main__:374 - TP: 141 | FP: 20 | FN: 12
+[2019-04-05 14:01:21,275][INFO] __main__:378 - ===================================================
+
+[2019-04-05 14:01:21,276][INFO] __main__:316 - Training generative model...
+[2019-04-05 14:01:23,908][INFO] __main__:318 - Done.
+[2019-04-05 14:01:24,173][INFO] __main__:327 - Training discriminative model...
+[2019-04-05 14:01:24,181][INFO] fonduer.learning.classifier:142 - Loading default parameters for Sparse Logistic Regression
+[2019-04-05 14:01:24,856][INFO] fonduer.learning.classifier:213 - Using GPU...
+[2019-04-05 14:01:24,856][INFO] fonduer.learning.classifier:215 - Settings: {'log_dir': 'logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression', 'n_epochs': 100, 'lr': 0.001, 'batch_size': 256, 'shuffle': True, 'seed': 1234, 'host_device': 'GPU', 'bias': False, 'input_dim': 328834}
+[2019-04-05 14:01:24,906][INFO] fonduer.learning.classifier:233 - [SparseLogisticRegression] Training model
+[2019-04-05 14:01:24,906][INFO] fonduer.learning.classifier:235 - [SparseLogisticRegression] n_train=212206 #epochs=100 batch size=256
+[2019-04-05 14:03:19,592][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 5 (114.68s)	Average loss=0.365646
+[2019-04-05 14:03:19,599][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_5.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:05:13,360][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 10 (228.45s)	Average loss=0.364346
+[2019-04-05 14:05:13,366][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_10.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:07:08,104][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 15 (343.20s)	Average loss=0.364059
+[2019-04-05 14:07:08,110][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_15.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:09:01,494][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 20 (456.59s)	Average loss=0.364011
+[2019-04-05 14:09:01,500][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_20.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:10:54,599][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 25 (569.69s)	Average loss=0.363896
+[2019-04-05 14:10:54,605][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_25.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:12:48,003][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 30 (683.10s)	Average loss=0.364019
+[2019-04-05 14:12:48,009][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_30.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:14:41,317][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 35 (796.41s)	Average loss=0.363895
+[2019-04-05 14:14:41,323][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_35.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:16:35,012][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 40 (910.10s)	Average loss=0.363949
+[2019-04-05 14:16:35,018][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_40.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:18:28,440][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 45 (1023.53s)	Average loss=0.363861
+[2019-04-05 14:18:28,446][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_45.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:20:21,522][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 50 (1136.61s)	Average loss=0.363762
+[2019-04-05 14:20:21,528][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_50.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:22:15,093][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 55 (1250.19s)	Average loss=0.363884
+[2019-04-05 14:22:15,099][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_55.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:24:08,931][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 60 (1364.02s)	Average loss=0.363896
+[2019-04-05 14:24:08,938][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_60.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:26:02,335][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 65 (1477.43s)	Average loss=0.363883
+[2019-04-05 14:26:02,341][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_65.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:27:55,917][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 70 (1591.01s)	Average loss=0.363958
+[2019-04-05 14:27:55,924][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_70.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:29:49,511][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 75 (1704.60s)	Average loss=0.363797
+[2019-04-05 14:29:49,517][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_75.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:31:43,608][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 80 (1818.70s)	Average loss=0.363812
+[2019-04-05 14:31:43,614][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_80.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:33:37,143][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 85 (1932.23s)	Average loss=0.363938
+[2019-04-05 14:33:37,149][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_85.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:35:31,501][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 90 (2046.59s)	Average loss=0.363838
+[2019-04-05 14:35:31,507][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_90.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:37:25,305][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 95 (2160.40s)	Average loss=0.363848
+[2019-04-05 14:37:25,311][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_95.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:39:19,005][INFO] fonduer.learning.classifier:289 - [SparseLogisticRegression] Epoch 100 (2274.10s)	Average loss=0.363652
+[2019-04-05 14:39:19,019][INFO] fonduer.learning.classifier:516 - [SparseLogisticRegression] Model saved as checkpoint_epoch_100.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:39:19,019][INFO] fonduer.learning.classifier:317 - Saving final model as best checkpoint logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression/checkpoint_epoch_100.pt.
+[2019-04-05 14:39:19,025][INFO] fonduer.learning.classifier:327 - [SparseLogisticRegression] Training done (2274.12s)
+[2019-04-05 14:39:19,026][INFO] fonduer.learning.classifier:330 - Loading best checkpoint
+[2019-04-05 14:39:19,032][INFO] fonduer.learning.classifier:546 - [SparseLogisticRegression] Model loaded as best_model.pt in logs/2019-04-04_15-35-34/2019-04-05_14-01-24_SparseLogisticRegression
+[2019-04-05 14:39:19,067][INFO] __main__:331 - Done.
+[2019-04-05 14:39:19,068][INFO] __main__:337 - Calculating the best F1 score and threshold (b)...
+[2019-04-05 14:39:20,776][INFO] __main__:358 - b = 0.0, f1 = 0.8178694158075602
+[2019-04-05 14:39:20,892][INFO] __main__:358 - b = 0.010101010101010102, f1 = 0.8178694158075602
+[2019-04-05 14:39:21,069][INFO] __main__:358 - b = 0.020202020202020204, f1 = 0.8178694158075602
+[2019-04-05 14:39:21,251][INFO] __main__:358 - b = 0.030303030303030304, f1 = 0.8178694158075602
+[2019-04-05 14:39:21,425][INFO] __main__:358 - b = 0.04040404040404041, f1 = 0.8178694158075602
+[2019-04-05 14:39:21,595][INFO] __main__:358 - b = 0.05050505050505051, f1 = 0.8178694158075602
+[2019-04-05 14:39:21,774][INFO] __main__:358 - b = 0.06060606060606061, f1 = 0.8178694158075602
+[2019-04-05 14:39:21,954][INFO] __main__:358 - b = 0.07070707070707072, f1 = 0.8178694158075602
+[2019-04-05 14:39:22,134][INFO] __main__:358 - b = 0.08080808080808081, f1 = 0.8178694158075602
+[2019-04-05 14:39:22,314][INFO] __main__:358 - b = 0.09090909090909091, f1 = 0.8178694158075602
+[2019-04-05 14:39:22,474][INFO] __main__:358 - b = 0.10101010101010102, f1 = 0.8178694158075602
+[2019-04-05 14:39:22,653][INFO] __main__:358 - b = 0.11111111111111112, f1 = 0.8178694158075602
+[2019-04-05 14:39:22,832][INFO] __main__:358 - b = 0.12121212121212122, f1 = 0.8178694158075602
+[2019-04-05 14:39:23,012][INFO] __main__:358 - b = 0.13131313131313133, f1 = 0.8178694158075602
+[2019-04-05 14:39:23,194][INFO] __main__:358 - b = 0.14141414141414144, f1 = 0.8178694158075602
+[2019-04-05 14:39:23,367][INFO] __main__:358 - b = 0.15151515151515152, f1 = 0.8178694158075602
+[2019-04-05 14:39:23,549][INFO] __main__:358 - b = 0.16161616161616163, f1 = 0.8178694158075602
+[2019-04-05 14:39:23,716][INFO] __main__:358 - b = 0.17171717171717174, f1 = 0.8178694158075602
+[2019-04-05 14:39:23,875][INFO] __main__:358 - b = 0.18181818181818182, f1 = 0.8178694158075602
+[2019-04-05 14:39:24,030][INFO] __main__:358 - b = 0.19191919191919193, f1 = 0.8178694158075602
+[2019-04-05 14:39:24,203][INFO] __main__:358 - b = 0.20202020202020204, f1 = 0.8178694158075602
+[2019-04-05 14:39:24,396][INFO] __main__:358 - b = 0.21212121212121213, f1 = 0.8178694158075602
+[2019-04-05 14:39:24,588][INFO] __main__:358 - b = 0.22222222222222224, f1 = 0.8178694158075602
+[2019-04-05 14:39:24,810][INFO] __main__:358 - b = 0.23232323232323235, f1 = 0.8178694158075602
+[2019-04-05 14:39:24,988][INFO] __main__:358 - b = 0.24242424242424243, f1 = 0.8178694158075602
+[2019-04-05 14:39:25,168][INFO] __main__:358 - b = 0.25252525252525254, f1 = 0.8178694158075602
+[2019-04-05 14:39:25,351][INFO] __main__:358 - b = 0.26262626262626265, f1 = 0.8178694158075602
+[2019-04-05 14:39:25,549][INFO] __main__:358 - b = 0.27272727272727276, f1 = 0.8178694158075602
+[2019-04-05 14:39:25,735][INFO] __main__:358 - b = 0.2828282828282829, f1 = 0.8178694158075602
+[2019-04-05 14:39:25,940][INFO] __main__:358 - b = 0.29292929292929293, f1 = 0.8178694158075602
+[2019-04-05 14:39:26,157][INFO] __main__:358 - b = 0.30303030303030304, f1 = 0.8178694158075602
+[2019-04-05 14:39:26,357][INFO] __main__:358 - b = 0.31313131313131315, f1 = 0.8178694158075602
+[2019-04-05 14:39:26,541][INFO] __main__:358 - b = 0.32323232323232326, f1 = 0.8178694158075602
+[2019-04-05 14:39:26,720][INFO] __main__:358 - b = 0.33333333333333337, f1 = 0.8178694158075602
+[2019-04-05 14:39:26,902][INFO] __main__:358 - b = 0.3434343434343435, f1 = 0.8178694158075602
+[2019-04-05 14:39:27,080][INFO] __main__:358 - b = 0.3535353535353536, f1 = 0.8178694158075602
+[2019-04-05 14:39:27,299][INFO] __main__:358 - b = 0.36363636363636365, f1 = 0.8178694158075602
+[2019-04-05 14:39:27,488][INFO] __main__:358 - b = 0.37373737373737376, f1 = 0.8178694158075602
+[2019-04-05 14:39:27,706][INFO] __main__:358 - b = 0.38383838383838387, f1 = 0.8178694158075602
+[2019-04-05 14:39:27,879][INFO] __main__:358 - b = 0.393939393939394, f1 = 0.8178694158075602
+[2019-04-05 14:39:28,062][INFO] __main__:358 - b = 0.4040404040404041, f1 = 0.8178694158075602
+[2019-04-05 14:39:28,277][INFO] __main__:358 - b = 0.4141414141414142, f1 = 0.8178694158075602
+[2019-04-05 14:39:28,496][INFO] __main__:358 - b = 0.42424242424242425, f1 = 0.8178694158075602
+[2019-04-05 14:39:28,700][INFO] __main__:358 - b = 0.43434343434343436, f1 = 0.8178694158075602
+[2019-04-05 14:39:28,922][INFO] __main__:358 - b = 0.4444444444444445, f1 = 0.8178694158075602
+[2019-04-05 14:39:29,086][INFO] __main__:358 - b = 0.4545454545454546, f1 = 0.8178694158075602
+[2019-04-05 14:39:29,284][INFO] __main__:358 - b = 0.4646464646464647, f1 = 0.8178694158075602
+[2019-04-05 14:39:29,471][INFO] __main__:358 - b = 0.4747474747474748, f1 = 0.8178694158075602
+[2019-04-05 14:39:29,652][INFO] __main__:358 - b = 0.48484848484848486, f1 = 0.8178694158075602
+[2019-04-05 14:39:29,821][INFO] __main__:358 - b = 0.494949494949495, f1 = 0.8178694158075602
+[2019-04-05 14:39:30,019][INFO] __main__:358 - b = 0.5050505050505051, f1 = 0.8178694158075602
+[2019-04-05 14:39:30,208][INFO] __main__:358 - b = 0.5151515151515152, f1 = 0.8178694158075602
+[2019-04-05 14:39:30,361][INFO] __main__:358 - b = 0.5252525252525253, f1 = 0.8178694158075602
+[2019-04-05 14:39:30,499][INFO] __main__:358 - b = 0.5353535353535354, f1 = 0.8178694158075602
+[2019-04-05 14:39:30,695][INFO] __main__:358 - b = 0.5454545454545455, f1 = 0.8178694158075602
+[2019-04-05 14:39:30,884][INFO] __main__:358 - b = 0.5555555555555556, f1 = 0.8178694158075602
+[2019-04-05 14:39:31,072][INFO] __main__:358 - b = 0.5656565656565657, f1 = 0.8178694158075602
+[2019-04-05 14:39:31,272][INFO] __main__:358 - b = 0.5757575757575758, f1 = 0.8178694158075602
+[2019-04-05 14:39:31,476][INFO] __main__:358 - b = 0.5858585858585859, f1 = 0.8178694158075602
+[2019-04-05 14:39:31,685][INFO] __main__:358 - b = 0.595959595959596, f1 = 0.8178694158075602
+[2019-04-05 14:39:31,867][INFO] __main__:358 - b = 0.6060606060606061, f1 = 0.8178694158075602
+[2019-04-05 14:39:32,055][INFO] __main__:358 - b = 0.6161616161616162, f1 = 0.8178694158075602
+[2019-04-05 14:39:32,251][INFO] __main__:358 - b = 0.6262626262626263, f1 = 0.8178694158075602
+[2019-04-05 14:39:32,456][INFO] __main__:358 - b = 0.6363636363636365, f1 = 0.8178694158075602
+[2019-04-05 14:39:32,657][INFO] __main__:358 - b = 0.6464646464646465, f1 = 0.8178694158075602
+[2019-04-05 14:39:32,862][INFO] __main__:358 - b = 0.6565656565656566, f1 = 0.8178694158075602
+[2019-04-05 14:39:33,047][INFO] __main__:358 - b = 0.6666666666666667, f1 = 0.8178694158075602
+[2019-04-05 14:39:33,245][INFO] __main__:358 - b = 0.6767676767676768, f1 = 0.8178694158075602
+[2019-04-05 14:39:33,428][INFO] __main__:358 - b = 0.686868686868687, f1 = 0.8178694158075602
+[2019-04-05 14:39:33,626][INFO] __main__:358 - b = 0.696969696969697, f1 = 0.8178694158075602
+[2019-04-05 14:39:33,805][INFO] __main__:358 - b = 0.7070707070707072, f1 = 0.8178694158075602
+[2019-04-05 14:39:33,985][INFO] __main__:358 - b = 0.7171717171717172, f1 = 0.8178694158075602
+[2019-04-05 14:39:34,164][INFO] __main__:358 - b = 0.7272727272727273, f1 = 0.8178694158075602
+[2019-04-05 14:39:34,345][INFO] __main__:358 - b = 0.7373737373737375, f1 = 0.8178694158075602
+[2019-04-05 14:39:34,543][INFO] __main__:358 - b = 0.7474747474747475, f1 = 0.8178694158075602
+[2019-04-05 14:39:34,722][INFO] __main__:358 - b = 0.7575757575757577, f1 = 0.8178694158075602
+[2019-04-05 14:39:34,952][INFO] __main__:358 - b = 0.7676767676767677, f1 = 0.8137931034482758
+[2019-04-05 14:39:35,181][INFO] __main__:358 - b = 0.7777777777777778, f1 = 0.8137931034482758
+[2019-04-05 14:39:35,454][INFO] __main__:358 - b = 0.787878787878788, f1 = 0.8137931034482758
+[2019-04-05 14:39:35,700][INFO] __main__:358 - b = 0.797979797979798, f1 = 0.8137931034482758
+[2019-04-05 14:39:35,887][INFO] __main__:358 - b = 0.8080808080808082, f1 = 0.7972027972027972
+[2019-04-05 14:39:36,077][INFO] __main__:358 - b = 0.8181818181818182, f1 = 0.7972027972027972
+[2019-04-05 14:39:36,256][INFO] __main__:358 - b = 0.8282828282828284, f1 = 0.7972027972027972
+[2019-04-05 14:39:36,433][INFO] __main__:358 - b = 0.8383838383838385, f1 = 0.7972027972027972
+[2019-04-05 14:39:36,609][INFO] __main__:358 - b = 0.8484848484848485, f1 = 0.7972027972027972
+[2019-04-05 14:39:36,768][INFO] __main__:358 - b = 0.8585858585858587, f1 = 0.7972027972027972
+[2019-04-05 14:39:36,973][INFO] __main__:358 - b = 0.8686868686868687, f1 = 0.7972027972027972
+[2019-04-05 14:39:37,143][INFO] __main__:358 - b = 0.8787878787878789, f1 = 0.7972027972027972
+[2019-04-05 14:39:37,338][INFO] __main__:358 - b = 0.888888888888889, f1 = 0.7972027972027972
+[2019-04-05 14:39:37,477][INFO] __main__:358 - b = 0.8989898989898991, f1 = 0.7972027972027972
+[2019-04-05 14:39:37,679][INFO] __main__:358 - b = 0.9090909090909092, f1 = 0.784452296819788
+[2019-04-05 14:39:37,817][INFO] __main__:358 - b = 0.9191919191919192, f1 = 0.7801418439716312
+[2019-04-05 14:39:37,993][INFO] __main__:358 - b = 0.9292929292929294, f1 = 0.7758007117437723
+[2019-04-05 14:39:38,152][INFO] __main__:358 - b = 0.9393939393939394, f1 = 0.7581227436823105
+[2019-04-05 14:39:38,336][INFO] __main__:358 - b = 0.9494949494949496, f1 = 0.7490909090909089
+[2019-04-05 14:39:38,486][INFO] __main__:358 - b = 0.9595959595959597, f1 = 0.7259259259259259
+[2019-04-05 14:39:38,643][INFO] __main__:358 - b = 0.9696969696969697, f1 = 0.676923076923077
+[2019-04-05 14:39:38,831][INFO] __main__:358 - b = 0.9797979797979799, f1 = 0.6456692913385826
+[2019-04-05 14:39:38,985][INFO] __main__:358 - b = 0.98989898989899, f1 = 0.6349206349206349
+[2019-04-05 14:39:38,993][INFO] __main__:366 - ===================================================
+[2019-04-05 14:39:38,993][INFO] __main__:367 - Scoring on Entity-Level Gold Data with b=0.0
+[2019-04-05 14:39:38,993][INFO] __main__:368 - ===================================================
+[2019-04-05 14:39:38,993][INFO] __main__:369 - Corpus Precision 0.875
+[2019-04-05 14:39:38,993][INFO] __main__:370 - Corpus Recall    0.768
+[2019-04-05 14:39:38,993][INFO] __main__:371 - Corpus F1        0.818
+[2019-04-05 14:39:38,993][INFO] __main__:372 - ---------------------------------------------------
+[2019-04-05 14:39:38,994][INFO] __main__:374 - TP: 119 | FP: 17 | FN: 36
+[2019-04-05 14:39:38,994][INFO] __main__:378 - ===================================================
+
