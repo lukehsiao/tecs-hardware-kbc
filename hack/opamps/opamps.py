@@ -34,6 +34,16 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 logger = logging.getLogger(__name__)
 
 
+def dump_candidates(cands, Y_prob, outfile):
+    """Output the candidates and their probabilities for later analysis."""
+    dirname = os.path.dirname(__file__)
+    with open(os.path.join(dirname, outfile), "w") as csvfile:
+        writer = csv.writer(csvfile)
+        for i, c in enumerate(cands):
+            (doc, part, val) = cand_to_entity(c)
+            writer.writerow([doc, part, val, Y_prob[i][TRUE - 1]])
+
+
 def parsing(session, first_time=False, parallel=4, max_docs=float("inf")):
     dirname = os.path.dirname(__file__)
     logger.debug(f"Starting parsing...")
@@ -404,9 +414,11 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
 
     Y_prob = disc_models.marginals((test_cands[0], F_test[0]))
     output_csv(test_cands[0], Y_prob, is_gain=True, append=True)
+    dump_candidates(test_cands[0], Y_prob, "gain_test_probs.csv")
 
     Y_prob = disc_models.marginals((dev_cands[0], F_dev[0]))
     output_csv(dev_cands[0], Y_prob, is_gain=True, append=True)
+    dump_candidates(dev_cands[0], Y_prob, "gain_dev_probs.csv")
 
     dev_gold_entities = get_gold_set(is_gain=False)
     L_dev_gt = []
@@ -438,14 +450,17 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
 
     print_scores(best_result, best_b)
 
+    # Dump CSV files for digi-key analysis and Opo comparison
     Y_prob = disc_models.marginals((train_cands[1], F_train[1]))
     output_csv(train_cands[1], Y_prob, is_gain=False)
 
     Y_prob = disc_models.marginals((test_cands[1], F_test[1]))
     output_csv(test_cands[1], Y_prob, is_gain=False, append=True)
+    dump_candidates(test_cands[1], Y_prob, "current_test_probs.csv")
 
     Y_prob = disc_models.marginals((dev_cands[1], F_dev[1]))
     output_csv(dev_cands[1], Y_prob, is_gain=False, append=True)
+    dump_candidates(dev_cands[1], Y_prob, "current_dev_probs.csv")
 
     # End with an interactive prompt
     pdb.set_trace()
@@ -455,8 +470,8 @@ if __name__ == "__main__":
     parallel = 16
     component = "opamps_test"
     conn_string = f"postgresql:///{component}"
-    first_time = True
-    parse = True
+    first_time = False
+    parse = False
     max_docs = float("inf")
     logger.info(f"\n\n")
     logger.info(f"=" * 30)
