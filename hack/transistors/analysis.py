@@ -76,12 +76,17 @@ def filter_filenames(entities, filenames):
     return result
 
 
-def main(relation=Relation.CE_V_MAX, outfile="discrepancies.csv"):
+def main(
+    relation=Relation.CE_V_MAX,
+    devfile="ce_v_max_dev_probs.csv",
+    testfile="ce_v_max_test_probs.csv",
+    outfile="analysis_discrepancies.csv",
+):
 
     # First, read in CSV and convert to entity set
     dirname = os.path.dirname(__name__)
-    test_file = os.path.join(dirname, "analysis/ce_v_max_test_set_probs.csv")
-    dev_file = os.path.join(dirname, "analysis/ce_v_max_dev_set_probs.csv")
+    test_file = os.path.join(dirname, testfile)
+    dev_file = os.path.join(dirname, devfile)
     filenames_file = os.path.join(dirname, "data/analysis/filenames.csv")
     discrepancy_file = os.path.join(dirname, outfile)
     logger.info(
@@ -145,5 +150,4 @@ def main(relation=Relation.CE_V_MAX, outfile="discrepancies.csv"):
 
 
 if __name__ == "__main__":
-    outfile = "analysis/data_discrepancies.csv"
-    main(outfile=outfile)
+    main()
