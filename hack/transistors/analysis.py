@@ -21,7 +21,17 @@ from hack.transistors.transistor_utils import (
 )
 from hack.transistors.transistors import Relation, load_parts_by_doc
 
-logging.basicConfig(level=logging.DEBUG)
+# Configure logging for Hack
+logging.basicConfig(
+    format="[%(asctime)s][%(levelname)s] %(name)s:%(lineno)s - %(message)s",
+    level=logging.DEBUG,
+    handlers=[
+        logging.FileHandler(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), "analysis.log")
+        ),
+        logging.StreamHandler(),
+    ],
+)
 logger = logging.getLogger(__name__)
 
 
