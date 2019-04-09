@@ -177,6 +177,8 @@ def add_space(type, value):
         # See: https://www.digikey.com/products/en?keywords=2SD2704KT146TR-ND
         elif value.endswith("ma"):
             return value.replace("ma", " mA")
+        elif value.endswith("uA"):
+            return value.replace("uA", " uA")
         elif value.endswith("A"):
             return value.replace("A", " A")
         else:
@@ -194,7 +196,7 @@ def add_space(type, value):
         if value.endswith("MHz"):
             return value.replace("MHz", " MHz")
         elif value.endswith("GHz"):
-            return value.replace("GHZ", " GHz")
+            return value.replace("GHz", " GHz")
         elif value.endswith("kHz"):
             return value.replace("kHz", " kHz")
         else:
@@ -373,11 +375,11 @@ TODO: These have not been fully vetted yet
 """
 
 
-def preprocess_gbp(typ_gpb):
-    if typ_gpb.strip() == "-":
+def preprocess_gbp(typ_gbp):
+    if typ_gbp.strip() == "-":
         return "N/A"
     else:
-        return typ_gpb.strip()
+        return add_space("frequency", typ_gbp)
 
 
 def preprocess_supply_current(current):
