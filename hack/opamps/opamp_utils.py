@@ -139,7 +139,7 @@ def cand_to_entity(c, is_gain=True):
             return
     else:
         current = c[0].context.get_span()
-        valid_units = ["mA", "μA", "uA", "µA", "\uf06dA"]
+        valid_units = ["nA", "mA", "μA", "uA", "µA", "\uf06dA"]
 
         # Get a set of the current units
         right_ngrams = set([_ for _ in right_ngrams if _ in valid_units])
