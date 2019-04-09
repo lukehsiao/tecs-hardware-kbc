@@ -3,7 +3,6 @@ This should read in two gold files, score them against eachother,
 and write all discrepancies to an output CSV.
 """
 
-import csv
 import logging
 import os
 
@@ -32,20 +31,6 @@ def print_score(score, entities=None, metric=None):
     logger.info("===================================================\n")
 
 
-def normalize_digikey_gold(digikey_gold, dirname=os.path.dirname(__name__)):
-    """Remove source CSV file from Digikey CSV lines (e.g. ffe00114_8.csv)."""
-    gold = os.path.join(dirname, "../analysis/digikey_gold.csv")
-    with open(gold, "w") as temp:
-        reader = csv.reader(open(digikey_gold, "r"))
-        writer = csv.writer(temp)
-        for line in reader:
-            (doc, manuf, part, attr, val, source) = line
-            # Get rid of units
-            val = val.split(" ")[0].strip()
-            writer.writerow((doc, manuf, part, attr, val))
-    return gold
-
-
 if __name__ == "__main__":
 
     # Compare our gold with Digikey's gold for the analysis set of 66 docs
@@ -61,9 +46,7 @@ if __name__ == "__main__":
     our_gold_dic = gold_set_to_dic(our_gold_set)
 
     # Digikey
-    digikey_gold = normalize_digikey_gold(
-        os.path.join(dirname, "../analysis/digikey_gold.csv")
-    )
+    digikey_gold = os.path.join(dirname, "../analysis/digikey_gold.csv")
     digikey_gold_set = get_gold_set(gold=[digikey_gold], attribute=attribute)
     digikey_gold_dic = gold_set_to_dic(digikey_gold_set)
 

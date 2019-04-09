@@ -3,13 +3,12 @@ In order to reproduce the analysis performed between our automatically generated
 knowledge bases and Digikey's existing knowledge bases, we operate on a subset
 of the already labeled `dev` and `test` datasets.
 
-## Generating Datasets
 To create this new `analysis` dataset, we pull documents and gold labels from
 `dev` and `test` that also appear in Digikey's set of datasheets and gold
 labels. This is done by comparing filenames found in `dev` and `test` to
 filenames found in Digikey's formatted gold labels.
 
-### Digikey Gold Reproduction
+## Digikey Gold Reproduction
 To compare filenames from our dataset with Digikey's, we will format the raw
 gold CSVs scraped from Digikey.com (see `digikeyscraper`) into a format
 recognizable by our scoring and utility scripts. (The same format that our gold

@@ -37,8 +37,12 @@ def trim_digikey_goldfile(goldfile, filenames, outfile, append=False):
         reader = csv.reader(inputcsv)
         for row in reader:
             (filename, manuf, part, attr, val, source) = row
+
+            # Get rid of units
+            val = val.split(" ")[0].strip()
+
             if filename in filenames:
-                entities.append(row)
+                entities.append((filename, manuf, part, attr, val))
 
     # Now, write the new entities into outfile
     with open(outfile, "a") if append else open(outfile, "w") as inputcsv:
