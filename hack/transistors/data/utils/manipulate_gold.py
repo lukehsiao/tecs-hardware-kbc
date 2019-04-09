@@ -6,11 +6,15 @@ import pdb
 logger = logging.getLogger(__name__)
 
 
-def sort_gold(gold_file):
+def sort_gold(gold_file, replace=False):
     # Change `output` to the absolute path of where you want the sorted output to
     # be written.
-    gold_filename = gold_file.split("/")[-1]
-    output = gold_file.replace(gold_filename, "") + "sorted_" + gold_filename
+    if replace:
+        output = gold_file
+    else:
+        gold_filename = gold_file.split("/")[-1]
+        output = gold_file.replace(gold_filename, "") + "sorted_" + gold_filename
+
     data = csv.reader(open(gold_file), delimiter=",")
 
     # 0 specifies according to first column we want to sort (i.e. filename)

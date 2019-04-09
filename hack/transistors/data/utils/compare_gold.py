@@ -34,7 +34,7 @@ def print_score(score, entities=None, metric=None):
 
 def normalize_digikey_gold(digikey_gold, dirname=os.path.dirname(__name__)):
     """Remove source CSV file from Digikey CSV lines (e.g. ffe00114_8.csv)."""
-    gold = os.path.join(dirname, "../analysis/standard_digikey_gold.csv")
+    gold = os.path.join(dirname, "../analysis/digikey_gold.csv")
     with open(gold, "w") as temp:
         reader = csv.reader(open(digikey_gold, "r"))
         writer = csv.writer(temp)
@@ -84,6 +84,3 @@ if __name__ == "__main__":
     compare_entities(
         set(score.FP), type="FP", append=True, gold_dic=our_gold_dic, outfile=outfile
     )
-
-    # Remove temp formatted gold files
-    os.remove(digikey_gold)
