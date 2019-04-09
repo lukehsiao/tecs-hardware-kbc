@@ -8126,24 +8126,24 @@ tlc25l2a,Texas Instruments,TLC252,min_op_supply_volt,1.4 V
 tlc25l2a,Texas Instruments,TLC252,max_op_supply_volt,16 V
 tlc25l2a,Texas Instruments,TLC252,min_op_temp,0
 tlc25l2a,Texas Instruments,TLC252,max_op_temp,70
-tlc25l2a,,TLC252_C,part_family,Y
-tlc25l2a,,TLC252_C,typ_gbp,12.0 kHz
-tlc25l2a,,TLC252_C,typ_gbp,1.7 MHz
-tlc25l2a,,TLC252_C,typ_gbp,2.0 MHz
-tlc25l2a,,TLC252_C,typ_gbp,1.3 MHz
-tlc25l2a,,TLC252_C,typ_gbp,2.2 MHz
-tlc25l2a,,TLC252_C,typ_gbp,2.5 MHz
-tlc25l2a,,TLC252_C,typ_gbp,1.8 MHz
-tlc25l2a,,TLC252_C,typ_supply_current,300 uA
-tlc25l2a,,TLC252_C,typ_supply_current,1.4 mA
-tlc25l2a,,TLC252_C,typ_supply_current,1.6 mA
-tlc25l2a,,TLC252_C,typ_supply_current,1.2 mA
-tlc25l2a,,TLC252_C,typ_supply_current,1.9 mA
-tlc25l2a,,TLC252_C,typ_supply_current,2.3 mA
-tlc25l2a,,TLC252_C,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC252_C,max_op_supply_volt,16 V
-tlc25l2a,,TLC252_C,min_op_temp,0
-tlc25l2a,,TLC252_C,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC252_C,part_family,Y
+tlc25l2a,Texas Instruments,TLC252_C,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC252_C,typ_gbp,1.7 MHz
+tlc25l2a,Texas Instruments,TLC252_C,typ_gbp,2.0 MHz
+tlc25l2a,Texas Instruments,TLC252_C,typ_gbp,1.3 MHz
+tlc25l2a,Texas Instruments,TLC252_C,typ_gbp,2.2 MHz
+tlc25l2a,Texas Instruments,TLC252_C,typ_gbp,2.5 MHz
+tlc25l2a,Texas Instruments,TLC252_C,typ_gbp,1.8 MHz
+tlc25l2a,Texas Instruments,TLC252_C,typ_supply_current,300 uA
+tlc25l2a,Texas Instruments,TLC252_C,typ_supply_current,1.4 mA
+tlc25l2a,Texas Instruments,TLC252_C,typ_supply_current,1.6 mA
+tlc25l2a,Texas Instruments,TLC252_C,typ_supply_current,1.2 mA
+tlc25l2a,Texas Instruments,TLC252_C,typ_supply_current,1.9 mA
+tlc25l2a,Texas Instruments,TLC252_C,typ_supply_current,2.3 mA
+tlc25l2a,Texas Instruments,TLC252_C,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC252_C,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC252_C,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC252_C,max_op_temp,70
 tlc25l2a,Texas Instruments,TLC252CD,part_family,N
 tlc25l2a,Texas Instruments,TLC252CD,typ_gbp,12.0 kHz
 tlc25l2a,Texas Instruments,TLC252CD,typ_gbp,1.7 MHz
@@ -8162,60 +8162,60 @@ tlc25l2a,Texas Instruments,TLC252CD,min_op_supply_volt,1.4 V
 tlc25l2a,Texas Instruments,TLC252CD,max_op_supply_volt,16 V
 tlc25l2a,Texas Instruments,TLC252CD,min_op_temp,0
 tlc25l2a,Texas Instruments,TLC252CD,max_op_temp,70
-tlc25l2a,,TLC252CDG4,part_family,N
-tlc25l2a,,TLC252CDG4,typ_gbp,12.0 kHz
-tlc25l2a,,TLC252CDG4,typ_gbp,1.7 MHz
-tlc25l2a,,TLC252CDG4,typ_gbp,2.0 MHz
-tlc25l2a,,TLC252CDG4,typ_gbp,1.3 MHz
-tlc25l2a,,TLC252CDG4,typ_gbp,2.2 MHz
-tlc25l2a,,TLC252CDG4,typ_gbp,2.5 MHz
-tlc25l2a,,TLC252CDG4,typ_gbp,1.8 MHz
-tlc25l2a,,TLC252CDG4,typ_supply_current,300 uA
-tlc25l2a,,TLC252CDG4,typ_supply_current,1.4 mA
-tlc25l2a,,TLC252CDG4,typ_supply_current,1.6 mA
-tlc25l2a,,TLC252CDG4,typ_supply_current,1.2 mA
-tlc25l2a,,TLC252CDG4,typ_supply_current,1.9 mA
-tlc25l2a,,TLC252CDG4,typ_supply_current,2.3 mA
-tlc25l2a,,TLC252CDG4,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC252CDG4,max_op_supply_volt,16 V
-tlc25l2a,,TLC252CDG4,min_op_temp,0
-tlc25l2a,,TLC252CDG4,max_op_temp,70
-tlc25l2a,,TLC252CDR,part_family,N
-tlc25l2a,,TLC252CDR,typ_gbp,12.0 kHz
-tlc25l2a,,TLC252CDR,typ_gbp,1.7 MHz
-tlc25l2a,,TLC252CDR,typ_gbp,2.0 MHz
-tlc25l2a,,TLC252CDR,typ_gbp,1.3 MHz
-tlc25l2a,,TLC252CDR,typ_gbp,2.2 MHz
-tlc25l2a,,TLC252CDR,typ_gbp,2.5 MHz
-tlc25l2a,,TLC252CDR,typ_gbp,1.8 MHz
-tlc25l2a,,TLC252CDR,typ_supply_current,300 uA
-tlc25l2a,,TLC252CDR,typ_supply_current,1.4 mA
-tlc25l2a,,TLC252CDR,typ_supply_current,1.6 mA
-tlc25l2a,,TLC252CDR,typ_supply_current,1.2 mA
-tlc25l2a,,TLC252CDR,typ_supply_current,1.9 mA
-tlc25l2a,,TLC252CDR,typ_supply_current,2.3 mA
-tlc25l2a,,TLC252CDR,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC252CDR,max_op_supply_volt,16 V
-tlc25l2a,,TLC252CDR,min_op_temp,0
-tlc25l2a,,TLC252CDR,max_op_temp,70
-tlc25l2a,,TLC252CDRG4,part_family,N
-tlc25l2a,,TLC252CDRG4,typ_gbp,12.0 kHz
-tlc25l2a,,TLC252CDRG4,typ_gbp,1.7 MHz
-tlc25l2a,,TLC252CDRG4,typ_gbp,2.0 MHz
-tlc25l2a,,TLC252CDRG4,typ_gbp,1.3 MHz
-tlc25l2a,,TLC252CDRG4,typ_gbp,2.2 MHz
-tlc25l2a,,TLC252CDRG4,typ_gbp,2.5 MHz
-tlc25l2a,,TLC252CDRG4,typ_gbp,1.8 MHz
-tlc25l2a,,TLC252CDRG4,typ_supply_current,300 uA
-tlc25l2a,,TLC252CDRG4,typ_supply_current,1.4 mA
-tlc25l2a,,TLC252CDRG4,typ_supply_current,1.6 mA
-tlc25l2a,,TLC252CDRG4,typ_supply_current,1.2 mA
-tlc25l2a,,TLC252CDRG4,typ_supply_current,1.9 mA
-tlc25l2a,,TLC252CDRG4,typ_supply_current,2.3 mA
-tlc25l2a,,TLC252CDRG4,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC252CDRG4,max_op_supply_volt,16 V
-tlc25l2a,,TLC252CDRG4,min_op_temp,0
-tlc25l2a,,TLC252CDRG4,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC252CDG4,part_family,N
+tlc25l2a,Texas Instruments,TLC252CDG4,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC252CDG4,typ_gbp,1.7 MHz
+tlc25l2a,Texas Instruments,TLC252CDG4,typ_gbp,2.0 MHz
+tlc25l2a,Texas Instruments,TLC252CDG4,typ_gbp,1.3 MHz
+tlc25l2a,Texas Instruments,TLC252CDG4,typ_gbp,2.2 MHz
+tlc25l2a,Texas Instruments,TLC252CDG4,typ_gbp,2.5 MHz
+tlc25l2a,Texas Instruments,TLC252CDG4,typ_gbp,1.8 MHz
+tlc25l2a,Texas Instruments,TLC252CDG4,typ_supply_current,300 uA
+tlc25l2a,Texas Instruments,TLC252CDG4,typ_supply_current,1.4 mA
+tlc25l2a,Texas Instruments,TLC252CDG4,typ_supply_current,1.6 mA
+tlc25l2a,Texas Instruments,TLC252CDG4,typ_supply_current,1.2 mA
+tlc25l2a,Texas Instruments,TLC252CDG4,typ_supply_current,1.9 mA
+tlc25l2a,Texas Instruments,TLC252CDG4,typ_supply_current,2.3 mA
+tlc25l2a,Texas Instruments,TLC252CDG4,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC252CDG4,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC252CDG4,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC252CDG4,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC252CDR,part_family,N
+tlc25l2a,Texas Instruments,TLC252CDR,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC252CDR,typ_gbp,1.7 MHz
+tlc25l2a,Texas Instruments,TLC252CDR,typ_gbp,2.0 MHz
+tlc25l2a,Texas Instruments,TLC252CDR,typ_gbp,1.3 MHz
+tlc25l2a,Texas Instruments,TLC252CDR,typ_gbp,2.2 MHz
+tlc25l2a,Texas Instruments,TLC252CDR,typ_gbp,2.5 MHz
+tlc25l2a,Texas Instruments,TLC252CDR,typ_gbp,1.8 MHz
+tlc25l2a,Texas Instruments,TLC252CDR,typ_supply_current,300 uA
+tlc25l2a,Texas Instruments,TLC252CDR,typ_supply_current,1.4 mA
+tlc25l2a,Texas Instruments,TLC252CDR,typ_supply_current,1.6 mA
+tlc25l2a,Texas Instruments,TLC252CDR,typ_supply_current,1.2 mA
+tlc25l2a,Texas Instruments,TLC252CDR,typ_supply_current,1.9 mA
+tlc25l2a,Texas Instruments,TLC252CDR,typ_supply_current,2.3 mA
+tlc25l2a,Texas Instruments,TLC252CDR,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC252CDR,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC252CDR,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC252CDR,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC252CDRG4,part_family,N
+tlc25l2a,Texas Instruments,TLC252CDRG4,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC252CDRG4,typ_gbp,1.7 MHz
+tlc25l2a,Texas Instruments,TLC252CDRG4,typ_gbp,2.0 MHz
+tlc25l2a,Texas Instruments,TLC252CDRG4,typ_gbp,1.3 MHz
+tlc25l2a,Texas Instruments,TLC252CDRG4,typ_gbp,2.2 MHz
+tlc25l2a,Texas Instruments,TLC252CDRG4,typ_gbp,2.5 MHz
+tlc25l2a,Texas Instruments,TLC252CDRG4,typ_gbp,1.8 MHz
+tlc25l2a,Texas Instruments,TLC252CDRG4,typ_supply_current,300 uA
+tlc25l2a,Texas Instruments,TLC252CDRG4,typ_supply_current,1.4 mA
+tlc25l2a,Texas Instruments,TLC252CDRG4,typ_supply_current,1.6 mA
+tlc25l2a,Texas Instruments,TLC252CDRG4,typ_supply_current,1.2 mA
+tlc25l2a,Texas Instruments,TLC252CDRG4,typ_supply_current,1.9 mA
+tlc25l2a,Texas Instruments,TLC252CDRG4,typ_supply_current,2.3 mA
+tlc25l2a,Texas Instruments,TLC252CDRG4,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC252CDRG4,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC252CDRG4,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC252CDRG4,max_op_temp,70
 tlc25l2a,Texas Instruments,TLC252ACD,part_family,N
 tlc25l2a,Texas Instruments,TLC252ACD,typ_gbp,12.0 kHz
 tlc25l2a,Texas Instruments,TLC252ACD,typ_gbp,1.7 MHz
@@ -8270,24 +8270,24 @@ tlc25l2a,Texas Instruments,TLC252CP,min_op_supply_volt,1.4 V
 tlc25l2a,Texas Instruments,TLC252CP,max_op_supply_volt,16 V
 tlc25l2a,Texas Instruments,TLC252CP,min_op_temp,0
 tlc25l2a,Texas Instruments,TLC252CP,max_op_temp,70
-tlc25l2a,,TLC252CPE4,part_family,N
-tlc25l2a,,TLC252CPE4,typ_gbp,12.0 kHz
-tlc25l2a,,TLC252CPE4,typ_gbp,1.7 MHz
-tlc25l2a,,TLC252CPE4,typ_gbp,2.0 MHz
-tlc25l2a,,TLC252CPE4,typ_gbp,1.3 MHz
-tlc25l2a,,TLC252CPE4,typ_gbp,2.2 MHz
-tlc25l2a,,TLC252CPE4,typ_gbp,2.5 MHz
-tlc25l2a,,TLC252CPE4,typ_gbp,1.8 MHz
-tlc25l2a,,TLC252CPE4,typ_supply_current,300 uA
-tlc25l2a,,TLC252CPE4,typ_supply_current,1.4 mA
-tlc25l2a,,TLC252CPE4,typ_supply_current,1.6 mA
-tlc25l2a,,TLC252CPE4,typ_supply_current,1.2 mA
-tlc25l2a,,TLC252CPE4,typ_supply_current,1.9 mA
-tlc25l2a,,TLC252CPE4,typ_supply_current,2.3 mA
-tlc25l2a,,TLC252CPE4,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC252CPE4,max_op_supply_volt,16 V
-tlc25l2a,,TLC252CPE4,min_op_temp,0
-tlc25l2a,,TLC252CPE4,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC252CPE4,part_family,N
+tlc25l2a,Texas Instruments,TLC252CPE4,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC252CPE4,typ_gbp,1.7 MHz
+tlc25l2a,Texas Instruments,TLC252CPE4,typ_gbp,2.0 MHz
+tlc25l2a,Texas Instruments,TLC252CPE4,typ_gbp,1.3 MHz
+tlc25l2a,Texas Instruments,TLC252CPE4,typ_gbp,2.2 MHz
+tlc25l2a,Texas Instruments,TLC252CPE4,typ_gbp,2.5 MHz
+tlc25l2a,Texas Instruments,TLC252CPE4,typ_gbp,1.8 MHz
+tlc25l2a,Texas Instruments,TLC252CPE4,typ_supply_current,300 uA
+tlc25l2a,Texas Instruments,TLC252CPE4,typ_supply_current,1.4 mA
+tlc25l2a,Texas Instruments,TLC252CPE4,typ_supply_current,1.6 mA
+tlc25l2a,Texas Instruments,TLC252CPE4,typ_supply_current,1.2 mA
+tlc25l2a,Texas Instruments,TLC252CPE4,typ_supply_current,1.9 mA
+tlc25l2a,Texas Instruments,TLC252CPE4,typ_supply_current,2.3 mA
+tlc25l2a,Texas Instruments,TLC252CPE4,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC252CPE4,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC252CPE4,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC252CPE4,max_op_temp,70
 tlc25l2a,Texas Instruments,TLC252CPW,part_family,N
 tlc25l2a,Texas Instruments,TLC252CPW,typ_gbp,12.0 kHz
 tlc25l2a,Texas Instruments,TLC252CPW,typ_gbp,1.7 MHz
@@ -8306,24 +8306,24 @@ tlc25l2a,Texas Instruments,TLC252CPW,min_op_supply_volt,1.4 V
 tlc25l2a,Texas Instruments,TLC252CPW,max_op_supply_volt,16 V
 tlc25l2a,Texas Instruments,TLC252CPW,min_op_temp,0
 tlc25l2a,Texas Instruments,TLC252CPW,max_op_temp,70
-tlc25l2a,,TLC252CPWR,part_family,N
-tlc25l2a,,TLC252CPWR,typ_gbp,12.0 kHz
-tlc25l2a,,TLC252CPWR,typ_gbp,1.7 MHz
-tlc25l2a,,TLC252CPWR,typ_gbp,2.0 MHz
-tlc25l2a,,TLC252CPWR,typ_gbp,1.3 MHz
-tlc25l2a,,TLC252CPWR,typ_gbp,2.2 MHz
-tlc25l2a,,TLC252CPWR,typ_gbp,2.5 MHz
-tlc25l2a,,TLC252CPWR,typ_gbp,1.8 MHz
-tlc25l2a,,TLC252CPWR,typ_supply_current,300 uA
-tlc25l2a,,TLC252CPWR,typ_supply_current,1.4 mA
-tlc25l2a,,TLC252CPWR,typ_supply_current,1.6 mA
-tlc25l2a,,TLC252CPWR,typ_supply_current,1.2 mA
-tlc25l2a,,TLC252CPWR,typ_supply_current,1.9 mA
-tlc25l2a,,TLC252CPWR,typ_supply_current,2.3 mA
-tlc25l2a,,TLC252CPWR,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC252CPWR,max_op_supply_volt,16 V
-tlc25l2a,,TLC252CPWR,min_op_temp,0
-tlc25l2a,,TLC252CPWR,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC252CPWR,part_family,N
+tlc25l2a,Texas Instruments,TLC252CPWR,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC252CPWR,typ_gbp,1.7 MHz
+tlc25l2a,Texas Instruments,TLC252CPWR,typ_gbp,2.0 MHz
+tlc25l2a,Texas Instruments,TLC252CPWR,typ_gbp,1.3 MHz
+tlc25l2a,Texas Instruments,TLC252CPWR,typ_gbp,2.2 MHz
+tlc25l2a,Texas Instruments,TLC252CPWR,typ_gbp,2.5 MHz
+tlc25l2a,Texas Instruments,TLC252CPWR,typ_gbp,1.8 MHz
+tlc25l2a,Texas Instruments,TLC252CPWR,typ_supply_current,300 uA
+tlc25l2a,Texas Instruments,TLC252CPWR,typ_supply_current,1.4 mA
+tlc25l2a,Texas Instruments,TLC252CPWR,typ_supply_current,1.6 mA
+tlc25l2a,Texas Instruments,TLC252CPWR,typ_supply_current,1.2 mA
+tlc25l2a,Texas Instruments,TLC252CPWR,typ_supply_current,1.9 mA
+tlc25l2a,Texas Instruments,TLC252CPWR,typ_supply_current,2.3 mA
+tlc25l2a,Texas Instruments,TLC252CPWR,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC252CPWR,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC252CPWR,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC252CPWR,max_op_temp,70
 tlc25l2a,Texas Instruments,TLC252ACP,part_family,N
 tlc25l2a,Texas Instruments,TLC252ACP,typ_gbp,12.0 kHz
 tlc25l2a,Texas Instruments,TLC252ACP,typ_gbp,1.7 MHz
@@ -8415,25 +8415,25 @@ tlc25l2a,Texas Instruments,TLC25L2,min_op_supply_volt,1.4 V
 tlc25l2a,Texas Instruments,TLC25L2,max_op_supply_volt,16 V
 tlc25l2a,Texas Instruments,TLC25L2,min_op_temp,0
 tlc25l2a,Texas Instruments,TLC25L2,max_op_temp,70
-tlc25l2a,,TLC25L2_C,part_family,Y
-tlc25l2a,,TLC25L2_C,typ_gbp,12.0 kHz
-tlc25l2a,,TLC25L2_C,typ_gbp,85.0 MHz
-tlc25l2a,,TLC25L2_C,typ_gbp,100.0 MHz
-tlc25l2a,,TLC25L2_C,typ_gbp,65.0 MHz
-tlc25l2a,,TLC25L2_C,typ_gbp,110.0 MHz
-tlc25l2a,,TLC25L2_C,typ_gbp,125.0 MHz
-tlc25l2a,,TLC25L2_C,typ_gbp,90.0 MHz
-tlc25l2a,,TLC25L2_C,typ_supply_current,25 uA
-tlc25l2a,,TLC25L2_C,typ_supply_current,20 uA
-tlc25l2a,,TLC25L2_C,typ_supply_current,24 uA
-tlc25l2a,,TLC25L2_C,typ_supply_current,16 uA
-tlc25l2a,,TLC25L2_C,typ_supply_current,29 uA
-tlc25l2a,,TLC25L2_C,typ_supply_current,36 uA
-tlc25l2a,,TLC25L2_C,typ_supply_current,22 uA
-tlc25l2a,,TLC25L2_C,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC25L2_C,max_op_supply_volt,16 V
-tlc25l2a,,TLC25L2_C,min_op_temp,0
-tlc25l2a,,TLC25L2_C,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC25L2_C,part_family,Y
+tlc25l2a,Texas Instruments,TLC25L2_C,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC25L2_C,typ_gbp,85.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2_C,typ_gbp,100.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2_C,typ_gbp,65.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2_C,typ_gbp,110.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2_C,typ_gbp,125.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2_C,typ_gbp,90.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2_C,typ_supply_current,25 uA
+tlc25l2a,Texas Instruments,TLC25L2_C,typ_supply_current,20 uA
+tlc25l2a,Texas Instruments,TLC25L2_C,typ_supply_current,24 uA
+tlc25l2a,Texas Instruments,TLC25L2_C,typ_supply_current,16 uA
+tlc25l2a,Texas Instruments,TLC25L2_C,typ_supply_current,29 uA
+tlc25l2a,Texas Instruments,TLC25L2_C,typ_supply_current,36 uA
+tlc25l2a,Texas Instruments,TLC25L2_C,typ_supply_current,22 uA
+tlc25l2a,Texas Instruments,TLC25L2_C,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC25L2_C,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC25L2_C,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC25L2_C,max_op_temp,70
 tlc25l2a,Texas Instruments,TLC25L2CD,part_family,N
 tlc25l2a,Texas Instruments,TLC25L2CD,typ_gbp,12.0 kHz
 tlc25l2a,Texas Instruments,TLC25L2CD,typ_gbp,85.0 MHz
@@ -8453,44 +8453,44 @@ tlc25l2a,Texas Instruments,TLC25L2CD,min_op_supply_volt,1.4 V
 tlc25l2a,Texas Instruments,TLC25L2CD,max_op_supply_volt,16 V
 tlc25l2a,Texas Instruments,TLC25L2CD,min_op_temp,0
 tlc25l2a,Texas Instruments,TLC25L2CD,max_op_temp,70
-tlc25l2a,,TLC25L2CDG4,part_family,N
-tlc25l2a,,TLC25L2CDG4,typ_gbp,12.0 kHz
-tlc25l2a,,TLC25L2CDG4,typ_gbp,85.0 MHz
-tlc25l2a,,TLC25L2CDG4,typ_gbp,100.0 MHz
-tlc25l2a,,TLC25L2CDG4,typ_gbp,65.0 MHz
-tlc25l2a,,TLC25L2CDG4,typ_gbp,110.0 MHz
-tlc25l2a,,TLC25L2CDG4,typ_gbp,125.0 MHz
-tlc25l2a,,TLC25L2CDG4,typ_gbp,90.0 MHz
-tlc25l2a,,TLC25L2CDG4,typ_supply_current,25 uA
-tlc25l2a,,TLC25L2CDG4,typ_supply_current,20 uA
-tlc25l2a,,TLC25L2CDG4,typ_supply_current,24 uA
-tlc25l2a,,TLC25L2CDG4,typ_supply_current,16 uA
-tlc25l2a,,TLC25L2CDG4,typ_supply_current,29 uA
-tlc25l2a,,TLC25L2CDG4,typ_supply_current,36 uA
-tlc25l2a,,TLC25L2CDG4,typ_supply_current,22 uA
-tlc25l2a,,TLC25L2CDG4,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC25L2CDG4,max_op_supply_volt,16 V
-tlc25l2a,,TLC25L2CDG4,min_op_temp,0
-tlc25l2a,,TLC25L2CDG4,max_op_temp,70
-tlc25l2a,,TLC25L2CDR,part_family,N
-tlc25l2a,,TLC25L2CDR,typ_gbp,12.0 kHz
-tlc25l2a,,TLC25L2CDR,typ_gbp,85.0 MHz
-tlc25l2a,,TLC25L2CDR,typ_gbp,100.0 MHz
-tlc25l2a,,TLC25L2CDR,typ_gbp,65.0 MHz
-tlc25l2a,,TLC25L2CDR,typ_gbp,110.0 MHz
-tlc25l2a,,TLC25L2CDR,typ_gbp,125.0 MHz
-tlc25l2a,,TLC25L2CDR,typ_gbp,90.0 MHz
-tlc25l2a,,TLC25L2CDR,typ_supply_current,25 uA
-tlc25l2a,,TLC25L2CDR,typ_supply_current,20 uA
-tlc25l2a,,TLC25L2CDR,typ_supply_current,24 uA
-tlc25l2a,,TLC25L2CDR,typ_supply_current,16 uA
-tlc25l2a,,TLC25L2CDR,typ_supply_current,29 uA
-tlc25l2a,,TLC25L2CDR,typ_supply_current,36 uA
-tlc25l2a,,TLC25L2CDR,typ_supply_current,22 uA
-tlc25l2a,,TLC25L2CDR,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC25L2CDR,max_op_supply_volt,16 V
-tlc25l2a,,TLC25L2CDR,min_op_temp,0
-tlc25l2a,,TLC25L2CDR,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC25L2CDG4,part_family,N
+tlc25l2a,Texas Instruments,TLC25L2CDG4,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC25L2CDG4,typ_gbp,85.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CDG4,typ_gbp,100.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CDG4,typ_gbp,65.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CDG4,typ_gbp,110.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CDG4,typ_gbp,125.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CDG4,typ_gbp,90.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CDG4,typ_supply_current,25 uA
+tlc25l2a,Texas Instruments,TLC25L2CDG4,typ_supply_current,20 uA
+tlc25l2a,Texas Instruments,TLC25L2CDG4,typ_supply_current,24 uA
+tlc25l2a,Texas Instruments,TLC25L2CDG4,typ_supply_current,16 uA
+tlc25l2a,Texas Instruments,TLC25L2CDG4,typ_supply_current,29 uA
+tlc25l2a,Texas Instruments,TLC25L2CDG4,typ_supply_current,36 uA
+tlc25l2a,Texas Instruments,TLC25L2CDG4,typ_supply_current,22 uA
+tlc25l2a,Texas Instruments,TLC25L2CDG4,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC25L2CDG4,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC25L2CDG4,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC25L2CDG4,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC25L2CDR,part_family,N
+tlc25l2a,Texas Instruments,TLC25L2CDR,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC25L2CDR,typ_gbp,85.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CDR,typ_gbp,100.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CDR,typ_gbp,65.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CDR,typ_gbp,110.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CDR,typ_gbp,125.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CDR,typ_gbp,90.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CDR,typ_supply_current,25 uA
+tlc25l2a,Texas Instruments,TLC25L2CDR,typ_supply_current,20 uA
+tlc25l2a,Texas Instruments,TLC25L2CDR,typ_supply_current,24 uA
+tlc25l2a,Texas Instruments,TLC25L2CDR,typ_supply_current,16 uA
+tlc25l2a,Texas Instruments,TLC25L2CDR,typ_supply_current,29 uA
+tlc25l2a,Texas Instruments,TLC25L2CDR,typ_supply_current,36 uA
+tlc25l2a,Texas Instruments,TLC25L2CDR,typ_supply_current,22 uA
+tlc25l2a,Texas Instruments,TLC25L2CDR,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC25L2CDR,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC25L2CDR,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC25L2CDR,max_op_temp,70
 tlc25l2a,Texas Instruments,TLC25L2ACD,part_family,N
 tlc25l2a,Texas Instruments,TLC25L2ACD,typ_gbp,12.0 kHz
 tlc25l2a,Texas Instruments,TLC25L2ACD,typ_gbp,85.0 MHz
@@ -8529,25 +8529,25 @@ tlc25l2a,Texas Instruments,TLC25L2BCD,min_op_supply_volt,1.4 V
 tlc25l2a,Texas Instruments,TLC25L2BCD,max_op_supply_volt,16 V
 tlc25l2a,Texas Instruments,TLC25L2BCD,min_op_temp,0
 tlc25l2a,Texas Instruments,TLC25L2BCD,max_op_temp,70
-tlc25l2a,,TLC25L2BCDR,part_family,N
-tlc25l2a,,TLC25L2BCDR,typ_gbp,12.0 kHz
-tlc25l2a,,TLC25L2BCDR,typ_gbp,85.0 MHz
-tlc25l2a,,TLC25L2BCDR,typ_gbp,100.0 MHz
-tlc25l2a,,TLC25L2BCDR,typ_gbp,65.0 MHz
-tlc25l2a,,TLC25L2BCDR,typ_gbp,110.0 MHz
-tlc25l2a,,TLC25L2BCDR,typ_gbp,125.0 MHz
-tlc25l2a,,TLC25L2BCDR,typ_gbp,90.0 MHz
-tlc25l2a,,TLC25L2BCDR,typ_supply_current,25 uA
-tlc25l2a,,TLC25L2BCDR,typ_supply_current,20 uA
-tlc25l2a,,TLC25L2BCDR,typ_supply_current,24 uA
-tlc25l2a,,TLC25L2BCDR,typ_supply_current,16 uA
-tlc25l2a,,TLC25L2BCDR,typ_supply_current,29 uA
-tlc25l2a,,TLC25L2BCDR,typ_supply_current,36 uA
-tlc25l2a,,TLC25L2BCDR,typ_supply_current,22 uA
-tlc25l2a,,TLC25L2BCDR,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC25L2BCDR,max_op_supply_volt,16 V
-tlc25l2a,,TLC25L2BCDR,min_op_temp,0
-tlc25l2a,,TLC25L2BCDR,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC25L2BCDR,part_family,N
+tlc25l2a,Texas Instruments,TLC25L2BCDR,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC25L2BCDR,typ_gbp,85.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2BCDR,typ_gbp,100.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2BCDR,typ_gbp,65.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2BCDR,typ_gbp,110.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2BCDR,typ_gbp,125.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2BCDR,typ_gbp,90.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2BCDR,typ_supply_current,25 uA
+tlc25l2a,Texas Instruments,TLC25L2BCDR,typ_supply_current,20 uA
+tlc25l2a,Texas Instruments,TLC25L2BCDR,typ_supply_current,24 uA
+tlc25l2a,Texas Instruments,TLC25L2BCDR,typ_supply_current,16 uA
+tlc25l2a,Texas Instruments,TLC25L2BCDR,typ_supply_current,29 uA
+tlc25l2a,Texas Instruments,TLC25L2BCDR,typ_supply_current,36 uA
+tlc25l2a,Texas Instruments,TLC25L2BCDR,typ_supply_current,22 uA
+tlc25l2a,Texas Instruments,TLC25L2BCDR,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC25L2BCDR,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC25L2BCDR,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC25L2BCDR,max_op_temp,70
 tlc25l2a,Texas Instruments,TLC25L2CP,part_family,N
 tlc25l2a,Texas Instruments,TLC25L2CP,typ_gbp,12.0 kHz
 tlc25l2a,Texas Instruments,TLC25L2CP,typ_gbp,85.0 MHz
@@ -8567,44 +8567,44 @@ tlc25l2a,Texas Instruments,TLC25L2CP,min_op_supply_volt,1.4 V
 tlc25l2a,Texas Instruments,TLC25L2CP,max_op_supply_volt,16 V
 tlc25l2a,Texas Instruments,TLC25L2CP,min_op_temp,0
 tlc25l2a,Texas Instruments,TLC25L2CP,max_op_temp,70
-tlc25l2a,,TLC25L2CPSR,part_family,N
-tlc25l2a,,TLC25L2CPSR,typ_gbp,12.0 kHz
-tlc25l2a,,TLC25L2CPSR,typ_gbp,85.0 MHz
-tlc25l2a,,TLC25L2CPSR,typ_gbp,100.0 MHz
-tlc25l2a,,TLC25L2CPSR,typ_gbp,65.0 MHz
-tlc25l2a,,TLC25L2CPSR,typ_gbp,110.0 MHz
-tlc25l2a,,TLC25L2CPSR,typ_gbp,125.0 MHz
-tlc25l2a,,TLC25L2CPSR,typ_gbp,90.0 MHz
-tlc25l2a,,TLC25L2CPSR,typ_supply_current,25 uA
-tlc25l2a,,TLC25L2CPSR,typ_supply_current,20 uA
-tlc25l2a,,TLC25L2CPSR,typ_supply_current,24 uA
-tlc25l2a,,TLC25L2CPSR,typ_supply_current,16 uA
-tlc25l2a,,TLC25L2CPSR,typ_supply_current,29 uA
-tlc25l2a,,TLC25L2CPSR,typ_supply_current,36 uA
-tlc25l2a,,TLC25L2CPSR,typ_supply_current,22 uA
-tlc25l2a,,TLC25L2CPSR,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC25L2CPSR,max_op_supply_volt,16 V
-tlc25l2a,,TLC25L2CPSR,min_op_temp,0
-tlc25l2a,,TLC25L2CPSR,max_op_temp,70
-tlc25l2a,,TLC25L2CPSRG4,part_family,N
-tlc25l2a,,TLC25L2CPSRG4,typ_gbp,12.0 kHz
-tlc25l2a,,TLC25L2CPSRG4,typ_gbp,85.0 MHz
-tlc25l2a,,TLC25L2CPSRG4,typ_gbp,100.0 MHz
-tlc25l2a,,TLC25L2CPSRG4,typ_gbp,65.0 MHz
-tlc25l2a,,TLC25L2CPSRG4,typ_gbp,110.0 MHz
-tlc25l2a,,TLC25L2CPSRG4,typ_gbp,125.0 MHz
-tlc25l2a,,TLC25L2CPSRG4,typ_gbp,90.0 MHz
-tlc25l2a,,TLC25L2CPSRG4,typ_supply_current,25 uA
-tlc25l2a,,TLC25L2CPSRG4,typ_supply_current,20 uA
-tlc25l2a,,TLC25L2CPSRG4,typ_supply_current,24 uA
-tlc25l2a,,TLC25L2CPSRG4,typ_supply_current,16 uA
-tlc25l2a,,TLC25L2CPSRG4,typ_supply_current,29 uA
-tlc25l2a,,TLC25L2CPSRG4,typ_supply_current,36 uA
-tlc25l2a,,TLC25L2CPSRG4,typ_supply_current,22 uA
-tlc25l2a,,TLC25L2CPSRG4,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC25L2CPSRG4,max_op_supply_volt,16 V
-tlc25l2a,,TLC25L2CPSRG4,min_op_temp,0
-tlc25l2a,,TLC25L2CPSRG4,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC25L2CPSR,part_family,N
+tlc25l2a,Texas Instruments,TLC25L2CPSR,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC25L2CPSR,typ_gbp,85.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CPSR,typ_gbp,100.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CPSR,typ_gbp,65.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CPSR,typ_gbp,110.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CPSR,typ_gbp,125.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CPSR,typ_gbp,90.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CPSR,typ_supply_current,25 uA
+tlc25l2a,Texas Instruments,TLC25L2CPSR,typ_supply_current,20 uA
+tlc25l2a,Texas Instruments,TLC25L2CPSR,typ_supply_current,24 uA
+tlc25l2a,Texas Instruments,TLC25L2CPSR,typ_supply_current,16 uA
+tlc25l2a,Texas Instruments,TLC25L2CPSR,typ_supply_current,29 uA
+tlc25l2a,Texas Instruments,TLC25L2CPSR,typ_supply_current,36 uA
+tlc25l2a,Texas Instruments,TLC25L2CPSR,typ_supply_current,22 uA
+tlc25l2a,Texas Instruments,TLC25L2CPSR,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC25L2CPSR,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC25L2CPSR,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC25L2CPSR,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,part_family,N
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,typ_gbp,85.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,typ_gbp,100.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,typ_gbp,65.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,typ_gbp,110.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,typ_gbp,125.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,typ_gbp,90.0 MHz
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,typ_supply_current,25 uA
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,typ_supply_current,20 uA
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,typ_supply_current,24 uA
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,typ_supply_current,16 uA
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,typ_supply_current,29 uA
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,typ_supply_current,36 uA
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,typ_supply_current,22 uA
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC25L2CPSRG4,max_op_temp,70
 tlc25l2a,Texas Instruments,TLC25L2ACP,part_family,N
 tlc25l2a,Texas Instruments,TLC25L2ACP,typ_gbp,12.0 kHz
 tlc25l2a,Texas Instruments,TLC25L2ACP,typ_gbp,85.0 MHz
@@ -8719,25 +8719,25 @@ tlc25l2a,Texas Instruments,TLC25M2,min_op_supply_volt,1.4 V
 tlc25l2a,Texas Instruments,TLC25M2,max_op_supply_volt,16 V
 tlc25l2a,Texas Instruments,TLC25M2,min_op_temp,0
 tlc25l2a,Texas Instruments,TLC25M2,max_op_temp,70
-tlc25l2a,,TLC25M2_C,part_family,Y
-tlc25l2a,,TLC25M2_C,typ_gbp,12.0 kHz
-tlc25l2a,,TLC25M2_C,typ_gbp,525.0 MHz
-tlc25l2a,,TLC25M2_C,typ_gbp,600.0 MHz
-tlc25l2a,,TLC25M2_C,typ_gbp,400.0 MHz
-tlc25l2a,,TLC25M2_C,typ_gbp,635.0 MHz
-tlc25l2a,,TLC25M2_C,typ_gbp,710.0 MHz
-tlc25l2a,,TLC25M2_C,typ_gbp,510.0 MHz
-tlc25l2a,,TLC25M2_C,typ_supply_current,200 uA
-tlc25l2a,,TLC25M2_C,typ_supply_current,210 uA
-tlc25l2a,,TLC25M2_C,typ_supply_current,250 uA
-tlc25l2a,,TLC25M2_C,typ_supply_current,170 uA
-tlc25l2a,,TLC25M2_C,typ_supply_current,285 uA
-tlc25l2a,,TLC25M2_C,typ_supply_current,345 uA
-tlc25l2a,,TLC25M2_C,typ_supply_current,220 uA
-tlc25l2a,,TLC25M2_C,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC25M2_C,max_op_supply_volt,16 V
-tlc25l2a,,TLC25M2_C,min_op_temp,0
-tlc25l2a,,TLC25M2_C,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC25M2_C,part_family,Y
+tlc25l2a,Texas Instruments,TLC25M2_C,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC25M2_C,typ_gbp,525.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2_C,typ_gbp,600.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2_C,typ_gbp,400.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2_C,typ_gbp,635.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2_C,typ_gbp,710.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2_C,typ_gbp,510.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2_C,typ_supply_current,200 uA
+tlc25l2a,Texas Instruments,TLC25M2_C,typ_supply_current,210 uA
+tlc25l2a,Texas Instruments,TLC25M2_C,typ_supply_current,250 uA
+tlc25l2a,Texas Instruments,TLC25M2_C,typ_supply_current,170 uA
+tlc25l2a,Texas Instruments,TLC25M2_C,typ_supply_current,285 uA
+tlc25l2a,Texas Instruments,TLC25M2_C,typ_supply_current,345 uA
+tlc25l2a,Texas Instruments,TLC25M2_C,typ_supply_current,220 uA
+tlc25l2a,Texas Instruments,TLC25M2_C,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC25M2_C,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC25M2_C,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC25M2_C,max_op_temp,70
 tlc25l2a,Texas Instruments,TLC25M2C,part_family,N
 tlc25l2a,Texas Instruments,TLC25M2C,typ_gbp,12.0 kHz
 tlc25l2a,Texas Instruments,TLC25M2C,typ_gbp,525.0 MHz
@@ -8814,44 +8814,44 @@ tlc25l2a,Texas Instruments,TLC25M2CP,min_op_supply_volt,1.4 V
 tlc25l2a,Texas Instruments,TLC25M2CP,max_op_supply_volt,16 V
 tlc25l2a,Texas Instruments,TLC25M2CP,min_op_temp,0
 tlc25l2a,Texas Instruments,TLC25M2CP,max_op_temp,70
-tlc25l2a,,TLC25M2CPE4,part_family,N
-tlc25l2a,,TLC25M2CPE4,typ_gbp,12.0 kHz
-tlc25l2a,,TLC25M2CPE4,typ_gbp,525.0 MHz
-tlc25l2a,,TLC25M2CPE4,typ_gbp,600.0 MHz
-tlc25l2a,,TLC25M2CPE4,typ_gbp,400.0 MHz
-tlc25l2a,,TLC25M2CPE4,typ_gbp,635.0 MHz
-tlc25l2a,,TLC25M2CPE4,typ_gbp,710.0 MHz
-tlc25l2a,,TLC25M2CPE4,typ_gbp,510.0 MHz
-tlc25l2a,,TLC25M2CPE4,typ_supply_current,200 uA
-tlc25l2a,,TLC25M2CPE4,typ_supply_current,210 uA
-tlc25l2a,,TLC25M2CPE4,typ_supply_current,250 uA
-tlc25l2a,,TLC25M2CPE4,typ_supply_current,170 uA
-tlc25l2a,,TLC25M2CPE4,typ_supply_current,285 uA
-tlc25l2a,,TLC25M2CPE4,typ_supply_current,345 uA
-tlc25l2a,,TLC25M2CPE4,typ_supply_current,220 uA
-tlc25l2a,,TLC25M2CPE4,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC25M2CPE4,max_op_supply_volt,16 V
-tlc25l2a,,TLC25M2CPE4,min_op_temp,0
-tlc25l2a,,TLC25M2CPE4,max_op_temp,70
-tlc25l2a,,TLC25M2CPWLE,part_family,N
-tlc25l2a,,TLC25M2CPWLE,typ_gbp,12.0 kHz
-tlc25l2a,,TLC25M2CPWLE,typ_gbp,525.0 MHz
-tlc25l2a,,TLC25M2CPWLE,typ_gbp,600.0 MHz
-tlc25l2a,,TLC25M2CPWLE,typ_gbp,400.0 MHz
-tlc25l2a,,TLC25M2CPWLE,typ_gbp,635.0 MHz
-tlc25l2a,,TLC25M2CPWLE,typ_gbp,710.0 MHz
-tlc25l2a,,TLC25M2CPWLE,typ_gbp,510.0 MHz
-tlc25l2a,,TLC25M2CPWLE,typ_supply_current,200 uA
-tlc25l2a,,TLC25M2CPWLE,typ_supply_current,210 uA
-tlc25l2a,,TLC25M2CPWLE,typ_supply_current,250 uA
-tlc25l2a,,TLC25M2CPWLE,typ_supply_current,170 uA
-tlc25l2a,,TLC25M2CPWLE,typ_supply_current,285 uA
-tlc25l2a,,TLC25M2CPWLE,typ_supply_current,345 uA
-tlc25l2a,,TLC25M2CPWLE,typ_supply_current,220 uA
-tlc25l2a,,TLC25M2CPWLE,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC25M2CPWLE,max_op_supply_volt,16 V
-tlc25l2a,,TLC25M2CPWLE,min_op_temp,0
-tlc25l2a,,TLC25M2CPWLE,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC25M2CPE4,part_family,N
+tlc25l2a,Texas Instruments,TLC25M2CPE4,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC25M2CPE4,typ_gbp,525.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CPE4,typ_gbp,600.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CPE4,typ_gbp,400.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CPE4,typ_gbp,635.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CPE4,typ_gbp,710.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CPE4,typ_gbp,510.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CPE4,typ_supply_current,200 uA
+tlc25l2a,Texas Instruments,TLC25M2CPE4,typ_supply_current,210 uA
+tlc25l2a,Texas Instruments,TLC25M2CPE4,typ_supply_current,250 uA
+tlc25l2a,Texas Instruments,TLC25M2CPE4,typ_supply_current,170 uA
+tlc25l2a,Texas Instruments,TLC25M2CPE4,typ_supply_current,285 uA
+tlc25l2a,Texas Instruments,TLC25M2CPE4,typ_supply_current,345 uA
+tlc25l2a,Texas Instruments,TLC25M2CPE4,typ_supply_current,220 uA
+tlc25l2a,Texas Instruments,TLC25M2CPE4,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC25M2CPE4,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC25M2CPE4,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC25M2CPE4,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,part_family,N
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,typ_gbp,525.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,typ_gbp,600.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,typ_gbp,400.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,typ_gbp,635.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,typ_gbp,710.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,typ_gbp,510.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,typ_supply_current,200 uA
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,typ_supply_current,210 uA
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,typ_supply_current,250 uA
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,typ_supply_current,170 uA
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,typ_supply_current,285 uA
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,typ_supply_current,345 uA
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,typ_supply_current,220 uA
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC25M2CPWLE,max_op_temp,70
 tlc25l2a,Texas Instruments,TLC25M2ACP,part_family,N
 tlc25l2a,Texas Instruments,TLC25M2ACP,typ_gbp,12.0 kHz
 tlc25l2a,Texas Instruments,TLC25M2ACP,typ_gbp,525.0 MHz
@@ -8890,44 +8890,44 @@ tlc25l2a,Texas Instruments,TLC25M2BCP,min_op_supply_volt,1.4 V
 tlc25l2a,Texas Instruments,TLC25M2BCP,max_op_supply_volt,16 V
 tlc25l2a,Texas Instruments,TLC25M2BCP,min_op_temp,0
 tlc25l2a,Texas Instruments,TLC25M2BCP,max_op_temp,70
-tlc25l2a,,TLC25M2CD,part_family,N
-tlc25l2a,,TLC25M2CD,typ_gbp,12.0 kHz
-tlc25l2a,,TLC25M2CD,typ_gbp,525.0 MHz
-tlc25l2a,,TLC25M2CD,typ_gbp,600.0 MHz
-tlc25l2a,,TLC25M2CD,typ_gbp,400.0 MHz
-tlc25l2a,,TLC25M2CD,typ_gbp,635.0 MHz
-tlc25l2a,,TLC25M2CD,typ_gbp,710.0 MHz
-tlc25l2a,,TLC25M2CD,typ_gbp,510.0 MHz
-tlc25l2a,,TLC25M2CD,typ_supply_current,200 uA
-tlc25l2a,,TLC25M2CD,typ_supply_current,210 uA
-tlc25l2a,,TLC25M2CD,typ_supply_current,250 uA
-tlc25l2a,,TLC25M2CD,typ_supply_current,170 uA
-tlc25l2a,,TLC25M2CD,typ_supply_current,285 uA
-tlc25l2a,,TLC25M2CD,typ_supply_current,345 uA
-tlc25l2a,,TLC25M2CD,typ_supply_current,220 uA
-tlc25l2a,,TLC25M2CD,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC25M2CD,max_op_supply_volt,16 V
-tlc25l2a,,TLC25M2CD,min_op_temp,0
-tlc25l2a,,TLC25M2CD,max_op_temp,70
-tlc25l2a,,TLC25M2CDR,part_family,N
-tlc25l2a,,TLC25M2CDR,typ_gbp,12.0 kHz
-tlc25l2a,,TLC25M2CDR,typ_gbp,525.0 MHz
-tlc25l2a,,TLC25M2CDR,typ_gbp,600.0 MHz
-tlc25l2a,,TLC25M2CDR,typ_gbp,400.0 MHz
-tlc25l2a,,TLC25M2CDR,typ_gbp,635.0 MHz
-tlc25l2a,,TLC25M2CDR,typ_gbp,710.0 MHz
-tlc25l2a,,TLC25M2CDR,typ_gbp,510.0 MHz
-tlc25l2a,,TLC25M2CDR,typ_supply_current,200 uA
-tlc25l2a,,TLC25M2CDR,typ_supply_current,210 uA
-tlc25l2a,,TLC25M2CDR,typ_supply_current,250 uA
-tlc25l2a,,TLC25M2CDR,typ_supply_current,170 uA
-tlc25l2a,,TLC25M2CDR,typ_supply_current,285 uA
-tlc25l2a,,TLC25M2CDR,typ_supply_current,345 uA
-tlc25l2a,,TLC25M2CDR,typ_supply_current,220 uA
-tlc25l2a,,TLC25M2CDR,min_op_supply_volt,1.4 V
-tlc25l2a,,TLC25M2CDR,max_op_supply_volt,16 V
-tlc25l2a,,TLC25M2CDR,min_op_temp,0
-tlc25l2a,,TLC25M2CDR,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC25M2CD,part_family,N
+tlc25l2a,Texas Instruments,TLC25M2CD,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC25M2CD,typ_gbp,525.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CD,typ_gbp,600.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CD,typ_gbp,400.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CD,typ_gbp,635.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CD,typ_gbp,710.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CD,typ_gbp,510.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CD,typ_supply_current,200 uA
+tlc25l2a,Texas Instruments,TLC25M2CD,typ_supply_current,210 uA
+tlc25l2a,Texas Instruments,TLC25M2CD,typ_supply_current,250 uA
+tlc25l2a,Texas Instruments,TLC25M2CD,typ_supply_current,170 uA
+tlc25l2a,Texas Instruments,TLC25M2CD,typ_supply_current,285 uA
+tlc25l2a,Texas Instruments,TLC25M2CD,typ_supply_current,345 uA
+tlc25l2a,Texas Instruments,TLC25M2CD,typ_supply_current,220 uA
+tlc25l2a,Texas Instruments,TLC25M2CD,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC25M2CD,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC25M2CD,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC25M2CD,max_op_temp,70
+tlc25l2a,Texas Instruments,TLC25M2CDR,part_family,N
+tlc25l2a,Texas Instruments,TLC25M2CDR,typ_gbp,12.0 kHz
+tlc25l2a,Texas Instruments,TLC25M2CDR,typ_gbp,525.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CDR,typ_gbp,600.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CDR,typ_gbp,400.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CDR,typ_gbp,635.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CDR,typ_gbp,710.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CDR,typ_gbp,510.0 MHz
+tlc25l2a,Texas Instruments,TLC25M2CDR,typ_supply_current,200 uA
+tlc25l2a,Texas Instruments,TLC25M2CDR,typ_supply_current,210 uA
+tlc25l2a,Texas Instruments,TLC25M2CDR,typ_supply_current,250 uA
+tlc25l2a,Texas Instruments,TLC25M2CDR,typ_supply_current,170 uA
+tlc25l2a,Texas Instruments,TLC25M2CDR,typ_supply_current,285 uA
+tlc25l2a,Texas Instruments,TLC25M2CDR,typ_supply_current,345 uA
+tlc25l2a,Texas Instruments,TLC25M2CDR,typ_supply_current,220 uA
+tlc25l2a,Texas Instruments,TLC25M2CDR,min_op_supply_volt,1.4 V
+tlc25l2a,Texas Instruments,TLC25M2CDR,max_op_supply_volt,16 V
+tlc25l2a,Texas Instruments,TLC25M2CDR,min_op_temp,0
+tlc25l2a,Texas Instruments,TLC25M2CDR,max_op_temp,70
 tle2141-q1,Texas Instruments,TLE2141-Q1,part_family,Y
 tle2141-q1,Texas Instruments,TLE2141-Q1,typ_gbp,5.8 MHz
 tle2141-q1,Texas Instruments,TLE2141-Q1,typ_gbp,5.9 MHz

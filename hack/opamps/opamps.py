@@ -21,6 +21,7 @@ from hack.opamps.opamp_spaces import MentionNgramsCurrent
 from hack.opamps.opamp_utils import (
     Score,
     cand_to_entity,
+    candidates_to_entities,
     entity_level_scores,
     get_gold_set,
     print_scores,
@@ -289,7 +290,11 @@ def scoring(disc_model, cands, docs, F_mat, is_gain=True, num=100):
         except Exception as e:
             logger.debug(f"{e}, skipping.")
             break
-        result = entity_level_scores(true_pred, corpus=docs, is_gain=is_gain)
+        result = entity_level_scores(
+            candidates_to_entities(true_pred, is_gain=is_gain),
+            corpus=docs,
+            is_gain=is_gain,
+        )
         logger.info(
             f"({b:.3f}), f1:{result.f1:.3f} p:{result.prec:.3f} r:{result.rec:.3f}"
         )

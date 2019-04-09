@@ -283,9 +283,7 @@ def compare_entities(
                     writer.writerow((doc, part, val, f"Gold does not have doc {doc}."))
 
 
-def entity_level_scores(
-    entities, attribute=None, corpus=None, metric=None, docs=None, debug=False
-):
+def entity_level_scores(entities, attribute=None, corpus=None, metric=None, docs=None):
     """Checks entity-level recall of candidates compared to gold.
 
     Turns a CandidateSet into a normal set of entity-level tuples

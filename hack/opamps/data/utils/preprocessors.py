@@ -8,82 +8,29 @@ logger = logging.getLogger(__name__)
 
 # A list of known manufacturers
 VALID_MANUF = [
-    "NXP Semiconductors",
-    "STMicroelectronics",
-    "ON Semiconductor",
-    "Fairchild",
-    "AUK",
-    "MCC",
-    "Taiwan",
-    "Bourns",
-    "Central Semiconductor",
-    "Diodes Incorporated",
-    "Diotec",
-    "Fairchild Semiconductor",
-    "Infineon",
-    "JCST",
-    "KEC",
-    "Vishay",
-    "Lite-on",
-    "Vishay/Lite-on",
-    "Minilogic",
-    "Motorola",
-    "Micro Commercial Components",
-    "Microsemi",
-    "Philips",
-    "Panjit",
-    "Rectron",
-    "Secos",
-    "Siemens",
-    "Sanken",
-    "Tak Cheong",
-    "TT Electronics",
-    "UTC",
-    "General",
-    "Weitron",
-    "Mouser",
-    "Rohm Semiconductor",
-    "Aeroflex",
-]
-
-
-# A list of manufacturers to be filtered that we know do not appear in dev and test
-# gold labels and thus are not in the `docs` dict returned by `get_docs()`
-INVALID_MANUF = [
-    "Nexperia USA Inc.",
-    "Renesas Electronics America",
-    "Comchip Technology",
-    "Toshiba Semiconductor and Storage",
-    "Panasonic Electronic Components",
-    "WeEn Semiconductors",
-    "M/A-Com Technology Solutions",
     "Texas Instruments",
-    "Parallax Inc.",
-    "SANYO Semiconductor (U.S.A) Corporation",
+    "Renesas Electronics America Inc.",
+    "Manufacturer",
+    "STMicroelectronics",
+    "Apex Microtechnology",
+    "Cirrus Logic Inc.",
+    "Maxim Integrated",
+    "Taiwan Semiconductor Corporation",
+    "ON Semiconductor",
+    "Rohm Semiconductor",
+    "NJR Corporation/NJRC",
+    "Analog Devices Inc.",
+    "Microchip Technology",
+    "Broadcom Limited",
+    "Diodes Incorporated",
+    "Linear Technology/Analog Devices",
 ]
-
 
 # A dictionary of common manufacturer acronyms that maps to a value
 # in VALID_MANUF
 # TODO: Vishay/Lite-on is recognized as it's own manuf here, should we
 # combine Vishay and Lite-on into that manuf?
-MANUF = {
-    "Micro Commercial Co": "Micro Commercial Components",
-    "On Semiconductor": "ON Semiconductor",
-    "Central": "Central Semiconductor",
-    "Central Semiconductor Corp": "Central Semiconductor",
-    "ST": "STMicroelectronics",
-    "NXP": "NXP Semiconductors",
-    "Rohm": "Rohm Semiconductor",
-    "Microsemi Corporation": "Microsemi",
-    "TT Electronics/Optek Technology": "TT Electronics",
-    "Taiwan Semiconductor Corporation": "Taiwan",
-    "Infineon Technologies": "Infineon",
-    "MICROSS/On Semiconductor": "ON Semiconductor",
-    "NXP USA Inc.": "NXP Semiconductors",
-    "Vishay Semiconductor Diodes Division": "Vishay",
-    "Bourns Inc.": "Bourns",
-}
+MANUF = {}
 
 
 """
@@ -100,15 +47,14 @@ def preprocess_url(url):
 
 
 def preprocess_manuf(manuf):
-    if manuf in VALID_MANUF or manuf == "N/A":
-        return manuf
-    elif manuf in MANUF:
-        return MANUF[manuf]
-    elif manuf in INVALID_MANUF:
-        return "N/A"
-    else:
-        logger.error(f"Invalid manuf {manuf}.")
-        pdb.set_trace()
+    return manuf.strip()
+    # if manuf in VALID_MANUF or manuf == "N/A":
+    # return manuf
+    # elif manuf in MANUF:
+    # return MANUF[manuf]
+    # else:
+    # logger.error(f"Invalid manuf {manuf}.")
+    # pdb.set_trace()
 
 
 def get_docs(
@@ -162,7 +108,7 @@ def get_docs(
                             f"Filenames {docs[manuf][part]} and "
                             + f"{filename} do not match, using {filename}."
                         )
-                        duplicate_filenames.append((filename, docs[manuf][part]))
+                        duplicate_filenames.add((filename, docs[manuf][part]))
                 # Only use the last seen filename
                 docs[manuf][part] = filename
             else:
@@ -181,7 +127,7 @@ def get_docs(
             pdb.set_trace()
 
 
-def preprocess_doc(manuf, part, url, docformat="standard", docs=get_docs(debug=True)):
+def preprocess_doc(manuf, part, url, docformat="standard", docs=get_docs()):
     """Returns the filename of a given document by cross referencing our gold data"""
     if docformat == "url":
         if url == "-" or url is None:
@@ -207,8 +153,9 @@ def preprocess_doc(manuf, part, url, docformat="standard", docs=get_docs(debug=T
             return doc_name.replace(".pdf", "").replace(".PDF", "").strip()
         except Exception as e:
             if manuf not in docs:
-                logger.error(f"Manuf {manuf} not found in {[i for i in docs]}.")
-                pdb.set_trace()
+                logger.warning(f"Manuf {manuf} not found in {[i for i in docs]}.")
+                # pdb.set_trace()
+                return "N/A"
             logger.warning(
                 f"{e} while fetching doc_name for {manuf}: {part}, skipping."
             )

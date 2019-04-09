@@ -7,7 +7,6 @@ from collections import namedtuple
 from fonduer.utils.data_model_utils import get_neighbor_cell_ngrams, get_row_ngrams
 from quantiphy import Quantity
 
-
 logger = logging.getLogger(__name__)
 
 Score = namedtuple("Score", ["f1", "prec", "rec", "TP", "FP", "FN"])
@@ -42,7 +41,7 @@ def get_gold_set(docs=None, is_gain=True):
         with codecs.open(filename, encoding="utf-8") as csvfile:
             gold_reader = csv.reader(csvfile)
             for row in gold_reader:
-                (doc, part, attr, val) = row
+                (doc, _, part, attr, val) = row
                 if doc not in temp_dict:
                     temp_dict[doc] = {"typ_gbp": set(), "typ_supply_current": set()}
                 if docs is None or doc.upper() in docs:
@@ -186,21 +185,17 @@ def cand_to_entity(c, is_gain=True):
             return
 
 
-def entity_level_scores(candidates, is_gain=True, corpus=None):
+def entity_level_scores(entities, metric=None, docs=None, corpus=None, is_gain=True):
     """Checks entity-level recall of candidates compared to gold."""
-    docs = [(doc.name).upper() for doc in corpus] if corpus else None
-    gold_set = get_gold_set(docs=docs, is_gain=is_gain)
-    if len(gold_set) == 0:
-        logger.error("Gold set is empty.")
+    if docs is None or len(docs) == 0:
+        docs = [(doc.name).upper() for doc in corpus] if corpus else None
+    if metric is None:
+        metric = get_gold_set(docs=docs, is_gain=is_gain)
+    if len(metric) == 0:
+        logger.error("Gold metric set is empty.")
         return
 
-    # Turn CandidateSet into set of tuples
-    entities = set()
-    for c in candidates:
-        for entity in cand_to_entity(c, is_gain=is_gain):
-            entities.add(entity)
-
-    (TP_set, FP_set, FN_set) = entity_confusion_matrix(entities, gold_set)
+    (TP_set, FP_set, FN_set) = entity_confusion_matrix(entities, metric)
     TP = len(TP_set)
     FP = len(FP_set)
     FN = len(FN_set)
@@ -211,6 +206,15 @@ def entity_level_scores(candidates, is_gain=True, corpus=None):
     return Score(
         f1, prec, rec, sorted(list(TP_set)), sorted(list(FP_set)), sorted(list(FN_set))
     )
+
+
+def candidiates_to_entities(candidates, is_gain=True):
+    # Turn CandidateSet into set of tuples
+    entities = set()
+    for c in candidates:
+        for entity in cand_to_entity(c, is_gain=is_gain):
+            entities.add(entity)
+    return entities
 
 
 def entity_to_candidates(entity, candidate_subset, is_gain=True):
