@@ -1,7 +1,6 @@
 import csv
 import logging
 import os
-import pdb
 import pickle
 
 import matplotlib.pyplot as plt
@@ -13,8 +12,8 @@ from fonduer.features import Featurizer
 from fonduer.learning import SparseLogisticRegression
 from fonduer.parser.models import Document, Figure, Paragraph, Section, Sentence
 from fonduer.supervision import Labeler
-from metal import analysis
 from metal.label_model import LabelModel
+from tqdm import tqdm
 
 from hack.opamps.opamp_lfs import FALSE, TRUE, current_lfs, gain_lfs
 from hack.opamps.opamp_matchers import get_gain_matcher, get_supply_current_matcher
@@ -34,14 +33,17 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 logger = logging.getLogger(__name__)
 
 
-def dump_candidates(cands, Y_prob, outfile):
+def dump_candidates(cands, Y_prob, outfile, is_gain=True):
     """Output the candidates and their probabilities for later analysis."""
     dirname = os.path.dirname(__file__)
     with open(os.path.join(dirname, outfile), "w") as csvfile:
         writer = csv.writer(csvfile)
-        for i, c in enumerate(cands):
-            (doc, part, val) = cand_to_entity(c)
-            writer.writerow([doc, part, val, Y_prob[i][TRUE - 1]])
+        for i, c in enumerate(tqdm(cands)):
+            for (doc, val) in cand_to_entity(c, is_gain=is_gain):
+                if is_gain:
+                    writer.writerow([doc, val.real / 1e3, Y_prob[i][TRUE - 1]])
+                else:
+                    writer.writerow([doc, val.real * 1e6, Y_prob[i][TRUE - 1]])
 
 
 def parsing(session, first_time=False, parallel=4, max_docs=float("inf")):
@@ -216,7 +218,7 @@ def output_csv(cands, Y_prob, is_gain=True, append=False):
     if append:
         with open(filename, "a") as csvfile:
             writer = csv.writer(csvfile)
-            for i, c in enumerate(cands):
+            for i, c in enumerate(tqdm(cands)):
                 for entity in cand_to_entity(c, is_gain=is_gain):
                     if is_gain:
                         writer.writerow(
@@ -244,7 +246,7 @@ def output_csv(cands, Y_prob, is_gain=True, append=False):
             else:
                 writer.writerow(["Document", "Supply Current (uA)", "sent", "p"])
 
-            for i, c in enumerate(cands):
+            for i, c in enumerate(tqdm(cands)):
                 for entity in cand_to_entity(c, is_gain=is_gain):
                     if is_gain:
                         writer.writerow(
@@ -272,6 +274,7 @@ def scoring(disc_model, cands, docs, F_mat, is_gain=True, num=100):
     # Iterate over a range of `b` values in order to find the b with the
     # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
     Y_prob = disc_model.marginals((cands, F_mat))
+    logger.info("Grab Y_prob.")
 
     # Get prediction for a particular b, store the full tuple to output
     # (b, pref, rec, f1, TP, FP, FN)
@@ -367,18 +370,7 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
     )
     logger.info("Done.")
 
-    logger.info("Labeling dev data...")
-    L_dev = labeling(
-        labeler,
-        dev_cands,
-        split=1,
-        lfs=[gain_lfs, current_lfs],
-        train=False,
-        first_time=first_time,
-        parallel=parallel,
-    )
-
-    # Evaluate LF accuracy
+    logger.info("Score Gain.")
     dev_gold_entities = get_gold_set(is_gain=True)
     L_dev_gt = []
     for c in dev_cands[0]:
@@ -387,11 +379,6 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
             if entity in dev_gold_entities:
                 flag = TRUE
         L_dev_gt.append(flag)
-
-    df = analysis.lf_summary(
-        L_dev[0], lf_names=labeler.get_keys(), Y=np.array(L_dev_gt)
-    )
-    logger.info(f"\n{df.to_string()}")
 
     marginals = generative_model(L_train[0])
 
@@ -409,17 +396,19 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
 
     print_scores(best_result, best_b)
 
+    logger.info("Output CSV files for Opo and Digi-key Analysis.")
     Y_prob = disc_models.marginals((train_cands[0], F_train[0]))
     output_csv(train_cands[0], Y_prob, is_gain=True)
 
     Y_prob = disc_models.marginals((test_cands[0], F_test[0]))
     output_csv(test_cands[0], Y_prob, is_gain=True, append=True)
-    dump_candidates(test_cands[0], Y_prob, "gain_test_probs.csv")
+    dump_candidates(test_cands[0], Y_prob, "gain_test_probs.csv", is_gain=True)
 
     Y_prob = disc_models.marginals((dev_cands[0], F_dev[0]))
     output_csv(dev_cands[0], Y_prob, is_gain=True, append=True)
-    dump_candidates(dev_cands[0], Y_prob, "gain_dev_probs.csv")
+    dump_candidates(dev_cands[0], Y_prob, "gain_dev_probs.csv", is_gain=True)
 
+    logger.info("Score Current.")
     dev_gold_entities = get_gold_set(is_gain=False)
     L_dev_gt = []
     for c in dev_cands[1]:
@@ -429,11 +418,6 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
                 flag = TRUE
         L_dev_gt.append(flag)
 
-    df = analysis.lf_summary(
-        L_dev[1], lf_names=labeler.get_keys(), Y=np.array(L_dev_gt)
-    )
-
-    logger.info(f"\n{df.to_string()}")
     marginals = generative_model(L_train[1])
 
     disc_models = discriminative_model(
@@ -450,20 +434,21 @@ def main(conn_string, max_docs=float("inf"), parse=False, first_time=True, paral
 
     print_scores(best_result, best_b)
 
+    logger.info("Output CSV files for Opo and Digi-key Analysis.")
     # Dump CSV files for digi-key analysis and Opo comparison
     Y_prob = disc_models.marginals((train_cands[1], F_train[1]))
     output_csv(train_cands[1], Y_prob, is_gain=False)
 
     Y_prob = disc_models.marginals((test_cands[1], F_test[1]))
     output_csv(test_cands[1], Y_prob, is_gain=False, append=True)
-    dump_candidates(test_cands[1], Y_prob, "current_test_probs.csv")
+    dump_candidates(test_cands[1], Y_prob, "current_test_probs.csv", is_gain=False)
 
     Y_prob = disc_models.marginals((dev_cands[1], F_dev[1]))
     output_csv(dev_cands[1], Y_prob, is_gain=False, append=True)
-    dump_candidates(dev_cands[1], Y_prob, "current_dev_probs.csv")
+    dump_candidates(dev_cands[1], Y_prob, "current_dev_probs.csv", is_gain=False)
 
     # End with an interactive prompt
-    pdb.set_trace()
+    #  pdb.set_trace()
 
 
 if __name__ == "__main__":
