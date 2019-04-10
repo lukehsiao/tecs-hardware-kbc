@@ -213,13 +213,12 @@ def cand_to_entity(c, is_gain=True):
 
 def entity_level_scores(entities, metric=None, docs=None, corpus=None, is_gain=True):
     """Checks entity-level recall of candidates compared to gold."""
-    if docs is None or len(docs) == 0:
-        docs = [(doc.name).upper() for doc in corpus] if corpus else None
     if metric is None:
+        if docs is None or len(docs) == 0:
+            docs = [(doc.name).upper() for doc in corpus] if corpus else None
         metric = get_gold_set(docs=docs, is_gain=is_gain)
     if len(metric) == 0:
-        logger.error("Gold metric set is empty.")
-        return
+        logger.warn("Gold metric set is empty.")
 
     (TP_set, FP_set, FN_set) = entity_confusion_matrix(entities, metric)
     TP = len(TP_set)
@@ -257,7 +256,7 @@ def entity_to_candidates(entity, candidate_subset, is_gain=True):
 def compare_entities(
     entities,
     type,
-    attribute=None,
+    is_gain=None,
     entity_dic=None,
     gold_dic=None,
     outfile="../our_discrepancies.csv",
@@ -270,11 +269,11 @@ def compare_entities(
         logger.error(f"Invalid type when writing comparison: {type}")
         return
 
-    if gold_dic is None and attribute is None:
+    if gold_dic is None and is_gain is None and type != "FN":
         logger.error("Compare entities needs an attribute or gold_dic.")
         return
-    elif gold_dic is None and attribute is not None:
-        gold_dic = gold_set_to_dic(get_gold_set(attribute=attribute))
+    elif gold_dic is None and is_gain is not None:
+        gold_dic = gold_set_to_dic(get_gold_set(is_gain=is_gain))
 
     if entity_dic is None:
         # TODO: Right now we just convert entities to gold_dic
