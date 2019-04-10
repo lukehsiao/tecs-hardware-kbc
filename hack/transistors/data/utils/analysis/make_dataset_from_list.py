@@ -2,6 +2,7 @@ import csv
 import logging
 import os
 import pdb
+from pprint import pprint
 
 from tqdm import tqdm
 
@@ -24,7 +25,11 @@ def get_dataset_filenames(filenames_file, testpath, devpath):
     for filename in filenames:
         pdf = filename + ".pdf"
         if pdf not in os.listdir(pdfpath):
-            logger.debug(f"Filename {pdf} not in {pdfpath}, skipping.")
+            pdf = filename + ".PDF"
+            if pdf not in os.listdir(pdfpath):
+                logger.debug(f"Filename {pdf} not in {pdfpath}, skipping.")
+            else:
+                test_filenames.add(filename)
         else:
             test_filenames.add(filename)
 
@@ -34,7 +39,11 @@ def get_dataset_filenames(filenames_file, testpath, devpath):
     for filename in filenames:
         pdf = filename + ".pdf"
         if pdf not in os.listdir(pdfpath):
-            logger.debug(f"Filename {pdf} not in {pdfpath}, skipping.")
+            pdf = filename + ".PDF"
+            if pdf not in os.listdir(pdfpath):
+                logger.debug(f"Filename {pdf} not in {pdfpath}, skipping.")
+            else:
+                dev_filenames.add(filename)
         else:
             dev_filenames.add(filename)
 
@@ -43,6 +52,7 @@ def get_dataset_filenames(filenames_file, testpath, devpath):
         list(filenames.difference(test_filenames))
     ):
         logger.error(f"Filenames are not consistent.")
+        pprint(dev_filenames.difference(filenames.difference(test_filenames)))
         pdb.set_trace()
 
     # Return final filename sets
@@ -51,15 +61,30 @@ def get_dataset_filenames(filenames_file, testpath, devpath):
 
 def move_files(filenames, origpath, endpath):
     for filename in tqdm(filenames):
-        pdf = filename + ".pdf"
-        html = filename + ".html"
-        os.rename(
-            os.path.join(origpath, "pdf/" + pdf), os.path.join(endpath, "pdf/" + pdf)
-        )
-        os.rename(
-            os.path.join(origpath, "html/" + html),
-            os.path.join(endpath, "html/" + html),
-        )
+        try:
+            pdf = filename + ".pdf"
+            os.rename(
+                os.path.join(origpath, "pdf/" + pdf),
+                os.path.join(endpath, "pdf/" + pdf),
+            )
+        except FileNotFoundError:
+            pdf = filename + ".PDF"
+            os.rename(
+                os.path.join(origpath, "pdf/" + pdf),
+                os.path.join(endpath, "pdf/" + pdf),
+            )
+        try:
+            html = filename + ".html"
+            os.rename(
+                os.path.join(origpath, "html/" + html),
+                os.path.join(endpath, "html/" + html),
+            )
+        except FileNotFoundError:
+            html = filename + ".HTML"
+            os.rename(
+                os.path.join(origpath, "html/" + html),
+                os.path.join(endpath, "html/" + html),
+            )
 
 
 if __name__ == "__main__":
