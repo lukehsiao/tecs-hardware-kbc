@@ -26,7 +26,7 @@ FALSE = 2
 ABSTAIN = 0
 
 PARALLEL = 16  # assuming a quad-core machine
-ATTRIBUTE = "circular_connectors_full"
+ATTRIBUTE = "circular_connectors"
 conn_string = "postgresql:///" + ATTRIBUTE
 
 # If you've run this before, set FIRST_TIME to False to save time
@@ -305,6 +305,11 @@ end_model = searcher.search(
 scores = end_model.score(
     test_loader, metric=["accuracy", "precision", "recall", "f1"], break_ties="abstain"
 )
+logger.info("End MOdel Score:")
+logger.info(f"accuracy: {scores[0]:.3f}")
+logger.info(f"precision: {scores[1]:.3f}")
+logger.info(f"recall: {scores[2]:.3f}")
+logger.info(f"f1: {scores[3]:.3f}")
 
 # ```
 # ============================================================

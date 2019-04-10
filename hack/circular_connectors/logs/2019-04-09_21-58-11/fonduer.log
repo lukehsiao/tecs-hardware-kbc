@@ -1,0 +1,28 @@
+[2019-04-09 21:58:11,898][INFO] fonduer.meta:50 - Setting logging directory to: logs/2019-04-09_21-58-11
+[2019-04-09 21:58:12,103][INFO] fonduer.meta:134 - Connecting user:None to None:None/circular_connectors_full
+[2019-04-09 21:58:12,197][INFO] fonduer.meta:161 - Initializing the storage schema
+[2019-04-09 21:58:12,304][INFO] __main__:131 - CWD: /lfs/raiders4/0/lwhsiao/repos/hack/hack/circular_connectors
+[2019-04-09 21:58:12,304][INFO] hack.utils.utils:62 - Reloading pre-parsed dataset.
+[2019-04-09 21:58:15,663][INFO] __main__:137 - # of train Documents: 4845
+[2019-04-09 21:58:15,664][INFO] __main__:138 - # of dev Documents: 100
+[2019-04-09 21:58:15,664][INFO] __main__:139 - # of test Documents: 98
+[2019-04-09 21:58:15,973][INFO] __main__:141 - Documents: 5043
+[2019-04-09 21:58:16,373][INFO] __main__:142 - Sections: 5043
+[2019-04-09 21:58:20,108][INFO] __main__:143 - Paragraphs: 1077572
+[2019-04-09 21:58:27,201][INFO] __main__:144 - Sentences: 1119364
+[2019-04-09 21:58:29,550][INFO] __main__:145 - Figures: 213981
+[2019-04-09 21:58:29,643][INFO] __main__:173 - Total Mentions: 37426
+[2019-04-09 21:58:29,652][INFO] fonduer.candidates.candidates:125 - Clearing table thumbnail_label (split 0)
+[2019-04-09 21:58:32,980][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-09 21:58:58,483][INFO] fonduer.candidates.candidates:125 - Clearing table thumbnail_label (split 1)
+[2019-04-09 21:58:58,587][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-09 21:58:59,687][INFO] fonduer.candidates.candidates:125 - Clearing table thumbnail_label (split 2)
+[2019-04-09 21:58:59,819][INFO] fonduer.utils.udf:54 - Running UDF...
+[2019-04-09 21:59:04,013][INFO] __main__:190 - Total train candidate:	35765
+[2019-04-09 21:59:04,013][INFO] __main__:191 - Total dev candidate:	453
+[2019-04-09 21:59:04,014][INFO] __main__:192 - Total test candidate:	1208
+[2019-04-09 22:08:06,573][INFO] __main__:308 - End MOdel Score:
+[2019-04-09 22:08:06,573][INFO] __main__:309 - accuracy: 0.913
+[2019-04-09 22:08:06,574][INFO] __main__:310 - precision: 0.632
+[2019-04-09 22:08:06,574][INFO] __main__:311 - recall: 0.825
+[2019-04-09 22:08:06,574][INFO] __main__:312 - f1: 0.715

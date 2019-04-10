@@ -9,4 +9,5 @@ pre-commit
 pytest
 quantiphy
 torch
+tqdm
 torchvision
