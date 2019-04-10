@@ -1,25 +1,28 @@
 import logging
 import os
-import pdb
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
+def get_filenames_from_dir(dirname):
+    filenames = set()
+    for filename in os.listdir(dirname):
+        if not filename.endswith(".pdf") and not filename.endswith(".PDF"):
+            logger.warn(f"Invalid filename {filename}")
+        if filename in filenames:
+            logger.warn(f"Duplicate filename {filename}")
+        filenames.add(filename.replace(".pdf", "").replace(".PDF", ""))
+        logger.debug(f"Filename {filename} is valid")
+    return filenames
+
+
 if __name__ == "__main__":
 
     # Make a list of filenames to write
-    filenames = set()
-    for filename in os.listdir(
+    filenames = get_filenames_from_dir(
         os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../analysis/pdf/")
-    ):
-        if not filename.endswith(".pdf"):
-            logger.error(f"Invalid filename {filename}")
-            pdb.set_trace()
-        if filename in filenames:
-            logger.error(f"Duplicate filename {filename}")
-            pdb.set_trace()
-        filenames.add(filename.replace(".pdf", ""))
-        logger.debug(f"Filename {filename} is valid")
+    )
 
     # Write filenames to CSV
     with open(
