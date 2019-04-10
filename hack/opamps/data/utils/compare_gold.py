@@ -4,9 +4,8 @@ and write all discrepancies to an output CSV.
 """
 import logging
 import os
-import pdb
 
-from hack.transistors.transistor_utils import (
+from hack.opamps.opamp_utils import (
     compare_entities,
     entity_level_scores,
     get_gold_set,
@@ -37,26 +36,31 @@ if __name__ == "__main__":
     # (docs that both we and Digikey have gold labels for)
     # NOTE: We use our gold as gold for this comparison against Digikey
     for attribute in ["typ_supply_current", "typ_gbp"]:
+        if attribute == "typ_gbp":
+            is_gain = True
+        else:
+            is_gain = False
+
         logger.info(f"Comparing gold labels for {attribute}...")
 
         dirname = os.path.dirname(__name__)
-        outfile = os.path.join(dirname, "../analysis/gold_discrepancies.csv")
+        outfile = os.path.join(
+            dirname, f"../analysis/{attribute}_gold_discrepancies.csv"
+        )
 
         # Us
         our_gold = os.path.join(dirname, "../analysis/our_gold.csv")
-        our_gold_set = get_gold_set(gold=[our_gold], attribute=attribute)
+        our_gold_set = get_gold_set(gold=[our_gold], is_gain=is_gain)
         our_gold_dic = gold_set_to_dic(our_gold_set)
 
         # Digikey
         digikey_gold = os.path.join(dirname, "../analysis/digikey_gold.csv")
-        digikey_gold_set = get_gold_set(gold=[digikey_gold], attribute=attribute)
+        digikey_gold_set = get_gold_set(gold=[digikey_gold], is_gain=is_gain)
         digikey_gold_dic = gold_set_to_dic(digikey_gold_set)
-
-        pdb.set_trace()
 
         # Score Digikey using our gold as metric
         score = entity_level_scores(
-            digikey_gold_set, metric=our_gold_set, attribute=attribute
+            digikey_gold_set, metric=our_gold_set, is_gain=is_gain
         )
         logger.info(f"Scores for {attribute}")
         print_score(score, entities=digikey_gold, metric=our_gold)
@@ -76,3 +80,7 @@ if __name__ == "__main__":
             gold_dic=our_gold_dic,
             outfile=outfile,
         )
+        # NOTE: We only care about the entity_dic for FN as they are the ones
+        # where we want to know what Digikey does have for manual evalutation.
+        # We already know what we have (as that was the FN that Digikey missed)
+        # so all we care about is what Digikey actually does have for a doc.
