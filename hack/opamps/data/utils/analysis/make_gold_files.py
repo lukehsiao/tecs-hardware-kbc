@@ -1,8 +1,6 @@
 import csv
 import os
 
-from quantiphy import Quantity
-
 from hack.transistors.data.utils.manipulate_gold import sort_gold
 
 
@@ -23,23 +21,25 @@ def trim_our_goldfile(goldfile, filenames, outfile, append=False):
         for row in reader:
             (filename, manuf, part, attr, val) = row
 
-            # Allow the double of a +/- value to be valid also.
-            if val.startswith("±"):
-                (value, unit) = val.split(" ")
-                val = f"{str(2 * float(value[1:]))} {unit}"
+            # val = val.split(" ")[0].strip()
 
-            # NOTE: For now, all we care about for the analysis is typ_gbp and
-            # typ_supply_current. We drop everything else.
-            # Normalize units to uA and kHz
-            if attr == "typ_gbp":
-                val = str(Quantity(val).real / 1e3).split(" ")[0].strip()
-            elif attr == "typ_supply_current":
-                val = str(Quantity(val).real / 1e3).split(" ")[0].strip()
-            else:
-                continue
+            # # Allow the double of a +/- value to be valid also.
+            # if val.startswith("±"):
+            # (value, unit) = val.split(" ")
+            # val = str(2 * float(value[1:]))
+
+            # # NOTE: For now, all we care about for the analysis is typ_gbp and
+            # # typ_supply_current. We drop everything else.
+            # # Normalize units to uA and kHz
+            # if attr == "typ_gbp":
+            # val = str(float(Quantity(val).real / 1000)).split(" ")[0].strip()
+            # elif attr == "typ_supply_current":
+            # val = str(float(Quantity(val).real / 1000)).split(" ")[0].strip()
+            # else:
+            # continue
 
             if filename in filenames:
-                entities.append(row)
+                entities.append((filename, manuf, part, attr, val))
 
     # Now, write the new entities into outfile
     with open(outfile, "a") if append else open(outfile, "w") as inputcsv:
@@ -56,20 +56,22 @@ def trim_digikey_goldfile(goldfile, filenames, outfile, append=False):
         for row in reader:
             (filename, manuf, part, attr, val, source) = row
 
-            # Allow the double of a +/- value to be valid also.
-            if val.startswith("±"):
-                (value, unit) = val.split(" ")
-                val = f"{str(2 * float(value[1:]))} {unit}"
+            # val = val.split(" ")[0].strip()
 
-            # NOTE: For now, all we care about for the analysis is typ_gbp and
-            # typ_supply_current. We drop everything else.
-            # Normalize units to uA and kHz
-            if attr == "typ_gbp":
-                val = str(Quantity(val).real / 1e3).split(" ")[0].strip()
-            elif attr == "typ_supply_current":
-                val = str(Quantity(val).real / 1e3).split(" ")[0].strip()
-            else:
-                continue
+            # # Allow the double of a +/- value to be valid also.
+            # if val.startswith("±"):
+            # (value, unit) = val.split(" ")
+            # val = str(2 * float(value[1:]))
+
+            # # NOTE: For now, all we care about for the analysis is typ_gbp and
+            # # typ_supply_current. We drop everything else.
+            # # Normalize units to uA and kHz
+            # if attr == "typ_gbp":
+            # val = str(float(Quantity(val).real / 1000)).split(" ")[0].strip()
+            # elif attr == "typ_supply_current":
+            # val = str(float(Quantity(val).real / 1000)).split(" ")[0].strip()
+            # else:
+            # continue
 
             if filename in filenames:
                 entities.append((filename, manuf, part, attr, val))
