@@ -35,7 +35,7 @@ if __name__ == "__main__":
         "--max-docs",
         type=int,
         default=float("inf"),
-        help="The max number of docs to parse from each dataset (dev/test/train).",
+        help="The number of docs to parse from (dev/test/train). Defaults to all docs.",
     )
     parser.add_argument(
         "--parallel", type=int, default=8, help="Set the level of parallelization."
@@ -48,6 +48,9 @@ if __name__ == "__main__":
     parser.add_argument("-v", help="Set INFO level logging.", action="store_true")
 
     args = parser.parse_args()
+
+    if not any([args.stg_temp_min, args.stg_temp_max, args.polarity, args.ce_v_max]):
+        raise parser.error("Need to specify at least one relation to extract.")
 
     main(
         args.conn_string,
