@@ -182,7 +182,7 @@ def main(
 
     # Parsing
     logger.info(f"Starting parsing...")
-    dirname = os.path.abspath("")
+    dirname = os.path.dirname(os.path.abspath(__file__))
     start = timer()
     docs, train_docs, dev_docs, test_docs = parse_dataset(
         session, dirname, first_time=parse, parallel=parallel, max_docs=max_docs
