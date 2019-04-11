@@ -1,13 +1,6 @@
 black
 flake8
-fonduer>=0.6.2,<0.7.0
 isort
 jupyter
-matplotlib
-pillow
 pre-commit
 pytest
-quantiphy
-torch
-tqdm
-torchvision
