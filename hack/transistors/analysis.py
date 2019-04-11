@@ -6,6 +6,8 @@ import csv
 import logging
 import os
 import pdb
+import pickle
+from enum import Enum
 
 import numpy as np
 from tqdm import tqdm
@@ -21,7 +23,6 @@ from hack.transistors.transistor_utils import (
     get_implied_parts,
     gold_set_to_dic,
 )
-from hack.transistors.transistors import Relation, load_parts_by_doc
 
 # Configure logging for Hack
 logging.basicConfig(
@@ -35,6 +36,21 @@ logging.basicConfig(
     ],
 )
 logger = logging.getLogger(__name__)
+
+
+# Enum for tracking
+class Relation(Enum):
+    STG_TEMP_MIN = "stg_temp_min"
+    STG_TEMP_MAX = "stg_temp_max"
+    POLARITY = "polarity"
+    CE_V_MAX = "ce_v_max"
+
+
+def load_parts_by_doc():
+    dirname = os.path.dirname(__file__)
+    pickle_file = os.path.join(dirname, "data/parts_by_doc_new.pkl")
+    with open(pickle_file, "rb") as f:
+        return pickle.load(f)
 
 
 def capitalize_filenames(filenames):
