@@ -162,6 +162,7 @@ def main(
     max_docs=float("inf"),
     parse=False,
     first_time=False,
+    re_label=False,
     gpu=None,
     parallel=4,
     log_dir=None,
@@ -413,6 +414,10 @@ def main(
     if first_time:
         logger.info("Applying LFs...")
         labeler.apply(split=0, lfs=lfs, train=True, parallelism=parallel)
+        logger.info("Done...")
+    elif re_label:
+        logger.info("Re-applying LFs with train=False...")
+        labeler.apply(split=0, lfs=lfs, train=False, parallelism=parallel)
         logger.info("Done...")
 
     logger.info("Getting label matrices...")
