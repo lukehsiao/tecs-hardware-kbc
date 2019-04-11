@@ -5,7 +5,6 @@ and compare those cands with our gold data.
 import csv
 import logging
 import os
-import pdb
 import pickle
 from enum import Enum
 
@@ -260,7 +259,6 @@ def main(
         best_dev_score, entities=f"cands > {best_dev_b}", metric="our gold labels"
     )
 
-    pdb.set_trace()
     compare_entities(
         set(best_dev_score.FP),
         attribute=relation.value,
