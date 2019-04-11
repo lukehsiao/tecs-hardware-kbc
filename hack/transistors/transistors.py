@@ -5,6 +5,7 @@ import csv
 import logging
 import os
 import pickle
+from timeit import default_timer as timer
 
 import numpy as np
 from fonduer import Meta, init_logging
@@ -176,9 +177,13 @@ def main(
     # Parsing
     logger.info(f"Starting parsing...")
     dirname = os.path.abspath("")
+    start = timer()
     docs, train_docs, dev_docs, test_docs = parse_dataset(
         session, dirname, first_time=parse, parallel=parallel, max_docs=max_docs
     )
+    end = timer()
+    logger.warning(f"Parse Time (min): {((end - start) / 60.0):.1f}")
+
     logger.info(f"# of train Documents: {len(train_docs)}")
     logger.info(f"# of dev Documents: {len(dev_docs)}")
     logger.info(f"# of test Documents: {len(test_docs)}")
@@ -189,6 +194,7 @@ def main(
     logger.info(f"Figures: {session.query(Figure).count()}")
 
     # Mention Extraction
+    start = timer()
     mentions = []
     ngrams = []
     matchers = []
@@ -293,6 +299,9 @@ def main(
     dev_cands = candidate_extractor.get_candidates(split=1)
     test_cands = candidate_extractor.get_candidates(split=2)
 
+    end = timer()
+    logger.warning(f"Candidate Extraction Time (min): {((end - start) / 60.0):.1f}")
+
     logger.info(f"Total train candidate: {sum(len(_) for _ in train_cands)}")
     logger.info(f"Total dev candidate: {sum(len(_) for _ in dev_cands)}")
     logger.info(f"Total test candidate: {sum(len(_) for _ in test_cands)}")
@@ -312,6 +321,7 @@ def main(
     #      logger.info(f"Gain Total Dev Recall: {result.rec:.3f}")
 
     # Featurization
+    start = timer()
     cands = []
     if stg_temp_min:
         cands.append(PartStgTempMin)
@@ -338,6 +348,9 @@ def main(
         F_train = featurizer.get_feature_matrices(train_cands)
         F_dev = featurizer.get_feature_matrices(dev_cands)
         F_test = featurizer.get_feature_matrices(test_cands)
+        end = timer()
+        logger.warning(f"Featurization Time (min): {((end - start) / 60.0):.1f}")
+
         pickle.dump(F_train, open(os.path.join(dirname, "F_train.pkl"), "wb"))
         pickle.dump(F_dev, open(os.path.join(dirname, "F_dev.pkl"), "wb"))
         pickle.dump(F_test, open(os.path.join(dirname, "F_test.pkl"), "wb"))
@@ -355,6 +368,7 @@ def main(
     logger.info("Labeling training data...")
 
     # Labeling
+    start = timer()
     lfs = []
     if stg_temp_min:
         lfs.append(stg_temp_min_lfs)
@@ -379,6 +393,10 @@ def main(
     L_train = labeler.get_label_matrices(cands)
     logger.info("Done.")
 
+    end = timer()
+    logger.warning(f"Supervision Time (min): {((end - start) / 60.0):.1f}")
+
+    start = timer()
     if stg_temp_min:
         relation = "stg_temp_min"
         idx = rel_list.index(relation)
@@ -447,7 +465,13 @@ def main(
             num=100,
         )
 
-        # Dump CSV files for CE_V_MAX for digi-key analysis
+    end = timer()
+    logger.warning(f"Classification Time (min): {((end - start) / 60.0):.1f}")
+
+    # Dump CSV files for CE_V_MAX for digi-key analysis
+    if ce_v_max:
+        relation = "ce_v_max"
+        idx = rel_list.index(relation)
         Y_prob = disc_model_ce_v_max.marginals((test_cands[idx], F_test[idx]))
         dump_candidates(test_cands[idx], Y_prob, "ce_v_max_test_probs.csv")
         Y_prob = disc_model_ce_v_max.marginals((dev_cands[idx], F_dev[idx]))
