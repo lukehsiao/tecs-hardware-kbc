@@ -2,15 +2,17 @@
 This script acts as a placeholder to set a threshold for cands >b
 and compare those cands with our gold data.
 """
-
 import csv
 import logging
 import os
+import pdb
 
 import numpy as np
 from tqdm import tqdm
 
-from hack.transistors.data.utils.compare_gold import print_score
+from hack.transistors.data.utils.analysis.make_filenames_list import (
+    get_filenames_from_dir,
+)
 from hack.transistors.transistor_utils import (
     Score,
     compare_entities,
@@ -35,6 +37,27 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def capitalize_filenames(filenames):
+    output = set()
+    for filename in filenames:
+        output.add(filename.upper())
+    return output
+
+
+def print_score(score, entities=None, metric=None):
+    logger.info("===================================================")
+    logger.info(f"Scoring on {entities} using {metric} as metric")
+    logger.info("===================================================")
+    logger.info(f"Corpus Precision {score.prec:.3f}")
+    logger.info(f"Corpus Recall    {score.rec:.3f}")
+    logger.info(f"Corpus F1        {score.f1:.3f}")
+    logger.info("---------------------------------------------------")
+    logger.info(
+        f"TP: {len(score.TP)} " f"| FP: {len(score.FP)} " f"| FN: {len(score.FN)}"
+    )
+    logger.info("===================================================\n")
+
+
 def get_entity_set(file, parts_by_doc, b=0.0):
     entities = set()
     errors = set()
@@ -57,11 +80,25 @@ def get_entity_set(file, parts_by_doc, b=0.0):
     return entities
 
 
+def get_parts(entities):
+    parts = set()
+    for (doc, part, val) in entities:
+        parts.add(part)
+    return parts
+
+
 def get_filenames(entities):
     filenames = set()
     for (doc, part, val) in entities:
         filenames.add(doc)
     return filenames
+
+
+def print_filenames_to_file(entities, outfile):
+    with open(outfile, "w") as outfile:
+        writer = csv.writer(outfile)
+        for (doc, part, val) in entities:
+            writer.writerow([doc])
 
 
 def get_filenames_from_file(file):
@@ -93,54 +130,144 @@ def main(
     outfile="analysis_discrepancies.csv",
 ):
 
-    # First, read in CSV and convert to entity set
+    # Define output
     dirname = os.path.dirname(__name__)
-    test_file = os.path.join(dirname, testfile)
-    dev_file = os.path.join(dirname, devfile)
-    filenames_file = os.path.join(dirname, "data/analysis/filenames.csv")
     discrepancy_file = os.path.join(dirname, outfile)
+
+    # Analysis
+    gold_file = os.path.join(dirname, "data/analysis/our_gold.csv")
+    filenames_file = os.path.join(dirname, "data/analysis/filenames.csv")
     logger.info(
         f"Analysis dataset is {len(get_filenames_from_file(filenames_file))}"
         + " filenames long."
     )
-
-    # Only look at entities that occur in Digikey's gold as well
-    gold_file = os.path.join(dirname, "data/analysis/our_gold.csv")
     gold = filter_filenames(
-        get_gold_set(gold_file, attribute=relation.value),
+        get_gold_set(gold=[gold_file], attribute=relation.value),
         get_filenames_from_file(filenames_file),
     )
     logger.info(f"Original gold set is {len(get_filenames(gold))} filenames long.")
 
-    logger.info(f"Determining best b...")
     best_score = Score(0, 0, 0, [], [], [])
     best_b = 0
-    for b in tqdm(np.linspace(0.5, 1, num=1000)):
-        # Get implied parts as well from entities
+    best_entities = set()
+
+    # Test
+    test_file = os.path.join(dirname, testfile)
+    test_filenames = capitalize_filenames(
+        get_filenames_from_dir(os.path.join(dirname, "data/test/pdf/"))
+    )
+    test_goldfile = os.path.join(dirname, "data/test/test_gold.csv")
+    test_gold = filter_filenames(
+        get_gold_set(gold=[test_goldfile], attribute=relation.value), test_filenames
+    )
+
+    best_test_score = Score(0, 0, 0, [], [], [])
+    best_test_b = 0
+    best_test_entities = set()
+
+    # Dev
+    dev_file = os.path.join(dirname, devfile)
+    dev_filenames = capitalize_filenames(
+        get_filenames_from_dir(os.path.join(dirname, "data/dev/pdf"))
+    )
+    dev_goldfile = os.path.join(dirname, "data/dev/dev_gold.csv")
+    dev_gold = filter_filenames(
+        get_gold_set(gold=[dev_goldfile], attribute=relation.value), dev_filenames
+    )
+
+    best_dev_score = Score(0, 0, 0, [], [], [])
+    best_dev_b = 0
+    best_dev_entities = set()
+
+    # Iterate over `b` values
+    logger.info(f"Determining best b...")
+    for b in tqdm(np.linspace(0.0, 1, num=1000)):
+        # Dev and Test
         parts_by_doc = load_parts_by_doc()
         dev_entities = get_entity_set(dev_file, parts_by_doc, b=b)
         test_entities = get_entity_set(test_file, parts_by_doc, b=b)
-        entities = filter_filenames(
-            dev_entities.union(test_entities), get_filenames(gold)
-        )
-        entity_dic = gold_set_to_dic(entities)
 
+        # Analysis (combo of dev and test)
+        entities = filter_filenames(
+            dev_entities.union(test_entities), get_filenames_from_file(filenames_file)
+        )
         # Trim gold to exactly the filenames in entities
-        gold = filter_filenames(gold, get_filenames(entities))
+        # trimmed_gold = filter_filenames(gold, get_filenames(entities))
 
         # Score entities against gold data and generate comparison CSV
+        dev_score = entity_level_scores(
+            dev_entities, attribute=relation.value, metric=dev_gold
+        )
+        test_score = entity_level_scores(
+            test_entities, attribute=relation.value, metric=test_gold
+        )
         score = entity_level_scores(entities, attribute=relation.value, metric=gold)
-        logger.info(f"b = {b}\n" + f"f1 = {score.f1}")
+
+        if dev_score.f1 > best_dev_score.f1:
+            best_dev_score = dev_score
+            best_dev_b = b
+            best_dev_entities = dev_entities
+
+        if test_score.f1 > best_test_score.f1:
+            best_test_score = test_score
+            best_test_b = b
+            best_test_entities = test_entities
+
         if score.f1 > best_score.f1:
             best_score = score
             best_b = b
             best_entities = entities
-            best_gold = gold
 
-    logger.info(f"Entity set is {len(get_filenames(best_entities))} filenames long.")
+    # Test
+    logger.info("Scoring for test set...")
     logger.info(
-        f"Trimmed gold set is now {len(get_filenames(best_gold))} filenames long."
+        f"Entity set is {len(get_filenames(best_test_entities))} filenames long."
     )
+    # logger.info(
+    # f"Trimmed gold set is now {len(get_filenames(best_gold))} filenames long."
+    # )
+    logger.info(f"Gold set is {len(get_filenames(test_gold))} filenames long.")
+    print_score(
+        best_test_score, entities=f"cands > {best_test_b}", metric="our gold labels"
+    )
+
+    # Dev
+    logger.info("Scoring for dev set...")
+    logger.info(
+        f"Entity set is {len(get_filenames(best_dev_entities))} filenames long."
+    )
+    # logger.info(
+    # f"Trimmed gold set is now {len(get_filenames(best_gold))} filenames long."
+    # )
+    logger.info(f"Gold set is {len(get_filenames(dev_gold))} filenames long.")
+    print_score(
+        best_dev_score, entities=f"cands > {best_dev_b}", metric="our gold labels"
+    )
+
+    pdb.set_trace()
+    compare_entities(
+        set(best_dev_score.FP),
+        attribute=relation.value,
+        outfile="dev_discrepancies.csv",
+        type="FP",
+        gold_dic=gold_set_to_dic(dev_gold),
+    )
+    compare_entities(
+        set(best_dev_score.FN),
+        attribute=relation.value,
+        outfile="dev_discrepancies.csv",
+        type="FN",
+        append=True,
+        entity_dic=gold_set_to_dic(best_dev_entities),
+    )
+
+    # Analysis
+    logger.info("Scoring for analysis set...")
+    logger.info(f"Entity set is {len(get_filenames(best_entities))} filenames long.")
+    # logger.info(
+    # f"Trimmed gold set is now {len(get_filenames(best_gold))} filenames long."
+    # )
+    logger.info(f"Gold set is {len(get_filenames(gold))} filenames long.")
     print_score(best_score, entities=f"cands > {best_b}", metric="our gold labels")
 
     compare_entities(
@@ -148,6 +275,7 @@ def main(
         attribute=relation.value,
         type="FP",
         outfile=discrepancy_file,
+        gold_dic=gold_set_to_dic(gold),
     )
     compare_entities(
         set(best_score.FN),
@@ -155,7 +283,7 @@ def main(
         type="FN",
         outfile=discrepancy_file,
         append=True,
-        entity_dic=entity_dic,
+        entity_dic=gold_set_to_dic(best_entities),
     )
 
 
