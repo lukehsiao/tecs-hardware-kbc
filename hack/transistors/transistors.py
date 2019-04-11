@@ -111,19 +111,19 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
             logger.debug(f"{e}, skipping.")
             break
 
-    logger.info("===================================================")
-    logger.info(f"Scoring on Entity-Level Gold Data with b={best_b}")
-    logger.info("===================================================")
-    logger.info(f"Corpus Precision {best_result.prec:.3f}")
-    logger.info(f"Corpus Recall    {best_result.rec:.3f}")
-    logger.info(f"Corpus F1        {best_result.f1:.3f}")
-    logger.info("---------------------------------------------------")
-    logger.info(
+    logger.warning("===================================================")
+    logger.warning(f"Scoring on Entity-Level Gold Data with b={best_b}")
+    logger.warning("===================================================")
+    logger.warning(f"Corpus Precision {best_result.prec:.3f}")
+    logger.warning(f"Corpus Recall    {best_result.rec:.3f}")
+    logger.warning(f"Corpus F1        {best_result.f1:.3f}")
+    logger.warning("---------------------------------------------------")
+    logger.warning(
         f"TP: {len(best_result.TP)} "
         f"| FP: {len(best_result.FP)} "
         f"| FN: {len(best_result.FN)}"
     )
-    logger.info("===================================================\n")
+    logger.warning("===================================================\n")
     return best_result, best_b
 
 
@@ -149,15 +149,21 @@ def main(
     gpu=None,
     parallel=4,
     log_dir=None,
+    verbose=False,
 ):
     # Setup initial configuration
     if gpu:
         os.environ["CUDA_VISIBLE_DEVICES"] = gpu
 
-    if log_dir:
-        init_logging(log_dir=log_dir)
+    if not log_dir:
+        log_dir = "logs"
+
+    if verbose:
+        level = logging.INFO
     else:
-        init_logging(log_dir="logs")
+        level = logging.WARNING
+
+    init_logging(log_dir=log_dir, level=level)
 
     rel_list = []
     if stg_temp_min:

@@ -45,6 +45,7 @@ if __name__ == "__main__":
         "--conn-string", type=str, help="Connection string to the PosgreSQL Database."
     )
     parser.add_argument("--log-dir", type=str, help="Directory to output log files.")
+    parser.add_argument("-v", help="Set INFO level logging.", action="store_true")
 
     args = parser.parse_args()
 
@@ -60,4 +61,5 @@ if __name__ == "__main__":
         gpu=args.gpu,
         parallel=args.parallel,
         log_dir=args.log_dir,
+        verbose=args.v,
     )
