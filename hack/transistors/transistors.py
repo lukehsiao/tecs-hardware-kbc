@@ -128,7 +128,7 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
             break
 
     logger.warning("===================================================")
-    logger.warning(f"Scoring on Entity-Level Gold Data with b={best_b}")
+    logger.warning(f"Entity-Level Gold Data score for {relation}, b={best_b}")
     logger.warning("===================================================")
     logger.warning(f"Corpus Precision {best_result.prec:.3f}")
     logger.warning(f"Corpus Recall    {best_result.rec:.3f}")
