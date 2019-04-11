@@ -13,6 +13,6 @@ setup(
         "tqdm",
         "torchvision",
     ],
-    scripts=["bin/transistors.py"],
+    scripts=["bin/transistors"],
     packages=find_packages(),
 )
