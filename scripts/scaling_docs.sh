@@ -6,5 +6,5 @@ do
   dropdb --if-exists transistor_scale_docs
   createdb transistor_scale_docs
   echo "$DOCS Documents..."
-  transistors.py --log-dir transistor_scale_docs_logs --gpu 0 --conn-string "postgresql:///transistor_scale_docs" --parallel=8 --parse --first-time --stg-temp-min --max-docs $DOCS
+  transistors --log-dir transistor_scale_docs_logs --gpu 0 --conn-string "postgresql:///transistor_scale_docs" --parallel=8 --parse --first-time --stg-temp-min --max-docs $DOCS
 done
