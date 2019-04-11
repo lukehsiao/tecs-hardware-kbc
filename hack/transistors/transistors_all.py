@@ -389,11 +389,11 @@ def dump_candidates(cands, Y_prob, outfile):
             writer.writerow([doc, part, val, Y_prob[i][TRUE - 1]])
 
 
-def main(conn_string, max_docs=float("inf"), parse=True, first_time=True, parallel=4):
+def main(conn_string, max_docs=float("inf"), first_time=True, parallel=4):
     init_logging(log_dir="logs")
     session = Meta.init(conn_string).Session()
     docs, train_docs, dev_docs, test_docs = parsing(
-        session, first_time=parse, parallel=parallel, max_docs=max_docs
+        session, first_time=first_time, parallel=parallel, max_docs=max_docs
     )
 
     Part, StgTempMin, StgTempMax, Polarity, CeVMax = mention_extraction(
@@ -533,3 +533,16 @@ def main(conn_string, max_docs=float("inf"), parse=True, first_time=True, parall
     dump_candidates(test_cands[3], Y_prob, "ce_v_max_test_probs.csv")
     Y_prob = disc_model_ce_v_max.marginals((dev_cands[3], F_dev[3]))
     dump_candidates(dev_cands[3], Y_prob, "ce_v_max_dev_probs.csv")
+
+
+if __name__ == "__main__":
+    parallel = 16  # len(os.sched_getaffinity(0)) // 4
+    component = "transistors"
+    first_time = True
+    max_docs = float("inf")
+    conn_string = f"postgresql:///{component}"
+    logger.info(f"\n\n")
+    logger.info(f"=" * 30)
+    logger.info(f"{component}::all_relations | par: {parallel} | docs: {max_docs}")
+
+    main(conn_string, max_docs=max_docs, first_time=first_time, parallel=parallel)
