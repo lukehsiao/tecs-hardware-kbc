@@ -69,13 +69,29 @@ def generative_model(L_train, n_epochs=500, print_every=100):
     return marginals
 
 
-def discriminative_model(train_cands, F_train, marginals, n_epochs=50, lr=0.001):
+def discriminative_model(
+    train_cands, F_train, marginals, n_epochs=50, lr=0.001, gpu=False
+):
     disc_model = SparseLogisticRegression()
 
     logger.info("Training discriminative model...")
-    disc_model.train(
-        (train_cands, F_train), marginals, n_epochs=n_epochs, lr=lr, host_device="GPU"
-    )
+    if gpu:
+        disc_model.train(
+            (train_cands, F_train),
+            marginals,
+            n_epochs=n_epochs,
+            lr=lr,
+            host_device="GPU",
+        )
+    else:
+        disc_model.train(
+            (train_cands, F_train),
+            marginals,
+            n_epochs=n_epochs,
+            lr=lr,
+            host_device="CPU",
+        )
+
     logger.info("Done.")
 
     return disc_model
