@@ -5,6 +5,7 @@ and compare those cands with our gold data.
 import csv
 import logging
 import os
+import pdb
 
 import numpy as np
 from tqdm import tqdm
@@ -77,6 +78,13 @@ def get_entity_set(file, parts_by_doc, b=0.0):
             except Exception as e:
                 logger.error(f"{e} while getting entity set from {file}.")
     return entities
+
+
+def get_parts(entities):
+    parts = set()
+    for (doc, part, val) in entities:
+        parts.add(part)
+    return parts
 
 
 def get_filenames(entities):
@@ -183,8 +191,6 @@ def main(
         entities = filter_filenames(
             dev_entities.union(test_entities), get_filenames_from_file(filenames_file)
         )
-        # Entity dic for comparison output
-        entity_dic = gold_set_to_dic(entities)
         # Trim gold to exactly the filenames in entities
         # trimmed_gold = filter_filenames(gold, get_filenames(entities))
 
@@ -238,6 +244,23 @@ def main(
         best_dev_score, entities=f"cands > {best_dev_b}", metric="our gold labels"
     )
 
+    pdb.set_trace()
+    compare_entities(
+        set(best_dev_score.FP),
+        attribute=relation.value,
+        outfile="dev_discrepancies.csv",
+        type="FP",
+        gold_dic=gold_set_to_dic(dev_gold),
+    )
+    compare_entities(
+        set(best_dev_score.FN),
+        attribute=relation.value,
+        outfile="dev_discrepancies.csv",
+        type="FN",
+        append=True,
+        entity_dic=gold_set_to_dic(best_dev_entities),
+    )
+
     # Analysis
     logger.info("Scoring for analysis set...")
     logger.info(f"Entity set is {len(get_filenames(best_entities))} filenames long.")
@@ -252,6 +275,7 @@ def main(
         attribute=relation.value,
         type="FP",
         outfile=discrepancy_file,
+        gold_dic=gold_set_to_dic(gold),
     )
     compare_entities(
         set(best_score.FN),
@@ -259,7 +283,7 @@ def main(
         type="FN",
         outfile=discrepancy_file,
         append=True,
-        entity_dic=entity_dic,
+        entity_dic=gold_set_to_dic(best_entities),
     )
 
 

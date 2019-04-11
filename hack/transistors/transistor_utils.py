@@ -32,6 +32,8 @@ def gold_set_to_dic(gold_set):
         if doc in gold_dic:
             if part in gold_dic[doc]:
                 gold_dic[doc][part].append(val)
+            else:
+                gold_dic[doc][part] = [val]
         else:
             gold_dic[doc] = {part: [val]}
     return gold_dic
@@ -172,15 +174,19 @@ def compare_entities(
     entity_dic=None,
     gold_dic=None,
     type=None,
-    outfile="../our_discrepancies.csv",
+    outfile="analysis_discrepancies.csv",
     append=False,
 ):
     """Compare given entities to gold labels
     and write any discrepancies to a CSV file."""
 
+    if type is None or type not in ["FN", "FP"]:
+        logger.error(f"Invalid discrepancy type {type}")
+        pdb.set_trace()
     if gold_dic is None and attribute is None:
         logger.error("Compare entities needs an attribute or gold_dic.")
-    elif gold_dic is None and attribute is not None:
+        pdb.set_trace()
+    elif gold_dic is None and attribute is not None and type == "FP":
         gold_dic = gold_set_to_dic(get_gold_set(attribute=attribute))
 
     if entity_dic is None:
@@ -195,31 +201,18 @@ def compare_entities(
     with open(outfile, "a") if append else open(outfile, "w") as out:
         writer = csv.writer(out)
         if not append:  # Only write header row if none already exists
-            if type is not None:
-                writer.writerow(
-                    (
-                        "Type:",
-                        "Filename:",
-                        "Part:",
-                        "Our Vals:",
-                        "Notes:",
-                        "Discrepancy Type:",
-                        "Discrepancy Notes:",
-                        "Annotator:",
-                    )
+            writer.writerow(
+                (
+                    "Type:",
+                    "Filename:",
+                    "Part:",
+                    "Our Vals:",
+                    "Notes:",
+                    "Discrepancy Type:",
+                    "Discrepancy Notes:",
+                    "Annotator:",
                 )
-            else:
-                writer.writerow(
-                    (
-                        "Filename:",
-                        "Part:",
-                        "Our Vals:",
-                        "Notes:",
-                        "Discrepancy Type:",
-                        "Discrepancy Notes:",
-                        "Annotator:",
-                    )
-                )
+            )
         if type == "FN":  # We only care about the entities data for `Notes:`
             for (doc, part, val) in entities:
                 if doc.upper() in entity_dic:
@@ -231,15 +224,36 @@ def compare_entities(
                                 part,
                                 val,
                                 f"Entity vals: {entity_dic[doc.upper()][part.upper()]}",
+                                "Missing value.",
+                                "",
+                                "Bot",
                             )
                         )
                     else:
                         writer.writerow(
-                            (type, doc, part, val, f"Entity parts: {entity_dic[doc]}")
+                            (
+                                type,
+                                doc,
+                                part,
+                                val,
+                                f"Entity parts: {entity_dic[doc]}",
+                                "Missing part.",
+                                "",
+                                "Bot",
+                            )
                         )
                 else:
                     writer.writerow(
-                        (type, doc, part, val, f"Entities do not have doc {doc}.")
+                        (
+                            type,
+                            doc,
+                            part,
+                            val,
+                            f"Entities do not have doc {doc}.",
+                            "Missing doc.",
+                            "",
+                            "Bot",
+                        )
                     )
         elif type == "FP":  # We only care about the gold data for `Notes:`
             for (doc, part, val) in entities:
@@ -252,35 +266,37 @@ def compare_entities(
                                 part,
                                 val,
                                 f"Gold vals: {gold_dic[doc.upper()][part.upper()]}",
+                                "Invalid value.",
+                                "",
+                                "Bot",
                             )
                         )
                     else:
                         writer.writerow(
-                            (type, doc, part, val, f"Gold parts: {gold_dic[doc]}")
-                        )
-                else:
-                    writer.writerow(
-                        (type, doc, part, val, f"Gold does not have doc {doc}.")
-                    )
-
-        else:  # TODO: Show both (for now, just shows gold)
-            for (doc, part, val) in entities:
-                if doc.upper() in gold_dic:
-                    if part.upper() in gold_dic[doc.upper()]:
-                        writer.writerow(
                             (
+                                type,
                                 doc,
                                 part,
                                 val,
-                                f"Gold vals: {gold_dic[doc.upper()][part.upper()]}",
+                                f"Gold parts: {gold_dic[doc]}",
+                                "Invalid part.",
+                                "",
+                                "Bot",
                             )
                         )
-                    else:
-                        writer.writerow(
-                            (doc, part, val, f"Gold parts: {gold_dic[doc]}")
-                        )
                 else:
-                    writer.writerow((doc, part, val, f"Gold does not have doc {doc}."))
+                    writer.writerow(
+                        (
+                            type,
+                            doc,
+                            part,
+                            val,
+                            f"Gold does not have doc {doc}.",
+                            "Gold is missing doc.",
+                            "",
+                            "Bot",
+                        )
+                    )
 
 
 def entity_level_scores(entities, attribute=None, corpus=None, metric=None, docs=None):
