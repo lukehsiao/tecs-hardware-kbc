@@ -257,10 +257,14 @@ def main(
 
     logger.info(f"Total Mentions: {session.query(Mention).count()}")
     logger.info(f"Total Part: {session.query(Part).count()}")
-    logger.info(f"Total StgTempMin: {session.query(StgTempMin).count()}")
-    logger.info(f"Total StgTempMax: {session.query(StgTempMax).count()}")
-    logger.info(f"Total Polarity: {session.query(Polarity).count()}")
-    logger.info(f"Total CeVMax: {session.query(CeVMax).count()}")
+    if stg_temp_min:
+        logger.info(f"Total StgTempMin: {session.query(StgTempMin).count()}")
+    if stg_temp_max:
+        logger.info(f"Total StgTempMax: {session.query(StgTempMax).count()}")
+    if polarity:
+        logger.info(f"Total Polarity: {session.query(Polarity).count()}")
+    if ce_v_max:
+        logger.info(f"Total CeVMax: {session.query(CeVMax).count()}")
 
     # Candidate Extraction
     cands = []
@@ -396,7 +400,7 @@ def main(
         logger.info("Done...")
 
     logger.info("Getting label matrices...")
-    L_train = labeler.get_label_matrices(cands)
+    L_train = labeler.get_label_matrices(train_cands)
     logger.info("Done.")
 
     end = timer()
