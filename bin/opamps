@@ -10,10 +10,12 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--gain", help="Extract minimum storage temperature.", action="store_true"
+        "--gain", help="Extract typical gain bandwidth product.", action="store_true"
     )
     parser.add_argument(
-        "--current", help="Extract maximum storage temperature.", action="store_true"
+        "--current",
+        help="Extract typical supply/quiescent current.",
+        action="store_true",
     )
     parser.add_argument("--parse", action="store_true", help="Parse the dataset.")
     parser.add_argument(
