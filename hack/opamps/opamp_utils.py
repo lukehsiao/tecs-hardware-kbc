@@ -14,20 +14,20 @@ Score = namedtuple("Score", ["f1", "prec", "rec", "TP", "FP", "FN"])
 LIMIT = 8
 
 
-def print_scores(best_result, best_b):
-    logger.info("===================================================")
-    logger.info(f"Scoring on Entity-Level Gold Data w/ b={best_b:.3f}")
-    logger.info("===================================================")
-    logger.info(f"Corpus Precision {best_result.prec:.3f}")
-    logger.info(f"Corpus Recall    {best_result.rec:.3f}")
-    logger.info(f"Corpus F1        {best_result.f1:.3f}")
-    logger.info("---------------------------------------------------")
-    logger.info(
+def print_scores(relation, best_result, best_b):
+    logger.warning("===================================================")
+    logger.warning(f"Entity-Level Gold Data score for {relation}, b={best_b:.3f}")
+    logger.warning("===================================================")
+    logger.warning(f"Corpus Precision {best_result.prec:.3f}")
+    logger.warning(f"Corpus Recall    {best_result.rec:.3f}")
+    logger.warning(f"Corpus F1        {best_result.f1:.3f}")
+    logger.warning("---------------------------------------------------")
+    logger.warning(
         f"TP: {len(best_result.TP)} "
         f"| FP: {len(best_result.FP)} "
         f"| FN: {len(best_result.FN)}"
     )
-    logger.info("===================================================\n")
+    logger.warning("===================================================\n")
 
 
 def gold_set_to_dic(gold_set):
