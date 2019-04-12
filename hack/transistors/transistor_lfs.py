@@ -439,7 +439,7 @@ def LF_too_many_numbers_horz(c):
 voltage_lfs = [
     LF_aligned_or_global,
     LF_same_table_must_align,
-    LF_low_table_num,
+    # LF_low_table_num,
     LF_voltage_not_in_table,
     LF_bad_keywords_in_row,
     LF_equals_in_row,
@@ -629,11 +629,8 @@ def LF_ce_keywords_not_part_in_row_col_prefix(c):
     )
 
 
-def LF_part_miss_match_vis(c):
-    ngrams_part = set(list(get_vert_ngrams(c[1], n_max=1)))
-    ngrams_part = _filter_non_parts(
-        ngrams_part.union(set(list(get_horz_ngrams(c[1], n_max=1))))
-    )
+def LF_part_miss_match_vert(c):
+    ngrams_part = _filter_non_parts(set(list(get_vert_ngrams(c[1], n_max=1))))
     return (
         ABSTAIN
         if len(ngrams_part) == 0
@@ -647,11 +644,83 @@ def LF_part_miss_match_vis(c):
     )
 
 
-def LF_part_miss_match_tab(c):
-    ngrams_part = set(list(get_col_ngrams(c[1], n_max=1)))
-    ngrams_part = _filter_non_parts(
-        ngrams_part.union(set(list(get_row_ngrams(c[1], n_max=1))))
+def LF_part_miss_match_horz(c):
+    ngrams_part = _filter_non_parts(set(list(get_horz_ngrams(c[1], n_max=1))))
+    return (
+        ABSTAIN
+        if len(ngrams_part) == 0
+        or any(
+            [
+                c.part.context.get_span().lower().startswith(_.lower())
+                for _ in ngrams_part
+            ]
+        )
+        else FALSE
     )
+
+
+def LF_part_miss_match_row(c):
+    ngrams_part = _filter_non_parts(set(list(get_row_ngrams(c[1], n_max=1))))
+    return (
+        ABSTAIN
+        if len(ngrams_part) == 0
+        or any(
+            [
+                c.part.context.get_span().lower().startswith(_.lower())
+                for _ in ngrams_part
+            ]
+        )
+        else FALSE
+    )
+
+
+def LF_part_miss_match_col(c):
+    ngrams_part = _filter_non_parts(set(list(get_col_ngrams(c[1], n_max=1))))
+    return (
+        ABSTAIN
+        if len(ngrams_part) == 0
+        or any(
+            [
+                c.part.context.get_span().lower().startswith(_.lower())
+                for _ in ngrams_part
+            ]
+        )
+        else FALSE
+    )
+
+
+def LF_part_miss_match_header(c):
+    ngrams_part = _filter_non_parts(set(list(get_head_ngrams(c[1], n_max=1))))
+    return (
+        ABSTAIN
+        if len(ngrams_part) == 0
+        or any(
+            [
+                c.part.context.get_span().lower().startswith(_.lower())
+                for _ in ngrams_part
+            ]
+        )
+        else FALSE
+    )
+
+
+def LF_part_miss_match_left(c):
+    ngrams_part = _filter_non_parts(set(list(get_left_ngrams(c[1], n_max=1))))
+    return (
+        ABSTAIN
+        if len(ngrams_part) == 0
+        or any(
+            [
+                c.part.context.get_span().lower().startswith(_.lower())
+                for _ in ngrams_part
+            ]
+        )
+        else FALSE
+    )
+
+
+def LF_part_miss_match_right(c):
+    ngrams_part = _filter_non_parts(set(list(get_right_ngrams(c[1], n_max=1))))
     return (
         ABSTAIN
         if len(ngrams_part) == 0
@@ -706,9 +775,12 @@ ce_v_max_lfs = voltage_lfs + [
     LF_part_ce_keywords_in_rows_cols_prefix,
     LF_part_ce_keywords_in_row_prefix_same_table,
     LF_part_ce_keywords_in_col_prefix_same_table,
-    LF_part_miss_match_vis,
-    LF_part_miss_match_tab,
-    LF_part_miss_match_part,
+    LF_part_miss_match_col,
+    LF_part_miss_match_row,
+    LF_part_miss_match_vert,
+    LF_part_miss_match_horz,
+    LF_part_miss_match_right,
+    LF_part_miss_match_left,
     LF_part_ce_keywords_in_row_prefix,
     LF_ce_keywords_not_part_in_row_col_prefix,
     LF_part_ce_keywords_horz_prefix,

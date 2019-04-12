@@ -20,6 +20,7 @@ from fonduer.features import Featurizer
 from fonduer.learning import SparseLogisticRegression
 from fonduer.parser.models import Document, Figure, Paragraph, Section, Sentence
 from fonduer.supervision import Labeler
+from metal import analysis
 from metal.label_model import LabelModel
 
 from hack.transistors.transistor_lfs import (
@@ -54,8 +55,8 @@ logger = logging.getLogger(__name__)
 
 def load_labels(session, relation, cand, first_time=True):
     if first_time:
-        logger.info(f"Loading gold labels for {relation.value}")
-        load_transistor_labels(session, [cand], [relation.value], annotator_name="gold")
+        logger.info(f"Loading gold labels for {relation}")
+        load_transistor_labels(session, [cand], [relation], annotator_name="gold")
 
 
 def generative_model(L_train, n_epochs=500, print_every=100):
@@ -517,6 +518,23 @@ def main(
         dump_candidates(dev_cands[idx], Y_prob, "ce_v_max_dev_probs.csv")
 
     # End with interactive prompt
-    import pdb
+    debug = True
+    if debug:
 
-    pdb.set_trace()
+        logger.info("Updating labeling function summary...")
+        labeler.apply(split=1, lfs=lfs, train=False, parallelism=parallel)
+        L_dev = labeler.get_label_matrices(dev_cands)
+        load_transistor_labels(session, cands, ["ce_v_max"])
+        L_gold = labeler.get_gold_labels(dev_cands, annotator_name="gold")
+
+        logger.info("Summary for dev set labeling functions:")
+        df = analysis.lf_summary(
+            L_dev[0],
+            lf_names=labeler.get_keys(),
+            Y=L_gold[0].todense().reshape(-1).tolist()[0],
+        )
+        logger.info(f"\n{df.to_string()}")
+
+        import pdb
+
+        pdb.set_trace()
