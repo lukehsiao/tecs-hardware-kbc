@@ -233,7 +233,7 @@ def entity_level_scores(entities, metric=None, docs=None, corpus=None, is_gain=T
     )
 
 
-def candidiates_to_entities(candidates, is_gain=True):
+def candidates_to_entities(candidates, is_gain=True):
     # Turn CandidateSet into set of tuples
     entities = set()
     for c in candidates:
