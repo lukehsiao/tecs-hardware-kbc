@@ -180,7 +180,8 @@ def main(
     else:
         level = logging.WARNING
 
-    init_logging(log_dir=log_dir, level=level)
+    dirname = os.path.dirname(os.path.abspath(__file__))
+    init_logging(log_dir=os.path.join(dirname, log_dir), level=level)
 
     rel_list = []
     if stg_temp_min:
@@ -199,7 +200,6 @@ def main(
 
     # Parsing
     logger.info(f"Starting parsing...")
-    dirname = os.path.dirname(os.path.abspath(__file__))
     start = timer()
     docs, train_docs, dev_docs, test_docs = parse_dataset(
         session, dirname, first_time=parse, parallel=parallel, max_docs=max_docs
