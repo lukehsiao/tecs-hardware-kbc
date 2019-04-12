@@ -275,8 +275,12 @@ def main(
         mention_extractor.apply(docs, parallelism=parallel)
 
     logger.info(f"Total Mentions: {session.query(Mention).count()}")
-    logger.info(f"Total Gain: {session.query(Gain).count()}")
-    logger.info(f"Total Current: {session.query(Current).count()}")
+
+    if gain:
+        logger.info(f"Total Gain: {session.query(Gain).count()}")
+
+    if current:
+        logger.info(f"Total Current: {session.query(Current).count()}")
 
     cand_classes = []
     if gain:
