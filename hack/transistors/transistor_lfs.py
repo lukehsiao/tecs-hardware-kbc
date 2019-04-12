@@ -42,7 +42,10 @@ def _filter_non_parts(c):
     ret = set()
     for _ in c:
         for __ in expand_part_range(_):
-            if re.match("^([0-9]+[A-Z]+|[A-Z]+[0-9]+)[0-9A-Z]*$", __) and len(__) > 2:
+            if (
+                re.match("^([0-9]+[A-Z]+|[A-Z]+[0-9]+)[0-9A-Z]*$", __.upper())
+                and len(__) > 2
+            ):
                 ret.add(__)
 
     return ret
@@ -626,10 +629,28 @@ def LF_ce_keywords_not_part_in_row_col_prefix(c):
     )
 
 
-def LF_part_miss_match(c):
+def LF_part_miss_match_vis(c):
     ngrams_part = set(list(get_vert_ngrams(c[1], n_max=1)))
     ngrams_part = _filter_non_parts(
         ngrams_part.union(set(list(get_horz_ngrams(c[1], n_max=1))))
+    )
+    return (
+        ABSTAIN
+        if len(ngrams_part) == 0
+        or any(
+            [
+                c.part.context.get_span().lower().startswith(_.lower())
+                for _ in ngrams_part
+            ]
+        )
+        else FALSE
+    )
+
+
+def LF_part_miss_match_tab(c):
+    ngrams_part = set(list(get_col_ngrams(c[1], n_max=1)))
+    ngrams_part = _filter_non_parts(
+        ngrams_part.union(set(list(get_row_ngrams(c[1], n_max=1))))
     )
     return (
         ABSTAIN
@@ -685,7 +706,9 @@ ce_v_max_lfs = voltage_lfs + [
     LF_part_ce_keywords_in_rows_cols_prefix,
     LF_part_ce_keywords_in_row_prefix_same_table,
     LF_part_ce_keywords_in_col_prefix_same_table,
-    LF_part_miss_match,
+    LF_part_miss_match_vis,
+    LF_part_miss_match_tab,
+    LF_part_miss_match_part,
     LF_part_ce_keywords_in_row_prefix,
     LF_ce_keywords_not_part_in_row_col_prefix,
     LF_part_ce_keywords_horz_prefix,

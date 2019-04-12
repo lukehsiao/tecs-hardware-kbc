@@ -515,3 +515,8 @@ def main(
         dump_candidates(test_cands[idx], Y_prob, "ce_v_max_test_probs.csv")
         Y_prob = disc_model_ce_v_max.marginals((dev_cands[idx], F_dev[idx]))
         dump_candidates(dev_cands[idx], Y_prob, "ce_v_max_dev_probs.csv")
+
+    # End with interactive prompt
+    import pdb
+
+    pdb.set_trace()
