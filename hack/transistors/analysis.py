@@ -152,13 +152,10 @@ def main(
     # Analysis
     gold_file = os.path.join(dirname, "data/analysis/our_gold.csv")
     filenames_file = os.path.join(dirname, "data/analysis/filenames.csv")
-    logger.info(
-        f"Analysis dataset is {len(get_filenames_from_file(filenames_file))}"
-        + " filenames long."
-    )
+    filenames = capitalize_filenames(get_filenames_from_file(filenames_file))
+    logger.info(f"Analysis dataset is {len(filenames)}" + " filenames long.")
     gold = filter_filenames(
-        get_gold_set(gold=[gold_file], attribute=relation.value),
-        get_filenames_from_file(filenames_file),
+        get_gold_set(gold=[gold_file], attribute=relation.value), filenames
     )
     logger.info(f"Original gold set is {len(get_filenames(gold))} filenames long.")
 
@@ -196,9 +193,9 @@ def main(
 
     # Iterate over `b` values
     logger.info(f"Determining best b...")
-    for b in tqdm(np.linspace(0.0, 1, num=1000)):
+    parts_by_doc = load_parts_by_doc()
+    for b in tqdm(np.linspace(0, 1, num=100)):
         # Dev and Test
-        parts_by_doc = load_parts_by_doc()
         dev_entities = get_entity_set(dev_file, parts_by_doc, b=b)
         test_entities = get_entity_set(test_file, parts_by_doc, b=b)
 
@@ -211,12 +208,12 @@ def main(
 
         # Score entities against gold data and generate comparison CSV
         dev_score = entity_level_scores(
-            dev_entities, attribute=relation.value, metric=dev_gold
+            dev_entities, attribute=relation.value, docs=dev_filenames
         )
         test_score = entity_level_scores(
-            test_entities, attribute=relation.value, metric=test_gold
+            test_entities, attribute=relation.value, docs=test_filenames
         )
-        score = entity_level_scores(entities, attribute=relation.value, metric=gold)
+        score = entity_level_scores(entities, attribute=relation.value, docs=filenames)
 
         if dev_score.f1 > best_dev_score.f1:
             best_dev_score = dev_score

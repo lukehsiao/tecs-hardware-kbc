@@ -16,6 +16,7 @@ from fonduer.utils.data_model_utils import (
     get_tag,
     get_vert_ngrams,
     is_horz_aligned,
+    is_tabular_aligned,
     is_vert_aligned,
     overlap,
     same_col,
@@ -389,12 +390,16 @@ def LF_aligned_or_global(c):
     )
 
 
-def LF_same_table_must_align(c):
+def LF_same_table_must_align_vis(c):
     return (
         FALSE
         if (same_table(c) and not (is_horz_aligned(c) or is_vert_aligned(c)))
         else ABSTAIN
     )
+
+
+def LF_same_table_must_align_tab(c):
+    return FALSE if (same_table(c) and not is_tabular_aligned(c)) else ABSTAIN
 
 
 def LF_voltage_not_in_table(c):
@@ -438,8 +443,9 @@ def LF_too_many_numbers_horz(c):
 
 voltage_lfs = [
     LF_aligned_or_global,
-    LF_same_table_must_align,
-    # LF_low_table_num,
+    LF_same_table_must_align_vis,
+    LF_same_table_must_align_tab,
+    LF_low_table_num,
     LF_voltage_not_in_table,
     LF_bad_keywords_in_row,
     LF_equals_in_row,
@@ -690,7 +696,9 @@ def LF_part_miss_match_col(c):
 
 
 def LF_part_miss_match_header(c):
-    ngrams_part = _filter_non_parts(set(list(get_head_ngrams(c[1], n_max=1))))
+    ngrams_part = _filter_non_parts(
+        set(list(get_head_ngrams(c[1], n_max=1, axis="col")))
+    )
     return (
         ABSTAIN
         if len(ngrams_part) == 0
@@ -705,7 +713,7 @@ def LF_part_miss_match_header(c):
 
 
 def LF_part_miss_match_left(c):
-    ngrams_part = _filter_non_parts(set(list(get_left_ngrams(c[1], n_max=1))))
+    ngrams_part = _filter_non_parts(set(list(get_left_ngrams(c[1], n_max=1, window=3))))
     return (
         ABSTAIN
         if len(ngrams_part) == 0
@@ -720,7 +728,9 @@ def LF_part_miss_match_left(c):
 
 
 def LF_part_miss_match_right(c):
-    ngrams_part = _filter_non_parts(set(list(get_right_ngrams(c[1], n_max=1))))
+    ngrams_part = _filter_non_parts(
+        set(list(get_right_ngrams(c[1], n_max=1, window=3)))
+    )
     return (
         ABSTAIN
         if len(ngrams_part) == 0
@@ -781,6 +791,7 @@ ce_v_max_lfs = voltage_lfs + [
     LF_part_miss_match_horz,
     LF_part_miss_match_right,
     LF_part_miss_match_left,
+    LF_part_miss_match_header,
     LF_part_ce_keywords_in_row_prefix,
     LF_ce_keywords_not_part_in_row_col_prefix,
     LF_part_ce_keywords_horz_prefix,

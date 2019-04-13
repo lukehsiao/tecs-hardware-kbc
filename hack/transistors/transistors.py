@@ -120,7 +120,6 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
                 attribute=relation,
                 corpus=test_docs,
             )
-            logger.info(f"b = {b}, f1 = {result.f1}")
             if result.f1 > best_result.f1:
                 best_result = result
                 best_b = b
