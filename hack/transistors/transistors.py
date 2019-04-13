@@ -525,7 +525,7 @@ def main(
         labeler.apply(split=1, lfs=lfs, train=False, parallelism=parallel)
         L_dev = labeler.get_label_matrices(dev_cands)
         load_transistor_labels(session, cands, ["ce_v_max"])
-        L_gold = labeler.get_gold_labels(dev_cands, annotator_name="gold")
+        L_gold = labeler.get_gold_labels(dev_cands, annotator="gold")
 
         logger.info("Summary for dev set labeling functions:")
         df = analysis.lf_summary(
