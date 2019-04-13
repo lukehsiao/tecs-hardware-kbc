@@ -28,4 +28,4 @@ psql -d transistor_scale_rels -c "truncate label_key cascade;"
 psql -d transistor_scale_rels -c "truncate feature_key cascade;"
 psql -d transistor_scale_rels -c "vacuum analyze;"
 
-transistors --log-dir transistor_scale_rels_logs --gpu 0 --conn-string "postgresql:///transistor_scale_rels" --parallel=8 --max-docs=1000 --first-time --stg-temp-min --stg-temp-max --polarity --ce_v_max
+transistors --log-dir transistor_scale_rels_logs --gpu 0 --conn-string "postgresql:///transistor_scale_rels" --parallel=8 --max-docs=1000 --first-time --stg-temp-min --stg-temp-max --polarity --ce-v-max
