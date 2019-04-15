@@ -2,6 +2,7 @@ import logging
 import re
 
 from fonduer.utils.data_model_utils import (
+    get_horz_ngrams,
     get_row_ngrams,
     get_vert_ngrams,
     is_horz_aligned,
@@ -21,7 +22,7 @@ def _filter_non_parts(c):
     ret = set()
     for _ in c:
         for __ in expand_part_range(_):
-            if part_pattern.match(__) and len(__) > 2:
+            if part_pattern.match(__.upper()) and len(__) > 2:
                 ret.add(__)
     return ret
 
@@ -63,8 +64,11 @@ def ce_v_max_filter(c):
     if same_table(c):
         return is_horz_aligned(c) or is_vert_aligned(c)
 
-    # Check if the polarities are not matched with the part
-    ngrams_part = _filter_non_parts(set(x for x in get_vert_ngrams(attr, n_max=1)))
+    # Check if the ce_v_max's are not matched with the part
+    ngrams_part = _filter_non_parts(set(list(get_vert_ngrams(attr, n_max=1))))
+    ngrams_part = _filter_non_parts(
+        ngrams_part.union(set(list(get_horz_ngrams(attr, n_max=1))))
+    )
 
     if len(ngrams_part) != 0 and all(
         not part.context.get_span().lower().startswith(_.lower()) for _ in ngrams_part
