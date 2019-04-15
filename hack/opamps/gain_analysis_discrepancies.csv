@@ -1,9 +1,4 @@
 Type:,Filename:,Our Vals:,Notes:,Discrepancy Type:,Discrepancy Notes:,Annotator:
-FP,LF412-N,2.7 MHz,Gold vals: [Quantity('4 MHz')]
 FP,LF412-N,3 MHz,Gold vals: [Quantity('4 MHz')]
-FN,LM324-N,1 MHz,Entities do not have doc LM324-N.
-FN,OPA625,800 kHz,"Entity vals: [Quantity('1 MHz'), Quantity('120 MHz')]"
-FN,TLV274-Q1,2.4 MHz,Entities do not have doc TLV274-Q1.
-FN,TLV274-Q1,3 MHz,Entities do not have doc TLV274-Q1.
-FN,EN.CD00000492,4 MHz,Entities do not have doc EN.CD00000492.
-FN,OPA129,1 MHz,Entities do not have doc OPA129.
+FP,LF412-N,2.7 MHz,Gold vals: [Quantity('4 MHz')]
+FN,OPA625,800 kHz,"Entity vals: [Quantity('120 MHz'), Quantity('1 MHz')]"

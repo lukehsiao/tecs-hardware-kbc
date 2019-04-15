@@ -1,9 +1,0 @@
-Type:,Filename:,Our Vals:,Notes:,Discrepancy Type:,Discrepancy Notes:,Annotator:
-FP,THS3001,3.3 mA,"Gold vals: [Quantity('6.9 mA'), Quantity('5.5 mA'), Quantity('6.6 mA')]"
-FP,LIA100,10 mA,Gold vals: [Quantity('5 mA')]
-FN,EN.DM00078379,2.8 mA,Entity vals: [Quantity('3.1 mA')]
-FN,MAX44244-MAX44248,90 uA,Entities do not have doc MAX44244-MAX44248.
-FN,LPV801,450 nA,Entities do not have doc LPV801.
-FN,EN.DM00078379,2.9 mA,Entity vals: [Quantity('3.1 mA')]
-FN,MAX44244-MAX44248,100 uA,Entities do not have doc MAX44244-MAX44248.
-FN,LPV801,320 nA,Entities do not have doc LPV801.
