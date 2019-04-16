@@ -20,6 +20,7 @@ from fonduer.features import Featurizer
 from fonduer.learning import SparseLogisticRegression
 from fonduer.parser.models import Document, Figure, Paragraph, Section, Sentence
 from fonduer.supervision import Labeler
+from metal import analysis
 from metal.label_model import LabelModel
 
 from hack.transistors.transistor_lfs import (
@@ -54,8 +55,8 @@ logger = logging.getLogger(__name__)
 
 def load_labels(session, relation, cand, first_time=True):
     if first_time:
-        logger.info(f"Loading gold labels for {relation.value}")
-        load_transistor_labels(session, [cand], [relation.value], annotator_name="gold")
+        logger.info(f"Loading gold labels for {relation}")
+        load_transistor_labels(session, [cand], [relation], annotator_name="gold")
 
 
 def generative_model(L_train, n_epochs=500, print_every=100):
@@ -337,15 +338,21 @@ def main(
     with open(pickle_file, "rb") as f:
         parts_by_doc = pickle.load(f)
 
-    # NOTE: the following can be used to check total recall
-    #  for i, name in enumerate(rel_list):
-    #      logger.info(name)
-    #      result = entity_level_scores(
-    #          candidates_to_entities(dev_cands[i], parts_by_doc=parts_by_doc),
-    #          attribute=name,
-    #          corpus=dev_docs,
-    #      )
-    #      logger.info(f"Gain Total Dev Recall: {result.rec:.3f}")
+    # Check total recall
+    for i, name in enumerate(rel_list):
+        logger.info(name)
+        result = entity_level_scores(
+            candidates_to_entities(dev_cands[i], parts_by_doc=parts_by_doc),
+            attribute=name,
+            corpus=dev_docs,
+        )
+        logger.info(f"{name} Total Dev Recall: {result.rec:.3f}")
+        result = entity_level_scores(
+            candidates_to_entities(test_cands[i], parts_by_doc=parts_by_doc),
+            attribute=name,
+            corpus=test_docs,
+        )
+        logger.info(f"{name} Total Test Recall: {result.rec:.3f}")
 
     # Featurization
     start = timer()
@@ -411,13 +418,15 @@ def main(
 
     labeler = Labeler(session, cands)
 
+    logger.info(f"lfs: {lfs}")
+
     if first_time:
         logger.info("Applying LFs...")
         labeler.apply(split=0, lfs=lfs, train=True, parallelism=parallel)
         logger.info("Done...")
     elif re_label:
-        logger.info("Re-applying LFs with train=False...")
-        labeler.apply(split=0, lfs=lfs, train=False, parallelism=parallel)
+        logger.info("Updating LFs...")
+        labeler.update(split=0, lfs=lfs, parallelism=parallel)
         logger.info("Done...")
 
     logger.info("Getting label matrices...")
@@ -490,10 +499,39 @@ def main(
     if ce_v_max:
         relation = "ce_v_max"
         idx = rel_list.index(relation)
+
+        logger.info("Updating labeling function summary...")
+        labeler.apply(split=1, lfs=lfs, train=False, parallelism=parallel)
+        L_dev = labeler.get_label_matrices(dev_cands)
+        load_transistor_labels(session, cands, ["ce_v_max"])
+        L_gold = labeler.get_gold_labels(dev_cands, annotator="gold")
+
+        logger.info("Summary for dev set labeling functions:")
+        df = analysis.lf_summary(
+            L_dev[idx],
+            lf_names=labeler.get_keys(),
+            Y=L_gold[idx].todense().reshape(-1).tolist()[0],
+        )
+        logger.info(f"\n{df.to_string()}")
+
         marginals_ce_v_max = generative_model(L_train[idx])
         disc_model_ce_v_max = discriminative_model(
             train_cands[idx], F_train[idx], marginals_ce_v_max, n_epochs=100, gpu=gpu
         )
+        best_result, best_b = scoring(
+            relation,
+            disc_model_ce_v_max,
+            dev_cands[idx],
+            dev_docs,
+            F_dev[idx],
+            parts_by_doc,
+            num=100,
+        )
+
+        import pdb
+
+        pdb.set_trace()
+
         best_result, best_b = scoring(
             relation,
             disc_model_ce_v_max,
@@ -503,6 +541,8 @@ def main(
             parts_by_doc,
             num=100,
         )
+
+        pdb.set_trace()
 
     end = timer()
     logger.warning(f"Classification Time (min): {((end - start) / 60.0):.1f}")

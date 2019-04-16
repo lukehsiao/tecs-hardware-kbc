@@ -364,8 +364,8 @@ def main(
         logger.info("Applying LFs...")
         labeler.apply(split=0, lfs=lfs, train=True, parallelism=parallel)
     elif re_label:
-        logger.info("Re-applying LFs with train=False...")
-        labeler.apply(split=0, lfs=lfs, train=False, parallelism=parallel)
+        logger.info("Re-applying LFs...")
+        labeler.update(split=0, lfs=lfs, parallelism=parallel)
 
     logger.info("Done...")
 
