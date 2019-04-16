@@ -12,13 +12,13 @@ if __name__ == "__main__":
     for filename in os.listdir(
         os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../analysis/pdf/")
     ):
-        if not filename.endswith(".pdf"):
+        if not filename.endswith(".pdf") and not filename.endswith(".PDF"):
             logger.error(f"Invalid filename {filename}")
             pdb.set_trace()
         if filename in filenames:
             logger.error(f"Duplicate filename {filename}")
             pdb.set_trace()
-        filenames.add(filename.replace(".pdf", ""))
+        filenames.add(filename.replace(".pdf", "").replace(".PDF", ""))
         logger.debug(f"Filename {filename} is valid")
 
     # Write filenames to CSV
