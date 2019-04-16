@@ -14,7 +14,7 @@ from hack.transistors.transistor_spaces import expand_part_range
 
 logger = logging.getLogger(__name__)
 
-part_pattern = re.compile(r"^([0-9]+[A-Z]+|[A-Z]+[0-9]+)[0-9A-Z]*$", re.IGNORECASE)
+part_pattern = re.compile(r"^([0-9]+[A-Z]+|[A-Z]+[0-9]+)[0-9A-Z]*$")
 polarity_pattern = re.compile(r"NPN|PNP", re.IGNORECASE)
 
 

@@ -20,7 +20,6 @@ from fonduer.features import Featurizer
 from fonduer.learning import SparseLogisticRegression
 from fonduer.parser.models import Document, Figure, Paragraph, Section, Sentence
 from fonduer.supervision import Labeler
-from metal import analysis
 from metal.label_model import LabelModel
 
 from hack.transistors.transistor_lfs import (
@@ -116,11 +115,15 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
             )
             true_pred = [test_cands[_] for _ in np.nditer(np.where(test_score == TRUE))]
             result = entity_level_scores(
-                candidates_to_entities(true_pred, parts_by_doc=parts_by_doc),
+                candidates_to_entities(
+                    true_pred, parts_by_doc=parts_by_doc, progress_bar=False
+                ),
                 attribute=relation,
                 corpus=test_docs,
             )
-            logger.info(f"b = {b}, f1 = {result.f1}")
+            logger.info(
+                f"b:{b:.3f} f1:{result.f1:.3f} p:{result.prec:.3f} r:{result.rec:.3f}"
+            )
             if result.f1 > best_result.f1:
                 best_result = result
                 best_b = b
@@ -418,19 +421,33 @@ def main(
 
     labeler = Labeler(session, cands)
 
-    logger.info(f"lfs: {lfs}")
-
     if first_time:
         logger.info("Applying LFs...")
         labeler.apply(split=0, lfs=lfs, train=True, parallelism=parallel)
         logger.info("Done...")
+
+        # Uncomment if debugging LFs
+        #  load_transistor_labels(session, cands, ["ce_v_max"])
+
     elif re_label:
         logger.info("Updating LFs...")
         labeler.update(split=0, lfs=lfs, parallelism=parallel)
         logger.info("Done...")
 
+    labeler.apply(split=1, lfs=lfs, train=False, parallelism=parallel)
+    labeler.apply(split=2, lfs=lfs, train=False, parallelism=parallel)
+
     logger.info("Getting label matrices...")
+
     L_train = labeler.get_label_matrices(train_cands)
+
+    # Uncomment if debugging LFs
+    #  L_dev = labeler.get_label_matrices(dev_cands)
+    #  L_dev_gold = labeler.get_gold_labels(dev_cands, annotator="gold")
+    #
+    #  L_test = labeler.get_label_matrices(test_cands)
+    #  L_test_gold = labeler.get_gold_labels(test_cands, annotator="gold")
+
     logger.info("Done.")
 
     end = timer()
@@ -500,37 +517,44 @@ def main(
         relation = "ce_v_max"
         idx = rel_list.index(relation)
 
-        logger.info("Updating labeling function summary...")
-        labeler.apply(split=1, lfs=lfs, train=False, parallelism=parallel)
-        L_dev = labeler.get_label_matrices(dev_cands)
-        load_transistor_labels(session, cands, ["ce_v_max"])
-        L_gold = labeler.get_gold_labels(dev_cands, annotator="gold")
-
-        logger.info("Summary for dev set labeling functions:")
-        df = analysis.lf_summary(
-            L_dev[idx],
-            lf_names=labeler.get_keys(),
-            Y=L_gold[idx].todense().reshape(-1).tolist()[0],
-        )
-        logger.info(f"\n{df.to_string()}")
+        # Can be uncommented for use in debugging labeling functions
+        #  logger.info("Updating labeling function summary...")
+        #  keys = labeler.get_keys()
+        #  logger.info("Summary for train set labeling functions:")
+        #  df = analysis.lf_summary(L_train[idx], lf_names=keys)
+        #  logger.info(f"\n{df.to_string()}")
+        #
+        #  logger.info("Summary for dev set labeling functions:")
+        #  df = analysis.lf_summary(
+        #      L_dev[idx],
+        #      lf_names=keys,
+        #      Y=L_dev_gold[idx].todense().reshape(-1).tolist()[0],
+        #  )
+        #  logger.info(f"\n{df.to_string()}")
+        #
+        #  logger.info("Summary for test set labeling functions:")
+        #  df = analysis.lf_summary(
+        #      L_test[idx],
+        #      lf_names=keys,
+        #      Y=L_test_gold[idx].todense().reshape(-1).tolist()[0],
+        #  )
+        #  logger.info(f"\n{df.to_string()}")
 
         marginals_ce_v_max = generative_model(L_train[idx])
         disc_model_ce_v_max = discriminative_model(
             train_cands[idx], F_train[idx], marginals_ce_v_max, n_epochs=100, gpu=gpu
         )
-        best_result, best_b = scoring(
-            relation,
-            disc_model_ce_v_max,
-            dev_cands[idx],
-            dev_docs,
-            F_dev[idx],
-            parts_by_doc,
-            num=100,
-        )
 
-        import pdb
-
-        pdb.set_trace()
+        # Can be uncommented to view score on development set
+        #  best_result, best_b = scoring(
+        #      relation,
+        #      disc_model_ce_v_max,
+        #      dev_cands[idx],
+        #      dev_docs,
+        #      F_dev[idx],
+        #      parts_by_doc,
+        #      num=100,
+        #  )
 
         best_result, best_b = scoring(
             relation,
@@ -541,8 +565,6 @@ def main(
             parts_by_doc,
             num=100,
         )
-
-        pdb.set_trace()
 
     end = timer()
     logger.warning(f"Classification Time (min): {((end - start) / 60.0):.1f}")
@@ -555,3 +577,12 @@ def main(
         dump_candidates(test_cands[idx], Y_prob, "ce_v_max_test_probs.csv")
         Y_prob = disc_model_ce_v_max.marginals((dev_cands[idx], F_dev[idx]))
         dump_candidates(dev_cands[idx], Y_prob, "ce_v_max_dev_probs.csv")
+
+    # Dump CSV files for POLARITY for digi-key analysis
+    if polarity:
+        relation = "polarity"
+        idx = rel_list.index(relation)
+        Y_prob = disc_model_polarity.marginals((test_cands[idx], F_test[idx]))
+        dump_candidates(test_cands[idx], Y_prob, "polarity_test_probs.csv")
+        Y_prob = disc_model_polarity.marginals((dev_cands[idx], F_dev[idx]))
+        dump_candidates(dev_cands[idx], Y_prob, "polarity_dev_probs.csv")
