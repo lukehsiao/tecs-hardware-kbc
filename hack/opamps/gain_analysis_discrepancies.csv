@@ -1,4 +1,0 @@
-Type:,Filename:,Our Vals:,Notes:,Discrepancy Type:,Discrepancy Notes:,Annotator:
-FP,LF412-N,3 MHz,Gold vals: [Quantity('4 MHz')]
-FP,LF412-N,2.7 MHz,Gold vals: [Quantity('4 MHz')]
-FN,OPA625,800 kHz,"Entity vals: [Quantity('120 MHz'), Quantity('1 MHz')]"
