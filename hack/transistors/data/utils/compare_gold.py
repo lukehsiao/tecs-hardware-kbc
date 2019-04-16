@@ -6,19 +6,13 @@ and write all discrepancies to an output CSV.
 import logging
 import os
 
-from hack.transistors.analysis import (
-    capitalize_filenames,
-    filter_filenames,
-    get_filenames_from_file,
-    print_score,
-)
+from hack.transistors.analysis import Relation, print_score
 from hack.transistors.transistor_utils import (
     compare_entities,
     entity_level_scores,
     get_gold_set,
     gold_set_to_dic,
 )
-from hack.transistors.transistors import Relation
 
 logger = logging.getLogger(__name__)
 
@@ -32,24 +26,14 @@ if __name__ == "__main__":
     dirname = os.path.dirname(__name__)
     outfile = os.path.join(dirname, "../analysis/gold_discrepancies.csv")
 
-    filenames = get_filenames_from_file(
-        os.path.join(dirname, "../../best_gold_filenames.csv")
-    )
-
     # Us
     our_gold = os.path.join(dirname, "../analysis/our_gold.csv")
-    our_gold_set = filter_filenames(
-        capitalize_filenames(get_gold_set(gold=[our_gold], attribute=attribute)),
-        filenames,
-    )
+    our_gold_set = get_gold_set(gold=[our_gold], attribute=attribute)
     our_gold_dic = gold_set_to_dic(our_gold_set)
 
     # Digikey
     digikey_gold = os.path.join(dirname, "../analysis/digikey_gold.csv")
-    digikey_gold_set = filter_filenames(
-        capitalize_filenames(get_gold_set(gold=[digikey_gold], attribute=attribute)),
-        filenames,
-    )
+    digikey_gold_set = get_gold_set(gold=[digikey_gold], attribute=attribute)
     digikey_gold_dic = gold_set_to_dic(digikey_gold_set)
 
     # Score Digikey using our gold as metric
