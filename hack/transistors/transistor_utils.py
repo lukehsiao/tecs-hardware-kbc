@@ -199,7 +199,7 @@ def compare_entities(
     # for manual debugging
     outfile = os.path.join(os.path.dirname(__name__), outfile)
     with open(outfile, "a") if append else open(outfile, "w") as out:
-        writer = csv.writer(out)
+        writer = csv.writer(out, lineterminator="\n")
         if not append:  # Only write header row if none already exists
             writer.writerow(
                 (
@@ -363,10 +363,14 @@ def cand_to_entity(c):
     return (doc, part, val)
 
 
-def candidates_to_entities(candidates, val_on=True, parts_by_doc=None):
+def candidates_to_entities(
+    candidates, val_on=True, parts_by_doc=None, progress_bar=True
+):
     # Turn CandidateSet into set of tuples
     entities = set()
-    for i, c in enumerate(tqdm(candidates)):
+    if progress_bar:
+        candidates = tqdm(candidates)
+    for i, c in enumerate(candidates):
         part = c[0].context.get_span()
         doc = c[0].context.sentence.document.name.upper()
         if val_on:
