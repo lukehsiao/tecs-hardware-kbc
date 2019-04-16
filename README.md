@@ -135,6 +135,18 @@ $ python hack/transistors/analysis.py
 This will also ouput an F1 Score and a `data_discrepancies.csv` file for manual
 debugging.
 
+### Scoring Digi-Key
+To compare scores with Digikey, we grade Digikey's existing data with the same
+ground truth labels and on the same datasheets used to score our automated
+output:
+
+```bash
+$ python hack/transistors/data/utils/compare_gold.py
+```
+
+This will output an F1 Score for Digikey and a `digikey_discrepancies.csv' file
+for manual evaluation.
+
 ### Op Amps
 For our opamp analysis, we evalutate our output against Digikey's knowledge base
 using both relations: `typ_gbp` (typical gain bandwidth product) and
@@ -168,3 +180,15 @@ $ python hack/opamps/analysis.py
 
 This will also ouput an F1 Score and a `data_discrepancies.csv` file for manual
 debugging.
+
+### Scoring Digi-Key
+To compare scores with Digikey, we grade Digikey's existing data with the same
+ground truth labels and on the same datasheets used to score our automated
+output:
+
+```bash
+$ python hack/opamps/data/utils/compare_gold.py
+```
+
+This will output an F1 Score for Digikey and a `digikey_discrepancies.csv' file
+for manual evaluation.
