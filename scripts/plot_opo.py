@@ -60,8 +60,8 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     current_data = pd.read_csv(currentfile, skipinitialspace=True)
 
     # Process our data based on two values of b
-    gain_b = 0.750
-    current_b = 0.750
+    gain_b = gb
+    current_b = cb
     logger.info(f"gain_b = {gain_b}, current_b = {current_b}")
 
     filtered_gain = gain_data[gain_data.p >= gain_b][["Document", "GBWP (kHz)", "sent"]]
