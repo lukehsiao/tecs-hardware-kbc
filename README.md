@@ -1,4 +1,4 @@
-# HACK: Automating the generating of HArdware Component Knowledge Bases
+# HACK: Automating the generation of HArdware Component Knowledge Bases
 
 ## Dependencies
 
