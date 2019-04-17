@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 
 
 def _match(gain_list, current_list):
-
+    """Match gains and currents based on their reading-order appearence."""
     cols = ["Document", "Supply Current (uA)", "GBWP (kHz)"]
     matched = []
 
