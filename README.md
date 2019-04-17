@@ -132,7 +132,7 @@ running:
 $ python hack/transistors/analysis.py
 ```
 
-This will also ouput an F1 Score and a `data_discrepancies.csv` file for manual
+This will also ouput an F1 Score and a `analysis_discrepancies.csv` file for manual
 debugging.
 
 ### Scoring Digi-Key
@@ -141,7 +141,7 @@ ground truth labels and on the same datasheets used to score our automated
 output:
 
 ```bash
-$ python hack/transistors/data/utils/compare_gold.py
+$ python hack/transistors/digikey_analysis.py
 ```
 
 This will output an F1 Score for Digikey and a `digikey_discrepancies.csv' file
@@ -178,7 +178,7 @@ running:
 $ python hack/opamps/analysis.py
 ```
 
-This will also ouput an F1 Score and a `data_discrepancies.csv` file for manual
+This will also ouput an F1 Score and a `analysis_discrepancies.csv` file for manual
 debugging.
 
 ### Scoring Digi-Key
@@ -187,8 +187,8 @@ ground truth labels and on the same datasheets used to score our automated
 output:
 
 ```bash
-$ python hack/opamps/data/utils/compare_gold.py
+$ python hack/opamps/digikey_analysis.py
 ```
 
 This will output an F1 Score for Digikey and a `digikey_discrepancies.csv' file
-for manual evaluation.
+in the `analysis` directory for manual evaluation.

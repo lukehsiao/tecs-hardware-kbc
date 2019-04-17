@@ -142,7 +142,7 @@ def main(
     relation=Relation.CE_V_MAX,
     devfile="ce_v_max_dev_probs.csv",
     testfile="ce_v_max_test_probs.csv",
-    outfile="analysis_discrepancies.csv",
+    outfile="analysis/analysis_discrepancies.csv",
 ):
 
     # Define output
@@ -254,22 +254,6 @@ def main(
     logger.info(f"Gold set is {len(get_filenames(dev_gold))} filenames long.")
     print_score(
         best_dev_score, entities=f"cands > {best_dev_b}", metric="our gold labels"
-    )
-
-    compare_entities(
-        set(best_dev_score.FP),
-        attribute=relation.value,
-        outfile="dev_discrepancies.csv",
-        type="FP",
-        gold_dic=gold_set_to_dic(dev_gold),
-    )
-    compare_entities(
-        set(best_dev_score.FN),
-        attribute=relation.value,
-        outfile="dev_discrepancies.csv",
-        type="FN",
-        append=True,
-        entity_dic=gold_set_to_dic(best_dev_entities),
     )
 
     # Analysis

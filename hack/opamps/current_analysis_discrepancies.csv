@@ -1,6 +1,0 @@
-Type:,Filename:,Our Vals:,Notes:,Discrepancy Type:,Discrepancy Notes:,Annotator:
-FP,THS4081,3.4 mA,Gold vals: [Quantity('2.9 mA')]
-FN,THS4081,2.9 mA,Entity vals: [Quantity('3.4 mA')]
-FN,LM7372,12.4 mA,Entity vals: [Quantity('13 mA')]
-FN,THS3001,6.6 mA,"Entity vals: [Quantity('6.9 mA'), Quantity('5.5 mA')]"
-FN,LF156,2 mA,Entity vals: [Quantity('5 mA')]

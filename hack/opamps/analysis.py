@@ -102,7 +102,7 @@ def capitalize_filenames(filenames):
 def main(
     devfile="gain_dev_probs.csv",
     testfile="gain_test_probs.csv",
-    outfile="gain_analysis_discrepancies.csv",
+    outfile="analysis/gain_analysis_discrepancies.csv",
     is_gain=True,
 ):
     logger.info("=" * 60)
@@ -220,22 +220,6 @@ def main(
         best_dev_score, entities=f"cands > {best_dev_b}", metric="our gold labels"
     )
 
-    compare_entities(
-        set(best_dev_score.FP),
-        is_gain=is_gain,
-        outfile="dev_discrepancies.csv",
-        type="FP",
-        gold_dic=gold_set_to_dic(dev_gold),
-    )
-    compare_entities(
-        set(best_dev_score.FN),
-        is_gain=is_gain,
-        outfile="dev_discrepancies.csv",
-        type="FN",
-        append=True,
-        entity_dic=gold_set_to_dic(best_dev_entities),
-    )
-
     # Analysis
     logger.info("Scoring for analysis set...")
     logger.info(f"Entity set is {len(get_filenames(best_entities))} filenames long.")
@@ -267,6 +251,6 @@ if __name__ == "__main__":
     main(  # typ_supply_current
         devfile="current_dev_probs.csv",
         testfile="current_test_probs.csv",
-        outfile="current_analysis_discrepancies.csv",
+        outfile="analysis/current_analysis_discrepancies.csv",
         is_gain=False,
     )
