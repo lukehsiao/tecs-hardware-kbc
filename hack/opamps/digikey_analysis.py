@@ -45,16 +45,16 @@ if __name__ == "__main__":
 
         dirname = os.path.dirname(__name__)
         outfile = os.path.join(
-            dirname, f"../../analysis/{attribute}_digikey_discrepancies.csv"
+            dirname, f"analysis/{attribute}_digikey_discrepancies.csv"
         )
 
         # Us
-        our_gold = os.path.join(dirname, "../analysis/our_gold.csv")
+        our_gold = os.path.join(dirname, "data/analysis/our_gold.csv")
         our_gold_set = get_gold_set(gold=[our_gold], is_gain=is_gain)
         our_gold_dic = gold_set_to_dic(our_gold_set)
 
         # Digikey
-        digikey_gold = os.path.join(dirname, "../analysis/digikey_gold.csv")
+        digikey_gold = os.path.join(dirname, "data/analysis/digikey_gold.csv")
         digikey_gold_set = get_gold_set(gold=[digikey_gold], is_gain=is_gain)
         digikey_gold_dic = gold_set_to_dic(digikey_gold_set)
 
