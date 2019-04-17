@@ -7,8 +7,11 @@ setup(
     install_requires=[
         "fonduer>=0.6.2,<0.7.0",
         "matplotlib",
+        "numpy",
+        "pandas",
         "pillow",
         "quantiphy",
+        "seaborn",
         "torch",
         "tqdm",
         "torchvision",
