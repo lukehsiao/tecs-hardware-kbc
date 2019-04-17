@@ -73,9 +73,9 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
         by=["Document", "sent", "Supply Current (uA)"]
     )
 
-    # Naive cross product doesn't work.
-    #  cross_product = pd.merge(filtered_gain, filtered_current, on="Document")
-
+    # Rather than a naive cross-product, which would be far too messy, we
+    # instead match up values based on their reading-order appearance in the
+    # datasheet.
     filtered_gain_list = filtered_gain.values.tolist()
     filtered_current_list = filtered_current.values.tolist()
     matched = _match(filtered_gain_list, filtered_current_list)
