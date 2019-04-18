@@ -78,17 +78,42 @@ for each component. In order to support running our experiments on consumer
 hardware, we provide instructions that do not use a GPU, and scale back the
 number of documents significantly.
 
+We provide a command-line interface for each component. For more detailed
+options, run `transistors -h`, `opamps -h`, or `circular_connectors -h` to see a
+list of all possible options.
+
 ### Transistors
 
-To run relation extraction on the transistor dataset, you can use the
-`transistors` CLI provided by this repository. See `transistors -h` for a list
-of commandline options. To run extraction from 500 train documents, and evaluate
-the resulting score on the test set, you can run the following command.
+To run extraction from 500 train documents, and evaluate the resulting score on
+the test set, you can run the following command. If `--max-docs` is not
+specified, the entire dataset will be parsed. If you have an NVIDIA GPU with
+CUDA support, you can also pass on the index of the GPU to use, e.g., `--gpu=0`.
 
 ```bash
 $ createdb transistors
 $ transistors --stg-temp-min --stg-temp-max --polarity --ce-v-max --parse --first-time --max-docs 500 --parallel 4 --conn-string="postgresql://<user>:<pw>@<host>:<port>/transistors"
 ```
+
+#### Output
+This executable will output 5 files.
+1. A log file located in the `hack/transistors/logs` directory, which will show
+   runtimes and quality metrics.
+2. `hack/transistors/ce_v_max_dev_probs.csv`, a CSV file of maximum
+   collector-emitter voltage entities from the development set and their
+   corresponding probabilities, which is used later in analysis.
+3. `hack/transistors/ce_v_max_test_probs.csv`, a CSV file of maximum
+   collector-emitter voltage entities from the test set and their corresponding
+   probabilities, which is used later in analysis.
+4. `hack/transistors/polarity_dev_probs.csv`, a CSV file of polarity entities
+   from the development set and their corresponding probabilities, which is used
+   later in analysis.
+5. `hack/transistors/polarity_test_probs.csv`, a CSV file of polarity entities
+   from the test set and their corresponding probabilities, which is used
+   later in analysis.
+
+We include these output files from a run on the complete dataset in this
+repository.
+
 
 ### Op Amps
 
@@ -97,6 +122,32 @@ $ createdb opamps
 $ opamps --gain --current --parse --first-time --max-docs 500 --parallel 4 --conn-string="postgresql://<user>:<pw>@<host>:<port>/opamps"
 ```
 
+#### Output
+This executable will output 7 files.
+1. A log file located in the `hack/opamps/logs` directory, which will show
+   runtimes and quality metrics.
+2. `hack/opamps/current_dev_probs.csv`, a CSV file of quiescent current entities
+   from the development set and their corresponding probabilities, which is used
+   later in analysis.
+3. `hack/opamps/current_test_probs.csv`, a CSV file of quiescent current
+   entities from the test set and their corresponding probabilities, which is
+   used later in analysis.
+4. `hack/opamps/gain_dev_probs.csv`, a CSV file of gain bandwidth product
+   entities from the development set and their corresponding probabilities,
+   which is used later in analysis.
+5. `hack/opamps/gain_test_probs.csv`, a CSV file of gain bandwidth product
+   entities from the test set and their corresponding probabilities, which is
+   used later in analysis.
+6. `hack/opamps/output_current.csv`, a CSV file of quiescent current entities
+   from all of the parsed documents and their corresponding probabilities, which
+   is used to generate Figure 6.
+7. `hack/opamps/output_gain.csv`, a CSV file of gain bandwidth product entities
+   from all of the parsed documents and their corresponding probabilities, which
+   is used to generate Figure 6.
+
+We include these output files from a run on the complete dataset in this
+repository.
+
 ### Circular Connectors
 
 ```bash
@@ -104,8 +155,10 @@ $ createdb circular_connectors
 $ circular_connectors --parse --first-time --max-docs 500 --parallel 4 --conn-string="postgresql://<user>:<pw>@<host>:<port>/circular_connectors"
 ```
 
-For more detailed options, run `transistors -h`, `opamps -h`, or
-`circular_connectors -h` to see a list of all possible options.
+#### Output
+This executable will output 1 file.
+1. A log file located in the `hack/circular_connectors/logs` directory, which
+   will show runtimes and quality metrics.
 
 ### Troubleshooting
 
@@ -117,20 +170,19 @@ configured postgres to accept connections without a password.
 See [Fonduer's FAQ](https://fonduer.readthedocs.io/en/latest/user/faqs.html#)
 for additional instructions.
 
-
 ## Analysis
 For our analysis, we create a set of entities from our generated knowledge bases
 which are then scored against ground-truth gold labels. For a more direct
 comparison, we only consider a subset of datasheets which we verify are
-available on Digikey.
+available on Digi-Key.
 
 Each dataset contains its own `analysis.py` script, which will output three
 scores: one for `test`, one for `dev`, and one for the `analysis` split of
-documents (datasheets from `dev` and `test` that also occur in Digikey's data).
+documents (datasheets from `dev` and `test` that also occur in Digi-Key's data).
 
 ### Transistors
 For our transistor analysis, we compare our automatically generated output with
-Digikey using `ce_v_max` (collector emitter voltage max).
+Digi-Key using `ce_v_max` (collector emitter voltage max).
 
 #### Generate Entity CSVs
 After running `transistors` to generate a knowledge base, and a set of entity
@@ -159,7 +211,7 @@ This will also output an F1 Score and an `analysis_discrepancies.csv` file for
 manual debugging.
 
 ### Scoring Digi-Key
-To compare scores with Digikey, we grade Digikey's existing data with the same
+To compare scores with Digi-Key, we grade Digi-Key's existing data with the same
 ground truth labels and on the same datasheets used to score our automated
 output:
 
@@ -167,11 +219,11 @@ output:
 $ python hack/transistors/digikey_analysis.py
 ```
 
-This will output an F1 Score for Digikey and a `digikey_discrepancies.csv' file
+This will output an F1 Score for Digi-Key and a `digikey_discrepancies.csv' file
 for manual evaluation.
 
 ### Op Amps
-For our opamp analysis, we evalutate our output against Digikey's knowledge base
+For our opamp analysis, we evalutate our output against Digi-Key's knowledge base
 using both relations: `typ_gbp` (typical gain bandwidth product) and
 `typ_supply_current` (typical supply or quiescent current).
 
@@ -205,7 +257,7 @@ This will also ouput an F1 Score and a `analysis_discrepancies.csv` file for
 manual debugging.
 
 ### Scoring Digi-Key
-To compare scores with Digikey, we grade Digikey's existing data with the same
+To compare scores with Digi-Key, we grade Digi-Key's existing data with the same
 ground truth labels and on the same datasheets used to score our automated
 output:
 
@@ -213,11 +265,11 @@ output:
 $ python hack/opamps/digikey_analysis.py
 ```
 
-This will output an F1 Score for Digikey and a `digikey_discrepancies.csv' file
+This will output an F1 Score for Digi-Key and a `digikey_discrepancies.csv' file
 in the `analysis` directory for manual evaluation.
 
 ## Performance Experiments
 
 In addition, we have a set of scripts in [`scripts/`](./scripts/) which show how
 our scaling experiments were run. These can be modified to run on consumer
-hardware by modifying the commandline arguments provided.
+hardware by modifying the command-line arguments provided.
