@@ -8,12 +8,6 @@ from tqdm import tqdm
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
-"""
-This script should read in the existing train/ set of documents
-and pull out documents that we know that Digikey has and put them
-into a separate dir for comparison purposes.
-"""
-
 
 def get_digikey_filenames(goldfile):
     """Returns a set of all filenames found in Digikey's gold csv."""
