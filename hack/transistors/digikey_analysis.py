@@ -17,14 +17,17 @@ from hack.transistors.transistor_utils import (
 logger = logging.getLogger(__name__)
 
 
-if __name__ == "__main__":
+def main(
+    relation=Relation.CE_V_MAX, outfile="analysis/ce_v_max_digikey_discrepancies.csv"
+):
+    logger.info(f"Scoring for {relation.value}...")
 
     # Compare our gold with Digikey's gold for the analysis set of 66 docs
     # (docs that both we and Digikey have gold labels for)
     # NOTE: We use our gold as gold for this comparison against Digikey
-    attribute = Relation.CE_V_MAX.value
+    attribute = relation.value
     dirname = os.path.dirname(__name__)
-    outfile = os.path.join(dirname, "analysis/digikey_discrepancies.csv")
+    outfile = os.path.join(dirname, outfile)
 
     # Us
     our_gold = os.path.join(dirname, "data/analysis/our_gold.csv")
@@ -52,4 +55,12 @@ if __name__ == "__main__":
     )
     compare_entities(
         set(score.FP), type="FP", append=True, gold_dic=our_gold_dic, outfile=outfile
+    )
+
+
+if __name__ == "__main__":
+    main()
+    main(
+        relation=Relation.POLARITY,
+        outfile="analysis/polarity_digikey_discrepancies.csv",
     )
