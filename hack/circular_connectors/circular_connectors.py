@@ -144,11 +144,7 @@ def main(
     dirname = "."
 
     docs, train_docs, dev_docs, test_docs = parse_dataset(
-        session,
-        dirname,
-        first_time=first_time,
-        parallel=parallel,
-        max_docs=float("inf"),
+        session, dirname, first_time=first_time, parallel=parallel, max_docs=max_docs
     )
     logger.info(f"# of train Documents: {len(train_docs)}")
     logger.info(f"# of dev Documents: {len(dev_docs)}")

@@ -428,14 +428,17 @@ def main(
 
         # Uncomment if debugging LFs
         #  load_transistor_labels(session, cands, ["ce_v_max"])
+        #  labeler.apply(split=1, lfs=lfs, train=False, parallelism=parallel)
+        #  labeler.apply(split=2, lfs=lfs, train=False, parallelism=parallel)
 
     elif re_label:
         logger.info("Updating LFs...")
         labeler.update(split=0, lfs=lfs, parallelism=parallel)
         logger.info("Done...")
 
-    labeler.apply(split=1, lfs=lfs, train=False, parallelism=parallel)
-    labeler.apply(split=2, lfs=lfs, train=False, parallelism=parallel)
+        # Uncomment if debugging LFs
+        #  labeler.apply(split=1, lfs=lfs, train=False, parallelism=parallel)
+        #  labeler.apply(split=2, lfs=lfs, train=False, parallelism=parallel)
 
     logger.info("Getting label matrices...")
 
