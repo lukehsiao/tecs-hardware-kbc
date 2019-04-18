@@ -101,11 +101,11 @@ $ opamps --gain --current --parse --first-time --max-docs 500 --parallel 4 --con
 
 ```bash
 $ createdb circular_connectors
-$ python hack/circular_connectors/circular_connectors.py
+$ circular_connectors --parse --first-time --max-docs 500 --parallel 4 --conn-string="postgresql://<user>:<pw>@<host>:<port>/circular_connectors"
 ```
 
-For more detailed options, run `transistors -h` or `opamps -h` to see a list of
-all possible options.
+For more detailed options, run `transistors -h`, `opamps -h`, or
+`circular_connectors -h` to see a list of all possible options.
 
 ### Troubleshooting
 
