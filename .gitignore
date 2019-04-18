@@ -7,6 +7,7 @@ html/
 *.tar.xz
 *.pkl
 pip-wheel-metadata/
+scripts/matched.csv
 
 # Logs
 logs/
