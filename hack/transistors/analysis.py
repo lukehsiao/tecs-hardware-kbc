@@ -142,8 +142,9 @@ def main(
     relation=Relation.CE_V_MAX,
     devfile="ce_v_max_dev_probs.csv",
     testfile="ce_v_max_test_probs.csv",
-    outfile="analysis/analysis_discrepancies.csv",
+    outfile="analysis/ce_v_max_analysis_discrepancies.csv",
 ):
+    logger.info(f"Scoring for {relation.value}...")
 
     # Define output
     dirname = os.path.dirname(__name__)
@@ -284,3 +285,9 @@ def main(
 
 if __name__ == "__main__":
     main()
+    main(
+        relation=Relation.POLARITY,
+        devfile="polarity_dev_probs.csv",
+        testfile="polarity_test_probs.csv",
+        outfile="analysis/polarity_analysis_discrepancies.csv",
+    )
