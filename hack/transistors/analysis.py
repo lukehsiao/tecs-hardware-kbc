@@ -142,8 +142,9 @@ def main(
     relation=Relation.CE_V_MAX,
     devfile="ce_v_max_dev_probs.csv",
     testfile="ce_v_max_test_probs.csv",
-    outfile="analysis/analysis_discrepancies.csv",
+    outfile="analysis/ce_v_max_analysis_discrepancies.csv",
 ):
+    logger.info(f"Scoring for {relation.value}...")
 
     # Define output
     dirname = os.path.dirname(__name__)
@@ -238,6 +239,7 @@ def main(
     # logger.info(
     # f"Trimmed gold set is now {len(get_filenames(best_gold))} filenames long."
     # )
+    logger.info(f"Test dataset is {len(test_filenames)} filenames long.")
     logger.info(f"Gold set is {len(get_filenames(test_gold))} filenames long.")
     print_score(
         best_test_score, entities=f"cands > {best_test_b}", metric="our gold labels"
@@ -251,6 +253,7 @@ def main(
     # logger.info(
     # f"Trimmed gold set is now {len(get_filenames(best_gold))} filenames long."
     # )
+    logger.info(f"Dev dataset is {len(dev_filenames)} filenames long.")
     logger.info(f"Gold set is {len(get_filenames(dev_gold))} filenames long.")
     print_score(
         best_dev_score, entities=f"cands > {best_dev_b}", metric="our gold labels"
@@ -262,6 +265,7 @@ def main(
     # logger.info(
     # f"Trimmed gold set is now {len(get_filenames(best_gold))} filenames long."
     # )
+    logger.info(f"Analysis dataset is {len(filenames)} filenames long.")
     logger.info(f"Gold set is {len(get_filenames(gold))} filenames long.")
     print_score(best_score, entities=f"cands > {best_b}", metric="our gold labels")
 
@@ -284,3 +288,9 @@ def main(
 
 if __name__ == "__main__":
     main()
+    main(
+        relation=Relation.POLARITY,
+        devfile="polarity_dev_probs.csv",
+        testfile="polarity_test_probs.csv",
+        outfile="analysis/polarity_analysis_discrepancies.csv",
+    )
