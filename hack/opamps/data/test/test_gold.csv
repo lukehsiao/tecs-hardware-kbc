@@ -2551,420 +2551,490 @@ ina114,Burr-Brown Corporation,INA114BU,max_op_supply_volt,±18 V
 ina114,Burr-Brown Corporation,INA114BU,min_op_temp,-40
 ina114,Burr-Brown Corporation,INA114BU,max_op_temp,129
 ina211,Texas Instruments,INA210,part_family,Y
+ina211,Texas Instruments,INA210,typ_gbp,14.0 kHz
 ina211,Texas Instruments,INA210,typ_supply_current,65 uA
 ina211,Texas Instruments,INA210,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA210,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA210,min_op_temp,-40
 ina211,Texas Instruments,INA210,max_op_temp,125
 ina211,Texas Instruments,INA210AIDCKR,part_family,N
+ina211,Texas Instruments,INA210AIDCKR,typ_gbp,14.0 kHz
 ina211,Texas Instruments,INA210AIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA210AIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA210AIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA210AIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA210AIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA210AIDCKT,part_family,N
+ina211,Texas Instruments,INA210AIDCKT,typ_gbp,14.0 kHz
 ina211,Texas Instruments,INA210AIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA210AIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA210AIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA210AIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA210AIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA210AIRSWR,part_family,N
+ina211,Texas Instruments,INA210AIRSWR,typ_gbp,14.0 kHz
 ina211,Texas Instruments,INA210AIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA210AIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA210AIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA210AIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA210AIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA210AIRSWT,part_family,N
+ina211,Texas Instruments,INA210AIRSWT,typ_gbp,14.0 kHz
 ina211,Texas Instruments,INA210AIRSWT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA210AIRSWT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA210AIRSWT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA210AIRSWT,min_op_temp,-40
 ina211,Texas Instruments,INA210AIRSWT,max_op_temp,125
 ina211,Texas Instruments,INA210BIDCKR,part_family,N
+ina211,Texas Instruments,INA210BIDCKR,typ_gbp,14.0 kHz
 ina211,Texas Instruments,INA210BIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA210BIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA210BIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA210BIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA210BIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA210BIDCKT,part_family,N
+ina211,Texas Instruments,INA210BIDCKT,typ_gbp,14.0 kHz
 ina211,Texas Instruments,INA210BIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA210BIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA210BIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA210BIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA210BIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA210BIRSWR,part_family,N
+ina211,Texas Instruments,INA210BIRSWR,typ_gbp,14.0 kHz
 ina211,Texas Instruments,INA210BIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA210BIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA210BIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA210BIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA210BIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA210BIRSWT,part_family,N
+ina211,Texas Instruments,INA210BIRSWT,typ_gbp,14.0 kHz
 ina211,Texas Instruments,INA210BIRSWT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA210BIRSWT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA210BIRSWT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA210BIRSWT,min_op_temp,-40
 ina211,Texas Instruments,INA210BIRSWT,max_op_temp,125
 ina211,Texas Instruments,INA210CIDCKR,part_family,N
+ina211,Texas Instruments,INA210CIDCKR,typ_gbp,14.0 kHz
 ina211,Texas Instruments,INA210CIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA210CIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA210CIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA210CIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA210CIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA210CIDCKT,part_family,N
+ina211,Texas Instruments,INA210CIDCKT,typ_gbp,14.0 kHz
 ina211,Texas Instruments,INA210CIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA210CIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA210CIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA210CIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA210CIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA210CIRSWR,part_family,N
+ina211,Texas Instruments,INA210CIRSWR,typ_gbp,14.0 kHz
 ina211,Texas Instruments,INA210CIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA210CIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA210CIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA210CIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA210CIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA210CIRSWT,part_family,N
+ina211,Texas Instruments,INA210CIRSWT,typ_gbp,14.0 kHz
 ina211,Texas Instruments,INA210CIRSWT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA210CIRSWT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA210CIRSWT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA210CIRSWT,min_op_temp,-40
 ina211,Texas Instruments,INA210CIRSWT,max_op_temp,125
 ina211,Texas Instruments,INA211,part_family,Y
+ina211,Texas Instruments,INA211,typ_gbp,7.0 kHz
 ina211,Texas Instruments,INA211,typ_supply_current,65 uA
 ina211,Texas Instruments,INA211,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA211,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA211,min_op_temp,-40
 ina211,Texas Instruments,INA211,max_op_temp,125
 ina211,Texas Instruments,INA211AIDCKR,part_family,N
+ina211,Texas Instruments,INA211AIDCKR,typ_gbp,7.0 kHz
 ina211,Texas Instruments,INA211AIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA211AIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA211AIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA211AIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA211AIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA211AIDCKT,part_family,N
+ina211,Texas Instruments,INA211AIDCKT,typ_gbp,7.0 kHz
 ina211,Texas Instruments,INA211AIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA211AIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA211AIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA211AIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA211AIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA211BIDCKR,part_family,N
+ina211,Texas Instruments,INA211BIDCKR,typ_gbp,7.0 kHz
 ina211,Texas Instruments,INA211BIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA211BIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA211BIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA211BIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA211BIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA211BIDCKT,part_family,N
+ina211,Texas Instruments,INA211BIDCKT,typ_gbp,7.0 kHz
 ina211,Texas Instruments,INA211BIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA211BIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA211BIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA211BIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA211BIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA211BIRSWR,part_family,N
+ina211,Texas Instruments,INA211BIRSWR,typ_gbp,7.0 kHz
 ina211,Texas Instruments,INA211BIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA211BIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA211BIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA211BIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA211BIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA211BIRSWT,part_family,N
+ina211,Texas Instruments,INA211BIRSWT,typ_gbp,7.0 kHz
 ina211,Texas Instruments,INA211BIRSWT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA211BIRSWT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA211BIRSWT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA211BIRSWT,min_op_temp,-40
 ina211,Texas Instruments,INA211BIRSWT,max_op_temp,125
 ina211,Texas Instruments,INA211CIDCKR,part_family,N
+ina211,Texas Instruments,INA211CIDCKR,typ_gbp,7.0 kHz
 ina211,Texas Instruments,INA211CIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA211CIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA211CIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA211CIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA211CIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA211CIDCKT,part_family,N
+ina211,Texas Instruments,INA211CIDCKT,typ_gbp,7.0 kHz
 ina211,Texas Instruments,INA211CIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA211CIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA211CIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA211CIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA211CIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA211CIRSWR,part_family,N
+ina211,Texas Instruments,INA211CIRSWR,typ_gbp,7.0 kHz
 ina211,Texas Instruments,INA211CIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA211CIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA211CIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA211CIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA211CIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA211CIRSWT,part_family,N
+ina211,Texas Instruments,INA211CIRSWT,typ_gbp,7.0 kHz
 ina211,Texas Instruments,INA211CIRSWT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA211CIRSWT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA211CIRSWT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA211CIRSWT,min_op_temp,-40
 ina211,Texas Instruments,INA211CIRSWT,max_op_temp,125
 ina211,Texas Instruments,INA212,part_family,Y
+ina211,Texas Instruments,INA212,typ_gbp,4.0 kHz
 ina211,Texas Instruments,INA212,typ_supply_current,65 uA
 ina211,Texas Instruments,INA212,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA212,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA212,min_op_temp,-40
 ina211,Texas Instruments,INA212,max_op_temp,125
 ina211,Texas Instruments,INA212AIDCKR,part_family,N
+ina211,Texas Instruments,INA212AIDCKR,typ_gbp,4.0 kHz
 ina211,Texas Instruments,INA212AIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA212AIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA212AIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA212AIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA212AIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA212AIDCKT,part_family,N
+ina211,Texas Instruments,INA212AIDCKT,typ_gbp,4.0 kHz
 ina211,Texas Instruments,INA212AIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA212AIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA212AIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA212AIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA212AIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA212BIDCKR,part_family,N
+ina211,Texas Instruments,INA212BIDCKR,typ_gbp,4.0 kHz
 ina211,Texas Instruments,INA212BIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA212BIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA212BIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA212BIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA212BIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA212BIDCKT,part_family,N
+ina211,Texas Instruments,INA212BIDCKT,typ_gbp,4.0 kHz
 ina211,Texas Instruments,INA212BIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA212BIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA212BIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA212BIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA212BIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA212BIRSWR,part_family,N
+ina211,Texas Instruments,INA212BIRSWR,typ_gbp,4.0 kHz
 ina211,Texas Instruments,INA212BIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA212BIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA212BIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA212BIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA212BIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA212BIRSWT,part_family,N
+ina211,Texas Instruments,INA212BIRSWT,typ_gbp,4.0 kHz
 ina211,Texas Instruments,INA212BIRSWT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA212BIRSWT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA212BIRSWT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA212BIRSWT,min_op_temp,-40
 ina211,Texas Instruments,INA212BIRSWT,max_op_temp,125
 ina211,Texas Instruments,INA212CIDCKR,part_family,N
+ina211,Texas Instruments,INA212CIDCKR,typ_gbp,4.0 kHz
 ina211,Texas Instruments,INA212CIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA212CIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA212CIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA212CIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA212CIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA212CIDCKT,part_family,N
+ina211,Texas Instruments,INA212CIDCKT,typ_gbp,4.0 kHz
 ina211,Texas Instruments,INA212CIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA212CIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA212CIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA212CIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA212CIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA212CIRSWR,part_family,N
+ina211,Texas Instruments,INA212CIRSWR,typ_gbp,4.0 kHz
 ina211,Texas Instruments,INA212CIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA212CIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA212CIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA212CIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA212CIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA212CIRSWT,part_family,N
+ina211,Texas Instruments,INA212CIRSWT,typ_gbp,4.0 kHz
 ina211,Texas Instruments,INA212CIRSWT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA212CIRSWT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA212CIRSWT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA212CIRSWT,min_op_temp,-40
 ina211,Texas Instruments,INA212CIRSWT,max_op_temp,125
 ina211,Texas Instruments,INA213,part_family,Y
+ina211,Texas Instruments,INA213,typ_gbp,80.0 kHz
 ina211,Texas Instruments,INA213,typ_supply_current,65 uA
 ina211,Texas Instruments,INA213,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA213,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA213,min_op_temp,-40
 ina211,Texas Instruments,INA213,max_op_temp,125
 ina211,Texas Instruments,INA213AIDCKR,part_family,N
+ina211,Texas Instruments,INA213AIDCKR,typ_gbp,80.0 kHz
 ina211,Texas Instruments,INA213AIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA213AIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA213AIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA213AIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA213AIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA213AIDCKT,part_family,N
+ina211,Texas Instruments,INA213AIDCKT,typ_gbp,80.0 kHz
 ina211,Texas Instruments,INA213AIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA213AIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA213AIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA213AIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA213AIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA213AIRSWR,part_family,N
+ina211,Texas Instruments,INA213AIRSWR,typ_gbp,80.0 kHz
 ina211,Texas Instruments,INA213AIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA213AIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA213AIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA213AIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA213AIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA213AIRSWT,part_family,N
+ina211,Texas Instruments,INA213AIRSWT,typ_gbp,80.0 kHz
 ina211,Texas Instruments,INA213AIRSWT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA213AIRSWT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA213AIRSWT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA213AIRSWT,min_op_temp,-40
 ina211,Texas Instruments,INA213AIRSWT,max_op_temp,125
 ina211,Texas Instruments,INA213BIDCKR,part_family,N
+ina211,Texas Instruments,INA213BIDCKR,typ_gbp,80.0 kHz
 ina211,Texas Instruments,INA213BIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA213BIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA213BIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA213BIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA213BIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA213BIDCKT,part_family,N
+ina211,Texas Instruments,INA213BIDCKT,typ_gbp,80.0 kHz
 ina211,Texas Instruments,INA213BIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA213BIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA213BIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA213BIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA213BIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA213BIRSWR,part_family,N
+ina211,Texas Instruments,INA213BIRSWR,typ_gbp,80.0 kHz
 ina211,Texas Instruments,INA213BIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA213BIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA213BIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA213BIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA213BIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA213BIRSWT,part_family,N
+ina211,Texas Instruments,INA213BIRSWT,typ_gbp,80.0 kHz
 ina211,Texas Instruments,INA213BIRSWT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA213BIRSWT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA213BIRSWT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA213BIRSWT,min_op_temp,-40
 ina211,Texas Instruments,INA213BIRSWT,max_op_temp,125
 ina211,Texas Instruments,INA213CIDCKR,part_family,N
+ina211,Texas Instruments,INA213CIDCKR,typ_gbp,80.0 kHz
 ina211,Texas Instruments,INA213CIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA213CIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA213CIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA213CIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA213CIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA213CIDCKT,part_family,N
+ina211,Texas Instruments,INA213CIDCKT,typ_gbp,80.0 kHz
 ina211,Texas Instruments,INA213CIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA213CIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA213CIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA213CIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA213CIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA213CIRSWR,part_family,N
+ina211,Texas Instruments,INA213CIRSWR,typ_gbp,80.0 kHz
 ina211,Texas Instruments,INA213CIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA213CIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA213CIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA213CIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA213CIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA213CIRSWT,part_family,N
+ina211,Texas Instruments,INA213CIRSWT,typ_gbp,80.0 kHz
 ina211,Texas Instruments,INA213CIRSWT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA213CIRSWT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA213CIRSWT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA213CIRSWT,min_op_temp,-40
 ina211,Texas Instruments,INA213CIRSWT,max_op_temp,125
 ina211,Texas Instruments,INA214,part_family,Y
+ina211,Texas Instruments,INA214,typ_gbp,30.0 kHz
 ina211,Texas Instruments,INA214,typ_supply_current,65 uA
 ina211,Texas Instruments,INA214,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA214,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA214,min_op_temp,-40
 ina211,Texas Instruments,INA214,max_op_temp,125
 ina211,Texas Instruments,INA214AIDCKR,part_family,N
+ina211,Texas Instruments,INA214AIDCKR,typ_gbp,30.0 kHz
 ina211,Texas Instruments,INA214AIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA214AIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA214AIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA214AIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA214AIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA214AIDCKT,part_family,N
+ina211,Texas Instruments,INA214AIDCKT,typ_gbp,30.0 kHz
 ina211,Texas Instruments,INA214AIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA214AIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA214AIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA214AIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA214AIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA214AIRSWR,part_family,N
+ina211,Texas Instruments,INA214AIRSWR,typ_gbp,30.0 kHz
 ina211,Texas Instruments,INA214AIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA214AIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA214AIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA214AIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA214AIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA214AIRSWT,part_family,N
+ina211,Texas Instruments,INA214AIRSWT,typ_gbp,30.0 kHz
 ina211,Texas Instruments,INA214AIRSWT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA214AIRSWT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA214AIRSWT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA214AIRSWT,min_op_temp,-40
 ina211,Texas Instruments,INA214AIRSWT,max_op_temp,125
 ina211,Texas Instruments,INA214BIDCKR,part_family,N
+ina211,Texas Instruments,INA214BIDCKR,typ_gbp,30.0 kHz
 ina211,Texas Instruments,INA214BIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA214BIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA214BIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA214BIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA214BIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA214BIDCKT,part_family,N
+ina211,Texas Instruments,INA214BIDCKT,typ_gbp,30.0 kHz
 ina211,Texas Instruments,INA214BIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA214BIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA214BIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA214BIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA214BIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA214BIRSWR,part_family,N
+ina211,Texas Instruments,INA214BIRSWR,typ_gbp,30.0 kHz
 ina211,Texas Instruments,INA214BIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA214BIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA214BIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA214BIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA214BIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA214BIRSWT,part_family,N
+ina211,Texas Instruments,INA214BIRSWT,typ_gbp,30.0 kHz
 ina211,Texas Instruments,INA214BIRSWT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA214BIRSWT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA214BIRSWT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA214BIRSWT,min_op_temp,-40
 ina211,Texas Instruments,INA214BIRSWT,max_op_temp,125
 ina211,Texas Instruments,INA214CIDCKR,part_family,N
+ina211,Texas Instruments,INA214CIDCKR,typ_gbp,30.0 kHz
 ina211,Texas Instruments,INA214CIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA214CIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA214CIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA214CIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA214CIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA214CIDCKT,part_family,N
+ina211,Texas Instruments,INA214CIDCKT,typ_gbp,30.0 kHz
 ina211,Texas Instruments,INA214CIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA214CIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA214CIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA214CIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA214CIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA214CIRSWR,part_family,N
+ina211,Texas Instruments,INA214CIRSWR,typ_gbp,30.0 kHz
 ina211,Texas Instruments,INA214CIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA214CIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA214CIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA214CIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA214CIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA215,part_family,Y
+ina211,Texas Instruments,INA215,typ_gbp,40.0 kHz
 ina211,Texas Instruments,INA215,typ_supply_current,65 uA
 ina211,Texas Instruments,INA215,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA215,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA215,min_op_temp,-40
 ina211,Texas Instruments,INA215,max_op_temp,125
 ina211,Texas Instruments,INA215AIDCKR,part_family,N
+ina211,Texas Instruments,INA215AIDCKR,typ_gbp,40.0 kHz
 ina211,Texas Instruments,INA215AIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA215AIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA215AIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA215AIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA215AIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA215AIDCKT,part_family,N
+ina211,Texas Instruments,INA215AIDCKT,typ_gbp,40.0 kHz
 ina211,Texas Instruments,INA215AIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA215AIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA215AIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA215AIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA215AIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA215BIDCKR,part_family,N
+ina211,Texas Instruments,INA215BIDCKR,typ_gbp,40.0 kHz
 ina211,Texas Instruments,INA215BIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA215BIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA215BIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA215BIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA215BIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA215BIDCKT,part_family,N
+ina211,Texas Instruments,INA215BIDCKT,typ_gbp,40.0 kHz
 ina211,Texas Instruments,INA215BIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA215BIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA215BIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA215BIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA215BIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA215BIRSWR,part_family,N
+ina211,Texas Instruments,INA215BIRSWR,typ_gbp,40.0 kHz
 ina211,Texas Instruments,INA215BIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA215BIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA215BIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA215BIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA215BIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA215CIDCKR,part_family,N
+ina211,Texas Instruments,INA215CIDCKR,typ_gbp,40.0 kHz
 ina211,Texas Instruments,INA215CIDCKR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA215CIDCKR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA215CIDCKR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA215CIDCKR,min_op_temp,-40
 ina211,Texas Instruments,INA215CIDCKR,max_op_temp,125
 ina211,Texas Instruments,INA215CIDCKT,part_family,N
+ina211,Texas Instruments,INA215CIDCKT,typ_gbp,40.0 kHz
 ina211,Texas Instruments,INA215CIDCKT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA215CIDCKT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA215CIDCKT,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA215CIDCKT,min_op_temp,-40
 ina211,Texas Instruments,INA215CIDCKT,max_op_temp,125
 ina211,Texas Instruments,INA215CIRSWR,part_family,N
+ina211,Texas Instruments,INA215CIRSWR,typ_gbp,40.0 kHz
 ina211,Texas Instruments,INA215CIRSWR,typ_supply_current,65 uA
 ina211,Texas Instruments,INA215CIRSWR,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA215CIRSWR,max_op_supply_volt,26 V
 ina211,Texas Instruments,INA215CIRSWR,min_op_temp,-40
 ina211,Texas Instruments,INA215CIRSWR,max_op_temp,125
 ina211,Texas Instruments,INA215CIRSWT,part_family,N
+ina211,Texas Instruments,INA215CIRSWT,typ_gbp,40.0 kHz
 ina211,Texas Instruments,INA215CIRSWT,typ_supply_current,65 uA
 ina211,Texas Instruments,INA215CIRSWT,min_op_supply_volt,2.7 V
 ina211,Texas Instruments,INA215CIRSWT,max_op_supply_volt,26 V

@@ -323,78 +323,78 @@ ina114,N,INA114AP,Burr-Brown Corporation,N/A,±2.2 mA @ 15 V,±2.25 V,± 18 V,-4
 ina114,N,INA114BP,Burr-Brown Corporation,N/A,±2.2 mA @ 15 V,±2.25 V,± 18 V,-40 C,127 C,,Sen
 ina114,N,INA114AU,Burr-Brown Corporation,N/A,±2.2 mA @ 15 V,±2.25 V,± 18 V,-40 C,128 C,,Sen
 ina114,N,INA114BU,Burr-Brown Corporation,N/A,±2.2 mA @ 15 V,±2.25 V,± 18 V,-40 C,129 C,,Sen
-ina211,Y,INA210,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA210AIDCKR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA210AIDCKT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA210AIRSWR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA210AIRSWT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA210BIDCKR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA210BIDCKT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA210BIRSWR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA210BIRSWT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA210CIDCKR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA210CIDCKT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA210CIRSWR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA210CIRSWT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,Y,INA211,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA211AIDCKR,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA211AIDCKT,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA211BIDCKR,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA211BIDCKT,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA211BIRSWR,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA211BIRSWT,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA211CIDCKR,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA211CIDCKT,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA211CIRSWR,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA211CIRSWT,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,Y,INA212,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA212AIDCKR,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA212AIDCKT,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA212BIDCKR,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA212BIDCKT,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA212BIRSWR,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA212BIRSWT,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA212CIDCKR,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA212CIDCKT,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA212CIRSWR,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA212CIRSWT,Texas Instruments,N/A,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,Y,INA213,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA213AIDCKR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA213AIDCKT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA213AIRSWR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA213AIRSWT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA213BIDCKR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA213BIDCKT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA213BIRSWR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA213BIRSWT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA213CIDCKR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA213CIDCKT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA213CIRSWR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA213CIRSWT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,Y,INA214,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA214AIDCKR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA214AIDCKT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA214AIRSWR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA214AIRSWT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA214BIDCKR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA214BIDCKT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA214BIRSWR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA214BIRSWT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA214CIDCKR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA214CIDCKT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA214CIRSWR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA214CIRSWR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,Y,INA215,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA215AIDCKR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA215AIDCKT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA215BIDCKR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA215BIDCKT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA215BIRSWR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA215BIRSWR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA215CIDCKR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA215CIDCKT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA215CIRSWR,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
-ina211,N,INA215CIRSWT,Texas Instruments,N/A,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Sen
+ina211,Y,INA210,Texas Instruments,14 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA210AIDCKR,Texas Instruments,14 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA210AIDCKT,Texas Instruments,14 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA210AIRSWR,Texas Instruments,14 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA210AIRSWT,Texas Instruments,14 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA210BIDCKR,Texas Instruments,14 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA210BIDCKT,Texas Instruments,14 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA210BIRSWR,Texas Instruments,14 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA210BIRSWT,Texas Instruments,14 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA210CIDCKR,Texas Instruments,14 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA210CIDCKT,Texas Instruments,14 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA210CIRSWR,Texas Instruments,14 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA210CIRSWT,Texas Instruments,14 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,Y,INA211,Texas Instruments,7 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA211AIDCKR,Texas Instruments,7 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA211AIDCKT,Texas Instruments,7 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA211BIDCKR,Texas Instruments,7 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA211BIDCKT,Texas Instruments,7 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA211BIRSWR,Texas Instruments,7 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA211BIRSWT,Texas Instruments,7 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA211CIDCKR,Texas Instruments,7 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA211CIDCKT,Texas Instruments,7 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA211CIRSWR,Texas Instruments,7 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA211CIRSWT,Texas Instruments,7 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,Y,INA212,Texas Instruments,4 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA212AIDCKR,Texas Instruments,4 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA212AIDCKT,Texas Instruments,4 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA212BIDCKR,Texas Instruments,4 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA212BIDCKT,Texas Instruments,4 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA212BIRSWR,Texas Instruments,4 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA212BIRSWT,Texas Instruments,4 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA212CIDCKR,Texas Instruments,4 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA212CIDCKT,Texas Instruments,4 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA212CIRSWR,Texas Instruments,4 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA212CIRSWT,Texas Instruments,4 kHz @ 5 V,65 μA @ 12 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,Y,INA213,Texas Instruments,80 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA213AIDCKR,Texas Instruments,80 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA213AIDCKT,Texas Instruments,80 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA213AIRSWR,Texas Instruments,80 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA213AIRSWT,Texas Instruments,80 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA213BIDCKR,Texas Instruments,80 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA213BIDCKT,Texas Instruments,80 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA213BIRSWR,Texas Instruments,80 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA213BIRSWT,Texas Instruments,80 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA213CIDCKR,Texas Instruments,80 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA213CIDCKT,Texas Instruments,80 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA213CIRSWR,Texas Instruments,80 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA213CIRSWT,Texas Instruments,80 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,Y,INA214,Texas Instruments,30 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA214AIDCKR,Texas Instruments,30 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA214AIDCKT,Texas Instruments,30 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA214AIRSWR,Texas Instruments,30 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA214AIRSWT,Texas Instruments,30 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA214BIDCKR,Texas Instruments,30 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA214BIDCKT,Texas Instruments,30 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA214BIRSWR,Texas Instruments,30 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA214BIRSWT,Texas Instruments,30 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA214CIDCKR,Texas Instruments,30 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA214CIDCKT,Texas Instruments,30 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA214CIRSWR,Texas Instruments,30 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA214CIRSWR,Texas Instruments,30 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,Y,INA215,Texas Instruments,40 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA215AIDCKR,Texas Instruments,40 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA215AIDCKT,Texas Instruments,40 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA215BIDCKR,Texas Instruments,40 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA215BIDCKT,Texas Instruments,40 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA215BIRSWR,Texas Instruments,40 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA215BIRSWR,Texas Instruments,40 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA215CIDCKR,Texas Instruments,40 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA215CIDCKT,Texas Instruments,40 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA215CIRSWR,Texas Instruments,40 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
+ina211,N,INA215CIRSWT,Texas Instruments,40 kHz @ 5 V,65 μA @ 5 V,2.7 V,26 V,-40 C,125 C,,Nicholas
 ina240,Y,INA240,Texas Instruments,N/A,1.8 mA @ 5 V,2.7 V,5.5 V,-40 C,125 C,,Sen
 ina240,Y,INA240A1,Texas Instruments,N/A,1.8 mA @ 5 V,2.7 V,5.5 V,-40 C,125 C,,Sen
 ina240,Y,INA240A2,Texas Instruments,N/A,1.8 mA @ 5 V,2.7 V,5.5 V,-40 C,125 C,,Sen
