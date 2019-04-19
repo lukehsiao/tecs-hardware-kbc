@@ -106,7 +106,7 @@ def main(
     is_gain=True,
 ):
     logger.info("=" * 60)
-    logger.info(f"Scoring analysis dataset for {outfile.split('_')[0]}...")
+    logger.info(f"Scoring for {devfile.split('_')[0]}...")
 
     # Define file locations
     dirname = os.path.dirname(__name__)
