@@ -8,7 +8,7 @@ setup(
         "fonduer>=0.6.2,<0.7.0",
         "matplotlib",
         "numpy",
-        "pandas",
+        "pandas<0.24.0,>=0.23.4",
         "pillow",
         "quantiphy",
         "seaborn",
