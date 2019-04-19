@@ -6044,7 +6044,6 @@ tl051,Texas Instruments,TL05XA,min_op_supply_volt,±5 V
 tl051,Texas Instruments,TL05XA,max_op_supply_volt,±15 V
 tle2141-q1,Texas Instruments,TLE2141-Q1,part_family,Y
 tle2141-q1,Texas Instruments,TLE2141-Q1,typ_gbp,5.8 MHz
-tle2141-q1,Texas Instruments,TLE2141-Q1,typ_gbp,5.9 MHz
 tle2141-q1,Texas Instruments,TLE2141-Q1,typ_supply_current,3.4 mA
 tle2141-q1,Texas Instruments,TLE2141-Q1,min_op_supply_volt,±2 V
 tle2141-q1,Texas Instruments,TLE2141-Q1,max_op_supply_volt,±22 V
@@ -6052,7 +6051,6 @@ tle2141-q1,Texas Instruments,TLE2141-Q1,min_op_temp,-40
 tle2141-q1,Texas Instruments,TLE2141-Q1,max_op_temp,125
 tle2141-q1,Texas Instruments,TLE2141QDRQ1,part_family,N
 tle2141-q1,Texas Instruments,TLE2141QDRQ1,typ_gbp,5.8 MHz
-tle2141-q1,Texas Instruments,TLE2141QDRQ1,typ_gbp,5.9 MHz
 tle2141-q1,Texas Instruments,TLE2141QDRQ1,typ_supply_current,3.4 mA
 tle2141-q1,Texas Instruments,TLE2141QDRQ1,min_op_supply_volt,±2 V
 tle2141-q1,Texas Instruments,TLE2141QDRQ1,max_op_supply_volt,±22 V
