@@ -21,7 +21,7 @@ def sort_gold(gold_file, replace=False):
     sortedlist = sorted(data, key=operator.itemgetter(0))
     # Write sorted data into output file
     with open(output, "w") as f:
-        fileWriter = csv.writer(f, delimiter=",")
+        fileWriter = csv.writer(f, delimiter=",", lineterminator="\n")
         for row in sortedlist:
             fileWriter.writerow(row)
 
@@ -35,8 +35,8 @@ def split_gold(combinedfile, devfile, testfile, devoutfile, testoutfile):
         combinedreader = csv.reader(combined)
         devreader = csv.reader(dev)
         testreader = csv.reader(test)
-        devwriter = csv.writer(devout)
-        testwriter = csv.writer(testout)
+        devwriter = csv.writer(devout, lineterminator="\n")
+        testwriter = csv.writer(testout, lineterminator="\n")
 
         # Make a set for dev filenames
         devfilenames = set()
@@ -68,7 +68,7 @@ def combine_csv(combined, dev, test):
     with open(combined, "w") as out, open(dev, "r") as in1, open(test, "r") as in2:
         reader1 = csv.reader(in1)
         reader2 = csv.reader(in2)
-        writer = csv.writer(out)
+        writer = csv.writer(out, lineterminator="\n")
         for line in reader1:
             writer.writerow(line)
         for line in reader2:

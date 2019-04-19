@@ -966,45 +966,6 @@ MicroCommercialCo_MPSA92AP,Micro Commercial Components,MPSA92-AP,implied_supply_
 MicroCommercialCo_MPSA92AP,Micro Commercial Components,MPSA92-AP,implied_supply_current,20
 MicroCommercialCo_MPSA92AP,Micro Commercial Components,MPSA92-AP,implied_base_current,2
 MicroCommercialCo_MPSA92AP,Micro Commercial Components,MPSA92-AP,vce_sat_max,500
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29B-BP,polarity,NPN
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29B-BP,c_current_max,1
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29B-BP,ce_v_max,80
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29B-BP,dc_gain_min,15
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29B-BP,min_op_temp,-55
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29B-BP,max_op_temp,150
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29B-BP,c_current_cutoff_max,300Âµ
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29B-BP,pwr_max,30
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29B-BP,freq_transition,3
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29B-BP,implied_ce_v_max,4
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29B-BP,implied_supply_current,1
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29B-BP,implied_base_current,125
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29B-BP,vce_sat_max,700
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29C-BP,polarity,NPN
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29C-BP,c_current_max,1
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29C-BP,ce_v_max,100
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29C-BP,dc_gain_min,15
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29C-BP,min_op_temp,-55
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29C-BP,max_op_temp,150
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29C-BP,c_current_cutoff_max,300Âµ
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29C-BP,pwr_max,30
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29C-BP,freq_transition,3
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29C-BP,implied_ce_v_max,4
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29C-BP,implied_supply_current,1
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29C-BP,implied_base_current,125
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29C-BP,vce_sat_max,700
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29A-BP,polarity,NPN
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29A-BP,c_current_max,1
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29A-BP,ce_v_max,60
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29A-BP,dc_gain_min,15
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29A-BP,min_op_temp,-55
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29A-BP,max_op_temp,150
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29A-BP,c_current_cutoff_max,300Âµ
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29A-BP,pwr_max,30
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29A-BP,freq_transition,3
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29A-BP,implied_ce_v_max,4
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29A-BP,implied_supply_current,1
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29A-BP,implied_base_current,125
-MicroCommercialCo_TIP29ABP,Micro Commercial Components,TIP29A-BP,vce_sat_max,700
 MicrosemiCorporation_2N2484UB,Microsemi,2N2484UB,polarity,NPN
 MicrosemiCorporation_2N2484UB,Microsemi,2N2484UB,c_current_max,50
 MicrosemiCorporation_2N2484UB,Microsemi,2N2484UB,ce_v_max,60
