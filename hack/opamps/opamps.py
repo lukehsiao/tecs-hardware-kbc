@@ -29,8 +29,6 @@ from hack.opamps.opamp_utils import (
 )
 from hack.utils import parse_dataset
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-
 # Configure logging for Hack
 logger = logging.getLogger(__name__)
 
@@ -62,7 +60,14 @@ def generative_model(L_train, n_epochs=500, print_every=100):
 
 
 def discriminative_model(
-    train_cands, F_train, marginals, X_dev=None, Y_dev=None, n_epochs=50, lr=0.001
+    train_cands,
+    F_train,
+    marginals,
+    X_dev=None,
+    Y_dev=None,
+    n_epochs=50,
+    lr=0.001,
+    gpu=None,
 ):
     disc_model = SparseLogisticRegression()
 
@@ -74,15 +79,27 @@ def discriminative_model(
         else:
             marginals.append([0.0, 1.0])
     marginals = np.array(marginals)
-    disc_model.train(
-        X_dev,
-        marginals,
-        X_dev=X_dev,
-        Y_dev=Y_dev,
-        n_epochs=n_epochs,
-        lr=lr,
-        host_device="GPU",
-    )
+    if gpu:
+        disc_model.train(
+            X_dev,
+            marginals,
+            X_dev=X_dev,
+            Y_dev=Y_dev,
+            n_epochs=n_epochs,
+            lr=lr,
+            host_device="GPU",
+        )
+    else:
+        disc_model.train(
+            X_dev,
+            marginals,
+            X_dev=X_dev,
+            Y_dev=Y_dev,
+            n_epochs=n_epochs,
+            lr=lr,
+            host_device="CPU",
+        )
+
     logger.info("Done.")
 
     return disc_model
@@ -398,6 +415,7 @@ def main(
             X_dev=(dev_cands[idx], F_dev[idx]),
             Y_dev=L_dev_gt,
             n_epochs=500,
+            gpu=gpu,
         )
         best_result, best_b = scoring(
             disc_models, test_cands[idx], test_docs, F_test[idx], num=50
@@ -440,6 +458,7 @@ def main(
             X_dev=(dev_cands[idx], F_dev[idx]),
             Y_dev=L_dev_gt,
             n_epochs=100,
+            gpu=gpu,
         )
         best_result, best_b = scoring(
             disc_models, test_cands[idx], test_docs, F_test[idx], is_gain=False, num=50
