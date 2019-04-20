@@ -127,7 +127,7 @@ def main(
     # Dev
     dev_file = os.path.join(dirname, devfile)
     dev_filenames = capitalize_filenames(
-        get_filenames_from_dir(os.path.join(dirname, "data/dev/pdf/"))
+        get_filenames_from_file(os.path.join(dirname, "data/dev/filenames.csv"))
     )
     dev_gold_file = os.path.join(dirname, "data/dev/dev_gold.csv")
     dev_gold = filter_filenames(
@@ -141,7 +141,7 @@ def main(
     # Test
     test_file = os.path.join(dirname, testfile)
     test_filenames = capitalize_filenames(
-        get_filenames_from_dir(os.path.join(dirname, "data/test/pdf/"))
+        get_filenames_from_file(os.path.join(dirname, "data/test/filenames.csv"))
     )
     test_gold_file = os.path.join(dirname, "data/test/test_gold.csv")
     test_gold = filter_filenames(
