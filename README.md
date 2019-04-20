@@ -174,102 +174,49 @@ for additional instructions.
 For our analysis, we create a set of entities from our generated knowledge bases
 which are then scored against ground-truth gold labels. For a more direct
 comparison, we only consider a subset of datasheets which we verify are
-available on Digi-Key.
-
-Each dataset contains its own `analysis.py` script, which will output three
-scores: one for `test`, one for `dev`, and one for the `analysis` split of
-documents (datasheets from `dev` and `test` that also occur in Digi-Key's data).
-
-### Transistors
-For our transistor analysis, we compare our automatically generated output with
-Digi-Key using `ce_v_max` (collector emitter voltage max).
-
-#### Generate Entity CSVs
-After running `transistors` to generate a knowledge base, and a set of entity
-probability CSVs (for convenience), run the analysis scripts to score those
-entities against our ground truth gold labels and output a file of discrepancies
-for further categorization:
+available on Digi-Key. To evaluate on this dataset, run the following:
 
 ```bash
-$ python hack/transistors/analysis.py
+$ analysis --ce-v-max --polarity --gain --current
 ```
 
-This will produce a set of false positive and false negative entities which
-are then written to `analysis_discrepancies.csv` for manual evaluation.
+This will output 2 sets of scores per relation: one for our automatically
+generated KB entities (shown as "Scores for cands above threshold.") and one for
+entities from Digi-Key's existing KB.
 
-#### Use Existing Entities
-For analysis purposes, you can use the included entity CSVs that were generated
-from our knowledge bases. In order to exactly replicate our results, you can use
-the already created entity CSVs found in `hack/transistors/analysis/` by
-running:
+### Output
+This executable will output 8 files (2 per relation):
+1. `hack/opamps/analysis/current_analysis_discrepancies.csv`, a CSV file of
+   typical supply current discrepancies between our automatically generated KB
+   and our ground truth gold labels. This can be used later for manual
+   discrepancy classification.
+2. `hack/opamps/analysis/current_digikey_discrepancies.csv`, a CSV file of
+   typical supply current discrepancies between Digi-Key's existing KB
+   and our ground truth gold labels. This can be used later for manual
+   discrepancy classification.
+3. `hack/opamps/analysis/gain_analysis_discrepancies.csv`, a CSV file of
+   typical gain bandwidth discrepancies between our automatically generated KB
+   and our ground truth gold labels. This can be used later for manual
+   discrepancy classification.
+4. `hack/opamps/analysis/gain_digikey_discrepancies.csv`, a CSV file of
+   typical gain bandwidth discrepancies between Digi-Key's existing KB and our
+   ground truth gold labels. This can be used later for manual discrepancy
+   classification.
+5. `hack/transistors/analysis/ce_v_max_analysis_discrepancies.csv`, a CSV file of
+   typical collector emitter voltage max discrepancies between our automatically
+   generated KB and our ground truth gold labels. This can be used later for
+   manual discrepancy classification.
+6. `hack/transistors/analysis/ce_v_max_digikey_discrepancies.csv`, a CSV file of
+   typical collector emitter voltage max discrepancies between Digi-Key's
+   existing KB and our ground truth gold labels. This can be used later for
+   manual discrepancy classification.
+7. `hack/transistors/analysis/polarity_analysis_discrepancies.csv`, a CSV file of
+   polarity discrepancies between our automatically generated KB and our ground
+   truth gold labels. This can be used later for manual discrepancy
+   classification.
+8. `hack/transistors/analysis/polarity_digikey_discrepancies.csv`, a CSV file of
+   polarity discrepancies between Digi-Key's existing KB and our ground truth
+   gold labels. This can be used later for manual discrepancy classification.
 
-```bash
-$ python hack/transistors/analysis.py
-```
-
-This will also output an F1 Score and an `analysis_discrepancies.csv` file for
-manual debugging.
-
-### Scoring Digi-Key
-To compare scores with Digi-Key, we grade Digi-Key's existing data with the same
-ground truth labels and on the same datasheets used to score our automated
-output:
-
-```bash
-$ python hack/transistors/digikey_analysis.py
-```
-
-This will output an F1 Score for Digi-Key and a `digikey_discrepancies.csv' file
-for manual evaluation.
-
-### Op Amps
-For our opamp analysis, we evalutate our output against Digi-Key's knowledge base
-using both relations: `typ_gbp` (typical gain bandwidth product) and
-`typ_supply_current` (typical supply or quiescent current).
-
-Running `analysis.py` will generate two sets of scores: one for `typ_gbp` and
-one for `typ_supply_current`.
-
-#### Generate Entity CSVs
-After running `opamps` to generate a HACK knowledge base and a set of
-entity probability CSVs, you can then run the analysis scripts to score those
-entities against our ground truth gold labels and output a file of discrepancies
-for further categorization:
-
-```bash
-$ python hack/opamps/analysis.py
-```
-
-Scoring will produce a set of false positive and false negative entities which
-are then written to `analysis_discrepancies.csv` for manual evaluation.
-
-#### Use Existing Entities
-For analysis purposes, you can use the included entity CSVs that were generated
-from our knowledge bases. In order to exactly replicate our results, you can use
-the already created entity CSVs found in `hack/opamps/analysis/` by
-running:
-
-```bash
-$ python hack/opamps/analysis.py
-```
-
-This will also ouput an F1 Score and a `analysis_discrepancies.csv` file for
-manual debugging.
-
-### Scoring Digi-Key
-To compare scores with Digi-Key, we grade Digi-Key's existing data with the same
-ground truth labels and on the same datasheets used to score our automated
-output:
-
-```bash
-$ python hack/opamps/digikey_analysis.py
-```
-
-This will output an F1 Score for Digi-Key and a `digikey_discrepancies.csv' file
-in the `analysis` directory for manual evaluation.
-
-## Performance Experiments
-
-In addition, we have a set of scripts in [`scripts/`](./scripts/) which show how
-our scaling experiments were run. These can be modified to run on consumer
-hardware by modifying the command-line arguments provided.
+We include these output files from a run on the complete dataset in this
+repository.
