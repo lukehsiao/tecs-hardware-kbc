@@ -11,6 +11,7 @@ setup(
         "pandas<0.24.0,>=0.23.4",
         "pillow",
         "quantiphy",
+        "scipy",
         "seaborn",
         "torch",
         "tqdm",

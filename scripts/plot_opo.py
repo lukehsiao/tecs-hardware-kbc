@@ -7,9 +7,11 @@ from subprocess import DEVNULL, run
 
 import matplotlib
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
 from matplotlib.backends.backend_pdf import PdfPages
+from scipy.spatial.distance import directed_hausdorff
 
 matplotlib.rcParams["text.usetex"] = True
 
@@ -91,6 +93,35 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     opo_view["Source"] = "Digi-Key"
     our_view["Source"] = "Our Approach"
     total = pd.concat([opo_view, our_view])
+
+    # Calculate the Hausdorff Distance on the normalized plots.
+    #
+    # Data points are normalized by first taking the log10 of all points to
+    # match shapes with the log10-based plot, subtracting the min of each
+    # dimension and dividing by the max of each dimension to bring all points
+    # to [0, 1].
+    opo_nd = np.log10(opo_view[["Supply Current (uA)", "GBWP (kHz)"]].values)
+    our_nd = np.log10(our_view[["Supply Current (uA)", "GBWP (kHz)"]].values)
+
+    c_min = min(opo_nd.min(axis=0)[0], our_nd.min(axis=0)[0])
+    gbw_min = min(opo_nd.min(axis=0)[1], our_nd.min(axis=0)[1])
+    opo_nd[:, 0] -= c_min
+    our_nd[:, 0] -= c_min
+    opo_nd[:, 1] -= gbw_min
+    our_nd[:, 1] -= gbw_min
+
+    c_max = max(opo_nd.max(axis=0)[0], our_nd.max(axis=0)[0])
+    gbw_max = max(opo_nd.max(axis=0)[1], our_nd.max(axis=0)[1])
+    opo_nd[:, 0] /= c_max
+    our_nd[:, 0] /= c_max
+    opo_nd[:, 1] /= gbw_max
+    our_nd[:, 1] /= gbw_max
+
+    dist = max(
+        directed_hausdorff(our_nd, opo_nd)[0], directed_hausdorff(opo_nd, our_nd)[0]
+    )
+
+    logger.info(f"Normalized Hausdorff Distance: {dist}")
 
     # Build a dataframe with both values
     plot = sns.scatterplot(
