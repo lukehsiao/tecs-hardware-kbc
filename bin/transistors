@@ -37,6 +37,16 @@ if __name__ == "__main__":
         action="store_true",
     )
     parser.add_argument(
+        "--human-annotations",
+        help="Use human annotations to train the machine learning model.",
+        action="store_true",
+    )
+    parser.add_argument(
+        "--weak-supervision",
+        help="Use weak supervision to train the machine learning model.",
+        action="store_true",
+    )
+    parser.add_argument(
         "--max-docs",
         type=int,
         default=float("inf"),
@@ -56,6 +66,8 @@ if __name__ == "__main__":
 
     if not any([args.stg_temp_min, args.stg_temp_max, args.polarity, args.ce_v_max]):
         raise parser.error("Need to specify at least one relation to extract.")
+    if not any([args.weak_supervision, args.human_annotations]):
+        raise parser.error("Need to specify at least one source of supervision.")
 
     main(
         args.conn_string,
@@ -71,4 +83,6 @@ if __name__ == "__main__":
         parallel=args.parallel,
         log_dir=args.log_dir,
         verbose=args.v,
+        weak_supervision=args.weak_supervision,
+        human_annotations=args.human_annotations,
     )

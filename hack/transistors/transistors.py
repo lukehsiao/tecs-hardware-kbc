@@ -23,6 +23,7 @@ from fonduer.supervision import Labeler
 from metal.label_model import LabelModel
 
 from hack.transistors.transistor_lfs import (
+    FALSE,
     TRUE,
     ce_v_max_lfs,
     polarity_lfs,
@@ -45,6 +46,7 @@ from hack.transistors.transistor_utils import (
     cand_to_entity,
     candidates_to_entities,
     entity_level_scores,
+    get_gold_set,
     load_transistor_labels,
 )
 from hack.utils import parse_dataset
@@ -70,12 +72,51 @@ def generative_model(L_train, n_epochs=500, print_every=100):
 
 
 def discriminative_model(
-    train_cands, F_train, marginals, n_epochs=50, lr=0.001, gpu=None
+    train_cands,
+    F_train,
+    marginals,
+    X_dev=None,
+    Y_dev=None,
+    n_epochs=50,
+    lr=0.001,
+    gpu=None,
+    annotations=False,
 ):
     disc_model = SparseLogisticRegression()
 
     logger.info("Training discriminative model...")
-    if gpu:
+
+    if annotations:
+        # Use human annotations to train model
+        marginals = []
+        for y in Y_dev:
+            if y == 1:
+                marginals.append([1.0, 0.0])
+            else:
+                marginals.append([0.0, 1.0])
+        marginals = np.array(marginals)
+        if gpu:
+            disc_model.train(
+                X_dev,
+                marginals,
+                X_dev=X_dev,
+                Y_dev=Y_dev,
+                n_epochs=n_epochs,
+                lr=lr,
+                host_device="GPU",
+            )
+        else:
+            disc_model.train(
+                X_dev,
+                marginals,
+                X_dev=X_dev,
+                Y_dev=Y_dev,
+                n_epochs=n_epochs,
+                lr=lr,
+                host_device="CPU",
+            )
+    elif gpu:
+        # Use weak supervision to train model
         disc_model.train(
             (train_cands, F_train),
             marginals,
@@ -171,6 +212,8 @@ def main(
     parallel=4,
     log_dir=None,
     verbose=False,
+    human_annotations=False,
+    weak_supervision=True,
 ):
     # Setup initial configuration
     if gpu:
@@ -460,14 +503,49 @@ def main(
     if stg_temp_min:
         relation = "stg_temp_min"
         idx = rel_list.index(relation)
-        marginals_stg_temp_min = generative_model(L_train[idx])
-        disc_model_stg_temp_min = discriminative_model(
-            train_cands[idx],
-            F_train[idx],
-            marginals_stg_temp_min,
-            n_epochs=100,
-            gpu=gpu,
-        )
+
+        # TODO: Combine human annotations with weak supervision for best results
+        if human_annotations:
+            # Evaluate using human annotations
+            logger.info("Scoring storage temp min using human annotations...")
+            dev_gold_entities = get_gold_set(attribute=relation, docs=dev_docs)
+            L_dev_gt = []
+            count = 0
+            for c in dev_cands[idx]:
+                flag = FALSE
+                if cand_to_entity(c) in dev_gold_entities:
+                    count += 1
+                    flag = TRUE
+                L_dev_gt.append(flag)
+            logger.info("Found " + str(count) + " TRUE candidates.")
+
+            marginals_stg_temp_min = generative_model(L_train[idx])
+            disc_model_stg_temp_min = discriminative_model(
+                train_cands[idx],
+                F_train[idx],
+                marginals_stg_temp_min,
+                X_dev=(dev_cands[idx], F_dev[idx]),
+                Y_dev=L_dev_gt,
+                n_epochs=100,  # TODO: What does this mean?
+                gpu=gpu,
+                annotations=True,
+            )
+        if weak_supervision:
+            # Evaluate solely using weak supervision
+            logger.info("Scoring storage temp min using weak supervision...")
+            marginals_stg_temp_min = generative_model(L_train[idx])
+            disc_model_stg_temp_min = discriminative_model(
+                train_cands[idx],
+                F_train[idx],
+                marginals_stg_temp_min,
+                n_epochs=100,
+                gpu=gpu,
+            )
+        if not human_annotations and not weak_supervision:
+            logger.error(
+                "Labeler needs either weak_supervision or " + "human_annotations."
+            )
+
         best_result, best_b = scoring(
             relation,
             disc_model_stg_temp_min,
