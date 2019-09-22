@@ -508,7 +508,9 @@ def main(
         if human_annotations:
             # Evaluate using human annotations
             logger.info("Scoring storage temp min using human annotations...")
-            dev_gold_entities = get_gold_set(attribute=relation, docs=dev_docs)
+            dev_gold_entities = get_gold_set(
+                attribute=relation, docs=[doc.name for doc in dev_docs]
+            )
             L_dev_gt = []
             count = 0
             for c in dev_cands[idx]:
@@ -517,7 +519,6 @@ def main(
                     count += 1
                     flag = TRUE
                 L_dev_gt.append(flag)
-            logger.info("Found " + str(count) + " TRUE candidates.")
 
             marginals_stg_temp_min = generative_model(L_train[idx])
             disc_model_stg_temp_min = discriminative_model(
