@@ -94,11 +94,41 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     our_view["Source"] = "Our Approach"
     total = pd.concat([opo_view, our_view])
 
+    # Calculate the number of exact matches
+    opo_nd = opo_view[["Supply Current (uA)", "GBWP (kHz)"]].values
+    our_nd = our_view[["Supply Current (uA)", "GBWP (kHz)"]].values
+    logger.info(
+        f"Total opo approach: {len(opo_nd)} ({len(np.unique(opo_nd, axis=0))} unique)"
+    )
+    logger.info(
+        f"Total our approach: {len(our_nd)} ({len(np.unique(our_nd, axis=0))} unique)"
+    )
+
+    unique_our = np.unique(our_nd, axis=0)
+    total_count = 0
+    unique_count = 0
+    for i in unique_our:
+        seen = set()
+        for j in opo_nd:
+            j_tup = tuple(j)
+            if np.array_equal(i, j):
+                total_count += 1
+
+                if j_tup not in seen:
+                    unique_count += 1
+
+            seen.add(j_tup)
+
+    logger.info(f"total exact matches: {total_count} ({unique_count} unique)")
+    logger.info(
+        f"Overlap: {total_count}/{len(opo_nd)} = {total_count * 100 / len(opo_nd):.2f}%"
+    )
+
     # Calculate the Hausdorff Distance on the normalized plots.
     #
     # Data points are normalized by first taking the log10 of all points to
     # match shapes with the log10-based plot, subtracting the min of each
-    # dimension and dividing by the max of each dimension to bring all points
+    # dimension, and dividing by the max of each dimension to bring all points
     # to [0, 1].
     opo_nd = np.log10(opo_view[["Supply Current (uA)", "GBWP (kHz)"]].values)
     our_nd = np.log10(our_view[["Supply Current (uA)", "GBWP (kHz)"]].values)
