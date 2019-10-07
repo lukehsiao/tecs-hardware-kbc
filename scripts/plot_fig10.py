@@ -13,7 +13,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 matplotlib.rcParams["text.usetex"] = True
 
 sns.set(style="whitegrid")
-sns.set_context("paper", font_scale=1.5)
+sns.set_context("paper", font_scale=1.5, rc={"lines.linewidth": 2.25})
 
 
 # Configure logging for Hack
