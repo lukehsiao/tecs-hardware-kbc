@@ -13,7 +13,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 matplotlib.rcParams["text.usetex"] = True
 
 sns.set(style="whitegrid")
-sns.set_context("paper", font_scale=1.7)
+sns.set_context("paper", font_scale=1.5)
 
 
 # Configure logging for Hack
@@ -43,7 +43,7 @@ def _plot(infile):
     handles, labels = ax.get_legend_handles_labels()
     ax.legend(handles=handles[1:], labels=labels[1:])
     ax.set_ylim([0, 1])
-    ax.set_xlim([0, 1])
+    ax.set_xlim([0.5, 1])
 
     sns.despine(bottom=True, left=True)
     plot.set(xlabel="Threshold")
@@ -64,7 +64,7 @@ def _plot(infile):
     handles, labels = ax.get_legend_handles_labels()
     ax.legend(handles=handles[1:], labels=labels[1:])
     ax.set_ylim([0, 1])
-    ax.set_xlim([0, 1])
+    ax.set_xlim([0.5, 1])
 
     sns.despine(bottom=True, left=True)
     plot.set(xlabel="Threshold")
@@ -84,7 +84,7 @@ def _plot(infile):
     handles, labels = ax.get_legend_handles_labels()
     ax.legend(handles=handles[1:], labels=labels[1:])
     ax.set_ylim([0, 1])
-    ax.set_xlim([0, 1])
+    ax.set_xlim([0.5, 1])
 
     sns.despine(bottom=True, left=True)
     plot.set(xlabel="Threshold")
