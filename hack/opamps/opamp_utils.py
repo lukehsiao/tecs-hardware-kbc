@@ -306,17 +306,51 @@ def compare_entities(
             for (doc, val) in entities:
                 if doc.upper() in entity_dic:
                     writer.writerow(
-                        (type, doc, val, f"Entity vals: {entity_dic[doc.upper()]}")
+                        (
+                            type,
+                            doc,
+                            val,
+                            f"Entity vals: {entity_dic[doc.upper()]}",
+                            "Missing value.",
+                            "",
+                            "Bot",
+                        )
                     )
                 else:
                     writer.writerow(
-                        (type, doc, val, f"Entities do not have doc {doc}.")
+                        (
+                            type,
+                            doc,
+                            val,
+                            f"Entities do not have doc {doc}.",
+                            "Missing doc.",
+                            "",
+                            "Bot",
+                        )
                     )
         elif type == "FP":  # We only care about the gold data for `Notes:`
             for (doc, val) in entities:
                 if doc.upper() in gold_dic:
                     writer.writerow(
-                        (type, doc, val, f"Gold vals: {gold_dic[doc.upper()]}")
+                        (
+                            type,
+                            doc,
+                            val,
+                            f"Gold vals: {gold_dic[doc.upper()]}",
+                            "Invalid value.",
+                            "",
+                            "Bot",
+                        )
                     )
                 else:
-                    writer.writerow((type, doc, val, f"Gold does not have doc {doc}."))
+                    writer.writerow(
+                        (
+                            type,
+                            doc,
+                            val,
+                            f"Gold does not have doc {doc}.",
+                            "Gold is missing doc.",
+                            "",
+                            "Bot",
+                        )
+                    )
