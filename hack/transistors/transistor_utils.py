@@ -26,6 +26,16 @@ logger = logging.getLogger(__name__)
 Score = namedtuple("Score", ["f1", "prec", "rec", "TP", "FP", "FN"])
 
 
+def sort_csv(infile, outfile=""):
+    reader = csv.reader(open(infile))
+    sortedlist = sorted(reader, key=lambda row: row[2], reverse=True)
+    writer = csv.writer(
+        open(infile if outfile == "" else outfile, "w"), lineterminator="\n"
+    )
+    for row in sortedlist:
+        writer.writerow(row)
+
+
 def gold_set_to_dic(gold_set):
     gold_dic = {}
     for (doc, part, val) in gold_set:
@@ -297,6 +307,7 @@ def compare_entities(
                             "Bot",
                         )
                     )
+    sort_csv(outfile)
 
 
 def entity_level_scores(entities, attribute=None, corpus=None, metric=None, docs=None):
