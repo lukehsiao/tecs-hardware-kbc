@@ -8,6 +8,8 @@ from collections import namedtuple
 from fonduer.utils.data_model_utils import get_neighbor_cell_ngrams, get_row_ngrams
 from quantiphy import Quantity
 
+from hack.transistors.transistor_utils import sort_csv
+
 logger = logging.getLogger(__name__)
 
 Score = namedtuple("Score", ["f1", "prec", "rec", "TP", "FP", "FN"])
@@ -354,3 +356,4 @@ def compare_entities(
                             "Bot",
                         )
                     )
+    sort_csv(outfile)
