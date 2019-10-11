@@ -7,7 +7,12 @@ import os
 import pickle
 from timeit import default_timer as timer
 
+import emmental
 import numpy as np
+from emmental.data import EmmentalDataLoader
+from emmental.learner import EmmentalLearner
+from emmental.model import EmmentalModel
+from emmental.modules.embedding_module import EmbeddingModule
 from fonduer import Meta, init_logging
 from fonduer.candidates import CandidateExtractor, MentionExtractor, MentionNgrams
 from fonduer.candidates.models import (
@@ -17,7 +22,9 @@ from fonduer.candidates.models import (
     mention_subclass,
 )
 from fonduer.features import Featurizer
-from fonduer.learning import SparseLogisticRegression
+from fonduer.learning.dataset import FonduerDataset
+from fonduer.learning.task import create_task
+from fonduer.learning.utils import collect_word_counter
 from fonduer.parser.models import Document, Figure, Paragraph, Section, Sentence
 from fonduer.supervision import Labeler
 from metal.label_model import LabelModel
@@ -72,37 +79,11 @@ def generative_model(L_train, n_epochs=500, print_every=100):
 def discriminative_model(
     train_cands, F_train, marginals, n_epochs=50, lr=0.001, gpu=None
 ):
-    disc_model = SparseLogisticRegression()
-
-    logger.info("Training discriminative model...")
-    if gpu:
-        disc_model.train(
-            (train_cands, F_train),
-            marginals,
-            n_epochs=n_epochs,
-            lr=lr,
-            host_device="GPU",
-        )
-    else:
-        disc_model.train(
-            (train_cands, F_train),
-            marginals,
-            n_epochs=n_epochs,
-            lr=lr,
-            host_device="CPU",
-        )
-
-    logger.info("Done.")
-
-    return disc_model
+    raise NotImplementedError
 
 
-def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, num=100):
+def scoring(relation, test_preds, test_cands, test_docs, F_test, parts_by_doc, num=100):
     logger.info("Calculating the best F1 score and threshold (b)...")
-
-    # Iterate over a range of `b` values in order to find the b with the
-    # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
-    Y_prob = disc_model.marginals((test_cands, F_test))
 
     # Get prediction for a particular b, store the full tuple to output
     # (b, pref, rec, f1, TP, FP, FN)
@@ -110,10 +91,10 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
     best_b = 0
     for b in np.linspace(0, 1, num=num):
         try:
-            test_score = np.array(
-                [TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob]
+            positive = np.where(
+                np.array(test_preds["probs"][relation])[:, TRUE - 1] > b
             )
-            true_pred = [test_cands[_] for _ in np.nditer(np.where(test_score == TRUE))]
+            true_pred = [test_cands[_] for _ in positive[0]]
             result = entity_level_scores(
                 candidates_to_entities(
                     true_pred, parts_by_doc=parts_by_doc, progress_bar=False
@@ -128,7 +109,7 @@ def scoring(relation, disc_model, test_cands, test_docs, F_test, parts_by_doc, n
                 best_result = result
                 best_b = b
         except Exception as e:
-            logger.debug(f"{e}, skipping.")
+            logger.error(f"{e}, skipping.")
             break
 
     logger.warning("===================================================")
@@ -461,22 +442,110 @@ def main(
         relation = "stg_temp_min"
         idx = rel_list.index(relation)
         marginals_stg_temp_min = generative_model(L_train[idx])
-        disc_model_stg_temp_min = discriminative_model(
-            train_cands[idx],
-            F_train[idx],
-            marginals_stg_temp_min,
-            n_epochs=100,
-            gpu=gpu,
+
+        word_counter = collect_word_counter(train_cands)
+
+        emmental.init(Meta.log_path)
+
+        # Training config
+        config = {
+            "meta_config": {"verbose": False},
+            "model_config": {"model_path": None, "device": 0, "dataparallel": False},
+            "learner_config": {
+                "n_epochs": 5,
+                "optimizer_config": {"lr": 0.001, "l2": 0.0},
+                "task_scheduler": "round_robin",
+            },
+            "logging_config": {
+                "evaluation_freq": 1,
+                "counter_unit": "epoch",
+                "checkpointing": False,
+                "checkpointer_config": {
+                    "checkpoint_metric": {f"{relation}/{relation}/train/loss": "min"},
+                    "checkpoint_freq": 1,
+                    "checkpoint_runway": 2,
+                    "clear_intermediate_checkpoints": True,
+                    "clear_all_checkpoints": True,
+                },
+            },
+        }
+        emmental.Meta.update_config(config=config)
+
+        # Generate word embedding module
+        arity = 2
+        # Geneate special tokens
+        specials = []
+        for i in range(arity):
+            specials += [f"~~[[{i}", f"{i}]]~~"]
+
+        emb_layer = EmbeddingModule(
+            word_counter=word_counter, word_dim=300, specials=specials
         )
+
+        diffs = marginals_stg_temp_min.max(axis=1) - marginals_stg_temp_min.min(axis=1)
+        train_idxs = np.where(diffs > 1e-6)[0]
+
+        train_dataloader = EmmentalDataLoader(
+            task_to_label_dict={relation: "labels"},
+            dataset=FonduerDataset(
+                relation,
+                train_cands[0],
+                F_train[0],
+                emb_layer.word2id,
+                marginals_stg_temp_min,
+                train_idxs,
+            ),
+            split="train",
+            batch_size=100,
+            shuffle=True,
+        )
+
+        tasks = create_task(
+            relation,
+            2,
+            F_train[0].shape[1],
+            2,
+            emb_layer,
+            mode="mtl",
+            model="LogisticRegression",
+        )
+
+        model = EmmentalModel(name=f"{relation}_task")
+
+        for task in tasks:
+            model.add_task(task)
+
+        emmental_learner = EmmentalLearner()
+        emmental_learner.learn(model, [train_dataloader])
+
+        test_dataloader = EmmentalDataLoader(
+            task_to_label_dict={relation: "labels"},
+            dataset=FonduerDataset(
+                relation, test_cands[0], F_test[0], emb_layer.word2id, 2
+            ),
+            split="test",
+            batch_size=100,
+            shuffle=False,
+        )
+
+        test_preds = model.predict(test_dataloader, return_preds=True)
+
+        import pdb
+
+        pdb.set_trace()
+
         best_result, best_b = scoring(
             relation,
-            disc_model_stg_temp_min,
+            test_preds,
             test_cands[idx],
             test_docs,
             F_test[idx],
             parts_by_doc,
             num=100,
         )
+        import pdb
+
+        pdb.set_trace()
 
     if stg_temp_max:
         relation = "stg_temp_max"
