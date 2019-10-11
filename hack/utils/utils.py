@@ -45,17 +45,22 @@ def parse_dataset(
             doc_preprocessor = HTMLDocPreprocessor(html_path, max_docs=max_docs)
 
             corpus_parser = Parser(
-                session, structural=True, lingual=True, visual=True, pdf_path=pdf_path
+                session,
+                parallelism=parallel,
+                structural=True,
+                lingual=True,
+                visual=True,
+                pdf_path=pdf_path,
             )
             # Do not want to clear the database when parsing test and train
             if division == "dev":
-                corpus_parser.apply(doc_preprocessor, parallelism=parallel)
+                corpus_parser.apply(doc_preprocessor)
                 dev_docs = set(corpus_parser.get_last_documents())
             if division == "test":
-                corpus_parser.apply(doc_preprocessor, parallelism=parallel, clear=False)
+                corpus_parser.apply(doc_preprocessor, clear=False)
                 test_docs = set(corpus_parser.get_last_documents())
             if division == "train":
-                corpus_parser.apply(doc_preprocessor, parallelism=parallel, clear=False)
+                corpus_parser.apply(doc_preprocessor, clear=False)
                 train_docs = set(corpus_parser.get_last_documents())
             all_docs = corpus_parser.get_documents()
     else:
