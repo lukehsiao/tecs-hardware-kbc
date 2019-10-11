@@ -45,7 +45,6 @@ if __name__ == "__main__":
     parser.add_argument(
         "--parallel", type=int, default=8, help="Set the level of parallelization."
     )
-    parser.add_argument("--gpu", type=str, help="Use the specified GPU index.")
     parser.add_argument(
         "--conn-string", type=str, help="Connection string to the PosgreSQL Database."
     )
@@ -67,7 +66,6 @@ if __name__ == "__main__":
         parse=args.parse,
         first_time=args.first_time,
         re_label=args.re_label,
-        gpu=args.gpu,
         parallel=args.parallel,
         log_dir=args.log_dir,
         verbose=args.v,
