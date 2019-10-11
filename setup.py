@@ -13,7 +13,7 @@ setup(
         "quantiphy",
         "scipy",
         "seaborn",
-        "torch",
+        "torch>=1.3.0,<2.0.0",
         "tqdm",
         "torchvision",
     ],
