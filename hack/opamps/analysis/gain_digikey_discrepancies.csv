@@ -1,9 +1,8 @@
 Type:,Filename:,Our Vals:,Notes:,Discrepancy Type:,Discrepancy Notes:,Annotator:
 FN,OPA625,800 kHz,Entity vals: [Quantity('120 MHz')],Missing value.,,Bot
-FP,TLE2141-Q1,5.9 MHz,Gold vals: [Quantity('5.8 MHz')],Invalid value.,,Bot
 FN,TLE2141-Q1,5.8 MHz,Entity vals: [Quantity('5.9 MHz')],Missing value.,,Bot
-FN,INA211,40 kHz,"Entity vals: [Quantity('4 kHz'), Quantity('7 kHz'), Quantity('14 kHz'), Quantity('30 kHz'), Quantity('80 kHz')]",Missing value.,,Bot
 FN,LMC7111,40 kHz,Entity vals: [Quantity('50 kHz')],Missing value.,,Bot
+FN,INA211,40 kHz,"Entity vals: [Quantity('80 kHz'), Quantity('7 kHz'), Quantity('30 kHz'), Quantity('14 kHz'), Quantity('4 kHz')]",Missing value.,,Bot
 FN,TL051,3.6 MHz,Entity vals: [Quantity('3 MHz')],Missing value.,,Bot
 FN,TL051,3.5 MHz,Entity vals: [Quantity('3 MHz')],Missing value.,,Bot
 FN,TL051,3.3 MHz,Entity vals: [Quantity('3 MHz')],Missing value.,,Bot
