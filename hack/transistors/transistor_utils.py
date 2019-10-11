@@ -28,7 +28,7 @@ Score = namedtuple("Score", ["f1", "prec", "rec", "TP", "FP", "FN"])
 
 def sort_csv(infile, outfile=""):
     reader = csv.reader(open(infile))
-    sortedlist = sorted(reader, key=lambda row: row[2], reverse=True)
+    sortedlist = sorted(reader, key=lambda row: row[1], reverse=True)
     writer = csv.writer(
         open(infile if outfile == "" else outfile, "w"), lineterminator="\n"
     )
