@@ -133,7 +133,7 @@ def dump_candidates(cands, Y_prob, outfile):
         writer = csv.writer(csvfile)
         for i, c in enumerate(cands):
             (doc, part, val) = cand_to_entity(c)
-            writer.writerow([doc, part, val, Y_prob[i][TRUE - 1]])
+            writer.writerow([doc, part, val, Y_prob[i]])
 
 
 def main(
@@ -431,90 +431,100 @@ def main(
     logger.warning(f"Supervision Time (min): {((end - start) / 60.0):.1f}")
 
     start = timer()
-    if stg_temp_min:
-        relation = "stg_temp_min"
-        idx = rel_list.index(relation)
-        marginals_stg_temp_min = generative_model(L_train[idx])
 
-        word_counter = collect_word_counter(train_cands)
+    word_counter = collect_word_counter(train_cands)
 
-        emmental.init(Meta.log_path)
+    emmental.init(Meta.log_path)
 
-        # Training config
-        config = {
-            "meta_config": {"verbose": False},
-            "model_config": {"model_path": None, "device": 0, "dataparallel": False},
-            "learner_config": {
-                "n_epochs": 5,
-                "optimizer_config": {"lr": 0.001, "l2": 0.0},
-                "task_scheduler": "round_robin",
+    # Training config
+    config = {
+        "meta_config": {"verbose": True},
+        "model_config": {"model_path": None, "device": 0, "dataparallel": True},
+        "learner_config": {
+            "n_epochs": 5,
+            "optimizer_config": {"lr": 0.001, "l2": 0.0},
+            "task_scheduler": "round_robin",
+        },
+        "logging_config": {
+            "evaluation_freq": 1,
+            "counter_unit": "epoch",
+            "checkpointing": False,
+            "checkpointer_config": {
+                "checkpoint_metric": {f"transistors/transistors/train/loss": "min"},
+                "checkpoint_freq": 1,
+                "checkpoint_runway": 2,
+                "clear_intermediate_checkpoints": True,
+                "clear_all_checkpoints": True,
             },
-            "logging_config": {
-                "evaluation_freq": 1,
-                "counter_unit": "epoch",
-                "checkpointing": False,
-                "checkpointer_config": {
-                    "checkpoint_metric": {f"{relation}/{relation}/train/loss": "min"},
-                    "checkpoint_freq": 1,
-                    "checkpoint_runway": 2,
-                    "clear_intermediate_checkpoints": True,
-                    "clear_all_checkpoints": True,
-                },
-            },
-        }
-        emmental.Meta.update_config(config=config)
+        },
+    }
+    emmental.Meta.update_config(config=config)
 
-        # Generate word embedding module
-        arity = 2
-        # Geneate special tokens
-        specials = []
-        for i in range(arity):
-            specials += [f"~~[[{i}", f"{i}]]~~"]
+    # Generate word embedding module
+    arity = 2
+    # Geneate special tokens
+    specials = []
+    for i in range(arity):
+        specials += [f"~~[[{i}", f"{i}]]~~"]
 
-        emb_layer = EmbeddingModule(
-            word_counter=word_counter, word_dim=300, specials=specials
+    emb_layer = EmbeddingModule(
+        word_counter=word_counter, word_dim=300, specials=specials
+    )
+
+    marginals = []
+    train_idxs = []
+    train_dataloader = []
+    for idx, relation in enumerate(rel_list):
+        marginals.append(generative_model(L_train[idx]))
+        diffs = marginals[idx].max(axis=1) - marginals[idx].min(axis=1)
+        train_idxs.append(np.where(diffs > 1e-6)[0])
+
+        train_dataloader.append(
+            EmmentalDataLoader(
+                task_to_label_dict={relation: "labels"},
+                dataset=FonduerDataset(
+                    relation,
+                    train_cands[idx],
+                    F_train[idx],
+                    emb_layer.word2id,
+                    marginals[idx],
+                    train_idxs[idx],
+                ),
+                split="train",
+                batch_size=100,
+                shuffle=True,
+            )
         )
 
-        diffs = marginals_stg_temp_min.max(axis=1) - marginals_stg_temp_min.min(axis=1)
-        train_idxs = np.where(diffs > 1e-6)[0]
+    num_feature_keys = len(featurizer.get_keys())
 
-        train_dataloader = EmmentalDataLoader(
-            task_to_label_dict={relation: "labels"},
-            dataset=FonduerDataset(
-                relation,
-                train_cands[0],
-                F_train[0],
-                emb_layer.word2id,
-                marginals_stg_temp_min,
-                train_idxs,
-            ),
-            split="train",
-            batch_size=100,
-            shuffle=True,
-        )
+    model = EmmentalModel(name=f"transistor_tasks")
 
-        tasks = create_task(
-            relation,
-            2,
-            F_train[0].shape[1],
-            2,
-            emb_layer,
-            mode="mtl",
-            model="LogisticRegression",
-        )
+    # List relation names, arities, list of classes
+    tasks = create_task(
+        rel_list,
+        [2] * len(rel_list),
+        num_feature_keys,
+        [2] * len(rel_list),
+        emb_layer,
+        mode="mtl",
+        model="LogisticRegression",
+    )
 
-        model = EmmentalModel(name=f"{relation}_task")
+    for task in tasks:
+        model.add_task(task)
 
-        for task in tasks:
-            model.add_task(task)
+    emmental_learner = EmmentalLearner()
 
-        emmental_learner = EmmentalLearner()
-        emmental_learner.learn(model, [train_dataloader])
+    # If given a list of multi, will train on multiple
+    emmental_learner.learn(model, train_dataloader)
 
+    # List of dataloader for each rlation
+    for idx, relation in enumerate(rel_list):
         test_dataloader = EmmentalDataLoader(
             task_to_label_dict={relation: "labels"},
             dataset=FonduerDataset(
-                relation, test_cands[0], F_test[0], emb_layer.word2id, 2
+                relation, test_cands[idx], F_test[idx], emb_layer.word2id, 2
             ),
             split="test",
             batch_size=100,
@@ -532,114 +542,44 @@ def main(
             parts_by_doc,
             num=100,
         )
-        import pdb
 
-        pdb.set_trace()
+        # Dump CSV files for CE_V_MAX for digi-key analysis
+        if relation == "ce_v_max":
+            dev_dataloader = EmmentalDataLoader(
+                task_to_label_dict={relation: "labels"},
+                dataset=FonduerDataset(
+                    relation, dev_cands[idx], F_dev[idx], emb_layer.word2id, 2
+                ),
+                split="dev",
+                batch_size=100,
+                shuffle=False,
+            )
 
-    if stg_temp_max:
-        relation = "stg_temp_max"
-        idx = rel_list.index(relation)
-        marginals_stg_temp_max = generative_model(L_train[idx])
-        disc_model_stg_temp_max = discriminative_model(
-            train_cands[idx], F_train[idx], marginals_stg_temp_max, n_epochs=100
-        )
-        best_result, best_b = scoring(
-            relation,
-            disc_model_stg_temp_max,
-            test_cands[idx],
-            test_docs,
-            F_test[idx],
-            parts_by_doc,
-            num=100,
-        )
+            dev_preds = model.predict(dev_dataloader, return_preds=True)
 
-    if polarity:
-        relation = "polarity"
-        idx = rel_list.index(relation)
-        marginals_polarity = generative_model(L_train[idx])
-        disc_model_polarity = discriminative_model(
-            train_cands[idx], F_train[idx], marginals_polarity, n_epochs=100
-        )
-        best_result, best_b = scoring(
-            relation,
-            disc_model_polarity,
-            test_cands[idx],
-            test_docs,
-            F_test[idx],
-            parts_by_doc,
-            num=100,
-        )
+            Y_prob = np.array(test_preds["probs"][relation])[:, TRUE - 1]
+            dump_candidates(test_cands[idx], Y_prob, "ce_v_max_test_probs.csv")
+            Y_prob = np.array(dev_preds["probs"][relation])[:, TRUE - 1]
+            dump_candidates(dev_cands[idx], Y_prob, "ce_v_max_dev_probs.csv")
 
-    if ce_v_max:
-        relation = "ce_v_max"
-        idx = rel_list.index(relation)
+        # Dump CSV files for POLARITY for digi-key analysis
+        if relation == "polarity":
+            dev_dataloader = EmmentalDataLoader(
+                task_to_label_dict={relation: "labels"},
+                dataset=FonduerDataset(
+                    relation, dev_cands[idx], F_dev[idx], emb_layer.word2id, 2
+                ),
+                split="dev",
+                batch_size=100,
+                shuffle=False,
+            )
 
-        # Can be uncommented for use in debugging labeling functions
-        #  logger.info("Updating labeling function summary...")
-        #  keys = labeler.get_keys()
-        #  logger.info("Summary for train set labeling functions:")
-        #  df = analysis.lf_summary(L_train[idx], lf_names=keys)
-        #  logger.info(f"\n{df.to_string()}")
-        #
-        #  logger.info("Summary for dev set labeling functions:")
-        #  df = analysis.lf_summary(
-        #      L_dev[idx],
-        #      lf_names=keys,
-        #      Y=L_dev_gold[idx].todense().reshape(-1).tolist()[0],
-        #  )
-        #  logger.info(f"\n{df.to_string()}")
-        #
-        #  logger.info("Summary for test set labeling functions:")
-        #  df = analysis.lf_summary(
-        #      L_test[idx],
-        #      lf_names=keys,
-        #      Y=L_test_gold[idx].todense().reshape(-1).tolist()[0],
-        #  )
-        #  logger.info(f"\n{df.to_string()}")
+            dev_preds = model.predict(dev_dataloader, return_preds=True)
 
-        marginals_ce_v_max = generative_model(L_train[idx])
-        disc_model_ce_v_max = discriminative_model(
-            train_cands[idx], F_train[idx], marginals_ce_v_max, n_epochs=100
-        )
-
-        # Can be uncommented to view score on development set
-        #  best_result, best_b = scoring(
-        #      relation,
-        #      disc_model_ce_v_max,
-        #      dev_cands[idx],
-        #      dev_docs,
-        #      F_dev[idx],
-        #      parts_by_doc,
-        #      num=100,
-        #  )
-
-        best_result, best_b = scoring(
-            relation,
-            disc_model_ce_v_max,
-            test_cands[idx],
-            test_docs,
-            F_test[idx],
-            parts_by_doc,
-            num=100,
-        )
+            Y_prob = np.array(test_preds["probs"][relation])[:, TRUE - 1]
+            dump_candidates(test_cands[idx], Y_prob, "polarity_test_probs.csv")
+            Y_prob = np.array(dev_preds["probs"][relation])[:, TRUE - 1]
+            dump_candidates(dev_cands[idx], Y_prob, "polarity_dev_probs.csv")
 
     end = timer()
     logger.warning(f"Classification Time (min): {((end - start) / 60.0):.1f}")
-
-    # Dump CSV files for CE_V_MAX for digi-key analysis
-    if ce_v_max:
-        relation = "ce_v_max"
-        idx = rel_list.index(relation)
-        Y_prob = disc_model_ce_v_max.marginals((test_cands[idx], F_test[idx]))
-        dump_candidates(test_cands[idx], Y_prob, "ce_v_max_test_probs.csv")
-        Y_prob = disc_model_ce_v_max.marginals((dev_cands[idx], F_dev[idx]))
-        dump_candidates(dev_cands[idx], Y_prob, "ce_v_max_dev_probs.csv")
-
-    # Dump CSV files for POLARITY for digi-key analysis
-    if polarity:
-        relation = "polarity"
-        idx = rel_list.index(relation)
-        Y_prob = disc_model_polarity.marginals((test_cands[idx], F_test[idx]))
-        dump_candidates(test_cands[idx], Y_prob, "polarity_test_probs.csv")
-        Y_prob = disc_model_polarity.marginals((dev_cands[idx], F_dev[idx]))
-        dump_candidates(dev_cands[idx], Y_prob, "polarity_dev_probs.csv")
