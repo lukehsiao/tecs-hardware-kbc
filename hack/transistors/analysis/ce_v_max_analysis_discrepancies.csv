@@ -1,7 +1,3 @@
-FP,DIODESINCORPORATED_ZXTP23140BFHTA,ZXTP23140BFHTA,140,Gold vals: ['160'],Invalid value.,,Bot
-FN,DIODESINCORPORATED_ZXTP23140BFHTA,ZXTP23140BFHTA,160,Entity vals: ['140'],Missing value.,,Bot
-FP,DIODESINCORPORATED_ZXTP23140BFHTA,ZXTP23140BFH,140,Gold vals: ['160'],Invalid value.,,Bot
-FN,DIODESINCORPORATED_ZXTP23140BFHTA,ZXTP23140BFH,160,Entity vals: ['140'],Missing value.,,Bot
 FN,DIODESINCORPORATED_ZXTP2008ZTA,ZXTP2008ZTA,30,Entities do not have doc DIODESINCORPORATED_ZXTP2008ZTA.,Missing doc.,,Bot
 FN,DIODESINCORPORATED_ZXTP2008ZTA,ZXTP2008Z,30,Entities do not have doc DIODESINCORPORATED_ZXTP2008ZTA.,Missing doc.,,Bot
 FN,DIODESINCORPORATED_ZXT690BKTC,ZXT690BKTC,45,Entities do not have doc DIODESINCORPORATED_ZXT690BKTC.,Missing doc.,,Bot
@@ -14,8 +10,8 @@ FP,SANKEN_STD01N,STD01P,30,Gold vals: ['150'],Invalid value.,,Bot
 FP,SANKEN_STD01N,STD01N,30,Gold vals: ['150'],Invalid value.,,Bot
 FP,ONSEMICONDUCTOR_MMBTA92LT1G,SMMBTA92LT3G,200,Gold vals: ['300'],Invalid value.,,Bot
 FP,ONSEMICONDUCTOR_MMBTA92LT1G,SMMBTA92LT1G,200,Gold vals: ['300'],Invalid value.,,Bot
-FN,ONSEMICONDUCTOR_MMBTA92LT1G,SMMBTA92L,300,"Entity parts: {'MMBTA92LT3G': ['300', '200'], 'SMMBTA92LT1G': ['300', '200'], 'SMMBTA92LT3G': ['200', '300'], 'MMBTA93LT1G': ['300', '200'], 'MMBTA93L': ['200', '300'], 'MMBTA92LT1G': ['200', '300'], 'MMBTA92L': ['200', '300']}",Missing part.,,Bot
-FN,ONSEMICONDUCTOR_MMBTA06WT1G,SMMBTA06W,80,"Entity parts: {'MMBTA06WT1G': ['80'], 'SMMBTA06WT3G': ['80'], 'SMMBTA06WT1G': ['80'], 'MMBTA06W': ['80']}",Missing part.,,Bot
+FN,ONSEMICONDUCTOR_MMBTA92LT1G,SMMBTA92L,300,"Entity parts: {'SMMBTA92LT1G': ['200', '300'], 'MMBTA92LT1G': ['300', '200'], 'MMBTA92L': ['200', '300'], 'MMBTA93LT1G': ['300', '200'], 'MMBTA93L': ['300', '200'], 'MMBTA92LT3G': ['200', '300'], 'SMMBTA92LT3G': ['200', '300']}",Missing part.,,Bot
+FN,ONSEMICONDUCTOR_MMBTA06WT1G,SMMBTA06W,80,"Entity parts: {'MMBTA06WT1G': ['80'], 'MMBTA06W': ['80'], 'SMMBTA06WT1G': ['80'], 'SMMBTA06WT3G': ['80']}",Missing part.,,Bot
 Type:,Filename:,Part:,Our Vals:,Notes:,Discrepancy Type:,Discrepancy Notes:,Annotator:
 FN,ONSEMICONDUCTOR_NSV12100UW3TCG,NSV12100UW3TCG,12,Entities do not have doc ONSEMICONDUCTOR_NSV12100UW3TCG.,Missing doc.,,Bot
 FN,ONSEMICONDUCTOR_NSV12100UW3TCG,NSS12100UW3TCG,12,Entities do not have doc ONSEMICONDUCTOR_NSV12100UW3TCG.,Missing doc.,,Bot
@@ -47,37 +43,37 @@ FP,DIODS13249-1,BC817-40,25,Gold vals: ['45'],Invalid value.,,Bot
 FP,DIODS13249-1,BC817-25,25,Gold vals: ['45'],Invalid value.,,Bot
 FP,DIODS13249-1,BC817-16,25,Gold vals: ['45'],Invalid value.,,Bot
 FP,DIODS13249-1,BC817,25,Gold vals: ['45'],Invalid value.,,Bot
-FN,BC546-D,BC548CZL1G,30,"Entity parts: {'BC546BRL1G': ['65'], 'BC546BRL1': ['65'], 'BC548BG': ['65'], 'BC548BRL1G': ['65'], 'BC546BG': ['65'], 'BC547A': ['65'], 'BC548B': ['65'], 'BC547ARL': ['65'], 'BC546BZL1G': ['65'], 'BC548BZL1G': ['65'], 'BC547AZL1G': ['65'], 'BC546B': ['65'], 'BC547ARLG': ['65']}",Missing part.,,Bot
-FN,BC546-D,BC548CG,30,"Entity parts: {'BC546BRL1G': ['65'], 'BC546BRL1': ['65'], 'BC548BG': ['65'], 'BC548BRL1G': ['65'], 'BC546BG': ['65'], 'BC547A': ['65'], 'BC548B': ['65'], 'BC547ARL': ['65'], 'BC546BZL1G': ['65'], 'BC548BZL1G': ['65'], 'BC547AZL1G': ['65'], 'BC546B': ['65'], 'BC547ARLG': ['65']}",Missing part.,,Bot
-FP,CSEMS05382-1,BC548C,45,Gold vals: ['30'],Invalid value.,,Bot
+FN,BC546-D,BC548CZL1G,30,"Entity parts: {'BC546B': ['65'], 'BC548BG': ['65'], 'BC548B': ['65'], 'BC546BG': ['65'], 'BC547AZL1G': ['65'], 'BC548BRL1G': ['65'], 'BC547ARLG': ['65'], 'BC547ARL': ['65'], 'BC548BZL1G': ['65'], 'BC546BRL1G': ['65'], 'BC547A': ['65'], 'BC546BRL1': ['65'], 'BC546BZL1G': ['65']}",Missing part.,,Bot
+FN,BC546-D,BC548CG,30,"Entity parts: {'BC546B': ['65'], 'BC548BG': ['65'], 'BC548B': ['65'], 'BC546BG': ['65'], 'BC547AZL1G': ['65'], 'BC548BRL1G': ['65'], 'BC547ARLG': ['65'], 'BC547ARL': ['65'], 'BC548BZL1G': ['65'], 'BC546BRL1G': ['65'], 'BC547A': ['65'], 'BC546BRL1': ['65'], 'BC546BZL1G': ['65']}",Missing part.,,Bot
 FP,CSEMS05382-1,BC548C,65,Gold vals: ['30'],Invalid value.,,Bot
-FN,BC546-D,BC548C,30,"Entity parts: {'BC546BRL1G': ['65'], 'BC546BRL1': ['65'], 'BC548BG': ['65'], 'BC548BRL1G': ['65'], 'BC546BG': ['65'], 'BC547A': ['65'], 'BC548B': ['65'], 'BC547ARL': ['65'], 'BC546BZL1G': ['65'], 'BC548BZL1G': ['65'], 'BC547AZL1G': ['65'], 'BC546B': ['65'], 'BC547ARLG': ['65']}",Missing part.,,Bot
+FP,CSEMS05382-1,BC548C,45,Gold vals: ['30'],Invalid value.,,Bot
+FN,BC546-D,BC548C,30,"Entity parts: {'BC546B': ['65'], 'BC548BG': ['65'], 'BC548B': ['65'], 'BC546BG': ['65'], 'BC547AZL1G': ['65'], 'BC548BRL1G': ['65'], 'BC547ARLG': ['65'], 'BC547ARL': ['65'], 'BC548BZL1G': ['65'], 'BC546BRL1G': ['65'], 'BC547A': ['65'], 'BC546BRL1': ['65'], 'BC546BZL1G': ['65']}",Missing part.,,Bot
 FP,BC546-D,BC548BZL1G,65,Gold vals: ['30'],Invalid value.,,Bot
 FN,BC546-D,BC548BZL1G,30,Entity vals: ['65'],Missing value.,,Bot
 FP,BC546-D,BC548BRL1G,65,Gold vals: ['30'],Invalid value.,,Bot
 FN,BC546-D,BC548BRL1G,30,Entity vals: ['65'],Missing value.,,Bot
 FP,BC546-D,BC548BG,65,Gold vals: ['30'],Invalid value.,,Bot
 FN,BC546-D,BC548BG,30,Entity vals: ['65'],Missing value.,,Bot
-FP,CSEMS05382-1,BC548B,45,Gold vals: ['30'],Invalid value.,,Bot
-FP,CSEMS05382-1,BC548B,65,Gold vals: ['30'],Invalid value.,,Bot
 FP,BC546-D,BC548B,65,Gold vals: ['30'],Invalid value.,,Bot
+FP,CSEMS05382-1,BC548B,65,Gold vals: ['30'],Invalid value.,,Bot
+FP,CSEMS05382-1,BC548B,45,Gold vals: ['30'],Invalid value.,,Bot
 FN,BC546-D,BC548B,30,Entity vals: ['65'],Missing value.,,Bot
-FP,CSEMS05382-1,BC548A,45,Gold vals: ['30'],Invalid value.,,Bot
 FP,CSEMS05382-1,BC548A,65,Gold vals: ['30'],Invalid value.,,Bot
-FP,CSEMS05382-1,BC548,45,Gold vals: ['30'],Invalid value.,,Bot
+FP,CSEMS05382-1,BC548A,45,Gold vals: ['30'],Invalid value.,,Bot
 FP,CSEMS05382-1,BC548,65,Gold vals: ['30'],Invalid value.,,Bot
-FN,BC546-D,BC548,30,"Entity parts: {'BC546BRL1G': ['65'], 'BC546BRL1': ['65'], 'BC548BG': ['65'], 'BC548BRL1G': ['65'], 'BC546BG': ['65'], 'BC547A': ['65'], 'BC548B': ['65'], 'BC547ARL': ['65'], 'BC546BZL1G': ['65'], 'BC548BZL1G': ['65'], 'BC547AZL1G': ['65'], 'BC546B': ['65'], 'BC547ARLG': ['65']}",Missing part.,,Bot
-FN,BC546-D,BC547CZL1G,45,"Entity parts: {'BC546BRL1G': ['65'], 'BC546BRL1': ['65'], 'BC548BG': ['65'], 'BC548BRL1G': ['65'], 'BC546BG': ['65'], 'BC547A': ['65'], 'BC548B': ['65'], 'BC547ARL': ['65'], 'BC546BZL1G': ['65'], 'BC548BZL1G': ['65'], 'BC547AZL1G': ['65'], 'BC546B': ['65'], 'BC547ARLG': ['65']}",Missing part.,,Bot
-FN,BC546-D,BC547CG,45,"Entity parts: {'BC546BRL1G': ['65'], 'BC546BRL1': ['65'], 'BC548BG': ['65'], 'BC548BRL1G': ['65'], 'BC546BG': ['65'], 'BC547A': ['65'], 'BC548B': ['65'], 'BC547ARL': ['65'], 'BC546BZL1G': ['65'], 'BC548BZL1G': ['65'], 'BC547AZL1G': ['65'], 'BC546B': ['65'], 'BC547ARLG': ['65']}",Missing part.,,Bot
+FP,CSEMS05382-1,BC548,45,Gold vals: ['30'],Invalid value.,,Bot
+FN,BC546-D,BC548,30,"Entity parts: {'BC546B': ['65'], 'BC548BG': ['65'], 'BC548B': ['65'], 'BC546BG': ['65'], 'BC547AZL1G': ['65'], 'BC548BRL1G': ['65'], 'BC547ARLG': ['65'], 'BC547ARL': ['65'], 'BC548BZL1G': ['65'], 'BC546BRL1G': ['65'], 'BC547A': ['65'], 'BC546BRL1': ['65'], 'BC546BZL1G': ['65']}",Missing part.,,Bot
+FN,BC546-D,BC547CZL1G,45,"Entity parts: {'BC546B': ['65'], 'BC548BG': ['65'], 'BC548B': ['65'], 'BC546BG': ['65'], 'BC547AZL1G': ['65'], 'BC548BRL1G': ['65'], 'BC547ARLG': ['65'], 'BC547ARL': ['65'], 'BC548BZL1G': ['65'], 'BC546BRL1G': ['65'], 'BC547A': ['65'], 'BC546BRL1': ['65'], 'BC546BZL1G': ['65']}",Missing part.,,Bot
+FN,BC546-D,BC547CG,45,"Entity parts: {'BC546B': ['65'], 'BC548BG': ['65'], 'BC548B': ['65'], 'BC546BG': ['65'], 'BC547AZL1G': ['65'], 'BC548BRL1G': ['65'], 'BC547ARLG': ['65'], 'BC547ARL': ['65'], 'BC548BZL1G': ['65'], 'BC546BRL1G': ['65'], 'BC547A': ['65'], 'BC546BRL1': ['65'], 'BC546BZL1G': ['65']}",Missing part.,,Bot
 FP,CSEMS05382-1,BC547C,65,Gold vals: ['45'],Invalid value.,,Bot
 FP,CSEMS05382-1,BC547C,30,Gold vals: ['45'],Invalid value.,,Bot
-FN,BC546-D,BC547C,45,"Entity parts: {'BC546BRL1G': ['65'], 'BC546BRL1': ['65'], 'BC548BG': ['65'], 'BC548BRL1G': ['65'], 'BC546BG': ['65'], 'BC547A': ['65'], 'BC548B': ['65'], 'BC547ARL': ['65'], 'BC546BZL1G': ['65'], 'BC548BZL1G': ['65'], 'BC547AZL1G': ['65'], 'BC546B': ['65'], 'BC547ARLG': ['65']}",Missing part.,,Bot
-FN,BC546-D,BC547BZL1G,45,"Entity parts: {'BC546BRL1G': ['65'], 'BC546BRL1': ['65'], 'BC548BG': ['65'], 'BC548BRL1G': ['65'], 'BC546BG': ['65'], 'BC547A': ['65'], 'BC548B': ['65'], 'BC547ARL': ['65'], 'BC546BZL1G': ['65'], 'BC548BZL1G': ['65'], 'BC547AZL1G': ['65'], 'BC546B': ['65'], 'BC547ARLG': ['65']}",Missing part.,,Bot
-FN,BC546-D,BC547BRL1G,45,"Entity parts: {'BC546BRL1G': ['65'], 'BC546BRL1': ['65'], 'BC548BG': ['65'], 'BC548BRL1G': ['65'], 'BC546BG': ['65'], 'BC547A': ['65'], 'BC548B': ['65'], 'BC547ARL': ['65'], 'BC546BZL1G': ['65'], 'BC548BZL1G': ['65'], 'BC547AZL1G': ['65'], 'BC546B': ['65'], 'BC547ARLG': ['65']}",Missing part.,,Bot
-FN,BC546-D,BC547BG,45,"Entity parts: {'BC546BRL1G': ['65'], 'BC546BRL1': ['65'], 'BC548BG': ['65'], 'BC548BRL1G': ['65'], 'BC546BG': ['65'], 'BC547A': ['65'], 'BC548B': ['65'], 'BC547ARL': ['65'], 'BC546BZL1G': ['65'], 'BC548BZL1G': ['65'], 'BC547AZL1G': ['65'], 'BC546B': ['65'], 'BC547ARLG': ['65']}",Missing part.,,Bot
-FP,CSEMS05382-1,BC547B,30,Gold vals: ['45'],Invalid value.,,Bot
+FN,BC546-D,BC547C,45,"Entity parts: {'BC546B': ['65'], 'BC548BG': ['65'], 'BC548B': ['65'], 'BC546BG': ['65'], 'BC547AZL1G': ['65'], 'BC548BRL1G': ['65'], 'BC547ARLG': ['65'], 'BC547ARL': ['65'], 'BC548BZL1G': ['65'], 'BC546BRL1G': ['65'], 'BC547A': ['65'], 'BC546BRL1': ['65'], 'BC546BZL1G': ['65']}",Missing part.,,Bot
+FN,BC546-D,BC547BZL1G,45,"Entity parts: {'BC546B': ['65'], 'BC548BG': ['65'], 'BC548B': ['65'], 'BC546BG': ['65'], 'BC547AZL1G': ['65'], 'BC548BRL1G': ['65'], 'BC547ARLG': ['65'], 'BC547ARL': ['65'], 'BC548BZL1G': ['65'], 'BC546BRL1G': ['65'], 'BC547A': ['65'], 'BC546BRL1': ['65'], 'BC546BZL1G': ['65']}",Missing part.,,Bot
+FN,BC546-D,BC547BRL1G,45,"Entity parts: {'BC546B': ['65'], 'BC548BG': ['65'], 'BC548B': ['65'], 'BC546BG': ['65'], 'BC547AZL1G': ['65'], 'BC548BRL1G': ['65'], 'BC547ARLG': ['65'], 'BC547ARL': ['65'], 'BC548BZL1G': ['65'], 'BC546BRL1G': ['65'], 'BC547A': ['65'], 'BC546BRL1': ['65'], 'BC546BZL1G': ['65']}",Missing part.,,Bot
+FN,BC546-D,BC547BG,45,"Entity parts: {'BC546B': ['65'], 'BC548BG': ['65'], 'BC548B': ['65'], 'BC546BG': ['65'], 'BC547AZL1G': ['65'], 'BC548BRL1G': ['65'], 'BC547ARLG': ['65'], 'BC547ARL': ['65'], 'BC548BZL1G': ['65'], 'BC546BRL1G': ['65'], 'BC547A': ['65'], 'BC546BRL1': ['65'], 'BC546BZL1G': ['65']}",Missing part.,,Bot
 FP,CSEMS05382-1,BC547B,65,Gold vals: ['45'],Invalid value.,,Bot
-FN,BC546-D,BC547B,45,"Entity parts: {'BC546BRL1G': ['65'], 'BC546BRL1': ['65'], 'BC548BG': ['65'], 'BC548BRL1G': ['65'], 'BC546BG': ['65'], 'BC547A': ['65'], 'BC548B': ['65'], 'BC547ARL': ['65'], 'BC546BZL1G': ['65'], 'BC548BZL1G': ['65'], 'BC547AZL1G': ['65'], 'BC546B': ['65'], 'BC547ARLG': ['65']}",Missing part.,,Bot
+FP,CSEMS05382-1,BC547B,30,Gold vals: ['45'],Invalid value.,,Bot
+FN,BC546-D,BC547B,45,"Entity parts: {'BC546B': ['65'], 'BC548BG': ['65'], 'BC548B': ['65'], 'BC546BG': ['65'], 'BC547AZL1G': ['65'], 'BC548BRL1G': ['65'], 'BC547ARLG': ['65'], 'BC547ARL': ['65'], 'BC548BZL1G': ['65'], 'BC546BRL1G': ['65'], 'BC547A': ['65'], 'BC546BRL1': ['65'], 'BC546BZL1G': ['65']}",Missing part.,,Bot
 FP,BC546-D,BC547AZL1G,65,Gold vals: ['45'],Invalid value.,,Bot
 FN,BC546-D,BC547AZL1G,45,Entity vals: ['65'],Missing value.,,Bot
 FP,BC546-D,BC547ARLG,65,Gold vals: ['45'],Invalid value.,,Bot
@@ -90,14 +86,14 @@ FP,BC546-D,BC547A,65,Gold vals: ['45'],Invalid value.,,Bot
 FN,BC546-D,BC547A,45,Entity vals: ['65'],Missing value.,,Bot
 FP,CSEMS05382-1,BC547,30,Gold vals: ['45'],Invalid value.,,Bot
 FP,CSEMS05382-1,BC547,65,Gold vals: ['45'],Invalid value.,,Bot
-FN,BC546-D,BC547,45,"Entity parts: {'BC546BRL1G': ['65'], 'BC546BRL1': ['65'], 'BC548BG': ['65'], 'BC548BRL1G': ['65'], 'BC546BG': ['65'], 'BC547A': ['65'], 'BC548B': ['65'], 'BC547ARL': ['65'], 'BC546BZL1G': ['65'], 'BC548BZL1G': ['65'], 'BC547AZL1G': ['65'], 'BC546B': ['65'], 'BC547ARLG': ['65']}",Missing part.,,Bot
-FP,CSEMS05382-1,BC546B,45,Gold vals: ['65'],Invalid value.,,Bot
+FN,BC546-D,BC547,45,"Entity parts: {'BC546B': ['65'], 'BC548BG': ['65'], 'BC548B': ['65'], 'BC546BG': ['65'], 'BC547AZL1G': ['65'], 'BC548BRL1G': ['65'], 'BC547ARLG': ['65'], 'BC547ARL': ['65'], 'BC548BZL1G': ['65'], 'BC546BRL1G': ['65'], 'BC547A': ['65'], 'BC546BRL1': ['65'], 'BC546BZL1G': ['65']}",Missing part.,,Bot
 FP,CSEMS05382-1,BC546B,30,Gold vals: ['65'],Invalid value.,,Bot
-FP,CSEMS05382-1,BC546A,45,Gold vals: ['65'],Invalid value.,,Bot
+FP,CSEMS05382-1,BC546B,45,Gold vals: ['65'],Invalid value.,,Bot
 FP,CSEMS05382-1,BC546A,30,Gold vals: ['65'],Invalid value.,,Bot
+FP,CSEMS05382-1,BC546A,45,Gold vals: ['65'],Invalid value.,,Bot
 FP,CSEMS05382-1,BC546,45,Gold vals: ['65'],Invalid value.,,Bot
 FP,CSEMS05382-1,BC546,30,Gold vals: ['65'],Invalid value.,,Bot
-FN,BC546-D,BC546,65,"Entity parts: {'BC546BRL1G': ['65'], 'BC546BRL1': ['65'], 'BC548BG': ['65'], 'BC548BRL1G': ['65'], 'BC546BG': ['65'], 'BC547A': ['65'], 'BC548B': ['65'], 'BC547ARL': ['65'], 'BC546BZL1G': ['65'], 'BC548BZL1G': ['65'], 'BC547AZL1G': ['65'], 'BC546B': ['65'], 'BC547ARLG': ['65']}",Missing part.,,Bot
+FN,BC546-D,BC546,65,"Entity parts: {'BC546B': ['65'], 'BC548BG': ['65'], 'BC548B': ['65'], 'BC546BG': ['65'], 'BC547AZL1G': ['65'], 'BC548BRL1G': ['65'], 'BC547ARLG': ['65'], 'BC547ARL': ['65'], 'BC548BZL1G': ['65'], 'BC546BRL1G': ['65'], 'BC547A': ['65'], 'BC546BRL1': ['65'], 'BC546BZL1G': ['65']}",Missing part.,,Bot
 FP,2N4123-D,2N4124G,30,Gold vals: ['25'],Invalid value.,,Bot
 FP,2N4123-D,2N4124,30,Gold vals: ['25'],Invalid value.,,Bot
 FP,2N4123-D,2N4123RLRM,25,Gold vals: ['30'],Invalid value.,,Bot
