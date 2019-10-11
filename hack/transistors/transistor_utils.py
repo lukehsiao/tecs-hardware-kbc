@@ -172,10 +172,19 @@ def entity_confusion_matrix(pred, gold):
         pred = set(pred)
     if not isinstance(gold, set):
         gold = set(gold)
+    gold = upper(gold)
+    pred = upper(pred)
     TP = pred.intersection(gold)
     FP = pred.difference(gold)
     FN = gold.difference(pred)
     return (TP, FP, FN)
+
+
+def upper(entities):
+    """Uppercases the values within an entity set()"""
+    return set(
+        [tuple([entity[0], entity[1], entity[2].upper()]) for entity in entities]
+    )
 
 
 def compare_entities(
