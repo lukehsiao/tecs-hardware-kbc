@@ -26,14 +26,18 @@ logger = logging.getLogger(__name__)
 Score = namedtuple("Score", ["f1", "prec", "rec", "TP", "FP", "FN"])
 
 
-def sort_csv(infile, outfile=""):
-    reader = csv.reader(open(infile))
-    sortedlist = sorted(reader, key=lambda row: row[1], reverse=True)
-    writer = csv.writer(
-        open(infile if outfile == "" else outfile, "w"), lineterminator="\n"
-    )
-    for row in sortedlist:
-        writer.writerow(row)
+def sort_csv(infile, outfile="", header=True):
+    with open(infile, "r") as readfile:
+        reader = csv.reader(readfile)
+        if header:
+            header = next(reader)
+        sortedlist = sorted(reader, key=lambda row: row[1], reverse=True)
+    with open(infile if outfile == "" else outfile, "w") as writefile:
+        writer = csv.writer(writefile, lineterminator="\n")
+        if header:
+            writer.writerow(header)
+        for row in sortedlist:
+            writer.writerow(row)
 
 
 def gold_set_to_dic(gold_set):
