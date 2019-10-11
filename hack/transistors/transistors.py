@@ -76,9 +76,7 @@ def generative_model(L_train, n_epochs=500, print_every=100):
     return marginals
 
 
-def discriminative_model(
-    train_cands, F_train, marginals, n_epochs=50, lr=0.001, gpu=None
-):
+def discriminative_model(train_cands, F_train, marginals, n_epochs=50, lr=0.001):
     raise NotImplementedError
 
 
@@ -148,15 +146,10 @@ def main(
     parse=False,
     first_time=False,
     re_label=False,
-    gpu=None,
     parallel=4,
     log_dir=None,
     verbose=False,
 ):
-    # Setup initial configuration
-    if gpu:
-        os.environ["CUDA_VISIBLE_DEVICES"] = gpu
-
     if not log_dir:
         log_dir = "logs"
 
@@ -530,10 +523,6 @@ def main(
 
         test_preds = model.predict(test_dataloader, return_preds=True)
 
-        import pdb
-
-        pdb.set_trace()
-
         best_result, best_b = scoring(
             relation,
             test_preds,
@@ -552,11 +541,7 @@ def main(
         idx = rel_list.index(relation)
         marginals_stg_temp_max = generative_model(L_train[idx])
         disc_model_stg_temp_max = discriminative_model(
-            train_cands[idx],
-            F_train[idx],
-            marginals_stg_temp_max,
-            n_epochs=100,
-            gpu=gpu,
+            train_cands[idx], F_train[idx], marginals_stg_temp_max, n_epochs=100
         )
         best_result, best_b = scoring(
             relation,
@@ -573,7 +558,7 @@ def main(
         idx = rel_list.index(relation)
         marginals_polarity = generative_model(L_train[idx])
         disc_model_polarity = discriminative_model(
-            train_cands[idx], F_train[idx], marginals_polarity, n_epochs=100, gpu=gpu
+            train_cands[idx], F_train[idx], marginals_polarity, n_epochs=100
         )
         best_result, best_b = scoring(
             relation,
@@ -614,7 +599,7 @@ def main(
 
         marginals_ce_v_max = generative_model(L_train[idx])
         disc_model_ce_v_max = discriminative_model(
-            train_cands[idx], F_train[idx], marginals_ce_v_max, n_epochs=100, gpu=gpu
+            train_cands[idx], F_train[idx], marginals_ce_v_max, n_epochs=100
         )
 
         # Can be uncommented to view score on development set
