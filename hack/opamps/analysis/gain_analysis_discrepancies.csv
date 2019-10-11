@@ -1,17 +1,17 @@
-FN,TLV274-Q1,3 MHz,Entities do not have doc TLV274-Q1.,Missing doc.,,Bot
+Type:,Filename:,Our Vals:,Notes:,Discrepancy Type:,Discrepancy Notes:,Annotator:
 FN,TLV274-Q1,2.4 MHz,Entities do not have doc TLV274-Q1.,Missing doc.,,Bot
-FP,TLE2141-Q1,6 MHz,"Gold vals: [Quantity('5.9 MHz'), Quantity('5.8 MHz')]",Invalid value.,,Bot
+FN,TLV274-Q1,3 MHz,Entities do not have doc TLV274-Q1.,Missing doc.,,Bot
+FP,TLE2141-Q1,6 MHz,"Gold vals: [Quantity('5.8 MHz'), Quantity('5.9 MHz')]",Invalid value.,,Bot
 FN,OPA129,1 MHz,Entities do not have doc OPA129.,Missing doc.,,Bot
 FP,LMC6041,60 kHz,Gold vals: [Quantity('75 kHz')],Invalid value.,,Bot
 FN,LM324-N,1 MHz,Entities do not have doc LM324-N.,Missing doc.,,Bot
 FP,LM2900,81 MHz,Gold vals: [Quantity('2.5 MHz')],Invalid value.,,Bot
-FP,LF412-N,3 MHz,Gold vals: [Quantity('4 MHz')],Invalid value.,,Bot
 FP,LF412-N,2.7 MHz,Gold vals: [Quantity('4 MHz')],Invalid value.,,Bot
-FN,INA211,80 kHz,Entities do not have doc INA211.,Missing doc.,,Bot
+FP,LF412-N,3 MHz,Gold vals: [Quantity('4 MHz')],Invalid value.,,Bot
 FN,INA211,7 kHz,Entities do not have doc INA211.,Missing doc.,,Bot
-FN,INA211,40 kHz,Entities do not have doc INA211.,Missing doc.,,Bot
-FN,INA211,4 kHz,Entities do not have doc INA211.,Missing doc.,,Bot
 FN,INA211,30 kHz,Entities do not have doc INA211.,Missing doc.,,Bot
+FN,INA211,4 kHz,Entities do not have doc INA211.,Missing doc.,,Bot
+FN,INA211,40 kHz,Entities do not have doc INA211.,Missing doc.,,Bot
+FN,INA211,80 kHz,Entities do not have doc INA211.,Missing doc.,,Bot
 FN,INA211,14 kHz,Entities do not have doc INA211.,Missing doc.,,Bot
-Type:,Filename:,Our Vals:,Notes:,Discrepancy Type:,Discrepancy Notes:,Annotator:
 FP,EN.CD00000492,2.5 MHz,Gold vals: [Quantity('4 MHz')],Invalid value.,,Bot
