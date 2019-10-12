@@ -446,7 +446,7 @@ def main(
 
     # Training config
     config = {
-        "meta_config": {"verbose": True, "seed": 0},
+        "meta_config": {"verbose": False, "seed": 0},
         "model_config": {"model_path": None, "device": 0, "dataparallel": True},
         "learner_config": {
             "n_epochs": 5,
@@ -503,29 +503,29 @@ def main(
 
     num_feature_keys = len(featurizer.get_keys())
 
-    model = EmmentalModel(name=f"transistor_tasks")
-
-    # List relation names, arities, list of classes
-    tasks = create_task(
-        rel_list,
-        [2] * len(rel_list),
-        num_feature_keys,
-        [2] * len(rel_list),
-        emb_layer,
-        mode="mtl",
-        model="LogisticRegression",
-    )
-
-    for task in tasks:
-        model.add_task(task)
-
-    emmental_learner = EmmentalLearner()
-
-    # If given a list of multi, will train on multiple
-    emmental_learner.learn(model, train_dataloader)
-
-    # List of dataloader for each rlation
+    # STL
     for idx, relation in enumerate(rel_list):
+        model = EmmentalModel(name=f"{relation}_tasks")
+
+        # List relation names, arities, list of classes
+        tasks = create_task(
+            relation,
+            2,
+            num_feature_keys,
+            2,
+            emb_layer,
+            mode="mtl",
+            model="LogisticRegression",
+        )
+
+        for task in tasks:
+            model.add_task(task)
+
+        emmental_learner = EmmentalLearner()
+
+        # If given a list of multi, will train on multiple
+        emmental_learner.learn(model, [train_dataloader[idx]])
+
         test_dataloader = EmmentalDataLoader(
             task_to_label_dict={relation: "labels"},
             dataset=FonduerDataset(
