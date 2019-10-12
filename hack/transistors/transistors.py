@@ -362,13 +362,32 @@ def main(
         end = timer()
         logger.warning(f"Featurization Time (min): {((end - start) / 60.0):.1f}")
 
-        pickle.dump(F_train, open(os.path.join(dirname, "F_train.pkl"), "wb"))
-        pickle.dump(F_dev, open(os.path.join(dirname, "F_dev.pkl"), "wb"))
-        pickle.dump(F_test, open(os.path.join(dirname, "F_test.pkl"), "wb"))
+        F_train_dict = {}
+        F_dev_dict = {}
+        F_test_dict = {}
+        for idx, relation in enumerate(rel_list):
+            F_train_dict[relation] = F_train[idx]
+            F_dev_dict[relation] = F_dev[idx]
+            F_test_dict[relation] = F_test[idx]
+
+        pickle.dump(F_train_dict, open(os.path.join(dirname, "F_train_dict.pkl"), "wb"))
+        pickle.dump(F_dev_dict, open(os.path.join(dirname, "F_dev_dict.pkl"), "wb"))
+        pickle.dump(F_test_dict, open(os.path.join(dirname, "F_test_dict.pkl"), "wb"))
     else:
-        F_train = pickle.load(open(os.path.join(dirname, "F_train.pkl"), "rb"))
-        F_dev = pickle.load(open(os.path.join(dirname, "F_dev.pkl"), "rb"))
-        F_test = pickle.load(open(os.path.join(dirname, "F_test.pkl"), "rb"))
+        F_train_dict = pickle.load(
+            open(os.path.join(dirname, "F_train_dict.pkl"), "rb")
+        )
+        F_dev_dict = pickle.load(open(os.path.join(dirname, "F_dev_dict.pkl"), "rb"))
+        F_test_dict = pickle.load(open(os.path.join(dirname, "F_test_dict.pkl"), "rb"))
+
+        F_train = []
+        F_dev = []
+        F_test = []
+        for relation in rel_list:
+            F_train.append(F_train_dict[relation])
+            F_dev.append(F_dev_dict[relation])
+            F_test.append(F_test_dict[relation])
+
     logger.info("Done.")
 
     for i, cand in enumerate(cands):
@@ -433,12 +452,21 @@ def main(
     start = timer()
 
     if first_time:
-        marginals = []
+        marginals_dict = {}
         for idx, relation in enumerate(rel_list):
-            marginals.append(generative_model(L_train[idx]))
-        pickle.dump(marginals, open(os.path.join(dirname, "marginals.pkl"), "wb"))
+            marginals_dict[relation] = generative_model(L_train[idx])
+
+        pickle.dump(
+            marginals_dict, open(os.path.join(dirname, "marginals_dict.pkl"), "wb")
+        )
     else:
-        marginals = pickle.load(open(os.path.join(dirname, "marginals.pkl"), "rb"))
+        marginals_dict = pickle.load(
+            open(os.path.join(dirname, "marginals_dict.pkl"), "rb")
+        )
+
+    marginals = []
+    for relation in rel_list:
+        marginals.append(marginals_dict[relation])
 
     word_counter = collect_word_counter(train_cands)
 
