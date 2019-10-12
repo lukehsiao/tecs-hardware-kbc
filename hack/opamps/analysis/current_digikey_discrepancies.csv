@@ -4,24 +4,24 @@ FN,TLV274-Q1,550 uA,Entity vals: [Quantity('750 uA')],Missing value.,,Bot
 FN,TLV2474,550 uA,Entity vals: [Quantity('600 uA')],Missing value.,,Bot
 FN,TLE2141-Q1,3.4 mA,Entity vals: [Quantity('3.5 mA')],Missing value.,,Bot
 FP,TLE2141-Q1,3.5 mA,Gold vals: [Quantity('3.4 mA')],Invalid value.,,Bot
-FN,TL051,8.2 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
-FN,TL051,4.4 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
-FN,TL051,8.5 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
 FN,TL051,2.4 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
-FN,TL051,8.1 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
-FN,TL051,8.4 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
-FN,TL051,2.5 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
-FN,TL051,7.9 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
-FN,TL051,4.7 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
-FN,TL051,4.5 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
-FN,TL051,2.7 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
-FN,TL051,4.6 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
-FN,TL051,7.6 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
 FN,TL051,2.6 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
 FN,TL051,2.8 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
+FN,TL051,4.6 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
+FN,TL051,7.6 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
+FN,TL051,4.4 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
+FN,TL051,4.5 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
+FN,TL051,2.5 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
+FN,TL051,2.7 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
+FN,TL051,4.7 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
+FN,TL051,8.4 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
+FN,TL051,8.2 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
+FN,TL051,8.1 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
+FN,TL051,7.9 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
+FN,TL051,8.5 mA,Entity vals: [Quantity('4.8 mA')],Missing value.,,Bot
 FN,THS4081,2.9 mA,Entity vals: [Quantity('3.4 mA')],Missing value.,,Bot
 FP,THS4081,3.4 mA,Gold vals: [Quantity('2.9 mA')],Invalid value.,,Bot
-FN,THS3001,5.5 mA,"Entity vals: [Quantity('6.9 mA'), Quantity('6.6 mA')]",Missing value.,,Bot
+FN,THS3001,5.5 mA,"Entity vals: [Quantity('6.6 mA'), Quantity('6.9 mA')]",Missing value.,,Bot
 FN,OPA625,270 uA,Entity vals: [Quantity('2 mA')],Missing value.,,Bot
 FN,OPA625,250 uA,Entity vals: [Quantity('2 mA')],Missing value.,,Bot
 FN,OPA552,14 mA,Entity vals: [Quantity('7 mA')],Missing value.,,Bot
@@ -31,25 +31,25 @@ FN,OPA363,650 uA,Entity vals: [Quantity('1.1 mA')],Missing value.,,Bot
 FN,NCS20071-D,405 uA,Entity vals: [Quantity('465 uA')],Missing value.,,Bot
 FN,NCS20071-D,410 uA,Entity vals: [Quantity('465 uA')],Missing value.,,Bot
 FN,NCS20071-D,416 uA,Entity vals: [Quantity('465 uA')],Missing value.,,Bot
-FN,LMV841,930 uA,Entity vals: [Quantity('1.03 mA')],Missing value.,,Bot
 FN,LMV841,1 mA,Entity vals: [Quantity('1.03 mA')],Missing value.,,Bot
 FN,LMV841,960 uA,Entity vals: [Quantity('1.03 mA')],Missing value.,,Bot
+FN,LMV841,930 uA,Entity vals: [Quantity('1.03 mA')],Missing value.,,Bot
 FN,LMV641,138 uA,Entity vals: [Quantity('158 uA')],Missing value.,,Bot
 FN,LMC7111,20 uA,Entity vals: [Quantity('25 uA')],Missing value.,,Bot
-FN,LMC6462_LMC6464,80 uA,"Entity vals: [Quantity('50 uA'), Quantity('90 uA')]",Missing value.,,Bot
 FN,LMC6462_LMC6464,40 uA,"Entity vals: [Quantity('50 uA'), Quantity('90 uA')]",Missing value.,,Bot
+FN,LMC6462_LMC6464,80 uA,"Entity vals: [Quantity('50 uA'), Quantity('90 uA')]",Missing value.,,Bot
 FN,LMC6041,14 uA,Entity vals: [Quantity('18 uA')],Missing value.,,Bot
 FN,LM7372,12.4 mA,Entity vals: [Quantity('13 mA')],Missing value.,,Bot
 FN,LM6211,960 uA,Entity vals: [Quantity('1.05 mA')],Missing value.,,Bot
 FN,LM324-N,700 uA,"Entity vals: [Quantity('1.5 mA'), Quantity('1.4 mA')]",Missing value.,,Bot
-FP,LM324-N,1.4 mA,"Gold vals: [Quantity('700 uA'), Quantity('1.5 mA')]",Invalid value.,,Bot
+FP,LM324-N,1.4 mA,"Gold vals: [Quantity('1.5 mA'), Quantity('700 uA')]",Invalid value.,,Bot
 FN,LM324-D,700 uA,Entity vals: [Quantity('1.4 mA')],Missing value.,,Bot
 FN,LM2902-Q1,700 uA,Entity vals: [Quantity('1.4 mA')],Missing value.,,Bot
 FN,LF156,2 mA,Entity vals: [Quantity('5 mA')],Missing value.,,Bot
 FN,EN.DM00109906,300 uA,Entity vals: [Quantity('200 uA')],Missing value.,,Bot
-FN,EN.CD00000533,800 uA,Entity vals: [Quantity('1.5 mA')],Missing value.,,Bot
 FN,EN.CD00000533,700 uA,Entity vals: [Quantity('1.5 mA')],Missing value.,,Bot
+FN,EN.CD00000533,800 uA,Entity vals: [Quantity('1.5 mA')],Missing value.,,Bot
 FN,AMC1200-Q1,3.8 mA,Entity vals: [Quantity('5.4 mA')],Missing value.,,Bot
 FN,AMC1200-Q1,4.4 mA,Entity vals: [Quantity('5.4 mA')],Missing value.,,Bot
-FN,AMC1200,3.8 mA,Entity vals: [Quantity('5.4 mA')],Missing value.,,Bot
 FN,AMC1200,4.4 mA,Entity vals: [Quantity('5.4 mA')],Missing value.,,Bot
+FN,AMC1200,3.8 mA,Entity vals: [Quantity('5.4 mA')],Missing value.,,Bot

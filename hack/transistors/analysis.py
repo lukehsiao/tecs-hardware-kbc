@@ -259,8 +259,12 @@ def main(
         description=f"Scoring on cands > {best_b:.3f} against our gold labels.",
     )
 
+    probs = get_entity_set(dev_file, parts_by_doc, b=0).union(
+        get_entity_set(test_file, parts_by_doc, b=0)
+    )
     compare_entities(
         set(best_score.FP),
+        probs=probs,
         attribute=relation,
         type="FP",
         outfile=discrepancy_file,
@@ -268,6 +272,7 @@ def main(
     )
     compare_entities(
         set(best_score.FN),
+        probs=probs,
         attribute=relation,
         type="FN",
         outfile=discrepancy_file,

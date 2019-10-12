@@ -2,27 +2,27 @@ Type:,Filename:,Our Vals:,Notes:,Discrepancy Type:,Discrepancy Notes:,Annotator:
 FP,TLE2141-Q1,3.5 mA,Gold vals: [Quantity('3.4 mA')],Invalid value.,,Bot
 FN,TLE2141-Q1,3.4 mA,Entity vals: [Quantity('3.5 mA')],Missing value.,,Bot
 FP,THS4081,3.4 mA,Gold vals: [Quantity('2.9 mA')],Invalid value.,,Bot
-FP,THS4081,3.7 mA,Gold vals: [Quantity('2.9 mA')],Invalid value.,,Bot
-FP,THS4081,5 mA,Gold vals: [Quantity('2.9 mA')],Invalid value.,,Bot
 FP,THS4081,4.5 mA,Gold vals: [Quantity('2.9 mA')],Invalid value.,,Bot
-FP,THS3001,3.3 mA,"Gold vals: [Quantity('5.5 mA'), Quantity('6.9 mA'), Quantity('6.6 mA')]",Invalid value.,,Bot
+FP,THS4081,5 mA,Gold vals: [Quantity('2.9 mA')],Invalid value.,,Bot
+FP,THS4081,3.7 mA,Gold vals: [Quantity('2.9 mA')],Invalid value.,,Bot
+FP,THS3001,3.3 mA,"Gold vals: [Quantity('6.6 mA'), Quantity('6.9 mA'), Quantity('5.5 mA')]",Invalid value.,,Bot
 FN,OPA625,250 uA,Entity vals: [Quantity('2 mA')],Missing value.,,Bot
 FN,OPA625,270 uA,Entity vals: [Quantity('2 mA')],Missing value.,,Bot
-FN,OPA552,14 mA,Entities do not have doc OPA552.,Missing doc.,,Bot
 FN,OPA552,7 mA,Entities do not have doc OPA552.,Missing doc.,,Bot
+FN,OPA552,14 mA,Entities do not have doc OPA552.,Missing doc.,,Bot
 FN,OPA548,17 mA,Entities do not have doc OPA548.,Missing doc.,,Bot
 FN,OPA548,34 mA,Entities do not have doc OPA548.,Missing doc.,,Bot
 FN,OPA129,1.2 mA,Entities do not have doc OPA129.,Missing doc.,,Bot
+FN,LMV841,1 mA,"Probs vals: [Quantity('4.5 mA'), Quantity('150 mA'), Quantity('15 mA'), Quantity('6 mA'), Quantity('930 uA'), Quantity('260 mA'), Quantity('2 mA'), Quantity('1.03 mA'), Quantity('300 mA'), Quantity('27 mA'), Quantity('7 mA'), Quantity('33 mA'), Quantity('3 mA'), Quantity('29 mA'), Quantity('1.5 mA'), Quantity('75 mA'), Quantity('32 mA'), Quantity('28 mA'), Quantity('2.5 mA'), Quantity('235 mA'), Quantity('67 mA'), Quantity('300 uA'), Quantity('960 uA'), Quantity('37 mA'), Quantity('10 mA'), Quantity('80 mA'), Quantity('1.7 mA'), Quantity('70 mA'), Quantity('13.2 mA'), Quantity('20 mA')]",Probs missing value.,,Bot
 FN,LMV841,930 uA,Entity vals: [Quantity('960 uA')],Missing value.,,Bot
-FN,LMV841,1 mA,Entity vals: [Quantity('960 uA')],Missing value.,,Bot
 FN,LMV841,1.03 mA,Entity vals: [Quantity('960 uA')],Missing value.,,Bot
 FN,LMC7111,20 uA,Entities do not have doc LMC7111.,Missing doc.,,Bot
 FN,LMC7111,25 uA,Entities do not have doc LMC7111.,Missing doc.,,Bot
-FP,LMC6035,1.6 mA,"Gold vals: [Quantity('650 uA'), Quantity('1.3 mA')]",Invalid value.,,Bot
-FP,LMC6035,2.7 mA,"Gold vals: [Quantity('650 uA'), Quantity('1.3 mA')]",Invalid value.,,Bot
+FP,LMC6035,1.6 mA,"Gold vals: [Quantity('1.3 mA'), Quantity('650 uA')]",Invalid value.,,Bot
+FP,LMC6035,2.7 mA,"Gold vals: [Quantity('1.3 mA'), Quantity('650 uA')]",Invalid value.,,Bot
 FP,LM7372,12 mA,"Gold vals: [Quantity('12.4 mA'), Quantity('13 mA')]",Invalid value.,,Bot
-FN,LM324-D,1.4 mA,Entities do not have doc LM324-D.,Missing doc.,,Bot
 FN,LM324-D,700 uA,Entities do not have doc LM324-D.,Missing doc.,,Bot
+FN,LM324-D,1.4 mA,Entities do not have doc LM324-D.,Missing doc.,,Bot
 FN,LM2900,6.2 mA,Entities do not have doc LM2900.,Missing doc.,,Bot
 FN,LF412-N,3.6 mA,Entities do not have doc LF412-N.,Missing doc.,,Bot
 FN,INA240,1.8 mA,Entities do not have doc INA240.,Missing doc.,,Bot
