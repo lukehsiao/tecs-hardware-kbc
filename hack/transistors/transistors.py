@@ -432,6 +432,14 @@ def main(
 
     start = timer()
 
+    if first_time:
+        marginals = []
+        for idx, relation in enumerate(rel_list):
+            marginals.append(generative_model(L_train[idx]))
+        pickle.dump(marginals, open(os.path.join(dirname, "marginals.pkl"), "wb"))
+    else:
+        marginals = pickle.load(open(os.path.join(dirname, "marginals.pkl"), "rb"))
+
     word_counter = collect_word_counter(train_cands)
 
     emmental.init(Meta.log_path)
@@ -470,12 +478,9 @@ def main(
     emb_layer = EmbeddingModule(
         word_counter=word_counter, word_dim=300, specials=specials
     )
-
-    marginals = []
     train_idxs = []
     train_dataloader = []
     for idx, relation in enumerate(rel_list):
-        marginals.append(generative_model(L_train[idx]))
         diffs = marginals[idx].max(axis=1) - marginals[idx].min(axis=1)
         train_idxs.append(np.where(diffs > 1e-6)[0])
 
