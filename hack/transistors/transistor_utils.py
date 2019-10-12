@@ -193,6 +193,7 @@ def upper(entities):
 
 def compare_entities(
     entities,
+    probs=None,
     attribute=None,
     entity_dic=None,
     gold_dic=None,
@@ -218,6 +219,9 @@ def compare_entities(
         # as referencing the gold_dic.
         entity_dic = gold_set_to_dic(entities)
 
+    if probs is not None:
+        probs_dic = gold_set_to_dic(probs)
+
     # Write discrepancies to a CSV file
     # for manual debugging
     outfile = os.path.join(os.path.dirname(__name__), outfile)
@@ -240,14 +244,43 @@ def compare_entities(
             for (doc, part, val) in entities:
                 if doc.upper() in entity_dic:
                     if part.upper() in entity_dic[doc.upper()]:
+                        if probs is None or val in probs_dic[doc.upper()][part.upper()]:
+                            writer.writerow(
+                                (
+                                    type,
+                                    doc,
+                                    part,
+                                    val,
+                                    "Entity vals: "
+                                    + f"{entity_dic[doc.upper()][part.upper()]}",
+                                    "Missing value.",
+                                    "",
+                                    "Bot",
+                                )
+                            )
+                        else:
+                            writer.writerow(
+                                (
+                                    type,
+                                    doc,
+                                    part,
+                                    val,
+                                    "Probs vals: "
+                                    + f"{probs_dic[doc.upper()][part.upper()]}",
+                                    "Probs missing value.",
+                                    "",
+                                    "Bot",
+                                )
+                            )
+                    elif probs is None or part.upper() in probs_dic[doc.upper()]:
                         writer.writerow(
                             (
                                 type,
                                 doc,
                                 part,
                                 val,
-                                f"Entity vals: {entity_dic[doc.upper()][part.upper()]}",
-                                "Missing value.",
+                                f"Entity parts: {entity_dic[doc.upper()]}",
+                                "Missing part.",
                                 "",
                                 "Bot",
                             )
@@ -259,13 +292,13 @@ def compare_entities(
                                 doc,
                                 part,
                                 val,
-                                f"Entity parts: {entity_dic[doc]}",
-                                "Missing part.",
+                                f"Probs parts: {probs_dic[doc.upper()]}",
+                                "Probs missing part.",
                                 "",
                                 "Bot",
                             )
                         )
-                else:
+                elif probs is None or doc.upper() in probs_dic:
                     writer.writerow(
                         (
                             type,
@@ -274,6 +307,19 @@ def compare_entities(
                             val,
                             f"Entities do not have doc {doc}.",
                             "Missing doc.",
+                            "",
+                            "Bot",
+                        )
+                    )
+                else:
+                    writer.writerow(
+                        (
+                            type,
+                            doc,
+                            part,
+                            val,
+                            f"Probs do not have doc {doc}.",
+                            "Probs missing doc.",
                             "",
                             "Bot",
                         )

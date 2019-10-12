@@ -258,6 +258,7 @@ def entity_to_candidates(entity, candidate_subset, is_gain=True):
 def compare_entities(
     entities,
     type,
+    probs=None,
     is_gain=None,
     entity_dic=None,
     gold_dic=None,
@@ -287,6 +288,9 @@ def compare_entities(
         # We already know what we have (as that was the FN that Digikey missed)
         # so all we care about is what Digikey actually does have for a doc.
 
+    if probs is not None:
+        probs_dic = gold_set_to_dic(probs)
+
     # Write discrepancies to a CSV file
     # for manual debugging
     outfile = os.path.join(os.path.dirname(__name__), outfile)
@@ -307,13 +311,38 @@ def compare_entities(
         if type == "FN":  # We only care about the entities data for `Notes:`
             for (doc, val) in entities:
                 if doc.upper() in entity_dic:
+                    if probs is None or val in probs_dic[doc.upper()]:
+                        writer.writerow(
+                            (
+                                type,
+                                doc,
+                                val,
+                                f"Entity vals: {entity_dic[doc.upper()]}",
+                                "Missing value.",
+                                "",
+                                "Bot",
+                            )
+                        )
+                    else:
+                        writer.writerow(
+                            (
+                                type,
+                                doc,
+                                val,
+                                f"Probs vals: {probs_dic[doc.upper()]}",
+                                "Probs missing value.",
+                                "",
+                                "Bot",
+                            )
+                        )
+                elif probs is None or doc.upper() in probs_dic:
                     writer.writerow(
                         (
                             type,
                             doc,
                             val,
-                            f"Entity vals: {entity_dic[doc.upper()]}",
-                            "Missing value.",
+                            f"Entities do not have doc {doc}.",
+                            "Missing doc.",
                             "",
                             "Bot",
                         )
@@ -324,8 +353,8 @@ def compare_entities(
                             type,
                             doc,
                             val,
-                            f"Entities do not have doc {doc}.",
-                            "Missing doc.",
+                            f"Probs do not have doc {doc}.",
+                            "Probs missing doc.",
                             "",
                             "Bot",
                         )
