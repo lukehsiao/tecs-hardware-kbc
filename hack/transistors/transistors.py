@@ -446,7 +446,7 @@ def main(
 
     # Training config
     config = {
-        "meta_config": {"verbose": True},
+        "meta_config": {"verbose": True, "seed": 0},
         "model_config": {"model_path": None, "device": 0, "dataparallel": True},
         "learner_config": {
             "n_epochs": 5,
