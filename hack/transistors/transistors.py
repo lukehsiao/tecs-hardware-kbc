@@ -446,11 +446,6 @@ def main(
 
     logger.info("Done.")
 
-    end = timer()
-    logger.warning(f"Supervision Time (min): {((end - start) / 60.0):.1f}")
-
-    start = timer()
-
     if first_time:
         marginals_dict = {}
         for idx, relation in enumerate(rel_list):
@@ -467,6 +462,11 @@ def main(
     marginals = []
     for relation in rel_list:
         marginals.append(marginals_dict[relation])
+
+    end = timer()
+    logger.warning(f"Supervision Time (min): {((end - start) / 60.0):.1f}")
+
+    start = timer()
 
     word_counter = collect_word_counter(train_cands)
 
