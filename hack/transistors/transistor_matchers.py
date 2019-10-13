@@ -115,7 +115,7 @@ def _attr_in_table(attr):
 def _get_ce_v_max_matcher():
     """Return a collector-emmiter voltage max matcher."""
     ce_keywords = set(["collector emitter", "collector-emitter", "collector - emitter"])
-    ce_abbrevs = set(["ceo", "vceo", "bvceo"])
+    ce_abbrevs = set(["ceo", "vceo"])
 
     def ce_v_max_conditions(attr):
         ngrams = set(get_row_ngrams(attr, n_max=1))
