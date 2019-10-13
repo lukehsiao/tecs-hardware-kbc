@@ -4,19 +4,23 @@ import os
 import pickle
 from timeit import default_timer as timer
 
-import matplotlib.pyplot as plt
+import emmental
 import numpy as np
+from emmental.data import EmmentalDataLoader
+from emmental.learner import EmmentalLearner
+from emmental.model import EmmentalModel
+from emmental.modules.embedding_module import EmbeddingModule
 from fonduer import Meta, init_logging
 from fonduer.candidates import CandidateExtractor, MentionExtractor, MentionNgrams
 from fonduer.candidates.models import Mention, candidate_subclass, mention_subclass
 from fonduer.features import Featurizer
-from fonduer.learning import SparseLogisticRegression
+from fonduer.learning.dataset import FonduerDataset
+from fonduer.learning.task import create_task
+from fonduer.learning.utils import collect_word_counter
 from fonduer.parser.models import Document, Figure, Paragraph, Section, Sentence
-from fonduer.supervision import Labeler
-from metal.label_model import LabelModel
 from tqdm import tqdm
 
-from hack.opamps.opamp_lfs import FALSE, TRUE, current_lfs, gain_lfs
+from hack.opamps.opamp_lfs import TRUE  # , current_lfs, gain_lfs
 from hack.opamps.opamp_matchers import get_gain_matcher, get_supply_current_matcher
 from hack.opamps.opamp_spaces import MentionNgramsCurrent
 from hack.opamps.opamp_utils import (
@@ -25,7 +29,6 @@ from hack.opamps.opamp_utils import (
     candidates_to_entities,
     entity_level_scores,
     get_gold_set,
-    print_scores,
 )
 from hack.utils import parse_dataset
 
@@ -41,68 +44,19 @@ def dump_candidates(cands, Y_prob, outfile, is_gain=True):
         for i, c in enumerate(tqdm(cands)):
             for (doc, val) in cand_to_entity(c, is_gain=is_gain):
                 if is_gain:
-                    writer.writerow([doc, val.real / 1e3, Y_prob[i][TRUE - 1]])
+                    writer.writerow([doc, val.real / 1e3, Y_prob[i]])
                 else:
-                    writer.writerow([doc, val.real * 1e6, Y_prob[i][TRUE - 1]])
+                    writer.writerow([doc, val.real * 1e6, Y_prob[i]])
 
 
 def generative_model(L_train, n_epochs=500, print_every=100):
-    model = LabelModel(k=2)
-
-    logger.info(f"Training generative model for...")
-    model.train_model(L_train, n_epochs=n_epochs, print_every=print_every)
-    logger.info("Done.")
-
-    marginals = model.predict_proba(L_train)
-    plt.hist(marginals[:, TRUE - 1], bins=20)
-    plt.savefig(os.path.join(os.path.dirname(__file__), f"opamps_marginals.pdf"))
-    return marginals
+    return NotImplementedError
 
 
 def discriminative_model(
-    train_cands,
-    F_train,
-    marginals,
-    X_dev=None,
-    Y_dev=None,
-    n_epochs=50,
-    lr=0.001,
-    gpu=None,
+    train_cands, F_train, marginals, X_dev=None, Y_dev=None, n_epochs=50, lr=0.001
 ):
-    disc_model = SparseLogisticRegression()
-
-    logger.info("Training discriminative model...")
-    marginals = []
-    for y in Y_dev:
-        if y == 1:
-            marginals.append([1.0, 0.0])
-        else:
-            marginals.append([0.0, 1.0])
-    marginals = np.array(marginals)
-    if gpu:
-        disc_model.train(
-            X_dev,
-            marginals,
-            X_dev=X_dev,
-            Y_dev=Y_dev,
-            n_epochs=n_epochs,
-            lr=lr,
-            host_device="GPU",
-        )
-    else:
-        disc_model.train(
-            X_dev,
-            marginals,
-            X_dev=X_dev,
-            Y_dev=Y_dev,
-            n_epochs=n_epochs,
-            lr=lr,
-            host_device="CPU",
-        )
-
-    logger.info("Done.")
-
-    return disc_model
+    raise NotImplementedError
 
 
 def output_csv(cands, Y_prob, is_gain=True, append=False):
@@ -124,7 +78,7 @@ def output_csv(cands, Y_prob, is_gain=True, append=False):
                                 entity[0],
                                 entity[1].real / 1e3,
                                 c[0].context.sentence.position,
-                                Y_prob[i][TRUE - 1],
+                                Y_prob[i],
                             ]
                         )
                     else:
@@ -133,7 +87,7 @@ def output_csv(cands, Y_prob, is_gain=True, append=False):
                                 entity[0],
                                 entity[1].real * 1e6,
                                 c[0].context.sentence.position,
-                                Y_prob[i][TRUE - 1],
+                                Y_prob[i],
                             ]
                         )
     else:
@@ -152,7 +106,7 @@ def output_csv(cands, Y_prob, is_gain=True, append=False):
                                 entity[0],
                                 entity[1].real / 1e3,
                                 c[0].context.sentence.position,
-                                Y_prob[i][TRUE - 1],
+                                Y_prob[i],
                             ]
                         )
                     else:
@@ -161,45 +115,56 @@ def output_csv(cands, Y_prob, is_gain=True, append=False):
                                 entity[0],
                                 entity[1].real * 1e6,
                                 c[0].context.sentence.position,
-                                Y_prob[i][TRUE - 1],
+                                Y_prob[i],
                             ]
                         )
 
 
-def scoring(disc_model, cands, docs, F_mat, is_gain=True, num=100):
+def scoring(test_preds, test_cands, test_docs, is_gain=True, num=100):
     logger.info("Calculating the best F1 score and threshold (b)...")
 
-    # Iterate over a range of `b` values in order to find the b with the
-    # highest F1 score. We are using cardinality==2. See fonduer/classifier.py.
-    Y_prob = disc_model.marginals((cands, F_mat))
-    logger.info("Grab Y_prob.")
-
+    if is_gain:
+        relation = "gain"
+    else:
+        relation = "current"
     # Get prediction for a particular b, store the full tuple to output
     # (b, pref, rec, f1, TP, FP, FN)
     best_result = Score(0, 0, 0, [], [], [])
     best_b = 0
     for b in np.linspace(0, 1, num=num):
         try:
-            test_score = np.array(
-                [TRUE if p[TRUE - 1] > b else 3 - TRUE for p in Y_prob]
+            positive = np.where(
+                np.array(test_preds["probs"][relation])[:, TRUE - 1] > b
             )
-            true_pred = [cands[_] for _ in np.nditer(np.where(test_score == TRUE))]
+            true_pred = [test_cands[_] for _ in positive[0]]
+            result = entity_level_scores(
+                candidates_to_entities(true_pred, is_gain=is_gain),
+                corpus=test_docs,
+                is_gain=is_gain,
+            )
+            logger.info(
+                f"b:{b:.3f} f1:{result.f1:.3f} p:{result.prec:.3f} r:{result.rec:.3f}"
+            )
+            if result.f1 > best_result.f1:
+                best_result = result
+                best_b = b
         except Exception as e:
-            logger.debug(f"{e}, skipping.")
+            logger.error(f"{e}, skipping.")
             break
-        result = entity_level_scores(
-            candidates_to_entities(true_pred, is_gain=is_gain),
-            corpus=docs,
-            is_gain=is_gain,
-        )
-        logger.info(
-            f"({b:.3f}), f1:{result.f1:.3f} p:{result.prec:.3f} r:{result.rec:.3f}"
-        )
 
-        if result.f1 > best_result.f1:
-            best_result = result
-            best_b = b
-
+    logger.warning("===================================================")
+    logger.warning(f"Entity-Level Gold Data score for {relation}, b={best_b:.3f}")
+    logger.warning("===================================================")
+    logger.warning(f"Corpus Precision {best_result.prec:.3f}")
+    logger.warning(f"Corpus Recall    {best_result.rec:.3f}")
+    logger.warning(f"Corpus F1        {best_result.f1:.3f}")
+    logger.warning("---------------------------------------------------")
+    logger.warning(
+        f"TP: {len(best_result.TP)} "
+        f"| FP: {len(best_result.FP)} "
+        f"| FN: {len(best_result.FN)}"
+    )
+    logger.warning("===================================================\n")
     return best_result, best_b
 
 
@@ -211,15 +176,11 @@ def main(
     parse=False,
     first_time=False,
     re_label=False,
-    gpu=None,
     parallel=8,
     log_dir="logs",
     verbose=False,
 ):
     # Setup initial configuration
-    if gpu:
-        os.environ["CUDA_VISIBLE_DEVICES"] = gpu
-
     if not log_dir:
         log_dir = "logs"
 
@@ -358,128 +319,272 @@ def main(
         end = timer()
         logger.warning(f"Featurization Time (min): {((end - start) / 60.0):.1f}")
 
-        pickle.dump(F_train, open(os.path.join(dirname, "F_train.pkl"), "wb"))
-        pickle.dump(F_dev, open(os.path.join(dirname, "F_dev.pkl"), "wb"))
-        pickle.dump(F_test, open(os.path.join(dirname, "F_test.pkl"), "wb"))
+        F_train_dict = {}
+        F_dev_dict = {}
+        F_test_dict = {}
+        for idx, relation in enumerate(rel_list):
+            F_train_dict[relation] = F_train[idx]
+            F_dev_dict[relation] = F_dev[idx]
+            F_test_dict[relation] = F_test[idx]
+
+        pickle.dump(F_train_dict, open(os.path.join(dirname, "F_train_dict.pkl"), "wb"))
+        pickle.dump(F_dev_dict, open(os.path.join(dirname, "F_dev_dict.pkl"), "wb"))
+        pickle.dump(F_test_dict, open(os.path.join(dirname, "F_test_dict.pkl"), "wb"))
     else:
-        F_train = pickle.load(open(os.path.join(dirname, "F_train.pkl"), "rb"))
-        F_dev = pickle.load(open(os.path.join(dirname, "F_dev.pkl"), "rb"))
-        F_test = pickle.load(open(os.path.join(dirname, "F_test.pkl"), "rb"))
+        F_train_dict = pickle.load(
+            open(os.path.join(dirname, "F_train_dict.pkl"), "rb")
+        )
+        F_dev_dict = pickle.load(open(os.path.join(dirname, "F_dev_dict.pkl"), "rb"))
+        F_test_dict = pickle.load(open(os.path.join(dirname, "F_test_dict.pkl"), "rb"))
+
+        F_train = []
+        F_dev = []
+        F_test = []
+        for relation in rel_list:
+            F_train.append(F_train_dict[relation])
+            F_dev.append(F_dev_dict[relation])
+            F_test.append(F_test_dict[relation])
+
     logger.info("Done.")
 
     start = timer()
     logger.info("Labeling training data...")
-    labeler = Labeler(session, cand_classes)
-    lfs = []
-    if gain:
-        lfs.append(gain_lfs)
+    #  labeler = Labeler(session, cand_classes)
+    #  lfs = []
+    #  if gain:
+    #      lfs.append(gain_lfs)
+    #
+    #  if current:
+    #      lfs.append(current_lfs)
+    #
+    #  if first_time:
+    #      logger.info("Applying LFs...")
+    #      labeler.apply(split=0, lfs=lfs, train=True, parallelism=parallel)
+    #  elif re_label:
+    #      logger.info("Re-applying LFs...")
+    #      labeler.update(split=0, lfs=lfs, parallelism=parallel)
+    #
+    #  logger.info("Done...")
 
-    if current:
-        lfs.append(current_lfs)
+    #  logger.info("Getting label matrices...")
+    #  L_train = labeler.get_label_matrices(train_cands)
+    #  logger.info("Done...")
 
     if first_time:
-        logger.info("Applying LFs...")
-        labeler.apply(split=0, lfs=lfs, train=True, parallelism=parallel)
-    elif re_label:
-        logger.info("Re-applying LFs...")
-        labeler.update(split=0, lfs=lfs, parallelism=parallel)
+        marginals_dict = {}
+        for idx, relation in enumerate(rel_list):
+            # Manually create marginals from human annotations
+            marginal = []
+            dev_gold_entities = get_gold_set(is_gain=(relation == "gain"))
+            for c in dev_cands[idx]:
+                flag = False
+                for entity in cand_to_entity(c, is_gain=(relation == "gain")):
+                    if entity in dev_gold_entities:
+                        flag = True
 
-    logger.info("Done...")
+                if flag:
+                    marginal.append([1.0, 0.0])
+                else:
+                    marginal.append([0.0, 1.0])
 
-    logger.info("Getting label matrices...")
-    L_train = labeler.get_label_matrices(train_cands)
-    logger.info("Done...")
+            marginals_dict[relation] = np.array(marginal)
+
+        pickle.dump(
+            marginals_dict, open(os.path.join(dirname, "marginals_dict.pkl"), "wb")
+        )
+    else:
+        marginals_dict = pickle.load(
+            open(os.path.join(dirname, "marginals_dict.pkl"), "rb")
+        )
+
+    marginals = []
+    for relation in rel_list:
+        marginals.append(marginals_dict[relation])
 
     end = timer()
     logger.warning(f"Weak Supervision Time (min): {((end - start) / 60.0):.1f}")
 
-    if gain:
-        relation = "gain"
-        idx = rel_list.index(relation)
+    start = timer()
 
-        logger.info("Score Gain.")
-        dev_gold_entities = get_gold_set(is_gain=True)
-        L_dev_gt = []
-        for c in dev_cands[idx]:
-            flag = FALSE
-            for entity in cand_to_entity(c, is_gain=True):
-                if entity in dev_gold_entities:
-                    flag = TRUE
-            L_dev_gt.append(flag)
+    word_counter = collect_word_counter(train_cands)
 
-        marginals = generative_model(L_train[idx])
-        disc_models = discriminative_model(
-            train_cands[idx],
-            F_train[idx],
-            marginals,
-            X_dev=(dev_cands[idx], F_dev[idx]),
-            Y_dev=L_dev_gt,
-            n_epochs=500,
-            gpu=gpu,
+    emmental.init(Meta.log_path)
+
+    # Training config
+    config = {
+        "meta_config": {"verbose": True, "seed": 0},
+        "model_config": {"model_path": None, "device": 0, "dataparallel": True},
+        "learner_config": {
+            "n_epochs": 5,
+            "optimizer_config": {"lr": 0.001, "l2": 0.0},
+            "task_scheduler": "round_robin",
+        },
+        "logging_config": {
+            "evaluation_freq": 1,
+            "counter_unit": "epoch",
+            "checkpointing": False,
+            "checkpointer_config": {
+                "checkpoint_metric": {f"opamps/opamps/train/loss": "min"},
+                "checkpoint_freq": 1,
+                "checkpoint_runway": 2,
+                "clear_intermediate_checkpoints": True,
+                "clear_all_checkpoints": True,
+            },
+        },
+    }
+    emmental.Meta.update_config(config=config)
+
+    # Generate word embedding module
+    arity = 2
+    # Geneate special tokens
+    specials = []
+    for i in range(arity):
+        specials += [f"~~[[{i}", f"{i}]]~~"]
+
+    emb_layer = EmbeddingModule(
+        word_counter=word_counter, word_dim=300, specials=specials
+    )
+    train_idxs = []
+    train_dataloader = []
+    for idx, relation in enumerate(rel_list):
+        diffs = marginals[idx].max(axis=1) - marginals[idx].min(axis=1)
+        train_idxs.append(np.where(diffs > 1e-6)[0])
+
+        # only uses dev set as training data, with human annotations
+        train_dataloader.append(
+            EmmentalDataLoader(
+                task_to_label_dict={relation: "labels"},
+                dataset=FonduerDataset(
+                    relation,
+                    dev_cands[idx],
+                    F_dev[idx],
+                    emb_layer.word2id,
+                    marginals[idx],
+                    train_idxs[idx],
+                ),
+                split="train",
+                batch_size=100,
+                shuffle=True,
+            )
         )
+
+    num_feature_keys = len(featurizer.get_keys())
+
+    model = EmmentalModel(name=f"opamp_tasks")
+
+    # List relation names, arities, list of classes
+    tasks = create_task(
+        rel_list,
+        [2] * len(rel_list),
+        num_feature_keys,
+        [2] * len(rel_list),
+        emb_layer,
+        mode="mtl",
+        model="LogisticRegression",
+    )
+
+    for task in tasks:
+        model.add_task(task)
+
+    emmental_learner = EmmentalLearner()
+
+    # If given a list of multi, will train on multiple
+    emmental_learner.learn(model, train_dataloader)
+
+    # List of dataloader for each relation
+    for idx, relation in enumerate(rel_list):
+        test_dataloader = EmmentalDataLoader(
+            task_to_label_dict={relation: "labels"},
+            dataset=FonduerDataset(
+                relation, test_cands[idx], F_test[idx], emb_layer.word2id, 2
+            ),
+            split="test",
+            batch_size=100,
+            shuffle=False,
+        )
+
+        test_preds = model.predict(test_dataloader, return_preds=True)
+
         best_result, best_b = scoring(
-            disc_models, test_cands[idx], test_docs, F_test[idx], num=50
+            test_preds,
+            test_cands[idx],
+            test_docs,
+            is_gain=(relation == "gain"),
+            num=100,
         )
 
-        print_scores(relation, best_result, best_b)
+        # Dump CSV files for analysis
+        if relation == "gain":
+            train_dataloader = EmmentalDataLoader(
+                task_to_label_dict={relation: "labels"},
+                dataset=FonduerDataset(
+                    relation, train_cands[idx], F_train[idx], emb_layer.word2id, 2
+                ),
+                split="train",
+                batch_size=100,
+                shuffle=False,
+            )
 
-        logger.info("Output CSV files for Opo and Digi-key Analysis.")
-        Y_prob = disc_models.marginals((train_cands[idx], F_train[idx]))
-        output_csv(train_cands[idx], Y_prob, is_gain=True)
+            train_preds = model.predict(train_dataloader, return_preds=True)
+            Y_prob = np.array(train_preds["probs"][relation])[:, TRUE - 1]
+            output_csv(train_cands[idx], Y_prob, is_gain=True)
 
-        Y_prob = disc_models.marginals((test_cands[idx], F_test[idx]))
-        output_csv(test_cands[idx], Y_prob, is_gain=True, append=True)
-        dump_candidates(test_cands[idx], Y_prob, "gain_test_probs.csv", is_gain=True)
+            Y_prob = np.array(test_preds["probs"][relation])[:, TRUE - 1]
+            output_csv(test_cands[idx], Y_prob, is_gain=True, append=True)
+            dump_candidates(test_cands[idx], Y_prob, "gain_test_probs.csv")
 
-        Y_prob = disc_models.marginals((dev_cands[idx], F_dev[idx]))
-        output_csv(dev_cands[idx], Y_prob, is_gain=True, append=True)
-        dump_candidates(dev_cands[idx], Y_prob, "gain_dev_probs.csv", is_gain=True)
+            dev_dataloader = EmmentalDataLoader(
+                task_to_label_dict={relation: "labels"},
+                dataset=FonduerDataset(
+                    relation, dev_cands[idx], F_dev[idx], emb_layer.word2id, 2
+                ),
+                split="dev",
+                batch_size=100,
+                shuffle=False,
+            )
 
-    if current:
-        relation = "current"
-        idx = rel_list.index(relation)
+            dev_preds = model.predict(dev_dataloader, return_preds=True)
 
-        logger.info("Score Current.")
-        dev_gold_entities = get_gold_set(is_gain=False)
-        L_dev_gt = []
-        for c in dev_cands[idx]:
-            flag = FALSE
-            for entity in cand_to_entity(c, is_gain=False):
-                if entity in dev_gold_entities:
-                    flag = TRUE
-            L_dev_gt.append(flag)
+            Y_prob = np.array(dev_preds["probs"][relation])[:, TRUE - 1]
+            output_csv(dev_cands[idx], Y_prob, is_gain=True, append=True)
+            dump_candidates(dev_cands[idx], Y_prob, "gain_dev_probs.csv", is_gain=True)
 
-        marginals = generative_model(L_train[idx])
+        if relation == "current":
+            train_dataloader = EmmentalDataLoader(
+                task_to_label_dict={relation: "labels"},
+                dataset=FonduerDataset(
+                    relation, train_cands[idx], F_train[idx], emb_layer.word2id, 2
+                ),
+                split="train",
+                batch_size=100,
+                shuffle=False,
+            )
 
-        disc_models = discriminative_model(
-            train_cands[idx],
-            F_train[idx],
-            marginals,
-            X_dev=(dev_cands[idx], F_dev[idx]),
-            Y_dev=L_dev_gt,
-            n_epochs=100,
-            gpu=gpu,
-        )
-        best_result, best_b = scoring(
-            disc_models, test_cands[idx], test_docs, F_test[idx], is_gain=False, num=50
-        )
+            train_preds = model.predict(train_dataloader, return_preds=True)
+            Y_prob = np.array(train_preds["probs"][relation])[:, TRUE - 1]
+            output_csv(train_cands[idx], Y_prob, is_gain=False)
 
-        print_scores(relation, best_result, best_b)
+            Y_prob = np.array(test_preds["probs"][relation])[:, TRUE - 1]
+            output_csv(test_cands[idx], Y_prob, is_gain=False, append=True)
+            dump_candidates(test_cands[idx], Y_prob, "current_test_probs.csv")
 
-        logger.info("Output CSV files for Opo and Digi-key Analysis.")
-        # Dump CSV files for digi-key analysis and Opo comparison
-        Y_prob = disc_models.marginals((train_cands[idx], F_train[idx]))
-        output_csv(train_cands[idx], Y_prob, is_gain=False)
+            dev_dataloader = EmmentalDataLoader(
+                task_to_label_dict={relation: "labels"},
+                dataset=FonduerDataset(
+                    relation, dev_cands[idx], F_dev[idx], emb_layer.word2id, 2
+                ),
+                split="dev",
+                batch_size=100,
+                shuffle=False,
+            )
 
-        Y_prob = disc_models.marginals((test_cands[idx], F_test[idx]))
-        output_csv(test_cands[idx], Y_prob, is_gain=False, append=True)
-        dump_candidates(
-            test_cands[idx], Y_prob, "current_test_probs.csv", is_gain=False
-        )
+            dev_preds = model.predict(dev_dataloader, return_preds=True)
 
-        Y_prob = disc_models.marginals((dev_cands[idx], F_dev[idx]))
-        output_csv(dev_cands[idx], Y_prob, is_gain=False, append=True)
-        dump_candidates(dev_cands[idx], Y_prob, "current_dev_probs.csv", is_gain=False)
+            Y_prob = np.array(dev_preds["probs"][relation])[:, TRUE - 1]
+            output_csv(dev_cands[idx], Y_prob, is_gain=False, append=True)
+            dump_candidates(
+                dev_cands[idx], Y_prob, "current_dev_probs.csv", is_gain=False
+            )
 
     end = timer()
     logger.warning(
