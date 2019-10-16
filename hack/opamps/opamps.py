@@ -412,11 +412,11 @@ def main(
 
     # Training config
     config = {
-        "meta_config": {"verbose": True, "seed": 0},
+        "meta_config": {"verbose": True, "seed": 1234},
         "model_config": {"model_path": None, "device": 0, "dataparallel": True},
         "learner_config": {
-            "n_epochs": 5,
-            "optimizer_config": {"lr": 0.001, "l2": 0.0},
+            "n_epochs": 500,
+            "optimizer_config": {"lr": 0.001, "l2": 0.005},
             "task_scheduler": "round_robin",
         },
         "logging_config": {
@@ -463,7 +463,7 @@ def main(
                     train_idxs[idx],
                 ),
                 split="train",
-                batch_size=100,
+                batch_size=256,
                 shuffle=True,
             )
         )
@@ -499,7 +499,7 @@ def main(
                 relation, test_cands[idx], F_test[idx], emb_layer.word2id, 2
             ),
             split="test",
-            batch_size=100,
+            batch_size=256,
             shuffle=False,
         )
 
@@ -521,7 +521,7 @@ def main(
                     relation, train_cands[idx], F_train[idx], emb_layer.word2id, 2
                 ),
                 split="train",
-                batch_size=100,
+                batch_size=256,
                 shuffle=False,
             )
 
@@ -539,7 +539,7 @@ def main(
                     relation, dev_cands[idx], F_dev[idx], emb_layer.word2id, 2
                 ),
                 split="dev",
-                batch_size=100,
+                batch_size=256,
                 shuffle=False,
             )
 
@@ -556,7 +556,7 @@ def main(
                     relation, train_cands[idx], F_train[idx], emb_layer.word2id, 2
                 ),
                 split="train",
-                batch_size=100,
+                batch_size=256,
                 shuffle=False,
             )
 
@@ -574,7 +574,7 @@ def main(
                     relation, dev_cands[idx], F_dev[idx], emb_layer.word2id, 2
                 ),
                 split="dev",
-                batch_size=100,
+                batch_size=256,
                 shuffle=False,
             )
 
