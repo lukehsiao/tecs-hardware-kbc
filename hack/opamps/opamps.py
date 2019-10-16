@@ -531,7 +531,9 @@ def main(
 
             Y_prob = np.array(test_preds["probs"][relation])[:, TRUE - 1]
             output_csv(test_cands[idx], Y_prob, is_gain=True, append=True)
-            dump_candidates(test_cands[idx], Y_prob, "gain_test_probs.csv")
+            dump_candidates(
+                test_cands[idx], Y_prob, "gain_test_probs.csv", is_gain=True
+            )
 
             dev_dataloader = EmmentalDataLoader(
                 task_to_label_dict={relation: "labels"},
@@ -566,7 +568,9 @@ def main(
 
             Y_prob = np.array(test_preds["probs"][relation])[:, TRUE - 1]
             output_csv(test_cands[idx], Y_prob, is_gain=False, append=True)
-            dump_candidates(test_cands[idx], Y_prob, "current_test_probs.csv")
+            dump_candidates(
+                test_cands[idx], Y_prob, "current_test_probs.csv", is_gain=False
+            )
 
             dev_dataloader = EmmentalDataLoader(
                 task_to_label_dict={relation: "labels"},
