@@ -127,7 +127,7 @@ def scoring(relation, test_preds, test_cands, test_docs, F_test, parts_by_doc, n
 
 
 def dump_candidates(cands, Y_prob, outfile):
-    """Output the ce_v_max candidates and their probabilities for later analysis."""
+    """Output the candidates and their probabilities for later analysis."""
     dirname = os.path.dirname(__file__)
     with open(os.path.join(dirname, outfile), "w") as csvfile:
         writer = csv.writer(csvfile)
