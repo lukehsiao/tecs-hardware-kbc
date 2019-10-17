@@ -32,11 +32,11 @@ def _plot(infile):
     fig, ax = plt.subplots(figsize=FIGSIZE)
 
     # type,b,f1,precision,recall
-    fig10_data = pd.read_csv(infile, skipinitialspace=True)
+    joint_data = pd.read_csv(infile, skipinitialspace=True)
 
     # Plot precision
     plot = sns.lineplot(
-        data=fig10_data, hue="type", style="type", y="precision", x="b", ax=ax
+        data=joint_data, hue="type", style="type", y="precision", x="b", ax=ax
     )
 
     # Remove the seaborn legend title
@@ -48,7 +48,7 @@ def _plot(infile):
     sns.despine(bottom=True, left=True)
     plot.set(xlabel="Threshold")
     plot.set(ylabel="Precision")
-    outfile = "fig10_precision.pdf"
+    outfile = "joint_precision.pdf"
     pp = PdfPages(outfile)
     pp.savefig(plot.get_figure().tight_layout())
     pp.close()
@@ -58,7 +58,7 @@ def _plot(infile):
     # Plot recall
     fig, ax = plt.subplots(figsize=FIGSIZE)
     plot = sns.lineplot(
-        data=fig10_data, hue="type", style="type", y="recall", x="b", ax=ax
+        data=joint_data, hue="type", style="type", y="recall", x="b", ax=ax
     )
 
     handles, labels = ax.get_legend_handles_labels()
@@ -69,7 +69,7 @@ def _plot(infile):
     sns.despine(bottom=True, left=True)
     plot.set(xlabel="Threshold")
     plot.set(ylabel="Recall")
-    outfile = "fig10_recall.pdf"
+    outfile = "joint_recall.pdf"
     pp = PdfPages(outfile)
     pp.savefig(plot.get_figure().tight_layout())
     pp.close()
@@ -78,7 +78,7 @@ def _plot(infile):
 
     # Plot f1
     fig, ax = plt.subplots(figsize=FIGSIZE)
-    plot = sns.lineplot(data=fig10_data, hue="type", style="type", y="f1", x="b", ax=ax)
+    plot = sns.lineplot(data=joint_data, hue="type", style="type", y="f1", x="b", ax=ax)
 
     # Remove the seaborn legend title
     handles, labels = ax.get_legend_handles_labels()
@@ -89,7 +89,7 @@ def _plot(infile):
     sns.despine(bottom=True, left=True)
     plot.set(xlabel="Threshold")
     plot.set(ylabel="F1 Score")
-    outfile = "fig10_f1.pdf"
+    outfile = "joint_f1.pdf"
     pp = PdfPages(outfile)
     pp.savefig(plot.get_figure().tight_layout())
     pp.close()
@@ -100,7 +100,7 @@ def _plot(infile):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--data", type=str, default="fig10.csv", help="CSV file of fig10 data"
+        "--data", type=str, default="joint.csv", help="CSV file of joint data"
     )
     parser.add_argument(
         "-v",
