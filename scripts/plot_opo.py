@@ -162,6 +162,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
         x="Supply Current (uA)",
         markers=["x", "+"],
         ax=ax,
+        palette=reversed(sns.color_palette("Paired")[:2]),
     )
 
     # Remove the seaborn legend title
