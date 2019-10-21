@@ -52,8 +52,6 @@ def _match(gain_list, current_list):
 
 def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     """Plotting logic."""
-    fig, ax = plt.subplots(figsize=(6, 4))
-
     dirname = os.path.dirname(__file__)
     # Mfr PartNumber,GBWP (kHz),Supply Current (uA),GBWP/uA,min_voltage,max_voltage
     opo_data = pd.read_csv(infile, skipinitialspace=True)
@@ -86,7 +84,6 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     logger.info(f"len(matched): {len(matched)}")
 
     logger.info("Plotting from {}...".format(infile))
-    ax.set(xscale=scale, yscale=scale)
 
     opo_view = opo_data[["Supply Current (uA)", "GBWP (kHz)"]].copy()
     our_view = matched[["Supply Current (uA)", "GBWP (kHz)"]].copy()
@@ -121,24 +118,21 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     f1 = 2 * (prec * rec) / (prec + rec) if prec + rec > 0 else float("nan")
     logger.info(f"prec: {prec} rec: {rec} f1: {f1}")
 
-    total_count = 0
-    unique_count = 0
-    for i in unique_our:
-        seen = set()
-        for j in opo_nd:
-            j_tup = tuple(j)
-            if np.array_equal(i, j):
-                total_count += 1
-
-                if j_tup not in seen:
-                    unique_count += 1
-
-            seen.add(j_tup)
-
-    logger.info(f"total exact matches: {total_count} ({unique_count} unique)")
-    logger.info(
-        f"Overlap: {total_count}/{len(opo_nd)} = {total_count * 100 / len(opo_nd):.2f}%"
-    )
+    #  total_count = 0
+    #  unique_count = 0
+    #  for i in unique_our:
+    #      seen = set()
+    #      for j in opo_nd:
+    #          j_tup = tuple(j)
+    #          if np.array_equal(i, j):
+    #              total_count += 1
+    #
+    #              if j_tup not in seen:
+    #                  unique_count += 1
+    #
+    #          seen.add(j_tup)
+    #
+    #  logger.info(f"total exact matches: {total_count} ({unique_count} unique)")
 
     # Calculate the Hausdorff Distance on the normalized plots.
     #
@@ -162,6 +156,38 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     our_nd[:, 0] /= c_max
     opo_nd[:, 1] /= gbw_max
     our_nd[:, 1] /= gbw_max
+
+    # Calculate distribution of minimum distances
+    distances = []
+    for our_point in our_nd:
+        distances.append(directed_hausdorff(our_point.reshape(1, 2), opo_nd)[0])
+
+    fig, ax = plt.subplots(figsize=(6, 3))
+    plot = sns.distplot(
+        distances, hist_kws={"cumulative": True}, kde_kws={"cumulative": True}
+    )
+    #  plot = sns.distplot(distances, norm_hist=True)
+
+    sns.despine(bottom=True, left=True)
+    plot.set(xlabel="Normalized Distance")
+    plot.set(ylabel="Cumulative Probability")
+    plot.set_xlim(0, 0.33)
+    plot.set_ylim(0, 1)
+    pp = PdfPages("cdf.pdf")
+    pp.savefig(plot.get_figure().tight_layout())
+    pp.close()
+    run(["pdfcrop", "cdf.pdf", "cdf.pdf"], stdout=DEVNULL, check=True)
+    logger.info(f"Plot saved to cdf.pdf")
+
+    temp = np.array(distances)
+    logger.info(
+        f"90p: {np.percentile(temp, 90)} "
+        + f"95p: {np.percentile(temp, 95)} "
+        + f"99p: {np.percentile(temp, 99)}"
+    )
+
+    fig, ax = plt.subplots(figsize=(6, 4))
+    ax.set(xscale=scale, yscale=scale)
 
     dist = max(
         directed_hausdorff(our_nd, opo_nd)[0], directed_hausdorff(opo_nd, our_nd)[0]
