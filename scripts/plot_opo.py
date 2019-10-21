@@ -186,7 +186,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
         + f"99p: {np.percentile(temp, 99)}"
     )
 
-    fig, ax = plt.subplots(figsize=(6, 4))
+    fig, ax = plt.subplots(figsize=(6, 3.5))
     ax.set(xscale=scale, yscale=scale)
 
     dist = max(
