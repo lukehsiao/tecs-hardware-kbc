@@ -105,6 +105,22 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     )
 
     unique_our = np.unique(our_nd, axis=0)
+
+    pred = set(map(tuple, unique_our))
+    gold = set(map(tuple, np.unique(opo_nd, axis=0)))
+    TP_set = pred.intersection(gold)
+    FP_set = pred.difference(gold)
+    FN_set = gold.difference(pred)
+
+    TP = len(TP_set)
+    FP = len(FP_set)
+    FN = len(FN_set)
+
+    prec = TP / (TP + FP) if TP + FP > 0 else float("nan")
+    rec = TP / (TP + FN) if TP + FN > 0 else float("nan")
+    f1 = 2 * (prec * rec) / (prec + rec) if prec + rec > 0 else float("nan")
+    logger.info(f"prec: {prec} rec: {rec} f1: {f1}")
+
     total_count = 0
     unique_count = 0
     for i in unique_our:
