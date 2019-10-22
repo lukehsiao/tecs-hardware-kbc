@@ -165,7 +165,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
             directed_hausdorff(our_point.reshape(1, 2), opo_nd)[0] / math.sqrt(2)
         )
 
-    fig, ax = plt.subplots(figsize=(6, 3))
+    fig, ax = plt.subplots(figsize=(6, 3.5))
     plot = sns.distplot(
         distances, hist_kws={"cumulative": True}, kde_kws={"cumulative": True}
     )
