@@ -213,6 +213,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     plot.set(xlabel="Quiescent Current (uA)")
     plot.set(ylabel="GBW (kHz)")
     plot.set_xlim(1e-2, 1e6)
+    plot.set_ylim(1e-1, 1e8)
     pp = PdfPages(outfile)
     pp.savefig(plot.get_figure().tight_layout())
     pp.close()
