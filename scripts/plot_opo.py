@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import argparse
 import logging
+import math
 import os
 import sys
 from subprocess import DEVNULL, run
@@ -160,7 +161,9 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     # Calculate distribution of minimum distances
     distances = []
     for our_point in our_nd:
-        distances.append(directed_hausdorff(our_point.reshape(1, 2), opo_nd)[0])
+        distances.append(
+            directed_hausdorff(our_point.reshape(1, 2), opo_nd)[0] / math.sqrt(2)
+        )
 
     fig, ax = plt.subplots(figsize=(6, 3))
     plot = sns.distplot(
@@ -169,9 +172,9 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     #  plot = sns.distplot(distances, norm_hist=True)
 
     sns.despine(bottom=True, left=True)
-    plot.set(xlabel="Normalized Distance")
+    plot.set(xlabel="Normalized Hausdorff Distance")
     plot.set(ylabel="Cumulative Probability")
-    plot.set_xlim(0, 0.33)
+    plot.set_xlim(0, 0.05)
     plot.set_ylim(0, 1)
     pp = PdfPages("cdf.pdf")
     pp.savefig(plot.get_figure().tight_layout())
@@ -183,17 +186,12 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     logger.info(
         f"90p: {np.percentile(temp, 90)} "
         + f"95p: {np.percentile(temp, 95)} "
-        + f"99p: {np.percentile(temp, 99)}"
+        + f"99p: {np.percentile(temp, 99)} "
+        + f"max: {np.amax(temp)}"
     )
 
     fig, ax = plt.subplots(figsize=(6, 3.5))
     ax.set(xscale=scale, yscale=scale)
-
-    dist = max(
-        directed_hausdorff(our_nd, opo_nd)[0], directed_hausdorff(opo_nd, our_nd)[0]
-    )
-
-    logger.info(f"Normalized Hausdorff Distance: {dist}")
 
     # Build a dataframe with both values
     plot = sns.scatterplot(
