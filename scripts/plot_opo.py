@@ -167,7 +167,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
 
     fig, ax = plt.subplots(figsize=(6, 3.5))
     plot = sns.distplot(
-        distances, hist_kws={"cumulative": True}, kde_kws={"cumulative": True}, bins=300
+        distances, hist_kws={"cumulative": True}, kde_kws={"cumulative": True}
     )
     #  plot = sns.distplot(distances, norm_hist=True)
 
@@ -212,6 +212,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     sns.despine(bottom=True, left=True)
     plot.set(xlabel="Quiescent Current (uA)")
     plot.set(ylabel="GBW (kHz)")
+    plot.set_xlim(1e-2, 1e6)
     pp = PdfPages(outfile)
     pp.savefig(plot.get_figure().tight_layout())
     pp.close()
