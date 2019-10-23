@@ -168,8 +168,9 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     fig, ax = plt.subplots(figsize=(6, 3.5))
     plot = sns.distplot(
         distances,
-        hist_kws={"cumulative": True, "rwidth": 0.90},
+        hist_kws={"cumulative": True, "rwidth": 0.80},
         norm_hist=True,
+        bins=45,
         kde=False,
     )
     #  plot = sns.distplot(distances, norm_hist=True)
