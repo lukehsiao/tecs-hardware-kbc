@@ -2,6 +2,7 @@ import csv
 import logging
 import os
 import pdb
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -51,8 +52,10 @@ VALID_MANUF = [
 # gold labels and thus are not in the `docs` dict returned by `get_docs()`
 INVALID_MANUF = [
     "Nexperia USA Inc.",
+    "Nexperia",
     "Renesas Electronics America",
     "Comchip Technology",
+    "Toshiba",
     "Toshiba Semiconductor and Storage",
     "Panasonic Electronic Components",
     "WeEn Semiconductors",
@@ -60,6 +63,7 @@ INVALID_MANUF = [
     "Texas Instruments",
     "Parallax Inc.",
     "SANYO Semiconductor (U.S.A) Corporation",
+    "Analog Devices",
 ]
 
 
@@ -69,13 +73,16 @@ INVALID_MANUF = [
 # combine Vishay and Lite-on into that manuf?
 MANUF = {
     "Micro Commercial Co": "Micro Commercial Components",
+    "Micro Commercial Components (MCC)": "Micro Commercial Components",
     "On Semiconductor": "ON Semiconductor",
+    "ON Semiconductor / Fairchild": "ON Semiconductor",  # TODO: Too arbitrary.
     "Central": "Central Semiconductor",
     "Central Semiconductor Corp": "Central Semiconductor",
     "ST": "STMicroelectronics",
     "NXP": "NXP Semiconductors",
     "Rohm": "Rohm Semiconductor",
     "Microsemi Corporation": "Microsemi",
+    "Microchip / Microsemi": "Microsemi",
     "TT Electronics/Optek Technology": "TT Electronics",
     "Taiwan Semiconductor Corporation": "Taiwan",
     "Infineon Technologies": "Infineon",
@@ -83,6 +90,7 @@ MANUF = {
     "NXP USA Inc.": "NXP Semiconductors",
     "Vishay Semiconductor Diodes Division": "Vishay",
     "Bourns Inc.": "Bourns",
+    "ROHM Semiconductor": "Rohm Semiconductor",
 }
 
 
@@ -181,6 +189,19 @@ def get_docs(
             pdb.set_trace()
 
 
+def get_mouser_docs(
+    pdf_dir="/home/nchiang/repos/hack/hack/transistors/data/src/mouser-pdf/",
+):
+    return os.listdir(pdf_dir)
+
+
+def preprocess_mouser_doc(manuf, partnum, docs=get_mouser_docs()):
+    manuf = re.sub(r"[^A-Za-z0-9\-\_]+", "", manuf)
+    partnum = re.sub(r"[^A-Za-z0-9\-\_]+", "", partnum)
+    doc_name = f"{manuf}_{partnum}.pdf"
+    return doc_name if doc_name in docs else None
+
+
 def preprocess_doc(manuf, part, url, docformat="standard", docs=get_docs(debug=True)):
     """Returns the filename of a given document by cross referencing our gold data"""
     if docformat == "url":
@@ -220,42 +241,68 @@ def preprocess_doc(manuf, part, url, docformat="standard", docs=get_docs(debug=T
 
 
 def add_space(type, value):
-    value = value.strip()
+    value = value.strip().replace("- ", "-").replace("+ ", "")
     if type == "current":
-        if value.endswith("nA"):
+        if value.endswith(" nA"):
+            return value
+        elif value.endswith("nA"):
             return value.replace("nA", " nA")
+        elif value.endswith(" mA"):
+            return value
         elif value.endswith("mA"):
             return value.replace("mA", " mA")
         # Account for exception on line 75 of ffe00114_3.csv
         # See: https://www.digikey.com/products/en?keywords=2SD2704KT146TR-ND
+        elif value.endswith(" ma"):
+            return value.replace("ma", "mA")
         elif value.endswith("ma"):
             return value.replace("ma", " mA")
+        elif value.endswith(" uA"):
+            return value
+        elif value.endswith("uA"):
+            return value.replace("uA", " uA")
+        elif value.endswith(" A"):
+            return value
         elif value.endswith("A"):
             return value.replace("A", " A")
         else:
             logger.warning(f"Invalid {type} {value}")
             pdb.set_trace()
     elif type == "voltage":
-        if value.endswith("mV"):
+        if value.endswith(" mV"):
+            return value
+        elif value.endswith("mV"):
             return value.replace("mV", " mV")
+        elif value.endswith(" V"):
+            return value
         elif value.endswith("V"):
             return value.replace("V", " V")
         else:
             logger.warning(f"Invalid {type} {value}")
             pdb.set_trace()
     elif type == "frequency":
-        if value.endswith("MHz"):
+        if value.endswith(" MHz"):
+            return value
+        elif value.endswith("MHz"):
             return value.replace("MHz", " MHz")
+        elif value.endswith(" GHz"):
+            return value
         elif value.endswith("GHz"):
             return value.replace("GHZ", " GHz")
+        elif value.endswith(" kHz"):
+            return value
         elif value.endswith("kHz"):
             return value.replace("kHz", " kHz")
         else:
             logger.warning(f"Invalid {type} {value}")
             pdb.set_trace()
     elif type == "power":
-        if value.endswith("mW"):
+        if value.endswith(" mW"):
+            return value
+        elif value.endswith("mW"):
             return value.replace("mW", " mW")
+        elif value.endswith(" W"):
+            return value
         elif value.endswith("W"):
             return value.replace("W", " W")
         else:
@@ -338,10 +385,10 @@ def preprocess_vce_saturation_max(voltage):
 
 
 def preprocess_ce_v_max(voltage):
-    # Takes in a ce_v_max with Digikey's standard condition syntax
+    # Takes in a ce_v_max with Digikey/Mouser's standard condition syntax
     # (i.e. 65V)
     # Checks if it's valid and returns the stripped value
-    if voltage == "-":
+    if voltage == "-" or voltage == "":
         return "N/A"
     try:
         return add_space("voltage", voltage)
@@ -356,11 +403,13 @@ def preprocess_ce_v_max(voltage):
 
 
 def preprocess_c_current_max(current):
-    # Takes in a c_current_max with Digikey's standard condition syntax
+    # Takes in a c_current_max with Digikey/Mouser's standard condition syntax
     # (i.e. 100mA)
     # Checks if it's valid and returns the stripped value
-    if current == "-":
+    if current == "-" or current == "":
         return "N/A"
+    # Deal with strings like ="60 A"
+    current = current.replace("=", "").replace('"', "")
     # Add space between the value and unit
     return add_space("current", current)
 
@@ -369,7 +418,7 @@ def preprocess_polarity(polarity):
     # Takes in a polarity (i.e. NPN) and returns it if it is valid
     if polarity in ["NPN", "PNP"]:
         return polarity
-    elif polarity == "-":
+    elif polarity == "-" or polarity == "":
         return "N/A"
 
     # Handle cases where polarity includes extra conditions
@@ -390,6 +439,8 @@ def preprocess_polarity(polarity):
     # Handle special cases
     if polarity == "2 PNP (Dual)":
         return "PNP"
+    elif polarity == "NPN, PNP":
+        return "NPN;PNP"
 
     logger.error(f"Invalid polarity {polarity}")
     pdb.set_trace()
@@ -484,8 +535,21 @@ def preprocess_operating_voltage(voltage):
     return (";".join(min_set), ";".join(max_set))
 
 
+def preprocess_individual_operating_temp(temperature):
+    if temperature == "-" or temperature == "":
+        return "N/A"
+    # handle strings like:
+    #   -20Â°C ~ 75Â°C
+    return (
+        temperature.replace("- ", "-")
+        .replace("+ ", "")
+        .replace("Â", "")
+        .replace("°", " ")
+    )
+
+
 def preprocess_operating_temp(temperature):
-    if temperature == "-" or temperature is None:
+    if temperature == "-" or temperature == "" or temperature is None:
         return ("N/A", "N/A")
     # handle strings like:
     #   -20Â°C ~ 75Â°C
