@@ -2,6 +2,7 @@ import csv
 import logging
 import os
 import pdb
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -66,8 +67,8 @@ def get_docs(
     ),
     debug=False,
 ):
-    """Reads in the dev and test gold files and returns a dictionary that can be used
-    to find a filename through manuf and part number."""
+    """Reads in the dev and test gold files and returns a dictionary that can
+    be used to find a filename through manuf and part number."""
     duplicate_filenames = set()
     docs = {}
     with open(dev_gold, "r") as dev, open(test_gold, "r") as test:
@@ -125,6 +126,17 @@ def get_docs(
         else:
             logger.error(f"Gold document reference is empty.")
             pdb.set_trace()
+
+
+def get_mouser_docs(pdf_dir="/home/nchiang/repos/digikey-scraper/pdf/"):
+    return os.listdir(pdf_dir)
+
+
+def preprocess_mouser_doc(manuf, partnum, docs=get_mouser_docs()):
+    manuf = re.sub(r"[^A-Za-z0-9\-\_]+", "", manuf)
+    partnum = re.sub(r"[^A-Za-z0-9\-\_]+", "", partnum)
+    doc_name = f"{manuf}_{partnum}.pdf"
+    return doc_name if doc_name in docs else None
 
 
 def preprocess_doc(manuf, part, url, docformat="standard", docs=get_docs()):
@@ -376,7 +388,7 @@ TODO: These have not been fully vetted yet
 
 
 def preprocess_gbp(typ_gbp):
-    if typ_gbp.strip() == "-":
+    if typ_gbp.strip() == "-" or typ_gbp == "":
         return "N/A"
     else:
         return add_space("frequency", typ_gbp)
@@ -388,7 +400,7 @@ def preprocess_supply_current(current):
     # sometimes digikey reports a random MAX.
     supply_current = supply_current.replace("(Max)", "").strip()
 
-    if supply_current == "-":
+    if supply_current == "-" or supply_current == "":
         return "N/A"
     else:
         return add_space("current", supply_current)
