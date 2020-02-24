@@ -129,7 +129,7 @@ if __name__ == "__main__":
 
     # Change `mouser_csv_dir` to the absolute path where Mouser's raw CSVs are
     # located.
-    mouser_csv_dir = "/home/nchiang/repos/hack/hack/opamps/data/src/csv/"
+    mouser_csv_dir = "/home/nchiang/repos/hack/hack/opamps/data/src/mouser-csv/"
 
     # Change `formatted_gold` to the absolute path of where you want the
     # combined gold to be written.

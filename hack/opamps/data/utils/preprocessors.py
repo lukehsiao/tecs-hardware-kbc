@@ -128,7 +128,9 @@ def get_docs(
             pdb.set_trace()
 
 
-def get_mouser_docs(pdf_dir="/home/nchiang/repos/digikey-scraper/pdf/"):
+def get_mouser_docs(
+    pdf_dir="/home/nchiang/repos/hack/hack/opamps/data/src/mouser-pdf/",
+):
     return os.listdir(pdf_dir)
 
 
@@ -179,44 +181,68 @@ def preprocess_doc(manuf, part, url, docformat="standard", docs=get_docs()):
 
 
 def add_space(type, value):
-    value = value.strip()
+    value = value.strip().replace("- ", "-").replace("+ ", "")
     if type == "current":
-        if value.endswith("nA"):
+        if value.endswith(" nA"):
+            return value
+        elif value.endswith("nA"):
             return value.replace("nA", " nA")
+        elif value.endswith(" mA"):
+            return value
         elif value.endswith("mA"):
             return value.replace("mA", " mA")
         # Account for exception on line 75 of ffe00114_3.csv
         # See: https://www.digikey.com/products/en?keywords=2SD2704KT146TR-ND
+        elif value.endswith(" ma"):
+            return value.replace("ma", "mA")
         elif value.endswith("ma"):
             return value.replace("ma", " mA")
+        elif value.endswith(" uA"):
+            return value
         elif value.endswith("uA"):
             return value.replace("uA", " uA")
+        elif value.endswith(" A"):
+            return value
         elif value.endswith("A"):
             return value.replace("A", " A")
         else:
             logger.warning(f"Invalid {type} {value}")
             pdb.set_trace()
     elif type == "voltage":
-        if value.endswith("mV"):
+        if value.endswith(" mV"):
+            return value
+        elif value.endswith("mV"):
             return value.replace("mV", " mV")
+        elif value.endswith(" V"):
+            return value
         elif value.endswith("V"):
             return value.replace("V", " V")
         else:
             logger.warning(f"Invalid {type} {value}")
             pdb.set_trace()
     elif type == "frequency":
-        if value.endswith("MHz"):
+        if value.endswith(" MHz"):
+            return value
+        elif value.endswith("MHz"):
             return value.replace("MHz", " MHz")
+        elif value.endswith(" GHz"):
+            return value
         elif value.endswith("GHz"):
-            return value.replace("GHz", " GHz")
+            return value.replace("GHZ", " GHz")
+        elif value.endswith(" kHz"):
+            return value
         elif value.endswith("kHz"):
             return value.replace("kHz", " kHz")
         else:
             logger.warning(f"Invalid {type} {value}")
             pdb.set_trace()
     elif type == "power":
-        if value.endswith("mW"):
+        if value.endswith(" mW"):
+            return value
+        elif value.endswith("mW"):
             return value.replace("mW", " mW")
+        elif value.endswith(" W"):
+            return value
         elif value.endswith("W"):
             return value.replace("W", " W")
         else:
