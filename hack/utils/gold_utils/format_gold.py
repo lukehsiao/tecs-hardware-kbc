@@ -76,6 +76,7 @@ def format_gold(component, raw_gold_file, formatted_gold_file, seen, append=Fals
                     ("max_op_temp", max_op_temp, temperature_normalizer),
                 ]
 
+                doc_name = doc_normalizer(doc_name)
                 manuf = manuf_normalizer(manufacturer)
                 part_num = opamp_part_normalizer(part_num)
 
