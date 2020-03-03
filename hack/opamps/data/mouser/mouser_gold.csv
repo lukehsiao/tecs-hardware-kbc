@@ -919,27 +919,49 @@ AnalogDevices_OP282ARMZ-REEL,Analog Devices,OP482GSZ-REEL,typ_supply_current,210
 AnalogDevices_OP282ARMZ-REEL,Analog Devices,OP482GSZ-REEL7,part_family,N
 AnalogDevices_OP282ARMZ-REEL,Analog Devices,OP482GSZ-REEL7,typ_supply_current,210 uA
 DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2051,part_family,Y
+DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2051,typ_supply_current,16 uA
 DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2051SC5,part_family,N
+DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2051SC5,typ_supply_current,16 uA
 DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2051ST5,part_family,N
+DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2051ST5,typ_supply_current,16 uA
 DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2052,part_family,Y
+DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2052,typ_supply_current,16 uA
 DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2052LN9,part_family,N
+DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2052LN9,typ_supply_current,16 uA
 DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2052MP8,part_family,N
+DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2052MP8,typ_supply_current,16 uA
 DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2052SO8,part_family,N
+DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2052SO8,typ_supply_current,16 uA
 DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2054,part_family,Y
+DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2054,typ_supply_current,16 uA
 DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2054SO14,part_family,N
+DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2054SO14,typ_supply_current,16 uA
 DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2054TP14,part_family,N
+DIOOMicrocircuits_DIO2054TP14,Dioo Microcircuits,DIO2054TP14,typ_supply_current,16 uA
 DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2071,part_family,Y
+DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2071,typ_supply_current,3 mA
 DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2071ST5,part_family,N
+DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2071ST5,typ_supply_current,3 mA
 DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2072,part_family,Y
+DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2072,typ_supply_current,3 mA
 DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2072MP8,part_family,N
+DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2072MP8,typ_supply_current,3 mA
 DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2072SO8,part_family,N
+DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2072SO8,typ_supply_current,3 mA
 DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2072TP8,part_family,N
+DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2072TP8,typ_supply_current,3 mA
 DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2074,part_family,Y
+DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2074,typ_supply_current,3 mA
 DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2074CN16,part_family,N
+DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2074CN16,typ_supply_current,3 mA
 DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2074CS14,part_family,N
+DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2074CS14,typ_supply_current,3 mA
 DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2076,part_family,Y
+DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2076,typ_supply_current,3 mA
 DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2076CL28,part_family,N
+DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2076CL28,typ_supply_current,3 mA
 DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2076CS20,part_family,N
+DIOOMicrocircuits_DIO2072SO8,Dioo Microcircuits,DIO2076CS20,typ_supply_current,3 mA
 DIOOMicrocircuits_DIO2361AASC5,Dioo Microcircuits,DIO2361A,part_family,Y
 DIOOMicrocircuits_DIO2361AASC5,Dioo Microcircuits,DIO2361A,typ_supply_current,17 uA
 DIOOMicrocircuits_DIO2361AASC5,Dioo Microcircuits,DIO2361A0,part_family,Y
@@ -967,73 +989,73 @@ DIOOMicrocircuits_DIO2361AASC5,Dioo Microcircuits,DIO2361AMSC5,typ_supply_curren
 DIOOMicrocircuits_DIO2361AASC5,Dioo Microcircuits,DIO2361AMST5,part_family,N
 DIOOMicrocircuits_DIO2361AASC5,Dioo Microcircuits,DIO2361AMST5,typ_supply_current,17 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361L,part_family,Y
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361L,typ_supply_current,8 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361L,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LAMP8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LAMP8,typ_supply_current,12 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LAMP8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LASC5,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LASC5,typ_supply_current,9 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LASC5,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LASO8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LASO8,typ_supply_current,11 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LASO8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LAST5,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LAST5,typ_supply_current,10 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LAST5,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LBMP8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LBMP8,typ_supply_current,16 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LBMP8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LBSC5,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LBSC5,typ_supply_current,13 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LBSC5,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LBSO8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LBSO8,typ_supply_current,15 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LBSO8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LBST5,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LBST5,typ_supply_current,14 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LBST5,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMMP8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMMP8,typ_supply_current,24 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMMP8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMP8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMP8,typ_supply_current,20 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMP8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMSC5,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMSC5,typ_supply_current,21 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMSC5,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMSO8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMSO8,typ_supply_current,23 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMSO8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMST5,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMST5,typ_supply_current,22 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LMST5,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LSC5,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LSC5,typ_supply_current,17 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LSC5,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LSO8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LSO8,typ_supply_current,19 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LSO8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LST5,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LST5,typ_supply_current,18 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2361LST5,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362,part_family,Y
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362,typ_supply_current,25 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LACD8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LACD8,typ_supply_current,27 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LACD8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LACN8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LACN8,typ_supply_current,26 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LACN8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LAMP8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LAMP8,typ_supply_current,29 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LAMP8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LASO8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LASO8,typ_supply_current,28 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LASO8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LBCD8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LBCD8,typ_supply_current,31 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LBCD8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LBCN8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LBCN8,typ_supply_current,30 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LBCN8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LBMP8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LBMP8,typ_supply_current,33 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LBMP8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LBSO8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LBSO8,typ_supply_current,32 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LBSO8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LCD8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LCD8,typ_supply_current,35 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LCD8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LCN8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LCN8,typ_supply_current,34 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LCN8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMCD8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMCD8,typ_supply_current,39 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMCD8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMCN8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMCN8,typ_supply_current,38 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMCN8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMMP8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMMP8,typ_supply_current,41 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMMP8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMP8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMP8,typ_supply_current,37 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMP8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMSO8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMSO8,typ_supply_current,40 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LMSO8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LSO8,part_family,N
-DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LSO8,typ_supply_current,36 uA
+DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO2362LSO8,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO236XL,part_family,Y
 DIOOMicrocircuits_DIO2362LSO8,Dioo Microcircuits,DIO236XL,typ_supply_current,7 uA
 DIOOMicrocircuits_DIO8358MP8,Dioo Microcircuits,DIO8358,part_family,Y
@@ -1234,7 +1256,7 @@ MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACJD,part_family,N
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACJD,typ_supply_current,0.01 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACJD,typ_supply_current,0.1 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACJD,typ_supply_current,1.0 mA
-MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACJD,typ_supply_current,8 uA
+MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACJD,typ_supply_current,6 uA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACPD,part_family,N
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACPD,typ_supply_current,0.01 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACPD,typ_supply_current,0.1 mA
@@ -1244,32 +1266,32 @@ MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACSD,part_family,N
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACSD,typ_supply_current,0.01 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACSD,typ_supply_current,0.1 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACSD,typ_supply_current,1.0 mA
-MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACSD,typ_supply_current,7 uA
+MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622ACSD,typ_supply_current,6 uA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622AMJD,part_family,N
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622AMJD,typ_supply_current,0.01 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622AMJD,typ_supply_current,0.1 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622AMJD,typ_supply_current,1.0 mA
-MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622AMJD,typ_supply_current,9 uA
+MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622AMJD,typ_supply_current,6 uA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCJD,part_family,N
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCJD,typ_supply_current,0.01 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCJD,typ_supply_current,0.1 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCJD,typ_supply_current,1.0 mA
-MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCJD,typ_supply_current,12 uA
+MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCJD,typ_supply_current,6 uA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCPD,part_family,N
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCPD,typ_supply_current,0.01 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCPD,typ_supply_current,0.1 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCPD,typ_supply_current,1.0 mA
-MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCPD,typ_supply_current,10 uA
+MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCPD,typ_supply_current,6 uA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCSA,part_family,N
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCSA,typ_supply_current,0.01 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCSA,typ_supply_current,0.1 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCSA,typ_supply_current,1.0 mA
-MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCSA,typ_supply_current,11 uA
+MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BCSA,typ_supply_current,6 uA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BMJD,part_family,N
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BMJD,typ_supply_current,0.01 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BMJD,typ_supply_current,0.1 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BMJD,typ_supply_current,1.0 mA
-MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BMJD,typ_supply_current,13 uA
+MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622BMJD,typ_supply_current,6 uA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622DCJD,part_family,N
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622DCJD,typ_supply_current,0.01 mA
 MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7622DCJD,typ_supply_current,0.1 mA
@@ -1808,113 +1830,112 @@ MaximIntegrated_MAX4291EUKT,Maxim Integrated,MAX4294EUD,part_family,N
 MaximIntegrated_MAX4291EUKT,Maxim Integrated,MAX4294EUD,typ_supply_current,100 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4232ESA-T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4232ESA-T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4232ESA-T,typ_supply_current,745 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4232ESA-T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322,part_family,Y
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322,typ_supply_current,650 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA+,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA+,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA+,typ_supply_current,729 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA+,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA+T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA+T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA+T,typ_supply_current,730 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA+T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA,typ_supply_current,728 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA-T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA-T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA-T,typ_supply_current,735 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA-T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUA+,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUA+,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUA+,typ_supply_current,731 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUA+,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUA+T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUA+T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUA+T,typ_supply_current,732 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUA+T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUA,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUA,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUA,typ_supply_current,727 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUA,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUK+T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUK+T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUK+T,typ_supply_current,733 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUK+T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUK-T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUK-T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUK-T,typ_supply_current,726 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUK-T,typ_supply_current,734 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322EUK-T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323,part_family,Y
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323,typ_supply_current,736 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EBT+T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EBT+T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EBT+T,typ_supply_current,743 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EBT+T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323ESA+,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323ESA+,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323ESA+,typ_supply_current,738 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323ESA+,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323ESA+T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323ESA+T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323ESA+T,typ_supply_current,739 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323ESA+T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323ESA,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323ESA,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323ESA,typ_supply_current,737 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323ESA,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUA,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUA,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUA,typ_supply_current,740 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUA,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUA-T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUA-T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUA-T,typ_supply_current,744 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUA-T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUT+T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUT+T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUT+T,typ_supply_current,741 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUT+T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUT-T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUT-T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUT-T,typ_supply_current,742 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4323EUT-T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326,part_family,Y
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326,typ_supply_current,746 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA+,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA+,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA+,typ_supply_current,748 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA+,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA+T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA+T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA+T,typ_supply_current,749 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA+T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA,typ_supply_current,747 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA-T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA-T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA-T,typ_supply_current,750 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326ESA-T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326EUA+,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326EUA+,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326EUA+,typ_supply_current,751 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326EUA+,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326EUA+T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326EUA+T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326EUA+T,typ_supply_current,752 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4326EUA+T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327,part_family,Y
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327,typ_supply_current,753 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327ESD,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327ESD,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327ESD,typ_supply_current,754 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327ESD,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327ESD-T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327ESD-T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327ESD-T,typ_supply_current,759 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327ESD-T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB+,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB+,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB+,typ_supply_current,756 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB+,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB+T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB+T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB+T,typ_supply_current,757 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB+T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB,typ_supply_current,755 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB-T,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB-T,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB-T,typ_supply_current,758 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4327EUB-T,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4329,part_family,Y
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4329,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4329,typ_supply_current,760 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4329,typ_supply_current,725 uA
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4329ESD,part_family,N
 MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4329ESD,typ_supply_current,650 uA
-MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4329ESD,typ_supply_current,761 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4329ESD,typ_supply_current,725 uA
 MaximIntegrated_MAX44248AUAT,Maxim Integrated,MAX44244/5/8,part_family,Y
 MaximIntegrated_MAX44248AUAT,Maxim Integrated,MAX44244/5/8,typ_supply_current,100 uA
 MaximIntegrated_MAX44248AUAT,Maxim Integrated,MAX44244/5/8,typ_supply_current,90 uA
@@ -2111,63 +2132,64 @@ MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492,part_family,Y
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492C/D,part_family,N
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492C/D,typ_supply_current,138 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492C/D,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492C/D,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492CPA,part_family,N
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492CPA,typ_supply_current,136 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492CPA,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492CPA,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492CSA,part_family,N
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492CSA,typ_supply_current,137 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492CSA,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492CSA,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492EPA,part_family,N
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492EPA,typ_supply_current,139 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492EPA,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492EPA,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492ESA,part_family,N
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492ESA,typ_supply_current,140 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492ESA,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492ESA,typ_supply_current,150 uA
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492MJA,typ_supply_current,141 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492MJA,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX492MJA,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494,part_family,Y
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494,typ_supply_current,142 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494CPD,part_family,N
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494CPD,typ_supply_current,143 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494CPD,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494CPD,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494CSD,part_family,N
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494CSD,typ_supply_current,144 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494CSD,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494CSD,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494EPD,part_family,N
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494EPD,typ_supply_current,145 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494EPD,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494EPD,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494ESD,part_family,N
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494ESD,typ_supply_current,146 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494ESD,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494ESD,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494MJD,part_family,N
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494MJD,typ_supply_current,147 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494MJD,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494MJD,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495,part_family,Y
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495,typ_supply_current,148 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495C/D,part_family,N
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495C/D,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495C/D,typ_supply_current,150 uA
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495C/D,typ_supply_current,152 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495CPA,part_family,N
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495CPA,typ_supply_current,149 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495CPA,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495CPA,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495CSA,part_family,N
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495CSA,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495CSA,typ_supply_current,150 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495CUA,part_family,N
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495CUA,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495CUA,typ_supply_current,150 uA
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495CUA,typ_supply_current,151 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495EPA,part_family,N
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495EPA,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495EPA,typ_supply_current,150 uA
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495EPA,typ_supply_current,153 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495ESA,part_family,N
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495ESA,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495ESA,typ_supply_current,150 uA
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495ESA,typ_supply_current,154 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495MJA,part_family,N
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495MJA,typ_supply_current,135 uA
 MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495MJA,typ_supply_current,150 uA
-MaximIntegrated_MAX494CSD,Maxim Integrated,MAX495MJA,typ_supply_current,155 uA
 MaximIntegrated_MAX9005EUA,Maxim Integrated,MAX9000,part_family,Y
 MaximIntegrated_MAX9005EUA,Maxim Integrated,MAX9000,typ_supply_current,410 uA
 MaximIntegrated_MAX9005EUA,Maxim Integrated,MAX9000,typ_supply_current,450 uA
