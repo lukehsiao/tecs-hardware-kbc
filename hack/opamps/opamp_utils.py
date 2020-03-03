@@ -62,7 +62,7 @@ def get_gold_set(gold=None, docs=None, is_gain=True):
     if gold is None:
         gold = [
             os.path.join(dirname, "data/dev/dev_gold.csv"),
-            os.path.join(dirname, "data/test/test_gold.csv"),
+            os.path.join(dirname, "data/mouser/mouser_gold.csv"),
         ]
 
     for filename in gold:
