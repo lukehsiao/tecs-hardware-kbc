@@ -9,35 +9,36 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 """
-This script should read in the existing train/ set of documents
-and pull out documents that we know that Digikey has and put them
-into a separate dir for comparison purposes.
+This script should read in the existing dev and test sets of documents (because
+we already have our own "ground truth" gold labels for those datasets) and pull
+out documents that we know that Digikey/Mouser has and put them into a separate
+dir for comparison purposes.
 """
 
 
-def get_digikey_filenames(goldfile):
-    """Returns a set of all filenames found in Digikey's gold csv."""
-    digikey_filenames = set()
+def get_dataset_filenames(goldfile):
+    """Returns a set of all filenames found in a given dataset gold csv."""
+    filenames = set()
     with open(goldfile, "r") as gold:
         reader = csv.reader(gold)
         for line in reader:
             filename = line[0]
-            digikey_filenames.add(filename.upper())
-    if len(digikey_filenames) != 0:
-        return digikey_filenames
+            filenames.add(filename.upper())
+    if len(filenames) != 0:
+        return filenames
     else:
-        logger.error(f"No digikey filenames found in {goldfile}.")
+        logger.error(f"No filenames found in {goldfile}.")
         pdb.set_trace()
 
 
-def get_valid_filenames(dirname, digikey_filenames):
-    """Returns a sest of filenames that are found both in
-    Digikey's gold CSV and in the target dataset directory."""
+def get_valid_filenames(dirname, filenames):
+    """Returns a set of filenames that are found both in the Digikey/Mouser gold
+    CSV and in the target dataset directory."""
     valid_filenames = set()
     logger.info(f"Getting valid filenames from {dirname}")
     for filename in tqdm(os.listdir(dirname)):
         if filename.endswith(".pdf") or filename.endswith(".PDF"):
-            if filename.upper().replace(".PDF", "") in digikey_filenames:
+            if filename.upper().replace(".PDF", "") in filenames:
                 valid_filenames.add(filename.replace(".pdf", "").replace(".PDF", ""))
     if len(valid_filenames) != 0:
         return valid_filenames
@@ -98,16 +99,16 @@ if __name__ == "__main__":
     htmldir = os.path.join(dirname, "../../dev/html")
     gold_file = os.path.join(dirname, "../../standard_digikey_gold.csv")
 
-    digikey_filenames = get_digikey_filenames(gold_file)
+    dataset_filenames = get_dataset_filenames(gold_file)
 
-    filenames = get_valid_filenames(pdfdir, digikey_filenames)
+    filenames = get_valid_filenames(pdfdir, dataset_filenames)
     move_valid_files(pdfdir, htmldir, filenames, out="../../analysis/")
 
     # Run extraction on test set
     pdfdir = os.path.join(dirname, "../../test/pdf/")
     htmldir = os.path.join(dirname, "../../test/html")
 
-    digikey_filenames = get_digikey_filenames(gold_file)
+    dataset_filenames = get_dataset_filenames(gold_file)
 
-    filenames = get_valid_filenames(pdfdir, digikey_filenames)
+    filenames = get_valid_filenames(pdfdir, dataset_filenames)
     move_valid_files(pdfdir, htmldir, filenames, out="../../analysis/")
