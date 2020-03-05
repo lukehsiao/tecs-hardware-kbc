@@ -8,7 +8,6 @@ and writes the combined output to the specified output CSV.
 import csv
 import logging
 import os
-import pdb
 
 from hack.opamps.data.utils.normalizers import general_normalizer, opamp_part_normalizer
 from hack.opamps.data.utils.preprocessors import (
@@ -80,8 +79,6 @@ def format_mouser_gold(
             doc_name = preprocess_mouser_doc(manuf, manuf_part_num)
             manuf = preprocess_manuf(manuf)
             part_num = opamp_part_normalizer(manuf_part_num)
-            if manuf_part_num == "595-LM358BAIDR":
-                pdb.set_trace()
 
             # For analysis purposes, skip datasheets that `get_docs()`
             # cannot get a filename for (i.e. datasheets that are not
