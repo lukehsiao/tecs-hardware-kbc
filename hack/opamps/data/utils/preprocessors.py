@@ -131,13 +131,13 @@ def get_docs(
 def get_mouser_docs(
     pdf_dir="/home/nchiang/repos/hack/hack/opamps/data/src/mouser-pdf/",
 ):
-    return os.listdir(pdf_dir)
+    return list(map(lambda name: name.replace(".pdf", ""), os.listdir(pdf_dir)))
 
 
 def preprocess_mouser_doc(manuf, partnum, docs=get_mouser_docs()):
     manuf = re.sub(r"[^A-Za-z0-9\-\_]+", "", manuf)
     partnum = re.sub(r"[^A-Za-z0-9\-\_]+", "", partnum)
-    doc_name = f"{manuf}_{partnum}.pdf"
+    doc_name = f"{manuf}_{partnum}"
     return doc_name if doc_name in docs else None
 
 
