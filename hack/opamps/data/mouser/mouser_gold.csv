@@ -1,0 +1,186 @@
+ONSemiconductor_NCS21911SN2T1G,ON Semiconductor,NCS21911SN2T1G,typ_supply_current,475 uA
+ONSemiconductor_NCS21911SN2T1G,ON Semiconductor,NCS21911SN2T1G,typ_gbp,2 MHz
+TexasInstruments_OPA810IDR,Texas Instruments,OPA810IDR,typ_gbp,70 MHz
+TexasInstruments_TLV6003DBVR,Texas Instruments,TLV6003DBVR,typ_supply_current,1 uA
+TexasInstruments_TLV6003DBVR,Texas Instruments,TLV6003DBVR,typ_gbp,5.5 kHz
+STMicroelectronics_TSB571ILT,STMicroelectronics,TSB571ILT,typ_supply_current,340 uA
+STMicroelectronics_TSB571ILT,STMicroelectronics,TSB571ILT,typ_gbp,2.2 MHz
+STMicroelectronics_LM2904WHYST,STMicroelectronics,LM2904WHYST,typ_supply_current,700 uA
+STMicroelectronics_LM2904WHYST,STMicroelectronics,LM2904WHYST,typ_gbp,1.1 MHz
+STMicroelectronics_TSV324IDT,STMicroelectronics,TSV324IDT,typ_supply_current,500 uA
+STMicroelectronics_TSV324IDT,STMicroelectronics,TSV324IDT,typ_gbp,1.4 MHz
+STMicroelectronics_TSV6290AICT,STMicroelectronics,TSV6290AICT,typ_supply_current,36 uA
+STMicroelectronics_TSV6290AICT,STMicroelectronics,TSV6290AICT,typ_gbp,1.3 MHz
+MaximIntegrated_MAX4246ASAT,Maxim Integrated,MAX4246ASA+T,typ_supply_current,320 uA
+MaximIntegrated_MAX4246ASAT,Maxim Integrated,MAX4246ASA+T,typ_gbp,1 MHz
+AnalogDevices_AD8544WARZ-R7,Analog Devices,AD8544WARZ-R7,typ_supply_current,260 uA
+AnalogDevices_AD8544WARZ-R7,Analog Devices,AD8544WARZ-R7,typ_gbp,1 MHz
+MaximIntegrated_MAX4483AUD,Maxim Integrated,MAX4483AUD+,typ_supply_current,50 uA
+MaximIntegrated_MAX4483AUD,Maxim Integrated,MAX4483AUD+,typ_gbp,140 kHz
+MaximIntegrated_MAX4282EUA,Maxim Integrated,MAX4282EUA+,typ_supply_current,320 uA
+MaximIntegrated_MAX4282EUA,Maxim Integrated,MAX4282EUA+,typ_gbp,2 MHz
+MaximIntegrated_MAX9005EUA,Maxim Integrated,MAX9005EUA+,typ_supply_current,340 uA
+MaximIntegrated_MAX9005EUA,Maxim Integrated,MAX9005EUA+,typ_gbp,8 MHz
+MaximIntegrated_MAX4227ESA,Maxim Integrated,MAX4227ESA+,typ_supply_current,6 mA
+MaximIntegrated_MAX4227ESA,Maxim Integrated,MAX4227ESA+,typ_gbp,1.2 GHz
+MaximIntegrated_MAX4163EBLT,Maxim Integrated,MAX4163EBL+T,typ_supply_current,25 uA
+MaximIntegrated_MAX4163EBLT,Maxim Integrated,MAX4163EBL+T,typ_gbp,200 kHz
+AnalogDevicesLinearTechnology_OP270GN8PBF,Analog Devices / Linear Technology,OP270GN8#PBF,typ_supply_current,4 mA
+AnalogDevicesLinearTechnology_OP270GN8PBF,Analog Devices / Linear Technology,OP270GN8#PBF,typ_gbp,6 MHz
+MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7621BCPA+,typ_supply_current,15 uA
+MaximIntegrated_ICL7621BCPA,Maxim Integrated,ICL7621BCPA+,typ_gbp,44 kHz
+STMicroelectronics_LF353DT,STMicroelectronics,LF353DT,typ_supply_current,3.2 mA
+STMicroelectronics_LF353DT,STMicroelectronics,LF353DT,typ_gbp,4 MHz
+STMicroelectronics_LM2904PT,STMicroelectronics,LM2904PT,typ_supply_current,1.2 mA
+STMicroelectronics_LM2904PT,STMicroelectronics,LM2904PT,typ_gbp,1.1 MHz
+ONSemiconductor_LM301ADR2G,ON Semiconductor,LM301ADR2G,typ_supply_current,1.8 mA
+ONSemiconductor_LM301ADR2G,ON Semiconductor,LM301ADR2G,typ_gbp,1 MHz
+ONSemiconductor_MC33078DR2G,ON Semiconductor,MC33078DR2G,typ_supply_current,4.1 mA
+ONSemiconductor_MC33078DR2G,ON Semiconductor,MC33078DR2G,typ_gbp,16 MHz
+ONSemiconductor_MC33202DR2G,ON Semiconductor,MC33202DR2G,typ_supply_current,1.8 mA
+ONSemiconductor_MC33202DR2G,ON Semiconductor,MC33202DR2G,typ_gbp,2.2 MHz
+STMicroelectronics_MC33078D,STMicroelectronics,MC33078D,typ_supply_current,2.05 mA
+STMicroelectronics_MC33078D,STMicroelectronics,MC33078D,typ_gbp,15 MHz
+STMicroelectronics_LM324AD,STMicroelectronics,LM324AD,typ_supply_current,175 uA
+STMicroelectronics_LM324AD,STMicroelectronics,LM324AD,typ_gbp,1.3 MHz
+ONSemiconductor_LM2904DMR2G,ON Semiconductor,LM2904DMR2G,typ_supply_current,1.2 mA
+ONSemiconductor_LM2904DMR2G,ON Semiconductor,LM2904DMR2G,typ_gbp,1 MHz
+AnalogDevices_AD8244BRMZ,Analog Devices,AD8244BRMZ,typ_supply_current,180 uA
+AnalogDevices_AD8244BRMZ,Analog Devices,AD8244BRMZ,typ_gbp,3 MHz
+STMicroelectronics_MC1458DT,STMicroelectronics,MC1458DT,typ_supply_current,3.4 mA
+STMicroelectronics_MC1458DT,STMicroelectronics,MC1458DT,typ_gbp,1 MHz
+STMicroelectronics_L2720W13TR,STMicroelectronics,L2720W13TR,typ_supply_current,15 mA
+STMicroelectronics_L2720W13TR,STMicroelectronics,L2720W13TR,typ_gbp,1.2 MHz
+AnalogDevices_OP281GSZ,Analog Devices,OP281GSZ,typ_supply_current,8 uA
+AnalogDevices_OP281GSZ,Analog Devices,OP281GSZ,typ_gbp,105 kHz
+ONSemiconductor_LM358DMR2G,ON Semiconductor,LM358DMR2G,typ_supply_current,1.2 mA
+ONSemiconductor_LM358DMR2G,ON Semiconductor,LM358DMR2G,typ_gbp,1 MHz
+TexasInstruments_LM358BAIDR,Texas Instruments,LM358BAIDR,typ_gbp,1.2 MHz
+TexasInstruments_OPA2210ID,Texas Instruments,OPA2210ID,typ_gbp,18 MHz
+MaximIntegrated_MAX4042ESAT,Maxim Integrated,MAX4042ESA+T,typ_supply_current,40 uA
+MaximIntegrated_MAX4042ESAT,Maxim Integrated,MAX4042ESA+T,typ_gbp,90 kHz
+MaximIntegrated_MAX4076EUKT,Maxim Integrated,MAX4076EUK+T,typ_supply_current,40 uA
+MaximIntegrated_MAX4076EUKT,Maxim Integrated,MAX4076EUK+T,typ_gbp,230 kHz
+STMicroelectronics_TS27M2AIDT,STMicroelectronics,TS27M2AIDT,typ_supply_current,400 uA
+STMicroelectronics_TS27M2AIDT,STMicroelectronics,TS27M2AIDT,typ_gbp,1 MHz
+STMicroelectronics_TS27L4AIPT,STMicroelectronics,TS27L4AIPT,typ_supply_current,60 uA
+STMicroelectronics_TS27L4AIPT,STMicroelectronics,TS27L4AIPT,typ_gbp,100 kHz
+STMicroelectronics_TSU104IQ4T,STMicroelectronics,TSU104IQ4T,typ_supply_current,950 nA
+STMicroelectronics_TSU104IQ4T,STMicroelectronics,TSU104IQ4T,typ_gbp,8 kHz
+STMicroelectronics_TSX634AIYPT,STMicroelectronics,TSX634AIYPT,typ_supply_current,45 uA
+STMicroelectronics_TSX634AIYPT,STMicroelectronics,TSX634AIYPT,typ_gbp,200 kHz
+MaximIntegrated_MAX40242ANA,Maxim Integrated,MAX40242ANA+,typ_supply_current,1.2 mA
+MaximIntegrated_MAX40242ANA,Maxim Integrated,MAX40242ANA+,typ_gbp,10 MHz
+STMicroelectronics_TL061ACDT,STMicroelectronics,TL061ACDT,typ_supply_current,250 uA
+STMicroelectronics_TL061ACDT,STMicroelectronics,TL061ACDT,typ_gbp,1 MHz
+STMicroelectronics_TSZ182IST,STMicroelectronics,TSZ182IST,typ_supply_current,800 uA
+STMicroelectronics_TSZ182IST,STMicroelectronics,TSZ182IST,typ_gbp,3 MHz
+AnalogDevicesLinearTechnology_LT1464CS8TRPBF,Analog Devices / Linear Technology,LT1464CS8#TRPBF,typ_supply_current,145 uA
+AnalogDevicesLinearTechnology_LT1464CS8TRPBF,Analog Devices / Linear Technology,LT1464CS8#TRPBF,typ_gbp,1 MHz
+SilegoTechnology_SLG88104V,Silego Technology,SLG88104V,typ_supply_current,400 nA
+SilegoTechnology_SLG88104V,Silego Technology,SLG88104V,typ_gbp,10 kHz
+DIOOMicrocircuits_DIO8358MP8,DIOO Microcircuits,DIO8358MP8,typ_supply_current,50 uA
+DIOOMicrocircuits_DIO8358MP8,DIOO Microcircuits,DIO8358MP8,typ_gbp,1 MHz
+DIOOMicrocircuits_DIO2072SO8,DIOO Microcircuits,DIO2072SO8,typ_supply_current,3 mA
+DIOOMicrocircuits_DIO2072SO8,DIOO Microcircuits,DIO2072SO8,typ_gbp,10 MHz
+DIOOMicrocircuits_DIO2054TP14,DIOO Microcircuits,DIO2054TP14,typ_supply_current,16 uA
+DIOOMicrocircuits_DIO2054TP14,DIOO Microcircuits,DIO2054TP14,typ_gbp,550 kHz
+MaximIntegrated_MAX9945ATTT,Maxim Integrated,MAX9945ATT+T,typ_supply_current,400 uA
+MaximIntegrated_MAX9945ATTT,Maxim Integrated,MAX9945ATT+T,typ_gbp,3 MHz
+RenesasIntersil_ISL28194FHZ-T7,Renesas / Intersil,ISL28194FHZ-T7,typ_supply_current,45 uA
+RenesasIntersil_ISL28194FHZ-T7,Renesas / Intersil,ISL28194FHZ-T7,typ_gbp,3.5 kHz
+AnalogDevicesLinearTechnology_LTC2058IS8EPBF,Analog Devices / Linear Technology,LTC2058IS8E#PBF,typ_supply_current,1.4 mA
+AnalogDevicesLinearTechnology_LTC2058IS8EPBF,Analog Devices / Linear Technology,LTC2058IS8E#PBF,typ_gbp,2.5 MHz
+AnalogDevicesLinearTechnology_LTC2064IMS8PBF,Analog Devices / Linear Technology,LTC2064IMS8#PBF,typ_supply_current,2 uA
+AnalogDevicesLinearTechnology_LTC2064IMS8PBF,Analog Devices / Linear Technology,LTC2064IMS8#PBF,typ_gbp,20 kHz
+AnalogDevices_ADA4084-2ARZ,Analog Devices,ADA4084-2ARZ,typ_supply_current,595 uA
+AnalogDevices_ADA4084-2ARZ,Analog Devices,ADA4084-2ARZ,typ_gbp,15.9 MHz
+ONSemiconductor_NCS20071XV53T2G,ON Semiconductor,NCS20071XV53T2G,typ_supply_current,420 uA
+ONSemiconductor_NCS20071XV53T2G,ON Semiconductor,NCS20071XV53T2G,typ_gbp,3 MHz
+RenesasIntersil_EL5364IUZ,Renesas / Intersil,EL5364IUZ,typ_supply_current,4.2 mA
+RenesasIntersil_EL5364IUZ,Renesas / Intersil,EL5364IUZ,typ_gbp,500 MHz
+AnalogDevices_OP282ARMZ-REEL,Analog Devices,OP282ARMZ-REEL,typ_supply_current,250 uA
+AnalogDevices_OP282ARMZ-REEL,Analog Devices,OP282ARMZ-REEL,typ_gbp,4 MHz
+MaximIntegrated_MAX4291EUKT,Maxim Integrated,MAX4291EUK+T,typ_supply_current,100 uA
+MaximIntegrated_MAX4291EUKT,Maxim Integrated,MAX4291EUK+T,typ_gbp,500 kHz
+ONSemiconductor_MC33274ADTBR2G,ON Semiconductor,MC33274ADTBR2G,typ_supply_current,8.6 mA
+ONSemiconductor_MC33274ADTBR2G,ON Semiconductor,MC33274ADTBR2G,typ_gbp,24 MHz
+MaximIntegrated_MAX9615AXAT,Maxim Integrated,MAX9615AXA+T,typ_supply_current,220 uA
+MaximIntegrated_MAX9615AXAT,Maxim Integrated,MAX9615AXA+T,typ_gbp,2.8 MHz
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494CSD+,typ_supply_current,150 uA
+MaximIntegrated_MAX494CSD,Maxim Integrated,MAX494CSD+,typ_gbp,500 kHz
+MaximIntegrated_MAX4105ESA,Maxim Integrated,MAX4105ESA+,typ_supply_current,20 mA
+MaximIntegrated_MAX4105ESA,Maxim Integrated,MAX4105ESA+,typ_gbp,100 MHz
+AnalogDevices_AD8032ARZ-REEL,Analog Devices,AD8032ARZ-REEL,typ_supply_current,3.2 mA
+AnalogDevices_AD8032ARZ-REEL,Analog Devices,AD8032ARZ-REEL,typ_gbp,50 MHz
+ONSemiconductor_NCS20072DMR2G,ON Semiconductor,NCS20072DMR2G,typ_supply_current,465 uA
+ONSemiconductor_NCS20072DMR2G,ON Semiconductor,NCS20072DMR2G,typ_gbp,3 MHz
+AnalogDevices_AD8571ARZ-REEL7,Analog Devices,AD8571ARZ-REEL7,typ_supply_current,975 uA
+AnalogDevices_AD8571ARZ-REEL7,Analog Devices,AD8571ARZ-REEL7,typ_gbp,1.5 MHz
+ONSemiconductor_NCS20082DMR2G,ON Semiconductor,NCS20082DMR2G,typ_supply_current,48 uA
+ONSemiconductor_NCS20082DMR2G,ON Semiconductor,NCS20082DMR2G,typ_gbp,1.2 MHz
+MaximIntegrated_MAX4232AUAT,Maxim Integrated,MAX4232AUA+T,typ_supply_current,1.1 mA
+MaximIntegrated_MAX4232AUAT,Maxim Integrated,MAX4232AUA+T,typ_gbp,10 MHz
+STMicroelectronics_TS921IPT,STMicroelectronics,TS921IPT,typ_supply_current,1.5 mA
+STMicroelectronics_TS921IPT,STMicroelectronics,TS921IPT,typ_gbp,4 MHz
+AnalogDevices_AD8529ARZ-REEL,Analog Devices,AD8529ARZ-REEL,typ_supply_current,1.2 mA
+AnalogDevices_AD8529ARZ-REEL,Analog Devices,AD8529ARZ-REEL,typ_gbp,8 MHz
+AnalogDevices_AD548JRZ-REEL7,Analog Devices,AD548JRZ-REEL7,typ_gbp,1 MHz
+RenesasIntersil_ISL28191FRUZ-T7,Renesas / Intersil,ISL28191FRUZ-T7,typ_supply_current,3.5 mA
+MaximIntegrated_MAX4475ASAT,Maxim Integrated,MAX4475ASA+T,typ_supply_current,2.2 mA
+MaximIntegrated_MAX4475ASAT,Maxim Integrated,MAX4475ASA+T,typ_gbp,10 MHz
+AnalogDevices_OP221GSZ-REEL7,Analog Devices,OP221GSZ-REEL7,typ_supply_current,900 uA
+AnalogDevices_OP221GSZ-REEL7,Analog Devices,OP221GSZ-REEL7,typ_gbp,600 kHz
+AnalogDevicesLinearTechnology_LTC6268HS6TRMPBF,Analog Devices / Linear Technology,LTC6268HS6#TRMPBF,typ_supply_current,16.5 mA
+AnalogDevicesLinearTechnology_LTC6268HS6TRMPBF,Analog Devices / Linear Technology,LTC6268HS6#TRMPBF,typ_gbp,500 MHz
+AnalogDevicesLinearTechnology_LT1352IS8PBF,Analog Devices / Linear Technology,LT1352IS8#PBF,typ_supply_current,0.25 mA
+AnalogDevicesLinearTechnology_LT1352IS8PBF,Analog Devices / Linear Technology,LT1352IS8#PBF,typ_gbp,3 MHz
+STMicroelectronics_TS934IDT,STMicroelectronics,TS934IDT,typ_supply_current,20 uA
+STMicroelectronics_TS934IDT,STMicroelectronics,TS934IDT,typ_gbp,100 kHz
+AnalogDevicesLinearTechnology_LT1351CN8PBF,Analog Devices / Linear Technology,LT1351CN8#PBF,typ_supply_current,250 uA
+AnalogDevicesLinearTechnology_LT1351CN8PBF,Analog Devices / Linear Technology,LT1351CN8#PBF,typ_gbp,3 MHz
+AnalogDevicesLinearTechnology_LT1635CS8PBF,Analog Devices / Linear Technology,LT1635CS8#PBF,typ_supply_current,130 uA
+AnalogDevicesLinearTechnology_LT1635CS8PBF,Analog Devices / Linear Technology,LT1635CS8#PBF,typ_gbp,175 kHz
+STMicroelectronics_TSV621AILT,STMicroelectronics,TSV621AILT,typ_supply_current,36 uA
+STMicroelectronics_TSV621AILT,STMicroelectronics,TSV621AILT,typ_gbp,420 kHz
+MaximIntegrated_MAX44248AUAT,Maxim Integrated,MAX44248AUA+T,typ_supply_current,90 uA
+MaximIntegrated_MAX44248AUAT,Maxim Integrated,MAX44248AUA+T,typ_gbp,1 MHz
+AnalogDevicesLinearTechnology_LT1782IS5TRPBF,Analog Devices / Linear Technology,LT1782IS5#TRPBF,typ_supply_current,40 uA
+AnalogDevicesLinearTechnology_LT1782IS5TRPBF,Analog Devices / Linear Technology,LT1782IS5#TRPBF,typ_gbp,200 kHz
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA+T,typ_supply_current,650 uA
+MaximIntegrated_MAX4322ESAT,Maxim Integrated,MAX4322ESA+T,typ_gbp,5 MHz
+MaximIntegrated_MAX4039EBLT,Maxim Integrated,MAX4039EBL+T,typ_supply_current,4.1 uA
+MaximIntegrated_MAX4039EBLT,Maxim Integrated,MAX4039EBL+T,typ_gbp,4 kHz
+MaximIntegrated_MAX4486ASAT,Maxim Integrated,MAX4486ASA+T,typ_supply_current,1.9 mA
+MaximIntegrated_MAX4486ASAT,Maxim Integrated,MAX4486ASA+T,typ_gbp,7 MHz
+MaximIntegrated_MAX4471ESAT,Maxim Integrated,MAX4471ESA+T,typ_supply_current,0.75 uA
+MaximIntegrated_MAX4471ESAT,Maxim Integrated,MAX4471ESA+T,typ_gbp,9 kHz
+MaximIntegrated_MAX4242EUAT,Maxim Integrated,MAX4242EUA+T,typ_supply_current,10 uA
+MaximIntegrated_MAX4242EUAT,Maxim Integrated,MAX4242EUA+T,typ_gbp,90 kHz
+AnalogDevicesLinearTechnology_LT1970AIFEPBF,Analog Devices / Linear Technology,LT1970AIFE#PBF,typ_supply_current,7 mA
+AnalogDevicesLinearTechnology_LT1970AIFEPBF,Analog Devices / Linear Technology,LT1970AIFE#PBF,typ_gbp,3.6 MHz
+STMicroelectronics_TL062BCDT,STMicroelectronics,TL062BCDT,typ_supply_current,250 uA
+STMicroelectronics_TL062BCDT,STMicroelectronics,TL062BCDT,typ_gbp,1 MHz
+RenesasIntersil_ISL55002IBZ-T7,Renesas / Intersil,ISL55002IBZ-T7,typ_supply_current,8.5 mA
+RenesasIntersil_ISL55002IBZ-T7,Renesas / Intersil,ISL55002IBZ-T7,typ_gbp,70 MHz
+AnalogDevices_ADA4062-4ARUZ-RL,Analog Devices,ADA4062-4ARUZ-RL,typ_supply_current,880 uA
+AnalogDevices_ADA4062-4ARUZ-RL,Analog Devices,ADA4062-4ARUZ-RL,typ_gbp,1.4 MHz
+MaximIntegrated_MAX4492AUDT,Maxim Integrated,MAX4492AUD+T,typ_supply_current,800 uA
+MaximIntegrated_MAX4492AUDT,Maxim Integrated,MAX4492AUD+T,typ_gbp,10 MHz
+AnalogDevicesLinearTechnology_LT1122CCN8PBF,Analog Devices / Linear Technology,LT1122CCN8#PBF,typ_supply_current,7.5 mA
+AnalogDevicesLinearTechnology_LT1122CCN8PBF,Analog Devices / Linear Technology,LT1122CCN8#PBF,typ_gbp,14 MHz
+STMicroelectronics_TS941AILT,STMicroelectronics,TS941AILT,typ_supply_current,1.2 uA
+STMicroelectronics_TS941AILT,STMicroelectronics,TS941AILT,typ_gbp,10 kHz
+RenesasIntersil_ISL28430CBZ,Renesas / Intersil,ISL28430CBZ,typ_supply_current,100 uA
+RenesasIntersil_ISL28430CBZ,Renesas / Intersil,ISL28430CBZ,typ_gbp,400 kHz
+STMicroelectronics_TSX562AIYST,STMicroelectronics,TSX562AIYST,typ_supply_current,220 uA
+STMicroelectronics_TSX562AIYST,STMicroelectronics,TSX562AIYST,typ_gbp,900 kHz
+DiodesIncorporated_LM2902QT14-13,Diodes Incorporated,LM2902QT14-13,typ_supply_current,1 mA
+STMicroelectronics_TS271CDT,STMicroelectronics,TS271CDT,typ_supply_current,15 uA
+STMicroelectronics_TS271CDT,STMicroelectronics,TS271CDT,typ_gbp,100 kHz
+STMicroelectronics_LM258AWDT,STMicroelectronics,LM258AWDT,typ_supply_current,700 uA
+STMicroelectronics_LM258AWDT,STMicroelectronics,LM258AWDT,typ_gbp,1.1 MHz
+DiodesIncorporated_LMV324TSG-13,Diodes Incorporated,LMV324TSG-13,typ_supply_current,340 uA
+DiodesIncorporated_LMV324TSG-13,Diodes Incorporated,LMV324TSG-13,typ_gbp,1 MHz
+DiodesIncorporated_AP358SG-13,Diodes Incorporated,AP358SG-13,typ_supply_current,1.2 mA
+DiodesIncorporated_AP358SG-13,Diodes Incorporated,AP358SG-13,typ_gbp,1 MHz
