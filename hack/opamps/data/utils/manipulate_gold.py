@@ -69,3 +69,23 @@ def combine_csv(combined, dev, test):
             writer.writerow(line)
         for line in reader2:
             writer.writerow(line)
+
+
+def remove_source(goldfile, outfile, append=False):
+    entities = list()
+    with open(goldfile, "r") as inputcsv:
+        reader = csv.reader(inputcsv)
+        for row in reader:
+            (filename, manuf, part, attr, val, source) = row
+            entities.append((filename, manuf, part, attr, val))
+
+    with open(outfile, "a") if append else open(outfile, "w") as inputcsv:
+        writer = csv.writer(inputcsv)
+        for row in entities:
+            writer.writerow(row)
+
+
+if __name__ == "__main__":
+    mouser_input = "/home/nchiang/repos/hack/hack/opamps/data/standard_mouser_gold.csv"
+    mouser_output = "/home/nchiang/repos/hack/hack/opamps/data/mouser/mouser_gold.csv"
+    remove_source(mouser_input, mouser_output)
