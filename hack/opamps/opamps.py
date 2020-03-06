@@ -44,9 +44,13 @@ def dump_candidates(cands, Y_prob, outfile, is_gain=True):
         for i, c in enumerate(tqdm(cands)):
             for (doc, val) in cand_to_entity(c, is_gain=is_gain):
                 if is_gain:
-                    writer.writerow([doc, val.real / 1e3, Y_prob[i]])
+                    writer.writerow(
+                        [doc, val.fixed(show_units=False, scale=1e-3), Y_prob[i]]
+                    )
                 else:
-                    writer.writerow([doc, val.real * 1e6, Y_prob[i]])
+                    writer.writerow(
+                        [doc, val.fixed(show_units=False, scale=1e6), Y_prob[i]]
+                    )
 
 
 def generative_model(L_train, n_epochs=500, print_every=100):
