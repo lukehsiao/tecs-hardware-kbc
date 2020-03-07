@@ -86,6 +86,5 @@ def remove_source(goldfile, outfile, append=False):
 
 
 if __name__ == "__main__":
-    mouser_input = "/home/nchiang/repos/hack/hack/opamps/data/standard_mouser_gold.csv"
-    mouser_output = "/home/nchiang/repos/hack/hack/opamps/data/mouser/mouser_gold.csv"
-    remove_source(mouser_input, mouser_output)
+    mouser_input = "/home/nchiang/repos/hack/hack/opamps/data/mouser/our_gold.csv"
+    sort_gold(mouser_input)
