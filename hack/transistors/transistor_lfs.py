@@ -25,9 +25,9 @@ from fonduer.utils.data_model_utils import (
 
 from hack.transistors.transistor_spaces import expand_part_range
 
-ABSTAIN = 0
-FALSE = 1
-TRUE = 2
+ABSTAIN = -1
+FALSE = 0
+TRUE = 1
 
 
 def _filter_non_polarity(c):
