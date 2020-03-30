@@ -1,30 +1,17 @@
 from fonduer.utils.data_model_utils import (
-    get_aligned_ngrams,
     get_cell_ngrams,
     get_col_ngrams,
-    get_head_ngrams,
     get_horz_ngrams,
-    get_left_ngrams,
     get_neighbor_cell_ngrams,
-    get_neighbor_sentence_ngrams,
     get_page,
-    get_page_vert_percentile,
-    get_right_ngrams,
     get_row_ngrams,
-    get_sentence_ngrams,
-    get_tag,
     get_vert_ngrams,
-    is_horz_aligned,
-    is_vert_aligned,
     overlap,
-    same_col,
-    same_row,
-    same_table,
 )
 
-ABSTAIN = 0
+ABSTAIN = -1
+FALSE = 0
 TRUE = 1
-FALSE = 2
 
 
 def neg_low_page_num(c):
@@ -296,7 +283,7 @@ gain_lfs = [
     #  neg_gain_keywords_in_row,
     #  neg_gain_too_many_words_in_cell,
     #  neg_low_page_num,
-    pos_sen_lf,
+    pos_sen_lf
 ]
 
 current_lfs = [

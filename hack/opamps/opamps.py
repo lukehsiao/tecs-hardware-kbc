@@ -133,9 +133,7 @@ def scoring(test_preds, test_cands, test_docs, is_gain=True, num=100):
     best_b = 0
     for b in np.linspace(0, 1, num=num):
         try:
-            positive = np.where(
-                np.array(test_preds["probs"][relation])[:, TRUE - 1] > b
-            )
+            positive = np.where(np.array(test_preds["probs"][relation])[:, TRUE] > b)
             true_pred = [test_cands[_] for _ in positive[0]]
             result = entity_level_scores(
                 candidates_to_entities(true_pred, is_gain=is_gain),
@@ -383,9 +381,9 @@ def main(
                         flag = True
 
                 if flag:
-                    marginal.append([1.0, 0.0])
-                else:
                     marginal.append([0.0, 1.0])
+                else:
+                    marginal.append([1.0, 0.0])
 
             marginals_dict[relation] = np.array(marginal)
 
@@ -479,7 +477,6 @@ def main(
         num_feature_keys,
         [2] * len(rel_list),
         emb_layer,
-        mode="mtl",
         model="LogisticRegression",
     )
 
@@ -526,10 +523,10 @@ def main(
             )
 
             train_preds = model.predict(train_dataloader, return_preds=True)
-            Y_prob = np.array(train_preds["probs"][relation])[:, TRUE - 1]
+            Y_prob = np.array(train_preds["probs"][relation])[:, TRUE]
             output_csv(train_cands[idx], Y_prob, is_gain=True)
 
-            Y_prob = np.array(test_preds["probs"][relation])[:, TRUE - 1]
+            Y_prob = np.array(test_preds["probs"][relation])[:, TRUE]
             output_csv(test_cands[idx], Y_prob, is_gain=True, append=True)
             dump_candidates(
                 test_cands[idx], Y_prob, "gain_test_probs.csv", is_gain=True
@@ -547,7 +544,7 @@ def main(
 
             dev_preds = model.predict(dev_dataloader, return_preds=True)
 
-            Y_prob = np.array(dev_preds["probs"][relation])[:, TRUE - 1]
+            Y_prob = np.array(dev_preds["probs"][relation])[:, TRUE]
             output_csv(dev_cands[idx], Y_prob, is_gain=True, append=True)
             dump_candidates(dev_cands[idx], Y_prob, "gain_dev_probs.csv", is_gain=True)
 
@@ -563,10 +560,10 @@ def main(
             )
 
             train_preds = model.predict(train_dataloader, return_preds=True)
-            Y_prob = np.array(train_preds["probs"][relation])[:, TRUE - 1]
+            Y_prob = np.array(train_preds["probs"][relation])[:, TRUE]
             output_csv(train_cands[idx], Y_prob, is_gain=False)
 
-            Y_prob = np.array(test_preds["probs"][relation])[:, TRUE - 1]
+            Y_prob = np.array(test_preds["probs"][relation])[:, TRUE]
             output_csv(test_cands[idx], Y_prob, is_gain=False, append=True)
             dump_candidates(
                 test_cands[idx], Y_prob, "current_test_probs.csv", is_gain=False
@@ -584,7 +581,7 @@ def main(
 
             dev_preds = model.predict(dev_dataloader, return_preds=True)
 
-            Y_prob = np.array(dev_preds["probs"][relation])[:, TRUE - 1]
+            Y_prob = np.array(dev_preds["probs"][relation])[:, TRUE]
             output_csv(dev_cands[idx], Y_prob, is_gain=False, append=True)
             dump_candidates(
                 dev_cands[idx], Y_prob, "current_dev_probs.csv", is_gain=False
