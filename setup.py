@@ -8,7 +8,7 @@ setup(
         "fonduer @ git+https://github.com/HazyResearch/fonduer.git@emmental",
         "matplotlib",
         "numpy",
-        "pandas<0.24.0,>=0.23.4",
+        "pandas<0.26.0,>=0.25.0",
         "pillow",
         "quantiphy",
         "scipy",
