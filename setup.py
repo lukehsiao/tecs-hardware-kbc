@@ -5,7 +5,7 @@ setup(
     version="0.1.2",
     description="Building a hardware component knowledge base.",
     install_requires=[
-        "fonduer @ git+https://github.com/HazyResearch/fonduer.git@emmental",
+        "fonduer @ git+https://github.com/HazyResearch/fonduer.git@emmental-5",
         "matplotlib",
         "numpy",
         "pandas<0.26.0,>=0.25.0",
