@@ -13,7 +13,7 @@ setup(
         "quantiphy",
         "scipy",
         "seaborn",
-        "snorkel-metal",
+        "snorkel",
         "statsmodels",
         "torch>=1.3.0,<2.0.0",
         "tqdm",
