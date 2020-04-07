@@ -27,7 +27,7 @@ from fonduer.learning.task import create_task
 from fonduer.learning.utils import collect_word_counter
 from fonduer.parser.models import Document, Figure, Paragraph, Section, Sentence
 from fonduer.supervision import Labeler
-from snorkel.labeling import LabelModel
+from snorkel.labeling.model import LabelModel
 
 from hack.transistors.transistor_lfs import (
     TRUE,
