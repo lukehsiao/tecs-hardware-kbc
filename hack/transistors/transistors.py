@@ -89,9 +89,7 @@ def scoring(relation, test_preds, test_cands, test_docs, F_test, parts_by_doc, n
     best_b = 0
     for b in np.linspace(0, 1, num=num):
         try:
-            positive = np.where(
-                np.array(test_preds["probs"][relation])[:, TRUE - 1] > b
-            )
+            positive = np.where(np.array(test_preds["probs"][relation])[:, TRUE] > b)
             true_pred = [test_cands[_] for _ in positive[0]]
             result = entity_level_scores(
                 candidates_to_entities(
@@ -589,9 +587,9 @@ def main(
 
             dev_preds = model.predict(dev_dataloader, return_preds=True)
 
-            Y_prob = np.array(test_preds["probs"][relation])[:, TRUE - 1]
+            Y_prob = np.array(test_preds["probs"][relation])[:, TRUE]
             dump_candidates(test_cands[idx], Y_prob, "ce_v_max_test_probs.csv")
-            Y_prob = np.array(dev_preds["probs"][relation])[:, TRUE - 1]
+            Y_prob = np.array(dev_preds["probs"][relation])[:, TRUE]
             dump_candidates(dev_cands[idx], Y_prob, "ce_v_max_dev_probs.csv")
 
         # Dump CSV files for POLARITY for digi-key analysis
@@ -608,9 +606,9 @@ def main(
 
             dev_preds = model.predict(dev_dataloader, return_preds=True)
 
-            Y_prob = np.array(test_preds["probs"][relation])[:, TRUE - 1]
+            Y_prob = np.array(test_preds["probs"][relation])[:, TRUE]
             dump_candidates(test_cands[idx], Y_prob, "polarity_test_probs.csv")
-            Y_prob = np.array(dev_preds["probs"][relation])[:, TRUE - 1]
+            Y_prob = np.array(dev_preds["probs"][relation])[:, TRUE]
             dump_candidates(dev_cands[idx], Y_prob, "polarity_dev_probs.csv")
 
     end = timer()
