@@ -40,7 +40,7 @@ def dump_candidates(cands, Y_prob, outfile, is_gain=True):
     """Output the candidates and their probabilities for later analysis."""
     dirname = os.path.dirname(__file__)
     with open(os.path.join(dirname, outfile), "w") as csvfile:
-        writer = csv.writer(csvfile)
+        writer = csv.writer(csvfile, lineterminator="\n")
         for i, c in enumerate(tqdm(cands)):
             for (doc, val) in cand_to_entity(c, is_gain=is_gain):
                 if is_gain:
@@ -69,7 +69,7 @@ def output_csv(cands, Y_prob, is_gain=True, append=False):
 
     if append:
         with open(filename, "a") as csvfile:
-            writer = csv.writer(csvfile)
+            writer = csv.writer(csvfile, lineterminator="\n")
             for i, c in enumerate(tqdm(cands)):
                 for entity in cand_to_entity(c, is_gain=is_gain):
                     if is_gain:
@@ -92,7 +92,7 @@ def output_csv(cands, Y_prob, is_gain=True, append=False):
                         )
     else:
         with open(filename, "w") as csvfile:
-            writer = csv.writer(csvfile)
+            writer = csv.writer(csvfile, lineterminator="\n")
             if is_gain:
                 writer.writerow(["Document", "GBWP (kHz)", "sent", "p"])
             else:

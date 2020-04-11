@@ -128,7 +128,7 @@ def dump_candidates(cands, Y_prob, outfile):
     """Output the candidates and their probabilities for later analysis."""
     dirname = os.path.dirname(__file__)
     with open(os.path.join(dirname, outfile), "w") as csvfile:
-        writer = csv.writer(csvfile)
+        writer = csv.writer(csvfile, lineterminator="\n")
         for i, c in enumerate(cands):
             (doc, part, val) = cand_to_entity(c)
             writer.writerow([doc, part, val, Y_prob[i]])

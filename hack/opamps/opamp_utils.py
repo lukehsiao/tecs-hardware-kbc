@@ -295,7 +295,7 @@ def compare_entities(
     # for manual debugging
     outfile = os.path.join(os.path.dirname(__name__), outfile)
     with open(outfile, "a") if append else open(outfile, "w") as out:
-        writer = csv.writer(out)
+        writer = csv.writer(out, lineterminator="\n")
         if not append:  # Only write header row if none already exists
             writer.writerow(
                 (
