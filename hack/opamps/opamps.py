@@ -284,17 +284,33 @@ def main(
     logger.warning(f"CE Time (min): {((end - start) / 60.0):.1f}")
 
     # First, check total recall
-    #  result = entity_level_scores(dev_cands[0], corpus=dev_docs)
+    #  result = entity_level_scores(
+    #      candidates_to_entities(dev_cands[0], is_gain=True),
+    #      corpus=dev_docs,
+    #      is_gain=True,
+    #  )
     #  logger.info(f"Gain Total Dev Recall: {result.rec:.3f}")
     #  logger.info(f"\n{pformat(result.FN)}")
-    #  result = entity_level_scores(test_cands[0], corpus=test_docs)
+    #  result = entity_level_scores(
+    #      candidates_to_entities(test_cands[0], is_gain=True),
+    #      corpus=test_docs,
+    #      is_gain=True,
+    #  )
     #  logger.info(f"Gain Total Test Recall: {result.rec:.3f}")
     #  logger.info(f"\n{pformat(result.FN)}")
     #
-    #  result = entity_level_scores(dev_cands[1], corpus=dev_docs, is_gain=False)
+    #  result = entity_level_scores(
+    #      candidates_to_entities(dev_cands[1], is_gain=False),
+    #      corpus=dev_docs,
+    #      is_gain=False,
+    #  )
     #  logger.info(f"Current Total Dev Recall: {result.rec:.3f}")
     #  logger.info(f"\n{pformat(result.FN)}")
-    #  result = entity_level_scores(test_cands[1], corpus=test_docs, is_gain=False)
+    #  result = entity_level_scores(
+    #      candidates_to_entities(test_cands[1], is_gain=False),
+    #      corpus=test_docs,
+    #      is_gain=False,
+    #  )
     #  logger.info(f"Current Test Recall: {result.rec:.3f}")
     #  logger.info(f"\n{pformat(result.FN)}")
 
