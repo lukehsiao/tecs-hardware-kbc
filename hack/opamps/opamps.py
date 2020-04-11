@@ -422,7 +422,7 @@ def main(
             "counter_unit": "epoch",
             "checkpointing": False,
             "checkpointer_config": {
-                "checkpoint_metric": {f"opamps/opamps/train/loss": "min"},
+                "checkpoint_metric": {"model/all/train/loss": "min"},
                 "checkpoint_freq": 1,
                 "checkpoint_runway": 2,
                 "clear_intermediate_checkpoints": True,
