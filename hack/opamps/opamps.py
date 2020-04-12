@@ -319,8 +319,10 @@ def main(
 
     if first_time:
         logger.info("Starting featurizer...")
-        featurizer.apply(split=0, train=True, parallelism=parallel)
-        featurizer.apply(split=1, parallelism=parallel)
+        # Set feature space based on dev set, which we use for training rather
+        # than the large train set.
+        featurizer.apply(split=1, train=True, parallelism=parallel)
+        featurizer.apply(split=0, parallelism=parallel)
         featurizer.apply(split=2, parallelism=parallel)
         logger.info("Done")
 
