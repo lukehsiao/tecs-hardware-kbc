@@ -24,7 +24,6 @@ setup(
         "bin/opamps",
         "bin/circular_connectors",
         "bin/analysis",
-        "bin/figure10",
     ],
     packages=find_packages(),
 )
