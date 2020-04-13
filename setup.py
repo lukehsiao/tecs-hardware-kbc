@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="hack",
-    version="0.1.2",
+    version="0.2.2+dev",
     description="Building a hardware component knowledge base.",
     install_requires=[
         "fonduer>=0.8.1, <0.9.0",
