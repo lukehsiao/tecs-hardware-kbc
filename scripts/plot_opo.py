@@ -198,6 +198,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     ax.set(xscale=scale, yscale=scale)
 
     # Build a dataframe with both values
+    total.drop_duplicates(inplace=True)
     plot = sns.scatterplot(
         data=total,
         hue="Source",
