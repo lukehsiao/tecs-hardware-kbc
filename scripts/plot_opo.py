@@ -209,6 +209,16 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
         palette=reversed(sns.color_palette("Paired")[:2]),
     )
 
+    # Highlight the Opo selection, if present
+    target = total[
+        (total["GBWP (kHz)"] == 400.0)
+        & (total["Supply Current (uA)"] == 4.6)
+        & (total["Source"] == "Our Approach")
+    ]
+    if target.size:
+        logger.info("Contained the target Opo selection.")
+        plot.plot(4.6, 400.0, color="r", marker="o", markersize=12, fillstyle="none")
+
     # Remove the seaborn legend title
     handles, labels = ax.get_legend_handles_labels()
     ax.legend(handles=handles[1:], labels=labels[1:])
