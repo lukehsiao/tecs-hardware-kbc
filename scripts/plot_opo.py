@@ -218,7 +218,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     ]
     if target.size:
         logger.info("Contained the target Opo selection.")
-        plot.plot(4.6, 400.0, color="r", marker="o", markersize=12, fillstyle="none")
+        plot.plot(4.6, 400.0, color="r", marker="o", markersize=15, fillstyle="none")
 
     # Remove the seaborn legend title
     handles, labels = ax.get_legend_handles_labels()
