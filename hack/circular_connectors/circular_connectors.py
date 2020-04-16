@@ -4,26 +4,33 @@
 import logging
 import os
 
+import emmental
 import torch
+from emmental.data import EmmentalDataLoader
+from emmental.learner import EmmentalLearner
+from emmental.model import EmmentalModel
 from fonduer import Meta, init_logging
 from fonduer.candidates import CandidateExtractor, MentionExtractor, MentionFigures
 from fonduer.candidates.matchers import _Matcher
 from fonduer.candidates.models import Mention, candidate_subclass, mention_subclass
 from fonduer.parser.models import Document, Figure, Paragraph, Section, Sentence
-from metal import EndModel
-from metal.tuners import RandomSearchTuner
 from PIL import Image
 
-from hack.circular_connectors.disc_model.torchnet import get_cnn
-from hack.circular_connectors.utils import ImageList, transform
+from hack.circular_connectors.augment_policy import Augmentation
+from hack.circular_connectors.config import emmental_config
+from hack.circular_connectors.scheduler import DauphinScheduler
+from hack.circular_connectors.task import create_task
+from hack.circular_connectors.thumbnail_dataset import ThumbnailDataset
 from hack.utils import parse_dataset
 
 # Configure logging for Fonduer
 logger = logging.getLogger(__name__)
 
 TRUE = 1
-FALSE = 2
-ABSTAIN = 0
+FALSE = 0
+
+torch.backends.cudnn.deterministic = True  # type: ignore
+torch.backends.cudnn.benchmark = False  # type: ignore
 
 
 def main(
@@ -46,96 +53,6 @@ def main(
 
     dirname = os.path.dirname(os.path.abspath(__file__))
     init_logging(log_dir=os.path.join(dirname, log_dir), level=level)
-
-    tuner_config = {"max_search": 3}
-
-    em_config = {
-        # GENERAL
-        "seed": None,
-        "verbose": True,
-        "show_plots": True,
-        # Network
-        # The first value is the output dim of the input module (or the sum of
-        # the output dims of all the input modules if multitask=True and
-        # multiple input modules are provided). The last value is the
-        # output dim of the head layer (i.e., the cardinality of the
-        # classification task). The remaining values are the output dims of
-        # middle layers (if any). The number of middle layers will be inferred
-        # from this list.
-        #     "layer_out_dims": [10, 2],
-        # Input layer configs
-        "input_layer_config": {
-            "input_relu": False,
-            "input_batchnorm": False,
-            "input_dropout": 0.0,
-        },
-        # Middle layer configs
-        "middle_layer_config": {
-            "middle_relu": False,
-            "middle_batchnorm": False,
-            "middle_dropout": 0.0,
-        },
-        # Can optionally skip the head layer completely, for e.g. running baseline
-        # models...
-        "skip_head": True,
-        # GPU
-        "device": "cpu",
-        # MODEL CLASS
-        "resnet18"
-        # DATA CONFIG
-        "src": "gm",
-        # TRAINING
-        "train_config": {
-            # Display
-            "print_every": 1,  # Print after this many epochs
-            "disable_prog_bar": False,  # Disable progress bar each epoch
-            # Dataloader
-            "data_loader_config": {"batch_size": 32, "num_workers": 8, "sampler": None},
-            # Loss weights
-            "loss_weights": [0.5, 0.5],
-            # Train Loop
-            "n_epochs": 20,
-            # 'grad_clip': 0.0,
-            "l2": 0.0,
-            # "lr": 0.01,
-            "validation_metric": "accuracy",
-            "validation_freq": 1,
-            # Evaluate dev for during training every this many epochs
-            # Optimizer
-            "optimizer_config": {
-                "optimizer": "adam",
-                "optimizer_common": {"lr": 0.01},
-                # Optimizer - SGD
-                "sgd_config": {"momentum": 0.9},
-                # Optimizer - Adam
-                "adam_config": {"betas": (0.9, 0.999)},
-            },
-            # Scheduler
-            "scheduler_config": {
-                "scheduler": "reduce_on_plateau",
-                # ['constant', 'exponential', 'reduce_on_plateu']
-                # Freeze learning rate initially this many epochs
-                "lr_freeze": 0,
-                # Scheduler - exponential
-                "exponential_config": {"gamma": 0.9},  # decay rate
-                # Scheduler - reduce_on_plateau
-                "plateau_config": {
-                    "factor": 0.5,
-                    "patience": 1,
-                    "threshold": 0.0001,
-                    "min_lr": 1e-5,
-                },
-            },
-            # Checkpointer
-            "checkpoint": True,
-            "checkpoint_config": {
-                "checkpoint_min": -1,
-                # The initial best score to beat to merit checkpointing
-                "checkpoint_runway": 0,
-                # Don't start taking checkpoints until after this many epochs
-            },
-        },
-    }
 
     session = Meta.init(conn_string).Session()
 
@@ -214,110 +131,99 @@ def main(
         )
         return TRUE if doc_file_id in gt else FALSE
 
-    ans = {0: 0, 1: 0, 2: 0}
-
-    gt_dev_pb = []
-    gt_dev = []
-    gt_test = []
-
-    for cand in dev_cands[0]:
-        if LF_gt_label(cand) == 1:
-            ans[1] += 1
-            gt_dev_pb.append([1.0, 0.0])
-            gt_dev.append(1.0)
-        else:
-            ans[2] += 1
-            gt_dev_pb.append([0.0, 1.0])
-            gt_dev.append(2.0)
-
-    ans = {0: 0, 1: 0, 2: 0}
-    for cand in test_cands[0]:
-        gt_test.append(LF_gt_label(cand))
-        ans[gt_test[-1]] += 1
+    gt_dev = [LF_gt_label(cand) for cand in dev_cands[0]]
+    gt_test = [LF_gt_label(cand) for cand in test_cands[0]]
 
     batch_size = 64
     input_size = 224
+    K = 2
 
-    train_loader = torch.utils.data.DataLoader(
-        ImageList(
-            data=dev_cands[0],
-            label=torch.Tensor(gt_dev_pb),
-            transform=transform(input_size),
-            prefix="data/dev/html/",
-        ),
-        batch_size=batch_size,
-        shuffle=False,
+    emmental.init(log_dir=Meta.log_path, config=emmental_config)
+
+    emmental.Meta.config["learner_config"]["task_scheduler_config"][
+        "task_scheduler"
+    ] = DauphinScheduler(augment_k=K, enlarge=1)
+
+    train_dataset = ThumbnailDataset(
+        "Thumbnail",
+        dev_cands[0],
+        gt_dev,
+        "train",
+        prob_label=True,
+        prefix="data/dev/html/",
+        input_size=input_size,
+        transform_cls=Augmentation(2),
+        k=K,
     )
 
-    dev_loader = torch.utils.data.DataLoader(
-        ImageList(
-            data=dev_cands[0],
-            label=gt_dev,
-            transform=transform(input_size),
-            prefix="data/dev/html/",
-        ),
-        batch_size=batch_size,
-        shuffle=False,
+    val_dataset = ThumbnailDataset(
+        "Thumbnail",
+        dev_cands[0],
+        gt_dev,
+        "valid",
+        prob_label=False,
+        prefix="data/dev/html/",
+        input_size=input_size,
+        k=1,
     )
 
-    test_loader = torch.utils.data.DataLoader(
-        ImageList(
-            data=test_cands[0],
-            label=gt_test,
-            transform=transform(input_size),
-            prefix="data/test/html/",
-        ),
-        batch_size=100,
-        shuffle=False,
+    test_dataset = ThumbnailDataset(
+        "Thumbnail",
+        test_cands[0],
+        gt_test,
+        "test",
+        prob_label=False,
+        prefix="data/test/html/",
+        input_size=input_size,
+        k=1,
     )
 
-    search_space = {
-        "l2": [0.001, 0.0001, 0.00001],  # linear range
-        "lr": {"range": [0.0001, 0.1], "scale": "log"},  # log range
-    }
+    dataloaders = []
 
-    train_config = em_config["train_config"]
-
-    # Defining network parameters
-    num_classes = 2
-    #  fc_size = 2
-    #  hidden_size = 2
-    pretrained = True
-
-    # Set CUDA device
-    if gpu:
-        em_config["device"] = "cuda"
-        torch.cuda.set_device(int(gpu))
-
-    # Initializing input module
-    input_module = get_cnn("resnet18", pretrained=pretrained, num_classes=num_classes)
-
-    # Initializing model object
-    init_args = [[num_classes]]
-    init_kwargs = {"input_module": input_module}
-    init_kwargs.update(em_config)
-
-    # Searching model
-    log_config = {"log_dir": os.path.join(dirname, log_dir), "run_name": "image"}
-    searcher = RandomSearchTuner(EndModel, **log_config)
-
-    end_model = searcher.search(
-        search_space,
-        dev_loader,
-        train_args=[train_loader],
-        init_args=init_args,
-        init_kwargs=init_kwargs,
-        train_kwargs=train_config,
-        max_search=tuner_config["max_search"],
+    dataloaders.append(
+        EmmentalDataLoader(
+            task_to_label_dict={"Thumbnail": "labels"},
+            dataset=train_dataset,
+            split="train",
+            shuffle=True,
+            batch_size=batch_size,
+            num_workers=1,
+        )
     )
 
-    # Evaluating model
-    scores = end_model.score(
-        test_loader,
-        metric=["accuracy", "precision", "recall", "f1"],
-        break_ties="abstain",
+    dataloaders.append(
+        EmmentalDataLoader(
+            task_to_label_dict={"Thumbnail": "labels"},
+            dataset=val_dataset,
+            split="valid",
+            shuffle=False,
+            batch_size=batch_size,
+            num_workers=1,
+        )
     )
-    logger.warning("End Model Score:")
-    logger.warning(f"precision: {scores[1]:.3f}")
-    logger.warning(f"recall: {scores[2]:.3f}")
-    logger.warning(f"f1: {scores[3]:.3f}")
+
+    dataloaders.append(
+        EmmentalDataLoader(
+            task_to_label_dict={"Thumbnail": "labels"},
+            dataset=test_dataset,
+            split="test",
+            shuffle=False,
+            batch_size=batch_size,
+            num_workers=1,
+        )
+    )
+
+    model = EmmentalModel(name=f"Thumbnail")
+    model.add_task(
+        create_task("Thumbnail", n_class=2, model="resnet18", pretrained=True)
+    )
+
+    emmental_learner = EmmentalLearner()
+    emmental_learner.learn(model, dataloaders)
+
+    scores = model.score(dataloaders)
+
+    logger.warning("Model Score:")
+    logger.warning(f"precision: {scores['Thumbnail/Thumbnail/test/precision']:.3f}")
+    logger.warning(f"recall: {scores['Thumbnail/Thumbnail/test/recall']:.3f}")
+    logger.warning(f"f1: {scores['Thumbnail/Thumbnail/test/f1']:.3f}")
