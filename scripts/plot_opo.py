@@ -257,7 +257,7 @@ if __name__ == "__main__":
         default="../hack/opamps/output_current.csv",
         help="CSV file name to plot",
     )
-    parser.add_argument("-gb", type=float, help="Gain threshold to use.", default=0.40)
+    parser.add_argument("-gb", type=float, help="Gain threshold to use.", default=0.50)
     parser.add_argument(
         "-cb", type=float, help="Current threshold to use.", default=0.75
     )
