@@ -3,6 +3,7 @@
 
 import logging
 import os
+from timeit import default_timer as timer
 
 import emmental
 import torch
@@ -56,13 +57,15 @@ def main(
 
     session = Meta.init(conn_string).Session()
 
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    logger.info(f"CWD: {os.getcwd()}")
-    dirname = "."
-
+    # Parsing
+    logger.info(f"Starting parsing...")
+    start = timer()
     docs, train_docs, dev_docs, test_docs = parse_dataset(
         session, dirname, first_time=first_time, parallel=parallel, max_docs=max_docs
     )
+    end = timer()
+    logger.warning(f"Parse Time (min): {((end - start) / 60.0):.1f}")
+
     logger.info(f"# of train Documents: {len(train_docs)}")
     logger.info(f"# of dev Documents: {len(dev_docs)}")
     logger.info(f"# of test Documents: {len(test_docs)}")
@@ -73,6 +76,8 @@ def main(
     logger.info(f"Sentences: {session.query(Sentence).count()}")
     logger.info(f"Figures: {session.query(Figure).count()}")
 
+    start = timer()
+
     Thumbnails = mention_subclass("Thumbnails")
 
     thumbnails_img = MentionFigures()
@@ -80,7 +85,11 @@ def main(
     class HasFigures(_Matcher):
         def _f(self, m):
             file_path = ""
-            for prefix in ["data/train/html/", "data/dev/html/", "data/test/html/"]:
+            for prefix in [
+                f"{dirname}/data/train/html/",
+                f"{dirname}/data/dev/html/",
+                f"{dirname}/data/test/html/",
+            ]:
                 if os.path.exists(prefix + m.figure.url):
                     file_path = prefix + m.figure.url
             if file_path == "":
@@ -114,15 +123,25 @@ def main(
     dev_cands = candidate_extractor.get_candidates(split=1)
     test_cands = candidate_extractor.get_candidates(split=2)
 
+    dev_cands[0] = sorted(
+        dev_cands[0], key=lambda fig: fig.thumbnails.context.get_stable_id()
+    )
+
+    end = timer()
+    logger.warning(f"Candidate Extraction Time (min): {((end - start) / 60.0):.1f}")
+
     logger.info("Total train candidate:\t{}".format(len(train_cands[0])))
     logger.info("Total dev candidate:\t{}".format(len(dev_cands[0])))
     logger.info("Total test candidate:\t{}".format(len(test_cands[0])))
 
-    fin = open("data/ground_truth.txt", "r")
+    fin = open(f"{dirname}/data/ground_truth.txt", "r")
     gt = set()
     for line in fin:
         gt.add("::".join(line.lower().split()))
     fin.close()
+
+    # Labeling
+    start = timer()
 
     def LF_gt_label(c):
         doc_file_id = (
@@ -133,6 +152,9 @@ def main(
 
     gt_dev = [LF_gt_label(cand) for cand in dev_cands[0]]
     gt_test = [LF_gt_label(cand) for cand in test_cands[0]]
+
+    end = timer()
+    logger.warning(f"Supervision Time (min): {((end - start) / 60.0):.1f}")
 
     batch_size = 64
     input_size = 224
@@ -150,7 +172,7 @@ def main(
         gt_dev,
         "train",
         prob_label=True,
-        prefix="data/dev/html/",
+        prefix=f"{dirname}/data/dev/html/",
         input_size=input_size,
         transform_cls=Augmentation(2),
         k=K,
@@ -162,7 +184,7 @@ def main(
         gt_dev,
         "valid",
         prob_label=False,
-        prefix="data/dev/html/",
+        prefix=f"{dirname}/data/dev/html/",
         input_size=input_size,
         k=1,
     )
@@ -173,7 +195,7 @@ def main(
         gt_test,
         "test",
         prob_label=False,
-        prefix="data/test/html/",
+        prefix=f"{dirname}/data/test/html/",
         input_size=input_size,
         k=1,
     )
