@@ -1,8 +1,6 @@
 import warnings
 
 import numpy as np
-import torch.utils.data as data
-import torchvision.transforms as transforms
 
 try:
     from PIL import Image as pil_image
@@ -10,57 +8,14 @@ except ImportError:
     pil_image = None
 
 
-class StdNormalize(object):
-    """
-    Normalize torch tensor to have zero mean and unit std deviation
-    """
-
-    def __call__(self, *inputs):
-        outputs = []
-        for idx, _input in enumerate(inputs):
-            _input = _input.sub(_input.mean()).div(_input.std())
-            outputs.append(_input)
-        return outputs if idx > 1 else outputs[0]
-
-
-def transform(input_size):
-    return transforms.Compose(
-        [transforms.Resize(input_size), transforms.ToTensor(), StdNormalize()]
+def default_loader(img_path, img_rows=224, img_cols=224):
+    img = load_img(
+        img_path, color_mode="grayscale", target_size=(img_rows, img_cols, 1)
     )
-
-
-# default xray loader from png
-def default_xray_loader(xray_path, img_rows=224, img_cols=224):
-    xray = load_img(
-        xray_path, color_mode="grayscale", target_size=(img_rows, img_cols, 1)
-    )
-    xray = img_to_array(xray)
-    xray = np.dstack([xray, xray, xray])
-    xray = array_to_img(xray, "channels_last")
-    return xray
-
-
-class ImageList(data.Dataset):
-    def __init__(
-        self, data, label=None, transform=None, loader=default_xray_loader, prefix=""
-    ):
-        self.data = data
-        self.label = label
-        self.transform = transform
-        self.loader = loader
-        self.prefix = prefix
-
-    def __getitem__(self, index):
-        impath = self.prefix + self.data[index][0].context.figure.url
-        #         print(impath)
-        y = self.label[index]
-        img = self.loader(impath)
-        if self.transform is not None:
-            img = self.transform(img)
-        return img, y
-
-    def __len__(self):
-        return len(self.data)
+    img = img_to_array(img)
+    img = np.dstack([img, img, img])
+    img = array_to_img(img, "channels_last")
+    return img
 
 
 if pil_image is not None:
