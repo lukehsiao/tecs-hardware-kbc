@@ -120,12 +120,9 @@ def main(
         candidate_extractor.apply(test_docs, split=2)
 
     train_cands = candidate_extractor.get_candidates(split=0)
-    dev_cands = candidate_extractor.get_candidates(split=1)
+    # Sort the dev_cands, which are used for training, for deterministic behavior
+    dev_cands = candidate_extractor.get_candidates(split=1, sort=True)
     test_cands = candidate_extractor.get_candidates(split=2)
-
-    dev_cands[0] = sorted(
-        dev_cands[0], key=lambda fig: fig.thumbnails.context.get_stable_id()
-    )
 
     end = timer()
     logger.warning(f"Candidate Extraction Time (min): {((end - start) / 60.0):.1f}")

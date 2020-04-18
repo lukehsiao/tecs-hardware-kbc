@@ -298,7 +298,8 @@ def main(
             num_cands = session.query(Candidate).filter(Candidate.split == i).count()
             logger.info(f"Candidates in split={i}: {num_cands}")
 
-    train_cands = candidate_extractor.get_candidates(split=0)
+    # Sort the training candidates to ensure deterministic behavior
+    train_cands = candidate_extractor.get_candidates(split=0, sort=True)
     dev_cands = candidate_extractor.get_candidates(split=1)
     test_cands = candidate_extractor.get_candidates(split=2)
 
