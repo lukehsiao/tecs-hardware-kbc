@@ -66,7 +66,7 @@ def load_labels(session, relation, cand, first_time=True):
 
 
 def generative_model(L_train, n_epochs=500, print_every=100):
-    model = LabelModel()
+    model = LabelModel(cardinality=2)
 
     logger.info("Training generative model...")
     model.fit(L_train=L_train, n_epochs=n_epochs, seed=1234, log_freq=print_every)
