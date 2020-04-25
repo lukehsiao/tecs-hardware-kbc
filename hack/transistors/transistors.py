@@ -69,10 +69,11 @@ def generative_model(L_train, n_epochs=500, print_every=100):
     model = LabelModel()
 
     logger.info("Training generative model...")
-    model.fit(L_train=L_train, n_epochs=n_epochs, log_freq=print_every)
+    model.fit(L_train=L_train, n_epochs=n_epochs, seed=1234, log_freq=print_every)
     logger.info("Done.")
 
     marginals = model.predict_proba(L_train)
+
     return marginals
 
 
