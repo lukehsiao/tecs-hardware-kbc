@@ -425,12 +425,10 @@ def main(
 
     word_counter = collect_word_counter(train_cands)
 
-    emmental.init(Meta.log_path)
-
     # Training config
     config = {
         "meta_config": {"verbose": True, "seed": 1234},
-        "model_config": {"model_path": None, "device": 0, "dataparallel": True},
+        "model_config": {"model_path": None, "device": 0, "dataparallel": False},
         "learner_config": {
             "n_epochs": 500,
             "optimizer_config": {"lr": 0.001, "l2": 0.005},
@@ -449,7 +447,8 @@ def main(
             },
         },
     }
-    emmental.Meta.update_config(config=config)
+
+    emmental.init(log_dir=Meta.log_path, config=config)
 
     # Generate word embedding module
     arity = 2
