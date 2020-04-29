@@ -427,7 +427,7 @@ def main(
 
     # Training config
     config = {
-        "meta_config": {"verbose": True, "seed": 1234},
+        "meta_config": {"verbose": True, "seed": 30},
         "model_config": {"model_path": None, "device": 0, "dataparallel": False},
         "learner_config": {
             "n_epochs": 500,
