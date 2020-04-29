@@ -5,7 +5,7 @@ setup(
     version="0.2.2+dev",
     description="Building a hardware component knowledge base.",
     install_requires=[
-        "fonduer>=0.8.1, <0.9.0",
+        "fonduer>=0.8.2, <0.9.0",
         "matplotlib",
         "numpy",
         "pandas<0.26.0,>=0.25.0",
