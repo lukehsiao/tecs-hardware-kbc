@@ -472,7 +472,7 @@ def main(
 
     # Training config
     config = {
-        "meta_config": {"verbose": True, "seed": 0},
+        "meta_config": {"verbose": True, "seed": 17},
         "model_config": {"model_path": None, "device": 0, "dataparallel": False},
         "learner_config": {
             "n_epochs": 5,
