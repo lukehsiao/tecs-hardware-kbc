@@ -53,7 +53,12 @@ logger = logging.getLogger(__name__)
 
 
 def format_digikey_gold(
-    component, raw_gold_file, formatted_gold_file, seen, append=False, filenames="standard",
+    component,
+    raw_gold_file,
+    formatted_gold_file,
+    seen,
+    append=False,
+    filenames="standard",
 ):
     delim = ";"
     with open(raw_gold_file, "r") as csvinput, open(
@@ -68,18 +73,21 @@ def format_digikey_gold(
                 """
                 TODO: Opamp formatting has not been vetted yet...
                 """
-                
+
                 manuf = preprocess_manuf(line[4])  # TODO: These don't match
                 part_num = opamp_part_normalizer(line[3])
-		
-		# Right now, we get the filename from the URLs headers
+
+                # Right now, we get the filename from the URLs headers
                 if filenames == "url":
-                    doc_name = preprocess_doc(url, session=session)
+                    #  doc_name = preprocess_doc(url, session=session)
+                    raise NotImplementedError
                 elif filenames == "standard":
                     # Set the doc_name to be manuf_partnum.pdf (as digikeyscraper does)
                     doc_name = f"{manuf}_{part_num}"
                 else:
-                    logger.debug(f"Invalid filename format {filenames}, reverting to standard")
+                    logger.debug(
+                        f"Invalid filename format {filenames}, reverting to standard"
+                    )
                     doc_name = f"{manuf}_{part_num}"
 
                 part_family = "N/A"  # Digkey does not have part_family attribute
@@ -166,9 +174,11 @@ def format_digikey_gold(
                     # Set the doc_name to be manuf_partnum.pdf (as digikeyscraper does)
                     doc_name = f"{manuf}_{part_num}"
                 else:
-                    logger.debug(f"Invalid filename format {filenames}, reverting to standard")
+                    logger.debug(
+                        f"Invalid filename format {filenames}, reverting to standard"
+                    )
                     doc_name = f"{manuf}_{part_num}"
-		
+
                 # Extract implied values from attribute conditions
                 # TODO: maybe check if the implied_supply_current's match?
                 (
@@ -242,7 +252,14 @@ def format_digikey_gold(
                     for a in attr.split(delim):
                         if len(a.strip()) > 0:
                             source_file = str(raw_gold_file.split("/")[-1])
-                            output = [doc_name, manuf, part_num, name, normalizer(a), source_file]
+                            output = [
+                                doc_name,
+                                manuf,
+                                part_num,
+                                name,
+                                normalizer(a),
+                                source_file,
+                            ]
                             if tuple(output) not in seen:
                                 writer.writerow(output)
                                 seen.add(tuple(output))
@@ -260,7 +277,7 @@ if __name__ == "__main__":
     # Change `formatted_gold` to the absolute path of where you want the
     # combined gold to be written.
     formatted_gold = (
-       f"/home/nchiang/repos/hack/hack/transistors/data/{filenames}_digikey_gold.csv"
+        f"/home/nchiang/repos/hack/hack/transistors/data/{filenames}_digikey_gold.csv"
     )
     seen = set()
     # Run transformation
@@ -269,8 +286,15 @@ if __name__ == "__main__":
             raw_path = os.path.join(digikey_csv_dir, filename)
             logger.info(f"[INFO]: Parsing {raw_path}")
             if i == 0:  # create file on first iteration
-                format_digikey_gold(component, raw_path, formatted_gold, seen, filenames=filenames)
+                format_digikey_gold(
+                    component, raw_path, formatted_gold, seen, filenames=filenames
+                )
             else:  # then just append to that same file
                 format_digikey_gold(
-                    component, raw_path, formatted_gold, seen, append=True, filenames=filenames
+                    component,
+                    raw_path,
+                    formatted_gold,
+                    seen,
+                    append=True,
+                    filenames=filenames,
                 )

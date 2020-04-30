@@ -2,8 +2,8 @@ import logging
 
 from fonduer.candidates.matchers import Intersect, LambdaFunctionMatcher, RegexMatchSpan
 from fonduer.utils.data_model_utils import (
-    get_col_ngrams,
     get_cell_ngrams,
+    get_col_ngrams,
     get_page,
     get_right_ngrams,
     get_row_ngrams,

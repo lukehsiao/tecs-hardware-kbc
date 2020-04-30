@@ -3,15 +3,13 @@
 import argparse
 import logging
 
-from hack.transistors.analysis import main as transistors
 from hack.opamps.analysis import main as opamps
-from hack.transistors.digikey_analysis import main as transistors_digikey
 from hack.opamps.digikey_analysis import main as opamps_digikey
-
+from hack.transistors.analysis import main as transistors
+from hack.transistors.digikey_analysis import main as transistors_digikey
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(

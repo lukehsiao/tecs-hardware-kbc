@@ -12,9 +12,7 @@ if __name__ == "__main__":
 
     # Change `output` to the absolute path of where you want the sorted output to
     # be written.
-    output = (
-        "/home/nchiang/repos/hack/hack/transistors/data/formatted_gold.csv"
-    )
+    output = "/home/nchiang/repos/hack/hack/transistors/data/formatted_gold.csv"
     data = csv.reader(open(input), delimiter=",")
 
     # 0 specifies according to first column we want to sort (i.e. filename)
