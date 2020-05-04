@@ -272,10 +272,10 @@ def main(
         for i, docs in enumerate([train_docs, dev_docs, test_docs]):
             candidate_extractor.apply(docs, split=i, parallelism=parallel)
 
-    train_cands = candidate_extractor.get_candidates(split=0)
-    # Sort the dev_cands (which are used as training) to ensure deterministic behavior.
+    # These must be sorted for deterministic behavior.
+    train_cands = candidate_extractor.get_candidates(split=0, sort=True)
     dev_cands = candidate_extractor.get_candidates(split=1, sort=True)
-    test_cands = candidate_extractor.get_candidates(split=2)
+    test_cands = candidate_extractor.get_candidates(split=2, sort=True)
     logger.info(f"Total train candidate: {len(train_cands[0]) + len(train_cands[1])}")
     logger.info(f"Total dev candidate: {len(dev_cands[0]) + len(dev_cands[1])}")
     logger.info(f"Total test candidate: {len(test_cands[0]) + len(test_cands[1])}")

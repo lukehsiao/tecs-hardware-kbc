@@ -299,10 +299,10 @@ def main(
             num_cands = session.query(Candidate).filter(Candidate.split == i).count()
             logger.info(f"Candidates in split={i}: {num_cands}")
 
-    # Sort the training candidates to ensure deterministic behavior
+    # These must be sorted for deterministic behavior.
     train_cands = candidate_extractor.get_candidates(split=0, sort=True)
-    dev_cands = candidate_extractor.get_candidates(split=1)
-    test_cands = candidate_extractor.get_candidates(split=2)
+    dev_cands = candidate_extractor.get_candidates(split=1, sort=True)
+    test_cands = candidate_extractor.get_candidates(split=2, sort=True)
 
     end = timer()
     logger.warning(f"Candidate Extraction Time (min): {((end - start) / 60.0):.1f}")
