@@ -1,0 +1,621 @@
+[2020-04-30 23:52:48,489][INFO] fonduer.meta:51 - Setting logging directory to: /lfs/raiders4/0/lwhsiao/repos/hack/hack/transistors/logs/2020-04-30_23-52-48
+[2020-04-30 23:52:48,536][INFO] fonduer.meta:135 - Connecting user:lwhsiao to 127.0.0.1:5433/transistors_tecs_full
+[2020-04-30 23:52:48,536][INFO] fonduer.meta:162 - Initializing the storage schema
+[2020-04-30 23:52:49,361][INFO] hack.transistors.transistors:179 - Starting parsing...
+[2020-04-30 23:52:49,362][INFO] hack.utils.utils:41 - Parsing dev...
+[2020-04-30 23:53:03,240][INFO] fonduer.utils.udf:69 - Running UDF...
+[2020-05-01 00:01:34,846][INFO] hack.utils.utils:41 - Parsing test...
+[2020-05-01 00:01:43,167][INFO] fonduer.utils.udf:69 - Running UDF...
+[2020-05-01 00:06:37,834][INFO] hack.utils.utils:41 - Parsing train...
+[2020-05-01 00:20:42,639][INFO] fonduer.utils.udf:69 - Running UDF...
+[2020-05-01 08:29:44,458][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2020-05-01 08:29:44,666][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2020-05-01 08:29:44,882][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2020-05-01 08:29:45,130][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2020-05-01 08:29:45,373][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2020-05-01 08:29:45,626][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2020-05-01 08:29:46,089][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2020-05-01 08:29:46,279][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2020-05-01 08:29:46,527][WARNING] bs4.dammit:380 - Some characters could not be decoded, and were replaced with REPLACEMENT CHARACTER.
+[2020-05-01 08:39:25,996][WARNING] hack.transistors.transistors:185 - Parse Time (min): 526.6
+[2020-05-01 08:39:25,997][INFO] hack.transistors.transistors:187 - # of train Documents: 6770
+[2020-05-01 08:39:25,997][INFO] hack.transistors.transistors:188 - # of dev Documents: 119
+[2020-05-01 08:39:25,998][INFO] hack.transistors.transistors:189 - # of test Documents: 75
+[2020-05-01 08:39:26,171][INFO] hack.transistors.transistors:190 - Documents: 6964
+[2020-05-01 08:39:26,243][INFO] hack.transistors.transistors:191 - Sections: 6964
+[2020-05-01 08:39:30,127][INFO] hack.transistors.transistors:192 - Paragraphs: 3510811
+[2020-05-01 08:39:35,759][INFO] hack.transistors.transistors:193 - Sentences: 3645702
+[2020-05-01 08:39:38,030][INFO] hack.transistors.transistors:194 - Figures: 216784
+[2020-05-01 08:39:38,194][INFO] fonduer.candidates.mentions:473 - Clearing table: part
+[2020-05-01 08:39:38,229][INFO] fonduer.candidates.mentions:473 - Clearing table: stg_temp_min
+[2020-05-01 08:39:38,231][INFO] fonduer.candidates.mentions:473 - Clearing table: stg_temp_max
+[2020-05-01 08:39:38,232][INFO] fonduer.candidates.mentions:473 - Clearing table: polarity
+[2020-05-01 08:39:38,233][INFO] fonduer.candidates.mentions:473 - Clearing table: ce_v_max
+[2020-05-01 08:39:38,244][INFO] fonduer.utils.udf:69 - Running UDF...
+[2020-05-01 13:30:52,421][INFO] hack.transistors.transistors:252 - Total Mentions: 220141
+[2020-05-01 13:30:52,525][INFO] hack.transistors.transistors:253 - Total Part: 103524
+[2020-05-01 13:30:52,570][INFO] hack.transistors.transistors:255 - Total StgTempMin: 21302
+[2020-05-01 13:30:52,630][INFO] hack.transistors.transistors:257 - Total StgTempMax: 59728
+[2020-05-01 13:30:52,676][INFO] hack.transistors.transistors:259 - Total Polarity: 25173
+[2020-05-01 13:30:52,708][INFO] hack.transistors.transistors:261 - Total CeVMax: 10414
+[2020-05-01 13:30:52,799][INFO] fonduer.candidates.candidates:145 - Clearing table part_stg_temp_min (split 0)
+[2020-05-01 13:30:52,842][INFO] fonduer.candidates.candidates:145 - Clearing table part_stg_temp_max (split 0)
+[2020-05-01 13:30:52,844][INFO] fonduer.candidates.candidates:145 - Clearing table part_polarity (split 0)
+[2020-05-01 13:30:52,846][INFO] fonduer.candidates.candidates:145 - Clearing table part_ce_v_max (split 0)
+[2020-05-01 13:31:12,710][INFO] fonduer.utils.udf:69 - Running UDF...
+[2020-05-01 16:18:53,811][INFO] hack.transistors.transistors:300 - Candidates in split=0: 1571615
+[2020-05-01 16:18:53,811][INFO] fonduer.candidates.candidates:145 - Clearing table part_stg_temp_min (split 1)
+[2020-05-01 16:18:53,814][INFO] fonduer.candidates.candidates:145 - Clearing table part_stg_temp_max (split 1)
+[2020-05-01 16:18:53,815][INFO] fonduer.candidates.candidates:145 - Clearing table part_polarity (split 1)
+[2020-05-01 16:18:53,817][INFO] fonduer.candidates.candidates:145 - Clearing table part_ce_v_max (split 1)
+[2020-05-01 16:18:54,151][INFO] fonduer.utils.udf:69 - Running UDF...
+[2020-05-01 16:23:30,619][INFO] hack.transistors.transistors:300 - Candidates in split=1: 50344
+[2020-05-01 16:23:30,619][INFO] fonduer.candidates.candidates:145 - Clearing table part_stg_temp_min (split 2)
+[2020-05-01 16:23:30,622][INFO] fonduer.candidates.candidates:145 - Clearing table part_stg_temp_max (split 2)
+[2020-05-01 16:23:30,624][INFO] fonduer.candidates.candidates:145 - Clearing table part_polarity (split 2)
+[2020-05-01 16:23:30,626][INFO] fonduer.candidates.candidates:145 - Clearing table part_ce_v_max (split 2)
+[2020-05-01 16:23:30,840][INFO] fonduer.utils.udf:69 - Running UDF...
+[2020-05-01 16:24:52,998][INFO] hack.transistors.transistors:300 - Candidates in split=2: 4983
+[2020-05-01 16:42:51,568][WARNING] hack.transistors.transistors:308 - Candidate Extraction Time (min): 483.2
+[2020-05-01 16:42:51,569][INFO] hack.transistors.transistors:310 - Total train candidate: 1571615
+[2020-05-01 16:42:51,569][INFO] hack.transistors.transistors:311 - Total dev candidate: 50344
+[2020-05-01 16:42:51,569][INFO] hack.transistors.transistors:312 - Total test candidate: 4983
+[2020-05-01 16:42:51,570][INFO] hack.transistors.transistors:320 - stg_temp_min
+[2020-05-01 16:43:02,559][INFO] hack.transistors.transistors:326 - stg_temp_min Total Dev Recall: 0.688
+[2020-05-01 16:43:04,743][INFO] hack.transistors.transistors:332 - stg_temp_min Total Test Recall: 0.588
+[2020-05-01 16:43:04,744][INFO] hack.transistors.transistors:320 - stg_temp_max
+[2020-05-01 16:43:11,347][INFO] hack.transistors.transistors:326 - stg_temp_max Total Dev Recall: 0.812
+[2020-05-01 16:43:13,177][INFO] hack.transistors.transistors:332 - stg_temp_max Total Test Recall: 0.692
+[2020-05-01 16:43:13,178][INFO] hack.transistors.transistors:320 - polarity
+[2020-05-01 16:43:20,581][INFO] hack.transistors.transistors:326 - polarity Total Dev Recall: 0.923
+[2020-05-01 16:43:23,970][INFO] hack.transistors.transistors:332 - polarity Total Test Recall: 0.922
+[2020-05-01 16:43:23,970][INFO] hack.transistors.transistors:320 - ce_v_max
+[2020-05-01 16:43:25,749][INFO] hack.transistors.transistors:326 - ce_v_max Total Dev Recall: 0.858
+[2020-05-01 16:43:26,597][INFO] hack.transistors.transistors:332 - ce_v_max Total Test Recall: 0.781
+[2020-05-01 16:43:26,597][INFO] hack.transistors.transistors:351 - Starting featurizer...
+[2020-05-01 16:44:52,638][INFO] fonduer.features.featurizer:277 - Clearing Features (split 0)
+[2020-05-01 16:44:52,662][INFO] fonduer.utils.udf:69 - Running UDF...
+[2020-05-02 08:06:46,466][INFO] fonduer.features.featurizer:277 - Clearing Features (split 1)
+[2020-05-02 08:06:46,673][INFO] fonduer.utils.udf:69 - Running UDF...
+[2020-05-02 08:26:17,328][INFO] fonduer.features.featurizer:277 - Clearing Features (split 2)
+[2020-05-02 08:26:17,346][INFO] fonduer.utils.udf:69 - Running UDF...
+[2020-05-02 08:38:37,809][INFO] hack.transistors.transistors:355 - Done
+[2020-05-02 08:38:37,809][INFO] hack.transistors.transistors:357 - Getting feature matrices...
+[2020-05-02 09:43:20,600][WARNING] hack.transistors.transistors:363 - Featurization Time (min): 1019.9
+[2020-05-02 09:43:48,488][INFO] hack.transistors.transistors:391 - Done.
+[2020-05-02 09:43:48,489][INFO] hack.transistors.transistors:394 - <class 'fonduer.candidates.models.candidate.PartStgTempMin'> Train shape: (174710, 369086)
+[2020-05-02 09:43:48,489][INFO] hack.transistors.transistors:395 - <class 'fonduer.candidates.models.candidate.PartStgTempMin'> Test shape: (566, 369086)
+[2020-05-02 09:43:48,489][INFO] hack.transistors.transistors:396 - <class 'fonduer.candidates.models.candidate.PartStgTempMin'> Dev shape: (7040, 369086)
+[2020-05-02 09:43:48,489][INFO] hack.transistors.transistors:394 - <class 'fonduer.candidates.models.candidate.PartStgTempMax'> Train shape: (639898, 369086)
+[2020-05-02 09:43:48,490][INFO] hack.transistors.transistors:395 - <class 'fonduer.candidates.models.candidate.PartStgTempMax'> Test shape: (1621, 369086)
+[2020-05-02 09:43:48,490][INFO] hack.transistors.transistors:396 - <class 'fonduer.candidates.models.candidate.PartStgTempMax'> Dev shape: (24879, 369086)
+[2020-05-02 09:43:48,490][INFO] hack.transistors.transistors:394 - <class 'fonduer.candidates.models.candidate.PartPolarity'> Train shape: (544801, 369086)
+[2020-05-02 09:43:48,490][INFO] hack.transistors.transistors:395 - <class 'fonduer.candidates.models.candidate.PartPolarity'> Test shape: (2007, 369086)
+[2020-05-02 09:43:48,490][INFO] hack.transistors.transistors:396 - <class 'fonduer.candidates.models.candidate.PartPolarity'> Dev shape: (12717, 369086)
+[2020-05-02 09:43:48,491][INFO] hack.transistors.transistors:394 - <class 'fonduer.candidates.models.candidate.PartCeVMax'> Train shape: (212206, 369086)
+[2020-05-02 09:43:48,491][INFO] hack.transistors.transistors:395 - <class 'fonduer.candidates.models.candidate.PartCeVMax'> Test shape: (789, 369086)
+[2020-05-02 09:43:48,491][INFO] hack.transistors.transistors:396 - <class 'fonduer.candidates.models.candidate.PartCeVMax'> Dev shape: (5708, 369086)
+[2020-05-02 09:43:48,491][INFO] hack.transistors.transistors:398 - Labeling training data...
+[2020-05-02 09:43:48,492][INFO] hack.transistors.transistors:418 - Applying LFs...
+[2020-05-02 09:45:06,659][INFO] fonduer.supervision.labeler:349 - Clearing Labels (split 0)
+[2020-05-02 09:45:06,672][INFO] fonduer.utils.udf:69 - Running UDF...
+[2020-05-04 04:54:28,866][INFO] hack.transistors.transistors:420 - Done...
+[2020-05-04 04:54:28,867][INFO] hack.transistors.transistors:436 - Getting label matrices...
+[2020-05-04 05:39:50,839][INFO] hack.transistors.transistors:447 - Done.
+[2020-05-04 05:39:50,840][INFO] hack.transistors.transistors:71 - Training generative model...
+[2020-05-04 05:39:51,000][INFO] root:852 - Computing O...
+[2020-05-04 05:39:51,216][INFO] root:858 - Estimating \mu...
+[2020-05-04 05:39:52,362][INFO] root:79 - [0 epochs]: TRAIN:[loss=3.419]
+[2020-05-04 05:39:52,682][INFO] root:79 - [100 epochs]: TRAIN:[loss=0.210]
+[2020-05-04 05:39:52,995][INFO] root:79 - [200 epochs]: TRAIN:[loss=0.210]
+[2020-05-04 05:39:53,301][INFO] root:79 - [300 epochs]: TRAIN:[loss=0.210]
+[2020-05-04 05:39:53,599][INFO] root:79 - [400 epochs]: TRAIN:[loss=0.210]
+[2020-05-04 05:39:53,920][INFO] root:915 - Finished Training
+[2020-05-04 05:39:53,921][INFO] hack.transistors.transistors:73 - Done.
+[2020-05-04 05:39:54,175][INFO] hack.transistors.transistors:71 - Training generative model...
+[2020-05-04 05:39:54,672][INFO] root:852 - Computing O...
+[2020-05-04 05:39:55,632][INFO] root:858 - Estimating \mu...
+[2020-05-04 05:39:55,637][INFO] root:79 - [0 epochs]: TRAIN:[loss=1.883]
+[2020-05-04 05:39:55,890][INFO] root:79 - [100 epochs]: TRAIN:[loss=0.052]
+[2020-05-04 05:39:56,131][INFO] root:79 - [200 epochs]: TRAIN:[loss=0.052]
+[2020-05-04 05:39:56,362][INFO] root:79 - [300 epochs]: TRAIN:[loss=0.052]
+[2020-05-04 05:39:56,591][INFO] root:79 - [400 epochs]: TRAIN:[loss=0.052]
+[2020-05-04 05:39:56,818][INFO] root:915 - Finished Training
+[2020-05-04 05:39:56,819][INFO] hack.transistors.transistors:73 - Done.
+[2020-05-04 05:39:57,618][INFO] hack.transistors.transistors:71 - Training generative model...
+[2020-05-04 05:39:58,031][INFO] root:852 - Computing O...
+[2020-05-04 05:39:58,750][INFO] root:858 - Estimating \mu...
+[2020-05-04 05:39:58,755][INFO] root:79 - [0 epochs]: TRAIN:[loss=1.287]
+[2020-05-04 05:39:59,073][INFO] root:79 - [100 epochs]: TRAIN:[loss=0.022]
+[2020-05-04 05:39:59,367][INFO] root:79 - [200 epochs]: TRAIN:[loss=0.020]
+[2020-05-04 05:39:59,650][INFO] root:79 - [300 epochs]: TRAIN:[loss=0.020]
+[2020-05-04 05:39:59,932][INFO] root:79 - [400 epochs]: TRAIN:[loss=0.020]
+[2020-05-04 05:40:00,212][INFO] root:915 - Finished Training
+[2020-05-04 05:40:00,212][INFO] hack.transistors.transistors:73 - Done.
+[2020-05-04 05:40:00,836][INFO] hack.transistors.transistors:71 - Training generative model...
+[2020-05-04 05:40:01,016][INFO] root:852 - Computing O...
+[2020-05-04 05:40:01,321][INFO] root:858 - Estimating \mu...
+[2020-05-04 05:40:01,325][INFO] root:79 - [0 epochs]: TRAIN:[loss=3.218]
+[2020-05-04 05:40:01,525][INFO] root:79 - [100 epochs]: TRAIN:[loss=0.033]
+[2020-05-04 05:40:01,724][INFO] root:79 - [200 epochs]: TRAIN:[loss=0.029]
+[2020-05-04 05:40:01,978][INFO] root:79 - [300 epochs]: TRAIN:[loss=0.029]
+[2020-05-04 05:40:02,237][INFO] root:79 - [400 epochs]: TRAIN:[loss=0.029]
+[2020-05-04 05:40:02,535][INFO] root:915 - Finished Training
+[2020-05-04 05:40:02,536][INFO] hack.transistors.transistors:73 - Done.
+[2020-05-04 05:40:02,891][WARNING] hack.transistors.transistors:467 - Supervision Time (min): 2636.2
+[2020-05-04 05:57:20,054][INFO] emmental.meta:115 - Setting logging directory to: /lfs/raiders4/0/lwhsiao/repos/hack/hack/transistors/logs/2020-04-30_23-52-48/2020_05_04/05_57_20/379ea32d
+[2020-05-04 05:57:20,085][INFO] emmental.meta:63 - Loading Emmental default config from /lfs/raiders4/0/lwhsiao/repos/hack/.venv/lib/python3.6/site-packages/emmental/emmental-default-config.yaml.
+[2020-05-04 05:57:20,085][INFO] emmental.meta:169 - Updating Emmental config from user provided config.
+[2020-05-04 06:02:16,632][INFO] emmental.model:56 - Created emmental model transistor_tasks that contains task set().
+[2020-05-04 06:02:16,637][INFO] emmental.model:70 - Moving model to GPU (cuda:0).
+[2020-05-04 06:02:16,637][INFO] fonduer.learning.task:87 - LogisticRegression model config: {'hidden_dim': 100, 'bias': False}
+[2020-05-04 06:02:17,809][INFO] emmental.task:50 - Created task: stg_temp_min
+[2020-05-04 06:02:19,006][INFO] emmental.task:50 - Created task: stg_temp_max
+[2020-05-04 06:02:20,179][INFO] emmental.task:50 - Created task: polarity
+[2020-05-04 06:02:21,346][INFO] emmental.task:50 - Created task: ce_v_max
+[2020-05-04 06:02:21,346][INFO] emmental.model:70 - Moving model to GPU (cuda:0).
+[2020-05-04 06:02:25,889][INFO] emmental.model:70 - Moving model to GPU (cuda:0).
+[2020-05-04 06:02:25,890][INFO] emmental.model:70 - Moving model to GPU (cuda:0).
+[2020-05-04 06:02:25,891][INFO] emmental.model:70 - Moving model to GPU (cuda:0).
+[2020-05-04 06:02:25,892][INFO] emmental.logging.logging_manager:38 - Evaluating every 1 epoch.
+[2020-05-04 06:02:25,892][INFO] emmental.logging.logging_manager:59 - No checkpointing.
+[2020-05-04 06:02:25,897][INFO] emmental.learner:101 - Using optimizer Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.0
+)
+[2020-05-04 06:02:25,898][INFO] emmental.learner:190 - Using lr_scheduler None with step every 1 batch.
+[2020-05-04 06:02:25,898][INFO] emmental.learner:539 - Start learning...
+[2020-05-04 06:11:06,379][INFO] emmental.learner:392 - Epoch: 1.00 {'stg_temp_max/stg_temp_max/train/loss': 0.4410044181941481, 'polarity/polarity/train/loss': 0.32694026027620937, 'stg_temp_min/stg_temp_min/train/loss': 0.10688141372158656, 'ce_v_max/ce_v_max/train/loss': 0.3688641895055156, 'model/all/train/loss': 0.3562152541928439, 'stg_temp_max/stg_temp_max/train/accuracy': 0.9973620301116136, 'stg_temp_max/stg_temp_max/train/precision': 0.9807109973165268, 'stg_temp_max/stg_temp_max/train/recall': 0.998483557248847, 'stg_temp_max/stg_temp_max/train/f1': 0.9895174812146804, 'stg_temp_max/stg_temp_max/train/average': 0.9915185164729169, 'polarity/polarity/train/accuracy': 0.9410170400590863, 'polarity/polarity/train/precision': 0.9369411463500497, 'polarity/polarity/train/recall': 0.9762283465879724, 'polarity/polarity/train/f1': 0.9561813624227381, 'polarity/polarity/train/average': 0.9525919738549615, 'stg_temp_min/stg_temp_min/train/accuracy': 0.9945051800125922, 'stg_temp_min/stg_temp_min/train/precision': 0.9869539406049549, 'stg_temp_min/stg_temp_min/train/recall': 0.9991351636592838, 'stg_temp_min/stg_temp_min/train/f1': 0.993007196760001, 'stg_temp_min/stg_temp_min/train/average': 0.993400370259208, 'ce_v_max/ce_v_max/train/accuracy': 0.8562626851856315, 'ce_v_max/ce_v_max/train/precision': 0.9629931775866947, 'ce_v_max/ce_v_max/train/recall': 0.8581764029924251, 'ce_v_max/ce_v_max/train/f1': 0.9075684439938866, 'ce_v_max/ce_v_max/train/average': 0.8962501774396594, 'model/all/train/micro_average': 0.9584402595066865, 'model/all/train/macro_average': 0.9584402595066865, 'model/all/train/lr': 0.001, 'model/all/all/micro_average': nan, 'model/all/all/macro_average': nan, 'model/all/all/loss': nan}
+[2020-05-04 06:18:54,241][INFO] emmental.learner:392 - Epoch: 2.00 {'polarity/polarity/train/loss': 0.3113962433648148, 'stg_temp_max/stg_temp_max/train/loss': 0.43868350111342364, 'stg_temp_min/stg_temp_min/train/loss': 0.10334533445951177, 'ce_v_max/ce_v_max/train/loss': 0.35140172159406785, 'model/all/train/loss': 0.3475511166473679, 'polarity/polarity/train/accuracy': 0.9648449864593958, 'polarity/polarity/train/precision': 0.9645054254636841, 'polarity/polarity/train/recall': 0.9828406608979809, 'polarity/polarity/train/f1': 0.9735867254839461, 'polarity/polarity/train/average': 0.9714444495762518, 'stg_temp_max/stg_temp_max/train/accuracy': 0.9987747817580006, 'stg_temp_max/stg_temp_max/train/precision': 0.9905379228132916, 'stg_temp_max/stg_temp_max/train/recall': 0.999724283136154, 'stg_temp_max/stg_temp_max/train/f1': 0.9951099024475438, 'stg_temp_max/stg_temp_max/train/average': 0.9960367225387474, 'stg_temp_min/stg_temp_min/train/accuracy': 0.9959075038635453, 'stg_temp_min/stg_temp_min/train/precision': 0.9896706804004062, 'stg_temp_min/stg_temp_min/train/recall': 0.9999560252708111, 'stg_temp_min/stg_temp_min/train/f1': 0.994786767868991, 'stg_temp_min/stg_temp_min/train/average': 0.9950802443509383, 'ce_v_max/ce_v_max/train/accuracy': 0.8654080712732672, 'ce_v_max/ce_v_max/train/precision': 0.9695824499953912, 'ce_v_max/ce_v_max/train/recall': 0.8634061114889425, 'ce_v_max/ce_v_max/train/f1': 0.9134191347495736, 'ce_v_max/ce_v_max/train/average': 0.9029539418767936, 'model/all/train/micro_average': 0.9663788395856828, 'model/all/train/macro_average': 0.9663788395856827, 'model/all/train/lr': 0.001, 'model/all/all/micro_average': nan, 'model/all/all/macro_average': nan, 'model/all/all/loss': nan}
+[2020-05-04 06:26:42,377][INFO] emmental.learner:392 - Epoch: 3.00 {'stg_temp_min/stg_temp_min/train/loss': 0.10379634798383353, 'stg_temp_max/stg_temp_max/train/loss': 0.43863080171079555, 'polarity/polarity/train/loss': 0.3101206507239125, 'ce_v_max/ce_v_max/train/loss': 0.34747245753231026, 'model/all/train/loss': 0.3466368931541075, 'stg_temp_min/stg_temp_min/train/accuracy': 0.9959647415717474, 'stg_temp_min/stg_temp_min/train/precision': 0.9898000638402832, 'stg_temp_min/stg_temp_min/train/recall': 0.9999706835138741, 'stg_temp_min/stg_temp_min/train/f1': 0.9948593803548121, 'stg_temp_min/stg_temp_min/train/average': 0.9951487173201792, 'stg_temp_max/stg_temp_max/train/accuracy': 0.9986669500504778, 'stg_temp_max/stg_temp_max/train/precision': 0.9896413551836644, 'stg_temp_max/stg_temp_max/train/recall': 0.999774413475035, 'stg_temp_max/stg_temp_max/train/f1': 0.9946820780419074, 'stg_temp_max/stg_temp_max/train/average': 0.995691199187771, 'polarity/polarity/train/accuracy': 0.9677729223085851, 'polarity/polarity/train/precision': 0.9679219654317099, 'polarity/polarity/train/recall': 0.9837143000050017, 'polarity/polarity/train/f1': 0.9757542381710748, 'polarity/polarity/train/average': 0.9737908564790928, 'ce_v_max/ce_v_max/train/accuracy': 0.8684404633919403, 'ce_v_max/ce_v_max/train/precision': 0.9713086442495575, 'ce_v_max/ce_v_max/train/recall': 0.865575385192655, 'ce_v_max/ce_v_max/train/f1': 0.9153989477959208, 'ce_v_max/ce_v_max/train/average': 0.9051808601575184, 'model/all/train/micro_average': 0.9674529082861405, 'model/all/train/macro_average': 0.9674529082861403, 'model/all/train/lr': 0.001, 'model/all/all/micro_average': nan, 'model/all/all/macro_average': nan, 'model/all/all/loss': nan}
+[2020-05-04 06:34:24,509][INFO] emmental.learner:392 - Epoch: 4.00 {'stg_temp_min/stg_temp_min/train/loss': 0.10294029013727166, 'stg_temp_max/stg_temp_max/train/loss': 0.43828716839480564, 'polarity/polarity/train/loss': 0.30947559827186816, 'ce_v_max/ce_v_max/train/loss': 0.3464642372459251, 'model/all/train/loss': 0.3460464656140903, 'stg_temp_min/stg_temp_min/train/accuracy': 0.996084940758972, 'stg_temp_min/stg_temp_min/train/precision': 0.9900732893113707, 'stg_temp_min/stg_temp_min/train/recall': 1.0, 'stg_temp_min/stg_temp_min/train/f1': 0.9950118868777621, 'stg_temp_min/stg_temp_min/train/average': 0.9952925292370263, 'stg_temp_max/stg_temp_max/train/accuracy': 0.9989248084815108, 'stg_temp_max/stg_temp_max/train/precision': 0.9915978920155116, 'stg_temp_max/stg_temp_max/train/recall': 0.9998496089833567, 'stg_temp_max/stg_temp_max/train/f1': 0.9957066546852379, 'stg_temp_max/stg_temp_max/train/average': 0.9965197410414043, 'polarity/polarity/train/accuracy': 0.9697688425421166, 'polarity/polarity/train/precision': 0.9698462427669734, 'polarity/polarity/train/recall': 0.9847579986328548, 'polarity/polarity/train/f1': 0.9772452395015891, 'polarity/polarity/train/average': 0.9754045808608834, 'ce_v_max/ce_v_max/train/accuracy': 0.8707641724558519, 'ce_v_max/ce_v_max/train/precision': 0.9721548921075968, 'ce_v_max/ce_v_max/train/recall': 0.8676860298773481, 'ce_v_max/ce_v_max/train/f1': 0.9169545134898187, 'ce_v_max/ce_v_max/train/average': 0.9068899019826538, 'model/all/train/micro_average': 0.9685266882804919, 'model/all/train/macro_average': 0.968526688280492, 'model/all/train/lr': 0.001, 'model/all/all/micro_average': nan, 'model/all/all/macro_average': nan, 'model/all/all/loss': nan}
+[2020-05-04 06:42:05,146][INFO] emmental.learner:392 - Epoch: 5.00 {'stg_temp_max/stg_temp_max/train/loss': 0.4384323769184333, 'polarity/polarity/train/loss': 0.30910295760686485, 'stg_temp_min/stg_temp_min/train/loss': 0.10343699297328197, 'ce_v_max/ce_v_max/train/loss': 0.34436473614076657, 'model/all/train/loss': 0.34575849259781627, 'stg_temp_max/stg_temp_max/train/accuracy': 0.9986825778341767, 'stg_temp_max/stg_temp_max/train/precision': 0.9896790840187066, 'stg_temp_max/stg_temp_max/train/recall': 0.999862141568077, 'stg_temp_max/stg_temp_max/train/f1': 0.9947445528505969, 'stg_temp_max/stg_temp_max/train/average': 0.9957420890678894, 'polarity/polarity/train/accuracy': 0.9702392466500194, 'polarity/polarity/train/precision': 0.9704695560739987, 'polarity/polarity/train/recall': 0.9848213541406159, 'polarity/polarity/train/f1': 0.9775927841449792, 'polarity/polarity/train/average': 0.9757807352524033, 'stg_temp_min/stg_temp_min/train/accuracy': 0.9961479022379944, 'stg_temp_min/stg_temp_min/train/precision': 0.9902456018115311, 'stg_temp_min/stg_temp_min/train/recall': 0.999985341756937, 'stg_temp_min/stg_temp_min/train/f1': 0.9950916397424022, 'stg_temp_min/stg_temp_min/train/average': 0.9953676213872161, 'ce_v_max/ce_v_max/train/accuracy': 0.8707641724558519, 'ce_v_max/ce_v_max/train/precision': 0.9723845137715972, 'ce_v_max/ce_v_max/train/recall': 0.8674691025069768, 'ce_v_max/ce_v_max/train/f1': 0.916935471376559, 'ce_v_max/ce_v_max/train/average': 0.9068883150277463, 'model/all/train/micro_average': 0.9684446901838137, 'model/all/train/macro_average': 0.9684446901838137, 'model/all/train/lr': 0.001, 'model/all/all/micro_average': nan, 'model/all/all/macro_average': nan, 'model/all/all/loss': nan}
+[2020-05-04 06:42:08,139][INFO] hack.transistors.transistors:85 - Calculating the best F1 score and threshold (b)...
+[2020-05-04 06:42:08,408][INFO] hack.transistors.transistors:103 - b:0.000 f1:0.662 p:0.756 r:0.588
+[2020-05-04 06:42:08,514][INFO] hack.transistors.transistors:103 - b:0.010 f1:0.695 p:0.849 r:0.588
+[2020-05-04 06:42:08,614][INFO] hack.transistors.transistors:103 - b:0.020 f1:0.700 p:0.865 r:0.588
+[2020-05-04 06:42:08,718][INFO] hack.transistors.transistors:103 - b:0.030 f1:0.703 p:0.874 r:0.588
+[2020-05-04 06:42:08,818][INFO] hack.transistors.transistors:103 - b:0.040 f1:0.703 p:0.874 r:0.588
+[2020-05-04 06:42:08,920][INFO] hack.transistors.transistors:103 - b:0.051 f1:0.711 p:0.900 r:0.588
+[2020-05-04 06:42:09,016][INFO] hack.transistors.transistors:103 - b:0.061 f1:0.720 p:0.928 r:0.588
+[2020-05-04 06:42:09,116][INFO] hack.transistors.transistors:103 - b:0.071 f1:0.723 p:0.938 r:0.588
+[2020-05-04 06:42:09,212][INFO] hack.transistors.transistors:103 - b:0.081 f1:0.723 p:0.938 r:0.588
+[2020-05-04 06:42:09,311][INFO] hack.transistors.transistors:103 - b:0.091 f1:0.723 p:0.938 r:0.588
+[2020-05-04 06:42:09,407][INFO] hack.transistors.transistors:103 - b:0.101 f1:0.723 p:0.938 r:0.588
+[2020-05-04 06:42:09,507][INFO] hack.transistors.transistors:103 - b:0.111 f1:0.723 p:0.938 r:0.588
+[2020-05-04 06:42:09,603][INFO] hack.transistors.transistors:103 - b:0.121 f1:0.723 p:0.938 r:0.588
+[2020-05-04 06:42:09,700][INFO] hack.transistors.transistors:103 - b:0.131 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:09,798][INFO] hack.transistors.transistors:103 - b:0.141 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:09,894][INFO] hack.transistors.transistors:103 - b:0.152 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:09,990][INFO] hack.transistors.transistors:103 - b:0.162 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:10,087][INFO] hack.transistors.transistors:103 - b:0.172 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:10,184][INFO] hack.transistors.transistors:103 - b:0.182 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:10,281][INFO] hack.transistors.transistors:103 - b:0.192 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:10,377][INFO] hack.transistors.transistors:103 - b:0.202 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:10,474][INFO] hack.transistors.transistors:103 - b:0.212 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:10,571][INFO] hack.transistors.transistors:103 - b:0.222 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:10,668][INFO] hack.transistors.transistors:103 - b:0.232 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:10,765][INFO] hack.transistors.transistors:103 - b:0.242 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:10,862][INFO] hack.transistors.transistors:103 - b:0.253 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:10,958][INFO] hack.transistors.transistors:103 - b:0.263 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:11,055][INFO] hack.transistors.transistors:103 - b:0.273 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:11,151][INFO] hack.transistors.transistors:103 - b:0.283 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:11,251][INFO] hack.transistors.transistors:103 - b:0.293 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:11,346][INFO] hack.transistors.transistors:103 - b:0.303 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:11,446][INFO] hack.transistors.transistors:103 - b:0.313 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:11,542][INFO] hack.transistors.transistors:103 - b:0.323 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:11,645][INFO] hack.transistors.transistors:103 - b:0.333 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:11,741][INFO] hack.transistors.transistors:103 - b:0.343 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:11,841][INFO] hack.transistors.transistors:103 - b:0.354 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:11,937][INFO] hack.transistors.transistors:103 - b:0.364 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:12,038][INFO] hack.transistors.transistors:103 - b:0.374 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:12,135][INFO] hack.transistors.transistors:103 - b:0.384 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:12,239][INFO] hack.transistors.transistors:103 - b:0.394 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:12,335][INFO] hack.transistors.transistors:103 - b:0.404 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:12,438][INFO] hack.transistors.transistors:103 - b:0.414 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:12,535][INFO] hack.transistors.transistors:103 - b:0.424 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:12,640][INFO] hack.transistors.transistors:103 - b:0.434 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:12,736][INFO] hack.transistors.transistors:103 - b:0.444 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:12,836][INFO] hack.transistors.transistors:103 - b:0.455 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:12,932][INFO] hack.transistors.transistors:103 - b:0.465 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:13,031][INFO] hack.transistors.transistors:103 - b:0.475 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:13,127][INFO] hack.transistors.transistors:103 - b:0.485 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:13,223][INFO] hack.transistors.transistors:103 - b:0.495 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:13,321][INFO] hack.transistors.transistors:103 - b:0.505 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:13,417][INFO] hack.transistors.transistors:103 - b:0.515 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:13,513][INFO] hack.transistors.transistors:103 - b:0.525 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:13,609][INFO] hack.transistors.transistors:103 - b:0.535 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:13,704][INFO] hack.transistors.transistors:103 - b:0.545 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:13,801][INFO] hack.transistors.transistors:103 - b:0.556 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:13,897][INFO] hack.transistors.transistors:103 - b:0.566 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:13,994][INFO] hack.transistors.transistors:103 - b:0.576 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:14,089][INFO] hack.transistors.transistors:103 - b:0.586 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:14,186][INFO] hack.transistors.transistors:103 - b:0.596 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:14,281][INFO] hack.transistors.transistors:103 - b:0.606 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:14,378][INFO] hack.transistors.transistors:103 - b:0.616 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:14,474][INFO] hack.transistors.transistors:103 - b:0.626 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:14,570][INFO] hack.transistors.transistors:103 - b:0.636 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:14,666][INFO] hack.transistors.transistors:103 - b:0.646 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:14,763][INFO] hack.transistors.transistors:103 - b:0.657 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:14,859][INFO] hack.transistors.transistors:103 - b:0.667 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:14,956][INFO] hack.transistors.transistors:103 - b:0.677 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:15,052][INFO] hack.transistors.transistors:103 - b:0.687 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:15,149][INFO] hack.transistors.transistors:103 - b:0.697 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:15,245][INFO] hack.transistors.transistors:103 - b:0.707 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:15,341][INFO] hack.transistors.transistors:103 - b:0.717 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:15,437][INFO] hack.transistors.transistors:103 - b:0.727 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:15,533][INFO] hack.transistors.transistors:103 - b:0.737 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:15,628][INFO] hack.transistors.transistors:103 - b:0.747 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:15,725][INFO] hack.transistors.transistors:103 - b:0.758 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:15,820][INFO] hack.transistors.transistors:103 - b:0.768 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:15,917][INFO] hack.transistors.transistors:103 - b:0.778 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:16,012][INFO] hack.transistors.transistors:103 - b:0.788 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:16,109][INFO] hack.transistors.transistors:103 - b:0.798 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:16,204][INFO] hack.transistors.transistors:103 - b:0.808 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:16,301][INFO] hack.transistors.transistors:103 - b:0.818 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:16,398][INFO] hack.transistors.transistors:103 - b:0.828 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:16,495][INFO] hack.transistors.transistors:103 - b:0.838 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:16,590][INFO] hack.transistors.transistors:103 - b:0.848 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:16,687][INFO] hack.transistors.transistors:103 - b:0.859 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:16,783][INFO] hack.transistors.transistors:103 - b:0.869 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:16,880][INFO] hack.transistors.transistors:103 - b:0.879 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:16,975][INFO] hack.transistors.transistors:103 - b:0.889 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:17,072][INFO] hack.transistors.transistors:103 - b:0.899 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:17,168][INFO] hack.transistors.transistors:103 - b:0.909 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:17,264][INFO] hack.transistors.transistors:103 - b:0.919 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:17,360][INFO] hack.transistors.transistors:103 - b:0.929 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:17,456][INFO] hack.transistors.transistors:103 - b:0.939 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:17,552][INFO] hack.transistors.transistors:103 - b:0.949 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:17,648][INFO] hack.transistors.transistors:103 - b:0.960 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:17,744][INFO] hack.transistors.transistors:103 - b:0.970 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:17,840][INFO] hack.transistors.transistors:103 - b:0.980 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:17,935][INFO] hack.transistors.transistors:103 - b:0.990 f1:0.729 p:0.957 r:0.588
+[2020-05-04 06:42:18,027][INFO] hack.transistors.transistors:103 - b:1.000 f1:nan p:nan r:0.000
+[2020-05-04 06:42:18,027][WARNING] hack.transistors.transistors:112 - ===================================================
+[2020-05-04 06:42:18,027][WARNING] hack.transistors.transistors:113 - Entity-Level Gold Data score for stg_temp_min, b=0.131
+[2020-05-04 06:42:18,027][WARNING] hack.transistors.transistors:114 - ===================================================
+[2020-05-04 06:42:18,028][WARNING] hack.transistors.transistors:115 - Corpus Precision 0.957
+[2020-05-04 06:42:18,028][WARNING] hack.transistors.transistors:116 - Corpus Recall    0.588
+[2020-05-04 06:42:18,028][WARNING] hack.transistors.transistors:117 - Corpus F1        0.729
+[2020-05-04 06:42:18,028][WARNING] hack.transistors.transistors:118 - ---------------------------------------------------
+[2020-05-04 06:42:18,028][WARNING] hack.transistors.transistors:120 - TP: 90 | FP: 4 | FN: 63
+[2020-05-04 06:42:18,028][WARNING] hack.transistors.transistors:124 - ===================================================
+
+[2020-05-04 06:42:23,009][INFO] hack.transistors.transistors:85 - Calculating the best F1 score and threshold (b)...
+[2020-05-04 06:42:23,135][INFO] hack.transistors.transistors:103 - b:0.000 f1:0.483 p:0.371 r:0.692
+[2020-05-04 06:42:23,257][INFO] hack.transistors.transistors:103 - b:0.010 f1:0.483 p:0.371 r:0.692
+[2020-05-04 06:42:23,377][INFO] hack.transistors.transistors:103 - b:0.020 f1:0.494 p:0.384 r:0.692
+[2020-05-04 06:42:23,497][INFO] hack.transistors.transistors:103 - b:0.030 f1:0.499 p:0.390 r:0.692
+[2020-05-04 06:42:23,615][INFO] hack.transistors.transistors:103 - b:0.040 f1:0.500 p:0.391 r:0.692
+[2020-05-04 06:42:23,733][INFO] hack.transistors.transistors:103 - b:0.051 f1:0.501 p:0.393 r:0.692
+[2020-05-04 06:42:23,850][INFO] hack.transistors.transistors:103 - b:0.061 f1:0.503 p:0.396 r:0.692
+[2020-05-04 06:42:23,966][INFO] hack.transistors.transistors:103 - b:0.071 f1:0.508 p:0.401 r:0.692
+[2020-05-04 06:42:24,082][INFO] hack.transistors.transistors:103 - b:0.081 f1:0.512 p:0.406 r:0.692
+[2020-05-04 06:42:24,198][INFO] hack.transistors.transistors:103 - b:0.091 f1:0.516 p:0.411 r:0.692
+[2020-05-04 06:42:24,314][INFO] hack.transistors.transistors:103 - b:0.101 f1:0.517 p:0.412 r:0.692
+[2020-05-04 06:42:24,430][INFO] hack.transistors.transistors:103 - b:0.111 f1:0.519 p:0.415 r:0.692
+[2020-05-04 06:42:24,545][INFO] hack.transistors.transistors:103 - b:0.121 f1:0.522 p:0.419 r:0.692
+[2020-05-04 06:42:24,661][INFO] hack.transistors.transistors:103 - b:0.131 f1:0.527 p:0.425 r:0.692
+[2020-05-04 06:42:24,777][INFO] hack.transistors.transistors:103 - b:0.141 f1:0.529 p:0.429 r:0.692
+[2020-05-04 06:42:24,892][INFO] hack.transistors.transistors:103 - b:0.152 f1:0.531 p:0.430 r:0.692
+[2020-05-04 06:42:25,007][INFO] hack.transistors.transistors:103 - b:0.162 f1:0.533 p:0.434 r:0.692
+[2020-05-04 06:42:25,122][INFO] hack.transistors.transistors:103 - b:0.172 f1:0.535 p:0.435 r:0.692
+[2020-05-04 06:42:25,236][INFO] hack.transistors.transistors:103 - b:0.182 f1:0.541 p:0.444 r:0.692
+[2020-05-04 06:42:25,351][INFO] hack.transistors.transistors:103 - b:0.192 f1:0.541 p:0.444 r:0.692
+[2020-05-04 06:42:25,465][INFO] hack.transistors.transistors:103 - b:0.202 f1:0.543 p:0.446 r:0.692
+[2020-05-04 06:42:25,579][INFO] hack.transistors.transistors:103 - b:0.212 f1:0.545 p:0.450 r:0.692
+[2020-05-04 06:42:25,692][INFO] hack.transistors.transistors:103 - b:0.222 f1:0.550 p:0.456 r:0.692
+[2020-05-04 06:42:25,804][INFO] hack.transistors.transistors:103 - b:0.232 f1:0.558 p:0.468 r:0.692
+[2020-05-04 06:42:25,913][INFO] hack.transistors.transistors:103 - b:0.242 f1:0.568 p:0.482 r:0.692
+[2020-05-04 06:42:26,018][INFO] hack.transistors.transistors:103 - b:0.253 f1:0.593 p:0.519 r:0.692
+[2020-05-04 06:42:26,123][INFO] hack.transistors.transistors:103 - b:0.263 f1:0.619 p:0.560 r:0.692
+[2020-05-04 06:42:26,227][INFO] hack.transistors.transistors:103 - b:0.273 f1:0.628 p:0.574 r:0.692
+[2020-05-04 06:42:26,330][INFO] hack.transistors.transistors:103 - b:0.283 f1:0.632 p:0.581 r:0.692
+[2020-05-04 06:42:26,432][INFO] hack.transistors.transistors:103 - b:0.293 f1:0.637 p:0.590 r:0.692
+[2020-05-04 06:42:26,536][INFO] hack.transistors.transistors:103 - b:0.303 f1:0.637 p:0.590 r:0.692
+[2020-05-04 06:42:26,638][INFO] hack.transistors.transistors:103 - b:0.313 f1:0.637 p:0.590 r:0.692
+[2020-05-04 06:42:26,742][INFO] hack.transistors.transistors:103 - b:0.323 f1:0.637 p:0.590 r:0.692
+[2020-05-04 06:42:26,845][INFO] hack.transistors.transistors:103 - b:0.333 f1:0.637 p:0.590 r:0.692
+[2020-05-04 06:42:26,947][INFO] hack.transistors.transistors:103 - b:0.343 f1:0.639 p:0.593 r:0.692
+[2020-05-04 06:42:27,048][INFO] hack.transistors.transistors:103 - b:0.354 f1:0.647 p:0.607 r:0.692
+[2020-05-04 06:42:27,153][INFO] hack.transistors.transistors:103 - b:0.364 f1:0.638 p:0.617 r:0.660
+[2020-05-04 06:42:27,259][INFO] hack.transistors.transistors:103 - b:0.374 f1:0.684 p:0.710 r:0.660
+[2020-05-04 06:42:27,364][INFO] hack.transistors.transistors:103 - b:0.384 f1:0.674 p:0.754 r:0.609
+[2020-05-04 06:42:27,468][INFO] hack.transistors.transistors:103 - b:0.394 f1:0.691 p:0.798 r:0.609
+[2020-05-04 06:42:27,572][INFO] hack.transistors.transistors:103 - b:0.404 f1:0.709 p:0.848 r:0.609
+[2020-05-04 06:42:27,676][INFO] hack.transistors.transistors:103 - b:0.414 f1:0.725 p:0.896 r:0.609
+[2020-05-04 06:42:27,780][INFO] hack.transistors.transistors:103 - b:0.424 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:27,884][INFO] hack.transistors.transistors:103 - b:0.434 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:27,988][INFO] hack.transistors.transistors:103 - b:0.444 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:28,092][INFO] hack.transistors.transistors:103 - b:0.455 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:28,195][INFO] hack.transistors.transistors:103 - b:0.465 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:28,299][INFO] hack.transistors.transistors:103 - b:0.475 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:28,403][INFO] hack.transistors.transistors:103 - b:0.485 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:28,507][INFO] hack.transistors.transistors:103 - b:0.495 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:28,611][INFO] hack.transistors.transistors:103 - b:0.505 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:28,715][INFO] hack.transistors.transistors:103 - b:0.515 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:28,818][INFO] hack.transistors.transistors:103 - b:0.525 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:28,922][INFO] hack.transistors.transistors:103 - b:0.535 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:29,025][INFO] hack.transistors.transistors:103 - b:0.545 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:29,128][INFO] hack.transistors.transistors:103 - b:0.556 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:29,228][INFO] hack.transistors.transistors:103 - b:0.566 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:29,328][INFO] hack.transistors.transistors:103 - b:0.576 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:29,428][INFO] hack.transistors.transistors:103 - b:0.586 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:29,531][INFO] hack.transistors.transistors:103 - b:0.596 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:29,631][INFO] hack.transistors.transistors:103 - b:0.606 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:29,731][INFO] hack.transistors.transistors:103 - b:0.616 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:29,831][INFO] hack.transistors.transistors:103 - b:0.626 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:29,933][INFO] hack.transistors.transistors:103 - b:0.636 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:30,033][INFO] hack.transistors.transistors:103 - b:0.646 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:30,134][INFO] hack.transistors.transistors:103 - b:0.657 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:30,233][INFO] hack.transistors.transistors:103 - b:0.667 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:30,336][INFO] hack.transistors.transistors:103 - b:0.677 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:30,435][INFO] hack.transistors.transistors:103 - b:0.687 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:30,536][INFO] hack.transistors.transistors:103 - b:0.697 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:30,636][INFO] hack.transistors.transistors:103 - b:0.707 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:30,738][INFO] hack.transistors.transistors:103 - b:0.717 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:30,838][INFO] hack.transistors.transistors:103 - b:0.727 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:30,939][INFO] hack.transistors.transistors:103 - b:0.737 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:31,039][INFO] hack.transistors.transistors:103 - b:0.747 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:31,141][INFO] hack.transistors.transistors:103 - b:0.758 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:31,241][INFO] hack.transistors.transistors:103 - b:0.768 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:31,341][INFO] hack.transistors.transistors:103 - b:0.778 f1:0.742 p:0.950 r:0.609
+[2020-05-04 06:42:31,441][INFO] hack.transistors.transistors:103 - b:0.788 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:31,543][INFO] hack.transistors.transistors:103 - b:0.798 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:31,642][INFO] hack.transistors.transistors:103 - b:0.808 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:31,742][INFO] hack.transistors.transistors:103 - b:0.818 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:31,843][INFO] hack.transistors.transistors:103 - b:0.828 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:31,944][INFO] hack.transistors.transistors:103 - b:0.838 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:32,044][INFO] hack.transistors.transistors:103 - b:0.848 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:32,145][INFO] hack.transistors.transistors:103 - b:0.859 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:32,244][INFO] hack.transistors.transistors:103 - b:0.869 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:32,346][INFO] hack.transistors.transistors:103 - b:0.879 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:32,446][INFO] hack.transistors.transistors:103 - b:0.889 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:32,546][INFO] hack.transistors.transistors:103 - b:0.899 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:32,646][INFO] hack.transistors.transistors:103 - b:0.909 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:32,747][INFO] hack.transistors.transistors:103 - b:0.919 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:32,848][INFO] hack.transistors.transistors:103 - b:0.929 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:32,947][INFO] hack.transistors.transistors:103 - b:0.939 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:33,047][INFO] hack.transistors.transistors:103 - b:0.949 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:33,148][INFO] hack.transistors.transistors:103 - b:0.960 f1:0.745 p:0.960 r:0.609
+[2020-05-04 06:42:33,247][INFO] hack.transistors.transistors:103 - b:0.970 f1:0.748 p:0.969 r:0.609
+[2020-05-04 06:42:33,348][INFO] hack.transistors.transistors:103 - b:0.980 f1:0.751 p:0.979 r:0.609
+[2020-05-04 06:42:33,447][INFO] hack.transistors.transistors:103 - b:0.990 f1:0.757 p:1.000 r:0.609
+[2020-05-04 06:42:33,543][INFO] hack.transistors.transistors:103 - b:1.000 f1:nan p:nan r:0.000
+[2020-05-04 06:42:33,543][WARNING] hack.transistors.transistors:112 - ===================================================
+[2020-05-04 06:42:33,543][WARNING] hack.transistors.transistors:113 - Entity-Level Gold Data score for stg_temp_max, b=0.990
+[2020-05-04 06:42:33,543][WARNING] hack.transistors.transistors:114 - ===================================================
+[2020-05-04 06:42:33,544][WARNING] hack.transistors.transistors:115 - Corpus Precision 1.000
+[2020-05-04 06:42:33,544][WARNING] hack.transistors.transistors:116 - Corpus Recall    0.609
+[2020-05-04 06:42:33,544][WARNING] hack.transistors.transistors:117 - Corpus F1        0.757
+[2020-05-04 06:42:33,544][WARNING] hack.transistors.transistors:118 - ---------------------------------------------------
+[2020-05-04 06:42:33,544][WARNING] hack.transistors.transistors:120 - TP: 95 | FP: 0 | FN: 61
+[2020-05-04 06:42:33,544][WARNING] hack.transistors.transistors:124 - ===================================================
+
+[2020-05-04 06:42:39,447][INFO] hack.transistors.transistors:85 - Calculating the best F1 score and threshold (b)...
+[2020-05-04 06:42:39,593][INFO] hack.transistors.transistors:103 - b:0.000 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:39,727][INFO] hack.transistors.transistors:103 - b:0.010 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:39,861][INFO] hack.transistors.transistors:103 - b:0.020 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:39,995][INFO] hack.transistors.transistors:103 - b:0.030 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:40,129][INFO] hack.transistors.transistors:103 - b:0.040 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:40,263][INFO] hack.transistors.transistors:103 - b:0.051 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:40,396][INFO] hack.transistors.transistors:103 - b:0.061 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:40,530][INFO] hack.transistors.transistors:103 - b:0.071 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:40,665][INFO] hack.transistors.transistors:103 - b:0.081 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:40,799][INFO] hack.transistors.transistors:103 - b:0.091 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:40,933][INFO] hack.transistors.transistors:103 - b:0.101 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:41,065][INFO] hack.transistors.transistors:103 - b:0.111 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:41,199][INFO] hack.transistors.transistors:103 - b:0.121 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:41,332][INFO] hack.transistors.transistors:103 - b:0.131 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:41,463][INFO] hack.transistors.transistors:103 - b:0.141 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:41,593][INFO] hack.transistors.transistors:103 - b:0.152 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:41,724][INFO] hack.transistors.transistors:103 - b:0.162 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:41,854][INFO] hack.transistors.transistors:103 - b:0.172 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:41,983][INFO] hack.transistors.transistors:103 - b:0.182 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:42,112][INFO] hack.transistors.transistors:103 - b:0.192 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:42,241][INFO] hack.transistors.transistors:103 - b:0.202 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:42,368][INFO] hack.transistors.transistors:103 - b:0.212 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:42,497][INFO] hack.transistors.transistors:103 - b:0.222 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:42,624][INFO] hack.transistors.transistors:103 - b:0.232 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:42,750][INFO] hack.transistors.transistors:103 - b:0.242 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:42,878][INFO] hack.transistors.transistors:103 - b:0.253 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:43,004][INFO] hack.transistors.transistors:103 - b:0.263 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:43,130][INFO] hack.transistors.transistors:103 - b:0.273 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:43,256][INFO] hack.transistors.transistors:103 - b:0.283 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:43,380][INFO] hack.transistors.transistors:103 - b:0.293 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:43,504][INFO] hack.transistors.transistors:103 - b:0.303 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:43,627][INFO] hack.transistors.transistors:103 - b:0.313 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:43,749][INFO] hack.transistors.transistors:103 - b:0.323 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:43,872][INFO] hack.transistors.transistors:103 - b:0.333 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:43,994][INFO] hack.transistors.transistors:103 - b:0.343 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:44,116][INFO] hack.transistors.transistors:103 - b:0.354 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:44,237][INFO] hack.transistors.transistors:103 - b:0.364 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:44,357][INFO] hack.transistors.transistors:103 - b:0.374 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:44,477][INFO] hack.transistors.transistors:103 - b:0.384 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:44,597][INFO] hack.transistors.transistors:103 - b:0.394 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:44,716][INFO] hack.transistors.transistors:103 - b:0.404 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:44,836][INFO] hack.transistors.transistors:103 - b:0.414 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:44,953][INFO] hack.transistors.transistors:103 - b:0.424 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:45,070][INFO] hack.transistors.transistors:103 - b:0.434 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:45,186][INFO] hack.transistors.transistors:103 - b:0.444 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:45,303][INFO] hack.transistors.transistors:103 - b:0.455 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:45,419][INFO] hack.transistors.transistors:103 - b:0.465 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:45,534][INFO] hack.transistors.transistors:103 - b:0.475 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:45,648][INFO] hack.transistors.transistors:103 - b:0.485 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:45,763][INFO] hack.transistors.transistors:103 - b:0.495 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:45,878][INFO] hack.transistors.transistors:103 - b:0.505 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:45,993][INFO] hack.transistors.transistors:103 - b:0.515 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:46,106][INFO] hack.transistors.transistors:103 - b:0.525 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:46,220][INFO] hack.transistors.transistors:103 - b:0.535 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:46,333][INFO] hack.transistors.transistors:103 - b:0.545 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:46,445][INFO] hack.transistors.transistors:103 - b:0.556 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:46,558][INFO] hack.transistors.transistors:103 - b:0.566 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:46,671][INFO] hack.transistors.transistors:103 - b:0.576 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:46,783][INFO] hack.transistors.transistors:103 - b:0.586 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:46,895][INFO] hack.transistors.transistors:103 - b:0.596 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:47,007][INFO] hack.transistors.transistors:103 - b:0.606 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:47,120][INFO] hack.transistors.transistors:103 - b:0.616 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:47,232][INFO] hack.transistors.transistors:103 - b:0.626 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:47,343][INFO] hack.transistors.transistors:103 - b:0.636 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:47,454][INFO] hack.transistors.transistors:103 - b:0.646 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:47,566][INFO] hack.transistors.transistors:103 - b:0.657 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:47,677][INFO] hack.transistors.transistors:103 - b:0.667 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:47,788][INFO] hack.transistors.transistors:103 - b:0.677 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:47,898][INFO] hack.transistors.transistors:103 - b:0.687 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:48,008][INFO] hack.transistors.transistors:103 - b:0.697 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:48,119][INFO] hack.transistors.transistors:103 - b:0.707 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:48,230][INFO] hack.transistors.transistors:103 - b:0.717 f1:0.890 p:0.860 r:0.922
+[2020-05-04 06:42:48,339][INFO] hack.transistors.transistors:103 - b:0.727 f1:0.892 p:0.865 r:0.922
+[2020-05-04 06:42:48,449][INFO] hack.transistors.transistors:103 - b:0.737 f1:0.892 p:0.865 r:0.922
+[2020-05-04 06:42:48,558][INFO] hack.transistors.transistors:103 - b:0.747 f1:0.892 p:0.865 r:0.922
+[2020-05-04 06:42:48,668][INFO] hack.transistors.transistors:103 - b:0.758 f1:0.892 p:0.865 r:0.922
+[2020-05-04 06:42:48,777][INFO] hack.transistors.transistors:103 - b:0.768 f1:0.892 p:0.865 r:0.922
+[2020-05-04 06:42:48,886][INFO] hack.transistors.transistors:103 - b:0.778 f1:0.892 p:0.865 r:0.922
+[2020-05-04 06:42:48,994][INFO] hack.transistors.transistors:103 - b:0.788 f1:0.895 p:0.870 r:0.922
+[2020-05-04 06:42:49,102][INFO] hack.transistors.transistors:103 - b:0.798 f1:0.898 p:0.876 r:0.922
+[2020-05-04 06:42:49,211][INFO] hack.transistors.transistors:103 - b:0.808 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:49,319][INFO] hack.transistors.transistors:103 - b:0.818 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:49,427][INFO] hack.transistors.transistors:103 - b:0.828 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:49,534][INFO] hack.transistors.transistors:103 - b:0.838 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:49,642][INFO] hack.transistors.transistors:103 - b:0.848 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:49,750][INFO] hack.transistors.transistors:103 - b:0.859 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:49,858][INFO] hack.transistors.transistors:103 - b:0.869 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:49,965][INFO] hack.transistors.transistors:103 - b:0.879 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:50,071][INFO] hack.transistors.transistors:103 - b:0.889 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:50,178][INFO] hack.transistors.transistors:103 - b:0.899 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:50,285][INFO] hack.transistors.transistors:103 - b:0.909 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:50,391][INFO] hack.transistors.transistors:103 - b:0.919 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:50,497][INFO] hack.transistors.transistors:103 - b:0.929 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:50,603][INFO] hack.transistors.transistors:103 - b:0.939 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:50,707][INFO] hack.transistors.transistors:103 - b:0.949 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:50,813][INFO] hack.transistors.transistors:103 - b:0.960 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:50,918][INFO] hack.transistors.transistors:103 - b:0.970 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:51,022][INFO] hack.transistors.transistors:103 - b:0.980 f1:0.901 p:0.881 r:0.922
+[2020-05-04 06:42:51,124][INFO] hack.transistors.transistors:103 - b:0.990 f1:0.881 p:0.893 r:0.869
+[2020-05-04 06:42:51,215][INFO] hack.transistors.transistors:103 - b:1.000 f1:nan p:nan r:0.000
+[2020-05-04 06:42:51,215][WARNING] hack.transistors.transistors:112 - ===================================================
+[2020-05-04 06:42:51,215][WARNING] hack.transistors.transistors:113 - Entity-Level Gold Data score for polarity, b=0.808
+[2020-05-04 06:42:51,215][WARNING] hack.transistors.transistors:114 - ===================================================
+[2020-05-04 06:42:51,215][WARNING] hack.transistors.transistors:115 - Corpus Precision 0.881
+[2020-05-04 06:42:51,215][WARNING] hack.transistors.transistors:116 - Corpus Recall    0.922
+[2020-05-04 06:42:51,215][WARNING] hack.transistors.transistors:117 - Corpus F1        0.901
+[2020-05-04 06:42:51,215][WARNING] hack.transistors.transistors:118 - ---------------------------------------------------
+[2020-05-04 06:42:51,216][WARNING] hack.transistors.transistors:120 - TP: 141 | FP: 19 | FN: 12
+[2020-05-04 06:42:51,216][WARNING] hack.transistors.transistors:124 - ===================================================
+
+[2020-05-04 06:43:27,109][INFO] hack.transistors.transistors:85 - Calculating the best F1 score and threshold (b)...
+[2020-05-04 06:43:27,220][INFO] hack.transistors.transistors:103 - b:0.000 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:27,326][INFO] hack.transistors.transistors:103 - b:0.010 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:27,433][INFO] hack.transistors.transistors:103 - b:0.020 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:27,539][INFO] hack.transistors.transistors:103 - b:0.030 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:27,646][INFO] hack.transistors.transistors:103 - b:0.040 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:27,752][INFO] hack.transistors.transistors:103 - b:0.051 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:27,859][INFO] hack.transistors.transistors:103 - b:0.061 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:27,967][INFO] hack.transistors.transistors:103 - b:0.071 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:28,074][INFO] hack.transistors.transistors:103 - b:0.081 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:28,180][INFO] hack.transistors.transistors:103 - b:0.091 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:28,287][INFO] hack.transistors.transistors:103 - b:0.101 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:28,393][INFO] hack.transistors.transistors:103 - b:0.111 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:28,500][INFO] hack.transistors.transistors:103 - b:0.121 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:28,607][INFO] hack.transistors.transistors:103 - b:0.131 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:28,714][INFO] hack.transistors.transistors:103 - b:0.141 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:28,821][INFO] hack.transistors.transistors:103 - b:0.152 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:28,927][INFO] hack.transistors.transistors:103 - b:0.162 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:29,034][INFO] hack.transistors.transistors:103 - b:0.172 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:29,141][INFO] hack.transistors.transistors:103 - b:0.182 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:29,248][INFO] hack.transistors.transistors:103 - b:0.192 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:29,354][INFO] hack.transistors.transistors:103 - b:0.202 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:29,461][INFO] hack.transistors.transistors:103 - b:0.212 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:29,568][INFO] hack.transistors.transistors:103 - b:0.222 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:29,674][INFO] hack.transistors.transistors:103 - b:0.232 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:29,780][INFO] hack.transistors.transistors:103 - b:0.242 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:29,886][INFO] hack.transistors.transistors:103 - b:0.253 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:29,993][INFO] hack.transistors.transistors:103 - b:0.263 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:30,100][INFO] hack.transistors.transistors:103 - b:0.273 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:30,206][INFO] hack.transistors.transistors:103 - b:0.283 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:30,313][INFO] hack.transistors.transistors:103 - b:0.293 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:30,419][INFO] hack.transistors.transistors:103 - b:0.303 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:30,525][INFO] hack.transistors.transistors:103 - b:0.313 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:30,632][INFO] hack.transistors.transistors:103 - b:0.323 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:30,738][INFO] hack.transistors.transistors:103 - b:0.333 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:30,845][INFO] hack.transistors.transistors:103 - b:0.343 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:30,951][INFO] hack.transistors.transistors:103 - b:0.354 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:31,057][INFO] hack.transistors.transistors:103 - b:0.364 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:31,164][INFO] hack.transistors.transistors:103 - b:0.374 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:31,270][INFO] hack.transistors.transistors:103 - b:0.384 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:31,376][INFO] hack.transistors.transistors:103 - b:0.394 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:31,482][INFO] hack.transistors.transistors:103 - b:0.404 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:31,588][INFO] hack.transistors.transistors:103 - b:0.414 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:31,694][INFO] hack.transistors.transistors:103 - b:0.424 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:31,801][INFO] hack.transistors.transistors:103 - b:0.434 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:31,907][INFO] hack.transistors.transistors:103 - b:0.444 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:32,013][INFO] hack.transistors.transistors:103 - b:0.455 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:32,119][INFO] hack.transistors.transistors:103 - b:0.465 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:32,225][INFO] hack.transistors.transistors:103 - b:0.475 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:32,331][INFO] hack.transistors.transistors:103 - b:0.485 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:32,438][INFO] hack.transistors.transistors:103 - b:0.495 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:32,544][INFO] hack.transistors.transistors:103 - b:0.505 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:32,650][INFO] hack.transistors.transistors:103 - b:0.515 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:32,757][INFO] hack.transistors.transistors:103 - b:0.525 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:32,864][INFO] hack.transistors.transistors:103 - b:0.535 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:32,971][INFO] hack.transistors.transistors:103 - b:0.545 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:33,077][INFO] hack.transistors.transistors:103 - b:0.556 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:33,183][INFO] hack.transistors.transistors:103 - b:0.566 f1:0.820 p:0.864 r:0.781
+[2020-05-04 06:43:33,288][INFO] hack.transistors.transistors:103 - b:0.576 f1:0.832 p:0.890 r:0.781
+[2020-05-04 06:43:33,394][INFO] hack.transistors.transistors:103 - b:0.586 f1:0.832 p:0.890 r:0.781
+[2020-05-04 06:43:33,500][INFO] hack.transistors.transistors:103 - b:0.596 f1:0.832 p:0.890 r:0.781
+[2020-05-04 06:43:33,607][INFO] hack.transistors.transistors:103 - b:0.606 f1:0.832 p:0.890 r:0.781
+[2020-05-04 06:43:33,713][INFO] hack.transistors.transistors:103 - b:0.616 f1:0.832 p:0.890 r:0.781
+[2020-05-04 06:43:33,819][INFO] hack.transistors.transistors:103 - b:0.626 f1:0.832 p:0.890 r:0.781
+[2020-05-04 06:43:33,925][INFO] hack.transistors.transistors:103 - b:0.636 f1:0.832 p:0.890 r:0.781
+[2020-05-04 06:43:34,031][INFO] hack.transistors.transistors:103 - b:0.646 f1:0.832 p:0.890 r:0.781
+[2020-05-04 06:43:34,137][INFO] hack.transistors.transistors:103 - b:0.657 f1:0.832 p:0.890 r:0.781
+[2020-05-04 06:43:34,243][INFO] hack.transistors.transistors:103 - b:0.667 f1:0.832 p:0.890 r:0.781
+[2020-05-04 06:43:34,349][INFO] hack.transistors.transistors:103 - b:0.677 f1:0.815 p:0.886 r:0.755
+[2020-05-04 06:43:34,455][INFO] hack.transistors.transistors:103 - b:0.687 f1:0.815 p:0.886 r:0.755
+[2020-05-04 06:43:34,561][INFO] hack.transistors.transistors:103 - b:0.697 f1:0.815 p:0.886 r:0.755
+[2020-05-04 06:43:34,668][INFO] hack.transistors.transistors:103 - b:0.707 f1:0.815 p:0.886 r:0.755
+[2020-05-04 06:43:34,774][INFO] hack.transistors.transistors:103 - b:0.717 f1:0.815 p:0.886 r:0.755
+[2020-05-04 06:43:34,881][INFO] hack.transistors.transistors:103 - b:0.727 f1:0.815 p:0.886 r:0.755
+[2020-05-04 06:43:34,986][INFO] hack.transistors.transistors:103 - b:0.737 f1:0.815 p:0.886 r:0.755
+[2020-05-04 06:43:35,093][INFO] hack.transistors.transistors:103 - b:0.747 f1:0.815 p:0.886 r:0.755
+[2020-05-04 06:43:35,199][INFO] hack.transistors.transistors:103 - b:0.758 f1:0.815 p:0.886 r:0.755
+[2020-05-04 06:43:35,305][INFO] hack.transistors.transistors:103 - b:0.768 f1:0.818 p:0.893 r:0.755
+[2020-05-04 06:43:35,411][INFO] hack.transistors.transistors:103 - b:0.778 f1:0.818 p:0.893 r:0.755
+[2020-05-04 06:43:35,518][INFO] hack.transistors.transistors:103 - b:0.788 f1:0.814 p:0.892 r:0.748
+[2020-05-04 06:43:35,624][INFO] hack.transistors.transistors:103 - b:0.798 f1:0.814 p:0.892 r:0.748
+[2020-05-04 06:43:35,731][INFO] hack.transistors.transistors:103 - b:0.808 f1:0.814 p:0.892 r:0.748
+[2020-05-04 06:43:35,836][INFO] hack.transistors.transistors:103 - b:0.818 f1:0.810 p:0.891 r:0.742
+[2020-05-04 06:43:35,942][INFO] hack.transistors.transistors:103 - b:0.828 f1:0.813 p:0.898 r:0.742
+[2020-05-04 06:43:36,047][INFO] hack.transistors.transistors:103 - b:0.838 f1:0.813 p:0.898 r:0.742
+[2020-05-04 06:43:36,153][INFO] hack.transistors.transistors:103 - b:0.848 f1:0.813 p:0.898 r:0.742
+[2020-05-04 06:43:36,258][INFO] hack.transistors.transistors:103 - b:0.859 f1:0.809 p:0.898 r:0.735
+[2020-05-04 06:43:36,363][INFO] hack.transistors.transistors:103 - b:0.869 f1:0.809 p:0.898 r:0.735
+[2020-05-04 06:43:36,468][INFO] hack.transistors.transistors:103 - b:0.879 f1:0.804 p:0.897 r:0.729
+[2020-05-04 06:43:36,574][INFO] hack.transistors.transistors:103 - b:0.889 f1:0.800 p:0.896 r:0.723
+[2020-05-04 06:43:36,678][INFO] hack.transistors.transistors:103 - b:0.899 f1:0.800 p:0.896 r:0.723
+[2020-05-04 06:43:36,782][INFO] hack.transistors.transistors:103 - b:0.909 f1:0.796 p:0.895 r:0.716
+[2020-05-04 06:43:36,886][INFO] hack.transistors.transistors:103 - b:0.919 f1:0.765 p:0.889 r:0.671
+[2020-05-04 06:43:36,988][INFO] hack.transistors.transistors:103 - b:0.929 f1:0.732 p:0.882 r:0.626
+[2020-05-04 06:43:37,090][INFO] hack.transistors.transistors:103 - b:0.939 f1:0.708 p:0.876 r:0.594
+[2020-05-04 06:43:37,190][INFO] hack.transistors.transistors:103 - b:0.949 f1:0.656 p:0.863 r:0.529
+[2020-05-04 06:43:37,289][INFO] hack.transistors.transistors:103 - b:0.960 f1:0.594 p:0.845 r:0.458
+[2020-05-04 06:43:37,386][INFO] hack.transistors.transistors:103 - b:0.970 f1:0.535 p:0.836 r:0.394
+[2020-05-04 06:43:37,480][INFO] hack.transistors.transistors:103 - b:0.980 f1:0.356 p:0.766 r:0.232
+[2020-05-04 06:43:37,571][INFO] hack.transistors.transistors:103 - b:0.990 f1:0.072 p:0.545 r:0.039
+[2020-05-04 06:43:37,662][INFO] hack.transistors.transistors:103 - b:1.000 f1:nan p:nan r:0.000
+[2020-05-04 06:43:37,662][WARNING] hack.transistors.transistors:112 - ===================================================
+[2020-05-04 06:43:37,663][WARNING] hack.transistors.transistors:113 - Entity-Level Gold Data score for ce_v_max, b=0.576
+[2020-05-04 06:43:37,663][WARNING] hack.transistors.transistors:114 - ===================================================
+[2020-05-04 06:43:37,663][WARNING] hack.transistors.transistors:115 - Corpus Precision 0.890
+[2020-05-04 06:43:37,663][WARNING] hack.transistors.transistors:116 - Corpus Recall    0.781
+[2020-05-04 06:43:37,663][WARNING] hack.transistors.transistors:117 - Corpus F1        0.832
+[2020-05-04 06:43:37,663][WARNING] hack.transistors.transistors:118 - ---------------------------------------------------
+[2020-05-04 06:43:37,663][WARNING] hack.transistors.transistors:120 - TP: 121 | FP: 15 | FN: 34
+[2020-05-04 06:43:37,663][WARNING] hack.transistors.transistors:124 - ===================================================
+
+[2020-05-04 06:43:47,825][WARNING] hack.transistors.transistors:616 - Classification Time (min): 63.7
