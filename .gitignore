@@ -8,6 +8,7 @@ html/
 *.pkl
 pip-wheel-metadata/
 scripts/matched.csv
+csv/
 
 # Logs
 logs/
