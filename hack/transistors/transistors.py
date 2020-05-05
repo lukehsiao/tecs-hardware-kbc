@@ -346,12 +346,13 @@ def main(
     if ce_v_max:
         cands.append(PartCeVMax)
 
-    featurizer = Featurizer(session, cands)
+    # Using parallelism = 1 for deterministic behavior.
+    featurizer = Featurizer(session, cands, parallelism=1)
     if first_time:
         logger.info("Starting featurizer...")
-        featurizer.apply(split=0, train=True, parallelism=parallel)
-        featurizer.apply(split=1, parallelism=parallel)
-        featurizer.apply(split=2, parallelism=parallel)
+        featurizer.apply(split=0, train=True)
+        featurizer.apply(split=1)
+        featurizer.apply(split=2)
         logger.info("Done")
 
     logger.info("Getting feature matrices...")
@@ -412,11 +413,12 @@ def main(
     if ce_v_max:
         lfs.append(ce_v_max_lfs)
 
-    labeler = Labeler(session, cands)
+    # Using parallelism = 1 for deterministic behavior.
+    labeler = Labeler(session, cands, parellelism=1)
 
     if first_time:
         logger.info("Applying LFs...")
-        labeler.apply(split=0, lfs=lfs, train=True, parallelism=parallel)
+        labeler.apply(split=0, lfs=lfs, train=True)
         logger.info("Done...")
 
         # Uncomment if debugging LFs
@@ -426,7 +428,7 @@ def main(
 
     elif re_label:
         logger.info("Updating LFs...")
-        labeler.update(split=0, lfs=lfs, parallelism=parallel)
+        labeler.update(split=0, lfs=lfs)
         logger.info("Done...")
 
         # Uncomment if debugging LFs

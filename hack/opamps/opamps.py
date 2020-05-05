@@ -316,15 +316,17 @@ def main(
     #  logger.info(f"\n{pformat(result.FN)}")
 
     start = timer()
-    featurizer = Featurizer(session, cand_classes)
+
+    # Using parallelism = 1 for deterministic behavior.
+    featurizer = Featurizer(session, cand_classes, parallelism=1)
 
     if first_time:
         logger.info("Starting featurizer...")
         # Set feature space based on dev set, which we use for training rather
         # than the large train set.
-        featurizer.apply(split=1, train=True, parallelism=parallel)
-        featurizer.apply(split=0, parallelism=parallel)
-        featurizer.apply(split=2, parallelism=parallel)
+        featurizer.apply(split=1, train=True)
+        featurizer.apply(split=0)
+        featurizer.apply(split=2)
         logger.info("Done")
 
     logger.info("Getting feature matrices...")
