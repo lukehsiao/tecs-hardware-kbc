@@ -11,6 +11,13 @@ import seaborn as sns
 from matplotlib.backends.backend_pdf import PdfPages
 
 matplotlib.rcParams["text.usetex"] = True
+matplotlib.rcParams["text.latex.preamble"] = [
+    r"\usepackage{siunitx}",  # i need upright \micro symbols, but you need...
+    r"\sisetup{detect-all}",  # ...this to force siunitx to actually use your fonts
+    #  r'\usepackage{helvet}',    # set the normal font here
+    r"\usepackage{sansmath}",  # load up the sansmath so that math -> helvet
+    r"\sansmath",  # <- tricky! -- gotta actually tell tex to use!
+]
 
 sns.set(style="whitegrid")
 sns.set_context("paper", font_scale=1.5, rc={"lines.linewidth": 2.25})
@@ -24,7 +31,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-FIGSIZE = (7, 3)
+FIGSIZE = (5, 3)
 
 
 def _plot(infile):
