@@ -31,7 +31,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-FIGSIZE = (5, 3)
+FIGSIZE = (5, 2.75)
 
 
 def _plot(infile):
