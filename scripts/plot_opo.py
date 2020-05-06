@@ -15,6 +15,12 @@ from matplotlib.backends.backend_pdf import PdfPages
 from scipy.spatial.distance import directed_hausdorff
 
 matplotlib.rcParams["text.usetex"] = True
+matplotlib.rcParams["text.latex.preamble"] = [
+    r"\usepackage{siunitx}",  # i need upright \micro symbols, but you need...
+    r"\sisetup{detect-all}",  # ...this to force siunitx to actually use your fonts
+    r"\usepackage{sansmath}",  # load up the sansmath so that math -> helvet
+    r"\sansmath",  # <- tricky! -- gotta actually tell tex to use!
+]
 
 sns.set(style="whitegrid")
 sns.set_context("paper", font_scale=1.7)
@@ -165,7 +171,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
             directed_hausdorff(our_point.reshape(1, 2), opo_nd)[0] / math.sqrt(2)
         )
 
-    fig, ax = plt.subplots(figsize=(6, 3.5))
+    fig, ax = plt.subplots(figsize=(6, 3))
     plot = sns.distplot(
         distances,
         hist_kws={"cumulative": True, "rwidth": 0.80},
@@ -194,7 +200,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
         + f"max: {np.amax(temp)}"
     )
 
-    fig, ax = plt.subplots(figsize=(6, 3.5))
+    fig, ax = plt.subplots(figsize=(6, 3))
     ax.set(xscale=scale, yscale=scale)
 
     # Build a dataframe with both values
