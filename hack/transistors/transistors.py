@@ -414,7 +414,7 @@ def main(
         lfs.append(ce_v_max_lfs)
 
     # Using parallelism = 1 for deterministic behavior.
-    labeler = Labeler(session, cands, parellelism=1)
+    labeler = Labeler(session, cands, parallelism=1)
 
     if first_time:
         logger.info("Applying LFs...")
