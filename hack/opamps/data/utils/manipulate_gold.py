@@ -83,8 +83,3 @@ def remove_source(goldfile, outfile, append=False):
         writer = csv.writer(inputcsv)
         for row in entities:
             writer.writerow(row)
-
-
-if __name__ == "__main__":
-    mouser_input = "/home/nchiang/repos/hack/hack/opamps/data/mouser/our_gold.csv"
-    sort_gold(mouser_input)
