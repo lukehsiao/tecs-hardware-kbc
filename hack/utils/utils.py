@@ -32,7 +32,7 @@ def parse_dataset(
         Defaults to parsing all documents.
     :rtype: (all_docs, train_docs, dev_docs, test_docs)
     """
-    train_docs = set()
+    #  train_docs = set()
     dev_docs = set()
     mouser_docs = set()
 
@@ -59,9 +59,9 @@ def parse_dataset(
             if division == "mouser":
                 corpus_parser.apply(doc_preprocessor, clear=False)
                 mouser_docs = set(corpus_parser.get_last_documents())
-            if division == "train":
-                corpus_parser.apply(doc_preprocessor, clear=False)
-                train_docs = set(corpus_parser.get_last_documents())
+            #  if division == "train":
+            #      corpus_parser.apply(doc_preprocessor, clear=False)
+            #      train_docs = set(corpus_parser.get_last_documents())
             all_docs = corpus_parser.get_documents()
     else:
         logger.info("Reloading pre-parsed dataset.")
@@ -72,15 +72,16 @@ def parse_dataset(
                 dev_doc_names = _files_in_dir(pdf_path)
             if division == "mouser":
                 mouser_doc_names = _files_in_dir(pdf_path)
-            if division == "train":
-                train_doc_names = _files_in_dir(pdf_path)
+            #  if division == "train":
+            #      train_doc_names = _files_in_dir(pdf_path)
 
         for doc in all_docs:
             if doc.name in dev_doc_names:
                 dev_docs.add(doc)
             if doc.name in mouser_doc_names:
                 mouser_docs.add(doc)
-            if doc.name in train_doc_names:
-                train_docs.add(doc)
+            #  if doc.name in train_doc_names:
+            #      train_docs.add(doc)
 
-    return all_docs, train_docs, dev_docs, mouser_docs
+    #  return all_docs, train_docs, dev_docs, mouser_docs
+    return all_docs, dev_docs, mouser_docs

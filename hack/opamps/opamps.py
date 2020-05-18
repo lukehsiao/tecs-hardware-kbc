@@ -201,23 +201,23 @@ def main(
     if current:
         rel_list.append("current")
 
-    logger.info(f"=" * 30)
+    logger.info("=" * 30)
     logger.info(f"Running with parallel: {parallel}, max_docs: {max_docs}")
 
     session = Meta.init(conn_string).Session()
 
     # Parsing
     start = timer()
-    logger.info(f"Starting parsing...")
-    docs, train_docs, dev_docs, test_docs = parse_dataset(
+    logger.info("Starting parsing...")
+    docs, dev_docs, test_docs = parse_dataset(
         session, dirname, first_time=parse, parallel=parallel, max_docs=max_docs
     )
-    logger.debug(f"Done")
+    logger.debug("Done")
     end = timer()
     logger.warning(f"Parse Time (min): {((end - start) / 60.0):.1f}")
 
     logger.info(f"# of Documents: {len(docs)}")
-    logger.info(f"# of train Documents: {len(train_docs)}")
+    #  logger.info(f"# of train Documents: {len(train_docs)}")
     logger.info(f"# of dev Documents: {len(dev_docs)}")
     logger.info(f"# of test Documents: {len(test_docs)}")
     logger.info(f"Documents: {session.query(Document).count()}")
@@ -273,14 +273,12 @@ def main(
     candidate_extractor = CandidateExtractor(session, cand_classes)
 
     if first_time:
-        for i, docs in enumerate([train_docs, dev_docs, test_docs]):
+        for i, docs in enumerate([dev_docs, test_docs]):
             candidate_extractor.apply(docs, split=i, parallelism=parallel)
 
     # These must be sorted for deterministic behavior.
-    train_cands = candidate_extractor.get_candidates(split=0, sort=True)
-    dev_cands = candidate_extractor.get_candidates(split=1, sort=True)
-    test_cands = candidate_extractor.get_candidates(split=2, sort=True)
-    logger.info(f"Total train candidate: {len(train_cands[0]) + len(train_cands[1])}")
+    dev_cands = candidate_extractor.get_candidates(split=0, sort=True)
+    test_cands = candidate_extractor.get_candidates(split=1, sort=True)
     logger.info(f"Total dev candidate: {len(dev_cands[0]) + len(dev_cands[1])}")
     logger.info(f"Total test candidate: {len(test_cands[0]) + len(test_cands[1])}")
 
@@ -328,43 +326,34 @@ def main(
         logger.info("Starting featurizer...")
         # Set feature space based on dev set, which we use for training rather
         # than the large train set.
-        featurizer.apply(split=1, train=True)
-        featurizer.apply(split=0)
-        featurizer.apply(split=2)
+        featurizer.apply(split=0, train=True)
+        featurizer.apply(split=1)
         logger.info("Done")
 
     logger.info("Getting feature matrices...")
     # Serialize feature matrices on first run
     if first_time:
-        F_train = featurizer.get_feature_matrices(train_cands)
+        #  F_train = featurizer.get_feature_matrices(train_cands)
         F_dev = featurizer.get_feature_matrices(dev_cands)
         F_test = featurizer.get_feature_matrices(test_cands)
         end = timer()
         logger.warning(f"Featurization Time (min): {((end - start) / 60.0):.1f}")
 
-        F_train_dict = {}
         F_dev_dict = {}
         F_test_dict = {}
         for idx, relation in enumerate(rel_list):
-            F_train_dict[relation] = F_train[idx]
             F_dev_dict[relation] = F_dev[idx]
             F_test_dict[relation] = F_test[idx]
 
-        pickle.dump(F_train_dict, open(os.path.join(dirname, "F_train_dict.pkl"), "wb"))
         pickle.dump(F_dev_dict, open(os.path.join(dirname, "F_dev_dict.pkl"), "wb"))
         pickle.dump(F_test_dict, open(os.path.join(dirname, "F_test_dict.pkl"), "wb"))
     else:
-        F_train_dict = pickle.load(
-            open(os.path.join(dirname, "F_train_dict.pkl"), "rb")
-        )
         F_dev_dict = pickle.load(open(os.path.join(dirname, "F_dev_dict.pkl"), "rb"))
         F_test_dict = pickle.load(open(os.path.join(dirname, "F_test_dict.pkl"), "rb"))
 
-        F_train = []
         F_dev = []
         F_test = []
         for relation in rel_list:
-            F_train.append(F_train_dict[relation])
             F_dev.append(F_dev_dict[relation])
             F_test.append(F_test_dict[relation])
 
@@ -429,7 +418,7 @@ def main(
 
     start = timer()
 
-    word_counter = collect_word_counter(train_cands)
+    word_counter = collect_word_counter(dev_cands)
 
     # Training config
     config = {
@@ -492,7 +481,7 @@ def main(
 
     num_feature_keys = len(featurizer.get_keys())
 
-    model = EmmentalModel(name=f"opamp_tasks")
+    model = EmmentalModel(name="opamp_tasks")
 
     # List relation names, arities, list of classes
     tasks = create_task(
@@ -534,81 +523,11 @@ def main(
             num=100,
         )
 
-        # Dump CSV files for analysis
-        if relation == "gain":
-            train_dataloader = EmmentalDataLoader(
-                task_to_label_dict={relation: "labels"},
-                dataset=FonduerDataset(
-                    relation, train_cands[idx], F_train[idx], emb_layer.word2id, 2
-                ),
-                split="train",
-                batch_size=256,
-                shuffle=False,
-            )
-
-            train_preds = model.predict(train_dataloader, return_preds=True)
-            Y_prob = np.array(train_preds["probs"][relation])[:, TRUE]
-            output_csv(train_cands[idx], Y_prob, is_gain=True)
-
-            Y_prob = np.array(test_preds["probs"][relation])[:, TRUE]
-            output_csv(test_cands[idx], Y_prob, is_gain=True, append=True)
-            dump_candidates(
-                test_cands[idx], Y_prob, "gain_test_probs.csv", is_gain=True
-            )
-
-            dev_dataloader = EmmentalDataLoader(
-                task_to_label_dict={relation: "labels"},
-                dataset=FonduerDataset(
-                    relation, dev_cands[idx], F_dev[idx], emb_layer.word2id, 2
-                ),
-                split="dev",
-                batch_size=256,
-                shuffle=False,
-            )
-
-            dev_preds = model.predict(dev_dataloader, return_preds=True)
-
-            Y_prob = np.array(dev_preds["probs"][relation])[:, TRUE]
-            output_csv(dev_cands[idx], Y_prob, is_gain=True, append=True)
-            dump_candidates(dev_cands[idx], Y_prob, "gain_dev_probs.csv", is_gain=True)
-
         if relation == "current":
-            train_dataloader = EmmentalDataLoader(
-                task_to_label_dict={relation: "labels"},
-                dataset=FonduerDataset(
-                    relation, train_cands[idx], F_train[idx], emb_layer.word2id, 2
-                ),
-                split="train",
-                batch_size=256,
-                shuffle=False,
-            )
-
-            train_preds = model.predict(train_dataloader, return_preds=True)
-            Y_prob = np.array(train_preds["probs"][relation])[:, TRUE]
-            output_csv(train_cands[idx], Y_prob, is_gain=False)
-
             Y_prob = np.array(test_preds["probs"][relation])[:, TRUE]
             output_csv(test_cands[idx], Y_prob, is_gain=False, append=True)
             dump_candidates(
-                test_cands[idx], Y_prob, "current_test_probs.csv", is_gain=False
-            )
-
-            dev_dataloader = EmmentalDataLoader(
-                task_to_label_dict={relation: "labels"},
-                dataset=FonduerDataset(
-                    relation, dev_cands[idx], F_dev[idx], emb_layer.word2id, 2
-                ),
-                split="dev",
-                batch_size=256,
-                shuffle=False,
-            )
-
-            dev_preds = model.predict(dev_dataloader, return_preds=True)
-
-            Y_prob = np.array(dev_preds["probs"][relation])[:, TRUE]
-            output_csv(dev_cands[idx], Y_prob, is_gain=False, append=True)
-            dump_candidates(
-                dev_cands[idx], Y_prob, "current_dev_probs.csv", is_gain=False
+                test_cands[idx], Y_prob, "current_mouser_probs.csv", is_gain=False
             )
 
     end = timer()
