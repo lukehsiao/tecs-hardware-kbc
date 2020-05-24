@@ -71,7 +71,9 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     current_b = cb
     logger.info(f"gain_b = {gain_b}, current_b = {current_b}")
 
-    filtered_gain = gain_data[gain_data.p >= gain_b][["Document", "GBWP (kHz)", "sent"]]
+    filtered_gain = gain_data[gain_data.p.round(decimals=3) >= gain_b][
+        ["Document", "GBWP (kHz)", "sent"]
+    ]
     filtered_gain = filtered_gain.sort_values(by=["Document", "sent", "GBWP (kHz)"])
     filtered_current = current_data[current_data.p >= current_b][
         ["Document", "Supply Current (uA)", "sent"]
@@ -225,6 +227,8 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     if target.size:
         logger.info("Contained the target Opo selection.")
         plot.plot(4.6, 400.0, color="r", marker="o", markersize=15, fillstyle="none")
+    else:
+        logger.error("Didn't contain the target Opo selection.")
 
     # Remove the seaborn legend title
     handles, labels = ax.get_legend_handles_labels()
