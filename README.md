@@ -1,4 +1,4 @@
-# Automating the Generation of HArdware Component Knowledge Bases (HACK)
+# Creating Hardware Component Knowledge Bases with Training Data Generation and Multi-task Learning
 
 ## Minimum Software Requirements
 
@@ -266,8 +266,8 @@ dependencies have been installed, these would be the commands run to go from a
 fresh clone of the repository to running the results on the transistor dataset.
 
 ```
-$ git clone https://github.com/lukehsiao/lctes-p27.git
-$ cd lctes-p27
+$ git clone https://github.com/lukehsiao/tecs-hardware-kbc.git
+$ cd tecs-hardware-kbc
 $ virtualenv -p python3 .venv
 $ source .venv/bin/activate
 (.venv) $ psql -c "create user demo with password 'demo' superuser createdb;" -U postgres
@@ -303,13 +303,14 @@ the program. The `-v` verbosity flag can be included to get additional output.
 ## Reference
 
 ```
-@inproceedings{hsiao2019hack,
-  title={Automating the Generation of Hardware Component Knowledge Bases},
-  author={Luke Hsiao and Sen Wu and Nicholas Chiang and Christopher Ré and Philip Levis},
-  booktitle={Proceedings of the 20th ACM SIGPLAN/SIGBED Conference on Languages, Compilers, and Tools for Embedded Systems (LCTES '19)}
-  year={2019},
-  month={June},
-  day={23},
-  organization={ACM}
+@article{hsiao2020creating,
+  title={Creating hardware component knowledge bases with training data generation and multi-task learning},
+  author={Hsiao, Luke and Wu, Sen and Chiang, Nicholas and R{\'e}, Christopher and Levis, Philip},
+  journal={ACM Transactions on Embedded Computing Systems (TECS)},
+  volume={19},
+  number={6},
+  pages={1--26},
+  year={2020},
+  publisher={ACM New York, NY, USA}
 }
 ```
