@@ -173,7 +173,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
             directed_hausdorff(our_point.reshape(1, 2), opo_nd)[0] / math.sqrt(2)
         )
 
-    fig, ax = plt.subplots(figsize=(6, 3))
+    fig, ax = plt.subplots(figsize=(8, 3))
     plot = sns.distplot(
         distances,
         hist_kws={"cumulative": True, "rwidth": 0.80},
@@ -202,7 +202,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
         + f"max: {np.amax(temp)}"
     )
 
-    fig, ax = plt.subplots(figsize=(6, 3))
+    fig, ax = plt.subplots(figsize=(8, 3))
     ax.set(xscale=scale, yscale=scale)
 
     # Build a dataframe with both values
@@ -232,7 +232,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
 
     # Remove the seaborn legend title
     handles, labels = ax.get_legend_handles_labels()
-    ax.legend(handles=handles[1:], labels=labels[1:])
+    ax.legend(handles=handles[0:], labels=labels[0:])
 
     sns.despine(bottom=True, left=True)
     plot.set(xlabel="Quiescent Current (uA)")
