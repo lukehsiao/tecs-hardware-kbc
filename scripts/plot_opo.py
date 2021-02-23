@@ -202,7 +202,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
         + f"max: {np.amax(temp)}"
     )
 
-    fig, ax = plt.subplots(figsize=(8, 3))
+    fig, ax = plt.subplots(figsize=(8, 4))
     ax.set(xscale=scale, yscale=scale)
 
     # Build a dataframe with both values
@@ -213,9 +213,10 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
         style="Source",
         y="GBWP (kHz)",
         x="Supply Current (uA)",
-        markers=["x", "+"],
+        markers=["o", "^"],
         ax=ax,
-        palette=reversed(sns.color_palette("Paired")[:2]),
+        linewidth=0,
+        palette=sns.color_palette("Paired")[:2],
     )
 
     # Highlight the Opo selection, if present
@@ -226,7 +227,15 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     ]
     if target.size:
         logger.info("Contained the target Opo selection.")
-        plot.plot(4.6, 400.0, color="r", marker="o", markersize=15, fillstyle="none")
+        plot.plot(
+            4.6,
+            400.0,
+            color="r",
+            marker="o",
+            markeredgewidth=3.0,
+            markersize=20,
+            fillstyle="none",
+        )
     else:
         logger.error("Didn't contain the target Opo selection.")
 
@@ -237,7 +246,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     sns.despine(bottom=True, left=True)
     plot.set(xlabel="Quiescent Current (uA)")
     plot.set(ylabel="GBW (kHz)")
-    plot.set_xlim(1e-2, 1e6)
+    plot.set_xlim(1e-1, 1e6)
     plot.set_ylim(1e-1, 1e8)
     pp = PdfPages(outfile)
     pp.savefig(plot.get_figure().tight_layout())
