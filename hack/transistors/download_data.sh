@@ -1,5 +1,5 @@
 echo "Downloading transistor dataset..."
-url=https://stanford.box.com/shared/static/uu0gsf5fn1vidctx8zfpbi4nu9r69hfk.xz
+url=https://zenodo.org/record/4558344/files/transistor_dataset.tar.xz?download=1
 data_tar=transistor_dataset.tar.xz
 
 if type curl &>/dev/null; then

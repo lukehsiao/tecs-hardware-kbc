@@ -1,5 +1,5 @@
 echo "Downloading op-amp dataset..."
-url=https://stanford.box.com/shared/static/xszeoh0o36j2d7jn05mbojhnyg61nfr3.xz
+url=https://zenodo.org/record/4558344/files/opamp_dataset.tar.xz?download=1
 data_tar=opamp_dataset.tar.xz
 
 if type curl &>/dev/null; then
@@ -17,7 +17,7 @@ rm $data_tar
 echo "Done!"
 
 echo "Downloading mouser op-amp dataset..."
-url=https://stanford.box.com/shared/static/568p14l4zxnfbgtrtzpm8wr2ynp2328l.xz
+url=https://zenodo.org/record/4558344/files/mouser_opamps.tar.xz?download=1
 data_tar=mouser_opamps.tar.xz
 
 if type curl &>/dev/null; then

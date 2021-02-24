@@ -1,5 +1,5 @@
 echo "Downloading circular connector dataset..."
-url=https://stanford.box.com/shared/static/2k9p0zk7i5yfsdta2pcqujiwavpejykw.xz
+url=https://zenodo.org/record/4558344/files/circular_connector_dataset.tar.xz?download=1
 data_tar=circular_connector_dataset.tar.xz
 
 if type curl &>/dev/null; then
