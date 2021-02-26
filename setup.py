@@ -5,6 +5,7 @@ setup(
     version="0.2.2+dev",
     description="Building a hardware component knowledge base.",
     install_requires=[
+        "cython",
         "fonduer>=0.8.2, <0.9.0",
         "matplotlib",
         "numpy",
