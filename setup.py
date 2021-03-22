@@ -14,7 +14,7 @@ setup(
         "quantiphy",
         "scipy",
         "seaborn",
-        "snorkel>=0.9.5",
+        "snorkel>=0.9.5, <0.9.7",
         "statsmodels",
         "torch>=1.3.0,<2.0.0",
         "tqdm",
