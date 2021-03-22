@@ -58,7 +58,7 @@ def main(
     session = Meta.init(conn_string).Session()
 
     # Parsing
-    logger.info(f"Starting parsing...")
+    logger.info("Starting parsing...")
     start = timer()
     docs, train_docs, dev_docs, test_docs = parse_dataset(
         session, dirname, first_time=first_time, parallel=parallel, max_docs=max_docs
@@ -232,7 +232,7 @@ def main(
         )
     )
 
-    model = EmmentalModel(name=f"Thumbnail")
+    model = EmmentalModel(name="Thumbnail")
     model.add_task(
         create_task("Thumbnail", n_class=2, model="resnet18", pretrained=True)
     )

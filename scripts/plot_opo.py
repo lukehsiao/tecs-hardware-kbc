@@ -192,7 +192,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
     pp.savefig(plot.get_figure().tight_layout())
     pp.close()
     run(["pdfcrop", "cdf.pdf", "cdf.pdf"], stdout=DEVNULL, check=True)
-    logger.info(f"Plot saved to cdf.pdf")
+    logger.info("Plot saved to cdf.pdf")
 
     temp = np.array(distances)
     logger.info(

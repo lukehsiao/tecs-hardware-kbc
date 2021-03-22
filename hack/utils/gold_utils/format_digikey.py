@@ -44,7 +44,7 @@ logging.basicConfig(
     level=logging.DEBUG,
     handlers=[
         logging.FileHandler(
-            os.path.join(os.path.dirname(__file__), f"format_digikey.log")
+            os.path.join(os.path.dirname(__file__), "format_digikey.log")
         ),
         logging.StreamHandler(),
     ],

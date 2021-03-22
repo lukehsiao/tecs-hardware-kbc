@@ -66,8 +66,7 @@ def parse_transform(policy):
 
 
 class Augmentation(object):
-    """Given the augment policy to generate the list of augmentation functions.
-    """
+    """Given the augment policy to generate the list of augmentation functions."""
 
     def __init__(self, num_comp=1):
         self.num_comp = num_comp
@@ -94,7 +93,7 @@ class Augmentation(object):
         transform_keys = "@".join(
             random.choices(all_transforms, k=self.num_comp)
             + [
-                f"RandomCrop_P1_S224_PD20_PMreflect",
+                "RandomCrop_P1_S224_PD20_PMreflect",
                 "HorizontalFlip_P0.5",
                 "Cutout_P1_MP100",
             ]

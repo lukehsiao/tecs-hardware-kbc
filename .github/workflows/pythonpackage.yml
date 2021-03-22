@@ -1,53 +1,58 @@
 name: ci
 on: [push, pull_request]
 env:
-  CI: true
+    CI: true
 
 jobs:
-  ubuntu-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.6, 3.7, 3.8]
-    services:
-      postgres:
-        image: postgres:12
-        env:
-          POSTGRES_PASSWORD: postgres
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-        ports:
-          # Maps tcp port 5432 on service container to the host
-          - 5432:5432
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies for Ubuntu
-      run: |
-        sudo apt-get install neofetch
-        # Install ImageMagick library for Wand
-        sudo apt-get install libmagickwand-dev ghostscript
-        # Remove the policy file to allow the visualizer test to open the PDF.
-        # See: https://github.com/HazyResearch/fonduer/issues/170
-        sudo rm -rf /etc/ImageMagick-6/policy.xml
-        sudo apt-get install -q -y poppler-utils
-        pip install --upgrade pip setuptools
-        # Install PyTorch for Linux with no CUDA support
-        sudo apt-get install build-essential curl
-        sudo apt-get install libxml2-dev libxslt-dev
-        sudo apt-get install virtualenv
-    - name: Print Version Info
-      run: |
-        neofetch
-        pdfinfo -v
-        psql --version
-        python --version
-        pip --version
-    - name: Install Python Package and Deps
-      run: |
-        make dev
-    - name: Run preliminary checks
-      run: |
-        make check
+    ubuntu-test:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                python-version: [3.7, 3.8, 3.9]
+                poetry-version: [1.1.5]
+        services:
+            postgres:
+                image: postgres:12
+                env:
+                    POSTGRES_PASSWORD: postgres
+                options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+                ports:
+                    - 5432:5432
+        steps:
+            - uses: actions/checkout@v2
+            - name: Set up Python ${{ matrix.python-version }}
+              uses: actions/setup-python@v1
+              with:
+                  python-version: ${{ matrix.python-version }}
+            - name: Install Poetry
+              uses: abatilo/actions-poetry@v2.0.0
+              with:
+                  poetry-version: ${{ matrix.poetry-version }}
+            - name: Install dependencies for Ubuntu
+              run: |
+                  sudo apt-get install neofetch
+                  # Install ImageMagick library for Wand
+                  sudo apt-get install libmagickwand-dev ghostscript
+                  # Remove the policy file to allow the visualizer test to open the PDF.
+                  # See: https://github.com/HazyResearch/fonduer/issues/170
+                  sudo rm -rf /etc/ImageMagick-6/policy.xml
+                  sudo apt-get install -q -y poppler-utils
+                  pip install --upgrade pip setuptools
+                  # Install PyTorch for Linux with no CUDA support
+                  sudo apt-get install build-essential curl
+                  sudo apt-get install libxml2-dev libxslt-dev
+                  sudo apt-get install virtualenv
+            - name: Print Version Info
+              run: |
+                  neofetch
+                  pdfinfo -v
+                  psql --version
+                  python --version
+                  pip --version
+                  poetry --help
+            - name: Install Python Package and Deps
+              run: |
+                  poetry install
+            - name: Run preliminary checks
+              run: |
+                  poetry run make check

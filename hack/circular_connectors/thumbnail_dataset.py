@@ -11,8 +11,7 @@ from hack.circular_connectors.utils import default_loader
 
 
 class ThumbnailDataset(EmmentalDataset):
-    """Dataset to load thumbnail dataset.
-    """
+    """Dataset to load thumbnail dataset."""
 
     def __init__(
         self,

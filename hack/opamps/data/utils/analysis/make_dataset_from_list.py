@@ -42,7 +42,7 @@ def get_dataset_filenames(filenames_file, testpath, devpath):
     if sorted(list(dev_filenames)) != sorted(
         list(filenames.difference(test_filenames))
     ):
-        logger.error(f"Filenames are not consistent.")
+        logger.error("Filenames are not consistent.")
         pdb.set_trace()
 
     # Return final filename sets

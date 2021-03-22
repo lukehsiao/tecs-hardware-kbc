@@ -1,10 +1,9 @@
 #!/usr/bin/env python
-import pdb
-
-
 """
 OPAMP NORMALIZERS
 """
+
+import pdb
 
 
 def opamp_part_normalizer(part):

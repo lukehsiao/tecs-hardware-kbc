@@ -197,18 +197,18 @@ def main(
     if current:
         rel_list.append("current")
 
-    logger.info(f"=" * 30)
+    logger.info("=" * 30)
     logger.info(f"Running with parallel: {parallel}, max_docs: {max_docs}")
 
     session = Meta.init(conn_string).Session()
 
     # Parsing
     start = timer()
-    logger.info(f"Starting parsing...")
+    logger.info("Starting parsing...")
     docs, train_docs, dev_docs, test_docs = parse_dataset(
         session, dirname, first_time=parse, parallel=parallel, max_docs=max_docs
     )
-    logger.debug(f"Done")
+    logger.debug("Done")
     end = timer()
     logger.warning(f"Parse Time (min): {((end - start) / 60.0):.1f}")
 
@@ -488,7 +488,7 @@ def main(
 
     num_feature_keys = len(featurizer.get_keys())
 
-    model = EmmentalModel(name=f"opamp_tasks")
+    model = EmmentalModel(name="opamp_tasks")
 
     # List relation names, arities, list of classes
     tasks = create_task(
