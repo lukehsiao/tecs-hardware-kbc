@@ -1,5 +1,7 @@
 # Creating Hardware Component Knowledge Bases with Training Data Generation and Multi-task Learning
 
+[![ci](https://github.com/lukehsiao/tecs-hardware-kbc/actions/workflows/pythonpackage.yml/badge.svg)](https://github.com/lukehsiao/tecs-hardware-kbc/actions/workflows/pythonpackage.yml)
+
 ## Minimum Software Requirements
 
 This software artifact and the instructions provided below assume that the
@@ -106,7 +108,6 @@ the test set, you can run the following command. If you made the demo user, you
 can use `demo` as the `<user>` and `<pw>`, and the default `<host>` and `<port>`
 is `localhost:5432` for PostgreSQL. The `--stg-temp-min`, `--stg-temp-max`,
 `--polarity`, and `--ce-v-max` arguments represent which relations to extract
-from the dataset.
 
 ```bash
 $ psql -c "create database transistors with owner demo;" -U postgres

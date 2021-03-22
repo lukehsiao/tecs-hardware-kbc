@@ -4,3 +4,4 @@ isort
 jupyter
 pre-commit
 pytest
+wheel
