@@ -22,7 +22,7 @@ installed.
 $ sudo apt install build-essential curl
 $ sudo apt install libxml2-dev libxslt-dev python3-dev
 $ sudo apt build-dep python-matplotlib
-$ sudo apt install poppler-utils postgresql postgresql-contrib
+$ sudo apt install libpq-dev poppler-utils postgresql postgresql-contrib
 $ sudo apt install virtualenv
 ```
 
