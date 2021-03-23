@@ -26,8 +26,20 @@ multi_line_output = 3
 name = "hack"
 version = "0.2.3"
 description = "Creating Hardware Component Knowledge Bases"
-authors = ["Luke Hsiao <lwhsiao@stanford.edu>"]
+authors = ["Luke Hsiao <lwhsiao@stanford.edu>", "Sen Wu <senwu@cs.stanford.edu>", "Nicholas Chiang <nicholas.h.chiang@gmail.com>"]
+maintainers = ["Luke Hsiao <lwhsiao@stanford.edu>"]
+readme = "README.md"
+homepage = "https://github.com/lukehsiao/tecs-hardware-kbc"
+repository = "https://github.com/lukehsiao/tecs-hardware-kbc"
 license = "MIT"
+
+[mool.poetry.urls]
+"Bug Tracker" = "https://github.com/lukehsiao/tecs-hardware-kbc/issues"
+
+[tool.poetry.scripts]
+transistors = "bin.transistors:run"
+# opamps = "bin.opamps"
+# circular_connectors = "bin.circular_connectors"
 
 [tool.poetry.dependencies]
 python = "^3.7"
