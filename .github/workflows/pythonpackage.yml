@@ -56,3 +56,9 @@ jobs:
             - name: Run preliminary checks
               run: |
                   poetry run make check
+            - name: Check scripts are available
+              run: |
+                  poetry run transistors --help
+                  poetry run circular_connectors --help
+                  poetry run opamps --help
+                  poetry run analysis --help
