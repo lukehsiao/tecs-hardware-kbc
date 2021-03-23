@@ -62,7 +62,7 @@ def get_gold_set(gold=None, docs=None, is_gain=True):
     if gold is None:
         gold = [
             os.path.join(dirname, "data/dev/dev_gold.csv"),
-            os.path.join(dirname, "data/test/test_gold.csv"),
+            os.path.join(dirname, "data/mouser/our_gold.csv"),
         ]
 
     for filename in gold:
@@ -309,6 +309,10 @@ def compare_entities(
                 )
             )
         if type == "FN":  # We only care about the entities data for `Notes:`
+            # b/c if it's a FN we know that the gold data had the value (the FN)
+            # but we don't know what we were able to extract (e.g. We couldn't
+            # get this (FN) value but we did manage to extract these values from
+            # that datasheet).
             for (doc, val) in entities:
                 if doc.upper() in entity_dic:
                     if probs is None or val in probs_dic[doc.upper()]:
@@ -360,6 +364,10 @@ def compare_entities(
                         )
                     )
         elif type == "FP":  # We only care about the gold data for `Notes:`
+            # b/c if it's a FP we already know that we extracted the value (the
+            # FP) but we don't know what the actual values were for that part or
+            # datasheet (e.g. We extracted an invalid (FP) value V while the
+            # actual values were X, Y, and Z).
             for (doc, val) in entities:
                 if doc.upper() in gold_dic:
                     writer.writerow(

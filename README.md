@@ -213,6 +213,61 @@ This will output 2 sets of scores per relation: one for our automatically
 generated KB entities (shown as "Scores for cands above threshold.") and one for
 entities from Digi-Key's existing KB.
 
+### Input
+This executable runs the following scripts:
+1. `hack/opamps/analysis.py`, a python script that compares the extracted
+   candidates (contained in `hack/opamps/gain_dev_probs.csv` and
+   `hack/opamps/gain_test_probs.csv`) with our ground truth labels.
+2. `hack/opamps/digikey_analysis.py`, a python script that compares Digi-Key's
+   opamp data with our ground truth labels.
+3. `hack/opamps/mouser_analysis.py`, a python script that compares Mouser's
+   opamp data with our ground truth labels.
+4. `hack/transistors/analysis.py`, a python script that compares the extracted
+   candidates (contained in `hack/transistors/ce_v_max_dev_probs.csv` and
+   `hack/transistors/ce_v_max_test_probs.csv`) with our ground truth labels.
+5. `hack/transistors/digikey_analysis.py`, a python script that compares
+   Digi-Key's transistors data with our ground truth labels.
+6. `hack/transistors/mouser_analysis.py`, a python script that compares Mouser's
+   transistors data with our ground truth labels.
+
+Which evaluates the following automatically generated files:
+1. `hack/opamps/gain_dev_probs.csv`, a CSV file outputted by running an end2end
+   opamps run that contains the gain candidates (and their assigned
+   probabilities) extracted from the dev set of documents.
+2. `hack/opamps/gain_test_probs.csv`, a CSV file outputted by running an end2end
+   opamps run that contains the gain candidates (and their assigned
+   probabilities) extracted from the test set of documents.
+3. `hack/transistors/ce_v_max_dev_probs.csv`, a CSV file outputted by running an
+   end2end transistors run that contains the extracted candidates (and their
+   assigned probabilities) from the dev set of documents.
+4. `hack/transistors/ce_v_max_test_probs.csv`, a CSV file outputted by running
+   an end2end transistors run that contains the extracted candidates (and their
+   assigned probabilities) from the test set of documents.
+
+And the following Digi-Key files:
+1. `hack/opamps/data/analysis/digikey_gold.csv`, a CSV of Digi-Key's gold data
+   standardized to match our labels.
+2. `hack/transistors/data/analysis/digikey_gold.csv`, a CSV of Digi-Key's gold
+   data standardized to match our labels.
+
+Against the following ground truth files:
+1. `hack/opamps/data/analysis/our_gold.csv`, a CSV of our ground truth gold
+   labels for the analysis dataset.
+2. `hack/transistors/data/analysis/our_gold.csv`, a CSV of our ground truth gold
+   labels for the analysis dataset.
+
+And the following Mouser files:
+1. `hack/opamps/data/mouser/mouser_gold.csv`, a CSV of Mouser's gold data
+   standardized to match our labels.
+2. `hack/transistors/data/mouser/mouser_gold.csv`, a CSV of Mouser's gold data
+   standardized to match our labels.
+
+Against the following ground truth files:
+1. `hack/opamps/data/mouser/our_gold.csv`, a CSV of our ground truth gold
+   labels for the mouser dataset.
+2. `hack/transistors/data/mouser/our_gold.csv`, a CSV of our ground truth gold
+   labels for the mouser dataset.
+
 ### Output
 This executable will output 8 files (2 per relation):
 1. `hack/opamps/analysis/current_analysis_discrepancies.csv`, a CSV file of

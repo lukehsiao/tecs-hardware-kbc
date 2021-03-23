@@ -1,6 +1,7 @@
 """
-This should read in two gold files, score them against eachother,
-and write all discrepancies to an output CSV.
+This should read in two gold files (namely `data/analysis/digikey_gold.csv` and
+`data/analysis/our_gold.csv`), score them against eachother, and write all
+discrepancies to an output CSV.
 """
 import logging
 import os

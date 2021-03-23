@@ -76,6 +76,7 @@ def format_gold(component, raw_gold_file, formatted_gold_file, seen, append=Fals
                     ("max_op_temp", max_op_temp, temperature_normalizer),
                 ]
 
+                doc_name = doc_normalizer(doc_name)
                 manuf = manuf_normalizer(manufacturer)
                 part_num = opamp_part_normalizer(part_num)
 
@@ -87,7 +88,7 @@ def format_gold(component, raw_gold_file, formatted_gold_file, seen, append=Fals
                                 try:
                                     output = [
                                         doc_name,
-                                        #  manuf,
+                                        manuf,
                                         part_num,
                                         name,
                                         normalizer(a),
@@ -248,13 +249,13 @@ if __name__ == "__main__":
     # CSVs. NOTE: Make sure to change the `line = ()` in `format_gold()` to
     # match what a line actually is in your raw gold CSV.
     raw_dev = os.path.join(dirname, "opamp_dev_gold.csv")
-    raw_test = os.path.join(dirname, "opamp_test_gold.csv")
+    raw_test = os.path.join(dirname, "mouser_opamp_gold_raw.csv")
 
     # Change `formatted_dev/test` to the absolute path of where you want your
     # final formatted output to be written.
     formatted_dev = os.path.join(dirname, "dev_gold.csv")
-    formatted_test = os.path.join(dirname, "test_gold.csv")
+    formatted_test = os.path.join(dirname, "mouser_gold.csv")
 
     # Run formatting
-    format_gold("opamp", raw_dev, formatted_dev, seen)
+    #  format_gold("opamp", raw_dev, formatted_dev, seen)
     format_gold("opamp", raw_test, formatted_test, seen)

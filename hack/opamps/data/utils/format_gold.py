@@ -63,7 +63,13 @@ def format_gold(raw_gold_file, formatted_gold_file, seen, append=False):
                 if "N/A" not in attr:
                     for a in attr.split(delim):
                         if len(a.strip()) > 0:
-                            output = [doc_name, manuf, part_num, name, normalizer(a)]
+                            output = [
+                                doc_name.replace(".pdf", ""),
+                                manuf,
+                                part_num,
+                                name,
+                                normalizer(a),
+                            ]
                             if tuple(output) not in seen:
                                 writer.writerow(output)
                                 seen.add(tuple(output))
@@ -76,15 +82,8 @@ if __name__ == "__main__":
     # CSVs. NOTE: Make sure to change the `line = ()` in `format_gold()` to
     # match what a line actually is in your raw gold CSV.
     dirname = os.path.dirname(__name__)
-    raw_dev_gold = os.path.join(dirname, "../src/raw_dev_gold.csv")
-    raw_test_gold = os.path.join(dirname, "../src/raw_test_gold.csv")
-    dev_gold = os.path.join(dirname, "../dev/dev_gold.csv")
-    test_gold = os.path.join(dirname, "../test/test_gold.csv")
-
-    # Change `formatted_gold` to the absolute path of where you want your final
-    # formatted output to be written.
-    formatted_gold = {dev_gold: raw_dev_gold, test_gold: raw_test_gold}
+    raw_gold = "../src/raw_mouser_gold.csv"
+    out_gold = "../mouser/our_gold.csv"
 
     # Run formatting
-    for filename in formatted_gold:
-        format_gold(formatted_gold[filename], filename, seen)
+    format_gold(raw_gold, out_gold, seen)

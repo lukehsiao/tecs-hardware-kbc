@@ -84,7 +84,7 @@ def trim_digikey_goldfile(goldfile, filenames, outfile, append=False):
     return entities
 
 
-if __name__ == "__main__":
+def create_digikey_analysis_gold_files():
     # First, get filenames that occur both in our dataset and in Digikey's gold
     dirname = os.path.dirname(__name__)
     digikey_goldfile = os.path.join(dirname, "../../standard_digikey_gold.csv")
@@ -111,3 +111,15 @@ if __name__ == "__main__":
     # Sort the new gold files for comparison
     sort_gold(outfile, replace=True)
     sort_gold(digikey_outfile, replace=True)
+
+
+def create_mouser_analysis_gold_files():
+    our_goldfile = "../../mouser/our_gold.csv"
+    mouser_goldfile = "../../mouser/mouser_gold.csv"
+    mouser_standard_file = "../../standard_mouser_gold.csv"
+    filenames = get_filenames(our_goldfile)
+    trim_digikey_goldfile(mouser_standard_file, filenames, mouser_goldfile)
+
+
+if __name__ == "__main__":
+    create_mouser_analysis_gold_files()
