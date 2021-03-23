@@ -37,9 +37,10 @@ license = "MIT"
 "Bug Tracker" = "https://github.com/lukehsiao/tecs-hardware-kbc/issues"
 
 [tool.poetry.scripts]
-transistors = "bin.transistors:run"
-# opamps = "bin.opamps"
-# circular_connectors = "bin.circular_connectors"
+transistors = "hack.cli.transistors:run"
+opamps = "hack.cli.opamps:run"
+circular_connectors = "hack.cli.circular_connectors:run"
+analysis = "hack.cli.analysis:run"
 
 [tool.poetry.dependencies]
 python = "^3.7"
