@@ -43,7 +43,7 @@ circular_connectors = "hack.cli.circular_connectors:run"
 analysis = "hack.cli.analysis:run"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.7,<3.9"
 Pillow = "^8.1.2"
 fonduer = "^0.8.2"
 matplotlib = "^3.3.4"
