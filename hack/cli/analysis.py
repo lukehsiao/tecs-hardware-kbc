@@ -11,7 +11,8 @@ from hack.transistors.digikey_analysis import main as transistors_digikey
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-if __name__ == "__main__":
+
+def run():
     parser = argparse.ArgumentParser(
         description="Commandline interface for KB evaluation."
     )
@@ -50,7 +51,7 @@ if __name__ == "__main__":
 
     if args.ce_v_max:
         logger.info("=" * 65)
-        logger.info(f"Evaluation results for collector emitter voltage max:\n")
+        logger.info("Evaluation results for collector emitter voltage max:\n")
 
         transistors(
             debug=args.debug,
@@ -66,7 +67,7 @@ if __name__ == "__main__":
 
     if args.polarity:
         logger.info("=" * 65)
-        logger.info(f"Evaluation results for polarity:\n")
+        logger.info("Evaluation results for polarity:\n")
 
         transistors(
             relation="polarity",
@@ -82,7 +83,7 @@ if __name__ == "__main__":
 
     if args.current:
         logger.info("=" * 65)
-        logger.info(f"Evaluation results for typical supply current:\n")
+        logger.info("Evaluation results for typical supply current:\n")
 
         opamps(
             is_gain=False,
@@ -96,7 +97,7 @@ if __name__ == "__main__":
 
     if args.gain:
         logger.info("=" * 65)
-        logger.info(f"Evaluation results for typical gain bandwidth product:\n")
+        logger.info("Evaluation results for typical gain bandwidth product:\n")
 
         opamps(
             is_gain=True,

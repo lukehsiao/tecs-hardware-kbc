@@ -4,7 +4,8 @@ import argparse
 
 from hack.transistors.transistors import main
 
-if __name__ == "__main__":
+
+def run():
     parser = argparse.ArgumentParser(
         description="Commandline interface for KBC for transistors."
     )

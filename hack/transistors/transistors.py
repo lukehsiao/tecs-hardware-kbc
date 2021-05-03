@@ -176,7 +176,7 @@ def main(
     session = Meta.init(conn_string).Session()
 
     # Parsing
-    logger.info(f"Starting parsing...")
+    logger.info("Starting parsing...")
     start = timer()
     docs, train_docs, dev_docs, test_docs = parse_dataset(
         session, dirname, first_time=parse, parallel=parallel, max_docs=max_docs
@@ -532,7 +532,7 @@ def main(
 
     num_feature_keys = len(featurizer.get_keys())
 
-    model = EmmentalModel(name=f"transistor_tasks")
+    model = EmmentalModel(name="transistor_tasks")
 
     # List relation names, arities, list of classes
     tasks = create_task(

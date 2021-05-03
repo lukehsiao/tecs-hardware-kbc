@@ -190,7 +190,7 @@ def main(
     best_dev_entities = set()
 
     # Iterate over `b` values
-    logger.info(f"Determining best b...")
+    logger.info("Determining best b...")
     parts_by_doc = load_parts_by_doc()
     for b in tqdm(np.linspace(0, 1, num=num)):
         # Dev and Test

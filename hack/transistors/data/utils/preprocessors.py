@@ -185,7 +185,7 @@ def get_docs(
             return docs
 
         else:
-            logger.error(f"Gold document reference is empty.")
+            logger.error("Gold document reference is empty.")
             pdb.set_trace()
 
 

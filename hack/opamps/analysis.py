@@ -173,7 +173,7 @@ def main(
         logger.error("Gold is empty")
         pdb.set_trace()
 
-    logger.info(f"Determining best b...")
+    logger.info("Determining best b...")
     for b in tqdm(np.linspace(0.0, 1, num=num)):
         # Dev
         dev_entities = get_entity_set(dev_file, b=b, is_gain=is_gain)

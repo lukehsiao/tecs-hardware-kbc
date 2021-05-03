@@ -2,17 +2,31 @@
 
 import argparse
 
-from hack.circular_connectors.circular_connectors import main
+from hack.opamps.opamps import main
 
-if __name__ == "__main__":
+
+def run():
     parser = argparse.ArgumentParser(
-        description="Commandline interface for KBC for transistors."
+        description="Commandline interface for KBC for op-amps."
     )
 
+    parser.add_argument(
+        "--gain", help="Extract typical gain bandwidth product.", action="store_true"
+    )
+    parser.add_argument(
+        "--current",
+        help="Extract typical supply/quiescent current.",
+        action="store_true",
+    )
     parser.add_argument("--parse", action="store_true", help="Parse the dataset.")
     parser.add_argument(
         "--first-time",
         help="Run all stages of the pipeline (except parsing).",
+        action="store_true",
+    )
+    parser.add_argument(
+        "--re-label",
+        help="Re-run weak supervision (assumes rest of pipeline has been done).",
         action="store_true",
     )
     parser.add_argument(
@@ -24,7 +38,6 @@ if __name__ == "__main__":
     parser.add_argument(
         "--parallel", type=int, default=8, help="Set the level of parallelization."
     )
-    parser.add_argument("--gpu", type=str, help="Use the specified GPU index.")
     parser.add_argument(
         "--conn-string", type=str, help="Connection string to the PosgreSQL Database."
     )
@@ -33,12 +46,17 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    if not any([args.current, args.gain]):
+        raise parser.error("Need to specify at least one relation to extract.")
+
     main(
         args.conn_string,
+        gain=args.gain,
+        current=args.current,
         max_docs=args.max_docs,
         parse=args.parse,
         first_time=args.first_time,
-        gpu=args.gpu,
+        re_label=args.re_label,
         parallel=args.parallel,
         log_dir=args.log_dir,
         verbose=args.v,

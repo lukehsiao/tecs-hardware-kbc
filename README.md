@@ -1,12 +1,14 @@
 # Creating Hardware Component Knowledge Bases with Training Data Generation and Multi-task Learning
 
+[![ci](https://github.com/lukehsiao/tecs-hardware-kbc/actions/workflows/pythonpackage.yml/badge.svg)](https://github.com/lukehsiao/tecs-hardware-kbc/actions/workflows/pythonpackage.yml)
+
 ## Minimum Software Requirements
 
 This software artifact and the instructions provided below assume that the
 system is running at minimum:
 
-- Ubuntu 16.04.03
-- Python 3.6
+- Ubuntu 18.04
+- Python 3.7
 - PostgreSQL 9.6.9
 
 While this software artifact can be made to work with earlier versions of Ubuntu
@@ -30,32 +32,23 @@ We require `poppler-utils` to be version 0.36.0 or greater (which is already
 the case for Ubuntu 18.04). If you do not meet this requirement, you can also
 [install poppler manually](https://poppler.freedesktop.org/).
 
-For the Python dependencies, use a
-[virtualenv](https://virtualenv.pypa.io/en/stable/). This greatly simplifies
-managing Python dependencies and ensures that our installation scripts work out
-of the box (e.g., a python 3 `virtualenv` will automatically alias `pip` to
-`pip3`). Once you have cloned the repository, change directories to the root of
-the repository and run:
+We recommend using [pyenv](https://github.com/pyenv/pyenv) to manage your python
+version. We also use [poetry](https://python-poetry.org/) to manage the package
+and dependencies. Once you have Python and Poetry installed, you can run:
 
 ```bash
-$ virtualenv -p python3 .venv
+$ poetry install
 ```
 
-Once the virtual environment is created, activate it by running
+You can activate the Poetry virtualenv by running
 
 ```bash
-$ source .venv/bin/activate
+$ poetry shell
 ```
 
 Any Python libraries installed will now be contained within this virtual
-environment. To deactivate the environment, simply run `deactivate`.
+environment. To deactivate the environment, simply run `exit`.
 
-Then, install our package, [Fonduer](https://github.com/hazyresearch/fonduer),
-and any other Python dependencies by running:
-
-```bash
-$ make dev
-```
 
 ## Downloading the Datasets
 
@@ -106,7 +99,6 @@ the test set, you can run the following command. If you made the demo user, you
 can use `demo` as the `<user>` and `<pw>`, and the default `<host>` and `<port>`
 is `localhost:5432` for PostgreSQL. The `--stg-temp-min`, `--stg-temp-max`,
 `--polarity`, and `--ce-v-max` arguments represent which relations to extract
-from the dataset.
 
 ```bash
 $ psql -c "create database transistors with owner demo;" -U postgres
@@ -268,11 +260,10 @@ fresh clone of the repository to running the results on the transistor dataset.
 ```
 $ git clone https://github.com/lukehsiao/tecs-hardware-kbc.git
 $ cd tecs-hardware-kbc
-$ virtualenv -p python3 .venv
-$ source .venv/bin/activate
+$ poetry install
+$ poetry shell
 (.venv) $ psql -c "create user demo with password 'demo' superuser createdb;" -U postgres
 (.venv) $ psql -c "create database transistors with owner demo;" -U postgres
-(.venv) $ make dev
 (.venv) $ cd hack/transistors
 (.venv) $ ./download_data.sh
 (.venv) $ transistors --stg-temp-min --stg-temp-max --polarity --ce-v-max --parse --first-time --max-docs 500 --parallel 4 --conn-string="postgresql://demo:demo@localhost:5432/transistors"
