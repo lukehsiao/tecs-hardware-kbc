@@ -216,7 +216,7 @@ def _plot(infile, gainfile, currentfile, outfile, scale, gb, cb):
         markers=["o", "^"],
         ax=ax,
         linewidth=0,
-        palette=sns.color_palette("Paired")[:2],
+        palette=sns.color_palette("colorblind")[:2],
     )
 
     # Highlight the Opo selection, if present
